@@ -10,6 +10,7 @@
   "require": {
     "php": "^8.2",
     "guzzlehttp/guzzle": "^7.2",
+    "jdorn/sql-formatter": "^1.2",
     "laravel/framework": "^11.9",
     "laravel/sanctum": "^4.0",
     "laravel/tinker": "^2.9"
@@ -30,7 +31,10 @@
       "App\\": "app/",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/"
-    }
+    },
+    "files" : [
+      "app/Helper/helpers.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
