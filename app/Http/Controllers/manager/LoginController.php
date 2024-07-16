@@ -35,7 +35,7 @@ class LoginController extends Exomere
 
             auth()->login($userInfo);
 
-            return redirect('/managerment/dashboard');
+            return redirect('/management/dashboard');
             
         } else {
             return redirect('/login');

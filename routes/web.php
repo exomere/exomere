@@ -47,14 +47,24 @@ use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\Manager\LoginController;
 use App\Http\Controllers\MainController;
 
+###################### 미인증 페이지 START ###########################
+
 Route::get('/', function () {
-    Route::get('/', [MainController::class, 'index'])->name('main');
+    return view('pages.main');
 });
 
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
-Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
 
+Route::post('/login/perform', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
+
+###################### 미인증 페이지 END ###########################
+
+
+###################### 인증 페이지 START###########################
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+    
     Route::prefix('/management')->group(function () {
         Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 
@@ -120,3 +130,4 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic');
     });
 });
+###################### 인증 페이지 END ###########################
