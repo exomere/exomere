@@ -43,11 +43,12 @@ use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\tables\Basic as TablesBasic;
-use App\Http\Controllers\Manager\LoginController
-;
+
+use App\Http\Controllers\Manager\LoginController;
+use App\Http\Controllers\MainController;
 
 Route::get('/', function () {
-    return view('welcome');
+    Route::get('/', [MainController::class, 'index'])->name('main');
 });
 
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
