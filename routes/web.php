@@ -44,7 +44,7 @@ use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 
-use App\Http\Controllers\Manager\LoginController;
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\MainController;
 
 ###################### 미인증 페이지 START ###########################

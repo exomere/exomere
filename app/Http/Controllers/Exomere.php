@@ -11,7 +11,6 @@ class Exomere extends Controller
 
     private $pageLimit = 10;
 
-    
     /**
      * query 확인 함수
      * @author oley

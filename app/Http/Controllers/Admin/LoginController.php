@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Manager;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Member;
 use App\Http\Controllers\Exomere;
