@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Member;
+use App\Models\ExMember;
 use App\Http\Controllers\Exomere;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 class LoginController extends Exomere
 {
     /**
@@ -23,12 +25,12 @@ class LoginController extends Exomere
         $pwd = $request->password ?? null;
         $id = $request->id ?? null;
 
-        $userInfo = Member::where('id', $id)->whereRaw("pw = UPPER(SHA1(UNHEX(SHA1('".env('LOGIN_KEY'). $pwd . "'))))")->first();
-        
-        if (!empty($userInfo->seq)) {
+        $userInfo = ExMember::where('member_id', $id)->where("member_pw", DB::raw("UPPER(SHA1(UNHEX(SHA1('".env('LOGIN_KEY'). $pwd . "'))))"))->first();
+
+        if ($userInfo) {
             $request->session()->regenerate();
-            $request->session()->put('member_id', $userInfo->id ?? '');
-            $request->session()->put('member_seq', $userInfo->seq ?? '');
+            $request->session()->put('member_seq', $userInfo->id ?? '');
+            $request->session()->put('member_id', $userInfo->member_id ?? '');
             $request->session()->put('member_name', $userInfo->name ?? '');
             $request->session()->put('member_type', $userInfo->type ?? '');
             $request->session()->put('member_code', $userInfo->code ?? '');
@@ -39,7 +41,7 @@ class LoginController extends Exomere
             
         } else {
             return redirect('/login');
-    }
+        }
     }
 
     public function logout(Request $request)
