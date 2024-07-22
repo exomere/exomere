@@ -4,264 +4,107 @@
       "url": "management//",
       "name": "Dashboards",
       "icon": "menu-icon tf-icons bx bx-home-circle",
-      "slug": "dashboard",
-      "badge": [
-        "danger",
-        "5"
-      ],
-      "submenu": [
-        {
-          "url": "management//",
-          "name": "Analytics",
-          "slug": "dashboard-analytics"
-        }
-      ]
+      "slug": "dashboard"
     },
     {
-      "menuHeader": "Apps & Pages"
+      "menuHeader": "My Office"
     },
     {
-      "name": "Account Settings",
+      "name": "내정보",
       "icon": "menu-icon tf-icons bx bx bx-dock-top",
       "slug": "pages-account-settings",
       "submenu": [
         {
           "url": "management/pages/account-settings-account",
-          "name": "Account",
+          "name": "내정보",
           "slug": "pages-account-settings-account"
         },
         {
           "url": "management/pages/account-settings-notifications",
-          "name": "Notifications",
+          "name": "내정보 변경",
           "slug": "pages-account-settings-notifications"
         },
         {
           "url": "management/pages/account-settings-connections",
-          "name": "Connections",
+          "name": "비밀번호 변경",
           "slug": "pages-account-settings-connections"
         }
       ]
     },
     {
-      "name": "Authentications",
-      "icon": "menu-icon tf-icons bx bx-lock-open-alt",
+      "name": "포인트",
+      "icon": "menu-icon tf-icons bx bxs-badge-dollar",
       "slug": "auth",
       "submenu": [
         {
           "url": "management/auth/login-basic",
-          "name": "Login",
+          "name": "쇼핑포인트",
           "slug": "auth-login-basic",
-          "target": "_blank"
-        },
-        {
-          "url": "management/auth/register-basic",
-          "name": "Register",
-          "slug": "auth-register-basic",
-          "target": "_blank"
-        },
-        {
-          "url": "management/auth/forgot-password-basic",
-          "name": "Forgot Password",
-          "slug": "auth-forgot-password-basic",
           "target": "_blank"
         }
       ]
     },
     {
-      "name": "Misc",
-      "icon": "menu-icon tf-icons bx bx-cube-alt",
+      "name": "주문",
+      "icon": "menu-icon tf-icons bx bx-shopping-bag",
       "slug": "pages-misc",
       "submenu": [
         {
           "url": "management/pages/misc-error",
-          "name": "Error",
+          "name": "주문내역",
           "slug": "pages-misc-error",
           "target": "_blank"
         },
         {
           "url": "management/pages/misc-under-maintenance",
-          "name": "Under Maintenance",
+          "name": "모집내역",
           "slug": "pages-misc-under-maintenance",
           "target": "_blank"
         }
       ]
     },
     {
-      "menuHeader": "Components"
+      "name": "수수료관리",
+      "icon": "menu-icon tf-icons bx bxs-offer",
+      "slug": "pages-misc",
+      "submenu": [
+        {
+          "url": "management/pages/misc-error",
+          "name": "기마감 내역",
+          "slug": "pages-misc-error",
+          "target": "_blank"
+        },
+        {
+          "url": "management/pages/misc-under-maintenance",
+          "name": "총판 지급 내역",
+          "slug": "pages-misc-under-maintenance",
+          "target": "_blank"
+        },
+        {
+          "url": "management/pages/misc-under-maintenance",
+          "name": "월마감 내역",
+          "slug": "pages-misc-under-maintenance",
+          "target": "_blank"
+        }
+      ]
     },
     {
-      "name": "Cards",
-      "icon": "menu-icon tf-icons bx bx-collection",
+      "name": "조직도",
+      "icon": "menu-icon tf-icons bx bx-sitemap",
       "slug": "cards-basic",
       "url": "management/cards/basic"
     },
     {
-      "name": "User interface",
-      "icon": "menu-icon tf-icons bx bx-box",
-      "slug": "ui",
-      "submenu": [
-        {
-          "url": "management/ui/accordion",
-          "name": "Accordion",
-          "slug": "ui-accordion"
-        },
-        {
-          "url": "management/ui/alerts",
-          "name": "Alerts",
-          "slug": "ui-alerts"
-        },
-        {
-          "url": "management/ui/badges",
-          "name": "Badges",
-          "slug": "ui-badges"
-        },
-        {
-          "url": "management/ui/buttons",
-          "name": "Buttons",
-          "slug": "ui-buttons"
-        },
-        {
-          "url": "management/ui/carousel",
-          "name": "Carousel",
-          "slug": "ui-carousel"
-        },
-        {
-          "url": "management/ui/collapse",
-          "name": "Collapse",
-          "slug": "ui-collapse"
-        },
-        {
-          "url": "management/ui/dropdowns",
-          "name": "Dropdowns",
-          "slug": "ui-dropdowns"
-        },
-        {
-          "url": "management/ui/footer",
-          "name": "Footer",
-          "slug": "ui-footer"
-        },
-        {
-          "url": "management/ui/list-groups",
-          "name": "List Groups",
-          "slug": "ui-list-groups"
-        },
-        {
-          "url": "management/ui/modals",
-          "name": "Modals",
-          "slug": "ui-modals"
-        },
-        {
-          "url": "management/ui/navbar",
-          "name": "Navbar",
-          "slug": "ui-navbar"
-        },
-        {
-          "url": "management/ui/offcanvas",
-          "name": "Offcanvas",
-          "slug": "ui-offcanvas"
-        },
-        {
-          "url": "management/ui/pagination-breadcrumbs",
-          "name": "Pagination & Breadcrumbs",
-          "slug": "ui-pagination-breadcrumbs"
-        },
-        {
-          "url": "management/ui/progress",
-          "name": "Progress",
-          "slug": "ui-progress"
-        },
-        {
-          "url": "management/ui/spinners",
-          "name": "Spinners",
-          "slug": "ui-spinners"
-        },
-        {
-          "url": "management/ui/tabs-pills",
-          "name": "Tabs & Pills",
-          "slug": "ui-tabs-pills"
-        },
-        {
-          "url": "management/ui/toasts",
-          "name": "Toasts",
-          "slug": "ui-toasts"
-        },
-        {
-          "url": "management/ui/tooltips-popovers",
-          "name": "Tooltips & Popovers",
-          "slug": "ui-tooltips-popovers"
-        },
-        {
-          "url": "management/ui/typography",
-          "name": "Typography",
-          "slug": "ui-typography"
-        }
-      ]
+      "name": "공지사항",
+      "icon": "menu-icon tf-icons bx bxs-notification",
+      "slug": "cards-basic",
+      "url": "management/cards/basic"
     },
     {
-      "name": "Extended UI",
-      "icon": "menu-icon tf-icons bx bx-copy",
-      "slug": "extended",
-      "submenu": [
-        {
-          "url": "management/extended/ui-perfect-scrollbar",
-          "name": "Perfect scrollbar",
-          "slug": "extended-ui-perfect-scrollbar"
-        },
-        {
-          "url": "management/extended/ui-text-divider",
-          "name": "Text Divider",
-          "slug": "extended-ui-text-divider"
-        }
-      ]
-    },
-    {
-      "url": "management/icons/boxicons",
-      "icon": "menu-icon tf-icons bx bx-crown",
-      "name": "Boxicons",
-      "slug": "icons-boxicons"
-    },
-    {
-      "menuHeader": "Forms & Tables"
-    },
-    {
-      "name": "Form Elements",
-      "icon": "menu-icon tf-icons bx bx-detail",
-      "slug": "forms",
-      "submenu": [
-        {
-          "url": "management/forms/basic-inputs",
-          "name": "Basic Inputs",
-          "slug": "forms-basic-inputs"
-        },
-        {
-          "url": "management/forms/input-groups",
-          "name": "Input groups",
-          "slug": "forms-input-groups"
-        }
-      ]
-    },
-    {
-      "name": "Form Layouts",
-      "icon": "menu-icon tf-icons bx bx-detail",
-      "slug": "form-layouts",
-      "submenu": [
-        {
-          "url": "management/form/layouts-vertical",
-          "name": "Vertical Form",
-          "slug": "form-layouts-vertical"
-        },
-        {
-          "url": "management/form/layouts-horizontal",
-          "name": "Horizontal Form",
-          "slug": "form-layouts-horizontal"
-        }
-      ]
-    },
-    {
-      "url": "management/tables/basic",
-      "icon": "menu-icon tf-icons bx bx-table",
-      "name": "Tables",
-      "slug": "tables-basic"
+      "name": "1:1문의",
+      "icon": "menu-icon tf-icons bx bxs-bell-ring",
+      "slug": "cards-basic",
+      "url": "management/cards/basic"
     },
     {
       "menuHeader": "ERP 메뉴"
@@ -381,4 +224,3 @@
     }
   ]
 }
-
