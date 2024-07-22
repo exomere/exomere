@@ -45,6 +45,7 @@ use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\MainController;
 
 ###################### 미인증 페이지 START ###########################
@@ -67,6 +68,12 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::prefix('/management')->group(function () {
         Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
+
+        Route::prefix('/item')->group(function () {
+            Route::get('/list', [ItemController::class, 'itemList'])->name('basic-layouts-item-list');
+            Route::get('/register/{seq?}', [ItemController::class, 'itemRegister'])->name('basic-layouts-item-register');
+            Route::post('/save', [ItemController::class, 'itemSave'])->name('item.save');
+        });
 
         // layout
         Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');

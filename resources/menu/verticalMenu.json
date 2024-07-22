@@ -308,22 +308,22 @@
     {
       "name": "기초정보",
       "icon": "menu-icon tf-icons bx bx-detail",
-      "slug": "form-layouts",
+      "slug": "basic-layouts",
       "submenu": [
         {
           "url": "management/form/layouts-vertical",
           "name": "센터목록",
-          "slug": "form-layouts-vertical"
+          "slug": "basic-layouts-center-list"
         },
         {
-          "url": "management/form/layouts-horizontal",
+          "url": "management/item/list",
           "name": "상품목록",
-          "slug": "form-layouts-horizontal"
+          "slug": "basic-layouts-item-list"
         },
         {
           "url": "management/form/layouts-horizontal",
           "name": "분양몰목록",
-          "slug": "form-layouts-horizontal"
+          "slug": "basic-layouts-store-list"
         }
       ]
     },
