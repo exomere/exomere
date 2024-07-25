@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\member\MemberController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
@@ -53,6 +55,14 @@ use App\Http\Controllers\MainController;
 Route::get('/', function () {
     return view('pages.main');
 });
+
+// 언어 변경
+Route::get('/set-language/{lang}', [LanguageController::class, 'setLanguage'])->name('setLanguage');
+
+// 회원가입 페이지
+Route::get('/signup', [MemberController::class, 'signup'])->name('signup');
+// 회원등록
+Route::post('/register', [MemberController::class, 'register'])->name('register');
 
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
 
