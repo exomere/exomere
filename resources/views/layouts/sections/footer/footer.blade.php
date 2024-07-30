@@ -6,13 +6,15 @@
     <div>
       <div class="dropdown dropup footer-link me-3">
         <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Currency
+          @if (app()->getLocale() == 'ko')
+            한국어
+          @else
+            English
+          @endif
         </button>
         <div class="dropdown-menu dropdown-menu-end">
-          <a class="dropdown-item" href="javascript:void(0);"><i class='bx bx-dollar'></i> USD</a>
-          <a class="dropdown-item" href="javascript:void(0);"><i class='bx bx-euro'></i> Euro</a>
-          <a class="dropdown-item" href="javascript:void(0);"><i class='bx bx-pound'></i> Pound</a>
-          <a class="dropdown-item" href="javascript:void(0);"><i class='bx bx-bitcoin'></i> Bitcoin</a>
+          <a class="dropdown-item" href="{{route('setLanguage','ko')}}">한국어</a>
+          <a class="dropdown-item" href="{{route('setLanguage','en')}}">English</a>
         </div>
       </div>
       <a href="javascript:void(0)" class="btn btn-sm btn-outline-danger"><i class='bx bx-log-out-circle me-1'></i>Logout</a>
