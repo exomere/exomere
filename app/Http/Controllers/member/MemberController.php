@@ -9,7 +9,7 @@ class MemberController extends Controller
 {
     public function signup()
     {
-        return view('member.signup');
+        return view('auth.signup');
     }
 
     public function register(Request $request)
