@@ -101,4 +101,8 @@ class Exomere extends Controller
 
         return $result;
     }
+
+    public function pagaNation($data,$limit){
+
+    }
 }
