@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\member\MemberController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
@@ -47,7 +45,6 @@ use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 
 use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\MainController;
 
 ###################### 미인증 페이지 START ###########################
@@ -55,14 +52,6 @@ use App\Http\Controllers\MainController;
 Route::get('/', function () {
     return view('pages.main');
 });
-
-// 언어 변경
-Route::get('/set-language/{lang}', [LanguageController::class, 'setLanguage'])->name('setLanguage');
-
-// 회원가입 페이지
-Route::get('/signup', [MemberController::class, 'signup'])->name('signup');
-// 회원등록
-Route::post('/register', [MemberController::class, 'register'])->name('register');
 
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
 
@@ -78,12 +67,6 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::prefix('/management')->group(function () {
         Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
-
-        Route::prefix('/item')->group(function () {
-            Route::get('/list', [ItemController::class, 'itemList'])->name('basic-layouts-item-list');
-            Route::get('/register/{seq?}', [ItemController::class, 'itemRegister'])->name('basic-layouts-item-register');
-            Route::post('/save', [ItemController::class, 'itemSave'])->name('item.save');
-        });
 
         // layout
         Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');

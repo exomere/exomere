@@ -17,4 +17,3 @@ yarn-error.log
 /.vscode
 /tests/Feature/OrderTest.php
 /schema.sql
-.DS_Store
