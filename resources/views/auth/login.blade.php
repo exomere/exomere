@@ -48,19 +48,21 @@
 @endsection
 
 @section('content')
-    <main class="form-signin text-center">
+    <main class="form-signin text-center" style="background-color: #fff;border-radius: 25px">
         <form id="formAuthentication" action="{{route('login.perform')}}" method="POST">
             @csrf
-            <img class="mb-4" src="//exomere.co.kr/common/image/logo/logo_horizontal.svg" alt="" width="172"
-                 height="57">
+            <a href="/">
+                <img class="mb-4" src="//exomere.co.kr/common/image/logo/logo_horizontal.svg" alt="" width="172"
+                     height="57">
+            </a>
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
             <div class="form-floating">
-                <input type="text" name="id" class="form-control" id="floatingInput" placeholder="ID를 입력하세요">
+                <input type="text" name="id" class="form-control" id="floatingInput" placeholder="ID를 입력하세요" aria-describedby="inputGroupPrepend" >
                 <label for="floatingInput">ID</label>
             </div>
             <div class="form-floating">
-                <input type="password" name="password" class="form-control" id="floatingPassword"
+                <input type="password" name="password" class="form-control" id="floatingPassword" aria-describedby="inputGroupPrepend"
                        placeholder="비밀번호를 입력하세요">
                 <label for="floatingPassword">Password</label>
             </div>
