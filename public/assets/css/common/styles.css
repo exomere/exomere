@@ -1,15 +1,10 @@
 @charset "utf-8";
 
-/*font*/
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@100..900&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
-
-/*reset*/
-@import url('./reset.css');
 @import url('./modern-normalize.css');
+@import url('./reset.css');
 
-/*vendor*/
 @import url('../../vendor/libs/swiper/swiper.css');
 
-/*core*/
 @import url('./common.css');
+
 
