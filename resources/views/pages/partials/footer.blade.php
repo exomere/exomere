@@ -19,7 +19,7 @@
             </div>
             <div class="footer_last">
                 <p class="footer_copyright">
-                    © 2023 EXOMERE™. All Rights Reserved.
+                    © 2024 EXOMERE™. All Rights Reserved.
                 </p>
                 <ul class="footer_etc">
                     <li>
