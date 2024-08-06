@@ -1,56 +1,84 @@
 @extends('layouts/blankLayout')
 
-@section('title', 'Login Basic - Pages')
+@section('title', '로그인')
 
 @section('page-style')
-<!-- Page -->
-<link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .form-signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+
+        .form-signin .checkbox {
+            font-weight: 400;
+        }
+
+        .form-signin .form-floating:focus-within {
+            z-index: 2;
+        }
+
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+    </style>
 @endsection
 
 @section('content')
-<div class="container-xxl">
-  <div class="authentication-wrapper authentication-basic container-p-y">
-    <div class="authentication-inner">
-      <!-- Register -->
-      <div class="card">
-        <div class="card-body" style='background-color:#e06850; color:#fff;'>
-          <!-- Logo -->
-          <div class="app-brand justify-content-center">
-            <a href="{{url('/')}}" class="app-brand-link gap-2">
-                <img src='/img/logo_footer_white.png' style='margin-left:5px; width:350px;'></a>
-            </a>
-          </div>
-          <!-- /Logo -->
-          <form id="formAuthentication" class="mb-3" action="{{route('login.perform')}}" method="POST">
+    <main class="form-signin text-center">
+        <form id="formAuthentication" action="{{route('login.perform')}}" method="POST">
             @csrf
-            <div class="mb-3">
-              <label for="id" class="form-label" style='color:#fff;'>ID</label>``
-              <input type="text" class="form-control" id="id" name="id" placeholder="ID를 입력해주세요" autofocus>
-            </div>
-            <div class="mb-3 form-password-toggle">
-              <div class="d-flex justify-content-between">
-                <label class="form-label" for="password" style='color:#fff;'>Password</label>
-              </div>
-              <div class="input-group input-group-merge">
-                <input type="password" id="password" class="form-control" name="password" aria-describedby="password" />
-                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-              </div>
-            </div>
-            <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit" style='background-color:#fff; color:#e06850;'>Sign in</button>
-            </div>
-          </form>
+            <img class="mb-4" src="//exomere.co.kr/common/image/logo/logo_horizontal.svg" alt="" width="172"
+                 height="57">
+            <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
-          <p class="text-center">
-            <a href="{{url('auth/register-basic')}}">
-              <span style='color:#fff;'>회원가입</span>
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- /Register -->
-  </div>
-</div>
-</div>
+            <div class="form-floating">
+                <input type="text" name="id" class="form-control" id="floatingInput" placeholder="ID를 입력하세요">
+                <label for="floatingInput">ID</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password" class="form-control" id="floatingPassword"
+                       placeholder="비밀번호를 입력하세요">
+                <label for="floatingPassword">Password</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> 아이디 기억하기
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+            <p class="mt-4">
+                아직 회원이 아니시라면?
+                <button class="border-primary btn btn-lg text-primary w-100" type="button"
+                        onclick="location.href='{{url('signup')}}'">회원가입
+                </button>
+            </p>
+            <p class="mt-5 mb-3 text-muted">© 2024 EXOMERE™. All Rights Reserved.
+            </p>
+        </form>
+    </main>
 @endsection
