@@ -46,6 +46,7 @@ use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 
+use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\MainController;
@@ -63,6 +64,8 @@ Route::get('/set-language/{lang}', [LanguageController::class, 'setLanguage'])->
 Route::get('/signup', [MemberController::class, 'signup'])->name('signup');
 // 회원등록
 Route::post('/register', [MemberController::class, 'register'])->name('register');
+// ck에디터 업로드
+Route::post('/ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.upload');
 
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
 
@@ -75,7 +78,9 @@ Route::post('/login/perform', [LoginController::class, 'login'])->middleware('gu
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
     
+
     Route::prefix('/management')->group(function () {
         Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
 
