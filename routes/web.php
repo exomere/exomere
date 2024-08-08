@@ -61,7 +61,9 @@ Route::get('/', function () {
 Route::get('/set-language/{lang}', [LanguageController::class, 'setLanguage'])->name('setLanguage');
 
 // 회원가입 페이지
-Route::get('/signup', [MemberController::class, 'signup'])->name('signup');
+Route::get('/signup/{recommendId?}', [MemberController::class, 'signup'])->name('signup');
+Route::get('/check-id', [MemberController::class, 'checkId']);
+Route::get('/check-recommend-id', [MemberController::class, 'checkRecommendId']);
 // 회원등록
 Route::post('/register', [MemberController::class, 'register'])->name('register');
 // ck에디터 업로드

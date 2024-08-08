@@ -3,29 +3,77 @@
 namespace App\Http\Controllers\member;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MemberRegisterRequest;
+use App\Models\ExMember;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    public function signup()
+    public function signup($recommendId = null)
     {
-        return view('auth.signup');
+        $recommendName = null;
+        $recommendSeq = null;
+
+        if ($recommendId) {
+            $recruiter = ExMember::findByMemberId($recommendId);
+            if ($recruiter) {
+                $recommendName = $recruiter->name;
+                $recommendSeq = $recruiter->id;
+            }
+        }
+
+        return view('auth.signup', compact('recommendId', 'recommendName', 'recommendSeq'));
     }
 
-    public function register(Request $request)
+    public function checkId(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+        $memberID = $request->query('member_id');
+        $exists = ExMember::findByMemberId($memberID);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        return response()->json(['available' => !$exists]);
+    }
 
-        return redirect()->route('register')->with('success', __('messages.register_success'));
+    public function checkRecommendId(Request $request)
+    {
+        $recommendId = $request->query('recommend_id');
+        $exMember = ExMember::findByMemberId($recommendId);
+
+        if ($exMember) {
+            return response()->json([
+                'exists' => true,
+                'recommendSeq' => $exMember->id,
+                'recommendName' => $exMember->name,
+            ]);
+        }
+
+        return response()->json(['exists' => false]);
+    }
+
+    public function register(MemberRegisterRequest $request)
+    {
+        $exMember = $this->createMember($request->validated());
+
+        if ($exMember) {
+            return redirect()->route('login')->with('success', __('messages.register_success'));
+        }
+
+        return redirect()->back()->withErrors(['error' => __('messages.register_fail')]);
+    }
+
+    protected function createMember(array $data)
+    {
+        return ExMember::create([
+            'member_id' => $data['member_id'],
+            'member_pw' => strtoupper(sha1(hex2bin(sha1(env('LOGIN_KEY') . $data['password'])))),
+            'name' => $data['name'],
+            'phone' => $data['phone'],
+            'local_store' => $data['local_store'],
+            'recommend_seq' => $data['recommend_seq'],
+            'zip_code' => $data['zipcode'],
+            'address' => $data['address'],
+            'address_detail' => $data['address_detail'],
+            'nation' => $data['nation'],
+            'email' => $data['email'],
+        ]);
     }
 }

@@ -14,21 +14,16 @@ class ExMember extends Authenticatable
     
     public $timestamps = true;
     protected $guarded = [];
-    protected $fillable = [
-        "code",
-        "type",
-        "member_id",
-        "member_pw",
-        "phone",
-        "email",
-        "area",
-        "exclusive_seq",
-        "recommend_seq",
-        "zip_code",
-        "address",
-        "adress_detail",
-        "country",
-        "paid_point",
-        "created_at",
-    ];
+    protected $fillable = [];
+
+    /**
+     * Retrieve a member by their ID.
+     *
+     * @param string $memberId
+     * @return ExMember|null
+     */
+    public static function findByMemberId(string $memberId): ?ExMember
+    {
+        return self::where('member_id', $memberId)->first();
+    }
 }
