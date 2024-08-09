@@ -1,6 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-      class="h-full">
+@php
+    $isMain = $isMain ?? false;
+@endphp
+    <!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -35,21 +37,76 @@
     <!-- Canonical SEO -->
     <link rel="canonical" href="{{ config('meta.url') }}">
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}"/>
     <link rel="shortcut icon" sizes="192x192" href="{{ asset('assets/img/favicon/android.png') }}">
     <link rel="apple-touch-icon" sizes="128x128" href="{{ asset('assets/img/favicon/ios.png') }}">
 
     <!-- Include Styles -->
+    <style type="text/tailwindcss">
+
+        @layer components {
+            .max-container {
+                max-width: 1440px;
+                margin: 0 auto;
+            }
+
+            .input {
+                @apply sm:flex-1 max-sm:w-full text-base leading-normal text-slate-gray pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-slate-gray max-sm:rounded-full;
+            }
+        }
+
+        @layer utilities {
+            .padding {
+                @apply sm:px-8 px-4 sm:py-12 py-6;
+            }
+
+            .padding-x {
+                @apply sm:px-8 px-4;
+            }
+
+            .padding-y {
+                @apply sm:py-12 py-6;
+            }
+
+            .padding-l {
+                @apply sm:pl-8 pl-4;
+            }
+
+            .padding-r {
+                @apply sm:pr-8 pr-4;
+            }
+
+            .padding-t {
+                @apply sm:pt-6 pt-3;
+            }
+
+            .padding-b {
+                @apply sm:pb-6 pb-3;
+            }
+
+            .underline-animation {
+                @apply relative after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300
+            }
+            /*.title-text {*/
+            /*    @apply font-poppins font-semibold text-2xl;*/
+            /*}*/
+            /*.info-text {*/
+            /*    @apply font-montserrat text-slate-gray text-base;*/
+            /*}*/
+        }
+
+    </style>
     @include('pages.sections.styles')
 
 </head>
 
-<body class="h-full">
-    <!-- Layout Content -->
-    @yield('layoutContent')
+<body class="relative w-full h-full bg-white {{ $isMain ? 'main_page' : '' }}">
 
-    <!-- Include Scripts -->
-    @include('pages.sections.scripts')
+<!-- Layout Content -->
+@yield('layoutContent')
+
+<!-- Include Scripts -->
+@include('pages.sections.scripts')
 </body>
 
 </html>

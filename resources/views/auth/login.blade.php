@@ -40,8 +40,6 @@
 
         .form-signin input[type="password"] {
             margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
         }
 
     </style>
@@ -57,10 +55,11 @@
             </a>
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
-            <div class="form-floating">
+            <div class="form-floating mb-1">
                 <input type="text" name="id" class="form-control" id="floatingInput" placeholder="ID를 입력하세요" aria-describedby="inputGroupPrepend" >
                 <label for="floatingInput">ID</label>
             </div>
+
             <div class="form-floating">
                 <input type="password" name="password" class="form-control" id="floatingPassword" aria-describedby="inputGroupPrepend"
                        placeholder="비밀번호를 입력하세요">
@@ -79,7 +78,7 @@
                         onclick="location.href='{{url('signup')}}'">회원가입
                 </button>
             </p>
-            <p class="mt-5 mb-3 text-muted">© 2024 EXOMERE™. All Rights Reserved.
+            <p class="mt-5 mb-3 text-muted">© 2024 EXOMERE<sup>™</sup>. All Rights Reserved.
             </p>
         </form>
     </main>

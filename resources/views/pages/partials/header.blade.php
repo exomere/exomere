@@ -1,41 +1,78 @@
-<header id="header" class="absolute inset-x-0 top-0 z-50 bg-transparent">
-    <div class="header_wrap">
-        <div class="gnb">
-            {{--language--}}
-            <div class="language_select">
-                <button class="language_button">
+<header id="header" class=" fixed inset-x-0 top-0 z-50 bg-transparent lg:padding-x py-8 w-full" aria-label="Global">
+    <div class="header_wrap max-container">
+        <div class="gnb flex h-12 items-center justify-between px-4 relative">
 
-                    {{ config('meta.languages.'.app()->getLocale())  ?? strtoupper(app()->getLocale())  }}
+            <div class="flex gap-x-1 items-center">
+                {{--mobile hamberger--}}
+                <div class="flex lg:hidden">
+                    <button type="button"
+                            id="toggle-mobile-menu"
+                            class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                            data-collapse-toggle="mobile-menu"
+                            aria-expanded="false"
+                    >
+                        <span class="sr-only">Toggle main menu</span>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                         class="bi bi-chevron-down" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
-                    </svg>
+                        <svg class="open-btn h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                        </svg>
+                        <svg class="close-btn hidden h-6 w-6 z-[101] text-white" fill="none" viewBox="0 0 24 24"
+                             stroke-width="1.5"
+                             stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
 
-                </button>
-                <ul class="language_list">
-                    @foreach(array_keys(config('meta.languages')) as $lang)
-                        <li class="{{ app()->getLocale() == $lang ? 'active' : '' }}"><a
-                                href="{{ route('setLanguage', ['lang' => $lang]) }}"
-                                lang="{{ $lang }}">{{ config('meta.languages.'.$lang) }}</a></li>
-                    @endforeach
-                </ul>
+                    </button>
+                </div>
+
+
+                {{--language--}}
+                <div class="language_select">
+                    <button class="flex items-center language_button text-xs text-black-50"
+                            data-dropdown-toggle="language_list">
+
+                        {{ config('meta.languages.'.app()->getLocale())  ?? strtoupper(app()->getLocale())  }}
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                             class="bi bi-chevron-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                        </svg>
+
+                    </button>
+                    <ul id="language_list" class="hidden absolute text-xs">
+                        @foreach(array_keys(config('meta.languages')) as $lang)
+                            @continue( app()->getLocale() == $lang )
+                            <li class="hover:font-bold transition-all ease-in-out duration-300">
+                                <a
+                                    href="{{ route('setLanguage', ['lang' => $lang]) }}"
+                                    lang="{{ $lang }}">{{ config('meta.languages.'.$lang) }}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+
             </div>
 
             <!--logo-->
-            <h1><a href="/" class="logo"><span class="sr-only">엑소미어</span></a></h1>
-
+            <a href="#" class="w-32 lg:w-44">
+                <span class="sr-only">엑소미어</span>
+                <img class="" src="//exomere.co.kr/common/image/logo/logo_horizontal.svg" alt="">
+            </a>
 
             {{--login/search--}}
-            <div>
-                <a href="/login" target="_blank" class="myoffice_button font-bold">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+
+            <div class="flex gap-x-1 lg:gap-x-3 items-center justify-end">
+                <a href="/login" target="_blank" class="myoffice_button flex  items-center text-2xl lg:text-base">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                         class="bi bi-person-fill" viewBox="0 0 16 16">
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                     </svg>
-                    My Office
+                    <span class="hidden lg:block">My Office</span>
                 </a>
-                <button type="button" class="gnb_search_button">
+
+                <button type="button" class="gnb_search_button text-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                          class="bi bi-search" viewBox="0 0 16 16">
                         <path
@@ -46,72 +83,76 @@
             </div>
         </div>
 
-        <div class="nav">
-            <ul class="nav_1deps">
-                <li class="nav_1deps_item">
-                    <a href="/about">ABOUT US</a>
-                    <ul class="lnb">
-                        <li>
-                            <a href="/about">기업소개</a>
-                            <ul class="lnb_sub">
-                                <li><a href="/about">기업소개</a></li>
-                                <li><a href="/about/philosophy">경영이념</a></li>
-                                <li><a href="/about/history">연혁</a></li>
-                                <li><a href="/about/cibi">CI/BI 소개</a></li>
+        <!-- web menu, show/hide based on screen width -->
+        <div class="nav max-lg:hidden">
+            <ul class="flex font-montserrat justify-center h-full gap-16">
+                @foreach ($gnbData[0]->menu as $item)
+                    <li class="nav_1deps_item font-semibold leading-[5rem] min-w-[100px]">
+                        <a href="#!">{{ $item->name }}</a>
+                        @if (isset($item->submenu) && count($item->submenu) > 0)
+                            <ul class="lnb hidden leading-loose text-base">
+                                @foreach ($item->submenu as $subItem)
+                                    <li>
+                                        <a href="{{ $subItem->url }}">{{ __('gnb.'.$subItem->name) }}</a>
+                                        @if (isset($subItem->submenu) && count($subItem->submenu) > 0)
+                                            <ul class="lnb_sub font-normal text-sm mb-2">
+                                                @foreach ($subItem->submenu as $subSubItem)
+                                                    <li><a class="underline-animation"
+                                                           href="{{ $subSubItem->url }}">{{ __('gnb.'.$subSubItem->name ) }}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endforeach
                             </ul>
-                        </li>
-                        <li>
-                            <a href="/about/core">R&D</a>
-                            <ul class="lnb_sub">
-                                <li><a href="/about/core">핵심 성분</a></li>
-                                <li><a href="/about/technology">특허 기술</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/about/branch">Branch</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav_1deps_item">
-                    <a href="/newsandmedia/news">NEWS <span class="ampersand">&amp;</span> MEDIA</a>
-                    <ul class="lnb">
-                        <li><a href="/newsandmedia/news">언론보도</a></li>
-                        <li><a href="/newsandmedia/videos">브랜드 영상</a></li>
-                    </ul>
-                </li>
-                <li class="nav_1deps_item">
-                    <a href="/brand">BRAND</a>
-                    <ul class="lnb">
-                        <li><a href="/brand">EXOMERE™</a></li>
-                        <li><a href="/brand/return10">RETURN10</a></li>
-                        <li><a href="/brand/time72">TIME72</a></li>
-                        <li><a href="/brand/imlaheal">IMLAHeal</a></li>
-                    </ul>
-                </li>
-                <li class="nav_1deps_item">
-                    <a href="/products">PRODUCT</a>
-                    <ul class="lnb">
-                        <li>
-                            <a href="/products">카테고리별</a>
-                            <ul class="lnb_sub">
-                                <li><a href="/products">전체보기</a></li>
-                                <li><a href="/products/category=">토너 & 미스트 </a></li>
-                                <li><a href="/products/category=">세럼 & 에센스 </a></li>
-                                <li><a href="/products/category=">크림 </a></li>
-                                <li><a href="/products/category=">마스크팩 </a></li>
-                                <li><a href="/products/category=">쿠션 </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav_1deps_item">
-                    <a href="/community">COMMUNITY</a>
-                    <ul class="lnb">
-                        <li><a href="/community/notice">공지사항</a></li>
-                        <li><a href="/community/reference">자료실</a></li>
-                        <li><a href="/community/inquiry">1:1 문의</a></li>
-                    </ul>
-                </li>
+                        @endif
+                    </li>
+                @endforeach
             </ul>
+        </div>
+
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="hidden" id="mobile-menu">
+            <div class="bg-[rgba(207,87,51,0.9)] fixed h-screen left-0 padding top-0 w-full z-[100]">
+                <div id="accordion-nested-parent"
+                     class="flex flex-col h-full gap-6 justify-center text-white text-4xl font-montserrat cursor-default"
+                     data-accordion="collapse"
+                     data-active-classes="false"
+                     data-inactive-classes="false"
+                >
+                    @foreach($gnbData[0]->menu as $menu)
+
+                        <h2 id="accordion-collapse-heading-{{$menu->slug}}"
+                            data-accordion-target="#accordion-collapse-body-{{$menu->slug}}"
+                            aria-controls="accordion-collapse-body-{{$menu->slug}}"
+                        >{{$menu->name}}</h2>
+
+                        <div id="accordion-collapse-body-{{$menu->slug}}"
+                             class="hidden text-2xl flex flex-col px-4 gap-y-2"
+                             aria-labelledby="accordion-collapse-heading-{{$menu->slug}}">
+
+                            @if($menu->submenu)
+                                @foreach($menu->submenu as $sub)
+                                    @isset($sub->submenu)
+                                        <h2>{{ __('gnb.'.$sub->name ) }}</h2>
+                                        @foreach($sub->submenu as $leaf_menu)
+                                            <a class="pl-4 text-white-800 hover:underline"
+                                               href="{{$leaf_menu->url}}"> {{ __('gnb.'.$leaf_menu->name ) }} </a>
+                                        @endforeach
+                                    @else
+                                        <a class="font-semibold text-white-800 hover:underline"
+                                           href="{{$sub->url}}"> {{ __('gnb.'.$sub->name ) }} </a>
+                                    @endif
+                                @endforeach
+                            @endif
+                        </div>
+                    @endforeach
+
+                </div>
+
+            </div>
         </div>
     </div>
 

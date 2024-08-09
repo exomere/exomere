@@ -1,35 +1,25 @@
-<footer id="footer">
-    <div class="footer_wrap">
-        <div class="footer_info">
-            <div class="footer_info_top">
-                <ul class="footer_contents">
-                    <li>
-                        <div class="footer_item"><span class="nanum-gothic-bold">상호명 </span>(주)엑소미어</div>
-                        <div class="footer_item"><span class="nanum-gothic-bold">대표자 </span>정영철</div>
-                    </li>
-                    <li>
-                        <div class="footer_item">
-                            <span class="nanum-gothic-bold"> 주소</span> 서울 송파구 법원로11길 11 (문정동, 문정현대지식산업센터1-1)&nbsp;A동 204호
-                        </div>
-                        <div class="footer_item">
-                            <span class="nanum-gothic-bold"> Tel.</span> 02-1577-1586
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="footer_last">
-                <p class="footer_copyright">
-                    © 2024 EXOMERE™. All Rights Reserved.
-                </p>
-                <ul class="footer_etc">
-                    <li>
-                        <a href="#" class="footer_etc_item nanum-gothic-bold">개인정보처리방침</a>
-                    </li>
-                    <li>
-                        <a href="#" class="footer_etc_item">서비스이용약관</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<div id="footer"
+     class="bg-exomere font-light font-noto-sans overscroll-none text-left text-sm text-white w-full">
+
+    <div class="max-container">
+        <ul class="flex flex-col p-8 pb-5 lg:inline-flex lg:gap-y-2 lg:p-12 lg:pb-6">
+            <li><strong>{{ __('common.company_name') }} </strong>(주)엑소미어</li>
+            <li><strong>{{ __('common.representative') }}  </strong>정영철</li>
+            <li><strong> {{ __('common.address') }} </strong> 서울 송파구 법원로11길 11 (문정동, 문정현대지식산업센터1-1)&nbsp;A동
+                204호
+            </li>
+            <li><strong> Tel.</strong> 02-1577-1586</li>
+        </ul>
     </div>
-</footer>
+
+    <hr class="border-y-white-300">
+
+    <div class="max-container">
+        <ul class=" flex flex-wrap gap-x-3 p-8 pt-5 lg:p-12 lg:pt-6">
+            <li class="font-bold"><a href="#!">{{ __('common.privacy_policy') }}</a></li>
+            <li><a href="#!">{{ __('common.terms_of_service') }}</a></li>
+            <li class="w-full  mt-2 lg:mt-0 lg:order-first lg:flex-1">© 2024 EXOMERE™. All Rights Reserved.</li>
+        </ul>
+    </div>
+
+</div>

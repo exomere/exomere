@@ -1,78 +1,21 @@
 @charset "utf-8";
 
-/* font */
-.nanum-gothic-regular {
-    font-family: "Nanum Gothic", sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html, body {
+    font-family: "Poppins", "Noto Sans KR", "Nanum Gothic", "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-}
-
-.nanum-gothic-bold {
-    font-family: "Nanum Gothic", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.nanum-gothic-extrabold {
-    font-family: "Nanum Gothic", sans-serif;
-    font-weight: 800;
-    font-style: normal;
-}
-
-.noto-sans-kr-regular {
-    font-family: "Noto Sans KR", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.noto-sans-kr-bold {
-    font-family: "Noto Sans KR", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.noto-sans-kr-extrabold {
-    font-family: "Noto Sans KR", sans-serif;
-    font-weight: 800;
-    font-style: normal;
-}
-
-.roboto-regular {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.roboto-bold {
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-.poppins-regular {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.poppins-bold {
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
-
-body, html {
-    height: 100%;
+    font-size: 16px;
     line-height: 1.8;
-    font-family: "Poppins","Nanum Gothic", "Noto Sans KR", "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
     letter-spacing: 0.05rem;
-    font-size: 1rem;
-
-    background-color: gray;
-
+    background-color: #fff;
+    color: #02060F;
 }
 
 
@@ -103,6 +46,22 @@ a {
     margin: 0 auto;
 }
 
+.swiper-slide {
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
 .swiper-slide img,
 .swiper-slide video {
     width: 100%;
@@ -111,13 +70,13 @@ a {
 
 .swiper-slide img,
 .swiper-slide video {
-    transform: scale(1.05);
-    transition: 1.5s 0.1s;
+    /*transform: scale(1.05);*/
+    /*transition: 1.5s 0.1s;*/
 }
 
 .swiper-slide-active img,
 .swiper-slide-active video {
-    transform: scale(1.0);
+    /*transform: scale(1.0);*/
 }
 
 
@@ -127,9 +86,10 @@ a {
     background-size: contain;
 }
 
-.swiper-button-next{
+.swiper-button-next {
     background-position: center right;
 }
+
 .swiper-button-prev {
     background-position: center left;
 }
@@ -153,54 +113,19 @@ a {
     font-size: 0;
 }
 
-
-
-.swiper-slide .txt-box > a,
-.swiper-slide .txt-box > h3,
-.swiper-slide .txt-box > p {
-    transform: translateY(20);
-    opacity: 0;
+.swiper-slide-active .show_content_box > a,
+.swiper-slide-active .show_content_box > p {
+    animation: showContent .3s .5s ease-in-out 1 forwards;
 }
 
-
-.swiper-slide-active .txt-box > a,
-.swiper-slide-active .txt-box > h3,
-.swiper-slide-active .txt-box > p {
-    transform: translateY(0);
-    opacity: 1;
+.swiper-slide-active .show_content_box > img {
+    animation: showContent .3s .5s ease-in-out 1 forwards;
 }
 
 /* swiper*/
 
-div.app {
-    width: 100%;
-    height: 100%;
-}
-
-div.app.main {
-    height: 100vh;
-}
-
-/*메인컨텐츠*/
-main#content {
-    display: block;
-    width: 100%;
-    min-height: 100%;
-    /*height: 100vh;*/
-    margin: 0 auto;
-    background-color: #fff;
-}
 
 /* s header*/
-#header {
-    /*position: fixed;*/
-    /*z-index: 100;*/
-    /*width: 100%;*/
-    /*left: 0;*/
-    /*top: 0;*/
-    /*background: transparent;*/
-    /*transition: all 500ms*/
-}
 
 #header:after {
     content: "";
@@ -214,8 +139,7 @@ main#content {
     visibility: hidden;
     box-shadow: 0 10px 10px 0 hsla(0, 0%, 39%, .2);
     z-index: -1;
-    transition: all 500ms;
-
+    transition: opacity 500ms;
 }
 
 #header.on {
@@ -229,57 +153,9 @@ main#content {
     background-color: #f4f4f4;
 }
 
-#header .header_wrap {
-
-}
-
-#header .header_wrap .gnb {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    height: 80px;
-    margin: 0 auto;
-    padding: 23px 60px;
-    z-index: 100;
-    align-items: center;
-}
-
-
 /*언어설정*/
-#header .header_wrap .gnb .language_select {
-    position: relative;
-}
-
-#header .header_wrap .gnb .language_select .language_button {
-    font-size: 0.85rem;
-}
-
 #header .header_wrap .gnb .language_select .language_button svg {
-    display: inline-block;
-    vertical-align: -.25em;
-    fill: currentcolor;
     transition: transform 0.3s ease;
-}
-
-#header .header_wrap .gnb .language_select .language_list {
-    max-height: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: 999;
-    font-size: 0.8rem;
-    color: #212221;
-    transition: max-height 0.5s ease;
-}
-
-/*선택된 언어 강조*/
-#header .header_wrap .gnb .language_select .language_list li.active > a {
-    font-weight: 800;
-}
-
-/* select on*/
-#header .header_wrap .gnb .language_select.on .language_list {
-    max-height: 300px;
 }
 
 #header .header_wrap .gnb .language_select.on .language_button svg {
@@ -288,39 +164,25 @@ main#content {
 
 /* /언어설정*/
 
-/* 로고 */
-#header .header_wrap .gnb a.logo {
-    display: block;
-    width: 150px;
-    height: 30px;
-    background: url(//exomere.co.kr/common/image/logo/logo_horizontal.svg) 0 0 no-repeat;
-    background-size: 150px 30px;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+/* 모바일 햄버거 */
+
+.header_wrap #toggle-mobile-menu {
+    cursor: pointer;
 }
 
-/* 마이오피스*/
-
-
-.myoffice_button {
-    margin-right: 1rem;
+.header_wrap button[aria-expanded="true"] svg.open-btn {
+    opacity: 0;
+    display: none;
 }
 
-/* 검색*/
-.gnb_search_button {
-
+.header_wrap button[aria-expanded="true"] svg.close-btn {
+    display: inline-block;
 }
 
+/* /모바일 햄버거 */
 
-/*네비게이션*/
-#header .header_wrap .nav {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    height: 80px;
-}
 
+/*!*네비게이션*!*/
 #header .header_wrap .nav ul.nav_1deps {
     display: inline-flex;
 }
@@ -330,22 +192,16 @@ main#content {
     padding: 2rem 3rem 1.8rem;
 }
 
-#header .header_wrap .nav ul.nav_1deps li.nav_1deps_item > a {
-    color: #1a202c;
-    /*font-weight: 800;*/
-    font-size: 1.2rem;
-}
-
 #header .header_wrap .nav li.nav_1deps_item ul.lnb {
     display: none;
-    padding-top: 50px;
+    padding-top: 1rem;
     text-align: left;
     letter-spacing: -.02em;
 }
 
 #header .header_wrap .nav.on li.nav_1deps_item ul.lnb {
     display: block;
-    transition: all 500ms
+    transition: opacity 300ms
 }
 
 #header .header_wrap .nav li.nav_1deps_item ul.lnb a {
@@ -361,64 +217,6 @@ main#content {
     font-weight: bold;
 }
 
-#header .header_wrap .nav li.nav_1deps_item ul.lnb ul.lnb_sub li > a:hover {
-    font-weight: 700;
-}
-
-/* e header*/
-
-/* s footer*/
-#footer {
-    width: 100%;
-}
-
-#footer .footer_wrap {
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), #123250;
-    font-size: 16px;
-    color: #fff;
-}
-
-#footer .footer_wrap .footer_info {
-    padding: 60px;
-    border-top: 1px solid hsla(0, 0%, 100%, .1);
-    font-size: .9rem;
-    color: #fff;
-    font-weight: 300;
-    text-align: left;
-}
-
-#footer .footer_wrap .footer_info a {
-    color: #fff;
-}
-
-#footer .footer_wrap .footer_info .footer_info_top {
-    display: flex;
-    justify-content: space-between;
-}
-
-#footer .footer_wrap .footer_info .footer_info_top .footer_contents {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 40px;
-    line-height: 1.8;
-}
-
-#footer .footer_wrap .footer_last {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-}
-
-#footer .footer_wrap .footer_last .footer_etc {
-    display: inline-flex;
-}
-
-#footer .footer_wrap .footer_last .footer_etc li {
-    padding: 10px 15px;
-}
 
 .to_top {
     position: fixed;

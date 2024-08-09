@@ -1,0 +1,130 @@
+{
+  "menu": [
+    {
+      "name": "ABOUT US",
+      "slug": "about",
+      "submenu": [
+        {
+          "url": "/about",
+          "name": "about",
+          "submenu": [
+            {
+              "url": "/about",
+              "name": "about"
+            },
+            {
+              "url": "/about/philosophy",
+              "name": "philosophy"
+            },
+            {
+              "url": "/about/history",
+              "name": "history"
+            },
+            {
+              "url": "/about/cibi",
+              "name": "cibi"
+            }
+          ]
+        },
+        {
+          "url": "/about/core",
+          "name": "rnd",
+          "submenu": [
+            {
+              "url": "/about/core",
+              "name": "core"
+            },
+            {
+              "url": "/about/technology",
+              "name": "technology"
+            }
+          ]
+        },
+        {
+          "url": "/about/branch",
+          "name": "branch"
+        }
+      ]
+    },
+    {
+      "name": "NEWS&MEDIA",
+      "slug": "news",
+      "submenu": [
+        {
+          "url": "/newsandmedia/news",
+          "name": "news"
+        },
+        {
+          "url": "/newsandmedia/videos",
+          "name": "videos"
+        }
+      ]
+    },
+    {
+      "name": "BRAND",
+      "slug": "brand",
+      "submenu": [
+        {
+          "url": "/brand",
+          "name": "brand"
+        },
+        {
+          "url": "/brand/return10",
+          "name": "return10"
+        },
+        {
+          "url": "/brand/time72",
+          "name": "time72"
+        },
+        {
+          "url": "/brand/imlaheal",
+          "name": "imlaheal"
+        }
+      ]
+    },
+    {
+      "name": "PRODUCT",
+      "slug": "products",
+      "submenu": [
+        {
+          "url": "/products",
+          "name": "view_all"
+        },
+        {
+          "url": "/products/?",
+          "name": "toners_mists"
+        },
+        {
+          "url": "/products/?",
+          "name": "serums_essences"
+        },
+        {
+          "url": "/products/?",
+          "name": "creams"
+        },
+        {
+          "url": "/products/?",
+          "name": "sheet_masks"
+        }
+      ]
+    },
+    {
+      "name": "COMMUNITY",
+      "slug": "community",
+      "submenu": [
+        {
+          "url": "/community/notice",
+          "name": "notice"
+        },
+        {
+          "url": "/community/reference",
+          "name": "reference"
+        },
+        {
+          "url": "/community/inquiry",
+          "name": "inquiry"
+        }
+      ]
+    }
+  ]
+}

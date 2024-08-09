@@ -2,31 +2,32 @@
 
 // swiper
 const swipers = document.querySelectorAll('.swiper:not(.main-swiper)');
-// 선택된 요소들에 대해 작업 수행
-
-if(swipers.length) {
-    var swiper = new Swiper(".section_swiper", {
-        loop: true,
-        fraction: true,
-        // autoplay: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-    });
-}
+//
+// if(swipers.length) {
+//     var swiper = new Swiper(".swiper:not(.main-swiper):not(.m-swiper)", {
+//         loop: true,
+//         fraction: true,
+//         effect: 'fade',
+//         parallax: true,
+//         autoplay: false,
+//         navigation: {
+//             nextEl: ".swiper-button-next",
+//             prevEl: ".swiper-button-prev",
+//         },
+//     });
+// }
 
 
 /* gnb*/
 
 // gnb 마우스 오버
-$(".nav_1deps").on('mouseenter',
+$(".nav_1deps_item").on('click',
     function (e) {
         $('#header').addClass('on');
         $('.nav').addClass('on');
     }
 );
-$(".nav_1deps").on('mouseleave',
+$(".nav").on('mouseleave',
     function (e) {
         $('.nav').removeClass('on');
         $('#header').removeClass('on');
@@ -54,7 +55,7 @@ $(".language_select").on('click', function (e) {
 // 클릭 시 목록 외부를 클릭하면 목록 닫기
 $(document).on('click', function (e) {
     if (!$(e.target).closest('.language_select').length) {
-        $('.language_select').removeClass('on').find('.language_list').slideUp(500);
+        $('.language_select').removeClass('on').find('.language_list').slideUp(100);
     }
 });
 
@@ -67,6 +68,29 @@ $(document).on('click', function (e) {
 
 // 위로가기
 $(function () {
+    AOS.init({
+        duration: 1200,
+    })
+    //
+    // $(window).on("scroll", function () {
+    //     AOS.init();
+    // });
+
+    const aosAnimation = document.querySelectorAll('[data-aos]');
+    observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.intersectionRatio > 0) {
+                entry.target.classList.add('aos-animate');
+            } else {
+                entry.target.classList.remove('aos-animate');
+            }
+        });
+    });
+    aosAnimation.forEach(aosObject => {
+        observer.observe(aosObject);
+    });
+
+
     // Top button 생성 및 추가
     var $topBtn = $("<a href='javascript:void(0)' class='top_btn'><span class='sr-only'>TOP</span></a>").appendTo("body");
     var $specialMenu = $(".special_menu");
