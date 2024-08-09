@@ -1,21 +1,13 @@
-@php
-    $isMain = $isMain ?? false;
-@endphp
-
 @extends('pages.layouts.app')
 
 @section('layoutContent')
 
-    <div class="w-full bg-white	 {{ $isMain ? 'main' : '' }}">
+    @include('pages.partials.header')
 
-        @include('pages.partials.header')
+    @yield('content')
 
-        <main class="w-full">
-            @yield('content')
-        </main>
-
+    @if(! $isMain)
+        {{--메인페이지 스크롤스냅안에 배치함--}}
         @include('pages.partials.footer')
-
-    </div>
-
+    @endif
 @endsection
