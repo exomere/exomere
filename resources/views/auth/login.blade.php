@@ -66,19 +66,13 @@
                 <label for="floatingPassword">Password</label>
             </div>
 
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> 아이디 기억하기
-                </label>
-            </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
             <p class="mt-4">
-                아직 회원이 아니시라면?
                 <button class="border-primary btn btn-lg text-primary w-100" type="button"
                         onclick="location.href='{{url('signup')}}'">회원가입
                 </button>
             </p>
-            <p class="mt-5 mb-3 text-muted">© 2024 EXOMERE<sup>™</sup>. All Rights Reserved.
+            <p class="mt-5 mb-3 text-muted">© {{date('Y')}} EXOMERE<sup>™</sup>
             </p>
         </form>
     </main>

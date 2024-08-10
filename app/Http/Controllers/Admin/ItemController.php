@@ -5,34 +5,40 @@ namespace App\Http\Controllers\Admin;
 use App\Models\ExItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Exomere;
-
+use Illuminate\Support\Facades\Storage;
 class ItemController extends Exomere
 {
 
-    protected $user;
+    CONST ITEM_CATEGORY = [
+      'skin' => '스킨케어',
+      'health' => '헬스케어',
+      'etc' => '기타',
+    ];
 
-    public function __construct()
-    {
-    }
+    CONST ITEM_KIND = [
+      'N' => '없음',
+      'signature' => '대표상품',
+    ];
 
     public function itemList(Request $request)
     {
 
-        $items = ExItem::where('is_active', 'Y');
-        $limitPage = $this->setPageLimit(40);
+        // $items = ExItem::where('is_active','Y');
+        $items = new ExItem;
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
         if (!is_null($request->get('search_text'))) {
             $search_text = $request->get('search_text');
-            $items->where('item_name','LIKE',"%{$request->get('search_text')}%");
+            $items->where('name','LIKE',"%{$request->get('search_text')}%");
         }
       
-        $items->limit($limitPage)->orderBy('seq', 'desc');
+        $items->limit($limitPage)->orderBy('id', 'desc');
         
         $data = [
           "search_text" => $search_text ?? '',
           "items" =>  $items ?? [],
+          "item_category" => self::ITEM_CATEGORY,
           "row_num" => $this->getPageRowNumber($items->count(), $page, $limitPage) ?? null,
           "paga_nation" => $this->pagaNation($items, $limitPage),
         ];
@@ -42,12 +48,15 @@ class ItemController extends Exomere
 
     public function itemRegister(Request $request)
     {
+  
         if (isset($request->seq)) {
             $item = ExItem::find($request->seq);
           }
           
           $data = [
             "item_seq" => $request->seq ?? null,
+            "item_category" => self::ITEM_CATEGORY,
+            "item_kind" => self::ITEM_KIND,
             "item" => $item ?? [],
           ];
           return view('pages.item.register')->with($data);
@@ -56,56 +65,73 @@ class ItemController extends Exomere
     public function itemSave(Request $request)
     {
 
-          $symbols = [
-            "base_price" => $request->base_symbol,
-            "sale_price" => $request->sale_symbol,
-            "cost_price" => $request->cost_symbol,
-            "delivfee" => $request->delivfee_symbol,
-            "coverfee" => $request->coverfee_symbol,
-            "tax_price" => $request->tax_symbol,
-            "deduct_price" => $request->deduct_symbol,
-          ];
+      $item_seq = $request->item_seq ?? null;
 
-          $currency_symbols = json_encode($symbols);
+      $input_data = [
+        "name" => $request->name ?? null ,
+        "description" => $request->description ?? null ,
+        "code" => $request->code ?? null,
+        "category" => $request->category ?? null ,
+        "kind" => $request->kind ?? null ,
+        "price" => $request->price ?? 0 ,
+        "tax" => $request->tax ?? 0 ,
+        "pv" => $request->pv ?? 0 ,
+        "pv2" => $request->pv2 ?? 0 ,
+        "mem_price" => $request->mem_price ?? 0 ,
+        "mem_pv" => $request->mem_pv ?? 0 ,
+        "planer_price" => $request->planer_price ?? 0 ,
+        "planer_pv" => $request->planer_pv ?? 0 ,
+        "store_price" => $request->store_price ?? 0 ,
+        "store_pv" => $request->store_pv ?? 0 ,
+        "exclusive_price" => $request->exclusive_price ?? 0 ,
+        "exclusive_pv" => $request->exclusive_pv ?? 0 ,
+        "stock" => $request->stock ?? 0 ,
+        "is_active" => $request->is_active ?? 'N' ,
+        "is_view" => $request->is_view ?? 'N' ,
+        "remark" => $request->remark ?? null ,
+        "content" => $request->content ?? null ,
+        "capacity" => $request->capacity ?? null ,
+        "functionality" => $request->functionality ?? 0 ,
+        "efficacy" => $request->efficacy ?? null ,
+        "usage_capacity" => $request->usage_capacity ?? null ,
+        "precautions" => $request->precautions ?? null ,
+        "quality_standard" => $request->quality_standard ?? null ,
+        "manufacturer" => $request->manufacturer ?? null ,
+        "responsible_seller" => $request->responsible_seller ?? null ,
+        "inquiries" => $request->inquiries ?? null ,
+        "expiration_date" => $request->expiration_date ?? null ,
+        "country_manufacture" => $request->country_manufacture ?? null ,
+      ];
 
-          $input_data = [
-            "site" => $request->site ?? 'GML',
-            "item_name" => $request->item_name ?? null,
-            "item_name_en" => $request->item_name_en ?? null,
-            "item_unit" => $request->item_unit ?? null,
-            "item_type" => $request->item_type ?? null,
-            "item_group_a" => $request->item_group_a ?? null,
-            "item_group_b" => $request->item_group_b ?? null,
-            "item_group_c" => $request->item_group_c ?? null,
-            "currency_symbols" => $currency_symbols ?? null,
-            "base_price" => $request->base_price ?? 0,
-            "sale_price" => $request->sale_price ?? 0,
-            "cost_price" => $request->cost_price ?? 0,
-            "maker" => $request->maker ?? null,
-            "delivfee" => $request->delivfee ?? 0,
-            "coverfee" => $request->coverfee ?? 0,
-            "remark" => $request->remark ?? null,
-            "sort" => $request->sort ?? 9999,
-            "is_active" => $request->is_active ?? 'Y',
-            "barcode" => $request->barcode ?? null,
-            "tax_price" => $request->tax_price ?? 0,
-            "deduct_price" => $request->deduct_price ?? 0,
-            "currency_sale_price" => $request->currency_sale_price ?? 0,
-            "currency_cost_price" => $request->currency_cost_price ?? 0,
-            "currency_deduct_price" => $request->currency_deduct_price ?? 0,
-            "is_discontinuance" => $request->is_discontinuance ?? 'N',
-          ];
+      if($request->hasFile('thum_img')){
+        $fileName = time().'_'.$request->file('thum_img')->getClientOriginalName();
+        $input_data['thum_img'] = $request->file('thum_img')->storeAs('public/data', $fileName);
+        $input_data['thum_img'] = $fileName;
+        
+      }
+      if($request->hasFile('img')){
+        $fileName = time().'_'.$request->file('img')->getClientOriginalName();
+        $request->file('img')->storeAs('public/data', $fileName);
+        $input_data['img'] = $fileName;
+      }
 
-          ExItem::updateOrCreate(
-            [
-                "seq"=> $request->product_seq
-            ],
-            $input_data
-          );
+      ExItem::UpdateOrCreate(
+        [
+          'id' => $item_seq,
+        ],
+          $input_data
+      );
 
-          return redirect('/product/list');
-          
+      return redirect()->route('basic-layouts-item-list');
     }
+
+    public function itemDel(Request $request)
+    {
+      ExItem::find($request->seq)->delete();
+      return redirect()->route('basic-layouts-item-list');
+    }
+
+    
 
     
 }

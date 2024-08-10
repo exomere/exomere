@@ -90,6 +90,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list', [ItemController::class, 'itemList'])->name('basic-layouts-item-list');
             Route::get('/register/{seq?}', [ItemController::class, 'itemRegister'])->name('basic-layouts-item-register');
             Route::post('/save', [ItemController::class, 'itemSave'])->name('item.save');
+            Route::get('/del/{seq?}', [ItemController::class, 'itemDel'])->name('item.del');
+            
         });
 
         // layout

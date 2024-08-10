@@ -46,44 +46,45 @@
           <th>상품코드</th>
           <th>카테고리</th>
           <th>상품명</th>
-          <th>소비자가</th>
-          <th>PV1</th>
-          <th>PV2</th>
-          <th>PV3</th>
+          <th>상품금액</th>
+          <th>회원가</th>
+          <th>뷰티플래너가</th>
+          <th>대리점가</th>
+          <th>총판가</th>
           <th>웹노출</th>
           <th>사용여부</th>
           <th>관리</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        <tr>
-          <td> <span class="fw-medium">1</span></td>
-          <td><img style='width:80px;' src="{{asset('assets/img/avatars/7.png')}}" alt="Avatar" class="rounded-circle"></td>
-          <td> <span class="fw-medium">000001</span></td>
-          <td> <span class="fw-medium">스킨케어</span></td>
-          <td> <span class="fw-medium">뷰티팩110만</span></td>
-          <td> <span class="fw-medium">1,100,000</span></td>
-          <td> <span class="fw-medium">0</span></td>
-          <td> <span class="fw-medium">0</span></td>
-          <td> <span class="fw-medium">비노출</span></td>
-          <td> <span class="fw-medium">사용</span></td>
-
-          <td><span class="badge bg-label-primary me-1">Active</span></td>
-          <td>
-            <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+        @foreach ($items->get() as $list)
+          <tr>
+            <td> <span class="fw-medium">{{$row_num--;}}</span></td>
+            <td><img style='width:80px;' src="{{ Storage::url('public/data/'.$list->thum_img) }}" alt="상품이미지" onerror="this.src='{{ Storage::url('public/data/noimg.jpg') }}'"  ></td>
+            <td> <span class="fw-medium">{{$list->code}}</span></td>
+            <td> <span class="fw-medium">{{$item_category[$list->category]}}</span></td>
+            <td> <span class="fw-medium">{{$list->name}}</span></td>
+            <td> <span class="fw-medium">{{number_format($list->price)}}</span></td>
+            <td> <span class="fw-medium">{{number_format($list->mem_price)}}</span></td>
+            <td> <span class="fw-medium">{{number_format($list->planer_price)}}</span></td>
+            <td> <span class="fw-medium">{{number_format($list->store_price)}}</span></td>
+            <td> <span class="fw-medium">{{number_format($list->exclusive_price)}}</span></td>
+            <td> <span class="fw-medium">{{$list->is_view == 'Y' ? '노출' : '미노출'}}</span></td>
+            <td> <span class="fw-medium">{{$list->is_active == 'Y' ? '사용' : '미사용'}}</span></td>
+            <td>
+              <div class="dropdown">
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{{route('basic-layouts-item-register',$list->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                  <a class="dropdown-item" style='color:red;' href="{{route('item.del',$list->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
+                </div>
               </div>
-            </div>
-          </td>
-        </tr>
+            </td>
+          </tr>
+        @endforeach
       </tbody>
     </table>
   </div>
 </div>
 <!--/ Basic Bootstrap Table -->
-
-
 @endsection
