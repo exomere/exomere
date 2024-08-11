@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Constants\CommonConstants;
 use App\Models\ExDistribute;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Exomere;
@@ -40,7 +41,7 @@ class DistributeController extends Exomere
           }
           
           $data = [
-            "bank_list" => self::BANK_LIST,
+            "bank_list" => CommonConstants::BANK_LIST,
             "distribute_seq" => $request->seq ?? null,
             "distribute" => $distribute ?? [],
           ];
