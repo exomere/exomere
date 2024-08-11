@@ -131,7 +131,7 @@
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "보너스포인트",
+          "name": "출금관리",
           "slug": "form-layouts-horizontal"
         }
       ]
@@ -154,7 +154,7 @@
       "slug": "basic-layouts",
       "submenu": [
         {
-          "url": "management/form/layouts-vertical",
+          "url": "management/center/list",
           "name": "센터목록",
           "slug": "basic-layouts-center-list"
         },
@@ -164,9 +164,9 @@
           "slug": "basic-layouts-item-list"
         },
         {
-          "url": "management/form/layouts-horizontal",
+          "url": "management/distribute/list",
           "name": "분양몰목록",
-          "slug": "basic-layouts-store-list"
+          "slug": "basic-layouts-distribute-list"
         }
       ]
     },
