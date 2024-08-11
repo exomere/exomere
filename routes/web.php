@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\member\MemberController;
+use App\Http\Controllers\member\JoinController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
@@ -63,11 +64,11 @@ Route::get('/', function () {
 Route::get('/set-language/{lang}', [LanguageController::class, 'setLanguage'])->name('setLanguage');
 
 // 회원가입 페이지
-Route::get('/signup/{recommendId?}', [MemberController::class, 'signup'])->name('signup');
-Route::get('/check-id', [MemberController::class, 'checkId']);
-Route::get('/check-recommend-id', [MemberController::class, 'checkRecommendId']);
+Route::get('/signup/{recommendId?}', [JoinController::class, 'signup'])->name('signup');
+Route::get('/check-id', [JoinController::class, 'checkId']);
+Route::get('/check-recommend-id', [JoinController::class, 'checkRecommendId']);
 // 회원등록
-Route::post('/register', [MemberController::class, 'register'])->name('register');
+Route::post('/register', [JoinController::class, 'register'])->name('register');
 // ck에디터 업로드
 Route::post('/ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.upload');
 
@@ -87,6 +88,19 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::prefix('/management')->group(function () {
         Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
+
+        /** 내정보 관리 */
+        Route::prefix('/member')->group(function () {
+            Route::get('/', [MemberController::class, 'info'])->name('member.info');
+
+            Route::post('/member/update-basic', [MemberController::class, 'updateBasicInformation'])->name('member.update.basic');
+            Route::post('/member/update-account', [MemberController::class, 'updateAccountInformation'])->name('member.update.account');
+            Route::post('/member/update-password', [MemberController::class, 'updatePassword'])->name('member.update.password');
+        });
+
+
+
+
 
         Route::prefix('/item')->group(function () {
             Route::get('/list', [ItemController::class, 'itemList'])->name('basic-layouts-item-list');

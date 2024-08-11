@@ -7,7 +7,7 @@ use App\Http\Requests\MemberRegisterRequest;
 use App\Models\ExMember;
 use Illuminate\Http\Request;
 
-class MemberController extends Controller
+class JoinController extends Controller
 {
     public function signup($recommendId = null)
     {

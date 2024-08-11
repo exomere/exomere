@@ -27,3 +27,11 @@ if (!function_exists("printQuery")) {
         }
     }
 }
+
+if (!function_exists('encryptPassword')) {
+    function encryptPassword($password)
+    {
+        $loginKey = env('LOGIN_KEY');
+        return strtoupper(sha1(hex2bin(sha1($loginKey . $password))));
+    }
+}

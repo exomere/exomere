@@ -12,22 +12,12 @@
     {
       "name": "내정보",
       "icon": "menu-icon tf-icons bx bx bx-dock-top",
-      "slug": "pages-account-settings",
+      "slug": "member",
       "submenu": [
         {
-          "url": "management/pages/account-settings-account",
-          "name": "내정보",
-          "slug": "pages-account-settings-account"
-        },
-        {
-          "url": "management/pages/account-settings-notifications",
-          "name": "내정보 변경",
-          "slug": "pages-account-settings-notifications"
-        },
-        {
-          "url": "management/pages/account-settings-connections",
-          "name": "비밀번호 변경",
-          "slug": "pages-account-settings-connections"
+          "url": "management/member",
+          "name": "내정보 관리",
+          "slug": "member.info"
         }
       ]
     },
