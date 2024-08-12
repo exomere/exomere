@@ -1,6 +1,6 @@
-<header id="header" class=" fixed inset-x-0 top-0 z-50 bg-transparent lg:padding-x py-8 w-full" aria-label="Global">
+<header id="header" class=" fixed inset-x-0 top-0 z-50 bg-transparent lg:padding-x py-4 w-full" aria-label="Global">
     <div class="header_wrap max-container">
-        <div class="gnb flex h-12 items-center justify-between px-4 relative">
+        <div class="gnb flex h-12 items-center justify-between px-4 lg:px-2 relative">
 
             <div class="flex gap-x-1 items-center">
                 {{--mobile hamberger--}}
