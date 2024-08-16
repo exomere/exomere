@@ -41,7 +41,7 @@
                         @endfor
 
                     </div>
-                    <div class="all-box">
+                    <div class="all-box absolute inline-flex left-1/2 bottom-[10%] w-[90%] h-[50px] p-x-[20px] z-20 ">
                         <div class="progress-box">
                             <div class="swiper-pagination"></div>
                             <div class="autoplay-progress">
@@ -67,11 +67,10 @@
                     <div class="swiper m-swiper max-container">
                         <div class="swiper-wrapper bg-[#f5f5f5]
                         lg:bg-white
-{{--                        lg:grid lg:grid-cols-3 lg:gap-5--}}
                         lg:flex lg:flex-wrap  lg:justify-center
                         ">
                             @for($i=0; $i<6; $i++)
-                                <a href="#" class="swiper-slide flex-wrap lg:basis-1/3 padding-x" data-aos="fade-up"
+                                <a href="#" class="swiper-slide flex-wrap lg:basis-1/3 padding-x rounded shadow-lg" data-aos="fade-up"
                                    data-aos-delay="{{ $i * 100 }}">
                                     <div
                                         class="show_content_box aspect-h-1 aspect-w-1 w-full overflow-hidden xl:aspect-h-8 xl:aspect-w-7">
@@ -80,7 +79,8 @@
                                             alt=""
                                             class="blur-20 opacity-0 lg:opacity-100 h-full w-full object-cover object-center">
                                     </div>
-                                    <div class="show_content_box bg-white padding-x py-5 w-full text-slate max-w-2xl" data-aos="fade-up"
+                                    <div class="show_content_box bg-white padding-x py-5 w-full text-slate max-w-2xl"
+                                         data-aos="fade-up"
                                          data-aos-delay="{{ $i * 100 }}">
                                         <p class="blur-20 opacity-0 lg:opacity-100 lg:translate-y-0 translate-y-10 mt-1 text-xl font-bold">
                                             임플란트솔루션({{$i}})</p>
@@ -90,6 +90,8 @@
                                             66,000</p>
                                     </div>
                                 </a>
+
+
                             @endfor
                             <div class="swiper-button-prev lg:hidden"></div>
                             <div class="swiper-button-next lg:hidden"></div>
@@ -100,12 +102,12 @@
 
 
             <section class="shrink-0 aspect-1 lg:snap-center lg:h-svh lg:w-full overflow-hidden ">
-               <div class="flex h-full">
-                   <video class="w-full" autoplay muted controls  data-aos="zoom-out">
-                       <source src="http://exomere.co.kr/common/image/exomere.mp4" type="video/mp4">
-                       Your browser does not support the video tag.
-                   </video>
-               </div>
+                <div class="flex h-full">
+                    <video class="" autoplay muted controls>
+                        <source src="http://exomere.co.kr/common/image/exomere.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </section>
 
 
@@ -118,9 +120,11 @@
                                 <a href="#"
                                    class="flex flex-col w-full h-full items-center border border-gray-200 lg:flex-row">
                                     <div
-                                        class="min-h-96 w-full h-full lg:w-[50%] bg-center bg-cover h-full lg:w-[50%] w-full"
-                                        style="background-image: url('{{ asset("assets/img/elements/about_technology_$i.webp")}}')"
-                                    ></div>
+                                        class="w-full h-full lg:w-[50%]  lg:w-[50%] w-full">
+                                        <div data-aos="wide" class="min-h-96 h-full bg-center bg-cover"
+                                             style="background-image: url('{{ asset("assets/img/elements/about_technology_$i.webp")}}')">
+                                        </div>
+                                    </div>
 
                                     <div
                                         class="relative flex flex-col justify-between p-4 pb-12 leading-normal w-full lg:w-[50%] padding">
@@ -132,7 +136,7 @@
                                             <p class="mb-2 text-2xl lg:text-3xl text-left font-bold text-gray-900 dark:text-white font-montserrat
                                             blur-20 opacity-0 translate-y-10">
                                                 스피커스{{$i}}</p>
-                                            <p class="mb-3 text-left font-normal text-gray-700
+                                            <p class="mb-3 text-left font-normal text-gray-600
                                             blur-20 opacity-0 translate-y-20 line-clamp-4 break-keep">
                                                 청정 바다에서 추출한 해양 생물의 순수 성분을 정제하여,
                                                 식물성 콜라겐 생성을 촉진시키는 금화규 추출물과 비피다발효물로
@@ -172,14 +176,14 @@
 
             <section class="shrink-0 py-24 lg:py-0 lg:snap-center lg:h-svh lg:pt-56">
 
-                <div class="relative max-container max-lg:aspect-[4/3] lg:aspect-w-1 lg:min-h-[50rem]" >
-                    <div class="bg-center bg-cover h-full
+                <div class="relative max-container max-lg:aspect-[4/3] lg:aspect-w-1 lg:min-h-[50rem]">
+                    <div class="bg-center bg-cover h-full flex items-center
                     after:bg-black/50 after:absolute after:h-full after:w-full after:bottom-0 after:left-0"
                          style="background-image: url('{{ asset('assets/img/elements/visual_03.webp') }}')"
-                        data-aos="zoom-out"
+                         data-aos="zoom-out"
                     >
 
-                        <div class="absolute padding text-left text-white transform  lg:translate-y-[50%] z-10" >
+                        <div class="absolute padding text-left text-white z-10">
                             <h3 class="font-montserrat leading-tight text-left font-semibold text-3xl lg:text-4xl mb-10"
                                 data-aos="fade-up">
                                 ABOUT BRANCH

@@ -60,6 +60,17 @@ Route::get('/', function () {
     return view('pages.main');
 });
 
+Route::prefix('/newsandmedia')->group(function () {
+    Route::get('/news', function () {
+        return view('pages.newsandmedia.news');
+    });
+
+    Route::get('/videos', function () {
+        return view('pages.newsandmedia.videos');
+    });
+});
+
+
 // 언어 변경
 Route::get('/set-language/{lang}', [LanguageController::class, 'setLanguage'])->name('setLanguage');
 

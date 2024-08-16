@@ -32,6 +32,16 @@ a {
     color: #02060F;
 }
 
+[data-aos=wide] {
+    width: 75%;
+    margin: 0 auto;
+    transition: all .4s ease-out 0s
+}
+
+[data-aos=wide].aos-animate {
+    max-width: none;
+    width: 100%
+}
 
 /* swiper*/
 
@@ -153,6 +163,12 @@ a {
     background-color: #f4f4f4;
 }
 
+header#header.scroll {
+    background-color: #fff;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+
 /*언어설정*/
 #header .header_wrap .gnb .language_select .language_button svg {
     transition: transform 0.3s ease;
@@ -222,7 +238,7 @@ a {
     position: fixed;
     bottom: 4.0rem;
     right: 8.0rem;
-    z-index: 1000;
+    /*z-index: 1000;*/
     width: 5.6rem;
     height: 5.6rem;
     background: #02060f;

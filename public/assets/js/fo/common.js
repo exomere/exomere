@@ -21,7 +21,7 @@ const swipers = document.querySelectorAll('.swiper:not(.main-swiper)');
 /* gnb*/
 
 // gnb 마우스 오버
-$(".nav_1deps_item").on('click',
+$(".nav_1deps_item").on('mouseenter click',
     function (e) {
         $('#header').addClass('on');
         $('.nav').addClass('on');
@@ -69,12 +69,12 @@ $(document).on('click', function (e) {
 // 위로가기
 $(function () {
     AOS.init({
-        duration: 1200,
-    })
-    //
-    // $(window).on("scroll", function () {
-    //     AOS.init();
-    // });
+        duration: 1000,
+        once: false,
+    });
+    window.addEventListener('load', function () {
+        AOS.refresh();
+    });
 
     const aosAnimation = document.querySelectorAll('[data-aos]');
     observer = new IntersectionObserver((entries) => {
@@ -92,7 +92,7 @@ $(function () {
 
 
     // Top button 생성 및 추가
-    var $topBtn = $("<a href='javascript:void(0)' class='top_btn'><span class='sr-only'>TOP</span></a>").appendTo("body");
+    var $topBtn = $("<a href='javascript:void(0)' class='top_btn z-[200]'><span class='sr-only'>TOP</span></a>").appendTo("body");
     var $specialMenu = $(".special_menu");
     var $footer = $("#footer");
     var documentHeight = $(document).height();
@@ -128,4 +128,43 @@ $(function () {
     $topBtn.click(function () {
         $("html, body").animate({scrollTop: 0}, 400);
     });
+
+
+
+    $(window).scroll(function () {
+        const header = document.querySelector('#header'),
+            ww = document.body.scrollWidth;
+
+            let scTop = window.pageYOffset;
+            if (scTop > 0) {
+                header.classList.add('scroll');
+            } else {
+                header.classList.remove('scroll');
+            }
+
+    })
+
+    /*modal*/
+    window.openModal = function (modalId) {
+        document.getElementById(modalId).style.display = 'block'
+        document.getElementsByTagName('body')[0].classList.add('overflow-y-hidden')
+    }
+
+    window.closeModal = function (modalId) {
+        document.getElementById(modalId).style.display = 'none'
+        document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+    }
+
+    // Close all modals when press ESC
+    document.onkeydown = function (event) {
+        event = event || window.event;
+        if (event.keyCode === 27) {
+            document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+            let modals = document.getElementsByClassName('modal');
+            Array.prototype.slice.call(modals).forEach(i => {
+                i.style.display = 'none'
+            })
+        }
+    };
+
 });
