@@ -3,7 +3,8 @@
 <script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio"></script>
-<script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+
 @yield('vendor-script')
 
 <!-- END: Page Vendor JS-->

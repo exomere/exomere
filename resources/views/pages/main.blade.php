@@ -67,10 +67,13 @@
                     <div class="swiper m-swiper max-container">
                         <div class="swiper-wrapper bg-[#f5f5f5]
                         lg:bg-white
-                        lg:flex lg:flex-wrap  lg:justify-center
+                        lg:flex
+                        lg:flex-wrap
+                        lg:justify-center
+                        lg:gap-x-10
                         ">
                             @for($i=0; $i<6; $i++)
-                                <a href="#" class="swiper-slide flex-wrap lg:basis-1/3 padding-x rounded shadow-lg" data-aos="fade-up"
+                                <a href="#" class="swiper-slide flex-wrap lg:max-w-[30%]" data-aos="fade-up"
                                    data-aos-delay="{{ $i * 100 }}">
                                     <div
                                         class="show_content_box aspect-h-1 aspect-w-1 w-full overflow-hidden xl:aspect-h-8 xl:aspect-w-7">
@@ -103,7 +106,7 @@
 
             <section class="shrink-0 aspect-1 lg:snap-center lg:h-svh lg:w-full overflow-hidden ">
                 <div class="flex h-full">
-                    <video class="" autoplay muted controls>
+                    <video class="" autoplay muted>
                         <source src="http://exomere.co.kr/common/image/exomere.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -120,7 +123,7 @@
                                 <a href="#"
                                    class="flex flex-col w-full h-full items-center border border-gray-200 lg:flex-row">
                                     <div
-                                        class="w-full h-full lg:w-[50%]  lg:w-[50%] w-full">
+                                        class="w-full h-full lg:w-[50%] w-full">
                                         <div data-aos="wide" class="min-h-96 h-full bg-center bg-cover"
                                              style="background-image: url('{{ asset("assets/img/elements/about_technology_$i.webp")}}')">
                                         </div>
@@ -215,12 +218,5 @@
 @endsection
 
 @section('page-script')
-    <script>
-        AOS.init({
-            duration: 1200,
-        })
-
-    </script>
-
     <script defer src="{{ asset('assets/js/fo/main.js') }}"></script>
 @endsection
