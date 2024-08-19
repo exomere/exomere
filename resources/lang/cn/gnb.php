@@ -4,6 +4,7 @@ return [
     'about' => 'Company',
     'philosophy' => 'Philosophy',
     'history' => 'History',
+    'history_title' => 'Our History',
     'cibi' => 'CI/BI',
     'core' => 'Core Ingredients',
     'technology' => 'Technology',

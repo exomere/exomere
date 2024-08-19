@@ -74,6 +74,11 @@ Route::prefix('/brand')->group(function () {
         return view('pages.brand.brand');
     });
 });
+Route::prefix('/about')->group(function () {
+    Route::get('history', function () {
+        return view('pages.about.history');
+    });
+});
 
 
 // 언어 변경

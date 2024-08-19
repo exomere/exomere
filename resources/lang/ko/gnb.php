@@ -4,6 +4,7 @@ return [
     'about' => '기업소개',
     'philosophy' => '경영이념',
     'history' => '연혁',
+    'history_title' => '엑소미어가 디딘 첫걸음부터 지금까지의 발걸음을 담았습니다',
     'cibi' => 'CI/BI 소개',
     'rnd'=>'R&D',
     'core' => '핵심 성분',
