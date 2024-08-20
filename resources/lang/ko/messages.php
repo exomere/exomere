@@ -19,6 +19,8 @@ return [
     'submit' => '확인',
     'cancel' => '취소',
     'search' => '검색',
+    'company_name' => '업체명',
+    'contents' => '내용',
 
 
 ];

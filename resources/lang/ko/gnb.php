@@ -25,6 +25,7 @@ return [
     'notice' => '공지사항',
     'reference' => '자료실',
     'inquiry' => '1:1 문의',
+    'inquiry_title' => '도움이 필요하세요?',
     "view_all" => "전체보기",
     "toners_mists" => "토너 & 미스트",
     "serums_essences" => "세럼 & 에센스",

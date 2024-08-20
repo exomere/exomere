@@ -15,8 +15,11 @@ return [
     'zipcode' => '우편번호',
     'address' => '주소',
     'address_detail' => '상세주소',
-    'nation' => '국가',
+    'nation' => 'Nation',
     'submit' => 'Submit',
     'cancel' => '취소',
     'search' => '검색',
+    'company_name' => 'Company Name',
+    'contents' => 'Contents',
+
 ];
