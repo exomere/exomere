@@ -73,6 +73,10 @@ Route::prefix('/brand')->group(function () {
     Route::get('/', function () {
         return view('pages.brand.brand');
     });
+});Route::prefix('/products')->group(function () {
+    Route::get('/', function () {
+        return view('pages.products.products');
+    });
 });
 Route::prefix('/about')->group(function () {
     Route::get('history', function () {
