@@ -69,21 +69,21 @@
           "name": "exomere"
         },
         {
-          "url": "/brand?category=return10",
+          "url": "/brand?brand=return10",
           "name": "return10"
         },
         {
-          "url": "/brand?category=time72",
+          "url": "/brand?brand=time72",
           "name": "time72"
         },
         {
-          "url": "/brand?category=imlaheal",
+          "url": "/brand?brand=imlaheal",
           "name": "imlaheal"
         }
       ]
     },
     {
-      "name": "PRODUCT",
+      "name": "PRODUCTS",
       "slug": "products",
       "submenu": [
         {
@@ -91,20 +91,24 @@
           "name": "view_all"
         },
         {
-          "url": "/products/?",
+          "url": "/products?category=toners_mists",
           "name": "toners_mists"
         },
         {
-          "url": "/products/?",
+          "url": "/products?category=serums_essences",
           "name": "serums_essences"
         },
         {
-          "url": "/products/?",
+          "url": "/products?category=creams",
           "name": "creams"
         },
         {
-          "url": "/products/?",
+          "url": "/products?category=sheet_masks",
           "name": "sheet_masks"
+        },
+        {
+          "url": "/products?category=cushions",
+          "name": "cushions"
         }
       ]
     },

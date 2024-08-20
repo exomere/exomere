@@ -91,17 +91,16 @@ $history = array_reverse($history);
 @section('content')
 
     <main class="relative" id="history">
-        <section class="h-96 ">
+        <section class="h-96 lg:h-[50svh]">
             <!-- Subvisual Wrapper -->
             <div
                 class="relative pt-[80px] lg:pt-[160px] w-full h-full flex flex-col items-center justify-center
-                    bg-cover bg-no-repeat bg-bottom"
+                    bg-cover bg-no-repeat bg-center"
             >
                 <video class="absolute inset-0 w-full h-full object-cover" autoplay loop muted>
                     <source src="{{asset('assets/img/elements/subvisual_video.mp4')}}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-
                 <!-- Subvisual Text -->
                 <div class="text-center font-roboto tracking-tight z-10 text-gray-900">
                     <p class="text-4xl font-medium uppercase" data-aos="fade-down">
@@ -109,10 +108,13 @@ $history = array_reverse($history);
                     </p>
                     <p class="font-medium" data-aos="fade-down" data-aos-delay="200">{{ __('gnb.history_title') }}</p>
                 </div>
+
+
             </div>
         </section>
         <section class="max-container padding-y ">
             <div class="bg-white">
+
                 <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                     <?php
                     $currentYear = null; ?>

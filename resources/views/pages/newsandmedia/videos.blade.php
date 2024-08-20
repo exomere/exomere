@@ -42,11 +42,11 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
 
     <main class="relative">
 
-        <section class="h-96">
+        <section class="h-96 lg:h-[50svh]">
             <!-- Subvisual Wrapper -->
             <div
                 class="relative pt-[80px] lg:pt-[160px] w-full h-full flex flex-col items-center justify-center
-                    bg-cover bg-no-repeat bg-bottom"
+                    bg-cover bg-no-repeat bg-center"
                 style="background-image: url('{{ asset("assets/img/elements/subvisual_bg3.jpg") }}')"
             >
 
