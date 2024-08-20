@@ -83,6 +83,11 @@ Route::prefix('/about')->group(function () {
         return view('pages.about.history');
     });
 });
+Route::prefix('/community')->group(function () {
+    Route::get('inquiry', function () {
+        return view('pages.community.inquiry');
+    });
+});
 
 
 // 언어 변경

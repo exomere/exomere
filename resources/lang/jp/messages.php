@@ -19,4 +19,7 @@ return [
     'submit' => 'Submit',
     'cancel' => '취소',
     'search' => '검색',
+    'company_name' => 'Company Name',
+    'contents' => 'Contents',
+
 ];
