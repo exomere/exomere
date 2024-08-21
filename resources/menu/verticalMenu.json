@@ -100,6 +100,18 @@
       "menuHeader": "ERP 메뉴"
     },
     {
+      "name": "주문관리",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "order-layouts",
+      "submenu": [
+        {
+          "url": "management/order/list",
+          "name": "주문리스트",
+          "slug": "order-layouts-order-list"
+        }
+      ]
+    },
+    {
       "name": "수당관리",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "form-layouts",
@@ -166,9 +178,9 @@
       "slug": "form-layouts",
       "submenu": [
         {
-          "url": "management/form/layouts-vertical",
+          "url": "management/order/list",
           "name": "주문출고",
-          "slug": "form-layouts-vertical"
+          "slug": "basic-layouts-order-list"
         },
         {
           "url": "management/form/layouts-horizontal",

@@ -158,50 +158,49 @@
                                                     <option>---지역점 선택--</option>
                                                     <option value="0000|본사" selected>본사</option>
                                                     <option value="0001|익산중앙">익산중앙</option>
-                                                    <option value="0002|송파구 갑">송파구 갑</option>
+                                                    <option value="0002|송파구">송파구</option>
                                                     <option value="0003|충남 계룡">충남 계룡</option>
-                                                    <option value="0004|부천시 을">부천시 을</option>
+                                                    <option value="0004|부천시">부천시</option>
                                                     <option value="0005|천안시병">천안시병</option>
-                                                    <option value="0006|부평구 갑">부평구 갑</option>
+                                                    <option value="0006|부평구">부평구</option>
                                                     <option value="0007|고양시병">고양시병</option>
                                                     <option value="0008|상록을">상록을</option>
-                                                    <option value="0009|고양시 을">고양시 을</option>
-                                                    <option value="0010|고양시 정">고양시 정</option>
-                                                    <option value="0011|제주시 갑">제주시 갑</option>
-                                                    <option value="0012|김포시 갑">김포시 갑</option>
-                                                    <option value="0013|광산구 을">광산구 을</option>
+                                                    <option value="0009|고양시">고양시</option>
+                                                    <option value="0010|고양시">고양시</option>
+                                                    <option value="0011|제주시">제주시</option>
+                                                    <option value="0012|김포시">김포시</option>
+                                                    <option value="0013|광산구">광산구</option>
                                                     <option value="0014|구리시">구리시</option>
-                                                    <option value="0015|양천구갑">양천구갑</option>
-                                                    <option value="0016|대구수성갑">대구수성갑</option>
-                                                    <option value="0017|서초구갑">서초구갑</option>
+                                                    <option value="0015|양천구갑">양천구</option>
+                                                    <option value="0016|대구수성갑">대구수성</option>
+                                                    <option value="0017|서초구갑">서초구</option>
                                                     <option value="0018|성남수정구">성남수정구</option>
-                                                    <option value="0019|송파구 을">송파구 을</option>
-                                                    <option value="0020|수원시 정">수원시 정</option>
-                                                    <option value="0021|강남구갑">강남구갑</option>
-                                                    <option value="0022|연수구 갑">연수구 갑</option>
-                                                    <option value="0023|대전서구 갑">대전서구 갑</option>
+                                                    <option value="0019|송파구">송파구</option>
+                                                    <option value="0020|수원시">수원시</option>
+                                                    <option value="0021|강남구갑">강남구</option>
+                                                    <option value="0022|연수구">연수구</option>
+                                                    <option value="0023|대전서구">대전서구</option>
                                                     <option value="0024|연수구을">연수구을</option>
-                                                    <option value="0025|노원구갑">노원구갑</option>
-                                                    <option value="0026|분당구갑">분당구갑</option>
+                                                    <option value="0025|노원구갑">노원구</option>
+                                                    <option value="0026|분당구갑">분당구</option>
                                                     <option value="0027|영등포구을">영등포구을</option>
                                                     <option value="0028|성남중원">성남중원</option>
-                                                    <option value="0029|남양주갑">남양주갑</option>
-                                                    <option value="0030|제주시 을">제주시 을</option>
-                                                    <option value="0031|강남구 병">강남구 병</option>
-                                                    <option value="0032|사하구갑">사하구갑</option>
+                                                    <option value="0029|남양주갑">남양주</option>
+                                                    <option value="0030|제주시">제주시</option>
+                                                    <option value="0031|강남구">강남구</option>
+                                                    <option value="0032|사하구갑">사하구</option>
                                                     <option value="0033|양주시">양주시</option>
-                                                    <option value="0034|동대문갑">동대문갑</option>
+                                                    <option value="0034|동대문갑">동대문</option>
                                                     <option value="0035|강남구을">강남구을</option>
-                                                    <option value="0036|분당구 을">분당구 을</option>
+                                                    <option value="0036|분당구">분당구</option>
                                                     <option value="0037|대전 유성구">대전 유성구</option>
-                                                    <option value="0038|수원시 을">수원시 을</option>
-                                                    <option value="0039|수원시 병">수원시 병</option>
-                                                    <option value="0040|여수시 갑">여수시 갑</option>
-                                                    <option value="0041|여수시 을">여수시 을</option>
-                                                    <option value="0042|대구서구 갑">대구서구 갑</option>
-                                                    <option value="0043|순천시 갑">순천시 갑</option>
-                                                    <option value="0044|핑크">핑크</option>
-                                                    <option value="0045|관악구 갑">관악구 갑</option>
+                                                    <option value="0038|수원시">수원시</option>
+                                                    <option value="0039|수원시">수원시</option>
+                                                    <option value="0040|여수시">여수시</option>
+                                                    <option value="0041|여수시">여수시</option>
+                                                    <option value="0042|대구서구">대구서구</option>
+                                                    <option value="0043|순천시">순천시</option>
+                                                    <option value="0045|관악구">관악구</option>
                                                 </select>
 
                                                 @error('local_store')
@@ -401,7 +400,7 @@
                         fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
                     }
 
-                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    // 우편번호와 주소보를 해당 필드에 넣는다.
                     //document.getElementById("sample6_postcode1").value = data.postcode1;
                     //document.getElementById("sample6_postcode2").value = data.postcode2;
                     //document.getElementById("sample6_address").value = fullAddr;

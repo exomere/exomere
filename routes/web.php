@@ -52,6 +52,8 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\Admin\DistributeController;
 use App\Http\Controllers\Admin\CenterController;
+use App\Http\Controllers\Admin\OrderController;
+
 use App\Http\Controllers\MainController;
 
 ###################### 미인증 페이지 START ###########################
@@ -137,6 +139,13 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/register/{seq?}', [ItemController::class, 'itemRegister'])->name('basic-layouts-item-register');
             Route::post('/save', [ItemController::class, 'itemSave'])->name('item.save');
             Route::get('/del/{seq?}', [ItemController::class, 'itemDel'])->name('item.del');
+        });
+        
+        Route::prefix('/order')->group(function () {
+            Route::get('/list', [OrderController::class, 'orderList'])->name('order-layouts-order-list');
+            Route::get('/register/{seq?}', [OrderController::class, 'orderRegister'])->name('order-layouts-order-register');
+            Route::post('/save', [OrderController::class, 'orderSave'])->name('order.save');
+            Route::get('/del/{seq?}', [OrderController::class, 'orderDel'])->name('order.del');
         });
 
         Route::prefix('/center')->group(function () {
