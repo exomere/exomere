@@ -124,16 +124,12 @@ Route::group(['middleware' => 'auth'], function () {
         /** 내정보 관리 */
         Route::prefix('/member')->group(function () {
             Route::get('/', [MemberController::class, 'info'])->name('member.info');
-
             Route::post('/member/update-basic', [MemberController::class, 'updateBasicInformation'])->name('member.update.basic');
             Route::post('/member/update-account', [MemberController::class, 'updateAccountInformation'])->name('member.update.account');
             Route::post('/member/update-password', [MemberController::class, 'updatePassword'])->name('member.update.password');
+            Route::post('/serarchMember', [MemberController::class, 'serarchMember'])->name('member.serach.member');
         });
-
-
-
-
-
+        
         Route::prefix('/item')->group(function () {
             Route::get('/list', [ItemController::class, 'itemList'])->name('basic-layouts-item-list');
             Route::get('/register/{seq?}', [ItemController::class, 'itemRegister'])->name('basic-layouts-item-register');

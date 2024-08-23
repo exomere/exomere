@@ -70,4 +70,23 @@ class MemberController extends Controller
 
         return redirect()->back()->with('success', '비밀번호가 성공적으로 변경되었습니다.');
     }
+
+    public function serarchMember(Request $request)
+    {
+        $members = ExMember::where($request->type,'like','%'.$request->text.'%')->get();
+
+        $output_data = [];
+        $cnt = 0;
+
+        foreach($members as $member){
+            $output_data[$cnt]["seq"] = $member->id;
+            $output_data[$cnt]["member_id"] = $member->member_id;
+            $output_data[$cnt]["name"] = $member->name;
+            $output_data[$cnt]["member_position"] = $member->member_position;
+            $output_data[$cnt]["created_at"] = date("Y-m-d",strtotime($member->created_at));
+            $cnt++;
+        }   
+        
+        return json_encode($output_data,JSON_UNESCAPED_UNICODE);
+    }
 }
