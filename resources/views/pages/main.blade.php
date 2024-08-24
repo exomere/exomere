@@ -1,5 +1,66 @@
 @php
     $isMain = true;
+
+$products = [
+    [
+        'product_name' => '리프팅샷 수딩젤 100g',
+        'price' => 66000,
+        'thumbnail' => asset('assets/img/elements/2024061918143212433.png'),
+        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
+        'brand' => 'exomere',
+        'category' => 'creams',
+        'is_best' => true,
+        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
+    ],
+    [
+        'product_name' => '퍼펙트 스칼프 임플란트 세럼',
+        'price' => 39000,
+        'thumbnail' => asset('assets/img/elements/2024061918143212433.png'),
+        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
+        'category' => 'serums_essences',
+        'is_best' => true,
+        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
+    ],
+    [
+        'product_name' => 'EXO-AG 리셀솔루션4SET',
+        'price' => 220000,
+        'thumbnail' => asset('assets/img/elements/2024021315327960678.png'),
+        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
+        'category' => 'serums_essences',
+        'is_best' => true,
+        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
+    ],
+    [
+        'product_name' => '퍼펙트 스칼프 토너',
+        'price' => 39000,
+        'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
+        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
+        'category' => 'toners_mists',
+        'is_best' => true,
+        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
+    ],
+    [
+        'product_name' => '임플라힐 P.O 크림',
+        'price' => 37000,
+        'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
+        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
+        'brand' => 'imlaheal',
+        'category' => null,
+        'is_best' => true,
+        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
+    ],
+    [
+        'product_name' => '에델바이스 스노우크림',
+        'price' => 40000,
+        'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
+        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
+        'is_best' => true,
+        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
+    ],
+];
+
+$bestProducts = collect($products)->where('is_best', true);
+
 @endphp
 
 @extends('pages.layouts.frontLayout')
@@ -12,36 +73,140 @@
 
 @section('content')
 
-    <div class="relative text-center">
-        <div class="flex-col gap-6 h-screen overflow-y-auto relative lg:snap-mandatory lg:snap-y">
-            <section class="h-svh shrink-0 lg:snap-center">
-                <div class="swiper main-swiper">
-                    <div class="swiper-wrapper">
-                        @for($i=0; $i<3; $i++)
-                            <div class="swiper-slide">
-                                <div
-                                    class="absolute transform show_content_box z-10 lg:top-1/2 lg:w-[50%] lg:px-28 lg:transform lg:-translate-x-1/2 lg:-translate-y-[60%] lg:text-left ">
-                                    <p class="delay-100	blur-20 opacity-0 translate-y-20 text-black/80 mt-6 text-xl break-keep leading-tight">
-                                        엑소좀과 스피커스가 함유된 미백 크림 {{$i}}
-                                    </p>
-                                    <p class="delay-1000 blur-20 opacity-0 translate-y-28 text-3xl lg:text-4xl font-normal leading-tight break-keep mt-5">
-                                        임플란트 솔루션
-                                    </p>
-                                    <a href="/product" target="_self"
-                                       class="delay-300 opacity-0 translate-y-20 mt-12 inline-block border border-solid border-black py-3 px-24 text-base break-keep font-montserrat">
-                                        THE MORE
-                                    </a>
-                                </div>
-                                <video
-                                    src="https://www.ap-beauty.com/kr/ko/adm/main/kv/__icsFiles/afieldfile/2024/01/12/MD_Web_Main_10s_4K_v240112_1.mp4"
-                                    class="slide-video object-cover" autoplay="" muted=""
-                                    playsinline="" loop=""></video>
+    <main class="flex flex-col">
+        {{--hero section--}}
+        <section class="h-svh">
+            <div class="swiper main-swiper">
+                <div class="swiper-wrapper">
+                    @for($i=0; $i<3; $i++)
+                        <div class="swiper-slide">
+                            <div
+                                class="absolute transform show_content_box- z-10 lg:top-1/2 lg:w-[50%] lg:px-28 lg:transform lg:-translate-x-1/2 lg:-translate-y-[60%] lg:text-left ">
+                                <p data-aos="fade-in" data-aos-delay="300"
+                                   class="text-black/80 mt-6 text-xl break-keep leading-tight">
+                                    엑소좀과 스피커스가 함유된 미백 크림 {{$i}}
+                                </p>
+                                <p data-aos="fade-up" data-aos-delay="400"
+                                   class="text-3xl lg:text-4xl font-normal leading-tight break-keep mt-5">
+                                    임플란트 솔루션
+                                </p>
+                                <a data-aos="fade-in" data-aos-delay="300" href="/product" target="_self"
+                                   class="mt-12 inline-block border border-solid border-black py-3 px-24 text-base break-keep ">
+                                    THE MORE
+                                </a>
                             </div>
-
-                        @endfor
-
+                            <video
+                                src="https://www.ap-beauty.com/kr/ko/adm/main/kv/__icsFiles/afieldfile/2024/01/12/MD_Web_Main_10s_4K_v240112_1.mp4"
+                                class="slide-video object-cover" autoplay="" muted=""
+                                playsinline="" loop=""></video>
+                        </div>
+                    @endfor
+                </div>
+                <div class="all-box absolute inline-flex left-1/2 bottom-[10%] w-[90%] h-[50px] p-x-[20px] z-20 ">
+                    <div class="progress-box">
+                        <div class="swiper-pagination"></div>
+                        <div class="autoplay-progress">
+                            <svg viewBox="0 0 100 10">
+                                <line x1="0" y1="0" x2="100" y2="0">
+                            </svg>
+                        </div>
                     </div>
-                    <div class="all-box absolute inline-flex left-1/2 bottom-[10%] w-[90%] h-[50px] p-x-[20px] z-20 ">
+                    <div class="arrow-box">
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{--best itmes--}}
+        <section class="max-w-5xl mx-auto padding-y">
+            <h2 class="text-center text-3xl lg:text-4xl my-10" data-aos="fade-up">BEST ITEMS</h2>
+
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-6 lg:gap-x-10 lg:gap-y-3">
+                @foreach($bestProducts as $product)
+                    <a href="#" class="swiper-slide group flex flex-col text-center"
+                       data-aos="fade-up"
+                       data-aos-delay="{{ $loop->index  * 100 }}">
+                        <div
+                            class="relative w-full aspect-square bg-cover bg-center lg:group-hover:bg-[url({{$product['thumbnail2']}})]">
+                            <img src="{{$product['thumbnail']}}" alt="{{$product['product_name']}}"
+                                 class="h-full w-full object-center lg:h-full lg:w-full lg:group-hover:opacity-0 transition-opacity duration-500">
+                        </div>
+                        <div class="p-3 pt-5 w-full text-slate">
+                            <p class="mb-1 text-lg text-gray-900 relative after:bg-slate-700 after:absolute after:h-[1px] after:w-[20px] after:-ml-[10px] after:-bottom-2 after:left-1/2">
+                                {{ $product['product_name'] }}</p>
+                            <p class="mt-5 text-sm text-gray-700 text-slate-700 line-clamp-2">
+                                {{ $product['product_desc'] }}</p>
+                            <p class="mt-5 text-base text-gray-600">
+                                {{ number_format($product['price']) }}</p>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        </section>
+
+        {{--video--}}
+        <section class="overflow-hidden padding-y">
+            <div class="flex h-full">
+                <video class="w-full" playsinline="" autoplay="autoplay" loop="loop" muted="muted">
+                    <source src="http://exomere.co.kr/common/image/exomere.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        {{--원료소개--}}
+        <section class="h-svh">
+            <div class="swiper material-swiper">
+                <div class="swiper-wrapper">
+                    @for($i=1; $i<=2;$i++)
+                        <div class="swiper-slide">
+                            <a href="#"
+                               class="flex flex-col w-full h-full items-center bg-white border border-gray-200 lg:flex-row">
+                                <div
+                                    class="w-full h-full lg:w-[50%] w-full">
+                                    <div data-aos="wide" class="min-h-56 h-full bg-center bg-cover"
+                                         style="background-image: url('{{ asset("assets/img/elements/about_technology_$i.webp")}}')">
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="relative flex flex-col justify-between p-4 pb-12 leading-normal w-full lg:w-[50%] padding">
+                                    <div class="lg:max-w-lg lg:leading-10 show_content_box tracking-tight">
+                                        <h2 class=" leading-tight text-left font-semibold text-3xl lg:text-4xl mb-10">
+                                            BASE<br>
+                                            MATERIAL
+                                        </h2>
+                                        <p class="mb-2 text-2xl lg:text-3xl text-left font-semibold text-gray-900
+                                            ">@if($i==1)
+                                                EXOMERE™
+                                            @else
+                                                스피커스
+                                            @endif
+                                        </p>
+                                        <p class="mb-3 text-left font-normal text-gray-600
+                                            line-clamp-4 break-keep">
+                                            @if($i==1)
+                                                제주 한라봉에서 추출한 50~ 200mm 크기의 엑소좀으로, DNA, RNA, PEPTIDE가 포함되어 있어 노화 및
+                                                손상된 피부를 위한 세포 재생과 신호 전달에 도움을 주는 솔루션입니다.
+                                            @else
+                                                청정 바다에서 추출한 해양 생물의 순수 성분을 정제하여,
+                                                식물성 콜라겐 생성을 촉진시키는 금화규 추출물과 비피다발효물로
+                                                코팅한 특허 성분으로, 스피큘에 코팅된 발효 식물성콜라겐이 피부에
+                                                침투해 탄력 있는 피부로 개선시켜줍니다.
+                                            @endif
+                                        </p>
+                                        <p class="mt-5 text-left font-normal text-slate-700 pb-10">
+                                            특허 : 제10-2022-0007981호
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endfor
+                    <div
+                        class="all-box left-0 bottom-0 transform-none padding lg:max-w-lg lg:left-[50%] lg:bottom-[15%]">
                         <div class="progress-box">
                             <div class="swiper-pagination"></div>
                             <div class="autoplay-progress">
@@ -56,165 +221,38 @@
                         </div>
                     </div>
                 </div>
-            </section>
-
-            {{--best itmes--}}
-            <section class="py-24 shrink-0 lg:snap-center  lg:pt-40">
-                <div class="text-center">
-                    <h2 class="font-montserrat font-semibold text-3xl lg:text-4xl mb-20" data-aos="fade-up">
-                        BEST ITEMS
-                    </h2>
-                    <div class="swiper m-swiper max-container">
-                        <div class="swiper-wrapper bg-[#f5f5f5]
-                        lg:bg-white
-                        lg:flex
-                        lg:flex-wrap
-                        lg:justify-center
-                        lg:gap-x-10
-                        ">
-                            @for($i=0; $i<6; $i++)
-                                <a href="#" class="swiper-slide flex-wrap lg:max-w-[30%]" data-aos="fade-up"
-                                   data-aos-delay="{{ $i * 100 }}">
-                                    <div
-                                        class="show_content_box aspect-h-1 aspect-w-1 w-full overflow-hidden xl:aspect-h-8 xl:aspect-w-7">
-                                        <img
-                                            src="{{ asset("assets/img/elements/visual_02.webp")}}"
-                                            alt=""
-                                            class="blur-20 opacity-0 lg:opacity-100 h-full w-full object-cover object-center">
-                                    </div>
-                                    <div class="show_content_box bg-white padding-x py-5 w-full text-slate max-w-2xl"
-                                         data-aos="fade-up"
-                                         data-aos-delay="{{ $i * 100 }}">
-                                        <p class="blur-20 opacity-0 lg:opacity-100 lg:translate-y-0 translate-y-10 mt-1 text-xl font-bold">
-                                            임플란트솔루션({{$i}})</p>
-                                        <p class="blur-20 opacity-0 lg:opacity-100 translate-y-0 mt-2 text-slate-700 line-clamp-2 info-text">
-                                            피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림</p>
-                                        <p class="blur-20 opacity-0 lg:opacity-100 translate-y-0 mt-5 text-lg font-montserrat">
-                                            66,000</p>
-                                    </div>
-                                </a>
+            </div>
+        </section>
 
 
-                            @endfor
-                            <div class="swiper-button-prev lg:hidden"></div>
-                            <div class="swiper-button-next lg:hidden"></div>
-                        </div>
+        {{--브랜치--}}
+        <section class="h-[60svh] padding-t">
+            <div class="h-full flex items-end">
+                <div
+                    class=" flex justify-center items-center relative w-full h-full max-h-[50svh] bg-[url({{ asset('assets/img/elements/visual_02.webp') }})] bg-center bg-cover after:bg-black/50 after:absolute after:h-full after:w-full after:inset-0"
+                    data-aos="fade-up">
+                    <div class="max-w-xl absolute padding text-center text-white lg:leading-10 z-10">
+                        <h3 class="text-3xl lg:text-4xl mb-10"
+                            data-aos="fade-up">
+                            ABOUT BRANCH
+                        </h3>
+                        <p class="mt-6 break-keep leading-loose lg:text-xl " data-aos="fade-up" data-aos-delay="100">
+                            다양한 체험 프로그램과
+                            전문적이고 체계적인 상담을 통해
+                            엑소미어의 제품을 체험할 수 있습니다
+                        </p>
+                        <a href="/about/branch"
+                           target="_self"
+                           class="inline-block mt-12 border border-solid border-white py-2 px-24 break-keep"
+                           data-aos="fade-up" data-aos-delay="200">
+                            THE MORE
+                        </a>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-
-            <section class="shrink-0 aspect-1 lg:snap-center lg:h-svh lg:w-full overflow-hidden ">
-                <div class="flex h-full">
-                    <video class="" autoplay muted>
-                        <source src="http://exomere.co.kr/common/image/exomere.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </section>
-
-
-            <section class="shrink-0 py-24 lg:py-0 lg:snap-center lg:h-svh">
-
-                <div class="swiper material-swiper">
-                    <div class="swiper-wrapper">
-                        @for($i=1; $i<=2;$i++)
-                            <div class="swiper-slide">
-                                <a href="#"
-                                   class="flex flex-col w-full h-full items-center border border-gray-200 lg:flex-row">
-                                    <div
-                                        class="w-full h-full lg:w-[50%] w-full">
-                                        <div data-aos="wide" class="min-h-96 h-full bg-center bg-cover"
-                                             style="background-image: url('{{ asset("assets/img/elements/about_technology_$i.webp")}}')">
-                                        </div>
-                                    </div>
-
-                                    <div
-                                        class="relative flex flex-col justify-between p-4 pb-12 leading-normal w-full lg:w-[50%] padding">
-                                        <div class="lg:max-w-lg lg:leading-10 show_content_box tracking-tight">
-                                            <h2 class="font-montserrat leading-tight text-left font-semibold text-3xl lg:text-4xl mb-10">
-                                                BASE<br>
-                                                MATERIAL
-                                            </h2>
-                                            <p class="mb-2 text-2xl lg:text-3xl text-left font-bold text-gray-900 dark:text-white font-montserrat
-                                            blur-20 opacity-0 translate-y-10">
-                                                스피커스{{$i}}</p>
-                                            <p class="mb-3 text-left font-normal text-gray-600
-                                            blur-20 opacity-0 translate-y-20 line-clamp-4 break-keep">
-                                                청정 바다에서 추출한 해양 생물의 순수 성분을 정제하여,
-                                                식물성 콜라겐 생성을 촉진시키는 금화규 추출물과 비피다발효물로
-                                                코팅한 특허 성분으로, 스피큘에 코팅된 발효 식물성콜라겐이 피부에
-                                                침투해 탄력 있는 피부로 개선시켜줍니다.</p>
-
-                                            <p class="blur-20 opacity-0 translate-y-30 mt-5 text-left font-normal text-slate-700 pb-24">
-                                                특허 : 제10-2022-0007981호
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        @endfor
-                        <div
-                            class="all-box left-0 bottom-0 transform-none padding lg:max-w-lg lg:left-[50%] lg:bottom-[15%]">
-                            <div class="progress-box">
-                                <div class="swiper-pagination"></div>
-                                <div class="autoplay-progress">
-                                    <svg viewBox="0 0 100 10">
-                                        <line x1="0" y1="0" x2="100" y2="0">
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="arrow-box">
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-            </section>
-
-
-            <section class="shrink-0 py-24 lg:py-0 lg:snap-center lg:h-svh lg:pt-56">
-
-                <div class="relative max-container max-lg:aspect-[4/3] lg:aspect-w-1 lg:min-h-[50rem]">
-                    <div class="bg-center bg-cover h-full flex items-center
-                    after:bg-black/50 after:absolute after:h-full after:w-full after:bottom-0 after:left-0"
-                         style="background-image: url('{{ asset('assets/img/elements/visual_03.webp') }}')"
-                         data-aos="zoom-out"
-                    >
-
-                        <div class="absolute padding text-left text-white z-10">
-                            <h3 class="font-montserrat leading-tight text-left font-semibold text-3xl lg:text-4xl mb-10"
-                                data-aos="fade-up">
-                                ABOUT BRANCH
-                            </h3>
-                            <p class=" text-white mt-6 text-base lg:text-xl translate-y-5 opacity-0 break-keep transition-opacity duration-1000 delay-400"
-                               data-aos="fade-up">
-                                다양한 체험 프로그램과 <br>
-                                전문적이고 체계적인 상담을 통해<br>
-                                엑소미어의 제품을 체험할 수 있습니다
-                            </p>
-                            <a href="/about/branch"
-                               target="_self"
-                               class="inline-block mt-12 font-montserrat border border-solid border-white  py-2 px-20 text-white text-base translate-y-5 opacity-0 break-keep transition-transform duration-1000"
-                               data-aos="fade-up">
-                                THE MORE
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-
-            </section>
-            <section class="shrink-0 lg:snap-center">
-                @include('pages.partials.footer')
-            </section>
-        </div>
-    </div>
-
+    </main>
 @endsection
 
 @section('page-script')

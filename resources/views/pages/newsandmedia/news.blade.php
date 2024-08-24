@@ -58,7 +58,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
                 </div>
             </div>
         </section>
-        <section class="max-container padding-y ">
+        <section class="max-container min-h-screen padding-y">
             <div class="bg-white">
                 <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                     <div
@@ -94,7 +94,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
                     <!-- View More -->
                     <div class="text-center" data-aos="fade-up">
                         <a href="#!"
-                           class="inline-block mt-12 border border-solid border-black py-3 px-24 text-base break-keep font-montserrat">
+                           class="inline-block mt-12 border border-solid border-black py-3 px-24 text-base break-keep ">
                             더 보기
                         </a>
                     </div>
@@ -105,7 +105,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
         </section>
 
         <div class="hidden" id="contents-modal" tabindex="-1" aria-hidden="true">
-            <div class="bg-white fixed h-full left-0 min-h-screen top-0 w-full z-[201] overflow-y-auto padding">
+            <div class="bg-white fixed h-full left-0 min-h-svh top-0 w-full z-[201] overflow-y-auto padding">
                 <div class="fixed right-5 lg:right-20">
                     <button type="button" class="bg-exomere opacity-75 p-3 lg:p-7 rounded-full text-white"
                             onclick="closeModal('contents-modal')" aria-hidden="false">
@@ -114,12 +114,12 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
                         </svg>
                     </button>
                 </div>
-                <div class="max-container padding-x mx-auto px-4 py-8 flex flex-col">
+                <div class="max-container mx-auto lg:padding-x lg:px-4 py-8 flex flex-col">
                     <div class="padding">
                         <article class="bg-white min-h-svh overflow-y-auto">
                             <h1 id="modal-title" class="text-2xl lg:text-4xl font-medium text-gray-900 mb-6"></h1>
 
-                            <div id="modal-date" class="text-gray-600 mb-2 font-montserrat"></div>
+                            <div id="modal-date" class="text-gray-600 mb-2 "></div>
 
                             <img id="modal-img" src="//exomere.co.kr/common/image/media_01.png" class="padding-y">
 

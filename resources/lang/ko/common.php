@@ -6,5 +6,10 @@ return [
     'address' => '주소',
     'privacy_policy' => '개인정보처리방침',
     'terms_of_service' => '서비스이용약관',
+    'in_ready'=> '준비중 입니다.',
+    'download'=> '다운로드',
+    'tel'=> '02-1577-1586',
+    'fax'=> '02-1577-1586',
+    'email'=> 'exomere@exomere.com',
 ];
 

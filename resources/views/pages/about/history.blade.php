@@ -77,14 +77,7 @@ $history = array_reverse($history);
             content: "";
         }
 
-        /*언어설정*/
-        #history button[data-collapse-toggle] svg {
-            transition: transform 0.3s ease;
-        }
 
-        #history button[data-collapse-toggle][aria-expanded="true"] svg {
-            transform: rotate(180deg);
-        }
     </style>
 
 @endsection
@@ -97,7 +90,8 @@ $history = array_reverse($history);
                 class="relative pt-[80px] lg:pt-[160px] w-full h-full flex flex-col items-center justify-center
                     bg-cover bg-no-repeat bg-center"
             >
-                <video class="absolute inset-0 w-full h-full object-cover" autoplay loop muted>
+                <video class="absolute inset-0 w-full h-full object-cover"
+                       poster="" playsinline="" muted="muted" autoplay="autoplay" loop="loop">
                     <source src="{{asset('assets/img/elements/subvisual_video.mp4')}}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -142,7 +136,7 @@ $history = array_reverse($history);
                                             </div>
 
                                             <button
-                                                class="inline-flex items-center	bg-gray-200 text-xs px-3 py-1 rounded-full mt-2"
+                                                class="inline-flex gap-x-1 items-center	bg-gray-200 text-xs px-3 py-1 rounded-full mt-2"
                                                 id="toggle-{{$year.$month}}"
                                                 data-collapse-toggle="{{$year.$month}}"
                                                 aria-expanded="false"

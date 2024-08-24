@@ -59,6 +59,7 @@ class OrderController extends Exomere
             "order_category" => self::ORDER_CATEGORY,
             "order_kind" => self::ORDER_KIND,
             "order" => $Order ?? [],
+            "card_compnay" => self::_PAYMENT_CARD_COMPANY,
           ];
 
           return view('pages.order.register')->with($data);
