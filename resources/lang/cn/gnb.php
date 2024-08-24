@@ -2,6 +2,7 @@
 
 return [
     'about' => 'Company',
+    'about_title' => 'Exosome Anti-Aging Solution, Exomere',
     'philosophy' => 'Philosophy',
     'philosophy_title' => 'Only One and Everything',
     'history' => 'History',

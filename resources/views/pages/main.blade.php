@@ -90,7 +90,7 @@ $bestProducts = collect($products)->where('is_best', true);
                                    class="text-3xl lg:text-4xl font-normal leading-tight break-keep mt-5">
                                     임플란트 솔루션
                                 </p>
-                                <a data-aos="fade-in" data-aos-delay="300" href="/product" target="_self"
+                                <a data-aos="fade-in" data-aos-delay="300" href="/products" target="_self"
                                    class="mt-12 inline-block border border-solid border-black py-3 px-24 text-base break-keep ">
                                     THE MORE
                                 </a>

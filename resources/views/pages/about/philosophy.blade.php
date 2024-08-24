@@ -42,9 +42,12 @@
 
                         <div class="flex flex-col md:flex-row">
                             <picture class="overflow-hidden basis-1/2">
-                                <source srcset="{{ asset('assets/img/elements/visual_01.webp') }}"
+{{--                                <source srcset="{{ asset('assets/img/elements/visual_01.webp') }}"--}}
+{{--                                        media="(max-width: 768px)">--}}
+{{--                                <img src="{{ asset('assets/img/elements/visual_01.webp') }}" alt="" data-aos="scale">--}}
+                                <source srcset="https://cdn.pixabay.com/photo/2024/07/15/06/52/dna-8895875_1280.png"
                                         media="(max-width: 768px)">
-                                <img src="{{ asset('assets/img/elements/visual_01.webp') }}" alt="" data-aos="scale">
+                                <img src="https://cdn.pixabay.com/photo/2024/07/15/06/52/dna-8895875_1280.png" alt="" data-aos="scale">
                             </picture>
                             <div class="basis-1/2 flex flex-col justify-center padding leading-loose break-keep">
                                 <h2 class="text-2xl font-semibold mb-7 text-left" data-aos="fade-up"
@@ -58,9 +61,12 @@
                         <div class="flex flex-col md:flex-row">
 
                             <picture class="overflow-hidden basis-1/2">
-                                <source srcset="{{ asset('assets/img/elements/visual_02.webp') }}"
+{{--                                <source srcset="{{ asset('assets/img/elements/visual_02.webp') }}"--}}
+{{--                                        media="(max-width: 768px)">--}}
+{{--                                <img src="{{ asset('assets/img/elements/visual_02.webp') }}" alt="" data-aos="scale">  --}}
+                                <source srcset="https://cdn.pixabay.com/photo/2021/10/11/17/37/handshake-6701408_1280.jpg"
                                         media="(max-width: 768px)">
-                                <img src="{{ asset('assets/img/elements/visual_02.webp') }}" alt="" data-aos="scale">
+                                <img src="https://cdn.pixabay.com/photo/2021/10/11/17/37/handshake-6701408_1280.jpg" alt="" data-aos="scale">
                             </picture>
 
                             <div
@@ -75,9 +81,12 @@
 
                         <div class="flex flex-col md:flex-row">
                             <picture class="overflow-hidden basis-1/2">
-                                <source srcset="{{ asset('assets/img/elements/visual_03.webp') }}"
+{{--                                <source srcset="{{ asset('assets/img/elements/visual_03.webp') }}"--}}
+{{--                                        media="(max-width: 768px)">--}}
+{{--                                <img src="{{ asset('assets/img/elements/visual_03.webp') }}" alt="" data-aos="scale">--}}
+                                <source srcset="https://cdn.pixabay.com/photo/2018/12/20/06/53/network-3885328_1280.jpg"
                                         media="(max-width: 768px)">
-                                <img src="{{ asset('assets/img/elements/visual_03.webp') }}" alt="" data-aos="scale">
+                                <img src="https://cdn.pixabay.com/photo/2018/12/20/06/53/network-3885328_1280.jpg" alt="" data-aos="scale">
                             </picture>
                             <div class="basis-1/2 flex flex-col justify-center padding leading-loose break-keep">
                                 <h2 class="text-2xl font-semibold mb-7 text-left"
@@ -90,9 +99,11 @@
                         <div class="flex flex-col md:flex-row">
 
                             <picture class="overflow-hidden basis-1/2">
-                                <source srcset="{{ asset('assets/img/elements/visual_04.webp') }}"
-                                        media="(max-width: 768px)">
-                                <img src="{{ asset('assets/img/elements/visual_04.webp') }}" alt="" data-aos="scale">
+{{--                                <source srcset="{{ asset('assets/img/elements/visual_04.webp') }}" media="(max-width: 768px)">--}}
+{{--                                <img src="{{ asset('assets/img/elements/visual_04.webp') }}" alt="" data-aos="scale">--}}
+                                <source srcset="https://cdn.pixabay.com/photo/2017/02/01/13/53/analysis-2030265_1280.jpg" media="(max-width: 768px)">
+                                <img src="https://cdn.pixabay.com/photo/2017/02/01/13/53/analysis-2030265_1280.jpg" alt="" data-aos="scale">
+
                             </picture>
                             <div
                                 class="basis-1/2 flex flex-col justify-center padding leading-loose md:order-first break-keep">
