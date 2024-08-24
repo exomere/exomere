@@ -2,224 +2,224 @@
   "menu": [
     {
       "url": "management/dashboard",
-      "name": "Dashboards",
+      "name": "dashboard",
       "icon": "menu-icon tf-icons bx bx-home-circle",
       "slug": "dashboard"
     },
     {
-      "menuHeader": "My Office"
+      "menuHeader": "my_office"
     },
     {
-      "name": "내정보",
+      "name": "profile",
       "icon": "menu-icon tf-icons bx bx bx-dock-top",
       "slug": "member",
       "submenu": [
         {
           "url": "management/member",
-          "name": "내정보 관리",
+          "name": "profile_manage",
           "slug": "member.info"
         }
       ]
     },
     {
-      "name": "포인트",
+      "name": "points",
       "icon": "menu-icon tf-icons bx bxs-badge-dollar",
       "slug": "auth",
       "submenu": [
         {
           "url": "management/auth/login-basic",
-          "name": "쇼핑포인트",
+          "name": "shopping_points",
           "slug": "auth-login-basic",
           "target": "_blank"
         }
       ]
     },
     {
-      "name": "주문",
+      "name": "orders",
       "icon": "menu-icon tf-icons bx bx-shopping-bag",
       "slug": "pages-misc",
       "submenu": [
         {
           "url": "management/pages/misc-error",
-          "name": "주문내역",
+          "name": "order_history",
           "slug": "pages-misc-error",
           "target": "_blank"
         },
         {
           "url": "management/pages/misc-under-maintenance",
-          "name": "모집내역",
+          "name": "recruitment_history",
           "slug": "pages-misc-under-maintenance",
           "target": "_blank"
         }
       ]
     },
     {
-      "name": "수수료관리",
+      "name": "commission_management",
       "icon": "menu-icon tf-icons bx bxs-offer",
       "slug": "pages-misc",
       "submenu": [
         {
           "url": "management/pages/misc-error",
-          "name": "기마감 내역",
+          "name": "past_due",
           "slug": "pages-misc-error",
           "target": "_blank"
         },
         {
           "url": "management/pages/misc-under-maintenance",
-          "name": "총판 지급 내역",
+          "name": "distributor_payments",
           "slug": "pages-misc-under-maintenance",
           "target": "_blank"
         },
         {
           "url": "management/pages/misc-under-maintenance",
-          "name": "월마감 내역",
+          "name": "monthly_closing",
           "slug": "pages-misc-under-maintenance",
           "target": "_blank"
         }
       ]
     },
     {
-      "name": "조직도",
+      "name": "organization_chart",
       "icon": "menu-icon tf-icons bx bx-sitemap",
       "slug": "cards-basic",
       "url": "management/cards/basic"
     },
     {
-      "name": "공지사항",
+      "name": "notices",
       "icon": "menu-icon tf-icons bx bxs-notification",
-      "slug": "cards-basic",
-      "url": "management/cards/basic"
+      "slug": "notice.list",
+      "url": "management/notice/list"
     },
     {
-      "name": "1:1문의",
+      "name": "inquiries",
       "icon": "menu-icon tf-icons bx bxs-bell-ring",
       "slug": "cards-basic",
       "url": "management/cards/basic"
     },
     {
-      "menuHeader": "ERP 메뉴"
+      "menuHeader": "erp_menu"
     },
     {
-      "name": "주문관리",
+      "name": "order_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "order-layouts",
       "submenu": [
         {
           "url": "management/order/list",
-          "name": "주문리스트",
+          "name": "order_list",
           "slug": "order-layouts-order-list"
         }
       ]
     },
     {
-      "name": "수당관리",
+      "name": "commission_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "form-layouts",
       "submenu": [
         {
           "url": "management/form/layouts-vertical",
-          "name": "월마감",
+          "name": "monthly_closing",
           "slug": "form-layouts-vertical"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "기마감",
+          "name": "past_due",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "포인트관리",
+          "name": "points_management",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "출금관리",
+          "name": "withdrawal_management",
           "slug": "form-layouts-horizontal"
         }
       ]
     },
     {
-      "name": "게시판관리",
+      "name": "board_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "form-layouts",
       "submenu": [
         {
           "url": "management/form/layouts-vertical",
-          "name": "공지사항",
+          "name": "announcements",
           "slug": "form-layouts-vertical"
         }
       ]
     },
     {
-      "name": "기초정보",
+      "name": "basic_info",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "basic-layouts",
       "submenu": [
         {
           "url": "management/center/list",
-          "name": "센터목록",
+          "name": "center_list",
           "slug": "basic-layouts-center-list"
         },
         {
           "url": "management/item/list",
-          "name": "상품목록",
+          "name": "product_list",
           "slug": "basic-layouts-item-list"
         },
         {
           "url": "management/distribute/list",
-          "name": "분양몰목록",
+          "name": "distribute_list",
           "slug": "basic-layouts-distribute-list"
         }
       ]
     },
     {
-      "name": "재고관리",
+      "name": "inventory_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "form-layouts",
       "submenu": [
         {
           "url": "management/order/list",
-          "name": "주문출고",
+          "name": "order_shipment",
           "slug": "basic-layouts-order-list"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "배송관리",
+          "name": "delivery_management",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "입출금관리",
+          "name": "in_out_management",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "센터 입출관리",
+          "name": "center_in_out_management",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "기타 입출관리",
+          "name": "other_in_out_management",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "회원 출고관리",
+          "name": "member_shipment_management",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "입출 등록현황",
+          "name": "in_out_status",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "재고현황",
+          "name": "inventory_status",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "주문별 출고관리",
+          "name": "order_shipment_management",
           "slug": "form-layouts-horizontal"
         }
       ]
