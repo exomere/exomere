@@ -1,21 +1,18 @@
 @charset "utf-8";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     scroll-behavior: smooth;
 }
 
 html, body {
-    font-family: "Poppins", "Noto Sans KR", "Nanum Gothic", "Roboto", sans-serif;
-    font-weight: 400;
+    font-family: "Montserrat", "Poppins", "Noto Sans KR", "Nanum Gothic", "Roboto", sans-serif;
+    font-weight: 300;
     font-style: normal;
     font-size: 16px;
     line-height: 1.8;
-    letter-spacing: 0.05rem;
+    letter-spacing: -0.05rem;
     background-color: #fff;
-    color: #02060F;
+    color: #152342;
 }
 
 
@@ -138,18 +135,18 @@ a {
 /* s header*/
 
 #header:after {
-    content: "";
-    position: absolute;
-    top: 160px;
-    left: 0;
-    height: 360px;
-    width: 100%;
-    background-color: transparent;
-    opacity: 0;
-    visibility: hidden;
-    box-shadow: 0 10px 10px 0 hsla(0, 0%, 39%, .2);
-    z-index: -1;
-    transition: opacity 500ms;
+    /*content: "";*/
+    /*position: absolute;*/
+    /*top: 160px;*/
+    /*left: 0;*/
+    /*height: 360px;*/
+    /*width: 100%;*/
+    /*background-color: transparent;*/
+    /*opacity: 0;*/
+    /*visibility: hidden;*/
+    /*box-shadow: 0 10px 10px 0 hsla(0, 0%, 39%, .2);*/
+    /*z-index: -1;*/
+    /*transition: opacity 500ms;*/
 }
 
 #header.on {
@@ -158,9 +155,9 @@ a {
 }
 
 #header.on:after {
-    visibility: unset;
-    opacity: 1;
-    background-color: #f4f4f4;
+    /*visibility: unset;*/
+    /*opacity: 1;*/
+    /*background-color: #f4f4f4;*/
 }
 
 header#header.scroll {
@@ -169,13 +166,22 @@ header#header.scroll {
 }
 
 
-/*언어설정*/
-#header .header_wrap .gnb .language_select .language_button svg {
+/*토글 화살표*/
+svg.bi-chevron-down {
     transition: transform 0.3s ease;
 }
 
-#header .header_wrap .gnb .language_select.on .language_button svg {
+button[data-collapse-toggle][aria-expanded="true"] svg.bi-chevron-down {
     transform: rotate(180deg);
+}
+
+/*언어설정*/
+#header .header_wrap .gnb .language__select .language__button svg {
+    /*transition: transform 0.3s ease;*/
+}
+
+#header .header_wrap .gnb .language__select.on .language__button svg {
+    /*transform: rotate(180deg);*/
 }
 
 /* /언어설정*/
@@ -186,12 +192,12 @@ header#header.scroll {
     cursor: pointer;
 }
 
-.header_wrap button[aria-expanded="true"] svg.open-btn {
+.header_wrap button[aria-expanded="true"] svg.open__btn {
     opacity: 0;
     display: none;
 }
 
-.header_wrap button[aria-expanded="true"] svg.close-btn {
+.header_wrap button[aria-expanded="true"] svg.close__btn {
     display: inline-block;
 }
 
@@ -199,39 +205,39 @@ header#header.scroll {
 
 
 /*!*네비게이션*!*/
-#header .header_wrap .nav ul.nav_1deps {
-    display: inline-flex;
-}
+/*#header .header_wrap .__nav ul.__nav_1deps {*/
+/*    display: inline-flex;*/
+/*}*/
 
-#header .header_wrap .nav ul.nav_1deps li.nav_1deps_item {
-    min-width: 180px;
-    padding: 2rem 3rem 1.8rem;
-}
+/*#header .header_wrap .__nav ul.__nav_1deps li.__nav_1deps_item {*/
+/*    min-width: 180px;*/
+/*    padding: 2rem 3rem 1.8rem;*/
+/*}*/
 
-#header .header_wrap .nav li.nav_1deps_item ul.lnb {
-    display: none;
-    padding-top: 1rem;
-    text-align: left;
-    letter-spacing: -.02em;
-}
+/*#header .header_wrap .__nav li.__nav_1deps_item ul.__lnb {*/
+/*    display: none;*/
+/*    padding-top: 1rem;*/
+/*    text-align: left;*/
+/*    letter-spacing: -.02em;*/
+/*}*/
 
-#header .header_wrap .nav.on li.nav_1deps_item ul.lnb {
+#header .header_wrap .__nav.on ul.__lnb {
     display: block;
-    transition: opacity 300ms
+    /*transition: opacity 300ms*/
 }
 
-#header .header_wrap .nav li.nav_1deps_item ul.lnb a {
-    display: inline-block;
-    position: relative;
-    /*font-size: 0.85rem;*/
-    color: #212221;
-    font-weight: 300;
-}
+/*#header .header_wrap .__nav li.__nav_1deps_item ul.__lnb a {*/
+/*    display: inline-block;*/
+/*    position: relative;*/
+/*    !*font-size: 0.85rem;*!*/
+/*    color: #212221;*/
+/*    font-weight: 300;*/
+/*}*/
 
-#header .header_wrap .nav li.nav_1deps_item ul.lnb > li > a {
-    line-height: 36px;
-    font-weight: bold;
-}
+/*#header .header_wrap .__nav li.__nav_1deps_item ul.__lnb > li > a {*/
+/*    line-height: 36px;*/
+/*    font-weight: bold;*/
+/*}*/
 
 
 .to_top {

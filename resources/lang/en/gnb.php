@@ -6,6 +6,7 @@ return [
     'history' => 'History',
     'history_title' => 'Our History',
     'cibi' => 'CI/BI',
+    'cibi_title' => 'It\'s a design asset that expresses core values',
     'core' => 'Core Ingredients',
     'technology' => 'Technology',
     'news' => 'Press Releases',

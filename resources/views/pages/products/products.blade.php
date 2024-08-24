@@ -182,7 +182,7 @@ $categories = [
             ></div>
         </section>
 
-        <section class="max-container padding-y">
+        <section class="max-container min-h-screen padding-y">
             <div class="bg-white">
                 <!-- Subvisual Text -->
                 <div class="text-center font-monospace tracking-tight z-10 text-gray-900">
@@ -209,7 +209,7 @@ $categories = [
                                     after:absolute after:top-1/2 after:right-0 after:w-[1px] after:h-[12px] after:mt-[-6px] after:bg-[#e9e9e9]
                                 @endif
                                 ">
-                                <button class="inline-block font-montserrat"
+                                <button class="inline-block "
                                         id="{{$category}}-tab"
                                         type="button"
                                         role="tab"

@@ -84,6 +84,9 @@ Route::prefix('/about')->group(function () {
     Route::get('history', function () {
         return view('pages.about.history');
     });
+    Route::get('cibi', function () {
+        return view('pages.about.cibi');
+    });
 });
 Route::prefix('/community')->group(function () {
     Route::get('inquiry', function () {
