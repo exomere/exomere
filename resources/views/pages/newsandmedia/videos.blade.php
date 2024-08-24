@@ -41,7 +41,6 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
 @section('content')
 
     <main class="relative">
-
         <section class="h-96 lg:h-[50svh]">
             <!-- Subvisual Wrapper -->
             <div
@@ -59,7 +58,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
                 </div>
             </div>
         </section>
-        <section class="max-container padding-y">
+        <section class="max-container min-h-screen padding-y">
             <div class="bg-white">
                 <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
 
@@ -90,7 +89,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
                         @endif
 
                         <!-- 작은 비디오 그리드 -->
-                        <div class="grid grid-cols-2 gap-6 lg:gap-10">
+                        <div class="grid lg:grid-cols-2 gap-6 lg:gap-10">
                             @foreach ($videos as $video)
 
                                 <div class="relative group cursor-pointer" onclick="playVideo('{{ $video['url'] }}')"

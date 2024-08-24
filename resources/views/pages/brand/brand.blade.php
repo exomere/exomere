@@ -154,7 +154,7 @@ $brands = [
             ></div>
         </section>
 
-        <section class="max-container padding-y">
+        <section class="max-container min-h-screen padding-y">
             <div class="bg-white">
                 <!-- Subvisual Text -->
                 <div class="text-center font-roboto tracking-tight z-10 text-gray-900">
@@ -175,7 +175,7 @@ $brands = [
                     >
                         @foreach($brands as $brand)
                             <li role="presentation">
-                                <button class="inline-block p-2 lg:p-4 font-montserrat"
+                                <button class="inline-block p-2 lg:p-4 "
                                         id="{{$brand}}-tab"
                                         type="button"
                                         role="tab"
