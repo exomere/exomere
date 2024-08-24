@@ -90,7 +90,7 @@ $bestProducts = collect($products)->where('is_best', true);
                                    class="text-3xl lg:text-4xl font-normal leading-tight break-keep mt-5">
                                     임플란트 솔루션
                                 </p>
-                                <a data-aos="fade-in" data-aos-delay="300" href="/product" target="_self"
+                                <a data-aos="fade-in" data-aos-delay="300" href="/products" target="_self"
                                    class="mt-12 inline-block border border-solid border-black py-3 px-24 text-base break-keep ">
                                     THE MORE
                                 </a>
@@ -134,7 +134,7 @@ $bestProducts = collect($products)->where('is_best', true);
                                  class="h-full w-full object-center lg:h-full lg:w-full lg:group-hover:opacity-0 transition-opacity duration-500">
                         </div>
                         <div class="p-3 pt-5 w-full text-slate">
-                            <p class="mb-1 text-lg text-gray-900 relative after:bg-slate-700 after:absolute after:h-[1px] after:w-[20px] after:-ml-[10px] after:-bottom-2 after:left-1/2">
+                            <p class="mb-1 text-lg line-clamp-1 text-gray-900 relative after:bg-slate-700 after:absolute after:h-[1px] after:w-[20px] after:-ml-[10px] after:-bottom-2 after:left-1/2">
                                 {{ $product['product_name'] }}</p>
                             <p class="mt-5 text-sm text-gray-700 text-slate-700 line-clamp-2">
                                 {{ $product['product_desc'] }}</p>
@@ -165,8 +165,8 @@ $bestProducts = collect($products)->where('is_best', true);
                             <a href="#"
                                class="flex flex-col w-full h-full items-center bg-white border border-gray-200 lg:flex-row">
                                 <div
-                                    class="w-full h-full lg:w-[50%] w-full">
-                                    <div data-aos="wide" class="min-h-56 h-full bg-center bg-cover"
+                                    class="w-full h-full lg:w-[50%] w-full overflow-hidden">
+                                    <div data-aos="scale" class="min-h-56 h-full bg-center bg-cover"
                                          style="background-image: url('{{ asset("assets/img/elements/about_technology_$i.webp")}}')">
                                     </div>
                                 </div>
@@ -227,10 +227,10 @@ $bestProducts = collect($products)->where('is_best', true);
 
         {{--브랜치--}}
         <section class="h-[60svh] padding-t">
-            <div class="h-full flex items-end">
+            <div class="h-full flex items-end overflow-hidden">
                 <div
                     class=" flex justify-center items-center relative w-full h-full max-h-[50svh] bg-[url({{ asset('assets/img/elements/visual_02.webp') }})] bg-center bg-cover after:bg-black/50 after:absolute after:h-full after:w-full after:inset-0"
-                    data-aos="fade-up">
+                    data-aos="scale">
                     <div class="max-w-xl absolute padding text-center text-white lg:leading-10 z-10">
                         <h3 class="text-3xl lg:text-4xl mb-10"
                             data-aos="fade-up">

@@ -82,6 +82,12 @@ Route::prefix('/brand')->group(function () {
     });
 });
 Route::prefix('/about')->group(function () {
+    Route::get('/', function () {
+        return view('pages.about.about');
+    });
+    Route::get('/philosophy', function () {
+        return view('pages.about.philosophy');
+    });
     Route::get('history', function () {
         return view('pages.about.history');
     });

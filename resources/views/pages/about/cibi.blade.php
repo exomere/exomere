@@ -20,7 +20,6 @@
                 </div>
 
             </div>
-
         </section>
         <section class="min-sm:max-container min-h-screen padding-y">
             <div class="bg-white">
@@ -91,7 +90,7 @@
                                     <div>
                                         <h2 class="text-lg font-semibold mb-1"
                                             data-aos="fade-up"
-                                            data-aos-delay="300">명도에 따른 색상 활용</h2>
+                                            data-aos-delay="100">명도에 따른 색상 활용</h2>
                                         <div class="color__system brightness mb-7"
                                              data-aos="fade-up"
                                              data-aos-delay="300">
@@ -101,10 +100,10 @@
 
                                         <h2 class="text-lg font-semibold mb-1"
                                             data-aos="fade-up"
-                                            data-aos-delay="400">채도에 따른 색상 활용</h2>
+                                            data-aos-delay="100">채도에 따른 색상 활용</h2>
                                         <div class="color__system saturation mb-7"
                                              data-aos="fade-up"
-                                             data-aos-delay="400">
+                                             data-aos-delay="300">
                                             <img src="{{asset('assets/img/elements/color_system_saturation.png')}}"
                                                  alt="">
                                         </div>
@@ -112,10 +111,10 @@
                                     <div>
                                         <h2 class="text-lg font-semibold mb-1"
                                             data-aos="fade-up"
-                                            data-aos-delay="500">흑백 배경 색상 활용</h2>
+                                            data-aos-delay="100">흑백 배경 색상 활용</h2>
                                         <div class="color__system black mb-7"
                                              data-aos="fade-up"
-                                             data-aos-delay="500">
+                                             data-aos-delay="300">
                                             <img src="{{asset('assets/img/elements/color_system_black.png')}}" alt="">
                                         </div>
                                     </div>

@@ -106,48 +106,54 @@ $history = array_reverse($history);
 
             </div>
         </section>
-        <section class="max-container padding-y ">
+        <section class="min-sm:max-container min-h-screen padding-y">
             <div class="bg-white">
 
                 <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                     <?php
                     $currentYear = null; ?>
-                    <ul class="mt-10 text-sm lg:text-base">
+                    <ul class="mt-10">
                         @foreach ($history as $year => $months)
                             @foreach ($months as $month => $events)
-                                <li class="flex relative pt-0 pr-0 pb-20 pl-8 lg:pl-12" data-aos="fade-up"
+
+                                <li class="relative flex flex-col lg:flex-row  pt-0 pr-0 pb-20 pl-8 lg:pl-12" data-aos="fade-up"
                                     data-aos-delay="{{ $loop->index * 100 }}">
+
+
                                     <div
-                                        class="flex-shrink-0 w-20 lg:w-24 font-bold my-1.5 text-lg">{{ $currentYear != $year ? $year : '' }}</div>
-                                    <em class="font-bold min-w-[42px] my-1.5 tracking-tight text-right">{{ $month }}</em>
-                                    <div class="ml-[36px] my-1.5">
+                                        class="flex-shrink-0 w-full w-20 lg:w-24 font-bold my-1.5 text-lg">{{ $currentYear != $year ? $year : '' }}</div>
 
-                                        @foreach ($events as $index => $event)
-                                            @if ($index < 3)
-                                                <p class="mb-4">{{ $event }}</p>
-                                            @endif
-                                        @endforeach
+                                    <div class="flex lg:flex-row lg:ml-[36px] w-full">
+                                        <em class="font-bold w-16 my-1.5 tracking-tight lg:text-right">{{ $month }}</em>
+                                        <div class="ml-3 lg:ml-7 my-1.5">
 
-                                        @if (count($events) > 3)
-                                            <div class="hidden" id="{{$year.$month}}">
-                                                @foreach (array_slice($events,3) as $event)
+                                            @foreach ($events as $index => $event)
+                                                @if ($index < 3)
                                                     <p class="mb-4">{{ $event }}</p>
-                                                @endforeach
-                                            </div>
+                                                @endif
+                                            @endforeach
 
-                                            <button
-                                                class="inline-flex gap-x-1 items-center	bg-gray-200 text-xs px-3 py-1 rounded-full mt-2"
-                                                id="toggle-{{$year.$month}}"
-                                                data-collapse-toggle="{{$year.$month}}"
-                                                aria-expanded="false"
-                                            >더보기
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                     fill="currentColor"
-                                                     class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd"
-                                                          d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
-                                                </svg>
-                                            </button>
+                                            @if (count($events) > 3)
+                                                <div class="hidden" id="{{$year.$month}}">
+                                                    @foreach (array_slice($events,3) as $event)
+                                                        <p class="mb-4">{{ $event }}</p>
+                                                    @endforeach
+                                                </div>
+
+                                                <button
+                                                    class="inline-flex gap-x-1 items-center	bg-gray-200 text-xs px-3 py-1 rounded-full mt-2"
+                                                    id="toggle-{{$year.$month}}"
+                                                    data-collapse-toggle="{{$year.$month}}"
+                                                    aria-expanded="false"
+                                                >더보기
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                         fill="currentColor"
+                                                         class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                                                    </svg>
+                                                </button>
+                                        </div>
                                         @endif
                                     </div>
                                 </li>
