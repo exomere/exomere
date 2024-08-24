@@ -52,21 +52,18 @@
                                     </div>
                                 </div>
                                 <div class="text-center my-7">
-                                    <p class="leading-loose"
+                                    <p class="break-keep tracking-tight leading-loose"
                                        data-aos="fade-up"
                                        data-aos-delay="300">
-                                        엑소미어의 워드마크는 현대적이고 세련된 서체로,<br>
-                                        브랜드의 전문성과 첨단 기술 이미지를 전달합니다.<br>
-                                        글자의 곡선과 직선이 조화를 이루며 자연과 과학의 융합을 시각적으로 표현 합니다.<br>
-                                        또한, 시그니쳐 오렌지 컬러는 활력과 에너지를 상징하며, <br>
-                                        피부에 생기를 불어넣는 엑소미어의 효과를 시각적으로 보여줍니다.
+
+                                        {!! nl2br(__('messages.cibi_content')) !!}
                                     </p>
                                     <button type="button"
                                             class="inline-flex items-center gap-x-1 mt-3 px-10 h-12 border border-solid border-slate-200 rounded-full"
                                             data-aos="fade-up"
                                             data-aos-delay="300"
-                                            onclick="alert('준비중입니다')"
-                                    >다운로드
+                                            onclick="alert('{{__('common.in_ready')}}')"
+                                    >{{ __('common.download') }}
                                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                              width="14" height="14" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"

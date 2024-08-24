@@ -89,6 +89,12 @@ Route::prefix('/about')->group(function () {
     });
 });
 Route::prefix('/community')->group(function () {
+    Route::get('notice', function () {
+        return view('pages.community.notice');
+    });
+    Route::get('reference', function () {
+        return view('pages.community.reference');
+    });
     Route::get('inquiry', function () {
         return view('pages.community.inquiry');
     });
@@ -119,7 +125,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-    
+
 
     Route::prefix('/management')->group(function () {
         Route::get('/dashboard', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -132,14 +138,14 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/member/update-password', [MemberController::class, 'updatePassword'])->name('member.update.password');
             Route::post('/serarchMember', [MemberController::class, 'serarchMember'])->name('member.serach.member');
         });
-        
+
         Route::prefix('/item')->group(function () {
             Route::get('/list', [ItemController::class, 'itemList'])->name('basic-layouts-item-list');
             Route::get('/register/{seq?}', [ItemController::class, 'itemRegister'])->name('basic-layouts-item-register');
             Route::post('/save', [ItemController::class, 'itemSave'])->name('item.save');
             Route::get('/del/{seq?}', [ItemController::class, 'itemDel'])->name('item.del');
         });
-        
+
         Route::prefix('/order')->group(function () {
             Route::get('/list', [OrderController::class, 'orderList'])->name('order-layouts-order-list');
             Route::get('/register/{seq?}', [OrderController::class, 'orderRegister'])->name('order-layouts-order-register');

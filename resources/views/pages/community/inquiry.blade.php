@@ -1,5 +1,5 @@
 @extends('pages.layouts.frontSubLayout')
-@section('title', __('gnb.brand_title'))
+@section('title', __('gnb.inquiry_title'))
 @section('page-style')
 
 @endsection
