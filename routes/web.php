@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\member\JoinController;
 use Illuminate\Support\Facades\Route;
@@ -138,6 +139,20 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/member/update-password', [MemberController::class, 'updatePassword'])->name('member.update.password');
             Route::post('/serarchMember', [MemberController::class, 'serarchMember'])->name('member.serach.member');
         });
+
+
+        /** 공지사항 */
+        Route::prefix('/notice')->group(function () {
+            Route::get('/list', [NoticeController::class, 'index'])->name('notice.list');
+            Route::get('/detail/{id}', [NoticeController::class, 'detail'])->name('notice.detail');
+            Route::get('/create', [NoticeController::class, 'create'])->name('notice.create');
+            Route::post('/store', [NoticeController::class, 'store'])->name('notice.store');
+            Route::get('/edit/{id}', [NoticeController::class, 'edit'])->name('notice.edit');
+            Route::put('/update/{id}', [NoticeController::class, 'update'])->name('notice.update');
+            Route::delete('/delete/{id}', [NoticeController::class, 'destroy'])->name('notice.delete');
+        });
+
+
 
         Route::prefix('/item')->group(function () {
             Route::get('/list', [ItemController::class, 'itemList'])->name('basic-layouts-item-list');
