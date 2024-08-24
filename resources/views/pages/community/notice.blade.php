@@ -46,7 +46,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
             </div>
         </section>
 
-        <section class="min-sm:max-container padding-y">
+        <section class="min-sm:max-container min-h-screen padding-y">
             <div class="bg-white">
                 <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                     <div class="relative overflow-x-auto ">
@@ -114,7 +114,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
                                         </svg>
                                     </button>
                                 </div>
-                                <div class="min-sm:max-container mx-auto lg:padding-x lg:px-4 py-8 flex flex-col">
+                                <div class="min-sm:max-container min-h-screen padding-y mx-auto lg:padding-x lg:px-4 py-8 flex flex-col">
                                     <div class="padding">
                                         <article class="bg-white min-h-svh overflow-y-auto">
                                             <h1 id="modal-title"

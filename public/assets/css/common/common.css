@@ -40,6 +40,17 @@ a {
     width: 100%
 }
 
+[data-aos=scale] {
+    display: block;
+    transform: scale(1.4);
+    transition: all 0.8s;
+}
+
+[data-aos=scale].aos-animate {
+    transform: scale(1);
+    transition: all 0.8s;
+}
+
 /* swiper*/
 
 .swiper {
@@ -120,14 +131,14 @@ a {
     font-size: 0;
 }
 
-.swiper-slide-active .show_content_box > a,
-.swiper-slide-active .show_content_box > p {
-    animation: showContent .3s .5s ease-in-out 1 forwards;
-}
+/*.swiper-slide-active .show_content_box > a,*/
+/*.swiper-slide-active .show_content_box > p {*/
+/*    animation: showContent .3s .5s ease-in-out 1 forwards;*/
+/*}*/
 
-.swiper-slide-active .show_content_box > img {
-    animation: showContent .3s .5s ease-in-out 1 forwards;
-}
+/*.swiper-slide-active .show_content_box > img {*/
+/*    animation: showContent .3s .5s ease-in-out 1 forwards;*/
+/*}*/
 
 /* swiper*/
 /*icon*/

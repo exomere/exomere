@@ -29,5 +29,23 @@ return [
     'created_at' => 'Date',
     'created_id' => 'Writer',
     'views_count' => 'Hits',
-
+    'philosophy_heading' => 'With Exomere,',
+    'philosophy_heading_sub'=>'Your beauty will shine even more',
+    'philosophy_content_head_1'=> 'Quality priority',
+    'philosophy_content_head_2'=> 'win-win management',
+    'philosophy_content_head_3'=> 'global enterprise',
+    'philosophy_content_head_4'=> 'Innovation and R&D',
+    'philosophy_content_1'=> 'We will repay our customers with the best quality. 
+    Exomere provides the best products through strict quality control and continuous R&D.
+    All products are designed safely and effectively, and we promise to achieve results that exceed customer expectations.',
+    'philosophy_content_2'=> 'We will grow taking responsibility for the beauty of our customers. 
+    Exomere values the opinions of customers and practices win-win management that grows with customers. 
+    We pursue sustainable management based on the trust of customers, and put customer satisfaction first.',
+    'philosophy_content_3'=> 'We will continue to strive and promote K-beauty to the world. 
+    Already, Exomere is strengthening its competitiveness in the global market and promoting the beauty of Korea to the world. 
+    Through various international certifications, we provide products that meet global standards and do our best to meet the needs of global customers.',
+    'philosophy_content_4'=> 'We will create the future of beauty through continuous research and innovation. 
+    Exomere develops innovative products that reflect the latest technologies and trends,
+    and leads the market through continuous research and development. 
+    Our goal is to go beyond our customers\' expectations and provide the true value of beauty.',
 ];

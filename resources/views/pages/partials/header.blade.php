@@ -25,7 +25,7 @@
 
 
                 {{--language--}}
-                <div class="language__select relative text-sm">
+                <div class="language__select relative text-xs">
                     <button class="language__button inline-flex items-center"
                             data-collapse-toggle="language__list"
                             aria-expanded="false"
@@ -86,12 +86,12 @@
             <ul class="flex flex-wrap gap-x-5 justify-center items-start text-left py-3">
                 @foreach ($gnbData[0]->menu as $item)
                     <li class="min-w-[100px]">
-                        <a href="javascript:void(0)" class="text-lg font-semibold">{{ $item->name }}</a>
+                        <a href="javascript:void(0)" class="text-lg font-normal">{{ $item->name }}</a>
                         @if (isset($item->submenu) && count($item->submenu) > 0)
                             <ul class="__lnb hidden pt-2 leading-loose text-base">
                                 @foreach ($item->submenu as $subItem)
                                     <li>
-                                        <a href="{{ $subItem->url }}" class="font-semibold">{{ __('gnb.'.$subItem->name) }}</a>
+                                        <a href="{{ $subItem->url }}" class="font-normal">{{ __('gnb.'.$subItem->name) }}</a>
                                         @if (isset($subItem->submenu) && count($subItem->submenu) > 0)
                                             <ul class="mb-2">
                                                 @foreach ($subItem->submenu as $subSubItem)
@@ -135,13 +135,13 @@
                             @if($menu->submenu)
                                 @foreach($menu->submenu as $sub)
                                     @isset($sub->submenu)
-                                        <h2 class="font-semibold">{{ __('gnb.'.$sub->name ) }}</h2>
+                                        <h2 class="font-normal">{{ __('gnb.'.$sub->name ) }}</h2>
                                         @foreach($sub->submenu as $leaf_menu)
                                             <a class="pl-1 text-lg"
                                                href="{{$leaf_menu->url}}"> {{ __('gnb.'.$leaf_menu->name ) }} </a>
                                         @endforeach
                                     @else
-                                        <a class="font-semibold"
+                                        <a class="font-normal"
                                            href="{{$sub->url}}"> {{ __('gnb.'.$sub->name ) }} </a>
                                     @endif
                                 @endforeach

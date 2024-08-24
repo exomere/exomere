@@ -2,7 +2,9 @@
 
 return [
     'about' => '기업소개',
+    'about_title' => '엑소좀 안티에이징 솔루션, 엑소미어',
     'philosophy' => '경영이념',
+    'philosophy_title' => '단 하나, 그리고 모든 것',
     'history' => '연혁',
     'history_title' => '엑소미어가 디딘 첫걸음부터 지금까지의 발걸음을 담았습니다',
     'cibi' => 'CI/BI 소개',

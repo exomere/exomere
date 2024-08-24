@@ -182,7 +182,7 @@ $categories = [
             ></div>
         </section>
 
-        <section class="max-container min-h-screen padding-y">
+        <section class="min-sm:max-container min-h-screen padding-y">
             <div class="bg-white">
                 <!-- Subvisual Text -->
                 <div class="text-center font-monospace tracking-tight z-10 text-gray-900">
