@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\ExOrder;
+use App\Models\ExItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Exomere;
 use Illuminate\Support\Facades\Storage;
@@ -24,7 +25,7 @@ class OrderController extends Exomere
     public function orderList(Request $request)
     {
 
-        // $Orders = ExOrder::where('is_active','Y');
+    
         $orders = new ExOrder;
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
@@ -35,13 +36,15 @@ class OrderController extends Exomere
         }
       
         $orders->limit($limitPage)->orderBy('id', 'desc');
-        
+
+
         $data = [
           "search_text" => $search_text ?? '',
           "orders" =>  $orders ?? [],
           "order_category" => self::ORDER_CATEGORY,
           "row_num" => $this->getPageRowNumber($orders->count(), $page, $limitPage) ?? null,
           "paga_nation" => $this->pagaNation($orders, $limitPage),
+
         ];
 
         return view('pages.order.list')->with($data);
@@ -53,13 +56,25 @@ class OrderController extends Exomere
         if (isset($request->seq)) {
             $Order = ExOrder::find($request->seq);
           }
-          
+
+          $items = ExItem::where('is_active','Y')->get();
+          $itemArray = [];
+          $cnt = 0;
+          foreach($items as $item){
+            $itemArray[$cnt]['seq'] = $item->id;
+            $itemArray[$cnt]['name'] = $item->name;
+            $itemArray[$cnt]['price'] = $item->price;
+            $itemArray[$cnt]['pv'] = $item->pv;
+            $cnt++;
+          }
+
           $data = [
             "order_seq" => $request->seq ?? null,
             "order_category" => self::ORDER_CATEGORY,
             "order_kind" => self::ORDER_KIND,
             "order" => $Order ?? [],
             "card_compnay" => self::_PAYMENT_CARD_COMPANY,
+            "item_array" => $itemArray ?? [],
           ];
 
           return view('pages.order.register')->with($data);

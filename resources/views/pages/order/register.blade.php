@@ -1,6 +1,6 @@
 @extends('layouts/contentNavbarLayout')
 
-@section('title', ' Order - Register')
+@section('title', 'Order - Register')
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
@@ -56,7 +56,7 @@
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-code"> 상품수령 </label>
               <div class="col-sm-2">
-                <select class="form-select" name="receipt_method" id="receipt_method" required>
+                <select class="form-select" name="receipt_method" id="receipt_method">
                   <option value='scene'>현장수령</option>
                   <option value='delivery'>택배수령</option>
                 </select>
@@ -66,13 +66,13 @@
               <div class="row mb-3">
                 <label class="col-sm-1 col-form-label" for="basic-default-code"> 주문자 </label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                  <input type="text" class="form-control" id="basic-default-code" />
                 </div>
               </div>
               <div class="row mb-3">
                 <label class="col-sm-1 col-form-label" for="basic-default-code"> 연락처 </label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                  <input type="text" class="form-control" id="basic-default-code" />
                 </div>
               </div>
               <div class="row mb-3">
@@ -80,7 +80,7 @@
                 <div class="col-sm-2">
                   <div class="input-group">
                     <input type="text" name="zipcode" id="zipcode" class="form-control" readonly/>
-                    <button type="button" class="btn btn-outline-secondary" onclick="getPostCode();">{{ __('messages.search') }}</button>
+                    <button type="button" class="btn btn-outline-secondary getPostCode">{{ __('messages.search') }}</button>
                 </div>
                 </div>
               </div>
@@ -105,14 +105,62 @@
             </div>
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-code"> 상품 </label>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+              <div class="col-md-4">
+                <select class="form-select" name="product_select" id="product_select">
+                  <option value="">상품 선택</option>
+                  @foreach ($item_array as $item)
+                    <option value='{{$item['seq']}}'
+                        data-price='{{$item['price']}}'
+                        data-pv='{{$item['pv']}}'
+                        data-name='{{$item['name']}}'
+                    >{{$item['name']}}
+                    </option>
+                  @endforeach
+                </select>      
               </div>
             </div>
-            
-            <div class="row" data-select2-id="38">
+            <div class="row mb-3">
+              <div class="col-sm-12">
+                <div class="card">
+                  <h5 class="card-header">주문상품 리스트</h5>
+                  <div class="table-responsive text-nowrap">
+                    <table class="table">
+                      <thead>
+                        <tr class="text-nowrap">
+                          <th>상품명</th>
+                          <th>판매가</th>
+                          <th>PV</th>
+                          <th>수량</th>
+                          <th>합계</th>
+                          <th>관리</th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-border-bottom-0 product_info_body">
+                        <tr>
+                          <td style='text-align:center; height:80px;' colspan="6">선택한 상품이 없습니다.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <label class="col-sm-1 col-form-label" for="total_amount"> 총금액 </label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" id="total_amount" readonly style='width:170px;' value='0'/>
+                </div>
+                <label class="col-sm-1 col-form-label" for="payment_amount"> 결제금액 </label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" id="payment_amount" readonly style='width:170px;' value='0'/>
+                </div>
+                <label class="col-sm-1 col-form-label" for="remain_amount"> 남은금액 </label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" id="remain_amount" readonly style='width:170px;' value='0'/>
+                </div>
+              </div>
+            <div class="row " data-select2-id="38">
               <div class="col" data-select2-id="37">
-                <h6 class="mt-4"> 결제방법 </h6>
+                <h5 class="mt-4"> 결제방법 </h5>
                 <div class="card mb-6" data-select2-id="36">
                   <div class="card-header p-0 nav-align-top">
                     <ul class="nav nav-tabs" role="tablist">
@@ -129,45 +177,49 @@
                     <!-- Personal Info -->
                     <div class="tab-pane fade active show" id="form-tabs-personal" role="tabpanel" data-select2-id="form-tabs-personal">
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="basic-default-code"> 카드사 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_1"> 카드사 </label>
                         <div class="col-sm-2">
-                          <select class="form-select" name="local_store" id="local_store">
+                          <select class="form-select" id="payment_card_1">
                             <option value="">카드선택</option>
                             @foreach ($card_compnay as $key => $val)
                               <option value="{{$key}}">{{$val}}</option>
                             @endforeach
                           </select>
                         </div>
-                        <label class="col-sm-1 col-form-label" for="basic-default-code"> 카드번호 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_2"> 카드번호 </label>
                         <div class="col-sm-5">
-                          <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                          <input type="text" class="form-control" id="payment_card_2" maxlength="16"/>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="basic-default-code"> 소유자명 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_3"> 소유자명 </label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                          <input type="text" class="form-control" id="payment_card_3"/>
                         </div>
-                        <label class="col-sm-1 col-form-label" for="basic-default-code"> 비밀번호 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_4"> 비밀번호 </label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                          <input type="text" class="form-control" id="payment_card_4" maxlength="2"/>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="basic-default-code"> 할부개월 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_5"> 할부개월 </label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                          <select class="form-select"  id="payment_card_5">
+                            @for ($i = 1; $i < 13; $i++)
+                                <option value="{{$i}}">{{$i}}개월</option>
+                            @endfor
+                          </select>
                         </div>
-                        <label class="col-sm-1 col-form-label" for="basic-default-code"> 유효기간 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_6"> 유효기간 </label>
                         <div class="col-sm-1">
-                          <select class="form-select" name="local_store" id="local_store">
+                          <select class="form-select"  id="payment_card_6">
                             @for ($i = date("y"); $i < (date("y")+15); $i++)
                                 <option value="{{$i}}">{{$i}}년</option>
                             @endfor
                           </select>
                         </div>
                         <div class="col-sm-1">
-                          <select class="form-select" name="local_store" id="local_store">
+                          <select class="form-select"  id="payment_card_7">
                             @for ($i = 1; $i < 13; $i++)
                               <option value="{{$i}}">{{$i}}월</option>
                           @endfor
@@ -175,26 +227,26 @@
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="basic-default-code"> 승인번호 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_8"> 승인번호 </label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                          <input type="text" class="form-control"  id='payment_card_8'/>
                         </div>
-                        <label class="col-sm-1 col-form-label" for="cf_date"> 승인일자 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_9"> 승인일자 </label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" id="cf_date" name='cf_date' readonly value="{{ $order_data->code ?? null }}"/>
+                          <input type="text" class="form-control"  id='payment_card_9' readonly/>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="basic-default-code"> 결제금액 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_10"> 결제금액 </label>
                         <div class="col-sm-2">
-                          <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                          <input type="text" class="form-control"  id='payment_card_10'/>
                         </div>
                       </div>
                       <div class="row mt-6">
                         <div class="col-md-6">
                           <div class="row justify-content-end">
                             <div class="col-sm-9">
-                              <button type="button" class="btn btn-primary me-3">추가</button>
+                              <button type="button" class="btn btn-primary me-3 addCardPaymentInfo">추가</button>
                             </div>
                           </div>
                         </div>
@@ -202,34 +254,34 @@
                     </div>
                     <div class="tab-pane fade" id="form-tabs-account" role="tabpanel">
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="basic-default-code"> 입금계좌 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_account_1"> 입금계좌 </label>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                          <input type="text" class="form-control" id="payment_account_1" readonly value="기업은행 414-105162-04-023 (주)엑소미어" />
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="basic-default-code"> 입금자명 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_account_2"> 입금자명 </label>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                          <input type="text" class="form-control" id="payment_account_2" />
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="deposit_date"> 입금일 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_account_3"> 입금일 </label>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control" id="deposit_date" name='deposit_date' readonly  value="{{ $order_data->code ?? null }}"/>
+                          <input type="text" class="form-control" id="payment_account_3" name='payment_account_3' readonly/>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="basic-default-code"> 결제금액 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_account_4"> 결제금액 </label>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                          <input type="text" class="form-control" id="payment_account_4" />
                         </div>
                       </div>
                       <div class="row mt-6">
                         <div class="col-md-6">
                           <div class="row justify-content-end">
                             <div class="col-sm-9">
-                              <button type="button" class="btn btn-primary me-3">추가</button>
+                              <button type="button" class="btn btn-primary me-3 addAccountInfoBody">추가</button>
                             </div>
                           </div>
                         </div>
@@ -248,8 +300,6 @@
                     <table class="table">
                       <thead>
                         <tr class="text-nowrap">
-                          <th>No</th>
-                          <th>카드코드</th>
                           <th>카드명</th>
                           <th>카드번호</th>
                           <th>결제금액</th>
@@ -262,21 +312,11 @@
                           <th>관리</th>
                         </tr>
                       </thead>
-                      <tbody class="table-border-bottom-0">
+                      <tbody class="table-border-bottom-0 cardInfoBody">
                         <tr>
-                          <th scope="row">1</th>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
+                          <td style='text-align:center; height:80px;' colspan="10">카드결제 정보가 없습니다.</td>
                         </tr>
+                      
                       </tbody>
                     </table>
                   </div>
@@ -294,7 +334,6 @@
                     <table class="table">
                       <thead>
                         <tr class="text-nowrap">
-                          <th>No</th>
                           <th>입금계좌번호</th>
                           <th>입금자</th>
                           <th>입금일</th>
@@ -302,14 +341,9 @@
                           <th>관리</th>
                         </tr>
                       </thead>
-                      <tbody class="table-border-bottom-0">
+                      <tbody class="table-border-bottom-0 accountInfoBody">
                         <tr>
-                          <th scope="row">1</th>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
-                          <td>Table cell</td>
+                          <td style='text-align:center; height:80px;' colspan="5">계좌이체 정보가 없습니다.</td>
                         </tr>
                       </tbody>
                     </table>
@@ -381,117 +415,13 @@
     </div>
   </div>
 </div>
-
+ 
 @endsection
 @section('page-script')
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
-
-  <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
-  <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
-  <script>
-     $( function() {
-          $("#cf_date").datepicker();
-          $("#deposit_date").datepicker();
-          $("#order_date").datepicker();
-          $("#order_date").datepicker( "option", "dateFormat",'yy-mm-dd');
-          $("#cf_date").datepicker( "option", "dateFormat",'yy-mm-dd');
-          $("#deposit_date").datepicker( "option", "dateFormat",'yy-mm-dd');
-          
-      } );
-    $("#receipt_method").on("change",function(){
-      var val = $(this).val();
-      if(val == 'scene'){
-        $("#receiptDiv").hide();
-      }else{
-        $("#receiptDiv").show();
-      }
-
-    });
-    $(".searchMember").on("click",function(){
-      var text = $("#searchMemberText").val();
-      var type = $("#searchMemberType").val();
-
-      if(text == ''){
-        alert('검색어를 입력해주세요.');
-        return false;
-      }
-      $.ajax({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
-          type: 'post',
-          dataType: "json",
-          url: "/management/member/serarchMember",
-          data : {
-            "type" : type,
-            "text" : text,
-          }, 
-          success: function (res) {
-            console.log(res.length);
-            var html = "";
-            if(res.length == 0){
-              alert('검색결과가 없습니다.');
-            }else{
-              $(".memberBody").empty();
-              $.each(res, function(index,data){
-                html += "<tr>";
-                html += " <td>"+data.seq+"</td>";
-                html += " <td>"+data.name+"</td>";
-                html += " <td>"+data.member_id+"</td>";
-                html += " <td>"+data.member_position+"</td>";
-                html += " <td>"+data.created_at+"</td>";
-                html += " <td><button type='button' class='btn btn-primary me-3' data-seq='"+data.seq+"' data-name='"+data.name+"' data-member_id='"+data.member_id+"'>선택</button></td>"
-                html += "</tr>";
-              });
-            }
-            $(".memberBody").append(html);
-          }
-      });
-
-    });
-
-    function getPostCode(){
-      new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var fullAddr = ''; // 최종 주소 변수
-            var extraAddr = ''; // 조합형 주소 변수
-
-            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                fullAddr = data.roadAddress;
-
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                fullAddr = data.jibunAddress;
-            }
-
-            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-            if(data.userSelectedType === 'R'){
-                //법정동명이 있을 경우 추가한다.
-                if(data.bname !== ''){
-                    extraAddr += data.bname;
-                }
-                // 건물명이 있을 경우 추가한다.
-                if(data.buildingName !== ''){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-            }
-
-            var postArr = new Array();
-            postArr.push(data.zonecode);
-            postArr.push(fullAddr);
-
-            $("#zipcode").val(postArr[0]);
-            $("#address").val(postArr[1]);
-            $("#address_detail").val('');
-            $("#address_detail").focus();
-        }
-      }).open();
-    }
-  </script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
+<script src="/assets/js/admin/order-register.js"></script>
 @endsection
