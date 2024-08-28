@@ -93,8 +93,8 @@
     {
       "name": "inquiries",
       "icon": "menu-icon tf-icons bx bxs-bell-ring",
-      "slug": "cards-basic",
-      "url": "management/cards/basic"
+      "slug": "inquiry.list",
+      "url": "management/inquiry/list"
     },
     {
       "menuHeader": "erp_menu"
