@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\LanguageController;
@@ -157,6 +158,23 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('/update/{id}', [NoticeController::class, 'update'])->name('notice.update');
             Route::delete('/delete/{id}', [NoticeController::class, 'destroy'])->name('notice.delete');
         });
+
+
+        /** 1:1문의 */
+        Route::prefix('/inquiry')->group(function () {
+            Route::get('/list', [InquiryController::class, 'index'])->name('inquiry.list');
+            Route::get('/detail/{id}', [InquiryController::class, 'detail'])->name('inquiry.detail');
+            Route::get('/create', [InquiryController::class, 'create'])->name('inquiry.create');
+            Route::post('/store', [InquiryController::class, 'store'])->name('inquiry.store');
+            Route::get('/edit/{id}', [InquiryController::class, 'edit'])->name('inquiry.edit');
+            Route::put('/update/{id}', [InquiryController::class, 'update'])->name('inquiry.update');
+            Route::delete('/delete/{id}', [InquiryController::class, 'destroy'])->name('inquiry.delete');
+
+            // 1:1 문의 답변
+            Route::post('/{id}/comment', [InquiryController::class, 'storeComment'])->name('inquiry.comment.store');
+        });
+
+
 
 
 
