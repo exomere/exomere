@@ -83,70 +83,79 @@ class OrderController extends Exomere
     public function orderSave(Request $request)
     {
 
-      $Order_seq = $request->Order_seq ?? null;
+      $order_seq = $request->Order_seq ?? null;
+
+      $item_info = [];
+      $card_info = [];
+      $account_info = [];
+
+      for($i=0;$i<count($request->pd_qty);$i++){
+        // $item_info[$i]['pd_seq'] = $request->pd_seq[$i];
+        $item_info[$i]['pd_qty'] = $request->pd_qty[$i];
+      }
+         
+      for($i=0;$i<count($request->card_company);$i++){
+        $card_info[$i]['card_company'] = $request->card_company[$i];
+        $card_info[$i]['card_name'] = $request->card_name[$i];
+        $card_info[$i]['card_number'] = $request->card_number[$i];
+        $card_info[$i]['card_payment_price'] = $request->card_payment_price[$i];
+        $card_info[$i]['card_month_plan'] = $request->card_month_plan[$i];
+        $card_info[$i]['card_year_month'] = $request->card_year_month[$i];
+        $card_info[$i]['card_approval_number'] = $request->card_approval_number[$i];
+        $card_info[$i]['card_approval_name'] = $request->card_approval_name[$i];
+        $card_info[$i]['card_approval_date'] = $request->card_approval_date[$i];
+        $card_info[$i]['card_password'] = $request->card_password[$i];
+      }
+
+      for($i=0;$i<count($request->account_number);$i++){
+        $account_info[$i]['account_number'] = $request->account_number[$i];
+        $account_info[$i]['account_head'] = $request->account_head[$i];
+        $account_info[$i]['account_date'] = $request->account_date[$i];
+        $account_info[$i]['account_payment_price'] = $request->account_payment_price[$i];
+      }
+      
+      // dd($request->input(),$account_info,$card_info,$item_info ,explode(" | ",$request->member_info));
 
       $input_data = [
-        "name" => $request->name ?? null ,
-        "description" => $request->description ?? null ,
-        "code" => $request->code ?? null,
-        "category" => $request->category ?? null ,
-        "kind" => $request->kind ?? null ,
-        "price" => $request->price ?? 0 ,
-        "tax" => $request->tax ?? 0 ,
-        "pv" => $request->pv ?? 0 ,
-        "pv2" => $request->pv2 ?? 0 ,
-        "mem_price" => $request->mem_price ?? 0 ,
-        "mem_pv" => $request->mem_pv ?? 0 ,
-        "planer_price" => $request->planer_price ?? 0 ,
-        "planer_pv" => $request->planer_pv ?? 0 ,
-        "store_price" => $request->store_price ?? 0 ,
-        "store_pv" => $request->store_pv ?? 0 ,
-        "exclusive_price" => $request->exclusive_price ?? 0 ,
-        "exclusive_pv" => $request->exclusive_pv ?? 0 ,
-        "stock" => $request->stock ?? 0 ,
-        "is_active" => $request->is_active ?? 'N' ,
-        "is_view" => $request->is_view ?? 'N' ,
-        "remark" => $request->remark ?? null ,
-        "content" => $request->content ?? null ,
-        "capacity" => $request->capacity ?? null ,
-        "functionality" => $request->functionality ?? 0 ,
-        "efficacy" => $request->efficacy ?? null ,
-        "usage_capacity" => $request->usage_capacity ?? null ,
-        "precautions" => $request->precautions ?? null ,
-        "quality_standard" => $request->quality_standard ?? null ,
-        "manufacturer" => $request->manufacturer ?? null ,
-        "responsible_seller" => $request->responsible_seller ?? null ,
-        "inquiries" => $request->inquiries ?? null ,
-        "expiration_date" => $request->expiration_date ?? null ,
-        "country_manufacture" => $request->country_manufacture ?? null ,
+        "member_seq" => $request->member_seq ?? null,
+        "member_id" => explode(" | ",$request->member_info)[0] ?? null,
+        "member_name" =>explode(" | ",$request->member_info)[1] ?? null,
+        "order_type" => $request->order_type ?? null,
+        "center_seq" => $request->center_seq ?? null,
+        "receipt_method" => $request->receipt_method ?? null,
+        "delivery_name" => $request->delivery_name ?? null,
+        "delivery_phone" => $request->delivery_phone ?? null,
+        "zipcode" => $request->zipcode ?? null,
+        "address" => $request->address ?? null,
+        "address_detail" => $request->address_detail ?? null,
+        "remark" => $request->remark ?? null,
+        "total_amount" => str_replace(',','',$request->total_amount) ?? null,
+        "payment_amount" => str_replace(',','',$request->payment_amount) ?? null,
+        "remaining_amount" => str_replace(',','',$request->remaining_amount) ?? null,
+        "cash_payment" => str_replace(',','',$request->cash_payment) ?? null,
+        "point_payment" => str_replace(',','',$request->point_payment) ?? null,
+        "account_payment" => str_replace(',','',$request->account_payment) ?? null,
+        "item_info" => json_encode($item_info) ?? [],
+        "card_info" => json_encode($card_info) ?? [],
+        "account_info" => json_encode($account_info) ?? [],
+        "order_date" => $request->order_date ?? date("Y-m-d H:i:s"),
       ];
 
-      if($request->hasFile('thum_img')){
-        $fileName = time().'_'.$request->file('thum_img')->getClientOriginalName();
-        $input_data['thum_img'] = $request->file('thum_img')->storeAs('public/data', $fileName);
-        $input_data['thum_img'] = $fileName;
-        
-      }
-      if($request->hasFile('img')){
-        $fileName = time().'_'.$request->file('img')->getClientOriginalName();
-        $request->file('img')->storeAs('public/data', $fileName);
-        $input_data['img'] = $fileName;
-      }
 
       ExOrder::UpdateOrCreate(
         [
-          'id' => $Order_seq,
+          'id' => $order_seq,
         ],
           $input_data
       );
 
-      return redirect()->route('basic-layouts-order-list');
+      return redirect()->route('order-layouts-order-list');
     }
 
-    public function OrderDel(Request $request)
+    public function orderDel(Request $request)
     {
       ExOrder::find($request->seq)->delete();
-      return redirect()->route('basic-layouts-order-list');
+      return redirect()->route('order-layouts-order-list');
     }
 
     

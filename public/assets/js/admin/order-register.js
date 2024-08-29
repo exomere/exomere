@@ -12,10 +12,14 @@ var orderReg = {
     },
 
     removeComma: function (value) {
+
         for(var i =0 ; i < 5 ; i ++){
             value = value.replace(",", "");
         }
-        return value;
+        if (isNaN(parseInt(value))) { // 값이 없어서 NaN값이 나올 경우
+            value = "0";
+        }
+        return parseInt(value);
     },
     
 
@@ -39,7 +43,7 @@ var orderReg = {
         }
 
         html += "<tr class='product_info_tr p_info_" + seq + "'>";
-        html += " <td>" + name + "</td>";
+        html += " <td> <input type='hidden' name='pd_seq[]' value='"+seq+"'>" + name + "</td>";
         html += " <td>" + orderReg.addComma(price) + "</td>";
         html += " <td>" + orderReg.addComma(pv) + "</td>";
         html += " <td><input style='width:80px;' class='form-control qtyProduct' id='pd_qty_"+seq+"' name='pd_qty[]' data-seq='"+seq+"' data-price='"+price+"' type='number' value='1'/></td>";
@@ -66,25 +70,56 @@ var orderReg = {
      
         var total = 0;
         var payment_amount = 0;
-        
+        var card_payment = 0;
+        var account_payment = 0;
+        var point_payment = orderReg.removeComma($("#point_payment").val());
+        var cash_payment = orderReg.removeComma($("#cash_payment").val());
 
         $('.pd_total').each(function(index,item){
-            total += 1*(orderReg.removeComma($(this).text()));
+            total += orderReg.removeComma($(this).text());
         });
 
         $('.card_payment_price').each(function(index,item){
-            payment_amount += 1*(orderReg.removeComma($(this).val()));
+            card_payment += orderReg.removeComma($(this).val())
         });
 
         $('.account_payment_price').each(function(index,item){
-            payment_amount += 1*(orderReg.removeComma($(this).val()));
+            account_payment += orderReg.removeComma($(this).val())
         });
-        
+
+        payment_amount = (account_payment + card_payment + point_payment + cash_payment)
         var remain_amount = total - payment_amount;
+        
+        $("#card_payment").val(orderReg.addComma(card_payment));
+        $("#account_payment").val(orderReg.addComma(account_payment));
 
         $("#total_amount").val(orderReg.addComma(total));
         $("#payment_amount").val(orderReg.addComma(payment_amount));
         $("#remain_amount").val(orderReg.addComma(remain_amount));
+    },
+
+    recalculating:function(e){  
+
+        var type = e.data('type');
+        var this_value = orderReg.removeComma(e.val());
+        var remain_points = orderReg.removeComma($("#remain_points").val());
+        console.log(this_value);
+
+
+        if(type == 'point'){
+           if(remain_points < this_value){
+                alert('결제포인트보다 잔여포인트가 적습니다.');
+                e.val(0);
+           }else{
+                e.val(orderReg.addComma(this_value));
+           }
+        }else{
+            e.val(orderReg.addComma(this_value));
+        }
+
+        
+
+        orderReg.totalRecalculating();
     },
     
     showHideAddress: function (e) {
@@ -117,7 +152,6 @@ var orderReg = {
                 "text": text,
             },
             success: function (res) {
-                console.log(res.length);
                 var html = "";
                 if (res.length == 0) {
                     alert('검색결과가 없습니다.');
@@ -130,7 +164,7 @@ var orderReg = {
                         html += " <td>" + data.member_id + "</td>";
                         html += " <td>" + data.member_position + "</td>";
                         html += " <td>" + data.created_at + "</td>";
-                        html += " <td><button type='button' class='btn btn-primary me-3' data-seq='" + data.seq + "' data-name='" + data.name + "' data-member_id='" + data.member_id + "'>선택</button></td>"
+                        html += " <td><button type='button' class='choisMemberInfo btn btn-primary me-3' data-seq='" + data.seq + "' data-name='" + data.name + "' data-member_id='" + data.member_id + "' data-remain_points='"+data.remain_points+"'>선택</button></td>"
                         html += "</tr>";
                     });
                 }
@@ -208,7 +242,7 @@ var orderReg = {
         html += "    <td><input type='text' class='form-control' readonly name='card_password[]' value='"+$("#payment_card_4").val()+"'></td>";
         html += "    <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='card' data-idx='"+trCnt+"' >삭제</button></td>";
         html += "</tr>";
-
+        
         $(".cardInfoBody").append(html);
 
         orderReg.totalRecalculating();
@@ -221,7 +255,7 @@ var orderReg = {
         }
 
         var trCnt = (1*$(".accountInfoTr").length)+1;
-
+        
         html = "";
         html += "<tr class='accountInfoTr accountInfo_row_"+trCnt+"'>";
         html += "    <td><input type='text' class='form-control' readonly name='account_number[]' value='"+ $("#payment_account_1").val() +"'></td>";
@@ -252,6 +286,21 @@ var orderReg = {
           }
 
           orderReg.totalRecalculating();
+    },
+
+    choisMemberInfo: function(e){
+        var id = e.data('member_id');
+        var seq = e.data('seq');
+        var name = e.data('name');
+        var remain_points = e.data('remain_points')
+        $(".cancelMemberInfo").trigger('click');
+
+        $("#member_info").val(id+" | "+name);
+        $("#member_seq").val(seq);
+        $("#remain_points").val(remain_points)
+        $("#point_payment").val(0);
+
+        orderReg.totalRecalculating();
     },
 
     Bind: function () {
@@ -287,6 +336,16 @@ var orderReg = {
         $(document).on("click", ".infoRowDel", function () {
             orderReg.infoRowDel($(this));
         });
+
+        $(document).on("click", ".choisMemberInfo", function () {
+            orderReg.choisMemberInfo($(this));
+        });
+
+        $(document).on("input", ".totalRecalculating", function () {
+            orderReg.recalculating($(this));
+        });
+        
+        
     },
 
     Init: function () {
@@ -297,6 +356,7 @@ var orderReg = {
 
 $(function () {
     $('#product_select').select2();
+    $('#center_seq').select2();
     $("#payment_card_9").datepicker();
     $("#payment_account_3").datepicker();
     $("#order_date").datepicker();
