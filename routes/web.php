@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\NoticeController;
+use App\Http\Controllers\Admin\OrganizationController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\member\JoinController;
 use Illuminate\Support\Facades\Route;
@@ -173,6 +174,18 @@ Route::group(['middleware' => 'auth'], function () {
             // 1:1 문의 답변
             Route::post('/{id}/comment', [InquiryController::class, 'storeComment'])->name('inquiry.comment.store');
         });
+
+
+
+        // 조직도
+        Route::prefix('/organization')->group(function () {
+            Route::get('/list', [OrganizationController::class, 'index'])->name('organization.list');
+            Route::get('/data', [OrganizationController::class, 'getOrgData'])->name('organization.data');
+        });
+
+
+
+
 
         /** 상품관리 */
         Route::prefix('/item')->group(function () {

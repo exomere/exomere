@@ -92,6 +92,7 @@
     "highlight.js": "11.8.0",
     "jquery": "3.7.0",
     "masonry-layout": "4.2.2",
+    "orgchart": "^4.0.1",
     "perfect-scrollbar": "1.5.5"
   }
 }
