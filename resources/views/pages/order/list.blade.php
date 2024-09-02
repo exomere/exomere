@@ -61,7 +61,7 @@
           <th style='vertical-align: middle;' rowspan='2'>결제수단</th>
           <th style='vertical-align: middle;' rowspan='2'>주문금액</th>
           <th style='vertical-align: middle;' rowspan='2'>PV1</th>
-          <th style='vertical-align: middle;' rowspan='2'>입금자명</th>
+          <th style='vertical-align: middle;' rowspan='2'>주문자</th>
           <th style='vertical-align: middle;' rowspan='2'>주문일자</th>
           <th style='vertical-align: middle;' rowspan='2'>주문번호</th>
           <th style='vertical-align: middle;' rowspan='2'>아이디</th>
@@ -70,6 +70,7 @@
           <th style='vertical-align: middle;' rowspan='2'>상품</th>
           <th style='text-align:center;' colspan='2'>추천인</th>
           <th style='vertical-align: middle;' rowspan='2'>비고</th>
+          <th style='vertical-align: middle;' rowspan='2'>등록자</th>
           <th style='vertical-align: middle;' rowspan='2'>관리</th>
         </tr>
         <tr>
@@ -81,17 +82,21 @@
         @foreach ($orders->get() as $list)
           <tr>
             <td> <span class="fw-medium">{{$row_num--;}}</span></td>
-            <td><img style='width:80px;' src="{{ Storage::url('public/data/'.$list->thum_img) }}" alt="상품이미지" onerror="this.src='{{ Storage::url('public/data/noimg.jpg') }}'"  ></td>
-            <td> <span class="fw-medium">{{$list->code}}</span></td>
-            <td> <span class="fw-medium">{{$item_category[$list->category]}}</span></td>
-            <td> <span class="fw-medium">{{$list->name}}</span></td>
-            <td> <span class="fw-medium">{{number_format($list->price)}}</span></td>
-            <td> <span class="fw-medium">{{number_format($list->mem_price)}}</span></td>
-            <td> <span class="fw-medium">{{number_format($list->planer_price)}}</span></td>
-            <td> <span class="fw-medium">{{number_format($list->store_price)}}</span></td>
-            <td> <span class="fw-medium">{{number_format($list->exclusive_price)}}</span></td>
-            <td> <span class="fw-medium">{{$list->is_view == 'Y' ? '노출' : '미노출'}}</span></td>
-            <td> <span class="fw-medium">{{$list->is_active == 'Y' ? '사용' : '미사용'}}</span></td>
+            <td> <span class="fw-medium">{{$list->is_approval}}</span></td>
+            <td> <span class="fw-medium">{{$list->receipt_method}}</span></td>
+            <td> <span class="fw-medium">{{$list->order_type}}</span></td>
+            <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
+            <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
+            <td> <span class="fw-medium">{{$list->member_name}}</span></td>
+            <td> <span class="fw-medium">{{$list->order_date}}</span></td>
+            <td> <span class="fw-medium">{{$list->id}}</span></td>
+            <td> <span class="fw-medium">{{$list->member_id}}</span></td>
+            <td> <span class="fw-medium">{{$list->member_name}}</span></td>
+            <td> <span class="fw-medium">{{$list->center_seq}}</span></td>
+            <td> <span class="fw-medium">상품</span></td>
+            <td> <span class="fw-medium">{{$list->member_name}}</span></td>
+            <td> <span class="fw-medium">{{$list->member_name}}</span></td>
+            <td> <span class="fw-medium">{{$list->remark}}</span></td>
             <td>
               <div class="dropdown">
                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>

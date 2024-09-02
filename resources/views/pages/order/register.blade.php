@@ -13,7 +13,7 @@
     <div class="col-xxl">
       <div class="card mb-4">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <h5 class="mb-0">주문등록</h5> <small class="text-muted float-end"><button type="submit" class="btn btn-primary">저장</button></small>
+          <h5 class="mb-0">주문등록</h5> <small class="text-muted float-end"><input type="submit" class="btn btn-primary" value='저장'></small>
         </div>
         <div class="card-body">
           <form>
@@ -21,22 +21,23 @@
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="order_date"> <span style='color:red;'>*</span> 주문일 </label>
               <div class="col-sm-3">
-                <input type="text" class="form-control" id="order_date" name='order_date' value="{{ $order_data->name ?? null }}"/>
+                <input type="text" class="form-control" id="order_date" name='order_date' value="{{ $order_data->order_date ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-description"> <span style='color:red;'>*</span> 회원선택 </label>
+              <label class="col-sm-1 col-form-label" for="member_info"> <span style='color:red;'>*</span> 회원선택 </label>
               <div class="col-sm-6">
                 <div class="input-group">
-                  <input type="text" class="form-control" id="basic-default-director_seq" readonly name='director_seq' value="{{ $item->director_seq ?? null }}"/>
-                  <a href="javascript:;" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">검색</a>
+                  <input type="hidden" class="form-control" id="member_seq" readonly name='member_seq' value="{{ $item->member_seq ?? null }}"/>
+                  <input type="text" class="form-control" id="member_info" readonly name='member_info' value="{{ $item->director_seq ?? null }}"/>
+                  <a href="javascript:void(0);" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">검색</a>
                </div>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-code"> <span style='color:red;'>*</span> 주문구분 </label>
+              <label class="col-sm-1 col-form-label" for="order_type"> <span style='color:red;'>*</span> 주문구분 </label>
               <div class="col-sm-2">
-                <select class="form-select" name="local_store" id="local_store" required>
+                <select class="form-select" name="order_type" id="order_type" required>
                   <option value='new'>신규주문</option>
                   <option value='repurchase'>재구매주문</option>
                   <option value='distribute_new'>분양몰신규</option>
@@ -45,12 +46,15 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-code"> <span style='color:red;'>*</span> 센터 </label>
-              <div class="col-sm-6">
-                <div class="input-group">
-                  <input type="text" class="form-control" id="basic-default-director_seq" readonly name='director_seq' value="{{ $item->director_seq ?? null }}"/>
-                  <a href="javascript:;" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">검색</a>
-               </div>
+              <label class="col-sm-1 col-form-label" for="center_seq"> 센터 </label>
+              <div class="col-md-4">
+                <select class="form-select" name="center_seq" id="center_seq">
+                  <option value="">센터 선택</option>
+                  @foreach ($item_array as $item)
+                    <option value='{{$item['seq']}}'>{{$item['name']}}
+                    </option>
+                  @endforeach
+                </select>      
               </div>
             </div>
             <div class="row mb-3">
@@ -64,15 +68,15 @@
             </div>
             <div style="display:{{ $order_data->code ?? 'none' }};" id="receiptDiv">
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label" for="basic-default-code"> 주문자 </label>
+                <label class="col-sm-1 col-form-label" for="delivery_name"> 주문자 </label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="basic-default-code" />
+                  <input type="text" class="form-control" id="delivery_name" name='delivery_name'/>
                 </div>
               </div>
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label" for="basic-default-code"> 연락처 </label>
+                <label class="col-sm-1 col-form-label" for="delivery_phone"> 연락처 </label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="basic-default-code" />
+                  <input type="text" class="form-control" id="delivery_phone" name="delivery_phone" />
                 </div>
               </div>
               <div class="row mb-3">
@@ -98,9 +102,9 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-code"> 비고 </label>
+              <label class="col-sm-1 col-form-label" for="remark"> 비고 </label>
               <div class="col-sm-6">
-                <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $order_data->code ?? null }}"/>
+                <input type="text" class="form-control" id="remark" name='remark' value="{{ $order_data->code ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
@@ -147,15 +151,39 @@
               <div class="row mt-3">
                 <label class="col-sm-1 col-form-label" for="total_amount"> 총금액 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="total_amount" readonly style='width:170px;' value='0'/>
+                  <input type="text" class="form-control" id="total_amount" name='total_amount' readonly style='width:170px;' value='0'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="payment_amount"> 결제금액 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="payment_amount" readonly style='width:170px;' value='0'/>
+                  <input type="text" class="form-control" id="payment_amount" name='payment_amount' readonly style='width:170px;' value='0'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="remain_amount"> 남은금액 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="remain_amount" readonly style='width:170px;' value='0'/>
+                  <input type="text" class="form-control" id="remain_amount" name='remaining_amount' readonly style='width:170px;' value='0'/>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <label class="col-sm-1 col-form-label" for="cash_payment"> 현금결제 </label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control totalRecalculating" id="cash_payment" name="cash_payment" value='0'/>
+                </div>
+                <label class="col-sm-1 col-form-label" for="card_payment"> 카드결제 </label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" id="card_payment" readonly name="card_payment" value='0'/>
+                </div>
+                <label class="col-sm-1 col-form-label" for="account_payment"> 계좌이체 </label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" id="account_payment" readonly name="account_payment" value='0'/>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <label class="col-sm-1 col-form-label" for="point_payment"> 포인트사용 </label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control totalRecalculating" data-type='point' id="point_payment" name="point_payment" value='0'/>
+                </div>
+                <label class="col-sm-1 col-form-label" for="remain_points"> 잔여포인트 </label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" id="remain_points" readonly value='0'/>
                 </div>
               </div>
             <div class="row " data-select2-id="38">
@@ -407,7 +435,7 @@
               </div>
             </div>
             <div class="col-12 text-center">
-              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">취소</button>
+              <button type="reset" class="btn btn-label-secondary cancelMemberInfo" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">취소</button>
             </div>
           </form>
         </div>

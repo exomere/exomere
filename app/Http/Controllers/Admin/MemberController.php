@@ -83,6 +83,7 @@ class MemberController extends Controller
             $output_data[$cnt]["member_id"] = $member->member_id;
             $output_data[$cnt]["name"] = $member->name;
             $output_data[$cnt]["member_position"] = $member->member_position;
+            $output_data[$cnt]["remain_points"] = $member->remain_points;
             $output_data[$cnt]["created_at"] = date("Y-m-d",strtotime($member->created_at));
             $cnt++;
         }   
