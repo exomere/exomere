@@ -82,7 +82,7 @@
       "name": "organization_chart",
       "icon": "menu-icon tf-icons bx bx-sitemap",
       "slug": "cards-basic",
-      "url": "management/cards/basic"
+      "url": "management/organization/list"
     },
     {
       "name": "notices",
