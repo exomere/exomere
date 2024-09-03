@@ -182,41 +182,38 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list', [OrganizationController::class, 'index'])->name('organization.list');
             Route::get('/data', [OrganizationController::class, 'getOrgData'])->name('organization.data');
         });
+        Route::prefix('/erp')->group(function () {
+            /** 상품관리 */
+            Route::prefix('/item')->group(function () {
+                Route::get('/list', [ItemController::class, 'itemList'])->name('basic-layouts-item-list');
+                Route::get('/register/{seq?}', [ItemController::class, 'itemRegister'])->name('basic-layouts-item-register');
+                Route::post('/save', [ItemController::class, 'itemSave'])->name('item.save');
+                Route::get('/del/{seq?}', [ItemController::class, 'itemDel'])->name('item.del');
+            });
 
+            /** 주문관리 */
+            Route::prefix('/order')->group(function () {
+                Route::get('/list', [OrderController::class, 'orderList'])->name('order-layouts-order-list');
+                Route::get('/register/{seq?}', [OrderController::class, 'orderRegister'])->name('order-layouts-order-register');
+                Route::post('/save', [OrderController::class, 'orderSave'])->name('order.save');
+                Route::get('/del/{seq?}', [OrderController::class, 'orderDel'])->name('order.del');
+            });
 
+            /** 센터관리 */
+            Route::prefix('/center')->group(function () {
+                Route::get('/list', [CenterController::class, 'centerList'])->name('basic-layouts-center-list');
+                Route::get('/register/{seq?}', [CenterController::class, 'centerRegister'])->name('basic-layouts-center-register');
+                Route::post('/save', [CenterController::class, 'centerSave'])->name('center.save');
+                Route::get('/del/{seq?}', [CenterController::class, 'centerDel'])->name('center.del');
+            });
 
-
-
-        /** 상품관리 */
-        Route::prefix('/item')->group(function () {
-            Route::get('/list', [ItemController::class, 'itemList'])->name('basic-layouts-item-list');
-            Route::get('/register/{seq?}', [ItemController::class, 'itemRegister'])->name('basic-layouts-item-register');
-            Route::post('/save', [ItemController::class, 'itemSave'])->name('item.save');
-            Route::get('/del/{seq?}', [ItemController::class, 'itemDel'])->name('item.del');
-        });
-
-        /** 주문관리 */
-        Route::prefix('/order')->group(function () {
-            Route::get('/list', [OrderController::class, 'orderList'])->name('order-layouts-order-list');
-            Route::get('/register/{seq?}', [OrderController::class, 'orderRegister'])->name('order-layouts-order-register');
-            Route::post('/save', [OrderController::class, 'orderSave'])->name('order.save');
-            Route::get('/del/{seq?}', [OrderController::class, 'orderDel'])->name('order.del');
-        });
-
-         /** 센터관리 */
-        Route::prefix('/center')->group(function () {
-            Route::get('/list', [CenterController::class, 'centerList'])->name('basic-layouts-center-list');
-            Route::get('/register/{seq?}', [CenterController::class, 'centerRegister'])->name('basic-layouts-center-register');
-            Route::post('/save', [CenterController::class, 'centerSave'])->name('center.save');
-            Route::get('/del/{seq?}', [CenterController::class, 'centerDel'])->name('center.del');
-        });
-
-         /** 분양몰관리 */
-        Route::prefix('/distribute')->group(function () {
-            Route::get('/list', [DistributeController::class, 'distributeList'])->name('basic-layouts-distribute-list');
-            Route::get('/register/{seq?}', [DistributeController::class, 'distributeRegister'])->name('basic-layouts-distribute-register');
-            Route::post('/save', [DistributeController::class, 'distributeSave'])->name('distribute.save');
-            Route::get('/del/{seq?}', [DistributeController::class, 'distributeDel'])->name('distribute.del');
+            /** 분양몰관리 */
+            Route::prefix('/distribute')->group(function () {
+                Route::get('/list', [DistributeController::class, 'distributeList'])->name('basic-layouts-distribute-list');
+                Route::get('/register/{seq?}', [DistributeController::class, 'distributeRegister'])->name('basic-layouts-distribute-register');
+                Route::post('/save', [DistributeController::class, 'distributeSave'])->name('distribute.save');
+                Route::get('/del/{seq?}', [DistributeController::class, 'distributeDel'])->name('distribute.del');
+            });
         });
 
         // layout

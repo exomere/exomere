@@ -58,7 +58,6 @@
           <th style='vertical-align: middle;' rowspan='2'>No</th>
           <th style='vertical-align: middle;' rowspan='2'>승인여부</th>
           <th style='vertical-align: middle;' rowspan='2'>주문구분</th>
-          <th style='vertical-align: middle;' rowspan='2'>결제수단</th>
           <th style='vertical-align: middle;' rowspan='2'>주문금액</th>
           <th style='vertical-align: middle;' rowspan='2'>PV1</th>
           <th style='vertical-align: middle;' rowspan='2'>주문자</th>
@@ -82,9 +81,9 @@
         @foreach ($orders->get() as $list)
           <tr>
             <td> <span class="fw-medium">{{$row_num--;}}</span></td>
-            <td> <span class="fw-medium">{{$list->is_approval}}</span></td>
-            <td> <span class="fw-medium">{{$list->receipt_method}}</span></td>
-            <td> <span class="fw-medium">{{$list->order_type}}</span></td>
+            <td> <span class="fw-medium">{{($list->is_approval == 'Y') ? '승인' : '미승인'}}</span></td>
+            
+            <td> <span class="fw-medium">{{ $order_kind[$list->order_type] }}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
             <td> <span class="fw-medium">{{$list->member_name}}</span></td>

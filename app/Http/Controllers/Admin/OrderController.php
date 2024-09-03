@@ -11,15 +11,17 @@ use Illuminate\Support\Facades\Storage;
 class OrderController extends Exomere
 {
 
-    CONST ORDER_CATEGORY = [
+    CONST PAYMENT_KIND = [
       'skin' => '스킨케어',
       'health' => '헬스케어',
       'etc' => '기타',
     ];
 
     CONST ORDER_KIND = [
-      'N' => '없음',
-      'signature' => '대표상품',
+      'new' => "신규주문",
+      'repurchase' => "재구매주문",
+      'distribute_new' => "분양몰신규",
+      'distribute_repurchase' => "분양몰재구문",
     ];
 
     public function orderList(Request $request)
@@ -41,7 +43,8 @@ class OrderController extends Exomere
         $data = [
           "search_text" => $search_text ?? '',
           "orders" =>  $orders ?? [],
-          "order_category" => self::ORDER_CATEGORY,
+          "payment_kind" => self::PAYMENT_KIND,
+          "order_kind" => self::ORDER_KIND,
           "row_num" => $this->getPageRowNumber($orders->count(), $page, $limitPage) ?? null,
           "paga_nation" => $this->pagaNation($orders, $limitPage),
 
@@ -70,7 +73,7 @@ class OrderController extends Exomere
 
           $data = [
             "order_seq" => $request->seq ?? null,
-            "order_category" => self::ORDER_CATEGORY,
+            "payment_kind" => self::PAYMENT_KIND,
             "order_kind" => self::ORDER_KIND,
             "order" => $Order ?? [],
             "card_compnay" => self::_PAYMENT_CARD_COMPANY,
