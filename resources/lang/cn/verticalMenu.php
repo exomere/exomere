@@ -16,8 +16,13 @@ return [
     'monthly_closing' => 'Monthly Closing Details',
     'organization_chart' => 'Organization Chart',
     'notices' => 'Notices',
-    'erp_menu' => 'ERP Management',
     'inquiries' => '1:1 Inquiries',
+
+
+
+    'erp_menu' => 'ERP Management',
+    'member_management' => 'Member Management',
+    'member_list' => 'Member List',
     'order_management' => 'Order Management',
     'order_list' => 'Order List',
     'commission_management' => 'Commission Management',

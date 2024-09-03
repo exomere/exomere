@@ -100,6 +100,18 @@
       "menuHeader": "erp_menu"
     },
     {
+      "name": "member_management",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "member-layouts",
+      "submenu": [
+        {
+          "url": "management/member/list",
+          "name": "member_list",
+          "slug": "member-layouts-member-list"
+        }
+      ]
+    },
+    {
       "name": "order_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "order-layouts",
@@ -125,16 +137,30 @@
           "url": "management/form/layouts-horizontal",
           "name": "past_due",
           "slug": "form-layouts-horizontal"
-        },
+        }
+      ]
+    },
+    {
+      "name": "points_management",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "form-layouts",
+      "submenu": [
         {
-          "url": "management/form/layouts-horizontal",
-          "name": "points_management",
-          "slug": "form-layouts-horizontal"
-        },
+          "url": "management/form/layouts-vertical",
+          "name": "announcements",
+          "slug": "form-layouts-vertical"
+        }
+      ]
+    },
+    {
+      "name": "withdrawal_management",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "form-layouts",
+      "submenu": [
         {
-          "url": "management/form/layouts-horizontal",
-          "name": "withdrawal_management",
-          "slug": "form-layouts-horizontal"
+          "url": "management/form/layouts-vertical",
+          "name": "announcements",
+          "slug": "form-layouts-vertical"
         }
       ]
     },

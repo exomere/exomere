@@ -177,7 +177,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-        // 조직도
+        /** 조직도 */
         Route::prefix('/organization')->group(function () {
             Route::get('/list', [OrganizationController::class, 'index'])->name('organization.list');
             Route::get('/data', [OrganizationController::class, 'getOrgData'])->name('organization.data');
