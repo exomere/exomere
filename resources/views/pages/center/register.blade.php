@@ -7,268 +7,227 @@
 <!-- Basic Layout & Basic with Icons -->
 <div class="row">
   <!-- Basic Layout -->
-  <form method='post' action="{{route('item.save')}}" enctype="multipart/form-data">
+  <form method='post' action="{{route('center.save')}}" enctype="multipart/form-data">
     @csrf
-    <input type='hidden' name='item_seq' value='{{ $item_seq ?? null }}'> 
+    <input type='hidden' name='center_seq' value='{{ $center_seq ?? null }}'> 
     <div class="col-xxl">
       <div class="card mb-4">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <h5 class="mb-0">상품등록</h5> <small class="text-muted float-end"><button type="submit" class="btn btn-primary">저장</button></small>
+          <h5 class="mb-0">센터등록</h5> <small class="text-muted float-end"><button type="submit" class="btn btn-primary">저장</button></small>
         </div>
         <div class="card-body">
           <form>
             @csrf
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-name"> <span style='color:red;'>*</span> 상품명 </label>
+              <label class="col-sm-1 col-form-label" for="basic-default-name"> <span style='color:red;'>*</span> 센터명 </label>
               <div class="col-sm-6">
-                <input type="text" class="form-control" id="basic-default-name" name='name' value="{{ $item->name ?? null }}"/>
+                <input type="text" class="form-control" id="basic-default-name" name='name' value="{{ $center->name ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-description"> 간략설명 </label>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="basic-default-description" name='description'value="{{ $item->description ?? null }}"/>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-code"> <span style='color:red;'>*</span> 상품코드 </label>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="basic-default-code" name='code' value="{{ $item->code ?? null }}"/>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-category">카테고리</label>
-              <div class="col-sm-5">
-                <select class="form-control" id="basic-default-category" name='category'>
-                  @foreach ($item_category as $key => $val)
-                    <option value='{{$key}}' @isset($item->category) @if($item->category == $key) selected @endif @endisset>{{$val}}</option>  
-                  @endforeach
-                </select>
-              </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-kind">상품구분</label>
-              <div class="col-sm-5">
-                <div class="input-group input-group-merge">
-                  <select class="form-control" id="basic-default-kind" name='kind'>
-                      @foreach ($item_kind as $key => $val)
-                        <option value='{{$key}}' @isset($item->kind) @if($item->kind == $key) selected @endif @endisset>{{$val}}</option>  
-                      @endforeach
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-price">소비자가</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-price" class="form-control" name='price' value="{{ $item->price ?? null }}"/>
-              </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-tax">부가세</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-tax" class="form-control" name='tax' value="{{ $item->tax ?? null }}"/>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-pv">PV1</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-pv" class="form-control" name='pv' value="{{ $item->pv ?? null }}"/>
-              </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-pv2">PV2</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-pv2" class="form-control" name='pv2' value="{{ $item->pv2 ?? null }}"/>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-mem_price">회원가</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-mem_price" class="form-control" name='mem_price' value="{{ $item->mem_price ?? null }}"/>
-              </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-mem_pv">회원PV</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-mem_pv" class="form-control" name='mem_pv' value="{{ $item->mem_pv ?? null }}"/>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-planer_price">뷰티플래너가</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-planer_price" class="form-control" name='planer_price' value="{{ $item->planer_price ?? null }}"/>
-              </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-planer_pv">뷰티플래너PV</label>
-              <div class="col-sm-5">
-                  <input type="number" id="basic-default-planer_pv" class="form-control" name='planer_pv' value="{{ $item->planer_pv ?? null }}"/>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-store_price">대리점가</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-store_price" class="form-control" name='store_price' value="{{ $item->store_price ?? null }}"/>
-              </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-store_pv">대리점PV</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-store_pv" class="form-control" name='store_pv' value="{{ $item->store_pv ?? null }}"/>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price">총판가</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-exclusive_price" class="form-control" name='exclusive_price' value="{{ $item->exclusive_price ?? null }}"/>
-              </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv">총판PV</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-exclusive_pv" class="form-control" name='exclusive_pv' value="{{ $item->exclusive_pv ?? null }}"/>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-stock">재고</label>
-              <div class="col-sm-5">
-                <input type="number" id="basic-default-stock" class="form-control" name='stock' value="{{ $item->stock ?? null }}"/>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-thum_img">목록이미지</label>
-              @isset($item->thum_img)
-                <div class="col-sm-1">
-                   <img style='width:50px;' src='{{Storage::url('public/data/'.$item->thum_img)}}'>
-                </div>
-              @endisset
-              <div class="col-sm-5">
-                <div class="input-group">
-                    <input type="file" class="form-control" id="thum_img" name="thum_img">
-                    <label class="input-group-text" for="thum_img">Upload</label>
-                </div>
-            </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-img">상세이미지</label>
-              @isset($item->img)
-                <div class="col-sm-1">
-                  <img style='width:50px;' src='{{Storage::url('public/data/'.$item->img)}}'>
-                </div>
-              @endisset
-              <div class="col-sm-6">
+              <div class="row mb-3">
+                <label class="col-sm-1 col-form-label" for="director_info"> <span style='color:red;'>*</span> 센터선택 </label>
+                <div class="col-sm-6">
                   <div class="input-group">
-                      <input type="file" class="form-control" id="img" name="img">
-                      <label class="input-group-text" for="img" name="img">Upload</label>
-                  </div>
-              </div>
-            </div>
-
-            <div class="row mb-3" style='height:700px;'>
-              <label class="col-sm-1 col-form-label" for="basic-default-content">상품상세설명</label>
-              <div class="col-sm-12">
-                  <textarea class="form-control" id='content' name="content" rows="3">{{ $item->content ?? null }}</textarea>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-remark">비고</label>
-              <div class="col-sm-7">
-                  <textarea class="form-control" id="remark" name='remark' rows="3">{{ $item->remark ?? null }}</textarea>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-capacity">용량</label>
-              <div class="col-sm-7">
-                <input type="text" id="basic-default-capacity" class="form-control" name='capacity' value="{{ $item->capacity ?? null }}"/>
-              </div> 
-            </div>
-
-            <div class="row mb-4">
-              <label class="col-sm-1 col-form-label" for="basic-default-functionality">기능성화장품유무</label>
-              <div class="col-sm-7">
-                <input type="text" id="basic-default-functionality" class="form-control" name='functionality' value="{{ $item->functionality ?? null }}"/>
-              </div> 
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-efficacy">효능효과</label>
-              <div class="col-sm-7">
-                <input type="text" id="basic-default-efficacy" class="form-control" name='efficacy' value="{{ $item->efficacy ?? null }}"/>
-              </div> 
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-usage_capacity">사용법</label>
-              <div class="col-sm-7">
-                <input type="text" id="basic-default-usage_capacity" class="form-control" name='usage_capacity' value="{{ $item->usage_capacity ?? null }}"/>
-              </div> 
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-precautions">사용 시 주의사항</label>
-              <div class="col-sm-7">
-                  <textarea class="form-control" id="precautions" name='precautions' rows="3">{{ $item->precautions ?? null }}</textarea>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-quality_standard">품질보증기간</label>
-              <div class="col-sm-7">
-                  <textarea class="form-control" id="quality_standard" name='quality_standard' rows="3">{{ $item->quality_standard ?? null }}</textarea>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-manufacturer">제조업자</label>
-              <div class="col-sm-7">
-                <input type="text" id="basic-default-manufacturer" class="form-control" name='manufacturer' value="{{ $item->manufacturer ?? null }}"/>
-              </div> 
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-responsible_seller">책임판매업자</label>
-              <div class="col-sm-7">
-                <input type="text" id="basic-default-responsible_seller" class="form-control" name='responsible_seller' value="{{ $item->responsible_seller ?? null }}"/>
-              </div> 
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-inquiries">소비자 상담문의</label>
-              <div class="col-sm-7">
-                <input type="text" id="basic-default-inquiries" class="form-control" name='inquiries' value="{{ $item->inquiries ?? null }}"/>
-              </div> 
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-expiration_date">제조번호<br>사용기한</label>
-              <div class="col-sm-7">
-                <input type="text" id="basic-default-expiration_date" class="form-control" name='expiration_date' value="{{ $item->expiration_date ?? null }}"/>
-              </div> 
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-country_manufacture">제조국</label>
-              <div class="col-sm-7">
-                <input type="text" id="basic-default-country_manufacture" class="form-control" name='country_manufacture' value="{{ $item->country_manufacture ?? null }}"/>
-              </div> 
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label">사용여부</label>
-              <div class="col-sm-5">
-                <div class="btn-group" role="group">
-                  <input type="radio" class="btn-check" name="is_active" id="is_active1" value='Y' @isset($item['is_active']) @if($item['is_active'] == 'Y') checked @endif @endisset>
-                  <label class="btn btn-outline-primary" for="is_active1">사용</label>
-                  <input type="radio" class="btn-check" name="is_active" id="is_active2" value='N' @isset($item['is_active']) @if($item['is_active'] == 'N') checked @endif @endisset>
-                  <label class="btn btn-outline-primary" for="is_active2">미사용</label>
+                    <input type="hidden" class="form-control" id="director_seq" readonly name='director_seq' value="{{ $center->director_seq ?? null }}"/>
+                    <input type="text" class="form-control" id="director_info" readonly name='director_info' value="{{ $director_info ?? '' }}"/>
+                    <a href="javascript:void(0);" class="btn btn-primary me-4" data-bs-target="#editCenter" data-bs-toggle="modal">검색</a>
+                 </div>
                 </div>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label">노출여부</label>
-              <div class="col-sm-5">
-                <div class="btn-group" role="group">
-                  <input type="radio" class="btn-check" name="is_view" id="is_view1" value='Y' @isset($item['is_view']) @if($item['is_view'] == 'Y') checked @endif @endisset>
-                  <label class="btn btn-outline-primary" for="is_view1">노출</label>
-                  <input type="radio" class="btn-check" name="is_view" id="is_view2" value='N' @isset($item['is_view']) @if($item['is_view'] == 'N') checked @endif @endisset>
-                  <label class="btn btn-outline-primary" for="is_view2">미노출</label>
+              <div class="row mb-3">
+                <label class="col-sm-1 col-form-label" for="recommended_info"> <span style='color:red;'>*</span> 추천인 </label>
+                <div class="col-sm-6">
+                  <div class="input-group">
+                    <input type="hidden" class="form-control" id="recommended_seq" readonly name='recommended_seq' value="{{ $center->recommended_seq ?? null }}"/>
+                    <input type="text" class="form-control" id="recommended_info" readonly name='recommended_info' value="{{ $recommended_info ?? null }}"/>
+                    <a href="javascript:void(0);" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">검색</a>
+                 </div>
                 </div>
               </div>
             </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label">연락처</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" name='phone' id='phone' value="{{ $center->phone ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label">FAX</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" name='fax' id='fax' value="{{ $center->fax ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-zipcode">우편번호</label>
+              <div class="col-sm-2">
+                <div class="input-group">
+                  <input type="text" name="zipcode" id="zipcode" class="form-control" readonly value="{{ $center->zipcode ?? null }}"/>
+                  <button type="button" class="btn btn-outline-secondary getPostCode">{{ __('messages.search') }}</button>
+              </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label">기본주소</label>
+              <div class="col-sm-5">
+                <input type="text" readonly class="form-control" name='address' id='address' value="{{ $center->address ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label">상세주소</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" name='address_detail' id='address_detail' value="{{ $center->address_detail ?? null }}"/>
+              </div>
+            </div>
+         
+          <div class="row mb-3">
+            <label class="col-sm-1 col-form-label">사용여부</label>
+            <div class="col-sm-5">
+              <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" name="is_active" id="is_active1" value='Y' @isset($center->is_active) @if($center->is_active == 'Y') checked @endif @endisset>
+                <label class="btn btn-outline-primary" for="is_active1">사용</label>
+                <input type="radio" class="btn-check" name="is_active" id="is_active2" value='N' @isset($center->is_active) @if($center->is_active == 'N') checked @endif @endisset>
+                <label class="btn btn-outline-primary" for="is_active2">미사용</label>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-1 col-form-label" for="remark"> 비고 </label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="remark" name='remark' value="{{ $center->remark ?? null }}"/>
+            </div>
+          </div>
+        </div>
           </form>
         </div>
       </div>
     </div>
   </form>
-</div>
+  <div class="modal fade" id="editCenter" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="text-center mb-6">
+            <h4 class="mb-2">회원검색</h4>
+          </div>
+            <div class="col-12">
+              <div class="row mt-5">
+                <select id="searchMemberType_center" class="form-select color-dropdown" style='width:22%; margin-left:10%;'>
+                  <option value="name">회원 이름</option>
+                  <option value="member_id">회원 아이디</option>
+                  <option value="id">회원 번호</option>
+                </select>
+                <input class="form-control me-2" style='width:40%;' id='searchMemberText_center' type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary searchMember"  data-mode='center' style='width:22%;' type="button">Search</button>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row mb-3">
+                <div class="col-sm-12">
+                  <hr class="my-5">
+                  <!-- Responsive Table -->
+                  <div class="card">
+                    <div class="table-responsive text-nowrap">
+                      
+                      <table class="table">
+                        <thead>
+                          <tr class="text-nowrap">
+                            <th>회원번호</th>
+                            <th>회원명</th>
+                            <th>로그인ID</th>
+                            <th>직급</th>
+                            <th>등록일</th>
+                            <th>관리</th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0 memberBody_center">
+                          <tr>
+                            <th colspan="6" style='height:80px; text-align:center;'>회원을 검색해주세요.</th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--/ Responsive Table -->
+                </div>
+              </div>
+            </div>
+            <div class="col-12 text-center">
+              <button type="reset" class="btn btn-label-secondary cancelMemberInfo" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">취소</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<script>
-  ClassicEditor
-      .create( document.querySelector( '#content' ),{
-        ckfinder:{
-          uploadUrl:"{{route('ckeditor.upload',['_token'=>csrf_token()])}}",
-        },
-      }).catch( error => {
-          console.error( error );
-      } );
-</script>
+  <div class="modal fade" id="editUser" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="text-center mb-6">
+            <h4 class="mb-2">회원검색</h4>
+          </div>
+            <div class="col-12">
+              <div class="row mt-5">
+                <select id="searchMemberType_member" class="form-select color-dropdown" style='width:22%; margin-left:10%;'>
+                  <option value="name">회원 이름</option>
+                  <option value="member_id">회원 아이디</option>
+                  <option value="id">회원 번호</option>
+                </select>
+                <input class="form-control me-2" style='width:40%;' id='searchMemberText_member' type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary searchMember" data-mode='member'  style='width:22%;' type="button">Search</button>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row mb-3">
+                <div class="col-sm-12">
+                  <hr class="my-5">
+                  <!-- Responsive Table -->
+                  <div class="card">
+                    <div class="table-responsive text-nowrap">
+                      
+                      <table class="table">
+                        <thead>
+                          <tr class="text-nowrap">
+                            <th>회원번호</th>
+                            <th>회원명</th>
+                            <th>로그인ID</th>
+                            <th>직급</th>
+                            <th>등록일</th>
+                            <th>관리</th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0 memberBody_member">
+                          
+                          <tr>
+                            <th colspan="6" style='height:80px; text-align:center;'>회원을 검색해주세요.</th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--/ Responsive Table -->
+                </div>
+              </div>
+            </div>
+            <div class="col-12 text-center">
+              <button type="reset" class="btn btn-label-secondary cancelMemberInfo" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">취소</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+@section('page-script')
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
+<script src="/assets/js/admin/center-register.js"></script>
 @endsection

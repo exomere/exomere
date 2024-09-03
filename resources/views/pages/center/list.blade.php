@@ -35,13 +35,12 @@
 <!--/ Basic -->
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">센터 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-item-register')}}'" class="btn btn-primary">상품등록</button></small>
+    <h5 class="mb-0">센터 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-center-register')}}'" class="btn btn-primary">센터등록</button></small>
   </div>
   <div class="table-responsive text-nowrap">
     <table class="table" >
       <thead>
         <tr>
-          <th>No</th>
           <th>센터코드</th>
           <th>센터명</th>
           <th>연락처</th>
@@ -54,7 +53,27 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        
+        @foreach ($centers->get() as $list)
+          <tr>
+            <td>{{$list->id}}</td>
+            <td>{{$list->name}}</td>
+            <td>{{$list->phone}}</td>
+            <td>{{$list->director_id}}</td>
+            <td>{{$list->director_name}}</td>
+            <td>{{$list->recommended_id}}</td>
+            <td>{{$list->recommended_name}}</td>
+            <td>{{$list->is_active}}</td>
+            <td>
+              <div class="dropdown">
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{{route('basic-layouts-center-register',$list->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                  <a class="dropdown-item" style='color:red;' href="{{route('center.del',$list->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        @endforeach
       </tbody>
     </table>
   </div>

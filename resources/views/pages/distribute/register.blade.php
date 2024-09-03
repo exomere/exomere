@@ -19,11 +19,12 @@
           <form>
             @csrf
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-director_seq"> <span style='color:red;'>*</span> 분양몰 관리자 </label>
+              <label class="col-sm-1 col-form-label" for="director_info"> <span style='color:red;'>*</span> 분양몰 관리자 </label>
               <div class="col-sm-6">
                 <div class="input-group">
-                  <input type="text" class="form-control" id="basic-default-director_seq" readonly name='director_seq' value="{{ $item->director_seq ?? null }}"/>
-                  <a href="javascript:;" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">검색</a>
+                  <input type="hidden" class="form-control" id="director_seq" readonly name='director_seq' value="{{ $item->director_seq ?? null }}"/>
+                  <input type="text" class="form-control" id="director_info" readonly name='director_info' value="{{ $item->director_info ?? null }}"/>
+                  <a href="javascript:void(0);" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">검색</a>
                </div>
               </div>
             </div>
@@ -79,9 +80,9 @@
               <label class="col-sm-1 col-form-label" for="basic-default-zipcode">우편번호</label>
               <div class="col-sm-2">
                 <div class="input-group">
-                  <input type="text" name="zipcode" id="zipcode" class="form-control" readonly/>
-                  <button type="button" class="btn btn-outline-secondary" onclick="getPostCode();">{{ __('messages.search') }}</button>
-               </div>
+                  <input type="text" name="zipcode" id="zipcode" class="form-control" readonly value="{{ $item->address ?? null }}"/>
+                  <button type="button" class="btn btn-outline-secondary getPostCode">{{ __('messages.search') }}</button>
+              </div>
               </div>
             </div>
             <div class="row mb-3">
@@ -122,7 +123,6 @@
                 <input type="text" id="basic-default-account_holder" class="form-control" name='account_holder' value="{{ $item->account_holder ?? null }}"/>
               </div>
             </div>
-            
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label">사용여부</label>
               <div class="col-sm-6">
@@ -134,83 +134,78 @@
                 </div>
               </div>
             </div>
-         
           </form>
+          <div class="modal fade" id="editUser" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="text-center mb-6">
+                    <h4 class="mb-2">회원검색</h4>
+                  </div>
+                    <div class="col-12">
+                      <div class="row mt-5">
+                        <select id="searchMemberType" class="form-select color-dropdown" style='width:22%; margin-left:10%;'>
+                          <option value="name">회원 이름</option>
+                          <option value="member_id">회원 아이디</option>
+                          <option value="id">회원 번호</option>
+                        </select>
+                        <input class="form-control me-2" style='width:40%;' id='searchMemberText' type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-primary searchMember"  style='width:22%;' type="button">Search</button>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="row mb-3">
+                        <div class="col-sm-12">
+                          <hr class="my-5">
+                          <!-- Responsive Table -->
+                          <div class="card">
+                            <div class="table-responsive text-nowrap">
+                              
+                              <table class="table">
+                                <thead>
+                                  <tr class="text-nowrap">
+                                    <th>회원번호</th>
+                                    <th>회원명</th>
+                                    <th>로그인ID</th>
+                                    <th>직급</th>
+                                    <th>등록일</th>
+                                    <th>관리</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0 memberBody">
+                                  <tr>
+                                    <th colspan="6" style='height:80px; text-align:center;'>회원을 검색해주세요.</th>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                          <!--/ Responsive Table -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 text-center">
+                      <button type="reset" class="btn btn-label-secondary cancelMemberInfo" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">취소</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </form>
-  <div class="modal fade" id="editUser" tabindex="-1" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-simple modal-edit-user">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="text-center mb-6">
-            <h4 class="mb-2">User Information</h4>
-          </div>
-            <div class="col-12">
-              <div class="form-check form-switch my-2 ms-2">
-                <input type="checkbox" class="form-check-input" id="editBillingAddress" checked="">
-                <label for="editBillingAddress" class="switch-label">Use as a billing address?</label>
-              </div>
-            </div>
-            <div class="col-12 text-center">
-              <button type="submit" class="btn btn-primary me-3">Submit</button>
-              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 </div>
 
 @endsection
 
 @section('page-script')
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
   <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
-  <script>
-    function getPostCode(){
-      new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var fullAddr = ''; // 최종 주소 변수
-            var extraAddr = ''; // 조합형 주소 변수
-
-            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                fullAddr = data.roadAddress;
-
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                fullAddr = data.jibunAddress;
-            }
-
-            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-            if(data.userSelectedType === 'R'){
-                //법정동명이 있을 경우 추가한다.
-                if(data.bname !== ''){
-                    extraAddr += data.bname;
-                }
-                // 건물명이 있을 경우 추가한다.
-                if(data.buildingName !== ''){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-            }
-
-            var postArr = new Array();
-            postArr.push(data.zonecode);
-            postArr.push(fullAddr);
-
-            $("#zipcode").val(postArr[0]);
-            $("#address").val(postArr[1]);
-            $("#address_detail").val('');
-            $("#address_detail").focus();
-        }
-      }).open();
-    }
-  </script>
+  <script src="/assets/js/admin/distribute-register.js"></script>
 @endsection

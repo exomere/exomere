@@ -117,7 +117,7 @@
       "slug": "order-layouts",
       "submenu": [
         {
-          "url": "management/order/list",
+          "url": "management/erp/order/list",
           "name": "order_list",
           "slug": "order-layouts-order-list"
         }
@@ -182,17 +182,17 @@
       "slug": "basic-layouts",
       "submenu": [
         {
-          "url": "management/center/list",
+          "url": "management/erp/center/list",
           "name": "center_list",
           "slug": "basic-layouts-center-list"
         },
         {
-          "url": "management/item/list",
+          "url": "management/erp/item/list",
           "name": "product_list",
           "slug": "basic-layouts-item-list"
         },
         {
-          "url": "management/distribute/list",
+          "url": "management/erp/distribute/list",
           "name": "distribute_list",
           "slug": "basic-layouts-distribute-list"
         }
