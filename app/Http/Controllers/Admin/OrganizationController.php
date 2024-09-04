@@ -14,7 +14,7 @@ class OrganizationController extends Exomere
      *
      * @return View
      */
-    public function index(): View
+    public function list(): View
     {
         return view('pages.organization.list');
     }

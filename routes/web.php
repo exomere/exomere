@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\ErpBoardController;
+use App\Http\Controllers\Admin\ErpCommissionController;
+use App\Http\Controllers\Admin\ErpBasicController;
+use App\Http\Controllers\Admin\ErpMemberController;
+use App\Http\Controllers\Admin\ErpOrderController;
+use App\Http\Controllers\Admin\ErpPointController;
+use App\Http\Controllers\Admin\ErpWithdrawalController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\NoticeController;
@@ -145,13 +152,13 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/member/update-basic', [MemberController::class, 'updateBasicInformation'])->name('member.update.basic');
             Route::post('/member/update-account', [MemberController::class, 'updateAccountInformation'])->name('member.update.account');
             Route::post('/member/update-password', [MemberController::class, 'updatePassword'])->name('member.update.password');
-            Route::post('/serarchMember', [MemberController::class, 'serarchMember'])->name('member.serach.member');
+            Route::post('/searchMember', [MemberController::class, 'searchMember'])->name('member.search.member');
         });
 
 
         /** 공지사항 */
         Route::prefix('/notice')->group(function () {
-            Route::get('/list', [NoticeController::class, 'index'])->name('notice.list');
+            Route::get('/list', [NoticeController::class, 'list'])->name('notice.list');
             Route::get('/detail/{id}', [NoticeController::class, 'detail'])->name('notice.detail');
             Route::get('/create', [NoticeController::class, 'create'])->name('notice.create');
             Route::post('/store', [NoticeController::class, 'store'])->name('notice.store');
@@ -163,7 +170,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         /** 1:1문의 */
         Route::prefix('/inquiry')->group(function () {
-            Route::get('/list', [InquiryController::class, 'index'])->name('inquiry.list');
+            Route::get('/list', [InquiryController::class, 'list'])->name('inquiry.list');
             Route::get('/detail/{id}', [InquiryController::class, 'detail'])->name('inquiry.detail');
             Route::get('/create', [InquiryController::class, 'create'])->name('inquiry.create');
             Route::post('/store', [InquiryController::class, 'store'])->name('inquiry.store');
@@ -176,43 +183,148 @@ Route::group(['middleware' => 'auth'], function () {
         });
 
 
-
         /** 조직도 */
         Route::prefix('/organization')->group(function () {
-            Route::get('/list', [OrganizationController::class, 'index'])->name('organization.list');
+            Route::get('/list', [OrganizationController::class, 'list'])->name('organization.list');
             Route::get('/data', [OrganizationController::class, 'getOrgData'])->name('organization.data');
         });
+
+
         Route::prefix('/erp')->group(function () {
-            /** 상품관리 */
-            Route::prefix('/item')->group(function () {
-                Route::get('/list', [ItemController::class, 'itemList'])->name('basic-layouts-item-list');
-                Route::get('/register/{seq?}', [ItemController::class, 'itemRegister'])->name('basic-layouts-item-register');
-                Route::post('/save', [ItemController::class, 'itemSave'])->name('item.save');
-                Route::get('/del/{seq?}', [ItemController::class, 'itemDel'])->name('item.del');
+            // 회원관리 member
+            Route::prefix('/member')->group(function () {
+                // ㄴ 회원목록/등록
+                Route::get('/list', [ErpMemberController::class, 'list'])->name('erp-member.list');
+                Route::get('/register/{seq?}', [ErpMemberController::class, 'create'])->name('erp-member.create');
+
+                // ㄴ 회원수정내역
+                Route::get('/modifyList', [ErpMemberController::class, 'index'])->name('erp-member.index');
+
+                // ㄴ 조직도
+                Route::prefix('/organization')->group(function () {
+                    Route::get('/list', [ErpMemberController::class, 'organizationList'])->name('erp-member.organization.list');
+                    Route::get('/data', [ErpMemberController::class, 'getOrganizationData'])->name('erp-member.organization.data');
+                });
             });
 
+
+            // 주문관리 order
             /** 주문관리 */
             Route::prefix('/order')->group(function () {
-                Route::get('/list', [OrderController::class, 'orderList'])->name('order-layouts-order-list');
+                // ㄴ 주문목록/등록
+                Route::get('/list', [ErpOrderController::class, 'list'])->name('order-layouts-order-list');
+                Route::get('/register/{seq?}', [ErpOrderController::class, 'orderRegister'])->name('order-layouts-order-register');
+                Route::post('/save', [ErpOrderController::class, 'orderSave'])->name('order.save');
+                Route::get('/del/{seq?}', [ErpOrderController::class, 'orderDel'])->name('order.del');
+
+
+                // ㄴ 라인별 주문목록
+                Route::get('/line/list', [ErpOrderController::class, 'lineList'])->name('erp-order.line.list');
+
+                /*Route::get('/list', [OrderController::class, 'orderList'])->name('order-layouts-order-list');
                 Route::get('/register/{seq?}', [OrderController::class, 'orderRegister'])->name('order-layouts-order-register');
                 Route::post('/save', [OrderController::class, 'orderSave'])->name('order.save');
-                Route::get('/del/{seq?}', [OrderController::class, 'orderDel'])->name('order.del');
+                Route::get('/del/{seq?}', [OrderController::class, 'orderDel'])->name('order.del');*/
             });
 
-            /** 센터관리 */
-            Route::prefix('/center')->group(function () {
-                Route::get('/list', [CenterController::class, 'centerList'])->name('basic-layouts-center-list');
-                Route::get('/register/{seq?}', [CenterController::class, 'centerRegister'])->name('basic-layouts-center-register');
-                Route::post('/save', [CenterController::class, 'centerSave'])->name('center.save');
-                Route::get('/del/{seq?}', [CenterController::class, 'centerDel'])->name('center.del');
+            // 수당관리 allowance
+            Route::prefix('/commission')->group(function () {
+                // ㄴ 기마감
+                Route::get('/termClosing', [ErpCommissionController::class, 'termClosing'])->name('erp-allowance.term-closing');
+                // ㄴ 월마감
+                Route::get('/monthlyClosing', [ErpCommissionController::class, 'monthlyClosing'])->name('erp-allowance.monthly-closing');
             });
 
-            /** 분양몰관리 */
-            Route::prefix('/distribute')->group(function () {
-                Route::get('/list', [DistributeController::class, 'distributeList'])->name('basic-layouts-distribute-list');
-                Route::get('/register/{seq?}', [DistributeController::class, 'distributeRegister'])->name('basic-layouts-distribute-register');
-                Route::post('/save', [DistributeController::class, 'distributeSave'])->name('distribute.save');
-                Route::get('/del/{seq?}', [DistributeController::class, 'distributeDel'])->name('distribute.del');
+            // 포인트관리 point
+            // ㄴ 보너스 포인트
+            Route::prefix('/point')->group(function () {
+                Route::get('/list', [ErpPointController::class, 'list'])->name('erp-point.list');
+            });
+
+            // 출금관리 withdrawal
+            // ㄴ 보너스 포인트
+            Route::prefix('/withdrawal')->group(function () {
+                Route::get('/list', [ErpWithdrawalController::class, 'list'])->name('erp-withdrawal.list');
+            });
+
+            // 게시판관리 board
+            // ㄴ 공지사항
+            Route::prefix('/board')->group(function () {
+                Route::prefix('/notice')->group(function () {
+                    Route::get('/list', [ErpBoardController::class, 'noticeList'])->name('erp-board.notice.list');
+                });
+            });
+
+            // 기초정보 basic info
+            // ㄴ 관리자목록/등록
+            // ㄴ 센터목록/등록
+            // ㄴ 상품목록/등록
+            // ㄴ 분양몰목록/등록
+            Route::prefix('/basic')->group(function () {
+                Route::prefix('/manager')->group(function () {
+                    Route::get('/list', [ErpBasicController::class, 'managerList'])->name('erp-basic.manager.list');
+                });
+
+                /** 센터관리 */
+                Route::prefix('/center')->group(function () {
+                    Route::get('/list', [ErpBasicController::class, 'centerList'])->name('basic-layouts-center-list');
+                    Route::get('/register/{seq?}', [ErpBasicController::class, 'centerRegister'])->name('basic-layouts-center-register');
+                    Route::post('/save', [ErpBasicController::class, 'centerSave'])->name('center.save');
+                    Route::get('/del/{seq?}', [ErpBasicController::class, 'centerDel'])->name('center.del');
+                });
+
+                /** 상품관리 */
+                Route::prefix('/item')->group(function () {
+                    Route::get('/list', [ErpBasicController::class, 'itemList'])->name('basic-layouts-item-list');
+                    Route::get('/register/{seq?}', [ErpBasicController::class, 'itemRegister'])->name('basic-layouts-item-register');
+                    Route::post('/save', [ErpBasicController::class, 'itemSave'])->name('item.save');
+                    Route::get('/del/{seq?}', [ErpBasicController::class, 'itemDel'])->name('item.del');
+                });
+
+                /** 분양몰관리 */
+                Route::prefix('/distribute')->group(function () {
+                    Route::get('/list', [ErpBasicController::class, 'distributeList'])->name('basic-layouts-distribute-list');
+                    Route::get('/register/{seq?}', [ErpBasicController::class, 'distributeRegister'])->name('basic-layouts-distribute-register');
+                    Route::post('/save', [ErpBasicController::class, 'distributeSave'])->name('distribute.save');
+                    Route::get('/del/{seq?}', [ErpBasicController::class, 'distributeDel'])->name('distribute.del');
+                });
+
+
+                /*Route::prefix('/center')->group(function () {
+                    Route::get('/list', [CenterController::class, 'centerList'])->name('basic-layouts-center-list');
+                    Route::get('/register/{seq?}', [CenterController::class, 'centerRegister'])->name('basic-layouts-center-register');
+                    Route::post('/save', [CenterController::class, 'centerSave'])->name('center.save');
+                    Route::get('/del/{seq?}', [CenterController::class, 'centerDel'])->name('center.del');
+                });
+
+                Route::prefix('/item')->group(function () {
+                    Route::get('/list', [ItemController::class, 'itemList'])->name('basic-layouts-item-list');
+                    Route::get('/register/{seq?}', [ItemController::class, 'itemRegister'])->name('basic-layouts-item-register');
+                    Route::post('/save', [ItemController::class, 'itemSave'])->name('item.save');
+                    Route::get('/del/{seq?}', [ItemController::class, 'itemDel'])->name('item.del');
+                });
+
+                Route::prefix('/distribute')->group(function () {
+                    Route::get('/list', [DistributeController::class, 'distributeList'])->name('basic-layouts-distribute-list');
+                    Route::get('/register/{seq?}', [DistributeController::class, 'distributeRegister'])->name('basic-layouts-distribute-register');
+                    Route::post('/save', [DistributeController::class, 'distributeSave'])->name('distribute.save');
+                    Route::get('/del/{seq?}', [DistributeController::class, 'distributeDel'])->name('distribute.del');
+                });*/
+            });
+
+            // 재고관리 inventory
+            // ㄴ 주문출고
+            // ㄴ 배송관리
+            // ㄴ 입출관리
+            // ㄴ 센터 입출관리
+            // ㄴ 기타 입출관리
+            // ㄴ 회원 출고관리
+            // ㄴ 입출 등록 현황
+            // ㄴ 재고현황
+            // ㄴ 주문별 출고관리
+            Route::prefix('/inventory')->group(function () {
+                // ErpInventoryController
+
             });
         });
 

@@ -16,7 +16,7 @@ class NoticeController extends Exomere
      * @param Request $request
      * @return View
      */
-    public function index(Request $request)
+    public function list(Request $request)
     {
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);

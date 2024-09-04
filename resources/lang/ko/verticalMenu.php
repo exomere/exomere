@@ -32,6 +32,7 @@ return [
     'past_due' => '기마감',
 
     'points_management' => '포인트 관리',
+    'bonus_point' => '보너스 포인트',
 
     'withdrawal_management' => '출금 관리',
 
@@ -39,6 +40,7 @@ return [
     'announcements' => '공지사항',
 
     'basic_info' => '기초정보',
+    'manager_list' => '관리자 목록',
     'center_list' => '센터 목록',
     'product_list' => '상품 목록',
     'distribute_list' => '분양몰 목록',

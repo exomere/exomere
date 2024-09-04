@@ -71,7 +71,7 @@ class MemberController extends Controller
         return redirect()->back()->with('success', '비밀번호가 성공적으로 변경되었습니다.');
     }
 
-    public function serarchMember(Request $request)
+    public function searchMember(Request $request)
     {
         $members = ExMember::where($request->type,'like','%'.$request->text.'%')->get();
 
