@@ -146,7 +146,7 @@ var orderReg = {
             },
             type: 'post',
             dataType: "json",
-            url: "/management/member/serarchMember",
+            url: "/management/member/searchMember",
             data: {
                 "type": type,
                 "text": text,

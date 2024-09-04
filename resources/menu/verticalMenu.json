@@ -100,6 +100,18 @@
       "menuHeader": "erp_menu"
     },
     {
+      "name": "member_management",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "erp-member",
+      "submenu": [
+        {
+          "url": "management/erp/member/list",
+          "name": "member_list",
+          "slug": "erp-member.list"
+        }
+      ]
+    },
+    {
       "name": "order_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "order-layouts",
@@ -114,39 +126,53 @@
     {
       "name": "commission_management",
       "icon": "menu-icon tf-icons bx bx-detail",
-      "slug": "form-layouts",
+      "slug": "erp-allowance",
       "submenu": [
         {
-          "url": "management/form/layouts-vertical",
-          "name": "monthly_closing",
-          "slug": "form-layouts-vertical"
-        },
-        {
-          "url": "management/form/layouts-horizontal",
+          "url": "management/erp/commission/termClosing",
           "name": "past_due",
-          "slug": "form-layouts-horizontal"
+          "slug": "erp-allowance.term-closing"
         },
         {
-          "url": "management/form/layouts-horizontal",
-          "name": "points_management",
-          "slug": "form-layouts-horizontal"
-        },
+          "url": "management/erp/commission/monthlyClosing",
+          "name": "monthly_closing",
+          "slug": "erp-allowance.monthly-closing"
+        }
+      ]
+    },
+    {
+      "name": "points_management",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "erp-point",
+      "submenu": [
         {
-          "url": "management/form/layouts-horizontal",
-          "name": "withdrawal_management",
-          "slug": "form-layouts-horizontal"
+          "url": "management/erp/point/list",
+          "name": "bonus_point",
+          "slug": "erp-point.list"
+        }
+      ]
+    },
+    {
+      "name": "withdrawal_management",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "erp-withdrawal",
+      "submenu": [
+        {
+          "url": "management/erp/withdrawal/list",
+          "name": "bonus_point",
+          "slug": "erp-withdrawal.list"
         }
       ]
     },
     {
       "name": "board_management",
       "icon": "menu-icon tf-icons bx bx-detail",
-      "slug": "form-layouts",
+      "slug": "erp-board",
       "submenu": [
         {
-          "url": "management/form/layouts-vertical",
+          "url": "management/erp/board/notice/list",
           "name": "announcements",
-          "slug": "form-layouts-vertical"
+          "slug": "erp-board.notice.list"
         }
       ]
     },
@@ -156,17 +182,22 @@
       "slug": "basic-layouts",
       "submenu": [
         {
-          "url": "management/erp/center/list",
+          "url": "management/erp/basic/manager/list",
+          "name": "manager_list",
+          "slug": "erp-basic.manager.list"
+        },
+        {
+          "url": "management/erp/basic/center/list",
           "name": "center_list",
           "slug": "basic-layouts-center-list"
         },
         {
-          "url": "management/erp/item/list",
+          "url": "management/erp/basic/item/list",
           "name": "product_list",
           "slug": "basic-layouts-item-list"
         },
         {
-          "url": "management/erp/distribute/list",
+          "url": "management/erp/basic/distribute/list",
           "name": "distribute_list",
           "slug": "basic-layouts-distribute-list"
         }

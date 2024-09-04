@@ -17,20 +17,34 @@ return [
     'organization_chart' => '조직도',
     'notices' => '공지사항',
     'inquiries' => '1:1 문의',
+
+
+
     'erp_menu' => 'ERP 메뉴',
+    'member_management' => '회원관리',
+    'member_list' => '회원리스트',
+
     'order_management' => '주문관리',
     'order_list' => '주문리스트',
+
     'commission_management' => '수당 관리',
     'monthly_closing' => '월마감',
     'past_due' => '기마감',
+
     'points_management' => '포인트 관리',
+    'bonus_point' => '보너스 포인트',
+
     'withdrawal_management' => '출금 관리',
+
     'board_management' => '게시판 관리',
     'announcements' => '공지사항',
+
     'basic_info' => '기초정보',
+    'manager_list' => '관리자 목록',
     'center_list' => '센터 목록',
     'product_list' => '상품 목록',
     'distribute_list' => '분양몰 목록',
+
     'inventory_management' => '재고 관리',
     'order_shipment' => '주문 출고',
     'delivery_management' => '배송 관리',
