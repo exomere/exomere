@@ -51,8 +51,14 @@ $history = array_reverse($history);
 
 ?>
 
-@extends('pages.layouts.frontSubLayout')
+@extends('pages.layouts.subLayout')
 @section('title', __('gnb.history'))
+
+@section('id', 'history')
+@section('visual_title',  __('gnb.history') )
+@section('visual_sub_title', __('gnb.history_title'))
+@section('visual_background', 'https://cdn.pixabay.com/photo/2020/03/29/19/20/theatre-4981936_1280.jpg')
+
 @section('page-style')
     <style>
         #history li:not(:last-child):before {
@@ -60,7 +66,7 @@ $history = array_reverse($history);
             top: 30px;
             left: 4px;
             bottom: -12px;
-            width: 3px;
+            width: 2px;
             border-radius: 3px;
             background-color: #eee;
             content: "";
@@ -70,105 +76,65 @@ $history = array_reverse($history);
             position: absolute;
             top: 15px;
             left: 0;
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 6px;
             background-color: rgb(207 87 51);
             content: "";
         }
-
-
     </style>
 
 @endsection
 @section('content')
+    <?php
+    $currentYear = null; ?>
+    <ul class="mt-10">
+        @foreach ($history as $year => $months)
+            @foreach ($months as $month => $events)
+                <li class="relative flex flex-col lg:flex-row  pt-0 pr-0 pb-20 pl-8 lg:pl-12" data-aos="fade-up">
+                    <div
+                        class="flex-shrink-0 w-full w-20 lg:w-24 font-bold my-1.5 text-lg">{{ $currentYear != $year ? $year : '' }}</div>
 
-    <main class="relative" id="history">
-        <section class="h-96 lg:h-[50svh]">
-            <!-- Subvisual Wrapper -->
-            <div
-                class="relative pt-[80px] lg:pt-[160px] w-full h-full flex flex-col items-center justify-center
-                    bg-cover bg-no-repeat bg-center"
-            >
-                <video class="absolute inset-0 w-full h-full object-cover"
-                       poster="" playsinline="" muted="muted" autoplay="autoplay" loop="loop">
-                    <source src="{{asset('assets/img/elements/subvisual_video.mp4')}}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <!-- Subvisual Text -->
-                <div class="text-center font-roboto tracking-tight z-10 text-gray-900">
-                    <p class="text-4xl font-medium uppercase" data-aos="fade-down">
-                        {{ __('gnb.history') }}
-                    </p>
-                    <p class="font-medium" data-aos="fade-down" data-aos-delay="200">{{ __('gnb.history_title') }}</p>
-                </div>
+                    <div class="flex lg:flex-row lg:ml-[36px] w-full">
+                        <em class="font-bold w-16 my-1.5 tracking-tight text-right">{{ $month }}</em>
+                        <div class="ml-3 lg:ml-7 my-1.5">
 
-
-            </div>
-        </section>
-        <section class="min-sm:max-container min-h-screen padding-y">
-            <div class="bg-white">
-
-                <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                    <?php
-                    $currentYear = null; ?>
-                    <ul class="mt-10">
-                        @foreach ($history as $year => $months)
-                            @foreach ($months as $month => $events)
-
-                                <li class="relative flex flex-col lg:flex-row  pt-0 pr-0 pb-20 pl-8 lg:pl-12" data-aos="fade-up"
-                                    data-aos-delay="{{ $loop->index * 100 }}">
-
-
-                                    <div
-                                        class="flex-shrink-0 w-full w-20 lg:w-24 font-bold my-1.5 text-lg">{{ $currentYear != $year ? $year : '' }}</div>
-
-                                    <div class="flex lg:flex-row lg:ml-[36px] w-full">
-                                        <em class="font-bold w-16 my-1.5 tracking-tight lg:text-right">{{ $month }}</em>
-                                        <div class="ml-3 lg:ml-7 my-1.5">
-
-                                            @foreach ($events as $index => $event)
-                                                @if ($index < 3)
-                                                    <p class="mb-4">{{ $event }}</p>
-                                                @endif
-                                            @endforeach
-
-                                            @if (count($events) > 3)
-                                                <div class="hidden" id="{{$year.$month}}">
-                                                    @foreach (array_slice($events,3) as $event)
-                                                        <p class="mb-4">{{ $event }}</p>
-                                                    @endforeach
-                                                </div>
-
-                                                <button
-                                                    class="inline-flex gap-x-1 items-center	bg-gray-200 text-xs px-3 py-1 rounded-full mt-2"
-                                                    id="toggle-{{$year.$month}}"
-                                                    data-collapse-toggle="{{$year.$month}}"
-                                                    aria-expanded="false"
-                                                >더보기
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                         fill="currentColor"
-                                                         class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd"
-                                                              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
-                                                    </svg>
-                                                </button>
-                                        </div>
-                                        @endif
-                                    </div>
-                                </li>
-                                    <?php
-                                    //년도가 바뀔때만 노출
-                                    $currentYear = $year ?>
+                            @foreach ($events as $index => $event)
+                                @if ($index < 3)
+                                    <p class="mb-4">{{ $event }}</p>
+                                @endif
                             @endforeach
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
 
-        </section>
-    </main>
+                            @if (count($events) > 3)
+                                <div class="hidden" id="{{$year.$month}}">
+                                    @foreach (array_slice($events,3) as $event)
+                                        <p class="mb-4">{{ $event }}</p>
+                                    @endforeach
+                                </div>
 
+                                <button
+                                    class="inline-flex gap-x-1 items-center	bg-gray-200 text-xs px-3 py-1 rounded-full mt-2"
+                                    id="toggle-{{$year.$month}}"
+                                    data-collapse-toggle="{{$year.$month}}"
+                                    aria-expanded="false"
+                                >더보기
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                         fill="currentColor"
+                                         class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                                    </svg>
+                                </button>
+                        </div>
+                        @endif
+                    </div>
+                </li>
+                    <?php
+                    //년도가 바뀔때만 노출
+                    $currentYear = $year ?>
+            @endforeach
+        @endforeach
+    </ul>
 @endsection
 
 @section('page-script')

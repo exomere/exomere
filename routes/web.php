@@ -103,6 +103,15 @@ Route::prefix('/about')->group(function () {
     Route::get('cibi', function () {
         return view('pages.about.cibi');
     });
+    Route::get('core', function () {
+        return view('pages.about.core');
+    });
+    Route::get('technology', function () {
+        return view('pages.about.technology');
+    });
+    Route::get('branch', function () {
+        return view('pages.about.branch');
+    });
 });
 Route::prefix('/community')->group(function () {
     Route::get('notice', function () {

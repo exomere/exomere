@@ -1,5 +1,6 @@
 @php
     $isMain = true;
+    $whiteHeader = true;
 
 $products = [
     [
@@ -63,7 +64,7 @@ $bestProducts = collect($products)->where('is_best', true);
 
 @endphp
 
-@extends('pages.layouts.frontLayout')
+@extends('pages.layouts.mainLayout')
 
 @section('title', '72시간만에 10년 젊어지기')
 
@@ -78,12 +79,12 @@ $bestProducts = collect($products)->where('is_best', true);
         <section class="h-svh">
             <div class="swiper main-swiper">
                 <div class="swiper-wrapper">
-                    @for($i=0; $i<3; $i++)
+                    @for($i=0; $i<1; $i++)
                         <div class="swiper-slide">
                             <div
-                                class="absolute transform show_content_box- z-10 lg:top-1/2 lg:w-[50%] lg:px-28 lg:transform lg:-translate-x-1/2 lg:-translate-y-[60%] lg:text-left ">
+                                class="absolute transform z-10 lg:top-1/2 lg:w-[50%] lg:px-28 lg:transform lg:-translate-x-1/2 lg:-translate-y-[60%] lg:text-left text-white">
                                 <p data-aos="fade-in" data-aos-delay="300"
-                                   class="text-black/80 mt-6 text-xl break-keep leading-tight">
+                                   class="text-white/80 mt-6 text-xl break-keep leading-tight">
                                     엑소좀과 스피커스가 함유된 미백 크림 {{$i}}
                                 </p>
                                 <p data-aos="fade-up" data-aos-delay="400"
@@ -91,18 +92,18 @@ $bestProducts = collect($products)->where('is_best', true);
                                     임플란트 솔루션
                                 </p>
                                 <a data-aos="fade-in" data-aos-delay="300" href="/products" target="_self"
-                                   class="mt-12 inline-block border border-solid border-black py-3 px-24 text-base break-keep ">
+                                   class="mt-12 inline-block border border-solid border-white py-3 px-24 text-base break-keep">
                                     THE MORE
                                 </a>
                             </div>
                             <video
-                                src="https://www.ap-beauty.com/kr/ko/adm/main/kv/__icsFiles/afieldfile/2024/01/12/MD_Web_Main_10s_4K_v240112_1.mp4"
+                                src="{{ asset('assets/img/elements/main_video.mp4') }}"
                                 class="slide-video object-cover" autoplay="" muted=""
                                 playsinline="" loop=""></video>
                         </div>
                     @endfor
                 </div>
-                <div class="all-box absolute inline-flex left-1/2 bottom-[10%] w-[90%] h-[50px] p-x-[20px] z-20 ">
+                <div class="all-box absolute inline-flex left-1/2 bottom-[10%] w-[90%] h-[50px] p-x-[20px] z-20">
                     <div class="progress-box">
                         <div class="swiper-pagination"></div>
                         <div class="autoplay-progress">
@@ -112,15 +113,15 @@ $bestProducts = collect($products)->where('is_best', true);
                         </div>
                     </div>
                     <div class="arrow-box">
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev white"></div>
+                        <div class="swiper-button-next white"></div>
                     </div>
                 </div>
             </div>
         </section>
 
         {{--best itmes--}}
-        <section class="max-w-5xl mx-auto padding-y">
+        <section class="max-w-5xl lg:max-w-7xl mx-auto px-6 py-24">
             <h2 class="text-center text-3xl lg:text-4xl my-10" data-aos="fade-up">BEST ITEMS</h2>
 
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-6 lg:gap-x-10 lg:gap-y-3">
@@ -147,7 +148,7 @@ $bestProducts = collect($products)->where('is_best', true);
         </section>
 
         {{--video--}}
-        <section class="overflow-hidden padding-y">
+        <section class="overflow-hidden padding-y md:p-0">
             <div class="flex h-full">
                 <video class="w-full" playsinline="" autoplay="autoplay" loop="loop" muted="muted">
                     <source src="http://exomere.co.kr/common/image/exomere.mp4" type="video/mp4">
@@ -162,7 +163,7 @@ $bestProducts = collect($products)->where('is_best', true);
                 <div class="swiper-wrapper">
                     @for($i=1; $i<=2;$i++)
                         <div class="swiper-slide">
-                            <a href="#"
+                            <a href="/about/technology"
                                class="flex flex-col w-full h-full items-center bg-white border border-gray-200 lg:flex-row">
                                 <div
                                     class="w-full h-full lg:w-[50%] w-full overflow-hidden">
@@ -174,18 +175,18 @@ $bestProducts = collect($products)->where('is_best', true);
                                 <div
                                     class="relative flex flex-col justify-between p-4 pb-12 leading-normal w-full lg:w-[50%] padding">
                                     <div class="lg:max-w-lg lg:leading-10 show_content_box tracking-tight">
-                                        <h2 class=" leading-tight text-left font-semibold text-3xl lg:text-4xl mb-10">
+                                        <h2 class="leading-tight text-left font-semibold text-3xl lg:text-4xl mb-10">
                                             BASE<br>
                                             MATERIAL
                                         </h2>
                                         <p class="mb-2 text-2xl lg:text-3xl text-left font-semibold text-gray-900
-                                            ">@if($i==1)
+                                           ">@if($i==1)
                                                 EXOMERE™
                                             @else
                                                 스피커스
                                             @endif
                                         </p>
-                                        <p class="mb-3 text-left font-normal text-gray-600
+                                        <p class="mb-3 md:text-lg md:leading-loose text-left font-normal text-gray-600
                                             line-clamp-4 break-keep">
                                             @if($i==1)
                                                 제주 한라봉에서 추출한 50~ 200mm 크기의 엑소좀으로, DNA, RNA, PEPTIDE가 포함되어 있어 노화 및
@@ -226,28 +227,32 @@ $bestProducts = collect($products)->where('is_best', true);
 
 
         {{--브랜치--}}
-        <section class="h-[60svh] padding-t">
-            <div class="h-full flex items-end overflow-hidden">
-                <div
-                    class=" flex justify-center items-center relative w-full h-full max-h-[50svh] bg-[url({{ asset('assets/img/elements/visual_02.webp') }})] bg-center bg-cover after:bg-black/50 after:absolute after:h-full after:w-full after:inset-0"
-                    data-aos="scale">
-                    <div class="max-w-xl absolute padding text-center text-white lg:leading-10 z-10">
-                        <h3 class="text-3xl lg:text-4xl mb-10"
+        <section class="pt-40">
+            <div class="bg-gradient-to-r from-[#e4e4df]">
+                <div class="max-w-6xl mx-auto h-[50svh] md:flex md:flex-row relative">
+
+                    <div class=" w-full h-[45svh] bg-[url({{ asset('assets/img/elements/about-branch-removebg.png') }})] bg-contain bg-center bg-no-repeat md:basis-1/2"></div>
+                    <div class="absolute top-0 left-0 text-center md:static md:basis-1/2 md:text-left md:flex md:flex-col md:justify-center padding font-normal">
+                        <h3 class=" leading-tight font-semibold text-3xl lg:text-4xl mb-10 text-[#1d335c]"
                             data-aos="fade-up">
                             ABOUT BRANCH
                         </h3>
-                        <p class="mt-6 break-keep leading-loose lg:text-xl " data-aos="fade-up" data-aos-delay="100">
+                        <p class="break-keep leading-loose md:leading-loose md:text-xl" data-aos="fade-up" data-aos-delay="100">
                             다양한 체험 프로그램과
                             전문적이고 체계적인 상담을 통해
                             엑소미어의 제품을 체험할 수 있습니다
                         </p>
-                        <a href="/about/branch"
-                           target="_self"
-                           class="inline-block mt-12 border border-solid border-white py-2 px-24 break-keep"
-                           data-aos="fade-up" data-aos-delay="200">
-                            THE MORE
-                        </a>
+                       <p>
+                           <a href="/about/branch"
+                              target="_self"
+                              class="inline-block mt-5 md:mt-12 border border-solid py-2 px-16 md:px-24 break-keep"
+                              data-aos="fade" data-aos-delay="200">
+                               THE MORE
+                           </a>
+                       </p>
                     </div>
+
+
                 </div>
             </div>
         </section>

@@ -51,7 +51,7 @@ $(document).ready(function () {
 
         //자동 재생
         autoplay: {
-            delay: 10000000,
+            delay: 30000,
             disableOnInteraction: false,
         },
 
@@ -62,8 +62,8 @@ $(document).ready(function () {
             type: "custom",
             renderCustom: function (swiper, current, total) {
                 return (
-                    '<span class="text-black">' + (current < 10 ? '0' : '') + current + '</span>' +
-                    '<span class="text-black">' + (total < 10 ? '0' : '') + total + '</span>'
+                    '<span class="">' + (current < 10 ? '0' : '') + current + '</span>' +
+                    '<span class="">' + (total < 10 ? '0' : '') + total + '</span>'
                 );
             }
         },

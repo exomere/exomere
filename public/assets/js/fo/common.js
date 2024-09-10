@@ -1,23 +1,5 @@
 /* 전역 스크립트 */
 
-// swiper
-const swipers = document.querySelectorAll('.swiper:not(.main-swiper)');
-//
-// if(swipers.length) {
-//     var swiper = new Swiper(".swiper:not(.main-swiper):not(.m-swiper)", {
-//         loop: true,
-//         fraction: true,
-//         effect: 'fade',
-//         parallax: true,
-//         autoplay: false,
-//         navigation: {
-//             nextEl: ".swiper-button-next",
-//             prevEl: ".swiper-button-prev",
-//         },
-//     });
-// }
-
-
 /* gnb*/
 
 // gnb 마우스 오버
