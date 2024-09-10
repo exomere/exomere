@@ -1,4 +1,6 @@
-<header id="header" class="fixed inset-x-0 z-50 bg-transparent" aria-label="Global">
+<header id="header"
+        class="{{ isset($whiteHeader) ? 'text-white fill-white	stroke-white' : '' }} fixed inset-x-0 z-50 bg-transparent"
+        aria-label="Global">
     <div class="header_wrap">
         <div class="gnb relative flex flex-wrap items-center justify-between p-3 lg:px-16 lg:py-6">
             <div class="flex gap-x-2 items-center">
@@ -10,8 +12,10 @@
                             data-collapse-toggle="mobile-menu"
                             aria-expanded="false">
                         <span class="sr-only">Toggle main menu</span>
-                        <svg class="open__btn w-8 h-8" fill="none" viewBox="0 0 24 24" stroke-width="1"
-                             stroke="currentColor" aria-hidden="true">
+                        <svg class="open__btn w-8 h-8" viewBox="0 0 24 24" stroke-width="1"
+                             fill="currentColor"
+                             stroke="currentColor"
+                             aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
                         </svg>
@@ -32,8 +36,10 @@
                     >
                         {{ config('meta.languages.'.app()->getLocale())  ?? strtoupper(app()->getLocale())  }}
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                              class="bi bi-chevron-down"
+                             fill="currentColor"
+                             stroke="currentColor"
                              viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                   d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
@@ -64,6 +70,8 @@
                 <a href="/login" target="_blank" class="myoffice__button flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="25" height="25"
+                         fill="currentColor"
+                         stroke="currentColor"
                          class="bi bi-person-fill" viewBox="0 0 16 16">
                         <path
                             d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
@@ -72,8 +80,14 @@
                 </a>
 
                 <button type="button" class="gnb__search__button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="20"
+                         height="20"
+                         fill="currentColor"
+                         stroke="currentColor"
+                         class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                     </svg>
 
                     <span class="sr-only">Search</span>
@@ -82,7 +96,7 @@
         </div>
 
         <!-- web menu, show/hide based on screen width -->
-        <div class="__nav max-lg:hidden" >
+        <div class="__nav max-lg:hidden">
             <ul class="flex flex-wrap gap-x-5 justify-center items-start text-left py-3">
                 @foreach ($gnbData[0]->menu as $item)
                     <li class="min-w-[100px]">
@@ -91,7 +105,8 @@
                             <ul class="__lnb hidden pt-2 leading-loose text-base">
                                 @foreach ($item->submenu as $subItem)
                                     <li>
-                                        <a href="{{ $subItem->url }}" class="font-normal">{{ __('gnb.'.$subItem->name) }}</a>
+                                        <a href="{{ $subItem->url }}"
+                                           class="font-normal">{{ __('gnb.'.$subItem->name) }}</a>
                                         @if (isset($subItem->submenu) && count($subItem->submenu) > 0)
                                             <ul class="mb-2">
                                                 @foreach ($subItem->submenu as $subSubItem)

@@ -32,108 +32,85 @@ $items = [
 $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
 ?>
 
-@extends('pages.layouts.frontSubLayout')
-@section('title', 'News ')
+@extends('pages.layouts.subLayout')
+@section('title', __('gnb.news'))
+
+@section('id', 'news')
+@section('visual_title',  __('gnb.news') )
+@section('visual_sub_title', __('gnb.news_title'))
+@section('visual_background', asset("assets/img/elements/subvisual_bg3.jpg"))
+
 @section('page-style')
 
 @endsection
 @section('content')
 
-    <main class="relative">
+    <div
+        class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 lg:gap-x-10 lg:gap-y-16">
+        @foreach($items as $item)
 
-        <section class="h-96 lg:h-[50svh]">
-            <!-- Subvisual Wrapper -->
-            <div
-                class="relative pt-[80px] lg:pt-[160px] w-full h-full flex flex-col items-center justify-center
-                    bg-cover bg-no-repeat bg-center"
-                style="background-image: url('{{ asset("assets/img/elements/subvisual_bg3.jpg") }}')"
+            <div class="group relative"
+                 data-aos="fade-up"
+                 data-aos-delay="{{ $loop->index * 100 }}"
             >
-
-                <!-- Subvisual Text -->
-                <div class="text-center font-roboto tracking-tight z-10 text-gray-900">
-                    <p class="text-4xl font-medium uppercase" data-aos="fade-down">
-                        {{ __('gnb.news') }}
-                    </p>
-                    <p class="font-medium" data-aos="fade-down" data-aos-delay="200">{{ __('gnb.news_title') }}</p>
+                <div
+                    class="aspect-h-1 aspect-w-1 w-full bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                    <img src="{{$item['thumbnail']}}"
+                         alt="{{$item['title']}}"
+                         class="h-full w-full  object-center lg:h-full lg:w-full">
                 </div>
-            </div>
-        </section>
-        <section class="min-sm:max-container min-h-screen padding-y">
-            <div class="bg-white">
-                <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                    <div
-                        class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:gap-y-10 lg:space-y-0">
-                        @foreach($items as $item)
-
-                            <div class="group relative"
-                                 data-aos="fade-up"
-                                 data-aos-delay="{{ $loop->index * 100 }}"
-                            >
-                                <div
-                                    class="aspect-h-1 aspect-w-1 w-full bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="{{$item['thumbnail']}}"
-                                         alt="{{$item['title']}}"
-                                         class="h-full w-full  object-center lg:h-full lg:w-full">
-                                </div>
-                                <div class="mt-4 flex justify-between">
-                                    <div>
-                                        <h3 class="mb-5 text-lg text-gray-900">
-                                            <a href="#!" onclick="openContentModal('{{$loop->index}}')">
-                                                <span aria-hidden="true" class="absolute inset-0"></span>
-                                                {{$item['title']}}
-                                            </a>
-                                        </h3>
-                                        <p class="mt-1 text-sm text-gray-600">{{$item['created_at']}}</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        @endforeach
-
-                    </div>
-                    <!-- View More -->
-                    <div class="text-center" data-aos="fade-up">
-                        <a href="#!"
-                           class="inline-block mt-12 border border-solid border-black py-3 px-24 text-base break-keep ">
-                            더 보기
+                <div class="mt-4">
+                    <h3 class="mb-5 text-lg text-gray-900 line-clamp-2">
+                        <a href="#!" onclick="openContentModal('{{$loop->index}}')">
+                            <span aria-hidden="true" class="absolute inset-0"></span>
+                            {{$item['title']}}
                         </a>
-                    </div>
-
+                    </h3>
+                    <p class="mt-1 text-sm text-gray-600">{{$item['created_at']}}</p>
                 </div>
 
             </div>
-        </section>
+        @endforeach
 
-        <div class="hidden" id="contents-modal" tabindex="-1" aria-hidden="true">
-            <div class="bg-white fixed h-full left-0 min-h-svh top-0 w-full z-[201] overflow-y-auto padding">
-                <div class="fixed right-5 lg:right-20">
-                    <button type="button" class="bg-exomere opacity-75 p-3 lg:p-7 rounded-full text-white"
-                            onclick="closeModal('contents-modal')" aria-hidden="false">
-                        <svg class="close-btn h-7 w-7 z-[101]" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="min-sm:max-container min-h-screen padding-y mx-auto lg:padding-x lg:px-4 py-8 flex flex-col">
-                    <div class="padding">
-                        <article class="bg-white min-h-svh overflow-y-auto">
-                            <h1 id="modal-title" class="text-2xl lg:text-4xl font-medium text-gray-900 mb-6"></h1>
+    </div>
+    <!-- View More -->
+    <div class="text-center" data-aos="fade-up">
+        <a href="javascript:alert('{{ __('common.in_ready') }}')"
+           class="inline-block mt-12 border border-solid border-black py-3 px-24 text-base break-keep">
+            더 보기
+        </a>
+    </div>
 
-                            <div id="modal-date" class="text-gray-600 mb-2 "></div>
 
-                            <img id="modal-img" src="//exomere.co.kr/common/image/media_01.png" class="padding-y">
+    <div class="hidden" id="contents-modal" tabindex="-1" aria-hidden="true">
+        <div class="bg-white fixed h-full left-0 min-h-svh top-0 w-full z-[201] overflow-y-auto padding">
+            <div class="fixed right-5 lg:right-20">
+                <button type="button" class="bg-exomere opacity-75 p-3 lg:p-7 rounded-full text-white"
+                        onclick="closeModal('contents-modal')" aria-hidden="false">
+                    <svg class="close-btn h-7 w-7 z-[101]" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="min-sm:max-container min-h-screen padding-y mx-auto lg:padding-x lg:px-4 py-8 flex flex-col">
+                <div class="padding">
+                    <article class="bg-white min-h-svh overflow-y-auto">
+                        <h1 id="modal-title" class="text-2xl lg:text-4xl font-medium text-gray-900 mb-6"></h1>
 
-                            <div class="text-md">
-                                <p id="modal-contents" class="break-keep leading-loose text-gray-900 mb-4"></p>
-                            </div>
-                        </article>
-                    </div>
+                        <div id="modal-date" class="text-gray-600 mb-2 "></div>
+
+                        <img id="modal-img" src="//exomere.co.kr/common/image/media_01.png" class="padding-y">
+
+                        <div class="text-md">
+                            <p id="modal-contents" class="break-keep leading-loose text-gray-900 mb-4"></p>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>
+    </div>
 
-
-    </main>
 @endsection
 
 @section('page-script')

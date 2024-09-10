@@ -14,12 +14,10 @@ tailwind.config = {
             '8xl': ['96px', '106px']
         }, extend: {
             fontFamily: {
+                montserrat: ['Montserrat', 'sans-serif'],
                 'nanum-gothic': ['Nanum Gothic', 'sans-serif'],
                 'noto-sans': ['Noto Sans KR', 'sans-serif'],
                 roboto: ['Roboto', 'sans-serif'],
-                poppins: ['Poppins', 'sans-serif'],
-                palanquin: ['Palanquin', 'sans-serif'],
-                montserrat: ['Montserrat', 'sans-serif'],
             },
 
             colors: {
