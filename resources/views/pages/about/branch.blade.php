@@ -108,16 +108,12 @@ $contents = [
 @endsection
 
 @section('page-script')
-    {{--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXdNk7BP_ZCRbG3GiuwWVR0pwEbY9kxqU&callback=initMap" async defer></script>--}}
-
     <script>
         let map_frame = document.querySelector("#frameMap");
 
         function updateMap(map_src) {
             map_frame.src = map_src;
         }
-
-
     </script>
 
 @endsection
