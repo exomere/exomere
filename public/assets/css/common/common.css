@@ -63,6 +63,20 @@ a {
     filter: blur(0);
 }
 
+[data-aos=mix] {
+    opacity: .3;
+    transform: scale(1.5) translateY(0);
+    filter: blur(0.5rem);
+    transition: all 1000ms;
+}
+
+[data-aos=mix].aos-animate {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: all 2000ms;
+    filter: blur(0);
+}
+
 /* swiper*/
 
 .swiper {
@@ -98,18 +112,6 @@ a {
     height: 100%;
 }
 
-.swiper-slide img,
-.swiper-slide video {
-    /*transform: scale(1.05);*/
-    /*transition: 1.5s 0.1s;*/
-}
-
-.swiper-slide-active img,
-.swiper-slide-active video {
-    /*transform: scale(1.0);*/
-}
-
-
 .swiper-button-next,
 .swiper-button-prev {
     background-repeat: no-repeat;
@@ -140,17 +142,19 @@ a {
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-    font-size: 0;
+    font-size: 0 !important;
 }
 
-/*.swiper-slide-active .show_content_box > a,*/
-/*.swiper-slide-active .show_content_box > p {*/
-/*    animation: showContent .3s .5s ease-in-out 1 forwards;*/
-/*}*/
+.opacity_animation .swiper-button-next.swiper-button-disabled,
+.opacity_animation .swiper-button-prev.swiper-button-disabled {
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+}
 
-/*.swiper-slide-active .show_content_box > img {*/
-/*    animation: showContent .3s .5s ease-in-out 1 forwards;*/
-/*}*/
+.swiper:hover .opacity_animation .swiper-button-next,
+.swiper:hover .opacity_animation .swiper-button-prev {
+    opacity: 1;
+}
 
 /* swiper*/
 /*icon*/
@@ -179,6 +183,10 @@ a {
 }
 
 /* s header*/
+#header {
+    transition: all 0.3s ease-in-out;
+}
+
 #header.on {
     opacity: 1;
     background-color: #f4f4f4;
@@ -189,9 +197,15 @@ header#header.scroll {
     background-color: #fff;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     color: #152342;
-
 }
 
+header#header.scroll .log__image.m {
+    display: block;
+}
+
+header#header.scroll .log__image.pc {
+    display: none;
+}
 
 /*토글 화살표*/
 svg.bi-chevron-down {
@@ -202,19 +216,7 @@ button[data-collapse-toggle][aria-expanded="true"] svg.bi-chevron-down {
     transform: rotate(180deg);
 }
 
-/*언어설정*/
-#header .header_wrap .gnb .language__select .language__button svg {
-    /*transition: transform 0.3s ease;*/
-}
-
-#header .header_wrap .gnb .language__select.on .language__button svg {
-    /*transform: rotate(180deg);*/
-}
-
-/* /언어설정*/
-
 /* 모바일 햄버거 */
-
 .header_wrap #toggle-mobile-menu {
     cursor: pointer;
 }
@@ -230,106 +232,6 @@ button[data-collapse-toggle][aria-expanded="true"] svg.bi-chevron-down {
 
 /* /모바일 햄버거 */
 
-
-/*!*네비게이션*!*/
-/*#header .header_wrap .__nav ul.__nav_1deps {*/
-/*    display: inline-flex;*/
-/*}*/
-
-/*#header .header_wrap .__nav ul.__nav_1deps li.__nav_1deps_item {*/
-/*    min-width: 180px;*/
-/*    padding: 2rem 3rem 1.8rem;*/
-/*}*/
-
-/*#header .header_wrap .__nav li.__nav_1deps_item ul.__lnb {*/
-/*    display: none;*/
-/*    padding-top: 1rem;*/
-/*    text-align: left;*/
-/*    letter-spacing: -.02em;*/
-/*}*/
-
 #header .header_wrap .__nav.on ul.__lnb {
     display: block;
-    /*transition: opacity 300ms*/
 }
-
-/*#header .header_wrap .__nav li.__nav_1deps_item ul.__lnb a {*/
-/*    display: inline-block;*/
-/*    position: relative;*/
-/*    !*font-size: 0.85rem;*!*/
-/*    color: #212221;*/
-/*    font-weight: 300;*/
-/*}*/
-
-/*#header .header_wrap .__nav li.__nav_1deps_item ul.__lnb > li > a {*/
-/*    line-height: 36px;*/
-/*    font-weight: bold;*/
-/*}*/
-
-
-.to_top {
-    position: fixed;
-    bottom: 4.0rem;
-    right: 8.0rem;
-    /*z-index: 1000;*/
-    width: 5.6rem;
-    height: 5.6rem;
-    background: #02060f;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    display: none
-}
-
-.to_top::before {
-    content: "";
-    display: block;
-    width: 2.6rem;
-    height: 3.2rem;
-    background: url('https://amc.apglobal.com/image/384224417642/image_hv0rskbt7536f66kkkueehb102/-FPNG') -3.6rem -17.2rem no-repeat;
-    background-size: 50rem 50rem;
-    position: absolute;
-    top: calc(50% - 1.6rem);
-    left: calc(50% - 1.3rem)
-}
-
-@media (min-width: 1920px) {
-    .to_top {
-        right: calc(50% - 88.0rem)
-    }
-
-}
-
-/* e footer*/
-
-
-/* s to_top*/
-.top_btn {
-    display: none;
-    position: fixed;
-    bottom: 4.0rem;
-    right: 8.0rem;
-    z-index: 1000;
-    width: 5rem;
-    height: 5rem;
-    background: transparent;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-.top_btn::before {
-    content: "";
-    position: absolute;
-    display: block;
-    width: 3rem;
-    height: 3rem;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5"/> </svg>');
-    background-repeat: no-repeat;
-    background-position: center left;
-    background-size: contain;
-    top: calc(50% - 1.5rem);
-    left: calc(50% - 1.5rem)
-}
-
-/* e to_top*/

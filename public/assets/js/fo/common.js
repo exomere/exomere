@@ -44,16 +44,11 @@ $(function () {
 
 
     // Top button 생성 및 추가
-    var $topBtn = $("<a href='javascript:void(0)' class='top_btn right-[1rem] lg:right-[8rem] z-[200]'><span class='sr-only'>TOP</span></a>").appendTo("body");
-    var $footer = $("#footer");
-    var documentHeight = $(document).height();
-    var windowHeight = window.innerHeight;
+    var $topBtn = $("#top");
 
     // 스크롤 이벤트 핸들러
     $(window).scroll(function () {
         var windowTop = window.scrollY;
-        var footerHeight = $footer.outerHeight();
-        var threshold = documentHeight - windowHeight - footerHeight - 20;
 
         // Top 버튼 표시/숨김
         if (windowTop > 100) {
@@ -61,16 +56,6 @@ $(function () {
         } else {
             $topBtn.fadeOut();
         }
-
-        // Top 버튼 위치 조정
-        // if (windowTop >= threshold) {
-        //     $topBtn.addClass("bottom").css({
-        //         bottom: "auto",
-        //         top: (threshold + windowHeight) - windowTop - 70 + "px"
-        //     });
-        // } else {
-        //     $topBtn.removeClass("bottom").css({top: "auto", bottom: ""});
-        // }
     });
 
     // Top 버튼 클릭 이벤트

@@ -22,7 +22,8 @@ tailwind.config = {
 
             colors: {
                 "slate-gray": "#6D6D6D",
-                exomere: 'rgb(207 87 51)',
+                "exomere": "rgb(207 87 51)",
+                "baseColor": "#1D335C",
             },
             boxShadow: {
                 '3xl': '0 10px 40px rgba(0, 0, 0, 0.1)'
