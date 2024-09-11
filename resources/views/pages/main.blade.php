@@ -68,6 +68,10 @@ $bestProducts = collect($products)->where('is_best', true);
 
 @section('title', '72시간만에 10년 젊어지기')
 
+@section('vendor-style')
+    <link href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}" rel="stylesheet">
+@endsection
+
 @section('page-style')
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet"/>
 @endsection
@@ -231,28 +235,28 @@ $bestProducts = collect($products)->where('is_best', true);
             <div class="bg-gradient-to-r from-[#e4e4df]">
                 <div class="max-w-6xl mx-auto h-[50svh] md:flex md:flex-row relative">
 
-                    <div class=" w-full h-[45svh] bg-[url({{ asset('assets/img/elements/about-branch-removebg.png') }})] bg-contain bg-center bg-no-repeat md:basis-1/2"></div>
-                    <div class="absolute top-0 left-0 text-center md:static md:basis-1/2 md:text-left md:flex md:flex-col md:justify-center padding font-normal">
-                        <h3 class=" leading-tight font-semibold text-3xl lg:text-4xl mb-10 text-[#1d335c]"
-                            data-aos="fade-up">
-                            ABOUT BRANCH
-                        </h3>
-                        <p class="break-keep leading-loose md:leading-loose md:text-xl" data-aos="fade-up" data-aos-delay="100">
-                            다양한 체험 프로그램과
-                            전문적이고 체계적인 상담을 통해
-                            엑소미어의 제품을 체험할 수 있습니다
-                        </p>
-                       <p>
-                           <a href="/about/branch"
-                              target="_self"
-                              class="inline-block mt-5 md:mt-12 border border-solid py-2 px-16 md:px-24 break-keep"
-                              data-aos="fade" data-aos-delay="200">
-                               THE MORE
-                           </a>
-                       </p>
+                    <div class="h-full w-full h-[45svh] md:bg-[url({{ asset('assets/img/elements/about-branch-removebg.png') }})] bg-contain bg-center bg-no-repeat md:basis-1/2"></div>
+                    <div class="inset-0 absolute font-normal text-center md:static md:basis-1/2 md:text-left md:flex md:flex-col md:justify-center">
+                        <div class="w-full h-full flex flex-col justify-center items-center text-center">
+                            <h3 class="leading-tight font-semibold text-3xl lg:text-4xl mb-10 text-baseColor"
+                                data-aos="fade-up">
+                                ABOUT BRANCH
+                            </h3>
+                            <p class=" break-keep leading-loose md:leading-loose md:text-lg" data-aos="fade-up" data-aos-delay="100">
+                                다양한 체험 프로그램과 전문적이고 체계적인 상담을 통해
+                                <br class="md:hidden">
+                                엑소미어의 제품을 체험할 수 있습니다
+                            </p>
+                            <p>
+                                <a href="/about/branch"
+                                   target="_self"
+                                   class="inline-block mt-5 md:mt-7 border border-solid py-2 px-16 md:px-24 break-keep"
+                                   data-aos="fade" data-aos-delay="200">
+                                    THE MORE
+                                </a>
+                            </p>
+                        </div>
                     </div>
-
-
                 </div>
             </div>
         </section>
@@ -261,5 +265,6 @@ $bestProducts = collect($products)->where('is_best', true);
 @endsection
 
 @section('page-script')
+    <script defer src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
     <script defer src="{{ asset('assets/js/fo/main.js') }}"></script>
 @endsection

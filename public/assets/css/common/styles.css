@@ -8,9 +8,6 @@
 @import url('./reset.css');
 @import url('./modern-normalize.css');
 
-/*vendor*/
-@import url('../../vendor/libs/swiper/swiper.css');
-
 /*core*/
 @import url('./common.css');
 @import url('./animate.css');

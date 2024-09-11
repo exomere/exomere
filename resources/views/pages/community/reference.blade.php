@@ -6,7 +6,7 @@ $items = [
         'subject' => '엑소미어 바디케어 리뉴얼 자료',
         'created_id' => 'Admin',
         'created_at' => \Illuminate\Support\Carbon::create(2024, 7, 9, 12, 00, 00)->toDateString(),
-        'contents' => '  <div><p style="text-align: center;display:inline-flex; column-gap: 16px;"><img src="https://via.placeholder.com/300x400"><img src="https://via.placeholder.com/300x400"><img src="https://via.placeholder.com/300x400"></p><p style="text-align: center"><br></p><p style="text-align: center"><strong>바디케어 리뉴얼 이미지 입니다.</strong></p><p style="text-align: center"><br></p><p style="text-align: center">(관련자료는 첨부파일을 확인해 주세요)</p><p><br></p></div>',
+        'contents' => '  <div><p style="text-align: center;display:inline-flex; column-gap: 16px;"><img src="//placehold.co/300x400"><img src="//placehold.co/300x400"><img src="//placehold.co/300x400"></p><p style="text-align: center"><br></p><p style="text-align: center"><strong>바디케어 리뉴얼 이미지 입니다.</strong></p><p style="text-align: center"><br></p><p style="text-align: center">(관련자료는 첨부파일을 확인해 주세요)</p><p><br></p></div>',
         'views_count' => 100,
         'attach_type' => 'pdf',
         'attachments' => [
@@ -20,7 +20,7 @@ $items = [
         'subject' => '엑소미어 헤어케어 리뉴얼 이미지',
         'created_id' => 'Admin',
         'created_at' => \Illuminate\Support\Carbon::create(2024, 8, 10, 12, 00, 00),
-        'contents' => '  <div><p style="text-align: center;display:inline-flex; column-gap: 16px;"><img src="https://via.placeholder.com/400x300"><img src="https://via.placeholder.com/400x300"></p><p style="text-align: center"><br></p><p style="text-align: center"><strong>헤어케어 리뉴얼 이미지 입니다.</strong></p><p style="text-align: center"><br></p><p style="text-align: center">(관련자료는 첨부파일을 확인해 주세요)</p><p><br></p></div>',
+        'contents' => '  <div><p style="text-align: center;display:inline-flex; column-gap: 16px;"><img src="//placehold.co/400x300"><img src="//placehold.co/400x300"></p><p style="text-align: center"><br></p><p style="text-align: center"><strong>헤어케어 리뉴얼 이미지 입니다.</strong></p><p style="text-align: center"><br></p><p style="text-align: center">(관련자료는 첨부파일을 확인해 주세요)</p><p><br></p></div>',
         'views_count' => 0,
         'attach_type' => 'image',
         'attachments' => [
@@ -33,7 +33,7 @@ $items = [
         'subject' => '엑소미어 동영상',
         'created_id' => 'Admin',
         'created_at' => \Illuminate\Support\Carbon::create(2024, 8, 10, 12, 00, 00),
-        'contents' => '  <div><p style="text-align: center;display:inline-flex; column-gap: 16px;"><img src="https://via.placeholder.com/900x600"></p><p style="text-align: center"><br></p><p style="text-align: center"><strong>동영상을 리뉴얼 했습니다 .</strong></p><p style="text-align: center"><br></p><p style="text-align: center">(관련자료는 첨부파일을 확인해 주세요)</p><p><br></p></div>',
+        'contents' => '  <div><p style="text-align: center;display:inline-flex; column-gap: 16px;"><img src="//placehold.co/900x500"></p><p style="text-align: center"><br></p><p style="text-align: center"><strong>동영상을 리뉴얼 했습니다 .</strong></p><p style="text-align: center"><br></p><p style="text-align: center">(관련자료는 첨부파일을 확인해 주세요)</p><p><br></p></div>',
         'views_count' => 0,
         'attach_type' => 'video',
         'attachments' => [
@@ -50,7 +50,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
 @section('id', 'reference')
 @section('visual_title',  __('gnb.reference') )
 @section('visual_sub_title', __('gnb.reference_title'))
-@section('visual_background', 'https://cdn.pixabay.com/photo/2016/11/29/06/56/abstract-1867937_1280.jpg')
+@section('visual_background', '//cdn.pixabay.com/photo/2016/11/29/06/56/abstract-1867937_1280.jpg')
 
 @section('page-style')
     <style>

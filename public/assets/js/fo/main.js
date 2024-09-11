@@ -4,6 +4,9 @@
 let swiperInstance;
 
 function initializeSwiper() {
+    if (!document.querySelector('.m-swiper').length()) {
+        return;
+    }
     swiperInstance = new Swiper('.m-swiper', {
         // Swiper options
         loop: true,
@@ -39,7 +42,6 @@ handleResize();
 
 // Listen for resize events
 window.addEventListener('resize', handleResize);
-
 
 
 $(document).ready(function () {
@@ -126,8 +128,6 @@ $(document).ready(function () {
             },
         }
     });
-
-
 
 
 })

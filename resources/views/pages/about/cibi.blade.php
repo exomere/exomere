@@ -42,7 +42,7 @@
                     {!! nl2br(__('messages.cibi_content')) !!}
                 </p>
                 <button type="button"
-                        class="inline-flex items-center gap-x-1 mt-3 px-10 h-12 border border-solid border-slate-200 rounded-full"
+                        class="inline-flex items-center gap-x-1 mt-3 px-10 h-12 text-sm border border-solid border-slate-200 rounded-full"
                         data-aos="fade-up"
                         data-aos-delay="300"
                         onclick="alert('{{__('common.in_ready')}}')"

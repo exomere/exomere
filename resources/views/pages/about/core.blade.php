@@ -25,8 +25,10 @@ $contents = [
 @section('visual_sub_title', __('gnb.core_title'))
 @section('visual_background', 'https://cdn.pixabay.com/photo/2020/03/29/19/20/theatre-4981936_1280.jpg')
 
+@section('vendor-style')
+    <link href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}" rel="stylesheet">
+@endsection
 @section('page-style')
-
 @endsection
 @section('content')
 
@@ -101,7 +103,7 @@ $contents = [
                         </li>
                     @endforeach
                 </ul>
-                <div class="swiper-button-wrap">
+                <div class="swiper-button-wrap opacity_animation">
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
@@ -121,7 +123,7 @@ $contents = [
                             </picture>
                             <div class="pt-10 pb-20 px-8 lg:p-0 lg:p-[3%] xl:p-[5%] leading-loose md:basis-1/3"
                                  data-aos="fade">
-                                <h2 class="inline-block font-bold text-2xl mb-7 lg:mb-10">{{ $content['title_en'] }}
+                                <h2 class="inline-block font-bold text-2xl text-baseColor mb-7 lg:mb-10">{{ $content['title_en'] }}
                                     <small
                                         class="font-light text-sm block lg:inline-block lg:ml-3">{{ $content['title'] }}</small>
                                 </h2>
@@ -138,6 +140,7 @@ $contents = [
 @endsection
 
 @section('page-script')
+    <script defer src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
 

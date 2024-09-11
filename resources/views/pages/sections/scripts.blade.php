@@ -1,6 +1,5 @@
 <!-- BEGIN: Vendor JS-->
 <script src="{{ asset(mix('assets/vendor/libs/jquery/jquery.js')) }}"></script>
-<script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/aos/aos.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/flowbite/flowbite.min.js') }}"></script>
 
@@ -10,7 +9,6 @@
 
 <!-- BEGIN: Main JS-->
 <script src="{{ asset('assets/js/fo/common.js') }}"></script>
-<script src="{{ asset('assets/js/fo/main.js') }}"></script>
 <script src="{{ asset('assets/js/fo/tailwind.config.js') }}"></script>
 <!-- END: Main JS-->
 

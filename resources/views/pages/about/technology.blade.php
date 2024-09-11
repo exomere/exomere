@@ -44,6 +44,9 @@ $contents = [
 @section('visual_sub_title', __('gnb.technology_title'))
 @section('visual_background', 'https://cdn.pixabay.com/photo/2020/03/29/19/20/theatre-4981936_1280.jpg')
 
+@section('vendor-style')
+    <link href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}" rel="stylesheet">
+@endsection
 @section('page-style')
 @endsection
 @section('content')
@@ -71,7 +74,7 @@ $contents = [
                     </li>
                 @endforeach
             </ul>
-            <div class="swiper-button-wrap">
+            <div class="swiper-button-wrap opacity_animation">
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
@@ -105,6 +108,7 @@ $contents = [
 @endsection
 
 @section('page-script')
+    <script defer src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
 

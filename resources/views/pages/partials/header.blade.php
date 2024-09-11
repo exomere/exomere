@@ -2,13 +2,13 @@
         class="{{ isset($whiteHeader) ? 'text-white fill-white	stroke-white' : '' }} fixed inset-x-0 z-50 bg-transparent"
         aria-label="Global">
     <div class="header_wrap">
-        <div class="gnb relative flex flex-wrap items-center justify-between p-3 lg:px-16 lg:py-6">
-            <div class="flex gap-x-2 items-center">
+        <div class="gnb relative flex flex-wrap items-center justify-between p-3 lg:px-16 lg:pt-6">
+            <div class="basis-1/3 flex gap-x-2 items-center">
                 {{--mobile hamberger--}}
                 <div class="flex lg:hidden">
                     <button type="button"
                             id="toggle-mobile-menu"
-                            class="inline-flex"
+                            class="inline-flex "
                             data-collapse-toggle="mobile-menu"
                             aria-expanded="false">
                         <span class="sr-only">Toggle main menu</span>
@@ -60,53 +60,47 @@
             </div>
 
             <!--logo-->
-            <a href="/" class="w-32 lg:w-44">
+            <a href="/" class="basis-1/3 flex justify-center items-center">
                 <span class="sr-only">엑소미어</span>
-                <img class="" src="//exomere.co.kr/common/image/logo/logo_horizontal.svg" alt="">
+                <img class="log__image m w-32 lg:w-36 lg:hidden" src="{{ asset('img/logo_horizontal.png') }}" alt="">
+                <img class="log__image pc max-lg:hidden w-28" src="{{ asset('img/logo.svg') }}" alt="">
             </a>
 
             {{--login/search--}}
-            <div class="flex gap-x-2 items-center justify-center">
+            <div class="basis-1/3 flex gap-x-2 items-center justify-end">
                 <a href="/login" target="_blank" class="myoffice__button flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="25" height="25"
-                         fill="currentColor"
-                         stroke="currentColor"
-                         class="bi bi-person-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                    <svg  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"  stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-width="1.2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                     </svg>
                     <span class="hidden lg:block">My Office</span>
                 </a>
-
-                <button type="button" class="gnb__search__button">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="20"
-                         height="20"
+                <button>
+                    <svg aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
                          fill="currentColor"
                          stroke="currentColor"
-                         class="bi bi-search" viewBox="0 0 16 16">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                         viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                              d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"/>
                     </svg>
-
-                    <span class="sr-only">Search</span>
                 </button>
             </div>
         </div>
 
         <!-- web menu, show/hide based on screen width -->
         <div class="__nav max-lg:hidden">
-            <ul class="flex flex-wrap gap-x-5 justify-center items-start text-left py-3">
+            <ul class="flex flex-wrap gap-x-5 justify-center items-start text-center text-left py-3">
                 @foreach ($gnbData[0]->menu as $item)
                     <li class="min-w-[100px]">
-                        <a href="javascript:void(0)" class="text-lg font-normal">{{ $item->name }}</a>
+                        <a href="javascript:void(0)" class="text-base font-normal">{{ $item->name }}</a>
                         @if (isset($item->submenu) && count($item->submenu) > 0)
-                            <ul class="__lnb hidden pt-2 leading-loose text-base">
+                            <ul class="__lnb hidden pt-2 leading-loose text-sm">
                                 @foreach ($item->submenu as $subItem)
                                     <li>
                                         <a href="{{ $subItem->url }}"
-                                           class="font-normal">{{ __('gnb.'.$subItem->name) }}</a>
+                                           class="underline-animation font-normal">{{ __('gnb.'.$subItem->name) }}</a>
                                         @if (isset($subItem->submenu) && count($subItem->submenu) > 0)
                                             <ul class="mb-2">
                                                 @foreach ($subItem->submenu as $subSubItem)
