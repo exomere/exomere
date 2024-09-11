@@ -123,7 +123,7 @@ $contents = [
                             </picture>
                             <div class="pt-10 pb-20 px-8 lg:p-0 lg:p-[3%] xl:p-[5%] leading-loose md:basis-1/3"
                                  data-aos="fade">
-                                <h2 class="inline-block font-bold text-2xl text-baseColor mb-7 lg:mb-10">{{ $content['title_en'] }}
+                                <h2 class="inline-block font-bold text-2xl text-head mb-7 lg:mb-10">{{ $content['title_en'] }}
                                     <small
                                         class="font-light text-sm block lg:inline-block lg:ml-3">{{ $content['title'] }}</small>
                                 </h2>

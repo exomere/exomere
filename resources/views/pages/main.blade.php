@@ -233,16 +233,15 @@ $bestProducts = collect($products)->where('is_best', true);
         {{--브랜치--}}
         <section class="pt-40">
             <div class="bg-gradient-to-r from-[#e4e4df]">
-                <div class="max-w-6xl mx-auto h-[50svh] md:flex md:flex-row relative">
-
-                    <div class="h-full w-full h-[45svh] md:bg-[url({{ asset('assets/img/elements/about-branch-removebg.png') }})] bg-contain bg-center bg-no-repeat md:basis-1/2"></div>
+                <div class="max-w-6xl mx-auto h-[65svh] md:flex md:flex-row relative">
+                    <div class="h-full w-full bg-bottom bg-[url({{ asset('assets/img/elements/about-branch-removebg.png') }})] bg-contain md:bg-center bg-no-repeat md:basis-1/2"></div>
                     <div class="inset-0 absolute font-normal text-center md:static md:basis-1/2 md:text-left md:flex md:flex-col md:justify-center">
-                        <div class="w-full h-full flex flex-col justify-center items-center text-center">
-                            <h3 class="leading-tight font-semibold text-3xl lg:text-4xl mb-10 text-baseColor"
+                        <div class="w-full h-full flex flex-col justify-start items-center text-center pt-20 md:justify-center md:items-start md:p-0 md:max-w-lg">
+                            <h3 class="leading-tight font-semibold text-3xl lg:text-4xl mb-10 text-head"
                                 data-aos="fade-up">
                                 ABOUT BRANCH
                             </h3>
-                            <p class=" break-keep leading-loose md:leading-loose md:text-lg" data-aos="fade-up" data-aos-delay="100">
+                            <p class="break-keep leading-loose md:leading-loose md:text-lg md:text-left" data-aos="fade-up" data-aos-delay="100">
                                 다양한 체험 프로그램과 전문적이고 체계적인 상담을 통해
                                 <br class="md:hidden">
                                 엑소미어의 제품을 체험할 수 있습니다
@@ -250,7 +249,7 @@ $bestProducts = collect($products)->where('is_best', true);
                             <p>
                                 <a href="/about/branch"
                                    target="_self"
-                                   class="inline-block mt-5 md:mt-7 border border-solid py-2 px-16 md:px-24 break-keep"
+                                   class="inline-block mt-5 md:mt-7 border border-solid border-base-color bg-base-color text-white py-2 px-16 break-keep"
                                    data-aos="fade" data-aos-delay="200">
                                     THE MORE
                                 </a>

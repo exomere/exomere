@@ -12,18 +12,24 @@ tailwind.config = {
             '3xl': ['28px', '50px'],
             '4xl': ['48px', '58px'],
             '8xl': ['96px', '106px']
-        }, extend: {
+        },
+
+        extend: {
             fontFamily: {
                 montserrat: ['Montserrat', 'sans-serif'],
                 'nanum-gothic': ['Nanum Gothic', 'sans-serif'],
                 'noto-sans': ['Noto Sans KR', 'sans-serif'],
                 roboto: ['Roboto', 'sans-serif'],
             },
-
             colors: {
                 "slate-gray": "#6D6D6D",
                 "exomere": "rgb(207 87 51)",
-                "baseColor": "#1D335C",
+                "base-color": "#02060F",
+                "head": "#1D335C",
+            },
+            backgroundPosition: {
+                'bottom-4': 'center bottom -1rem',
+                'top-4': 'center top 1rem',
             },
             boxShadow: {
                 '3xl': '0 10px 40px rgba(0, 0, 0, 0.1)'

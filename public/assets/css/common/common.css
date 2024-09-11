@@ -12,7 +12,7 @@ html, body {
     line-height: 1.8;
     letter-spacing: -0.05rem;
     background-color: #fff;
-    color: #152342;
+    color: #02060F;
 }
 
 
@@ -189,12 +189,12 @@ a {
 
 #header.on {
     opacity: 1;
-    background-color: #f4f4f4;
+    background-color: #FFF;
     color: #152342;
 }
 
 header#header.scroll {
-    background-color: #fff;
+    background-color: #FFF;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     color: #152342;
 }

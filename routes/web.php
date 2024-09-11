@@ -89,6 +89,9 @@ Route::prefix('/brand')->group(function () {
     Route::get('/', function () {
         return view('pages.products.products');
     });
+    Route::get('{product_id}', function () {
+        return view('pages.products.detail');
+    });
 });
 Route::prefix('/about')->group(function () {
     Route::get('/', function () {

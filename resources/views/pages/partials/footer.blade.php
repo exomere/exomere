@@ -22,7 +22,7 @@
 </footer>
 
 <a id="top"
-   class="hidden fixed bottom-16 right-4 lg:right-12 z-[200] rounded-full border border-solid border-baseColor text-baseColor bg-[rgba(255,255,255,0.5)] cursor-default">
+   class="hidden fixed bottom-16 right-4 lg:right-12 z-[200] rounded-full border border-solid border-head text-head bg-[rgba(255,255,255,0.5)] cursor-default">
     <div class="flex flex-col w-12 h-12 justify-center items-center">
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
              viewBox="0 0 24 24">
