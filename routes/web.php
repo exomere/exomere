@@ -240,8 +240,12 @@ Route::group(['middleware' => 'auth'], function () {
             Route::prefix('/commission')->group(function () {
                 // ㄴ 기마감
                 Route::get('/termClosing', [ErpCommissionController::class, 'termClosing'])->name('erp-allowance.term-closing');
+                // ㄴ 기마감 계산
+                Route::post('/termCalculation', [ErpCommissionController::class, 'termCalculation'])->name('erp.term.calculation');
                 // ㄴ 월마감
                 Route::get('/monthlyClosing', [ErpCommissionController::class, 'monthlyClosing'])->name('erp-allowance.monthly-closing');
+                // ㄴ 월마감 계산
+                Route::post('/monthlyCalculation', [ErpCommissionController::class, 'monthlyCalculation'])->name('erp.monthly.calculation');
             });
 
             // 포인트관리 point

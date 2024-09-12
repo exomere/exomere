@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\ExOrder;
 use App\Models\ExItem;
+use App\Models\ExMember;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Exomere;
 use Illuminate\Support\Facades\Storage;
@@ -119,10 +121,15 @@ class OrderController extends Exomere
       
       // dd($request->input(),$account_info,$card_info,$item_info ,explode(" | ",$request->member_info));
 
+      $exMember = ExMember::findByMemberSeq( $request->member_seq );
+
       $input_data = [
         "member_seq" => $request->member_seq ?? null,
         "member_id" => explode(" | ",$request->member_info)[0] ?? null,
         "member_name" =>explode(" | ",$request->member_info)[1] ?? null,
+        "recommend_seq" => $exMember->member_seq ?? null,
+        "recommend_id" => $exMember->recommend_id ?? null,
+        "recommend_name" => $exMember->recommend_name ?? null,
         "order_type" => $request->order_type ?? null,
         "center_seq" => $request->center_seq ?? null,
         "receipt_method" => $request->receipt_method ?? null,

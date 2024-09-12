@@ -78,23 +78,22 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        @foreach ($orders->get() as $list)
+        @foreach ($orders as $list)
           <tr>
             <td> <span class="fw-medium">{{$row_num--;}}</span></td>
             <td> <span class="fw-medium">{{($list->is_approval == 'Y') ? '승인' : '미승인'}}</span></td>
-            
             <td> <span class="fw-medium">{{ $order_kind[$list->order_type] }}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
-            <td> <span class="fw-medium">{{$list->member_name}}</span></td>
+            <td> <span class="fw-medium">{{$list->delivery_name ?? $list->member_name}}</span></td>
             <td> <span class="fw-medium">{{$list->order_date}}</span></td>
             <td> <span class="fw-medium">{{$list->id}}</span></td>
             <td> <span class="fw-medium">{{$list->member_id}}</span></td>
             <td> <span class="fw-medium">{{$list->member_name}}</span></td>
             <td> <span class="fw-medium">{{$list->center_seq}}</span></td>
             <td> <span class="fw-medium">상품</span></td>
-            <td> <span class="fw-medium">{{$list->member_name}}</span></td>
-            <td> <span class="fw-medium">{{$list->member_name}}</span></td>
+            <td>{{$list->findByMemberRecommend()->get()->value('recommend_id')}}</td>
+            <td>{{$list->findByMemberRecommend()->get()->value('recommend_name')}}</td>
             <td> <span class="fw-medium">{{$list->remark}}</span></td>
             <td>
               <div class="dropdown">
@@ -109,6 +108,9 @@
         @endforeach
       </tbody>
     </table>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+      {{ $orders->links('vendor.pagination.bootstrap-4') }}
   </div>
 </div>
 <!--/ Basic Bootstrap Table -->

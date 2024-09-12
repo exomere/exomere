@@ -58,7 +58,7 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-code"> 상품수령 </label>
+              <label class="col-sm-1 col-form-label" for="receipt_method"> 상품수령 </label>
               <div class="col-sm-2">
                 <select class="form-select" name="receipt_method" id="receipt_method">
                   <option value='scene'>현장수령</option>
@@ -80,7 +80,7 @@
                 </div>
               </div>
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label" for="basic-default-zipcode">우편번호</label>
+                <label class="col-sm-1 col-form-label" for="zipcode">우편번호</label>
                 <div class="col-sm-2">
                   <div class="input-group">
                     <input type="text" name="zipcode" id="zipcode" class="form-control" readonly/>

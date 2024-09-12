@@ -25,28 +25,21 @@ class ErpOrderController extends Exomere
 
     public function list(Request $request)
     {
-
-    
-        $orders = new ExOrder;
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
+      
+        $orders = ExOrder::orderBy('id', 'desc')->paginate(20);
 
         if (!is_null($request->get('search_text'))) {
-            $search_text = $request->get('search_text');
-            $orders->where('name','LIKE',"%{$request->get('search_text')}%");
-        }
-      
-        $orders->limit($limitPage)->orderBy('id', 'desc');
-
-
+          $search_text = $request->get('search_text');
+          $orders->where('name','LIKE',"%{$request->get('search_text')}%");
+      }
         $data = [
           "search_text" => $search_text ?? '',
           "orders" =>  $orders ?? [],
           "payment_kind" => self::PAYMENT_KIND,
           "order_kind" => self::ORDER_KIND,
-          "row_num" => $this->getPageRowNumber($orders->count(), $page, $limitPage) ?? null,
-          "paga_nation" => $this->pagaNation($orders, $limitPage),
-
+          "row_num" => $this->getPageRowNumber($orders->count(), $page, $limitPage),
         ];
 
         return view('pages.order.list')->with($data);
@@ -56,7 +49,7 @@ class ErpOrderController extends Exomere
     {
   
         if (isset($request->seq)) {
-            $Order = ExOrder::find($request->seq);
+            $order = ExOrder::find($request->seq);
           }
 
           $items = ExItem::where('is_active','Y')->get();
@@ -74,7 +67,7 @@ class ErpOrderController extends Exomere
             "order_seq" => $request->seq ?? null,
             "payment_kind" => self::PAYMENT_KIND,
             "order_kind" => self::ORDER_KIND,
-            "order" => $Order ?? [],
+            "order" => $order ?? [],
             "card_compnay" => self::_PAYMENT_CARD_COMPANY,
             "item_array" => $itemArray ?? [],
           ];
