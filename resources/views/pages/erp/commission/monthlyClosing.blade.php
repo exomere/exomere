@@ -44,23 +44,45 @@
     <table class="table" >
       <thead>
         <tr>
-          <th style='vertical-align: middle;'>No</th>
-          <th style='vertical-align: middle;'>마감일자</th>
-          <th style='vertical-align: middle;'>시작일자</th>
-          <th style='vertical-align: middle;'>종료일자</th>
-          <th style='vertical-align: middle;'>매출액</th>
-          <th style='vertical-align: middle;'>PV</th>
-          <th style='vertical-align: middle;'>합계금액</th>
-          <th style='vertical-align: middle;'>실지급액</th>
-          <th style='vertical-align: middle;'>마감시작시간</th>
-          <th style='vertical-align: middle;'>마감종료시간</th>
-          <th style='vertical-align: middle;'>마감자</th>
+          <th style=' vertical-align: middle;'>No</th>
+          <th style=' vertical-align: middle;'>상세</th>
+          <th style=' vertical-align: middle;'>마감일자</th>
+          <th style=' vertical-align: middle;'>시작일자</th>
+          <th style=' vertical-align: middle;'>종료일자</th>
+          <th style=' vertical-align: middle;'>매출액</th>
+          <th style=' vertical-align: middle;'>PV</th>
+          <th style=' vertical-align: middle;'>합계금액</th>
+          <th style=' vertical-align: middle;'>실지급액</th>
+          <th style=' vertical-align: middle;'>마감자</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-  
+        @php
+          $row_num = $row_num ?? $statements->total();
+        @endphp
+        @foreach ($statements as $statement)
+            <tr class="align-middle py-2">
+                <td><span class="fw-medium">{{ $row_num-- }}</span></td>
+                <td>
+                    <a class="badge bg-label-info me-4" href="{{ route('erp-allowance.monthly-detail', ['code' => $statement->code, 'type' => $statement->type]) }}">
+                        <span class="fw-medium">상세보기</span>
+                    </a>
+                </td>
+                <td><span class="fw-medium">{{ date("Y-m-d",strtotime($statement->deadline_date)) }}</span></td>
+                <td><span class="fw-medium">{{ date("Y-m-d",strtotime($statement->s_date)) }}</span></td>
+                <td><span class="fw-medium">{{ date("Y-m-d",strtotime($statement->e_date)) }}</span></td>
+                <td>{{ number_format($statement->total_amount) }}</td>
+                <td>{{ number_format($statement->total_pv) }}</td>
+                <td>{{ number_format($statement->total_payment) }}</td>
+                <td>{{ number_format($statement->actual_amount) }}</td>
+                <td>{{ $statement->reg_name }}</td>
+            </tr>
+        @endforeach
       </tbody>
     </table>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+      {{ $statements->links('vendor.pagination.bootstrap-4') }}
   </div>
 </div>
 <!--/ Basic Bootstrap Table -->
