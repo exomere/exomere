@@ -41,7 +41,7 @@ $contents = [
                 <div
                     class="basis-1/2 flex flex-col justify-center pt-10 pb-20 px-8 lg:p-0 lg:px-[5%] xl:px-[10%] @if($loop->even) md:order-first @endif">
                     <div class="min-sm:max-w-lg">
-                        <h2 class="text-2xl md:text-3xl lg:text-4xl text-baseColor font-semibold mb-4 md:mb-7 text-left"
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl text-head font-semibold mb-4 md:mb-7 text-left"
                             data-aos="fade-in"
                             data-aos-delay="100">{{ __('messages.philosophy_content_head_'.$loop->index+1) }}</h2>
                         <p class="break-keep leading-loose lg:leading-loose lg:text-lg"

@@ -4,7 +4,7 @@
 let swiperInstance;
 
 function initializeSwiper() {
-    if (!document.querySelector('.m-swiper').length()) {
+    if (!document.querySelectorAll('.m-swiper').length) {
         return;
     }
     swiperInstance = new Swiper('.m-swiper', {

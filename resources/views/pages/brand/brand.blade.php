@@ -195,7 +195,7 @@ $brands = [
                                 <div class="mt-4 text-left">
                                     <div>
                                         <h3 class="mb-5 text-lg text-gray-900">
-                                            <a href="/product/?">
+                                            <a href="/products/1">
                                                                 <span aria-hidden="true"
                                                                       class="absolute inset-0"></span>
                                                 {{$item['product_name']}}
