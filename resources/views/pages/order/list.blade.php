@@ -95,6 +95,7 @@
             <td>{{$list->findByMemberRecommend()->get()->value('recommend_id')}}</td>
             <td>{{$list->findByMemberRecommend()->get()->value('recommend_name')}}</td>
             <td> <span class="fw-medium">{{$list->remark}}</span></td>
+            <td> <span class="fw-medium">{{$list->reg_name ?? 'oley'}}</span></td>
             <td>
               <div class="dropdown">
                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>

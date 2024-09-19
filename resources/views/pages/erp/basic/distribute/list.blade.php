@@ -35,7 +35,7 @@
 <!--/ Basic -->
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">분양몰 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-distribute-register')}}'" class="btn btn-primary">상품등록</button></small>
+    <h5 class="mb-0">분양몰 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-distribute-register')}}'" class="btn btn-primary">분양몰등록</button></small>
   </div>
   <div class="table-responsive text-nowrap">
     <table class="table" >
@@ -44,7 +44,6 @@
           <th>No</th>
           <th>분양몰코드</th>
           <th>분양몰명</th>
-          <th>분양몰아이디</th>
           <th>대표자명</th>
           <th>연락처</th>
           <th>사업자등록번호</th>
@@ -55,9 +54,34 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-     
+        
+        @foreach ($distributes as $distribute)
+          <tr>
+            <td>{{$distribute->id}}</td>
+            <td>{{$distribute->code}}</td>
+            <td>{{$distribute->name}}</td>
+            <td>{{$distribute->business_name}}</td>
+            <td>{{$distribute->director_phone}}</td>
+            <td>{{$distribute->business_num}}</td>
+            <td>{{$distribute->director_id}}</td>
+            <td>{{$distribute->director_name}}</td>
+            <td>{{$distribute->is_active}}</td>
+            <td>
+              <div class="dropdown">
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{{route('basic-layouts-distribute-register',$distribute->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                  <a class="dropdown-item" style='color:red;' href="{{route('distribute.del',$distribute->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        @endforeach
       </tbody>
     </table>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+      {{ $distributes->links('vendor.pagination.bootstrap-4') }}
   </div>
 </div>
 <!--/ Basic Bootstrap Table -->
