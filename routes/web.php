@@ -208,6 +208,7 @@ Route::group(['middleware' => 'auth'], function () {
                 // ㄴ 회원목록/등록
                 Route::get('/list', [ErpMemberController::class, 'list'])->name('erp-member.list');
                 Route::get('/register/{seq?}', [ErpMemberController::class, 'create'])->name('erp-member.create');
+                Route::post('/save', [ErpMemberController::class, 'save'])->name('erp-member.save');
 
                 // ㄴ 회원수정내역
                 Route::get('/modifyList', [ErpMemberController::class, 'index'])->name('erp-member.index');

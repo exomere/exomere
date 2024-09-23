@@ -4,14 +4,17 @@
       "url": "management/dashboard",
       "name": "dashboard",
       "icon": "menu-icon tf-icons bx bx-home-circle",
+      "read": "all",
       "slug": "dashboard"
     },
     {
+      "read": "user",
       "menuHeader": "my_office"
     },
     {
       "name": "profile",
       "icon": "menu-icon tf-icons bx bx bx-dock-top",
+      "read": "user",
       "slug": "member",
       "submenu": [
         {
@@ -25,6 +28,7 @@
       "name": "points",
       "icon": "menu-icon tf-icons bx bxs-badge-dollar",
       "slug": "auth",
+      "read": "user",
       "submenu": [
         {
           "url": "management/auth/login-basic",
@@ -38,6 +42,7 @@
       "name": "orders",
       "icon": "menu-icon tf-icons bx bx-shopping-bag",
       "slug": "pages-misc",
+      "read": "user",
       "submenu": [
         {
           "url": "management/pages/misc-error",
@@ -57,6 +62,7 @@
       "name": "commission_management",
       "icon": "menu-icon tf-icons bx bxs-offer",
       "slug": "pages-misc",
+      "read": "user",
       "submenu": [
         {
           "url": "management/pages/misc-error",
@@ -82,27 +88,33 @@
       "name": "organization_chart",
       "icon": "menu-icon tf-icons bx bx-sitemap",
       "slug": "cards-basic",
+      "read": "user",
       "url": "management/organization/list"
     },
     {
       "name": "notices",
       "icon": "menu-icon tf-icons bx bxs-notification",
       "slug": "notice.list",
+      "read": "user",
       "url": "management/notice/list"
     },
     {
       "name": "inquiries",
       "icon": "menu-icon tf-icons bx bxs-bell-ring",
       "slug": "inquiry.list",
+      "read": "user",
       "url": "management/inquiry/list"
     },
     {
+      "read": "admin",
       "menuHeader": "erp_menu"
+      
     },
     {
       "name": "member_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "erp-member",
+      "read": "admin",
       "submenu": [
         {
           "url": "management/erp/member/list",
@@ -115,6 +127,7 @@
       "name": "order_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "order-layouts",
+      "read": "admin",
       "submenu": [
         {
           "url": "management/erp/order/list",
@@ -127,6 +140,7 @@
       "name": "commission_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "erp-allowance",
+      "read": "admin",
       "submenu": [
         {
           "url": "management/erp/commission/termClosing",
@@ -144,6 +158,7 @@
       "name": "points_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "erp-point",
+      "read": "admin",
       "submenu": [
         {
           "url": "management/erp/point/list",
@@ -156,6 +171,7 @@
       "name": "withdrawal_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "erp-withdrawal",
+      "read": "admin",
       "submenu": [
         {
           "url": "management/erp/withdrawal/list",
@@ -168,6 +184,7 @@
       "name": "board_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "erp-board",
+      "read": "admin",
       "submenu": [
         {
           "url": "management/erp/board/notice/list",
@@ -180,6 +197,7 @@
       "name": "basic_info",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "basic-layouts",
+      "read": "admin",
       "submenu": [
         {
           "url": "management/erp/basic/manager/list",
@@ -207,6 +225,7 @@
       "name": "inventory_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "form-layouts",
+      "read": "admin",
       "submenu": [
         {
           "url": "management/order/list",

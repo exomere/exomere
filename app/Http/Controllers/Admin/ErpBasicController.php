@@ -51,8 +51,8 @@ class ErpBasicController extends Exomere
             "remark" => $request->remark,
         ];
 
-        if(isset($request->password)){
-            $input_data["member_pw"] = $request->password;
+        if(isset($request->member_pw)){
+            $input_data["member_pw"] = encryptPassword($request->member_pw);
         }
 
         ExMember::UpdateOrCreate(
@@ -366,4 +366,12 @@ class ErpBasicController extends Exomere
         ExDistribute::find($request->seq)->delete();
         return redirect()->route('basic-layouts-item-list');
     }
+
+    public function memberDel(Request $request)
+    {
+        ExDistribute::find($request->seq)->update(['is_delete' => 'Y']);
+        return redirect()->route('basic-layouts-item-list');
+    }
+
+    
 }

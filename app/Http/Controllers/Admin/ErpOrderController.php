@@ -28,7 +28,7 @@ class ErpOrderController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
       
-        $orders = ExOrder::orderBy('id', 'desc')->paginate(20);
+        $orders = ExOrder::orderBy('id', 'desc')->paginate($limitPage);
 
         if (!is_null($request->get('search_text'))) {
           $search_text = $request->get('search_text');

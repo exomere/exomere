@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Exomere extends Controller
 {
 
-    private $pageLimit = 10;
+    private $pageLimit = 15;
 
     CONST _PAYMENT_CARD_COMPANY = [
         "00" => "온플렛",

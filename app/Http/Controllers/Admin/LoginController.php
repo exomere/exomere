@@ -32,8 +32,9 @@ class LoginController extends Exomere
             $request->session()->put('member_seq', $userInfo->id ?? '');
             $request->session()->put('member_id', $userInfo->member_id ?? '');
             $request->session()->put('member_name', $userInfo->name ?? '');
-            $request->session()->put('member_type', $userInfo->type ?? '');
+            $request->session()->put('member_type', $userInfo->member_type ?? '');
             $request->session()->put('member_code', $userInfo->code ?? '');
+            $request->session()->put('member_level', $userInfo->member_level ?? '');
 
             auth()->login($userInfo);
 

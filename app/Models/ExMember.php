@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\Models\ExOrder;
 
 class ExMember extends Authenticatable
 {
@@ -33,5 +33,13 @@ class ExMember extends Authenticatable
     public static function findByMemberSeq(int $id): ?ExMember
     {
         return self::where('id', $id)->first();
+    }
+
+    /**
+     * @return int
+     */
+    public function getMemberOrderAmountSum()
+    {
+      return $this->hasMany(ExOrder::class, "member_seq","id")->sum('total_amount');
     }
 }

@@ -31,9 +31,9 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-password"> <span style='color:red;'>*</span>비밀번호</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-member_pw"> <span style='color:red;'>*</span>비밀번호</label>
               <div class="col-sm-6">
-                <input type="text" id="basic-default-password" class="form-control" name='password' value=""/>
+                <input type="text" id="basic-default-member_pw" class="form-control" name='member_pw' />
               </div>
             </div>
             <div class="row mb-3">
