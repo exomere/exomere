@@ -73,7 +73,7 @@ class MemberController extends Controller
 
     public function searchMember(Request $request)
     {
-        $members = ExMember::where($request->type,'like','%'.$request->text.'%')->get();
+        $members = ExMember::where($request->type,'like','%'.$request->text.'%')->where('member_position',"!=","admin")->get();
 
         $output_data = [];
         $cnt = 0;

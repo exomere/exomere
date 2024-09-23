@@ -50,8 +50,8 @@
               <div class="col-md-4">
                 <select class="form-select" name="center_seq" id="center_seq">
                   <option value="">센터 선택</option>
-                  @foreach ($item_array as $item)
-                    <option value='{{$item['seq']}}'>{{$item['name']}}
+                  @foreach ($center_array as $center)
+                    <option value='{{$center['seq']}}'>{{$center['name']}}
                     </option>
                   @endforeach
                 </select>      

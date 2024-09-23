@@ -34,7 +34,7 @@
   <!--/ Basic -->
   <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
-      <h5 class="mb-0">회원 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-member-register')}}'" class="btn btn-primary">회원 등록</button></small>
+      <h5 class="mb-0">회원 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('erp-member.create')}}'" class="btn btn-primary">회원 등록</button></small>
     </div>
     <div class="table-responsive text-nowrap">
       <table class="table" >
@@ -55,6 +55,7 @@
             <th rowspan="2" style='vertical-align: middle;' >매출합계</th>
             <th colspan="3" style='text-align:center;'>추천인</th>
             <th rowspan="2" style='vertical-align: middle;'>비고</th>
+            <th rowspan="2" style='vertical-align: middle;'>관리</th>
           </tr>
           <tr>
             <th style='text-align:center;'>회원번호</th>
@@ -93,6 +94,15 @@
               <td>{{$list->recommend_id}}</td>
               <td>{{$list->recommend_name}}</td>
               <td>{{$list->remark}}</td>
+              <td>
+                <div class="dropdown">
+                  <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{route('erp-member.create',$list->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                    <a class="dropdown-item" style='color:red;' href="{{route('member.del',$list->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
+                  </div>
+                </div>
+              </td>
             </tr>
           @endforeach
         </tbody>

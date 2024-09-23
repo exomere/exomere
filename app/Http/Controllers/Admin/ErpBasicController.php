@@ -364,13 +364,13 @@ class ErpBasicController extends Exomere
     public function distributeDel(Request $request)
     {
         ExDistribute::find($request->seq)->delete();
-        return redirect()->route('basic-layouts-item-list');
+        return redirect()->route('basic-layouts-distribute-list');
     }
 
     public function memberDel(Request $request)
     {
-        ExDistribute::find($request->seq)->update(['is_delete' => 'Y']);
-        return redirect()->route('basic-layouts-item-list');
+        ExMember::find($request->seq)->update(['is_delete' => 'Y']);
+        return redirect()->route('basic-layouts-member-list');
     }
 
     

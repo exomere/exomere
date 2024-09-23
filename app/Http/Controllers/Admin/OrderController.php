@@ -8,6 +8,7 @@ use App\Models\ExMember;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Exomere;
+use App\Models\ExCenter;
 use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Exomere
@@ -73,6 +74,14 @@ class OrderController extends Exomere
             $cnt++;
           }
 
+          $centerArray = [];
+          $cnt = 0;
+          $centers = ExCenter::where('is_active','Y')->get();
+          foreach($centers as $center){
+            $centerArray[$cnt]['seq'] = $center->id;
+            $centerArray[$cnt]['name'] = $center->name;
+            $cnt++;
+          }
           $data = [
             "order_seq" => $request->seq ?? null,
             "payment_kind" => self::PAYMENT_KIND,
@@ -80,6 +89,7 @@ class OrderController extends Exomere
             "order" => $Order ?? [],
             "card_compnay" => self::_PAYMENT_CARD_COMPANY,
             "item_array" => $itemArray ?? [],
+            "center_array" => $centerArray ?? [],
           ];
 
           return view('pages.order.register')->with($data);
