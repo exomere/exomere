@@ -190,6 +190,11 @@
           "url": "management/erp/board/notice/list",
           "name": "announcements",
           "slug": "erp-board.notice.list"
+        },
+        {
+          "url": "management/erp/board/inquiry/list",
+          "name": "inquiries",
+          "slug": "erp-board.inquiry.list"
         }
       ]
     },
@@ -218,59 +223,6 @@
           "url": "management/erp/basic/distribute/list",
           "name": "distribute_list",
           "slug": "basic-layouts-distribute-list"
-        }
-      ]
-    },
-    {
-      "name": "inventory_management",
-      "icon": "menu-icon tf-icons bx bx-detail",
-      "slug": "form-layouts",
-      "read": "admin",
-      "submenu": [
-        {
-          "url": "management/order/list",
-          "name": "order_shipment",
-          "slug": "basic-layouts-order-list"
-        },
-        {
-          "url": "management/form/layouts-horizontal",
-          "name": "delivery_management",
-          "slug": "form-layouts-horizontal"
-        },
-        {
-          "url": "management/form/layouts-horizontal",
-          "name": "in_out_management",
-          "slug": "form-layouts-horizontal"
-        },
-        {
-          "url": "management/form/layouts-horizontal",
-          "name": "center_in_out_management",
-          "slug": "form-layouts-horizontal"
-        },
-        {
-          "url": "management/form/layouts-horizontal",
-          "name": "other_in_out_management",
-          "slug": "form-layouts-horizontal"
-        },
-        {
-          "url": "management/form/layouts-horizontal",
-          "name": "member_shipment_management",
-          "slug": "form-layouts-horizontal"
-        },
-        {
-          "url": "management/form/layouts-horizontal",
-          "name": "in_out_status",
-          "slug": "form-layouts-horizontal"
-        },
-        {
-          "url": "management/form/layouts-horizontal",
-          "name": "inventory_status",
-          "slug": "form-layouts-horizontal"
-        },
-        {
-          "url": "management/form/layouts-horizontal",
-          "name": "order_shipment_management",
-          "slug": "form-layouts-horizontal"
         }
       ]
     }

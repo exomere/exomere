@@ -67,8 +67,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-medium d-block">{{ request()->session()->get('member_name') }}</span>
+                                                    <small class="text-muted">{{ request()->session()->get('member_id') }}</small>
                                                 </div>
                                             </div>
                                         </a>

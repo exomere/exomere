@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Constants\CommonConstants;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Exomere;
 use App\Http\Requests\UpdateMemberAccountInformationRequest;
 use App\Http\Requests\UpdateMemberBasicInformationRequest;
 use App\Http\Requests\UpdateMemberPasswordRequest;
@@ -12,11 +13,12 @@ use App\Models\ExMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class MemberController extends Controller
+class MemberController extends Exomere
 {
     public function info()
     {
         $user = auth()->user();
+        // dd($user->id);
         $member = ExMember::findByMemberSeq($user->id);
         $recruiter = ExMember::findByMemberSeq($user->recommend_seq);
         $account = ExAccountInfo::findByMemberSeq($user->id);
@@ -58,13 +60,13 @@ class MemberController extends Controller
     {
         $user = auth()->user();
 
-        $encryptedCurrentPassword = encryptPassword($request->current_password);
+        $encryptedCurrentPassword = $this->encryptPassword($request->current_password);
 
         if ($encryptedCurrentPassword !== $user->member_pw) {
             return redirect()->back()->withErrors(['current_password' => '현재 비밀번호가 맞지 않습니다.']);
         }
 
-        $encryptedNewPassword = encryptPassword($request->new_password);
+        $encryptedNewPassword = $this->encryptPassword($request->new_password);
 
         $user->update(['member_pw' => $encryptedNewPassword]);
 

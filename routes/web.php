@@ -270,9 +270,29 @@ Route::group(['middleware' => 'auth'], function () {
 
             // 게시판관리 board
             // ㄴ 공지사항
+            // ㄴ 1:1문의
             Route::prefix('/board')->group(function () {
                 Route::prefix('/notice')->group(function () {
                     Route::get('/list', [ErpBoardController::class, 'noticeList'])->name('erp-board.notice.list');
+                    Route::get('/detail/{id}', [ErpBoardController::class, 'noticeDetail'])->name('erp-board.notice.detail');
+                    Route::get('/create', [ErpBoardController::class, 'noticeCreate'])->name('erp-board.notice.create');
+                    Route::post('/store', [ErpBoardController::class, 'noticeStore'])->name('erp-board.notice.store');
+                    Route::get('/edit/{id}', [ErpBoardController::class, 'noticeEdit'])->name('erp-board.notice.edit');
+                    Route::put('/update/{id}', [ErpBoardController::class, 'noticeUpdate'])->name('erp-board.notice.update');
+                    Route::delete('/delete/{id}', [ErpBoardController::class, 'noticeDestroy'])->name('erp-board.notice.delete');
+                });
+
+                 /** 1:1문의 */
+                Route::prefix('/inquiry')->group(function () {
+                    Route::get('/list', [ErpBoardController::class, 'inquiryList'])->name('erp-board.inquiry.list');
+                    Route::get('/detail/{id}', [ErpBoardController::class, 'inquiryDetail'])->name('erp-board.inquiry.detail');
+                    Route::get('/create', [ErpBoardController::class, 'inquiryCreate'])->name('erp-board.inquiry.create');
+                    Route::post('/store', [ErpBoardController::class, 'inquiryStore'])->name('erp-board.inquiry.store');
+                    Route::get('/edit/{id}', [ErpBoardController::class, 'inquiryEdit'])->name('erp-board.inquiry.edit');
+                    Route::put('/update/{id}', [ErpBoardController::class, 'inquiryUpdate'])->name('erp-board.inquiry.update');
+                    Route::delete('/delete/{id}', [ErpBoardController::class, 'inquiryDestroy'])->name('erp-board.inquiry.delete');
+                    // 1:1 문의 답변
+                    Route::post('/{id}/comment', [ErpBoardController::class, 'inquiryStoreComment'])->name('erp-board.inquiry.comment.store');
                 });
             });
 

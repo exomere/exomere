@@ -21,7 +21,7 @@ class ErpBasicController extends Exomere
 
     const ITEM_KIND = [
         'N' => '없음',
-        'signature' => '대표상품',
+        'best' => 'BEST ITEMS',
     ];
 
     public function memberRegister(Request $request){
@@ -52,7 +52,7 @@ class ErpBasicController extends Exomere
         ];
 
         if(isset($request->member_pw)){
-            $input_data["member_pw"] = encryptPassword($request->member_pw);
+            $input_data["member_pw"] = $this->encryptPassword($request->member_pw);
         }
 
         ExMember::UpdateOrCreate(
@@ -232,6 +232,7 @@ class ErpBasicController extends Exomere
             "code" => $request->code ?? null,
             "category" => $request->category ?? null,
             "kind" => $request->kind ?? null,
+            "sort" => $request->sort ?? 9999,
             "price" => $request->price ?? 0,
             "tax" => $request->tax ?? 0,
             "pv" => $request->pv ?? 0,
@@ -267,6 +268,13 @@ class ErpBasicController extends Exomere
             $input_data['thum_img'] = $request->file('thum_img')->storeAs('public/data', $fileName);
             $input_data['thum_img'] = $fileName;
         }
+
+        if ($request->hasFile('thum_img2')) {
+            $fileName = time() . '_' . $request->file('thum_img2')->getClientOriginalName();
+            $input_data['thum_img2'] = $request->file('thum_img2')->storeAs('public/data', $fileName);
+            $input_data['thum_img2'] = $fileName;
+        }
+
         if ($request->hasFile('img')) {
             $fileName = time() . '_' . $request->file('img')->getClientOriginalName();
             $request->file('img')->storeAs('public/data', $fileName);

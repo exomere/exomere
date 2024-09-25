@@ -14,7 +14,7 @@
         <div class="card-header d-flex align-items-center justify-content-between">
             <h5 class="mb-0">공지사항</h5>
             <small class="text-muted float-end">
-                <button onclick="location.href='{{ route('notice.create') }}'" class="btn btn-primary">공지등록</button>
+                {{-- <button onclick="location.href='{{ route('notice.create') }}'" class="btn btn-primary">공지등록</button> --}}
             </small>
         </div>
         <div class="table-responsive text-nowrap">
@@ -25,7 +25,7 @@
                     <th class="w-50">제목</th>
                     <th class="w-20">작성자</th>
                     <th class="w-20">작성일</th>
-                    <th class="w-10">관리</th>
+                    {{-- <th class="w-10">관리</th> --}}
                 </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -42,7 +42,7 @@
                         </td>
                         <td><span class="fw-medium">{{ $notice->author_name }}</span></td>
                         <td><span class="fw-medium">{{ $notice->created_at->format('Y-m-d') }}</span></td>
-                        <td>
+                        {{-- <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                     <i class="bx bx-dots-vertical-rounded"></i>
@@ -60,7 +60,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
                 </tbody>

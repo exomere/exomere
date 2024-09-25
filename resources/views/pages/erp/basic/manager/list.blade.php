@@ -51,7 +51,7 @@
           
           @foreach ($ex_members as $list)
             <tr>
-              <td>{{$list->id}}</td>
+              <td>{{$row_num--}}</td>
               <td>{{$list->member_id}}</td>
               <td>{{$list->name}}</td>
               <td>{{($list->is_delete == 'N' ? '사용' : '미사용')}}</td>

@@ -109,6 +109,7 @@ class ItemController extends Exomere
         $input_data['thum_img'] = $fileName;
         
       }
+      
       if($request->hasFile('img')){
         $fileName = time().'_'.$request->file('img')->getClientOriginalName();
         $request->file('img')->storeAs('public/data', $fileName);

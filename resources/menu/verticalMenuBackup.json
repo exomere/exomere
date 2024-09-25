@@ -328,56 +328,60 @@
       ]
     },
     {
-      "name": "재고관리",
+      "name": "inventory_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "form-layouts",
+      "read": "admin",
       "submenu": [
         {
-          "url": "management/form/layouts-vertical",
-          "name": "주문출고",
-          "slug": "form-layouts-vertical"
+          "url": "management/order/list",
+          "name": "order_shipment",
+          "slug": "basic-layouts-order-list"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "배송관리",
+          "name": "delivery_management",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "입출금관리",
+          "name": "in_out_management",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "센터 입출관리",
+          "name": "center_in_out_management",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "기타 입출관리",
+          "name": "other_in_out_management",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "회원 출고관리",
+          "name": "member_shipment_management",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "입출 등록현황",
+          "name": "in_out_status",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "재고현황",
+          "name": "inventory_status",
           "slug": "form-layouts-horizontal"
         },
         {
           "url": "management/form/layouts-horizontal",
-          "name": "주문별 출고관리",
+          "name": "order_shipment_management",
           "slug": "form-layouts-horizontal"
         }
       ]
     }
   ]
 }
+
+
+

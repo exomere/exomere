@@ -101,7 +101,7 @@ class ErpMemberController extends Exomere
         ];
 
         if(isset($request->member_pw)){
-            $input_data["member_pw"] = encryptPassword($request->member_pw);
+            $input_data["member_pw"] = $this->encryptPassword($request->member_pw);
         }
 
         ExMember::UpdateOrCreate(

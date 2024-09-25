@@ -138,4 +138,10 @@ class Exomere extends Controller
     public function pagaNation($data,$limit){
 
     }
+
+    public function encryptPassword($password)
+    {
+        $loginKey = env('LOGIN_KEY');
+        return strtoupper(sha1(hex2bin(sha1($loginKey . $password))));
+    }
 }
