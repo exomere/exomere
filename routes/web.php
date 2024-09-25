@@ -59,14 +59,12 @@ use App\Http\Controllers\tables\Basic as TablesBasic;
 
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\Admin\ItemController;
-use App\Http\Controllers\Admin\DistributeController;
-use App\Http\Controllers\Admin\CenterController;
-use App\Http\Controllers\Admin\OrderController;
+use Illuminate\Support\Facades\Artisan;
 
-use App\Http\Controllers\MainController;
 
 ###################### 미인증 페이지 START ###########################
+
+Artisan::call('storage:link'); //프로덕션에서 심볼릭 오류가 있어서 추가함,,, ㅠㅠ
 
 Route::get('/', function () {
     return view('pages.main');
