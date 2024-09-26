@@ -85,6 +85,7 @@ $(function () {
     }
 
     window.closeModal = function (modalId) {
+        document.getElementById(modalId)
         document.getElementById(modalId).style.display = 'none'
         document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
     }

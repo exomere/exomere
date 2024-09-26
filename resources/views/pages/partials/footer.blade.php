@@ -1,5 +1,5 @@
 <footer id="footer"
-        class="w-full bg-exomere font-light text-sm text-slate-200">
+        class="w-full bg-exomere font-light text-sm text-white">
 
     <div class="flex flex-wrap gap-x-3 p-7 lg:p-12">
         <ul class="flex flex-col lg:flex-1 lg:inline-flex lg:gap-y-3">

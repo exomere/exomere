@@ -9,7 +9,7 @@ return [
     'history_title' => '엑소미어가 디딘 첫걸음부터 지금까지의 발걸음을 담았습니다',
     'cibi' => 'CI/BI 소개',
     'cibi_title' => '엑소미어의 핵심 가치를 시각적으로 표현하고 있는 디자인 자산입니다',
-    'rnd'=>'R&D',
+    'rnd' => 'R&D',
     'core' => '핵심 성분',
     'core_title' => '엑소미어와 함께, 피부의 근본적인 변화를 경험하세요',
     'technology' => '특허 기술',
@@ -31,7 +31,7 @@ return [
     'notice' => '공지사항',
     'notice_title' => '공지사항을 확인해 보세요',
     'reference' => '자료실',
-    'reference_title'=> '엑소미어의 라이브러리를 빠르게 확인해보세요',
+    'reference_title' => '엑소미어의 라이브러리를 빠르게 확인해보세요',
     'inquiry' => '1:1 문의',
     'inquiry_title' => '도움이 필요하세요?',
     "view_all" => "전체보기",
@@ -40,5 +40,6 @@ return [
     "creams" => "크림",
     "sheet_masks" => "마스크팩",
     "cushions" => "쿠션",
+    "cart" => "장바구니",
 ];
 

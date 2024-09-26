@@ -113,7 +113,7 @@ $contents = [
                     <div class="hidden bg-gray-50" id="styled-section{{ $loop->index }}" role="tabpanel"
                          aria-labelledby="section{{ $loop->index }}-tab">
                         <div
-                            class="flex flex-col md:flex-row justify-center items-center space-y-10 break-keep">
+                            class="flex flex-col md:flex-row justify-center items-center max-md:space-y-10 break-keep">
                             <picture class="overflow-hidden md:h-[60vh] md:basis-2/3">
                                 <source srcset="{{ $content['image'] }}">
                                 <img src="{{ $content['image'] }}"

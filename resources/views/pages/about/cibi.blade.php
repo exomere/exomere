@@ -72,18 +72,18 @@
         <div class="w-full">
             <div class="flex flex-wrap justify-between items-center gap-x-1">
                 <div>
-                    <h2 class="text-lg font-semibold mb-1"
+                    <h2 class="text-lg font-semibold mb-4"
                         data-aos="fade-up">명도에 따른 색상 활용</h2>
-                    <div class="color__system brightness mb-7"
+                    <div class="color__system brightness mb-10"
                          data-aos="fade-up"
                          data-aos-delay="100">
                         <img src="{{asset('assets/img/elements/color_system_brightness.png')}}"
                              alt="">
                     </div>
 
-                    <h2 class="text-lg font-semibold mb-1"
+                    <h2 class="text-lg font-semibold mb-4"
                         data-aos="fade-up">채도에 따른 색상 활용</h2>
-                    <div class="color__system saturation mb-7"
+                    <div class="color__system saturation mb-10"
                          data-aos="fade-up"
                          data-aos-delay="100">
                         <img src="{{asset('assets/img/elements/color_system_saturation.png')}}"
@@ -91,9 +91,9 @@
                     </div>
                 </div>
                 <div>
-                    <h2 class="text-lg font-semibold mb-1"
+                    <h2 class="text-lg font-semibold mb-4"
                         data-aos="fade-up">흑백 배경 색상 활용</h2>
-                    <div class="color__system black mb-7"
+                    <div class="color__system black mb-10"
                          data-aos="fade-up"
                          data-aos-delay="100">
                         <img src="{{asset('assets/img/elements/color_system_black.png')}}" alt="">

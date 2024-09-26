@@ -24,6 +24,11 @@ button {
     color: #02060F;
 }
 
+input {
+    /*-webkit-appearance: none;*/
+    -webkit-border-radius: 0;
+}
+
 a {
     text-decoration: none;
     color: #02060F;
@@ -126,8 +131,8 @@ a {
     background-position: center left;
 }
 
-.swiper-button-next.white,
-.swiper-button-prev.white {
+.text-white .swiper-button-next,
+.text-white .swiper-button-prev {
     filter: invert(1);
 }
 

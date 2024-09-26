@@ -13,7 +13,7 @@
             </div>
         </section>
 
-        <section class="max-container h-full min-h-screen bg-white">
+        <section class="h-full min-h-screen bg-white">
             <div class="mt-14 mb-24 md:mt-24 text-center">
                 <!-- Sub visual Text -->
                 <div

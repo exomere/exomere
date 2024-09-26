@@ -1,9 +1,11 @@
 <?php
 
-$activeHeader = true;
 $product = [
     'product_name' => '로즈가든마스크팩',
     'price' => 45000,
+    'distribution_price' => 22500,
+    'vat_excluded' => 20455,
+    'total_price' => 22500,
     'thumbnail' => asset('assets/img/elements/2024061918143212433.png'),
     'thumbnail2' => asset('assets/img/elements/product_hover.jpg'),
     'brand' => 'return10',
@@ -46,6 +48,13 @@ $product = [
             --tw-border-opacity: 1;
             border-color: rgb(79 70 229 / var(--tw-border-opacity));
         }
+
+        #toggle-btn,
+        #hide-btn {
+            width: 95%;
+            -webkit-box-shadow: 0 10px 10px 0 rgba(80, 80, 80, .1);
+            box-shadow: 0 10px 10px 0 rgba(80, 80, 80, .1);
+        }
     </style>
 
 @endsection
@@ -56,7 +65,7 @@ $product = [
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
                 <div>
                     <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
-                         class="swiper product-prev mb-6 h-auto max-h-[80svh]">
+                         class="swiper product-prev mb-3 h-auto max-h-[80svh]">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <img src="{{ $product['thumbnail'] }}"
@@ -120,20 +129,55 @@ $product = [
                 </div>
 
                 <div
-                    class="pro-detail w-full flex flex-col justify-center order-last lg:order-none max-lg:max-w-[608px] max-lg:mx-auto">
-                    <p class="font-medium text-lg text-indigo-600 mb-4">{{ __('gnb.'. $product['brand']) }}</p>
-                    <h2 class="mb-2 font-manrope font-bold text-3xl leading-10 text-gray-900">{{ $product['product_name'] }}
-                    </h2>
+                    class="pro-detail w-full flex flex-col order-last lg:order-none pt-8 ">
+                    <p class="font-medium text-lg text-exomere mb-4"><a
+                            class="flex flex-inline items-center text-base"
+                            href="/brand?brand={{$product['brand']}}">{{ __('gnb.'. $product['brand']) }}
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+                            </svg>
+                        </a>
+                    </p>
+                    <h2 class="mb-2 font-bold text-3xl leading-10 text-gray-900">{{ $product['product_name'] }}</h2>
 
                     <p class="text-gray-500 text-base font-normal mb-8 ">
                         {{ $product['sub_name'] }}
                     </p>
-                    <div class="block w-full">
-                        <div class="text">
-                            <div class="grid grid-cols-2 gap-3 mb-8 justify-items-center items-center">
-                                <div class="flex items-center justify-center w-full">
+                    <div class="w-full">
+                        <input type="hidden" class="distribution_price" name="distribution_price"
+                               value="{{ $product['distribution_price'] }}">
+
+                        <div class="flex flex-col gap-3 mb-8 justify-items-center justify-center items-start">
+                            <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
+                                <strong class="w-40">{{ __('common.price') }}</strong>
+                                <h6 class="flex"><span
+                                        class="">{{ number_format($product['price']) }}</span>
+                                    <span
+                                        class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
+                                </h6>
+                            </div>
+                            <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
+                                <strong class="w-40">{{ __('common.distribution_price') }}</strong>
+                                <h6 class="flex "><span
+                                        class="">{{ number_format($product['distribution_price']) }}</span>
+                                    <span
+                                        class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
+                                </h6>
+                            </div>
+                            <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
+                                <strong class="w-40">{{ __('common.vat_excluded') }}</strong>
+                                <h6 class="flex"><span
+                                        class="">{{ number_format($product['vat_excluded']) }}</span>
+                                    <span
+                                        class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
+                                </h6>
+                            </div>
+                            <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
+                                <strong class="w-40">{{ __('common.quantity') }}</strong>
+                                <div class="flex flex-row">
                                     <button
-                                        class="group py-4 px-6 border border-gray-400 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-300 hover:bg-gray-50">
+                                        class="minus group py-2 px-3 border border-solid border-gray-300 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-300 hover:bg-gray-50">
                                         <svg
                                             class="stroke-gray-700 transition-all duration-500 group-hover:stroke-black"
                                             width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -147,10 +191,13 @@ $product = [
                                         </svg>
                                     </button>
                                     <input type="text"
-                                           class="font-semibold text-gray-900 text-lg py-[13px] px-6 w-full lg:max-w-[118px] border-gray-400 bg-transparent placeholder:text-gray-900 text-center hover:bg-gray-50 focus-within:bg-gray-50 outline-0"
+                                           name="quantity"
+                                           class="quantity font-semibold text-gray-900 border-y border-solid border-gray-300 text-lg w-12 lg:max-w-[118px] bg-transparent placeholder:text-gray-900 text-center hover:bg-gray-50 focus-within:bg-gray-50 outline-0"
+                                           value="1"
+                                           maxlength="3"
                                            placeholder="1">
                                     <button
-                                        class="group py-4 px-6 border border-gray-400 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-300 hover:bg-gray-50">
+                                        class="plus group py-2 px-3 border border-solid border-gray-300 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-300 hover:bg-gray-50">
                                         <svg
                                             class="stroke-gray-700 transition-all duration-500 group-hover:stroke-black"
                                             width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -163,25 +210,30 @@ $product = [
                                                   stroke-width="1.6" stroke-linecap="round"/>
                                         </svg>
                                     </button>
-                                </div>
-                                <div class="">
-                                    <h6
-                                        class="font-manrope font-semibold text-2xl leading-9 text-gray-900 sm:border-r border-gray-200">
-                                        {{ number_format($product['price']) }}원</h6>
+
                                 </div>
                             </div>
-                            <div class="flex items-center gap-3">
-                                <button
-                                    class="group py-4 px-5 bg-indigo-50 text-indigo-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:bg-indigo-100 hover:shadow-indigo-200">
-                                    장바구니
-                                </button>
-                                <button
-                                    class="text-center w-full px-5 py-4  bg-indigo-600 flex items-center justify-center font-semibold text-lg text-white shadow-sm transition-all duration-500 hover:bg-indigo-700 hover:shadow-indigo-400">
-                                    구매하기
-                                </button>
+                            <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
+                                <strong class="w-40">{{ __('common.total_price') }}</strong>
+                                <h6 class="flex font-semibold"><span
+                                        class="total-price">{{ number_format($product['total_price']) }}</span>
+                                    <span
+                                        class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
+                                </h6>
                             </div>
 
                         </div>
+                        <div class="flex flex-col lg:flex-row items-center gap-3">
+                            <button
+                                class="rounded-sm group py-4 px-5 border border-solid border-gray-600 bg-white text-gray-600 font-normal text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent">
+                                {{ __('common.add_to_cart') }}
+                            </button>
+                            <button
+                                class="rounded-sm text-center w-full px-5 py-4 border border-solid border-base-color bg-base-color flex items-center justify-center font-normal text-lg text-white shadow-sm">
+                                {{ __('common.buy_now') }}
+                            </button>
+                        </div>
+
                     </div>
 
                 </div>
@@ -204,7 +256,7 @@ $product = [
                             data-tabs-target="#detail"
                             aria-controls="detail"
                             aria-selected="true"
-                    >상세정보
+                    >{{ __('common.details') }}
                     </button>
                 </li>
                 <li role="presentation" class="basis-1/2">
@@ -215,7 +267,7 @@ $product = [
                             data-tabs-target="#info"
                             aria-controls="info"
                             aria-selected="false"
-                    >배송/교환/환불
+                    >{{ __('common.shipping_exchange_refund') }}
                     </button>
                 </li>
             </ul>
@@ -231,12 +283,23 @@ $product = [
                     </div>
 
                     <button id="toggle-btn"
-                            class="mt-4 mt-12 inline-block border border-solid border-base-color py-3 px-24 text-base-color break-keep text-sm">
-                        상품 정보 더보기
+                            class="mt-4 h-12 inline-flex justify-center items-center gap-x-1 border border-solid border-base-color text-base-color break-keep text-sm">
+                        {{ __('common.expand_detail') }}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                             class="bi bi-chevron-down"
+                             fill="currentColor"
+                             stroke="currentColor"
+                             viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                        </svg>
                     </button>
                     <button id="hide-btn"
-                            class="hidden mt-4 mt-12 inline-block border border-solid border-base-color py-3 px-24 text-base-color break-keep text-sm">
-                        상품 정보 접기
+                            class="hidden mt-4 h-12 inline-flex justify-center items-center gap-x-1 inline-block border border-solid border-base-color text-base-color break-keep text-sm">
+                        {{ __('common.collapse_detail') }}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" stroke="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+                        </svg>
                     </button>
                 </div>
 
@@ -387,6 +450,44 @@ $product = [
                 document.querySelector('#hide-btn').classList.add('hidden');
             })
 
+        });
+
+        function updateTotalPrice() {
+            const quantityInput = document.querySelector('.quantity');
+            const pricePerUnit = parseInt(document.querySelector('.distribution_price').value);
+            const quantity = parseInt(quantityInput.value);
+
+            if (!isNaN(quantity) && quantity > 0) {
+                const totalPrice = quantity * pricePerUnit;
+
+                let formattedNumber = totalPrice.toLocaleString();
+
+                document.querySelector('.total-price').innerText = formattedNumber;
+            } else {
+                alert("수량은 1 이상이어야 합니다.");
+                quantityInput.value = 1;
+                document.querySelector('.total-price').innerText = pricePerUnit;
+            }
+        }
+
+        // 수량 변경 핸들러
+        document.querySelector('.plus').addEventListener('click', function () {
+            const quantityInput = document.querySelector('.quantity');
+            quantityInput.value = parseInt(quantityInput.value) + 1;
+            updateTotalPrice();
+        });
+
+        document.querySelector('.minus').addEventListener('click', function () {
+            const quantityInput = document.querySelector('.quantity');
+            if (parseInt(quantityInput.value) > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+                updateTotalPrice();
+            }
+        });
+
+        // 텍스트 입력 필드에서 직접 수량을 변경할 때
+        document.querySelector('.quantity').addEventListener('input', function () {
+            updateTotalPrice();
         });
 
     </script>

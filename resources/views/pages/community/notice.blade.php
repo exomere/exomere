@@ -41,7 +41,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
                 <col class="w-20 max-sm:hidden">
                 <col class="max-w-lg">
                 <col class="w-20 max-sm:hidden">
-                <col class="w-32">
+                <col class="w-32 max-sm:hidden">
                 <col class="w-20 max-sm:hidden">
             </colgroup>
             <thead
@@ -83,9 +83,8 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
 
         <!-- modal -->
         <div class="hidden" id="contents-modal" tabindex="-1" aria-hidden="true">
-            <div
-                class="bg-white fixed h-full left-0 min-h-svh top-0 w-full z-[201] overflow-y-auto padding">
-                <div class="fixed right-5 lg:right-20">
+            <div class="fixed size-full inset-0 z-[201] overflow-y-auto bg-white">
+                <div class="fixed top-5 right-5 lg:right-20">
                     <button type="button"
                             class="bg-exomere opacity-75 p-3 lg:p-7 rounded-full text-white"
                             onclick="closeModal('contents-modal')" aria-hidden="false">
@@ -97,20 +96,18 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
                     </button>
                 </div>
                 <div
-                    class="min-sm:max-container min-h-screen padding-y mx-auto lg:padding-x lg:px-4 py-8 flex flex-col">
-                    <div class="padding">
-                        <article class="bg-white min-h-svh overflow-y-auto">
-                            <h1 id="modal-title"
-                                class="text-2xl lg:text-4xl font-medium text-gray-900 mb-6"></h1>
+                    class="flex flex-col max-w-3xl min-h-screen mx-auto padding">
+                    <article class="min-h-svh overflow-y-auto">
+                        <h1 id="modal-title"
+                            class="text-2xl lg:text-4xl font-medium text-gray-900 mb-6"></h1>
 
-                            <div id="modal-date" class="text-gray-600 mb-2 "></div>
+                        <div id="modal-date" class="text-gray-600 mb-2 "></div>
 
-                            <div class="text-md">
-                                <p id="modal-contents"
-                                   class="break-keep leading-loose text-gray-900 mb-4"></p>
-                            </div>
-                        </article>
-                    </div>
+                        <div class="text-md">
+                            <p id="modal-contents"
+                               class="break-keep leading-loose text-gray-900 mb-4"></p>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>

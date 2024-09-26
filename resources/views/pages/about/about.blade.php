@@ -38,14 +38,10 @@
         </nav>
 
 
-        <div id="parallax__cont" class="overflow-hidden
-bg-[url('https://images.unsplash.com/photo-1583339824000-5afecfd41835?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]
-bg-cover bg-center
-{{--        bg-gradient-to-r from-[#e8e8e8]--}}
-         text-[#211914]">
+        <div id="parallax__cont" class="overflow-hidden bg-[url('https://images.unsplash.com/photo-1583339824000-5afecfd41835?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center text-[#211914]">
 
             <section id="philosophy" class="pb-32 lg:pb-40">
-                <div class="pt-20 px-4 lg:pl-44">
+                <div class="pt-20 px-4 lg:px-44">
                     <div class="relative z-30 text-left tracking-tight">
                         <h2 class="text-3xl text-head font-semibold leading-tight mb-3 md:text-4xl"
                             data-aos="fade">엑소좀 안티에이징 솔루션,<br>엑소미어</h2>

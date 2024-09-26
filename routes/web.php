@@ -125,7 +125,11 @@ Route::prefix('/community')->group(function () {
         return view('pages.community.inquiry');
     });
 });
-
+Route::prefix('/mypage')->group(function () {
+    Route::get('cart', function () {
+        return view('pages.mypage.cart');
+    });
+});
 
 // 언어 변경
 Route::get('/set-language/{lang}', [LanguageController::class, 'setLanguage'])->name('setLanguage');
