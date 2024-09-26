@@ -86,6 +86,19 @@
                               d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"/>
                     </svg>
                 </a>
+                <button type="button"
+                        id="search-form-button"
+                        data-collapse-toggle="search-form"
+                        aria-expanded="false"
+                >
+                    <svg aria-hidden="true"
+                         width="24"
+                         height="24"
+                         fill="none"
+                         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
             </div>
         </div>
 
@@ -162,6 +175,42 @@
 
             </div>
         </div>
+
+        {{--상품검색--}}
+        <div id="search-form" class="w-full hidden absolute bg-white border-gray-300 border-solid border-t">
+            <div class="mx-auto max-w-3xl px-4 py-10">
+                <!-- Search Bar Container -->
+                <div class="flex items-center space-x-2 border-b border-gray-300 pb-2">
+
+                    <!-- Input Field -->
+                    <input type="text" placeholder="{{ __('messages.enter_keyword') }}" class="flex-1 border-none outline-none text-base placeholder-gray-400 text-gray-700">
+
+                    <!-- Search Button -->
+                    <button class="px-4 py-2 bg-base-color text-sm text-white">
+                        <!-- Search Icon -->
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+
+                    </button>
+                </div>
+
+                {{--TODO ajax Keywords --}}
+                <!-- Suggested Search Keywords -->
+                <div class="mt-4 flex flex-col lg:flex-row lg:gap-x-2">
+                    <p class="text-sm text-gray-600 font-semibold mb-2 ">{{ __('messages.recommend_keyword') }}</p>
+                    <div class="flex flex-wrap gap-2 flex-1">
+                        <span class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">리프팅샷 수딩젤 100g</span>
+                        <span class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">퍼펙트 스칼프 토너</span>
+                        <span class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">임플라힐 P.O 크림</span>
+                        <span class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">퍼펙트 스칼프 임플란트 세럼</span>
+                        <span class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">에델바이스스노우크림</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
 </header>
