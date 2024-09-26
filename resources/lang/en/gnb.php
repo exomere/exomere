@@ -31,7 +31,7 @@ return [
     "creams" => "Creams",
     "sheet_masks" => "Sheet Masks",
     "cushions" => "Cushions",
-    'rnd'=>'R&D',
+    'rnd' => 'R&D',
     'branch' => 'Branch',
     'branch_title' => 'Our Branch',
     'brand' => 'Brand',
@@ -40,5 +40,7 @@ return [
     'return10' => 'RETURN10',
     'time72' => 'TIME72',
     'imlaheal' => 'IMLAHeal',
+    "cart" => "cart",
+
 ];
 

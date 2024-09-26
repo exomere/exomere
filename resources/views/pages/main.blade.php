@@ -83,7 +83,7 @@ $bestProducts = collect($products)->where('is_best', true);
         <section class="h-svh">
             <div class="swiper main-swiper">
                 <div class="swiper-wrapper">
-                    @for($i=0; $i<1; $i++)
+                    @for($i=0; $i<2; $i++)
                         <div class="swiper-slide">
                             <div
                                 class="absolute transform z-10 lg:top-1/2 lg:w-[50%] lg:px-28 lg:transform lg:-translate-x-1/2 lg:-translate-y-[60%] lg:text-left text-white">
@@ -116,9 +116,9 @@ $bestProducts = collect($products)->where('is_best', true);
                             </svg>
                         </div>
                     </div>
-                    <div class="arrow-box">
-                        <div class="swiper-button-prev white"></div>
-                        <div class="swiper-button-next white"></div>
+                    <div class="arrow-box text-white">
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
                     </div>
                 </div>
             </div>

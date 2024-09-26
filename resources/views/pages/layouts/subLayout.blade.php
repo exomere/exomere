@@ -27,7 +27,7 @@
             </div>
 
             <!-- Contents -->
-            <div class="max-w-5xl lg:max-w-6xl mx-auto px-6 py-24">
+            <div class="max-w-5xl lg:max-w-6xl mx-auto px-2 py-24">
                 @yield('content')
             </div>
         </section>

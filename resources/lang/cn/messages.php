@@ -60,4 +60,5 @@ return [
     'about_content_2'=> '通过结合,体现了品牌提出肌肤再生和抗衰老新可能性的理念。',
     'about_content_3'=> '大小在50~200nm左右,内部由DNA、RNA、肽等组成,是参与细胞再生的信号传递物质,为老化和受损肌肤提供再生护理解决方案。',
     'about_content_4'=> '端粒是染色体末端的染色小体,起到决定细胞寿命的作用,即担当细胞时钟的DNA片段。',
+    'select_item' => 'Please select the items you wish to pay for',
 ];

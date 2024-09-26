@@ -107,7 +107,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
         <div class="absolute inset-0">
             <iframe id="videoPlayer" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
         </div>
-        <div class="absolute top-4 right-4 text-white text-xl">
+        <div class="absolute top-5 right-5 lg:right-20">
             <button type="button" class="bg-exomere opacity-75 p-3 lg:p-7 rounded-full text-white"
                     onclick="closeVideo()" aria-hidden="false">
                 <svg class="close-btn h-7 w-7 z-[101]" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
