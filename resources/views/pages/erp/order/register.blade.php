@@ -7,7 +7,7 @@
 <!-- Basic Layout & Basic with Icons -->
 <div class="row">
   <!-- Basic Layout -->
-  <form method='post' action="{{route('order.save')}}" enctype="multipart/form-data">
+  <form method='post' action="{{route('erp-order.save')}}" enctype="multipart/form-data">
     @csrf
     <input type='hidden' name='order_seq' value='{{ $order_seq ?? null }}'> 
     <div class="col-xxl">
@@ -152,6 +152,7 @@
                 <label class="col-sm-1 col-form-label" for="total_amount"> 총금액 </label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control" id="total_amount" name='total_amount' readonly style='width:170px;' value='0'/>
+                  <input type="text" class="form-control" id="total_pv" name='total_pv' readonly style='width:170px;' value='0'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="payment_amount"> 결제금액 </label>
                 <div class="col-sm-2">
@@ -216,7 +217,7 @@
                         </div>
                         <label class="col-sm-1 col-form-label" for="payment_card_2"> 카드번호 </label>
                         <div class="col-sm-5">
-                          <input type="text" class="form-control" id="payment_card_2" maxlength="16"/>
+                          <input type="text" class="form-control" id="payment_card_2" maxlength="20"/>
                         </div>
                       </div>
                       <div class="row mb-3">

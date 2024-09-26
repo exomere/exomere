@@ -132,7 +132,7 @@
         {
           "url": "management/erp/order/list",
           "name": "order_list",
-          "slug": "order-layouts-order-list"
+          "slug": "erp-order-layouts-order-list"
         }
       ]
     },

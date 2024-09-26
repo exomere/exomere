@@ -49,7 +49,7 @@
 <!--/ Basic -->
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">주문 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('order-layouts-order-register')}}'" class="btn btn-primary">주문등록</button></small>
+    <h5 class="mb-0">주문 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('erp-order-layouts-order-register')}}'" class="btn btn-primary">주문등록</button></small>
   </div>
   <div class="table-responsive text-nowrap">
     <table class="table" >
@@ -58,6 +58,7 @@
           <th style='vertical-align: middle;' rowspan='2'>No</th>
           <th style='vertical-align: middle;' rowspan='2'>승인여부</th>
           <th style='vertical-align: middle;' rowspan='2'>주문구분</th>
+          {{-- <th style='vertical-align: middle;' rowspan='2'>주문서</th> --}}
           <th style='vertical-align: middle;' rowspan='2'>주문금액</th>
           <th style='vertical-align: middle;' rowspan='2'>PV1</th>
           <th style='vertical-align: middle;' rowspan='2'>주문자</th>
@@ -78,10 +79,16 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
+
         @foreach ($orders as $list)
           <tr>
-            <td> <span class="fw-medium">{{$row_num--;}}</span></td>
+            <td> <span class="fw-medium">{{$row_num--}}</span></td>
             <td> <span class="fw-medium">{{($list->is_approval == 'Y') ? '승인' : '미승인'}}</span></td>
+            {{-- <td>
+              <a class="badge bg-label-info me-2" >
+                  <span class="fw-medium">주문서</span>
+              </a>
+            </td> --}}
             <td> <span class="fw-medium">{{ $order_kind[$list->order_type] }}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
@@ -100,8 +107,8 @@
               <div class="dropdown">
                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{{route('basic-layouts-item-register',$list->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                  <a class="dropdown-item" style='color:red;' href="{{route('item.del',$list->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
+                  <a class="dropdown-item" href="{{route('erp-order-layouts-order-register',$list->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                  <a class="dropdown-item" style='color:red;' href="{{route('erp-order.del',$list->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
                 </div>
               </div>
             </td>

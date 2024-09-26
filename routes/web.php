@@ -224,17 +224,17 @@ Route::group(['middleware' => 'auth'], function () {
             /** 주문관리 */
             Route::prefix('/order')->group(function () {
                 // ㄴ 주문목록/등록
-                Route::get('/list', [ErpOrderController::class, 'list'])->name('order-layouts-order-list');
-                Route::get('/register/{seq?}', [ErpOrderController::class, 'orderRegister'])->name('order-layouts-order-register');
-                Route::post('/save', [ErpOrderController::class, 'orderSave'])->name('order.save');
-                Route::get('/del/{seq?}', [ErpOrderController::class, 'orderDel'])->name('order.del');
+                Route::get('/list', [ErpOrderController::class, 'list'])->name('erp-order-layouts-order-list');
+                Route::get('/register/{seq?}', [ErpOrderController::class, 'orderRegister'])->name('erp-order-layouts-order-register');
+                Route::post('/save', [ErpOrderController::class, 'orderSave'])->name('erp-order.save');
+                Route::get('/del/{seq?}', [ErpOrderController::class, 'orderDel'])->name('erp-order.del');
 
 
                 // ㄴ 라인별 주문목록
                 Route::get('/line/list', [ErpOrderController::class, 'lineList'])->name('erp-order.line.list');
 
-                /*Route::get('/list', [OrderController::class, 'orderList'])->name('order-layouts-order-list');
-                Route::get('/register/{seq?}', [OrderController::class, 'orderRegister'])->name('order-layouts-order-register');
+                /*Route::get('/list', [OrderController::class, 'orderList'])->name('erp-order-layouts-order-list');
+                Route::get('/register/{seq?}', [OrderController::class, 'orderRegister'])->name('erp-order-layouts-order-register');
                 Route::post('/save', [OrderController::class, 'orderSave'])->name('order.save');
                 Route::get('/del/{seq?}', [OrderController::class, 'orderDel'])->name('order.del');*/
             });

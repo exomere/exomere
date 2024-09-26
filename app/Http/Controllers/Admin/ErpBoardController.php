@@ -147,7 +147,7 @@ class ErpBoardController extends Exomere
             "row_num" => $this->getPageRowNumber($inquires->total(), $page, $limitPage)
         ];
 
-        return view('pages.inquiry.list')->with($datas);
+        return view('pages.erp.board.inquiry.list')->with($datas);
     }
 
     /**
@@ -157,7 +157,7 @@ class ErpBoardController extends Exomere
      */
     public function inquiryCreate()
     {
-        return view('pages.inquiry.create');
+        return view('pages.erp.board.inquiry.create');
     }
 
     /**
@@ -195,7 +195,7 @@ class ErpBoardController extends Exomere
     {
         $inquiry = ExInquire::with('comments')->findOrFail($id);
 
-        return view('pages.inquiry.detail', compact('inquiry')); // Ensure the view exists
+        return view('pages.erp.board.inquiry.detail', compact('inquiry')); // Ensure the view exists
     }
 
     /**
@@ -207,7 +207,7 @@ class ErpBoardController extends Exomere
     public function inquiryEdit($id)
     {
         $inquiry = ExInquire::findOrFail($id);
-        return view('pages.inquiry.edit', compact('inquiry')); // Ensure the view exists
+        return view('pages.erp.board.inquiry.edit', compact('inquiry')); // Ensure the view exists
     }
 
     /**

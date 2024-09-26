@@ -69,13 +69,7 @@
             <tr>
               <td>{{$row_num--}}</td>
               <td>
-                <a class="badge bg-label-info me-2" >
-                    <span class="fw-medium">상세보기</span>
-                </a>
-                <a class="badge bg-label-info me-2" >
-                    <span class="fw-medium">상세보기</span>
-                </a>
-                <a class="badge bg-label-info me-2" >
+                <a class="badge bg-label-info me-2" href="{{route('erp-member.create',$list->id)}}">
                     <span class="fw-medium">상세보기</span>
                 </a>
               </td>

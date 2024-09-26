@@ -15,4 +15,14 @@ class ExCenter extends ExomereModel
     protected $guarded = [];
 
     protected $fillable = [];
+
+        /**
+     * @param int $id
+     * @return ExCenter|null
+     */
+    public static function findByCenterSeq(int $id): ?ExCenter
+    {
+        return self::where('id', $id)->first();
+    }
+
 }

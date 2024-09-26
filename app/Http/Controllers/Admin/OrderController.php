@@ -169,13 +169,13 @@ class OrderController extends Exomere
           $input_data
       );
 
-      return redirect()->route('order-layouts-order-list');
+      return redirect()->route('erp-order-layouts-order-list');
     }
 
     public function orderDel(Request $request)
     {
       ExOrder::find($request->seq)->delete();
-      return redirect()->route('order-layouts-order-list');
+      return redirect()->route('erp-order-layouts-order-list');
     }
 
     

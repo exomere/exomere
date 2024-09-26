@@ -14,7 +14,7 @@
         <div class="card-header d-flex align-items-center justify-content-between">
             <h5 class="mb-0">1:1 문의</h5>
             <small class="text-muted float-end">
-                <button onclick="location.href='{{ route('erp-board.inquiry.create') }}'" class="btn btn-primary">문의등록</button>
+                {{-- <button onclick="location.href='{{ route('erp-board.inquiry.create') }}'" class="btn btn-primary">문의등록</button> --}}
             </small>
         </div>
         <div class="table-responsive text-nowrap">
