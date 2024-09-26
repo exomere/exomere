@@ -17,6 +17,25 @@ $(".__nav").on('mouseleave',
 );
 
 // 서치
+const searchForm = document.getElementById('search-form');
+document.addEventListener('click', (event) => {
+    if (searchForm.contains(event.target)) {
+        $("#search-form-button").trigger('click');
+    }
+});
+
+$("#search-form-button").on('click',
+    function (e) {
+
+        if ($("#search-form").hasClass('on')) {
+            $('#search-form').removeClass('on');
+            $('#header').removeClass('on');
+        } else {
+            $('#search-form').addClass('on');
+            $('#header').addClass('on');
+        }
+    }
+);
 
 // 위로가기
 $(function () {
@@ -69,12 +88,12 @@ $(function () {
         const header = document.querySelector('#header'),
             ww = document.body.scrollWidth;
 
-            let scTop = window.pageYOffset;
-            if (scTop > 0) {
-                header.classList.add('scroll');
-            } else {
-                header.classList.remove('scroll');
-            }
+        let scTop = window.pageYOffset;
+        if (scTop > 0) {
+            header.classList.add('scroll');
+        } else {
+            header.classList.remove('scroll');
+        }
 
     })
 

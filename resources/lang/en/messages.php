@@ -61,4 +61,6 @@ return [
     'about_content_3' => 'Sized around 50~200nm and composed of DNA, RNA, PEPTIDE, etc. inside, it is a regenerative care solution for aged and damaged skin, as it contains signaling substances involved in cell regeneration.',
     'about_content_4' => 'Telomere is the chromatin at the end of chromosomes that determines the lifespan of cells, and it is a fragment of DNA that serves as the "cellular clock".',
     'select_item' => 'Please select the items you wish to pay for',
-];
+    'enter_keyword' => 'Please enter a keyword.',
+    'recommend_keyword' => 'Recommendations Keyword',
+    ];

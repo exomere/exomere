@@ -61,5 +61,6 @@ return [
     'about_content_3' => '50~200nmほどのサイズで内部にDNA、RNA、PEPTIDEなどで構成され、細胞再生に関与する情報伝達物質が老化し損傷した肌のための再生ケアソリューションです。',
     'about_content_4' => 'テロメアは染色体の末端にある染色小体で、細胞の寿命を決める役割を果たし、これすなわち細胞時計の役割を担うDNAの断片です。',
     'select_item' => 'Please select the items you wish to pay for',
-
+    'enter_keyword' => 'Please enter a keyword.',
+    'recommend_keyword' => 'Recommendations Keyword',
 ];
