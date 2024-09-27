@@ -43,7 +43,7 @@ var orderReg = {
         }
 
         html += "<tr class='product_info_tr p_info_" + seq + "'>";
-        html += " <td> <input type='hidden' name='pd_seq[]' value='"+seq+"'><input type='hidden' name='pd_price[]' value='"+price+"'><input type='hidden' name='pd_pv[]' value='"+pv+"'>" + name + "</td>";
+        html += " <td> <input type='hidden' name='pd_seq[]' value='"+seq+"'><input type='hidden' name='pd_price[]' value='"+price+"'><input type='hidden' name='pd_name[]' value='"+name+"'><input type='hidden' name='pd_pv[]' value='"+pv+"'>" + name + "</td>";
         html += " <td>" + orderReg.addComma(price) + "</td>";
         html += " <td>" + orderReg.addComma(pv) + "</td>";
         html += " <td><input style='width:80px;' class='form-control qtyProduct' id='pd_qty_"+seq+"' name='pd_qty[]' data-seq='"+seq+"' data-price='"+price+"' type='number' value='1'/></td>";
@@ -92,7 +92,7 @@ var orderReg = {
         
         $("#card_payment").val(orderReg.addComma(card_payment));
         $("#account_payment").val(orderReg.addComma(account_payment));
-
+        $("#cash_payment").val(orderReg.addComma(cash_payment))
         $("#total_amount").val(orderReg.addComma(total));
         $("#payment_amount").val(orderReg.addComma(payment_amount));
         $("#remain_amount").val(orderReg.addComma(remain_amount));

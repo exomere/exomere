@@ -12,9 +12,6 @@
     <table class="table" style="table-layout: fixed">
     <colgroup>
         <col style="width:80px"/>
-        <col style="width:100px"/>
-        <col style="width:120px"/>
-        <col style="width:140px"/>
         <col style="width:140px"/>
         <col style="width:160px"/>
         <col style="width:160px"/>
@@ -34,10 +31,7 @@
       <thead>
         <tr>
           <th rowspan="2" style=' vertical-align: middle;'>No</th>
-          <th rowspan="2" style=' vertical-align: middle;'>상세</th>
-          <th rowspan="2" style=' vertical-align: middle;'>회원번호</th>
-          <th rowspan="2" style=' vertical-align: middle;'>아이디</th>
-          <th rowspan="2" style=' vertical-align: middle;'>회원명</th>
+          <th rowspan="2" style=' vertical-align: middle;'>마감일자</th>
           <th rowspan="2" style=' vertical-align: middle;'>PV</th>
           <th rowspan="2" style=' vertical-align: middle;'>누적매출</th>
           <th colspan="8" style=' vertical-align: middle; text-align:center;'>지급항목</th>
@@ -65,14 +59,7 @@
         @foreach ($statements as $statement)
             <tr class="align-middle py-2">
                 <td><span class="fw-medium">{{ $row_num-- }}</span></td>
-                <td>
-                    <a class="badge bg-label-info me-4" href="{{ route('erp-allowance.monthly-user', ['seq' => $statement->member_seq, 'type' => $statement->type]) }}">
-                        <span class="fw-medium">상세보기</span>
-                    </a>
-                </td>
-                <td>{{ $statement->member_seq }}</td>
-                <td>{{ $statement->member_id }}</td>
-                <td>{{ $statement->member_name }}</td>
+                <td>{{ $statement->code }}</td>
                 <td>{{ number_format($statement->pv) }}</td>
                 <td>{{ number_format($statement->total_amount) }}</td>
                 <td>{{ number_format($statement->recruitment_amount) }}</td>

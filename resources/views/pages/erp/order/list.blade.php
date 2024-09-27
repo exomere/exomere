@@ -93,7 +93,7 @@
             <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
             <td> <span class="fw-medium">{{$list->delivery_name ?? $list->member_name}}</span></td>
-            <td> <span class="fw-medium">{{$list->order_date}}</span></td>
+            <td> <span class="fw-medium">{{date("Y-m-d",strtotime($list->order_date))}}</span></td>
             <td> <span class="fw-medium">{{$list->id}}</span></td>
             <td> <span class="fw-medium">{{$list->member_id}}</span></td>
             <td> <span class="fw-medium">{{$list->member_name}}</span></td>

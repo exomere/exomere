@@ -253,6 +253,8 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/monthlyClosing', [ErpCommissionController::class, 'monthlyClosing'])->name('erp-allowance.monthly-closing');
                     // ㄴ 월마감 디테일
                     Route::get('/monthlyClosingDetail', [ErpCommissionController::class, 'monthlyClosingDetail'])->name('erp-allowance.monthly-detail');
+                    // ㄴ 개인 월마감 내역
+                    Route::get('/monthlyClosingUserDetail', [ErpCommissionController::class, 'monthlyClosingUserDetail'])->name('erp-allowance.monthly-user');
 
                 // ㄴ 월마감 계산
                 Route::post('/monthlyCalculation', [ErpCommissionController::class, 'monthlyCalculation'])->name('erp.monthly.calculation');

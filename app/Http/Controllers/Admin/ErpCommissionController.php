@@ -22,7 +22,17 @@ class ErpCommissionController extends Exomere
      */
     public function termClosing (Request $request)
     {
-        return view('pages.erp.commission.termClosing')->with([]);
+        $limitPage = $this->getPageLimit();
+        $page = $request->get('page', 1);
+
+        $statements = ExStatements::where("type","term")->orderBy('id', 'desc')->paginate($limitPage);
+
+        $datas = [
+            "statements" => $statements ?? [],
+            "row_num" => $this->getPageRowNumber($statements->total(), $page, $limitPage),
+        ];
+
+        return view('pages.erp.commission.termClosing')->with($datas);
     }
 
 
@@ -47,6 +57,29 @@ class ErpCommissionController extends Exomere
         return view('pages.erp.commission.monthlyClosingDetail')->with($datas);
     }
 
+        /**
+     * Display a listing of the notices.
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function monthlyClosingUserDetail (Request $request)
+    {
+        $limitPage = 30;
+        $page = $request->get('page', 1);
+
+        $statements = ExMemberStatements::where("member_seq",$request->seq)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
+
+        $datas = [
+            "statements" => $statements,
+            "row_num" => $this->getPageRowNumber($statements->total(), $page, $limitPage)
+        ];
+
+        return view('pages.erp.commission.monthlyClosingUser')->with($datas);
+    }
+
+    
+
     /**
      * Display a listing of the notices.
      *
@@ -58,10 +91,10 @@ class ErpCommissionController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);
 
-        $statements = ExStatements::orderBy('id', 'desc')->paginate($limitPage);
+        $statements = ExStatements::where("type","month")->orderBy('id', 'desc')->paginate($limitPage);
 
         $datas = [
-            "statements" => $statements,
+            "statements" => $statements ?? [],
             "row_num" => $this->getPageRowNumber($statements->total(), $page, $limitPage)
         ];
 
@@ -75,7 +108,38 @@ class ErpCommissionController extends Exomere
      */
     public function termCalculation (Request $request)
     {
-        return view('pages.erp.commission.monthlyClosing')->with([]);
+        @set_time_limit(0); 
+
+        $settlement_month = $request->settlement_month;
+        $deadline_date = $request->deadline_date;
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        $calcu_code = str_replace("-","",$settlement_month);
+
+        $datas = ExOrder::whereBetween('order_date', [$start_date, $end_date])->where("order_type",'new');
+
+        $input_data = [];
+        foreach($datas as $data){
+            if($data->total_amount >= 13200000){
+                $input_data[$data->member_seq]['settlement_subsidy'] += ($data->total_pv * 0.1); //정착지원금 (본인)
+                $input_data[$data->recommend_seq]['person_recruit'] += ($data->total_pv * 0.35); //직접모집 축하금 (상위)
+            }
+        }
+
+        // ExStatements::create([
+        //     "type" => "term",
+        //     "code" => $calcu_code,
+        //     "total_amount" => $total_amount,
+        //     "total_pv" => $total_pv,
+        //     "total_payment" => $st_total_payment, //합계금액
+        //     "actual_amount" => $st_actual_amount, //실지급액
+        //     "deadline_date" => $deadline_date,
+        //     "s_date" => $start_date,
+        //     "e_date" => $end_date,
+        //     "reg_name" => $request->session()->get('member_id')
+        // ]);
+
+        return redirect()->route('erp-allowance.term-closing');
     }
 
     /**
@@ -93,10 +157,6 @@ class ErpCommissionController extends Exomere
         $start_date = $request->start_date;
         $end_date = $request->end_date;
         $calcu_code = str_replace("-","",$settlement_month);
-        
-        /**   TEST AREA  START */
-        
-        /**   TEST AREA  START */
 
         $order_data = ExOrder::whereBetween('order_date', [$start_date, $end_date]);
         
