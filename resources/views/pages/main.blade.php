@@ -76,7 +76,7 @@ $whiteHeader = true;
 
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-6 lg:gap-x-10 lg:gap-y-3">
                 @foreach($bestProducts as $product)
-                    <a href="/products/1" class="swiper-slide group flex flex-col text-center"
+                    <a href="/products/{{ $product['id'] }}" class="swiper-slide group flex flex-col text-center"
                        data-aos="fade-up"
                        data-aos-delay="{{ $loop->index  * 100 }}">
                         <div
@@ -89,7 +89,7 @@ $whiteHeader = true;
                             <p class="mb-1 text-lg line-clamp-1 text-gray-900 relative after:bg-slate-700 after:absolute after:h-[1px] after:w-[20px] after:-ml-[10px] after:-bottom-2 after:left-1/2">
                                 {{ $product['product_name'] }}</p>
                             <p class="mt-5 text-sm text-gray-700 text-slate-700 line-clamp-2">
-                                {{ $product['product_desc'] }}</p>
+                                {{ $product['sub_name'] }}</p>
                             <p class="mt-5 text-base text-gray-600">
                                 {{ number_format($product['price']) }}</p>
                         </div>

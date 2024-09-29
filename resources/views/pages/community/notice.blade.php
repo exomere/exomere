@@ -17,14 +17,14 @@
     <table class="w-full border-t-2 border-solid border-gray-900"
            data-aos="fade-up">
         <colgroup>
-            <col class="w-16">
+            <col class="w-16 max-sm:hidden">
             <col>
             <col class="w-24">
         </colgroup>
         @foreach($items as $item)
 
             <tr class="h-20 font-normal border-b border-solid border-slate-200">
-                <td class="align-middle	text-center">{{ $item->id }}</td>
+                <td class="max-sm:hidden align-middle text-center">{{ $item->id }}</td>
                 <td class="align-middle relative">
                     <a href="{{ route('community.noticeDetail', ['notice_id' => $item->id]) }}"
                        class="cursor-pointer hover:underline">

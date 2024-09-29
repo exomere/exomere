@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\OrganizationController;
 use App\Http\Controllers\FO\AjaxController;
 use App\Http\Controllers\FO\CommunityController;
 use App\Http\Controllers\FO\NewsVideoController;
+use App\Http\Controllers\FO\ProductController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\member\JoinController;
@@ -87,12 +88,8 @@ Route::prefix('/brand')->group(function () {
     });
 });
 Route::prefix('/products')->group(function () {
-    Route::get('/', function () {
-        return view('pages.products.products');
-    });
-    Route::get('{product_id}', function () {
-        return view('pages.products.detail');
-    });
+    Route::get('/', [ProductController::class, 'index'])->name('products.list');
+    Route::get('{product_id}', [ProductController::class, 'productDetail']);
 });
 Route::prefix('/about')->group(function () {
     Route::get('/', function () {
