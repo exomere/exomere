@@ -1,19 +1,5 @@
 <?php
 
-$product = [
-    'product_name' => '로즈가든마스크팩',
-    'price' => 45000,
-    'distribution_price' => 22500,
-    'vat_excluded' => 20455,
-    'total_price' => 22500,
-    'thumbnail' => asset('assets/img/elements/2024061918143212433.png'),
-    'thumbnail2' => asset('assets/img/elements/product_hover.jpg'),
-    'brand' => 'return10',
-    'category' => 'sheet_masks',
-    'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-    'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-];
-
 ?>
 
 @extends('pages.layouts.withoutVisualLayout')
@@ -132,9 +118,10 @@ $product = [
                     class="pro-detail w-full flex flex-col order-last lg:order-none pt-8 ">
                     <p class="font-medium text-lg text-exomere mb-4"><a
                             class="flex flex-inline items-center text-base"
-                            href="/brand?brand={{$product['brand']}}">{{ __('gnb.'. $product['brand']) }}
+{{--                            href="/brand?brand={{$product['brand']}}"--}}
+                        >{{ __('gnb.'. $product['brand']) }}
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="hidden bi bi-chevron-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
                             </svg>
                         </a>

@@ -62,17 +62,22 @@
             <!--logo-->
             <a href="/" class="basis-1/3 flex justify-center items-center">
                 <span class="sr-only">엑소미어</span>
-{{--                <img class="log__image m w-32 lg:w-36 lg:hidden" src="{{ asset('img/logo_horizontal.png') }}" alt="">--}}
-                <img class="log__image pc <!--max-lg:hidden--> w-28" src="{{ asset('img/logo.svg') }}" alt="">
+                <img class="log__image m w-32 lg:w-36 lg:hidden" src="{{ asset('img/logo_horizontal.png') }}" alt="">
+                <img class="log__image pc max-lg:hidden w-28" src="{{ asset('img/logo.svg') }}" alt="">
             </a>
 
             {{--login/search--}}
             <div class="basis-1/3 flex gap-x-2 items-center justify-end">
-                <a href="{{ url('/management/dashboard') }}" target="_blank" class="myoffice__button flex items-center justify-center">
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                         stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-width="1.2"
-                              d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                <a href="{{ url('/management/dashboard') }}" target="_blank"
+                   class="myoffice__button flex items-center justify-center">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                         fill="currentColor"
+                         stroke="none"
+                         viewBox="0 0 16 16">
+                        <path
+                            stroke="none" stroke-width=".1"
+                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
                     </svg>
                     <span class="hidden lg:block">My Office</span>
                 </a>
@@ -98,7 +103,7 @@
                          height="24"
                          fill="none"
                          stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                        <path  stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </button>
@@ -106,7 +111,7 @@
         </div>
 
         <!-- web menu, show/hide based on screen width -->
-        <div class="__nav max-lg:hidden">
+        <div class="__nav max-lg:hidden mx-auto w-fit">
             <ul class="flex flex-wrap gap-x-5 justify-center items-start text-center text-left py-3">
                 @foreach ($gnbData[0]->menu as $item)
                     <li class="min-w-[100px]">
@@ -118,9 +123,9 @@
                                         @if(in_array($subItem->url, ['/about','/about/core']))
                                             {{--드롭다운--}}
                                             <span
-                                               class="toggle-menu-hover underline-animation font-normal cursor-pointer"
-                                               data-collapse-toggle="toggle-menu-{{$subItem->name}}"
-                                               aria-expanded="false"
+                                                class="toggle-menu-hover underline-animation font-normal cursor-pointer"
+                                                data-collapse-toggle="toggle-menu-{{$subItem->name}}"
+                                                aria-expanded="false"
                                             >{{ __('gnb.'.$subItem->name) }}</span>
                                         @else
                                             <a href="{{ $subItem->url }}"
@@ -197,44 +202,35 @@
         </div>
 
         {{--상품검색--}}
-        <div id="search-form" class="w-full hidden absolute bg-white border-gray-300 border-solid border-t">
+        <div id="search-form" class="relative w-full hidden absolute bg-white border-gray-300 border-solid border-t">
             <div class="mx-auto max-w-3xl px-4 py-10">
-                <!-- Search Bar Container -->
-                <div class="flex items-center space-x-2 border-b border-gray-300 pb-2">
+                <form action="{{ route('products.list') }}" >
+                    <!-- Search Bar Container -->
+                    <div class="flex items-center space-x-2 border-b border-gray-300 pb-2">
+                        <!-- Input Field -->
+                        <input type="text" placeholder="{{ __('messages.enter_keyword') }}"
+                               name="search_keyword"
+                               class="flex-1 border-none outline-none text-base placeholder-gray-400 text-gray-700">
 
-                    <!-- Input Field -->
-                    <input type="text" placeholder="{{ __('messages.enter_keyword') }}"
-                           class="flex-1 border-none outline-none text-base placeholder-gray-400 text-gray-700">
+                        <!-- Search Button -->
+                        <button class="px-4 py-2 bg-base-color text-sm text-white">
+                            <!-- Search Icon -->
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
 
-                    <!-- Search Button -->
-                    <button class="px-4 py-2 bg-base-color text-sm text-white">
-                        <!-- Search Icon -->
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-
-                    </button>
-                </div>
-
-                {{--TODO ajax Keywords --}}
                 <!-- Suggested Search Keywords -->
                 <div class="mt-4 flex flex-col lg:flex-row lg:gap-x-2">
                     <p class="text-sm text-gray-600 font-semibold mb-2 ">{{ __('messages.recommend_keyword') }}</p>
-                    <div id="recommend-search-keyword-area" class="flex flex-wrap gap-2 flex-1">
-                        <a class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">리프팅샷 수딩젤 100g</a>
-                        <span
-                            class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">퍼펙트 스칼프 토너</span>
-                        <span
-                            class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">임플라힐 P.O 크림</span>
-                        <span class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">퍼펙트 스칼프 임플란트 세럼</span>
-                        <span
-                            class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">에델바이스스노우크림</span>
-                    </div>
+                    <div id="recommend-search-keyword-area" class="flex flex-wrap gap-2 flex-1"></div>
                 </div>
-            </div>
 
+            </div>
         </div>
 
     </div>

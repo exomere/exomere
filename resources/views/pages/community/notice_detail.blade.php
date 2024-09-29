@@ -20,10 +20,12 @@
                 class="flex flex-col min-h-screen mx-auto">
 
                 <article class="min-h-svh overflow-y-auto border-b border-solid border-slate-200">
-                    <div class="flex flex-row justify-between px-3 py-8 border-b border-solid border-slate-200">
+                    <div class="flex flex-col sm:flex-row justify-between px-3 py-8 border-b border-solid border-slate-200">
                         <h1 class="text-xl font-medium text-gray-900">{{ $item['title' ]}}</h1>
 
-                        <div class="text-gray-500">{{ $item['created_at'] }}</div>
+                        <div class="text-gray-500 sm:text-right">
+                            {{ substr($item->created_at, 0,10) }}
+                        </div>
                     </div>
 
                     <div class="text-md p-5">

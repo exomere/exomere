@@ -20,10 +20,13 @@
                 class="flex flex-col min-h-screen mx-auto">
 
                 <article class="min-h-svh overflow-y-auto border-b border-solid border-slate-200">
-                    <div class="flex flex-row justify-between px-3 py-8 border-b border-solid border-slate-200">
+                    <div
+                        class="flex flex-col sm:flex-row justify-between px-3 py-8 border-b border-solid border-slate-200">
                         <h1 class="text-xl font-medium text-gray-900">{{ $item['subject' ]}}</h1>
 
-                        <div class="text-gray-500">{{ $item['created_at'] }}</div>
+                        <div class="text-gray-500 sm:text-right">
+                            {{ substr($item['created_at'], 0,10) }}
+                        </div>
                     </div>
 
                     <div class="text-md p-5">
@@ -31,31 +34,29 @@
                             class="break-keep leading-loose text-gray-900 mb-4">
                             {!! $item['contents'] !!}
                         </p>
-
-                    </div>
-
-                    <div class="flex">
-                        <p class="lg:w-56 border border-l-0 border-b-0 border-slate-200 border-solid padding text-center text-gray-500 ">
-                            첨부파일</p>
-
-                        <div
-                            class="flex-1 flex items-center border border-solid border-slate-200 border-x-0 border-b-0">
-                            @if(count($item['attachments']))
-                                <ul class="ps-5 text-gray-500 leading-loose ">
-
-                                    @foreach( $item['attachments'] as $attach)
-                                        <li class="relative __icon __{{$item['attach_type']}}">
-                                            <a
-                                                href="javascript:alert('{{ __('common.in_ready') }}')"
-                                                class="text-blue-600 hover:underline">{{ $attach }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </div>
-
                     </div>
                 </article>
+                <div class="flex">
+                    <p class="lg:w-56 border border-l-0 border-slate-200 border-solid padding text-center text-gray-500 ">
+                        첨부파일</p>
+                    <div
+                        class="flex-1 flex items-center border border-solid border-slate-200 border-x-0">
+                        @if(count($item['attachments']))
+                            <ul class="ps-5 text-gray-500 leading-loose ">
+
+                                @foreach( $item['attachments'] as $attach)
+                                    <li class="relative __icon __{{$item['attach_type']}}">
+                                        <a
+                                            href="javascript:alert('{{ __('common.in_ready') }}')"
+                                            class="text-blue-600 hover:underline">{{ $attach }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+
+                </div>
+
                 <div class="text-center">
                     <a href="javascript:history.back()"
                        class="inline-block mt-12 border border-solid border-black py-3 px-24 text-base break-keep">

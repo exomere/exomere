@@ -21,9 +21,14 @@ $(".__nav").on('mouseleave',
 );
 
 // 서치
-const searchForm = document.getElementById('search-form');
-document.addEventListener('click', (event) => {
-    if (searchForm.contains(event.target)) {
+document.getElementById('header').addEventListener('click', (event) => {
+    event.stopPropagation();
+});
+document.getElementById('search-form').addEventListener('click', (event) => {
+    event.stopPropagation();
+});
+document.getElementById('dimLayer').addEventListener('click', (event) => {
+    if (event.target.classList.contains('on')) {
         $("#search-form-button").trigger('click');
     }
 });
@@ -33,12 +38,14 @@ $("#search-form-button").on('click',
 
         if ($("#search-form").hasClass('on')) {
             $('#search-form').removeClass('on');
+            $('#dimLayer').removeClass('on');
             $('#header').removeClass('on');
         } else {
 
             ajaxSearchKeyword();
 
             $('#search-form').addClass('on');
+            $('#dimLayer').addClass('on');
             $('#header').addClass('on');
         }
     }
@@ -46,21 +53,24 @@ $("#search-form-button").on('click',
 
 //ajax search keywords
 function ajaxSearchKeyword() {
-    $.ajax({
-        type: 'get',
-        dataType: "json",
-        url: "/ajax/recommend_search_keywords",
-        success: function (res) {
-            let html = '';
-            res.forEach(function (item) {
-                html += `<a href="/products/${item.id}" class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">${item.name}</a>`
-            })
 
-            $('#recommend-search-keyword-area').html(html);
-        }
-    });
+    if (!$('#recommend-search-keyword-area a').length) {
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            async: false,
+            url: "/ajax/recommend_search_keywords",
+            success: function (res) {
+                let html = '';
+                $.each(res, function (index, data) {
+                    html += `<a href="/products/${data.id}" class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">${data.product_name}</a>`
+                })
 
+                $('#recommend-search-keyword-area').html(html);
+            }
+        });
 
+    }
 }
 
 

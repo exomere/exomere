@@ -102,8 +102,8 @@
 
 </head>
 
-<body>
-
+<body class="relative">
+<div id="dimLayer"></div>
 <!-- Layout Content -->
 @yield('layoutContent')
 
