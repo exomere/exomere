@@ -61,28 +61,6 @@
       ]
     },
     {
-      "name": "BRAND",
-      "slug": "brand",
-      "submenu": [
-        {
-          "url": "/brand",
-          "name": "exomere"
-        },
-        {
-          "url": "/brand?brand=return10",
-          "name": "return10"
-        },
-        {
-          "url": "/brand?brand=time72",
-          "name": "time72"
-        },
-        {
-          "url": "/brand?brand=imlaheal",
-          "name": "imlaheal"
-        }
-      ]
-    },
-    {
       "name": "PRODUCTS",
       "slug": "products",
       "submenu": [

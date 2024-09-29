@@ -164,12 +164,12 @@ $categories = [
 
 ?>
 
-@extends('pages.layouts.visualLayout')
+@extends('pages.layouts.subLayout')
 @section('title', __('gnb.products'))
 
 @section('id', 'products')
 @section('visual_title',  __('gnb.products') )
-@section('visual_sub_title', __('gnb.products_title'))
+@section('visual_sub_title', '')
 @section('visual_background', asset("assets/img/elements/subvisual_product.jpg"))
 
 @section('page-style')

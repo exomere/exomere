@@ -1,4 +1,5 @@
 <?php
+$visualFullWidthLayout = true;
 
 $contents = [
     [
@@ -16,7 +17,7 @@ $contents = [
 ];
 
 ?>
-@extends('pages.layouts.visualFullWidthLayout')
+@extends('pages.layouts.subLayout')
 @section('title', __('gnb.philosophy'))
 
 @section('id', 'philosophy')

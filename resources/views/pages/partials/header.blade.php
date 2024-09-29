@@ -8,7 +8,7 @@
                 <div class="flex lg:hidden">
                     <button type="button"
                             id="toggle-mobile-menu"
-                            class="inline-flex "
+                            class="inline-flex"
                             data-collapse-toggle="mobile-menu"
                             aria-expanded="false">
                         <span class="sr-only">Toggle main menu</span>
@@ -29,7 +29,7 @@
 
 
                 {{--language--}}
-                <div class="language__select relative text-xs">
+                <div class="language__select relative text-sm">
                     <button class="language__button inline-flex items-center"
                             data-collapse-toggle="language__list"
                             aria-expanded="false"
@@ -62,19 +62,21 @@
             <!--logo-->
             <a href="/" class="basis-1/3 flex justify-center items-center">
                 <span class="sr-only">엑소미어</span>
-                <img class="log__image m w-32 lg:w-36 lg:hidden" src="{{ asset('img/logo_horizontal.png') }}" alt="">
-                <img class="log__image pc max-lg:hidden w-28" src="{{ asset('img/logo.svg') }}" alt="">
+{{--                <img class="log__image m w-32 lg:w-36 lg:hidden" src="{{ asset('img/logo_horizontal.png') }}" alt="">--}}
+                <img class="log__image pc <!--max-lg:hidden--> w-28" src="{{ asset('img/logo.svg') }}" alt="">
             </a>
 
             {{--login/search--}}
             <div class="basis-1/3 flex gap-x-2 items-center justify-end">
                 <a href="/login" target="_blank" class="myoffice__button flex items-center justify-center">
-                    <svg  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"  stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-width="1.2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                         stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-width="1.2"
+                              d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                     </svg>
                     <span class="hidden lg:block">My Office</span>
                 </a>
-                <a href="/mypage/cart">
+                <a href="/mypage/cart" class="hidden">
                     <svg aria-hidden="true"
                          xmlns="http://www.w3.org/2000/svg"
                          width="24"
@@ -96,7 +98,8 @@
                          height="24"
                          fill="none"
                          stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </button>
             </div>
@@ -112,10 +115,27 @@
                             <ul class="__lnb hidden pt-2 leading-loose text-sm">
                                 @foreach ($item->submenu as $subItem)
                                     <li>
-                                        <a href="{{ $subItem->url }}"
-                                           class="underline-animation font-normal">{{ __('gnb.'.$subItem->name) }}</a>
+                                        @if(in_array($subItem->url, ['/about','/about/core']))
+                                            {{--드롭다운--}}
+                                            <span
+                                               class="toggle-menu-hover underline-animation font-normal cursor-pointer"
+                                               data-collapse-toggle="toggle-menu-{{$subItem->name}}"
+                                               aria-expanded="false"
+                                            >{{ __('gnb.'.$subItem->name) }}</span>
+                                        @else
+                                            <a href="{{ $subItem->url }}"
+                                               class="underline-animation font-normal">{{ __('gnb.'.$subItem->name) }}</a>
+                                        @endif
+
                                         @if (isset($subItem->submenu) && count($subItem->submenu) > 0)
-                                            <ul class="mb-2">
+                                            <ul
+                                                @if(in_array($subItem->url, ['/about','/about/core']))
+                                                    id="toggle-menu-{{$subItem->name}}"
+                                                class="mb-2 hidden"
+                                                @else
+                                                    class="mb-2"
+                                                @endif
+                                            >
                                                 @foreach ($subItem->submenu as $subSubItem)
                                                     <li><a class="underline-animation"
                                                            href="{{ $subSubItem->url }}">{{ __('gnb.'.$subSubItem->name ) }}</a>
@@ -183,13 +203,16 @@
                 <div class="flex items-center space-x-2 border-b border-gray-300 pb-2">
 
                     <!-- Input Field -->
-                    <input type="text" placeholder="{{ __('messages.enter_keyword') }}" class="flex-1 border-none outline-none text-base placeholder-gray-400 text-gray-700">
+                    <input type="text" placeholder="{{ __('messages.enter_keyword') }}"
+                           class="flex-1 border-none outline-none text-base placeholder-gray-400 text-gray-700">
 
                     <!-- Search Button -->
                     <button class="px-4 py-2 bg-base-color text-sm text-white">
                         <!-- Search Icon -->
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
 
                     </button>
@@ -200,11 +223,15 @@
                 <div class="mt-4 flex flex-col lg:flex-row lg:gap-x-2">
                     <p class="text-sm text-gray-600 font-semibold mb-2 ">{{ __('messages.recommend_keyword') }}</p>
                     <div class="flex flex-wrap gap-2 flex-1">
-                        <span class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">리프팅샷 수딩젤 100g</span>
-                        <span class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">퍼펙트 스칼프 토너</span>
-                        <span class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">임플라힐 P.O 크림</span>
+                        <span
+                            class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">리프팅샷 수딩젤 100g</span>
+                        <span
+                            class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">퍼펙트 스칼프 토너</span>
+                        <span
+                            class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">임플라힐 P.O 크림</span>
                         <span class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">퍼펙트 스칼프 임플란트 세럼</span>
-                        <span class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">에델바이스스노우크림</span>
+                        <span
+                            class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">에델바이스스노우크림</span>
                     </div>
                 </div>
             </div>

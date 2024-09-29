@@ -1,68 +1,8 @@
-@php
-    $isMain = true;
-    $whiteHeader = true;
+<?php
 
-$products = [
-    [
-        'product_name' => '리프팅샷 수딩젤 100g',
-        'price' => 66000,
-        'thumbnail' => asset('assets/img/elements/2024061918143212433.png'),
-        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-        'brand' => 'exomere',
-        'category' => 'creams',
-        'is_best' => true,
-        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-    ],
-    [
-        'product_name' => '퍼펙트 스칼프 임플란트 세럼',
-        'price' => 39000,
-        'thumbnail' => asset('assets/img/elements/2024061918143212433.png'),
-        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-        'category' => 'serums_essences',
-        'is_best' => true,
-        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-    ],
-    [
-        'product_name' => 'EXO-AG 리셀솔루션4SET',
-        'price' => 220000,
-        'thumbnail' => asset('assets/img/elements/2024021315327960678.png'),
-        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-        'category' => 'serums_essences',
-        'is_best' => true,
-        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-    ],
-    [
-        'product_name' => '퍼펙트 스칼프 토너',
-        'price' => 39000,
-        'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-        'category' => 'toners_mists',
-        'is_best' => true,
-        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-    ],
-    [
-        'product_name' => '임플라힐 P.O 크림',
-        'price' => 37000,
-        'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-        'brand' => 'imlaheal',
-        'category' => null,
-        'is_best' => true,
-        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-    ],
-    [
-        'product_name' => '에델바이스 스노우크림',
-        'price' => 40000,
-        'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-        'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-        'is_best' => true,
-        'product_desc' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-    ],
-];
-
-$bestProducts = collect($products)->where('is_best', true);
-
-@endphp
+$isMain = true;
+$whiteHeader = true;
+?>
 
 @extends('pages.layouts.mainLayout')
 
@@ -83,17 +23,17 @@ $bestProducts = collect($products)->where('is_best', true);
         <section class="h-svh">
             <div class="swiper main-swiper">
                 <div class="swiper-wrapper">
-                    @for($i=0; $i<2; $i++)
+                    @foreach($mainVideoBanner as $item)
                         <div class="swiper-slide">
                             <div
                                 class="absolute transform z-10 lg:top-1/2 lg:w-[50%] lg:px-28 lg:transform lg:-translate-x-1/2 lg:-translate-y-[60%] lg:text-left text-white">
                                 <p data-aos="fade-in" data-aos-delay="300"
                                    class="text-white/80 mt-6 text-xl break-keep leading-tight">
-                                    엑소좀과 스피커스가 함유된 미백 크림 {{$i}}
+                                    {{ $item['sub_title'] }}
                                 </p>
                                 <p data-aos="fade-up" data-aos-delay="400"
                                    class="text-3xl lg:text-4xl font-normal leading-tight break-keep mt-5">
-                                    임플란트 솔루션
+                                    {{ $item['title'] }}
                                 </p>
                                 <a data-aos="fade-in" data-aos-delay="300" href="/products" target="_self"
                                    class="mt-12 inline-block border border-solid border-white py-3 px-24 text-base break-keep">
@@ -101,11 +41,11 @@ $bestProducts = collect($products)->where('is_best', true);
                                 </a>
                             </div>
                             <video
-                                src="{{ asset('assets/img/elements/main_video.mp4') }}"
+                                src="{{ $item['video_src'] }}"
                                 class="slide-video object-cover" autoplay="" muted=""
                                 playsinline="" loop=""></video>
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
                 <div class="all-box absolute inline-flex left-1/2 bottom-[10%] w-[90%] h-[50px] p-x-[20px] z-20">
                     <div class="progress-box">
@@ -130,7 +70,7 @@ $bestProducts = collect($products)->where('is_best', true);
 
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-6 lg:gap-x-10 lg:gap-y-3">
                 @foreach($bestProducts as $product)
-                    <a href="#" class="swiper-slide group flex flex-col text-center"
+                    <a href="/products/1" class="swiper-slide group flex flex-col text-center"
                        data-aos="fade-up"
                        data-aos-delay="{{ $loop->index  * 100 }}">
                         <div
@@ -165,14 +105,14 @@ $bestProducts = collect($products)->where('is_best', true);
         <section class="h-svh">
             <div class="swiper material-swiper">
                 <div class="swiper-wrapper">
-                    @for($i=1; $i<=2;$i++)
+                    @foreach($materials as $item)
                         <div class="swiper-slide">
                             <a href="/about/technology"
                                class="flex flex-col w-full h-full items-center bg-white border border-gray-200 lg:flex-row">
                                 <div
                                     class="w-full h-full lg:w-[50%] w-full overflow-hidden">
                                     <div data-aos="scale" class="min-h-56 h-full bg-center bg-cover"
-                                         style="background-image: url('{{ asset("assets/img/elements/about_technology_$i.webp")}}')">
+                                         style="background-image: url('{{ $item['image_src'] }}')">
                                     </div>
                                 </div>
 
@@ -183,33 +123,21 @@ $bestProducts = collect($products)->where('is_best', true);
                                             BASE<br>
                                             MATERIAL
                                         </h2>
-                                        <p class="mb-2 text-2xl lg:text-3xl text-left font-semibold text-gray-900
-                                           ">@if($i==1)
-                                                EXOMERE™
-                                            @else
-                                                스피커스
-                                            @endif
+                                        <p class="mb-2 text-2xl lg:text-3xl text-left font-semibold text-gray-900">
+                                            {{ $item['name'] }}
                                         </p>
                                         <p class="mb-3 md:text-lg md:leading-loose text-left font-normal text-gray-600
                                             line-clamp-4 break-keep">
-                                            @if($i==1)
-                                                제주 한라봉에서 추출한 50~ 200mm 크기의 엑소좀으로, DNA, RNA, PEPTIDE가 포함되어 있어 노화 및
-                                                손상된 피부를 위한 세포 재생과 신호 전달에 도움을 주는 솔루션입니다.
-                                            @else
-                                                청정 바다에서 추출한 해양 생물의 순수 성분을 정제하여,
-                                                식물성 콜라겐 생성을 촉진시키는 금화규 추출물과 비피다발효물로
-                                                코팅한 특허 성분으로, 스피큘에 코팅된 발효 식물성콜라겐이 피부에
-                                                침투해 탄력 있는 피부로 개선시켜줍니다.
-                                            @endif
+                                            {{ $item['description'] }}
                                         </p>
                                         <p class="mt-5 text-left font-normal text-slate-700 pb-10">
-                                            특허 : 제10-2022-0007981호
+                                            {{ $item['code'] }}
                                         </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    @endfor
+                    @endforeach
                     <div
                         class="all-box left-0 bottom-0 transform-none padding lg:max-w-lg lg:left-[50%] lg:bottom-[15%]">
                         <div class="progress-box">
@@ -231,35 +159,38 @@ $bestProducts = collect($products)->where('is_best', true);
 
 
         {{--브랜치--}}
-        <section class="pt-40">
-            <div class="bg-gradient-to-r from-[#e4e4df]">
-                <div class="max-w-6xl mx-auto h-[65svh] md:flex md:flex-row relative">
-                    <div class="h-full w-full bg-bottom bg-[url({{ asset('assets/img/elements/about-branch-removebg.png') }})] bg-contain md:bg-center bg-no-repeat md:basis-1/2"></div>
-                    <div class="inset-0 absolute font-normal text-center md:static md:basis-1/2 md:text-left md:flex md:flex-col md:justify-center">
-                        <div class="w-full h-full flex flex-col justify-start items-center text-center pt-20 md:justify-center md:items-start md:p-0 md:max-w-lg">
-                            <h3 class="leading-tight font-semibold text-3xl lg:text-4xl mb-10 text-head"
-                                data-aos="fade-up">
-                                ABOUT BRANCH
-                            </h3>
-                            <p class="break-keep leading-loose md:leading-loose md:text-lg md:text-left" data-aos="fade-up" data-aos-delay="100">
-                                다양한 체험 프로그램과 전문적이고 체계적인 상담을 통해
-                                <br class="md:hidden">
-                                엑소미어의 제품을 체험할 수 있습니다
-                            </p>
-                            <p>
-                                <a href="/about/branch"
-                                   target="_self"
-                                   class="inline-block mt-5 md:mt-7 border border-solid border-base-color bg-base-color text-white py-2 px-16 break-keep"
-                                   data-aos="fade" data-aos-delay="200">
-                                    THE MORE
-                                </a>
-                            </p>
-                        </div>
+        <section class="h-svh  overflow-hidden">
+            <div class="flex justify-center items-center size-full ">
+                <div class="relative w-full">
+                    <img src="{{asset('assets/img/elements/visual_01.webp')}}" alt="" >
+                    <div class="absolute inset-0 size-full bg-black/50"></div>
+                    <div
+                        class="absolute inset-0 z-10 size-full flex flex-col justify-center text-white pl-10">
+                        <h3 class="text-3xl text-white font-semibold leading-tight md:text-4xl break-keep mb-5"
+                            data-aos="fade-up">
+                            ABOUT BRANCH
+                        </h3>
+                        <p class="text-sm leading-loose break-keep md:text-xl md:leading-loose"
+                           data-aos="fade-up" data-aos-delay="100">
+                            다양한 체험 프로그램과
+                            <br>
+                            전문적이고 체계적인 상담을 통해
+                            <br>
+                            엑소미어의 제품을 체험할 수 있습니다
+                        </p>
+                        <p>
+                            <a href="/about/branch"
+                               target="_self"
+                               class="inline-block mt-5 md:mt-7 border border-solid border-white text-white py-2 px-16 break-keep"
+                               data-aos="fade" data-aos-delay="200">
+                                THE MORE
+                            </a>
+                        </p>
                     </div>
                 </div>
+
             </div>
         </section>
-
     </main>
 @endsection
 

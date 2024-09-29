@@ -52,12 +52,18 @@
         }
 
         @layer utilities {
+            .badge {
+                @apply inline-block w-20 bg-gray-800 text-white text-xs font-medium text-center me-2 py-1 border border-solid border-gray-800;
+            }
+
             .input {
                 @apply w-full focus:outline-none py-2 px-4 mb-2 border border-solid border-slate-200 rounded-lg;
             }
+
             .required {
                 @apply text-sm after:inline-block after:ml-[4px] after:text-[#E65F3E] after:content-['*'];
             }
+
             .padding {
                 @apply sm:px-8 px-4 sm:py-12 py-6;
             }
