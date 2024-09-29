@@ -26,6 +26,7 @@ tailwind.config = {
                 "exomere": "rgb(207 87 51)",
                 "base-color": "#02060F",
                 "head": "#1D335C",
+                "content": "#211914",
             },
             backgroundPosition: {
                 'bottom-4': 'center bottom -1rem',

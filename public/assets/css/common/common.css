@@ -31,7 +31,7 @@ input {
 
 a {
     text-decoration: none;
-    color: #02060F;
+    /*color: #02060F;*/
 }
 
 [data-aos=wide] {
@@ -204,13 +204,13 @@ header#header.scroll {
     color: #152342;
 }
 
-header#header.scroll .log__image.m {
-    display: block;
-}
+/*header#header.scroll .log__image.m {*/
+/*    display: block;*/
+/*}*/
 
-header#header.scroll .log__image.pc {
-    display: none;
-}
+/*header#header.scroll .log__image.pc {*/
+/*    display: none;*/
+/*}*/
 
 /*토글 화살표*/
 svg.bi-chevron-down {
@@ -257,4 +257,13 @@ button[data-collapse-toggle][aria-expanded="true"] svg.bi-chevron-down {
 #search-form.on:after {
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+#parallax__nav li a {
+    transition: all 0.3s ease-in-out;
+}
+
+#parallax__nav li a.active {
+    color: rgb(207 87 51);
+    font-weight: 600;
 }

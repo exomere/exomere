@@ -37,6 +37,18 @@ $("#search-form-button").on('click',
     }
 );
 
+
+//gnb Nav 토글
+
+
+$('.toggle-menu-hover').on('mouseenter', function (e) {
+
+    if ($(e.target).attr('aria-expanded') == 'false') {
+        $(e.target).trigger('click');
+    }
+})
+
+
 // 위로가기
 $(function () {
     AOS.init({

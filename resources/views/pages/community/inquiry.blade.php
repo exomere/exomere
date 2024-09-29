@@ -3,7 +3,7 @@
 
 @section('id', 'inquiry')
 @section('visual_title',  __('gnb.inquiry') )
-@section('visual_sub_title', __('gnb.inquiry_title'))
+@section('visual_sub_title', '')
 @section('visual_background', 'https://cdn.pixabay.com/photo/2016/11/29/06/56/abstract-1867937_1280.jpg')
 
 @section('page-style')

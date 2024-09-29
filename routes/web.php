@@ -11,7 +11,9 @@ use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\OrganizationController;
+use App\Http\Controllers\FO\CommunityController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\member\JoinController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\Analytics;
@@ -66,9 +68,7 @@ use Illuminate\Support\Facades\Artisan;
 
 Artisan::call('storage:link'); //프로덕션에서 심볼릭 오류가 있어서 추가함,,, ㅠㅠ
 
-Route::get('/', function () {
-    return view('pages.main');
-});
+Route::get('/', [MainController::class, 'index']);
 
 Route::prefix('/newsandmedia')->group(function () {
     Route::get('/news', function () {
@@ -83,7 +83,8 @@ Route::prefix('/brand')->group(function () {
     Route::get('/', function () {
         return view('pages.brand.brand');
     });
-});Route::prefix('/products')->group(function () {
+});
+Route::prefix('/products')->group(function () {
     Route::get('/', function () {
         return view('pages.products.products');
     });
@@ -114,17 +115,16 @@ Route::prefix('/about')->group(function () {
         return view('pages.about.branch');
     });
 });
+
+
 Route::prefix('/community')->group(function () {
-    Route::get('notice', function () {
-        return view('pages.community.notice');
-    });
-    Route::get('reference', function () {
-        return view('pages.community.reference');
-    });
-    Route::get('inquiry', function () {
-        return view('pages.community.inquiry');
-    });
+    Route::get('notice', [CommunityController::class, 'notice']);
+    Route::get('notice/{notice_id}', [CommunityController::class, 'noticeDetail'])->name('community.noticeDetail');
+    Route::get('reference', [CommunityController::class, 'reference']);
+    Route::get('reference/{reference_id}', [CommunityController::class, 'referenceDetail'])->name('community.referenceDetail');
+    Route::get('inquiry', [CommunityController::class, 'inquiry']);
 });
+
 Route::prefix('/mypage')->group(function () {
     Route::get('cart', function () {
         return view('pages.mypage.cart');
@@ -152,9 +152,7 @@ Route::post('/login/perform', [LoginController::class, 'login'])->middleware('gu
 
 ###################### 인증 페이지 START###########################
 Route::group(['middleware' => 'auth'], function () {
-
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-
 
 
     Route::prefix('/management')->group(function () {
@@ -163,9 +161,15 @@ Route::group(['middleware' => 'auth'], function () {
         /** 내정보 관리 */
         Route::prefix('/member')->group(function () {
             Route::get('/', [MemberController::class, 'info'])->name('member.info');
-            Route::post('/member/update-basic', [MemberController::class, 'updateBasicInformation'])->name('member.update.basic');
-            Route::post('/member/update-account', [MemberController::class, 'updateAccountInformation'])->name('member.update.account');
-            Route::post('/member/update-password', [MemberController::class, 'updatePassword'])->name('member.update.password');
+            Route::post('/member/update-basic', [MemberController::class, 'updateBasicInformation'])->name(
+                'member.update.basic'
+            );
+            Route::post('/member/update-account', [MemberController::class, 'updateAccountInformation'])->name(
+                'member.update.account'
+            );
+            Route::post('/member/update-password', [MemberController::class, 'updatePassword'])->name(
+                'member.update.password'
+            );
             Route::post('/searchMember', [MemberController::class, 'searchMember'])->name('member.search.member');
         });
 
@@ -212,14 +216,18 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/register/{seq?}', [ErpMemberController::class, 'create'])->name('erp-member.create');
                 Route::post('/save', [ErpMemberController::class, 'save'])->name('erp-member.save');
                 Route::post('/del', [ErpMemberController::class, 'del'])->name('erp-member.del');
-                
+
                 // ㄴ 회원수정내역
                 Route::get('/modifyList', [ErpMemberController::class, 'index'])->name('erp-member.index');
 
                 // ㄴ 조직도
                 Route::prefix('/organization')->group(function () {
-                    Route::get('/list', [ErpMemberController::class, 'organizationList'])->name('erp-member.organization.list');
-                    Route::get('/data', [ErpMemberController::class, 'getOrganizationData'])->name('erp-member.organization.data');
+                    Route::get('/list', [ErpMemberController::class, 'organizationList'])->name(
+                        'erp-member.organization.list'
+                    );
+                    Route::get('/data', [ErpMemberController::class, 'getOrganizationData'])->name(
+                        'erp-member.organization.data'
+                    );
                 });
             });
 
@@ -229,14 +237,15 @@ Route::group(['middleware' => 'auth'], function () {
             Route::prefix('/order')->group(function () {
                 // ㄴ 주문목록/등록
                 Route::get('/list', [ErpOrderController::class, 'list'])->name('erp-order-layouts-order-list');
-                Route::get('/register/{seq?}', [ErpOrderController::class, 'orderRegister'])->name('erp-order-layouts-order-register');
+                Route::get('/register/{seq?}', [ErpOrderController::class, 'orderRegister'])->name(
+                    'erp-order-layouts-order-register'
+                );
                 Route::post('/save', [ErpOrderController::class, 'orderSave'])->name('erp-order.save');
                 Route::get('/del/{seq?}', [ErpOrderController::class, 'orderDel'])->name('erp-order.del');
 
 
                 // ㄴ 라인별 주문목록
                 Route::get('/line/list', [ErpOrderController::class, 'lineList'])->name('erp-order.line.list');
-
                 /*Route::get('/list', [OrderController::class, 'orderList'])->name('erp-order-layouts-order-list');
                 Route::get('/register/{seq?}', [OrderController::class, 'orderRegister'])->name('erp-order-layouts-order-register');
                 Route::post('/save', [OrderController::class, 'orderSave'])->name('order.save');
@@ -246,16 +255,26 @@ Route::group(['middleware' => 'auth'], function () {
             // 수당관리 allowance
             Route::prefix('/commission')->group(function () {
                 // ㄴ 기마감
-                Route::get('/termClosing', [ErpCommissionController::class, 'termClosing'])->name('erp-allowance.term-closing');
+                Route::get('/termClosing', [ErpCommissionController::class, 'termClosing'])->name(
+                    'erp-allowance.term-closing'
+                );
                 // ㄴ 기마감 계산
-                Route::post('/termCalculation', [ErpCommissionController::class, 'termCalculation'])->name('erp.term.calculation');
+                Route::post('/termCalculation', [ErpCommissionController::class, 'termCalculation'])->name(
+                    'erp.term.calculation'
+                );
                 // ㄴ 월마감
-                Route::get('/monthlyClosing', [ErpCommissionController::class, 'monthlyClosing'])->name('erp-allowance.monthly-closing');
-                    // ㄴ 월마감 디테일
-                    Route::get('/monthlyClosingDetail', [ErpCommissionController::class, 'monthlyClosingDetail'])->name('erp-allowance.monthly-detail');
+                Route::get('/monthlyClosing', [ErpCommissionController::class, 'monthlyClosing'])->name(
+                    'erp-allowance.monthly-closing'
+                );
+                // ㄴ 월마감 디테일
+                Route::get('/monthlyClosingDetail', [ErpCommissionController::class, 'monthlyClosingDetail'])->name(
+                    'erp-allowance.monthly-detail'
+                );
 
                 // ㄴ 월마감 계산
-                Route::post('/monthlyCalculation', [ErpCommissionController::class, 'monthlyCalculation'])->name('erp.monthly.calculation');
+                Route::post('/monthlyCalculation', [ErpCommissionController::class, 'monthlyCalculation'])->name(
+                    'erp.monthly.calculation'
+                );
             });
 
             // 포인트관리 point
@@ -276,25 +295,43 @@ Route::group(['middleware' => 'auth'], function () {
             Route::prefix('/board')->group(function () {
                 Route::prefix('/notice')->group(function () {
                     Route::get('/list', [ErpBoardController::class, 'noticeList'])->name('erp-board.notice.list');
-                    Route::get('/detail/{id}', [ErpBoardController::class, 'noticeDetail'])->name('erp-board.notice.detail');
+                    Route::get('/detail/{id}', [ErpBoardController::class, 'noticeDetail'])->name(
+                        'erp-board.notice.detail'
+                    );
                     Route::get('/create', [ErpBoardController::class, 'noticeCreate'])->name('erp-board.notice.create');
                     Route::post('/store', [ErpBoardController::class, 'noticeStore'])->name('erp-board.notice.store');
                     Route::get('/edit/{id}', [ErpBoardController::class, 'noticeEdit'])->name('erp-board.notice.edit');
-                    Route::put('/update/{id}', [ErpBoardController::class, 'noticeUpdate'])->name('erp-board.notice.update');
-                    Route::delete('/delete/{id}', [ErpBoardController::class, 'noticeDestroy'])->name('erp-board.notice.delete');
+                    Route::put('/update/{id}', [ErpBoardController::class, 'noticeUpdate'])->name(
+                        'erp-board.notice.update'
+                    );
+                    Route::delete('/delete/{id}', [ErpBoardController::class, 'noticeDestroy'])->name(
+                        'erp-board.notice.delete'
+                    );
                 });
 
-                 /** 1:1문의 */
+                /** 1:1문의 */
                 Route::prefix('/inquiry')->group(function () {
                     Route::get('/list', [ErpBoardController::class, 'inquiryList'])->name('erp-board.inquiry.list');
-                    Route::get('/detail/{id}', [ErpBoardController::class, 'inquiryDetail'])->name('erp-board.inquiry.detail');
-                    Route::get('/create', [ErpBoardController::class, 'inquiryCreate'])->name('erp-board.inquiry.create');
+                    Route::get('/detail/{id}', [ErpBoardController::class, 'inquiryDetail'])->name(
+                        'erp-board.inquiry.detail'
+                    );
+                    Route::get('/create', [ErpBoardController::class, 'inquiryCreate'])->name(
+                        'erp-board.inquiry.create'
+                    );
                     Route::post('/store', [ErpBoardController::class, 'inquiryStore'])->name('erp-board.inquiry.store');
-                    Route::get('/edit/{id}', [ErpBoardController::class, 'inquiryEdit'])->name('erp-board.inquiry.edit');
-                    Route::put('/update/{id}', [ErpBoardController::class, 'inquiryUpdate'])->name('erp-board.inquiry.update');
-                    Route::delete('/delete/{id}', [ErpBoardController::class, 'inquiryDestroy'])->name('erp-board.inquiry.delete');
+                    Route::get('/edit/{id}', [ErpBoardController::class, 'inquiryEdit'])->name(
+                        'erp-board.inquiry.edit'
+                    );
+                    Route::put('/update/{id}', [ErpBoardController::class, 'inquiryUpdate'])->name(
+                        'erp-board.inquiry.update'
+                    );
+                    Route::delete('/delete/{id}', [ErpBoardController::class, 'inquiryDestroy'])->name(
+                        'erp-board.inquiry.delete'
+                    );
                     // 1:1 문의 답변
-                    Route::post('/{id}/comment', [ErpBoardController::class, 'inquiryStoreComment'])->name('erp-board.inquiry.comment.store');
+                    Route::post('/{id}/comment', [ErpBoardController::class, 'inquiryStoreComment'])->name(
+                        'erp-board.inquiry.comment.store'
+                    );
                 });
             });
 
@@ -306,7 +343,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::prefix('/basic')->group(function () {
                 Route::prefix('/manager')->group(function () {
                     Route::get('/list', [ErpBasicController::class, 'managerList'])->name('basic-layouts-member-list');
-                    Route::get('/register/{seq?}', [ErpBasicController::class, 'memberRegister'])->name('basic-layouts-member-register');
+                    Route::get('/register/{seq?}', [ErpBasicController::class, 'memberRegister'])->name(
+                        'basic-layouts-member-register'
+                    );
                     Route::post('/save', [ErpBasicController::class, 'memberSave'])->name('member.save');
                     Route::get('/del/{seq?}', [ErpBasicController::class, 'memberDel'])->name('member.del');
                 });
@@ -314,7 +353,9 @@ Route::group(['middleware' => 'auth'], function () {
                 /** 센터관리 */
                 Route::prefix('/center')->group(function () {
                     Route::get('/list', [ErpBasicController::class, 'centerList'])->name('basic-layouts-center-list');
-                    Route::get('/register/{seq?}', [ErpBasicController::class, 'centerRegister'])->name('basic-layouts-center-register');
+                    Route::get('/register/{seq?}', [ErpBasicController::class, 'centerRegister'])->name(
+                        'basic-layouts-center-register'
+                    );
                     Route::post('/save', [ErpBasicController::class, 'centerSave'])->name('center.save');
                     Route::get('/del/{seq?}', [ErpBasicController::class, 'centerDel'])->name('center.del');
                 });
@@ -322,15 +363,21 @@ Route::group(['middleware' => 'auth'], function () {
                 /** 상품관리 */
                 Route::prefix('/item')->group(function () {
                     Route::get('/list', [ErpBasicController::class, 'itemList'])->name('basic-layouts-item-list');
-                    Route::get('/register/{seq?}', [ErpBasicController::class, 'itemRegister'])->name('basic-layouts-item-register');
+                    Route::get('/register/{seq?}', [ErpBasicController::class, 'itemRegister'])->name(
+                        'basic-layouts-item-register'
+                    );
                     Route::post('/save', [ErpBasicController::class, 'itemSave'])->name('item.save');
                     Route::get('/del/{seq?}', [ErpBasicController::class, 'itemDel'])->name('item.del');
                 });
 
                 /** 분양몰관리 */
                 Route::prefix('/distribute')->group(function () {
-                    Route::get('/list', [ErpBasicController::class, 'distributeList'])->name('basic-layouts-distribute-list');
-                    Route::get('/register/{seq?}', [ErpBasicController::class, 'distributeRegister'])->name('basic-layouts-distribute-register');
+                    Route::get('/list', [ErpBasicController::class, 'distributeList'])->name(
+                        'basic-layouts-distribute-list'
+                    );
+                    Route::get('/register/{seq?}', [ErpBasicController::class, 'distributeRegister'])->name(
+                        'basic-layouts-distribute-register'
+                    );
                     Route::post('/save', [ErpBasicController::class, 'distributeSave'])->name('distribute.save');
                     Route::get('/del/{seq?}', [ErpBasicController::class, 'distributeDel'])->name('distribute.del');
                 });
@@ -360,16 +407,26 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 
         // pages
-        Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
-        Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
-        Route::get('/pages/account-settings-connections', [AccountSettingsConnections::class, 'index'])->name('pages-account-settings-connections');
+        Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name(
+            'pages-account-settings-account'
+        );
+        Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name(
+            'pages-account-settings-notifications'
+        );
+        Route::get('/pages/account-settings-connections', [AccountSettingsConnections::class, 'index'])->name(
+            'pages-account-settings-connections'
+        );
         Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
-        Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name('pages-misc-under-maintenance');
+        Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name(
+            'pages-misc-under-maintenance'
+        );
 
         // authentication
         Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
         Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
-        Route::get('/auth/forgot-password-basic', [ForgotPasswordBasic::class, 'index'])->name('auth-reset-password-basic');
+        Route::get('/auth/forgot-password-basic', [ForgotPasswordBasic::class, 'index'])->name(
+            'auth-reset-password-basic'
+        );
 
         // cards
         Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');
@@ -387,7 +444,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/ui/modals', [Modals::class, 'index'])->name('ui-modals');
         Route::get('/ui/navbar', [Navbar::class, 'index'])->name('ui-navbar');
         Route::get('/ui/offcanvas', [Offcanvas::class, 'index'])->name('ui-offcanvas');
-        Route::get('/ui/pagination-breadcrumbs', [PaginationBreadcrumbs::class, 'index'])->name('ui-pagination-breadcrumbs');
+        Route::get('/ui/pagination-breadcrumbs', [PaginationBreadcrumbs::class, 'index'])->name(
+            'ui-pagination-breadcrumbs'
+        );
         Route::get('/ui/progress', [Progress::class, 'index'])->name('ui-progress');
         Route::get('/ui/spinners', [Spinners::class, 'index'])->name('ui-spinners');
         Route::get('/ui/tabs-pills', [TabsPills::class, 'index'])->name('ui-tabs-pills');
@@ -396,7 +455,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/ui/typography', [Typography::class, 'index'])->name('ui-typography');
 
         // extended ui
-        Route::get('/extended/ui-perfect-scrollbar', [PerfectScrollbar::class, 'index'])->name('extended-ui-perfect-scrollbar');
+        Route::get('/extended/ui-perfect-scrollbar', [PerfectScrollbar::class, 'index'])->name(
+            'extended-ui-perfect-scrollbar'
+        );
         Route::get('/extended/ui-text-divider', [TextDivider::class, 'index'])->name('extended-ui-text-divider');
 
         // icons

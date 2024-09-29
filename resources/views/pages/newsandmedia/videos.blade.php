@@ -39,7 +39,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
 
 @section('id', 'videos')
 @section('visual_title',  __('gnb.videos') )
-@section('visual_sub_title', __('gnb.videos_title'))
+@section('visual_sub_title', '')
 @section('visual_background', asset("assets/img/elements/subvisual_bg3.jpg"))
 
 
