@@ -26,6 +26,24 @@
                             <p class="form-control-plaintext">{{ $inquiry->author_name }}</p>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">업체명:</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-plaintext">{{ $inquiry->company_name }}</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">국가:</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-plaintext">{{ config('meta.nation.'.$inquiry->nation) }}</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">이메일:</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-plaintext">{{ $inquiry->email }}</p>
+                        </div>
+                    </div>
 
                     <!-- Inquiry Content -->
                     <div class="row mb-3">

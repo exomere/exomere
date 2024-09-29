@@ -57,56 +57,51 @@
                     Email. {{ __('common.email') }}
                 </p>
             </div>
-
-
         </div>
-        <div class="col-span-2">
-            <form action="">
-                <div data-aos="fade-up" data-aos-delay="100">
+        <div class="col-span-2" data-aos="fade-up" data-aos-delay="300">
+            <form id="inquiryForm" method='post' action="{{ route('fo.inquiry.store') }}" enctype="multipart/form-data">
+                @csrf
+                <div>
                     <label class="required">
                         {{__('messages.company_name')}}
                     </label>
                     <input type="text"
+                           name="company_name"
                            class="input"
                            required
                            placeholder="{{__('messages.company_name')}}">
                 </div>
-                <div data-aos="fade-up" data-aos-delay="200">
-                    <label class="required">{{__('messages.name')}}</label>
-                    <input type="text"
-                           class="input"
-                           required
-                           placeholder="{{__('messages.name')}}">
-                </div>
-                <div data-aos="fade-up" data-aos-delay="300">
+                <div>
                     <label class="required">{{__('messages.nation')}}</label>
                     <select
                         class="input text-gray-400"
+                        name="nation"
                         required>
                         <option value="">{{__('messages.nation')}}</option>
-                        <option value="ko">한국</option>
-                        <option value="en">United States</option>
-                        <option value="jp">日本</option>
-                        <option value="cn">中国</option>
+                        @foreach(config('meta.nation') as $k=>$v)
+                            <option value="{{ $k }}">{{ $v }}</option>
+                        @endforeach
                     </select>
                 </div>
-                <div data-aos="fade-up" data-aos-delay="400">
+                <div>
                     <label class="required">{{__('messages.email')}}</label>
                     <input type="email"
+                           name="email"
                            class="input"
                            required
                            placeholder="{{__('messages.email')}}">
                 </div>
-                <div data-aos="fade-up" data-aos-delay="500">
+                <div>
                     <label class="required">{{__('messages.contents')}}</label>
-                    <textarea name="" id="text"
-                              rows="5"
+                    <textarea name="content" id="text"
+                              rows="10"
                               class="input"
                               required
                               placeholder="{{__('messages.contents')}}"></textarea>
                 </div>
-                <div data-aos="fade-up" data-aos-delay="100">
+                <div>
                     <button
+                        type="submit"
                         class="px-10 h-12 text-center text-exomere border border-solid rounded-full border-exomere text-base font-semibold leading-6 hover:bg-exomere hover:text-white shadow transition-all duration-700">
                         {{__('messages.submit')}}
                     </button>
@@ -115,6 +110,34 @@
         </div>
 
     </div>
+
+    <!-- Display success message if available -->
+    @if (session('success'))
+
+        <div id="toast-default"
+             class="fixed bottom-5 right-5 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow"
+             role="alert">
+            <div
+                class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-blue-500 bg-blue-100 rounded-lg">
+                <svg class="w-5 h-5 text-blue-600 rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 18 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9"/>
+                </svg>
+            </div>
+            <div class="ms-3 text-sm font-normal">{{ session('success') }}</div>
+            <button type="button"
+                    class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"
+                    data-dismiss-target="#toast-default" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+            </button>
+        </div>
+    @endif
 
 @endsection
 

@@ -21,7 +21,7 @@
 
                 <article class="min-h-svh overflow-y-auto border-b border-solid border-slate-200">
                     <div class="flex flex-row justify-between px-3 py-8 border-b border-solid border-slate-200">
-                        <h1 class="text-xl font-medium text-gray-900">{{ $item['subject' ]}}</h1>
+                        <h1 class="text-xl font-medium text-gray-900">{{ $item['title' ]}}</h1>
 
                         <div class="text-gray-500">{{ $item['created_at'] }}</div>
                     </div>
@@ -29,7 +29,7 @@
                     <div class="text-md p-5">
                         <p
                             class="break-keep leading-loose text-gray-900 mb-4">
-                            {!! $item['contents'] !!}
+                            {!! $item['content'] !!}
                         </p>
                     </div>
                 </article>

@@ -1,5 +1,12 @@
 <?php
+
 return [
+    'nation' => [
+        'ko' => '한국',
+        'en' => 'United States',
+        'jp' => '日本',
+        'cn' => '中国',
+    ],
     'languages' => [
         'ko' => '한국어',
         'en' => 'English',

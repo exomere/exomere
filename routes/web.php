@@ -117,14 +117,6 @@ Route::prefix('/about')->group(function () {
 });
 
 
-Route::prefix('/community')->group(function () {
-    Route::get('notice', [CommunityController::class, 'notice']);
-    Route::get('notice/{notice_id}', [CommunityController::class, 'noticeDetail'])->name('community.noticeDetail');
-    Route::get('reference', [CommunityController::class, 'reference']);
-    Route::get('reference/{reference_id}', [CommunityController::class, 'referenceDetail'])->name('community.referenceDetail');
-    Route::get('inquiry', [CommunityController::class, 'inquiry']);
-});
-
 Route::prefix('/mypage')->group(function () {
     Route::get('cart', function () {
         return view('pages.mypage.cart');
@@ -152,6 +144,20 @@ Route::post('/login/perform', [LoginController::class, 'login'])->middleware('gu
 
 ###################### 인증 페이지 START###########################
 Route::group(['middleware' => 'auth'], function () {
+
+    // 메인>커뮤니티 로그인 후 사용가능
+    Route::prefix('/community')->group(function () {
+        Route::get('notice', [CommunityController::class, 'notice']);
+        Route::get('notice/{notice_id}', [CommunityController::class, 'noticeDetail'])->name('community.noticeDetail');
+        Route::get('reference', [CommunityController::class, 'reference']);
+        Route::get('reference/{reference_id}', [CommunityController::class, 'referenceDetail'])->name(
+            'community.referenceDetail'
+        );
+        Route::get('inquiry', [CommunityController::class, 'inquiry'])->name('fo.inquiry.list');
+        Route::post('inquiry/store', [CommunityController::class, 'inquiryStore'])->name('fo.inquiry.store');
+    });
+
+
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 
