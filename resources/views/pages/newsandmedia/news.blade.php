@@ -1,59 +1,7 @@
 <?php
 
-$items = [
-    [
-        'title' => "2024년 제2회 한류인플루언서 대상 어워즈 주최",
-        'thumbnail' => "//exomere.co.kr/common/image/media_01.png",
-        'contents' => "2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상<br><br>
-         d어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워<br>
-         즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년<br><br> 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 <br>한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대<br>상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최",
-        'created_at' => "2024.06.05",
-        'category' => 'company'
-    ],
-    [
-        'title' => "2024년 코엑스 뷰티 박람회 참여",
-        'thumbnail' => "//exomere.co.kr/common/image/media_02.png",
-        'contents' => "2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최",
-        'created_at' => "2024.05.29",
-        'category' => 'rnd'
-    ],
-    [
-        'title' => "2024년 일본 도쿄뷰티월드 세미나 개최",
-        'thumbnail' => "//exomere.co.kr/common/image/media_03.png",
-        'contents' => "2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최",
-        'created_at' => "2024.05.13",
-        'category' => 'social',
-    ],
-    [
-        'title' => "2024년 일본 도쿄뷰티월드 박람회 참여",
-        'thumbnail' => "//exomere.co.kr/common/image/media_04.png",
-        'contents' => "2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최2024년 제2회 한류인플루언서 대상 어워즈 주최",
-        'created_at' => "2024.05.13",
-        'category' => 'social',
 
-    ]
-];
-
-
-$news = collect($items)->whereNotNull('category'); //전체
-$categorizeItems = $news->groupBy('category');//카테고리화
-
-// 병합
-$items = collect([
-    'view_all' => $news
-])->merge($categorizeItems);
-
-$selectedCategory = request()->query('category') ?? null;
-
-// todo
-$categories = [
-    "view_all",
-    'company',
-    'rnd',
-    'social',
-];
-
-$jsonData = json_encode($news, JSON_UNESCAPED_UNICODE);
+$jsonData = json_encode($allItems, JSON_UNESCAPED_UNICODE);
 ?>
 
 @extends('pages.layouts.subLayout')
@@ -109,8 +57,8 @@ $jsonData = json_encode($news, JSON_UNESCAPED_UNICODE);
                             </span>
                             <div
                                 class="aspect-h-1 aspect-w-1 w-full bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                <img src="{{$item['thumbnail']}}"
-                                     alt="{{$item['title']}}"
+                                <img src="{{ $item['thumbnail'] }}"
+                                     alt="{{ $item['title'] }}"
                                      class="h-full w-full  object-center lg:h-full lg:w-full">
 
                             </div>
@@ -118,10 +66,10 @@ $jsonData = json_encode($news, JSON_UNESCAPED_UNICODE);
                                 <h3 class="mb-5 text-lg text-gray-900 line-clamp-2">
                                     <a href="#!" onclick="openContentModal('{{$loop->index}}')">
                                         <span aria-hidden="true" class="absolute inset-0"></span>
-                                        {{$item['title']}}
+                                        {{ $item['title'] }}
                                     </a>
                                 </h3>
-                                <p class="mt-1 text-sm text-gray-600">{{$item['created_at']}}</p>
+                                <p class="mt-1 text-sm text-gray-600">{{ $item['created_at']->format('Y.m.d') }}</p>
                             </div>
                         </div>
                     @endforeach

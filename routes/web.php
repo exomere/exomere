@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\OrganizationController;
 use App\Http\Controllers\FO\AjaxController;
 use App\Http\Controllers\FO\CommunityController;
+use App\Http\Controllers\FO\NewsVideoController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\member\JoinController;
@@ -76,14 +77,10 @@ Route::prefix('/ajax')->group(function () {
 });
 
 Route::prefix('/newsandmedia')->group(function () {
-    Route::get('/news', function () {
-        return view('pages.newsandmedia.news');
-    });
-
-    Route::get('/videos', function () {
-        return view('pages.newsandmedia.videos');
-    });
+    Route::get('/news', [NewsVideoController::class, 'news']);
+    Route::get('/videos', [NewsVideoController::class, 'videos']);
 });
+
 Route::prefix('/brand')->group(function () {
     Route::get('/', function () {
         return view('pages.brand.brand');
