@@ -12,7 +12,11 @@ $(".__nav").on('mouseenter click',
 $(".__nav").on('mouseleave',
     function (e) {
         $('.__nav').removeClass('on');
-        $('#header').removeClass('on');
+
+        if (!$("#search-form").hasClass('on')) {
+            $('#header').removeClass('on');
+        }
+
     }
 );
 
@@ -31,16 +35,36 @@ $("#search-form-button").on('click',
             $('#search-form').removeClass('on');
             $('#header').removeClass('on');
         } else {
+
+            ajaxSearchKeyword();
+
             $('#search-form').addClass('on');
             $('#header').addClass('on');
         }
     }
 );
 
+//ajax search keywords
+function ajaxSearchKeyword() {
+    $.ajax({
+        type: 'get',
+        dataType: "json",
+        url: "/ajax/recommend_search_keywords",
+        success: function (res) {
+            let html = '';
+            res.forEach(function (item) {
+                html += `<a href="/products/${item.id}" class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">${item.name}</a>`
+            })
+
+            $('#recommend-search-keyword-area').html(html);
+        }
+    });
+
+
+}
+
 
 //gnb Nav 토글
-
-
 $('.toggle-menu-hover').on('mouseenter', function (e) {
 
     if ($(e.target).attr('aria-expanded') == 'false') {

@@ -222,9 +222,8 @@
                 <!-- Suggested Search Keywords -->
                 <div class="mt-4 flex flex-col lg:flex-row lg:gap-x-2">
                     <p class="text-sm text-gray-600 font-semibold mb-2 ">{{ __('messages.recommend_keyword') }}</p>
-                    <div class="flex flex-wrap gap-2 flex-1">
-                        <span
-                            class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">리프팅샷 수딩젤 100g</span>
+                    <div id="recommend-search-keyword-area" class="flex flex-wrap gap-2 flex-1">
+                        <a class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">리프팅샷 수딩젤 100g</a>
                         <span
                             class="px-4 py-2 border border-solid border-gray-300 text-sm text-gray-700">퍼펙트 스칼프 토너</span>
                         <span

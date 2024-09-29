@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\OrganizationController;
+use App\Http\Controllers\FO\AjaxController;
 use App\Http\Controllers\FO\CommunityController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MainController;
@@ -69,6 +70,10 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::call('storage:link'); //프로덕션에서 심볼릭 오류가 있어서 추가함,,, ㅠㅠ
 
 Route::get('/', [MainController::class, 'index']);
+
+Route::prefix('/ajax')->group(function () {
+    Route::get('recommend_search_keywords', [AjaxController::class, 'getRecommendSearchKeywords']);
+});
 
 Route::prefix('/newsandmedia')->group(function () {
     Route::get('/news', function () {

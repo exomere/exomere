@@ -119,7 +119,7 @@ $contents = [
                                         <img src="{{ $content['image'] }}"
                                              alt="{{ $content['title'] }}"
                                              data-aos="fade-in"
-                                             class="h-full">
+                                             >
                                     </picture>
                                 </div>
                                 <div class="pt-10 pb-20 px-8 lg:p-0 lg:p-[5%] xl:p-[10%] leading-loose md:basis-1/2"
@@ -162,8 +162,7 @@ $contents = [
                     var tabSwiper = new Swiper(".tab-swiper", {
                         loop: false,
                         freeMode: true,
-                        slidesPerView: 'auto',
-                        // centeredSlides: true,
+                        slidesPerView: 4,
                         navigation: {
                             nextEl: ".swiper-button-next",
                             prevEl: ".swiper-button-prev",
