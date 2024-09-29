@@ -30,7 +30,7 @@ $contents = [
 @endsection
 @section('content')
 
-    <div class="flex flex-col">
+    <div class="mt-10 flex flex-col">
         @foreach($contents as $content)
             <div class="flex flex-col md:flex-row aspect-h-1 sm:min-h-[40svh] lg:min-h-[60svh]">
                 <picture class="overflow-hidden basis-1/2">

@@ -40,10 +40,16 @@ $whiteHeader = true;
                                     THE MORE
                                 </a>
                             </div>
+
                             <video
-                                src="{{ $item['video_src'] }}"
-                                class="slide-video object-cover" autoplay="" muted=""
-                                playsinline="" loop=""></video>
+                                class="slide-video object-cover"
+                                autoPlay
+                                loop
+                                muted
+                            >
+                                <source src={{ $item['video_src'] }} type="video/mp4"/>
+                            </video>
+
                         </div>
                     @endforeach
                 </div>
@@ -76,6 +82,7 @@ $whiteHeader = true;
                         <div
                             class="relative w-full aspect-square bg-cover bg-center lg:group-hover:bg-[url({{$product['thumbnail2']}})]">
                             <img src="{{$product['thumbnail']}}" alt="{{$product['product_name']}}"
+                                 loading="lazy"
                                  class="h-full w-full object-center lg:h-full lg:w-full lg:group-hover:opacity-0 transition-opacity duration-500">
                         </div>
                         <div class="p-3 pt-5 w-full text-slate">
@@ -162,7 +169,7 @@ $whiteHeader = true;
         <section class="h-svh  overflow-hidden">
             <div class="flex justify-center items-center size-full ">
                 <div class="relative w-full">
-                    <img src="{{asset('assets/img/elements/visual_01.webp')}}" alt="" >
+                    <img src="{{asset('assets/img/elements/visual_01.webp')}}" alt="" loading="lazy">
                     <div class="absolute inset-0 size-full bg-black/50"></div>
                     <div
                         class="absolute inset-0 z-10 size-full flex flex-col justify-center text-white pl-10">

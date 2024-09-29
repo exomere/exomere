@@ -1,35 +1,35 @@
 <?php
 
-$items = [
-    [
-        'title' => "엑소미어 메인 필름",
-        'url' => asset("assets/img/elements/main_video.mp4"),
-        'thumbnail' => asset("assets/img/elements/about_technology_2.webp"),
-        'created_at' => "2024.06.05",
-    ],
-    [
-        'title' => "엑소미어 필름2",
-        'url' => "//exomere.co.kr/common/image/exomere.mp4",
-        'thumbnail' => asset("assets/img/elements/visual_04.webp"),
-        'created_at' => "2024.05.29"
-    ],
-    [
-        'title' => "엑소미어 필름3",
-        'url' => "//exomere.co.kr/common/image/exomere.mp4",
-        'thumbnail' => asset("assets/img/elements/visual_04.webp"),
-        'created_at' => "2024.05.29"
-    ],
-    [
-        'title' => "엑소미어 필름4",
-        'url' => "//exomere.co.kr/common/image/exomere.mp4",
-        'thumbnail' => asset("assets/img/elements/visual_04.webp"),
-        'created_at' => "2024.05.29"
-    ],
-];
-
-$mainVideo = array_shift($items);
-$videos = $items;
-
+//$items = [
+//    [
+//        'title' => "엑소미어 메인 필름",
+//        'url' => asset("assets/img/elements/main_video.mp4"),
+//        'thumbnail' => asset("assets/img/elements/about_technology_2.webp"),
+//        'created_at' => "2024.06.05",
+//    ],
+//    [
+//        'title' => "엑소미어 필름2",
+//        'url' => "//exomere.co.kr/common/image/exomere.mp4",
+//        'thumbnail' => asset("assets/img/elements/visual_04.webp"),
+//        'created_at' => "2024.05.29"
+//    ],
+//    [
+//        'title' => "엑소미어 필름3",
+//        'url' => "//exomere.co.kr/common/image/exomere.mp4",
+//        'thumbnail' => asset("assets/img/elements/visual_04.webp"),
+//        'created_at' => "2024.05.29"
+//    ],
+//    [
+//        'title' => "엑소미어 필름4",
+//        'url' => "//exomere.co.kr/common/image/exomere.mp4",
+//        'thumbnail' => asset("assets/img/elements/visual_04.webp"),
+//        'created_at' => "2024.05.29"
+//    ],
+//];
+//
+//$mainVideo = array_shift($items);
+//$videos = $items;
+//
 
 $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
 ?>
@@ -48,14 +48,15 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
 @endsection
 @section('content')
 
-    <div>
+    <div class="mb-10">
         <!-- 메인 비디오 -->
         @if($mainVideo)
             <div class="mb-8 relative group cursor-pointer"
-                 onclick="playVideo('{{ $mainVideo['url'] }}')"
+                 onclick="playVideo('{{ $mainVideo['video'] }}')"
                  data-aos="fade-in">
-                <img src="{{ $mainVideo['thumbnail'] }}" alt="{{ $mainVideo['title'] }}"
-                     class="aspect-video transition-opacity duration-300 group-hover:opacity-75">
+                <img src="{{ $mainVideo['thumbnail'] }}"
+                     alt="{{ $mainVideo['title'] }}"
+                     class="aspect-video size-full transition-opacity duration-300 group-hover:opacity-75">
                 <div
                     class="absolute inset-0 flex mt-4 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <svg class="w-24 h-24 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -69,15 +70,15 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
                     <h3 class="mb-5 text-lg font-medium text-gray-900 line-clamp-2">
                         {{$mainVideo['title']}}
                     </h3>
-                    <p class="mt-1 text-sm text-gray-600">{{$mainVideo['created_at']}}</p>
+                    <p class="mt-1 text-sm text-gray-600">{{$mainVideo['created_at']->format('Y.m.d') }}</p>
                 </div>
             </div>
         @endif
 
         <!-- 작은 비디오 그리드 -->
         <div class="grid md:grid-cols-2 gap-x-6 gap-y-10 lg:gap-x-10 lg:gap-y-16">
-            @foreach ($videos as $video)
-                <div class="relative group cursor-pointer" onclick="playVideo('{{ $video['url'] }}')"
+            @foreach ($items as $video)
+                <div class="relative group cursor-pointer" onclick="playVideo('{{ $video['video'] }}')"
                      data-aos="fade-in"
                      data-aos-delay="{{ $loop->index * 100 }}"
                 >
@@ -95,7 +96,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
                         <h3 class="mb-5 text-lg font-medium text-gray-900 line-clamp-2">
                             {{$video['title']}}
                         </h3>
-                        <p class="mt-1 text-sm text-gray-600">{{$video['created_at']}}</p>
+                        <p class="mt-1 text-sm text-gray-600">{{$video['created_at']->format('Y.m.d') }}</p>
                     </div>
                 </div>
             @endforeach

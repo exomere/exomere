@@ -17,8 +17,6 @@ $contents = [
         'desc' => 'SPICUS™는 유효성분의 전달 통로가 되어 엑소좀과 유효 성분의 보다 효과적인 흡수를 도와줍니다. 피부 재생에 도움을 줄 수 있으며, 입자의 균일화를 통해 표피 자극을 최소화하여 부작용을 줄일 수 있습니다. 또한, 허브 성분을 배제하여 알러지 유발 가능성을 낮추었으며, 저분자 콜라겐이 코팅되어 있어 피부 치밀도 개선에 기여할수 있습니다.',
         'image' => asset('assets/img/elements/about_technology_1.webp')
     ],
-
-
 ];
 
 ?>
@@ -139,7 +137,7 @@ $contents = [
             var tabSwiper = new Swiper(".tab-swiper", {
                 loop: false,
                 freeMode: true,
-                slidesPerView: 'auto',
+                slidesPerView: 4,
                 centeredSlides: true,
                 navigation: {
                     nextEl: ".swiper-button-next",

@@ -11,7 +11,9 @@ use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\OrganizationController;
+use App\Http\Controllers\FO\AjaxController;
 use App\Http\Controllers\FO\CommunityController;
+use App\Http\Controllers\FO\NewsVideoController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\member\JoinController;
@@ -70,15 +72,15 @@ Artisan::call('storage:link'); //프로덕션에서 심볼릭 오류가 있어�
 
 Route::get('/', [MainController::class, 'index']);
 
-Route::prefix('/newsandmedia')->group(function () {
-    Route::get('/news', function () {
-        return view('pages.newsandmedia.news');
-    });
-
-    Route::get('/videos', function () {
-        return view('pages.newsandmedia.videos');
-    });
+Route::prefix('/ajax')->group(function () {
+    Route::get('recommend_search_keywords', [AjaxController::class, 'getRecommendSearchKeywords']);
 });
+
+Route::prefix('/newsandmedia')->group(function () {
+    Route::get('/news', [NewsVideoController::class, 'news']);
+    Route::get('/videos', [NewsVideoController::class, 'videos']);
+});
+
 Route::prefix('/brand')->group(function () {
     Route::get('/', function () {
         return view('pages.brand.brand');
