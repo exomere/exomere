@@ -68,7 +68,7 @@
 
             {{--login/search--}}
             <div class="basis-1/3 flex gap-x-2 items-center justify-end">
-                <a href="/login" target="_blank" class="myoffice__button flex items-center justify-center">
+                <a href="{{ url('/management/dashboard') }}" target="_blank" class="myoffice__button flex items-center justify-center">
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                          stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-width="1.2"
