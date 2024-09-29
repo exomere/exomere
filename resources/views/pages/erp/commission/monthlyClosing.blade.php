@@ -30,7 +30,7 @@
         <input type="text" class="form-control" style='margin-left:10px; margin-right:10px; width:120px;' readonly id="start_date" name='start_date' />
         <label class="col-form-label" style='font-size:16px;' for="end_date"> ~ </label>
         <input type="text" class="form-control" style='margin-left:10px; margin-right:10px; width:120px;' readonly id="end_date" name='end_date' />
-        <button class="btn btn-outline-primary" style='margin-left:10px; margin-right:10px; width:240px;' type="submit">월마감</button>
+        <button class="btn btn-outline-primary" style='margin-left:10px; margin-right:10px; width:240px;' type="submit">수당계산</button>
       </form>
     </div>
   </div>

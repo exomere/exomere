@@ -21,15 +21,15 @@
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="order_date"> <span style='color:red;'>*</span> 주문일 </label>
               <div class="col-sm-3">
-                <input type="text" class="form-control" id="order_date" name='order_date' value="{{ $order_data->order_date ?? null }}"/>
+                <input type="text" class="form-control" id="order_date" name='order_date' value="{{ date("Y-m-d",strtotime($order_data->order_date)) ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="member_info"> <span style='color:red;'>*</span> 회원선택 </label>
               <div class="col-sm-6">
                 <div class="input-group">
-                  <input type="hidden" class="form-control" id="member_seq" readonly name='member_seq' value="{{ $item->member_seq ?? null }}"/>
-                  <input type="text" class="form-control" id="member_info" readonly name='member_info' value="{{ $item->director_seq ?? null }}"/>
+                  <input type="hidden" class="form-control" id="member_seq" readonly name='member_seq' value="{{ $order_data->recommend_seq ?? null }}"/>
+                  <input type="text" class="form-control" id="member_info" readonly name='member_info' value="{{ $order_data->recommend_id  ?? null }} | {{ $order_data->recommend_name ?? null }}"/>
                   <a href="javascript:void(0);" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">검색</a>
                </div>
               </div>
@@ -38,10 +38,10 @@
               <label class="col-sm-1 col-form-label" for="order_type"> <span style='color:red;'>*</span> 주문구분 </label>
               <div class="col-sm-2">
                 <select class="form-select" name="order_type" id="order_type" required>
-                  <option value='new'>신규주문</option>
-                  <option value='repurchase'>재구매주문</option>
-                  <option value='distribute_new'>분양몰신규</option>
-                  <option value='distribute_repurchase'>분양몰재구문</option>
+                  <option value='new' @isset($order_data->order_type) @if($order_data->order_type == "new") selected @endif @endisset>신규주문</option>
+                  <option value='repurchase' @isset($order_data->order_type) @if($order_data->order_type == "repurchase") selected @endif @endisset>재구매주문</option>
+                  <option value='distribute_new' @isset($order_data->order_type) @if($order_data->order_type == "distribute_new") selected @endif @endisset>분양몰신규</option>
+                  <option value='distribute_repurchase' @isset($order_data->order_type) @if($order_data->order_type == "distribute_repurchase") selected @endif @endisset>분양몰재구문</option>
                 </select>
               </div>
             </div>
@@ -51,8 +51,7 @@
                 <select class="form-select" name="center_seq" id="center_seq">
                   <option value="">센터 선택</option>
                   @foreach ($center_array as $center)
-                    <option value='{{$center['seq']}}'>{{$center['name']}}
-                    </option>
+                    <option value='{{$center['seq']}}' @isset($order_data->center_seq) @if($order_data->center_seq == $center['seq']) selected @endif @endisset>{{$center['name']}} </option>
                   @endforeach
                 </select>      
               </div>
@@ -61,29 +60,29 @@
               <label class="col-sm-1 col-form-label" for="receipt_method"> 상품수령 </label>
               <div class="col-sm-2">
                 <select class="form-select" name="receipt_method" id="receipt_method">
-                  <option value='scene'>현장수령</option>
-                  <option value='delivery'>택배수령</option>
+                  <option value='scene' @isset($order_data->receipt_method) @if($order_data->receipt_method == "scene") selected @endif @endisset>현장수령</option>
+                  <option value='delivery' @isset($order_data->receipt_method) @if($order_data->receipt_method == "delivery") selected @endif @endisset>택배수령</option>
                 </select>
               </div>
             </div>
-            <div style="display:{{ $order_data->code ?? 'none' }};" id="receiptDiv">
+            <div style="display:@isset($order_data->receipt_method) @if($order_data->receipt_method == "delivery") block @endif @endisset" id="receiptDiv">
               <div class="row mb-3">
                 <label class="col-sm-1 col-form-label" for="delivery_name"> 주문자 </label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="delivery_name" name='delivery_name'/>
+                  <input type="text" class="form-control" id="delivery_name" name='delivery_name' value="{{ $order_data->delivery_name ?? null }}" />
                 </div>
               </div>
               <div class="row mb-3">
                 <label class="col-sm-1 col-form-label" for="delivery_phone"> 연락처 </label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="delivery_phone" name="delivery_phone" />
+                  <input type="text" class="form-control" id="delivery_phone" name="delivery_phone" value="{{ $order_data->delivery_phone ?? null }}" />
                 </div>
               </div>
               <div class="row mb-3">
                 <label class="col-sm-1 col-form-label" for="zipcode">우편번호</label>
                 <div class="col-sm-2">
                   <div class="input-group">
-                    <input type="text" name="zipcode" id="zipcode" class="form-control" readonly/>
+                    <input type="text" name="zipcode" id="zipcode" class="form-control" readonly value="{{ $order_data->zipcode ?? null }}" />
                     <button type="button" class="btn btn-outline-secondary getPostCode">{{ __('messages.search') }}</button>
                 </div>
                 </div>
@@ -91,20 +90,20 @@
               <div class="row mb-3">
                 <label class="col-sm-1 col-form-label">기본주소</label>
                 <div class="col-sm-5">
-                  <input type="text" readonly class="form-control" name='address' id='address' value="{{ $item->address ?? null }}"/>
+                  <input type="text" readonly class="form-control" name='address' id='address' value="{{ $order_data->address ?? null }}"/>
                 </div>
               </div>
               <div class="row mb-3">
                 <label class="col-sm-1 col-form-label">상세주소</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name='address_detail' id='address_detail' value="{{ $item->address_detail ?? null }}"/>
+                  <input type="text" class="form-control" name='address_detail' id='address_detail' value="{{ $order_data->address_detail ?? null }}"/>
                 </div>
               </div>
             </div>
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="remark"> 비고 </label>
               <div class="col-sm-6">
-                <input type="text" class="form-control" id="remark" name='remark' value="{{ $order_data->code ?? null }}"/>
+                <input type="text" class="form-control" id="remark" name='remark' value="{{ $order_data->remark ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
@@ -140,9 +139,26 @@
                         </tr>
                       </thead>
                       <tbody class="table-border-bottom-0 product_info_body">
-                        <tr>
-                          <td style='text-align:center; height:80px;' colspan="6">선택한 상품이 없습니다.</td>
-                        </tr>
+                        
+                          @if(isset($item_info))
+ 
+                            @foreach ($item_info as $item)
+                              <tr class='product_info_tr p_info_{{$item->pd_seq}}'>
+                                <td> <input type='hidden' name='pd_seq[]' value='{{$item->pd_seq}}'>
+                                      <input type='hidden' name='pd_price[]' value='{{$item->pd_price}}'>
+                                      <input type='hidden' name='pd_name[]' value='{{$item->pd_name}}'>
+                                      <input type='hidden' name='pd_pv[]' value='"+pv+"'>{{$item->pd_name}}</td>
+                                <td>{{number_format($item->pd_price)}}</td>
+                                <td>{{number_format($item->pd_pv)}}</td>
+                                <td><input style='width:80px;' class='form-control qtyProduct' id='pd_qty_{{$item->pd_seq}}' name='pd_qty[]' data-seq='{{$item->pd_seq}}' data-price='{{$item->pd_price}}' type='number' value='{{$item->pd_qty}}'/></td>
+                                <td><span class='pd_total' id='pd_total_{{$item->pd_seq}}'>{{number_format($item->pd_price * $item->pd_qty)}}</span></td>
+                                <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='product' data-idx='{{$item->pd_seq}}'>삭제</button></td>
+                              </tr>
+                            @endforeach
+                          @else
+                            <tr><td style='text-align:center; height:80px;' colspan="6">선택한 상품이 없습니다.</td> </tr>
+                          @endif
+                      
                       </tbody>
                     </table>
                   </div>
@@ -151,36 +167,36 @@
               <div class="row mt-3">
                 <label class="col-sm-1 col-form-label" for="total_amount"> 총금액 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="total_amount" name='total_amount' readonly style='width:170px;' value='0'/>
-                  <input type="text" class="form-control" id="total_pv" name='total_pv' readonly style='width:170px;' value='0'/>
+                  <input type="text" class="form-control" id="total_amount" name='total_amount' readonly style='width:170px;' value='{{number_format($order_data->total_amount)}}'/>
+                  <input type="hidden" class="form-control" id="total_pv" name='total_pv' readonly style='width:170px;' value='{{number_format($order_data->total_pv)}}'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="payment_amount"> 결제금액 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="payment_amount" name='payment_amount' readonly style='width:170px;' value='0'/>
+                  <input type="text" class="form-control" id="payment_amount" name='payment_amount' readonly style='width:170px;' value='{{number_format($order_data->payment_amount)}}'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="remain_amount"> 남은금액 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="remain_amount" name='remaining_amount' readonly style='width:170px;' value='0'/>
+                  <input type="text" class="form-control" id="remain_amount" name='remaining_amount' readonly style='width:170px;' value='{{number_format($order_data->remaining_amount)}}'/>
                 </div>
               </div>
               <div class="row mt-3">
                 <label class="col-sm-1 col-form-label" for="cash_payment"> 현금결제 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control totalRecalculating" id="cash_payment" name="cash_payment" value='0'/>
+                  <input type="text" class="form-control totalRecalculating" id="cash_payment" name="cash_payment" value='{{number_format($order_data->cash_payment)}}'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="card_payment"> 카드결제 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="card_payment" readonly name="card_payment" value='0'/>
+                  <input type="text" class="form-control" id="card_payment" readonly name="card_payment" value='{{number_format($order_data->card_payment)}}'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="account_payment"> 계좌이체 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="account_payment" readonly name="account_payment" value='0'/>
+                  <input type="text" class="form-control" id="account_payment" readonly name="account_payment" value='{{number_format($order_data->account_payment)}}'/>
                 </div>
               </div>
               <div class="row mt-3">
                 <label class="col-sm-1 col-form-label" for="point_payment"> 포인트사용 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control totalRecalculating" data-type='point' id="point_payment" name="point_payment" value='0'/>
+                  <input type="text" class="form-control totalRecalculating" data-type='point' id="point_payment" name="point_payment" value='{{$order_data->point_payment}}'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="remain_points"> 잔여포인트 </label>
                 <div class="col-sm-2">
@@ -342,10 +358,31 @@
                         </tr>
                       </thead>
                       <tbody class="table-border-bottom-0 cardInfoBody">
-                        <tr>
-                          <td style='text-align:center; height:80px;' colspan="10">카드결제 정보가 없습니다.</td>
-                        </tr>
-                      
+                        @if(isset($card_info))
+                          @php $card_cnt = 1; @endphp
+                            @foreach ($card_info as $card)
+                              <tr class='cardInfoTr cardInfo_row_{{$card_cnt}}'>
+                                  <td>
+                                  <input type='hidden' class='form-control' readonly name='card_company[]' value='{{$card->card_company}}'>
+                                  <input type='text' class='form-control' readonly name='card_name[]' value='{{$card->card_name}}'>
+                                  </td>
+                                  <td><input type='text' class='form-control' readonly name='card_number[]' value='{{$card->card_number}}'></td>
+                                  <td><input type='text' class='form-control card_payment_price' readonly name='card_payment_price[]' value='{{$card->card_payment_price}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_month_plan[]' value='{{$card->card_month_plan}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_year_month[]' value='{{$card->card_year_month}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_approval_number[]' value='{{$card->card_approval_number}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_approval_name[]' value='{{$card->card_approval_name}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_approval_date[]' value='{{$card->card_approval_date}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_password[]' value='{{$card->card_password}}'></td>
+                                  <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='card' data-idx='{{$card_cnt}}' >삭제</button></td>
+                              </tr>
+                              @php $card_cnt++; @endphp
+                            @endforeach
+                          @else
+                            <tr>
+                              <td style='text-align:center; height:80px;' colspan="10">카드결제 정보가 없습니다.</td>
+                            </tr>
+                          @endif
                       </tbody>
                     </table>
                   </div>
@@ -371,9 +408,23 @@
                         </tr>
                       </thead>
                       <tbody class="table-border-bottom-0 accountInfoBody">
-                        <tr>
-                          <td style='text-align:center; height:80px;' colspan="5">계좌이체 정보가 없습니다.</td>
-                        </tr>
+                        @if(isset($account_info))
+                          @php $acc_cnt = 1; @endphp
+                          @foreach ($account_info as $account)
+                            <tr class='accountInfoTr accountInfo_row_{{$acc_cnt}}'>
+                                <td><input type='text' class='form-control' readonly name='account_number[]' value='{{$account->account_number}}'></td>
+                                <td><input type='text' class='form-control' readonly name='account_head[]' value='{{$account->account_head}}'></td>
+                                <td><input type='text' class='form-control' readonly name='account_date[]' value='{{$account->account_date}}'></td>
+                                <td><input type='text' class='form-control account_payment_price' readonly name='account_payment_price[]' value='{{$account->account_payment_price}}'></td>
+                                <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='account' data-idx='{{$acc_cnt}}'>삭제</button></td>
+                            </tr>
+                            @php $acc_cnt++; @endphp
+                          @endforeach
+                        @else
+                          <tr>
+                            <td style='text-align:center; height:80px;' colspan="5">계좌이체 정보가 없습니다.</td>
+                          </tr>
+                        @endif
                       </tbody>
                     </table>
                   </div>

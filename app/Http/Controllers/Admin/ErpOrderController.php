@@ -51,8 +51,15 @@ class ErpOrderController extends Exomere
   public function orderRegister(Request $request)
   {
 
+    $item_info = [];
+    $account_info = [];
+    $card_info = [];
+
     if (isset($request->seq)) {
-      $Order = ExOrder::find($request->seq);
+      $order_data = ExOrder::find($request->seq);
+      $item_info = json_decode($order_data->item_info);
+      $account_info = json_decode($order_data->account_info);
+      $card_info = json_decode($order_data->card_info);
     }
 
     $items = ExItem::where('is_active', 'Y')->get();
@@ -74,12 +81,17 @@ class ErpOrderController extends Exomere
       $centerArray[$cnt]['name'] = $center->name;
       $cnt++;
     }
+
+    // dd($order_data);
     $data = [
       "order_seq" => $request->seq ?? null,
       "payment_kind" => self::PAYMENT_KIND,
       "order_kind" => self::ORDER_KIND,
-      "order" => $Order ?? [],
+      "order_data" => $order_data ?? [],
       "card_compnay" => self::_PAYMENT_CARD_COMPANY,
+      "item_info" => $item_info,
+      "account_info" => $account_info,
+      "card_info" => $card_info,
       "item_array" => $itemArray ?? [],
       "center_array" => $centerArray ?? [],
     ];
@@ -102,6 +114,7 @@ class ErpOrderController extends Exomere
         $item_info[$i]['pd_seq'] = $request->pd_seq[$i];
         $item_info[$i]['pd_qty'] = $request->pd_qty[$i];
         $item_info[$i]['pd_price'] = $request->pd_price[$i];
+        $item_info[$i]['pd_name'] = $request->pd_name[$i];
         $item_info[$i]['pd_pv'] = $request->pd_pv[$i];
         $total_pv += ($request->pd_pv[$i] * $request->pd_qty[$i]);
       }
@@ -136,9 +149,9 @@ class ErpOrderController extends Exomere
       "member_seq" => $request->member_seq ?? null,
       "member_id" => explode(" | ", $request->member_info)[0] ?? null,
       "member_name" => explode(" | ", $request->member_info)[1] ?? null,
-      "recommend_seq" => $exMember->member_seq ?? null,
+      "recommend_seq" => $exMember->recommend_seq ?? null,
       "recommend_id" => $exMember->recommend_id ?? null,
-      "recommend_name" => $exMember->name ?? null,
+      "recommend_name" => $exMember->recommend_name ?? null,
       "order_type" => $request->order_type ?? null,
       "center_seq" => $request->center_seq ?? null,
       "center_name" => $exCenter->name ?? null,
