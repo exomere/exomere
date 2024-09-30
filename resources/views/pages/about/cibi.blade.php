@@ -41,11 +41,12 @@
                    data-aos-delay="300">
                     {!! nl2br(__('messages.cibi_content')) !!}
                 </p>
-                <button type="button"
+                <a
                         class="inline-flex items-center gap-x-1 mt-3 px-10 h-12 text-sm border border-solid border-slate-200 rounded-full"
                         data-aos="fade-up"
                         data-aos-delay="300"
-                        onclick="alert('{{__('common.in_ready')}}')"
+                        href="{{ asset('uploads/exomere_cibi.zip') }}"
+                        download="exomere_cibi.zip"
                 >{{ __('common.download') }}
                     <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                          width="14" height="14" fill="none" viewBox="0 0 24 24">
@@ -53,7 +54,7 @@
                               stroke-width="1"
                               d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01"/>
                     </svg>
-                </button>
+                </a>
             </div>
         </div>
         <div class="w-full">
