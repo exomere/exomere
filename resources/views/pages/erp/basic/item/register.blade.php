@@ -25,7 +25,19 @@
               </div>
             </div>
             <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-name"> <span style='color:red;'>*</span> 상품명 (EN) </label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="basic-default-name" name='name' value="{{ $item->name ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-description"> 간략설명 </label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="basic-default-description" name='description'value="{{ $item->description ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-description"> 간략설명 (EN)</label>
               <div class="col-sm-4">
                 <input type="text" class="form-control" id="basic-default-description" name='description'value="{{ $item->description ?? null }}"/>
               </div>
@@ -64,66 +76,252 @@
                 </div>
               </div>
             </div>
+
+            
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-price">소비자가</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-price">소비자가(₩)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-price" class="form-control" name='price' value="{{ $item->price ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-tax">부가세</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-tax">부가세(₩)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-tax" class="form-control" name='tax' value="{{ $item->tax ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-pv">PV1</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-pv">PV1(₩)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-pv" class="form-control" name='pv' value="{{ $item->pv ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-pv2">PV2</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-pv2">PV2(₩)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-pv2" class="form-control" name='pv2' value="{{ $item->pv2 ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-mem_price">회원가</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-mem_price">회원가(₩)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-mem_price" class="form-control" name='mem_price' value="{{ $item->mem_price ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-mem_pv">회원PV</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-mem_pv">회원PV(₩)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-mem_pv" class="form-control" name='mem_pv' value="{{ $item->mem_pv ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-planer_price">뷰티플래너가</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-planer_price">뷰티플래너가(₩)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-planer_price" class="form-control" name='planer_price' value="{{ $item->planer_price ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-planer_pv">뷰티플래너PV</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-planer_pv">뷰티플래너PV(₩)</label>
               <div class="col-sm-2">
                   <input type="number" id="basic-default-planer_pv" class="form-control" name='planer_pv' value="{{ $item->planer_pv ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-store_price">대리점가</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-store_price">대리점가(₩)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-store_price" class="form-control" name='store_price' value="{{ $item->store_price ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-store_pv">대리점PV</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-store_pv">대리점PV(₩)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-store_pv" class="form-control" name='store_pv' value="{{ $item->store_pv ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price">총판가</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price">총판가(₩)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-exclusive_price" class="form-control" name='exclusive_price' value="{{ $item->exclusive_price ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv">총판PV</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv">총판PV(₩)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-exclusive_pv" class="form-control" name='exclusive_pv' value="{{ $item->exclusive_pv ?? null }}"/>
               </div>
             </div>
+
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-price">소비자가($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-price" class="form-control" name='price_d' value="{{ $item->price_d ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-tax">부가세($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-tax" class="form-control" name='tax_d' value="{{ $item->tax_d ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-pv">PV1($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-pv" class="form-control" name='pv_d' value="{{ $item->pv_d ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-pv2">PV2($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-pv2" class="form-control" name='pv2_d' value="{{ $item->pv2_d ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-mem_price">회원가($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-mem_price" class="form-control" name='mem_price_d' value="{{ $item->mem_price_d ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-mem_pv">회원PV($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-mem_pv" class="form-control" name='mem_pv_d' value="{{ $item->mem_pv_d ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-planer_price">뷰티플래너가($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-planer_price" class="form-control" name='planer_price_d' value="{{ $item->planer_price_d ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-planer_pv">뷰티플래너PV($)</label>
+              <div class="col-sm-2">
+                  <input type="number" id="basic-default-planer_pv" class="form-control" name='planer_pv_d' value="{{ $item->planer_pv_d ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-store_price">대리점가($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-store_price" class="form-control" name='store_price_d' value="{{ $item->store_price_d ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-store_pv">대리점PV($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-store_pv" class="form-control" name='store_pv_d' value="{{ $item->store_pv_d ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price">총판가($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_price" class="form-control" name='exclusive_price_d' value="{{ $item->exclusive_price_d ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv">총판PV($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_pv" class="form-control" name='exclusive_pv_d' value="{{ $item->exclusive_pv_d ?? null }}"/>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-price">소비자가(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-price" class="form-control" name='price_y' value="{{ $item->price_y ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-tax">부가세(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-tax" class="form-control" name='tax_y' value="{{ $item->tax_y ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-pv">PV1(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-pv" class="form-control" name='pv_y' value="{{ $item->pv_y ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-pv2">PV2(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-pv2" class="form-control" name='pv2_y' value="{{ $item->pv2_y ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-mem_price">회원가(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-mem_price" class="form-control" name='mem_price_y' value="{{ $item->mem_price_y ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-mem_pv">회원PV(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-mem_pv" class="form-control" name='mem_pv_y' value="{{ $item->mem_pv_y ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-planer_price">뷰티플래너가(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-planer_price" class="form-control" name='planer_price_y' value="{{ $item->planer_price_y ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-planer_pv">뷰티플래너PV(¥)</label>
+              <div class="col-sm-2">
+                  <input type="number" id="basic-default-planer_pv" class="form-control" name='planer_pv_y' value="{{ $item->planer_pv_y ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-store_price">대리점가(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-store_price" class="form-control" name='store_price_y' value="{{ $item->store_price_y ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-store_pv">대리점PV(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-store_pv" class="form-control" name='store_pv_y' value="{{ $item->store_pv_y ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price">총판가(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_price" class="form-control" name='exclusive_price_y' value="{{ $item->exclusive_price_y ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv">총판PV(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_pv" class="form-control" name='exclusive_pv_y' value="{{ $item->exclusive_pv_y ?? null }}"/>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-price">소비자가(Ұ)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-price" class="form-control" name='price_c' value="{{ $item->price_c ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-tax">부가세(Ұ)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-tax" class="form-control" name='tax_c' value="{{ $item->tax_c ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-pv">PV1(Ұ)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-pv" class="form-control" name='pv_c' value="{{ $item->pv_c ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-pv2">PV2(Ұ)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-pv2" class="form-control" name='pv2_c' value="{{ $item->pv2_c ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-mem_price">회원가(Ұ)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-mem_price" class="form-control" name='mem_price_c' value="{{ $item->mem_price_c ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-mem_pv">회원PV(Ұ)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-mem_pv" class="form-control" name='mem_pv_c' value="{{ $item->mem_pv_c ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-planer_price">뷰티플래너가(Ұ)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-planer_price" class="form-control" name='planer_price_c' value="{{ $item->planer_price_c ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-planer_pv">뷰티플래너PV(Ұ)</label>
+              <div class="col-sm-2">
+                  <input type="number" id="basic-default-planer_pv" class="form-control" name='planer_pv_c' value="{{ $item->planer_pv_c ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-store_price">대리점가(Ұ)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-store_price" class="form-control" name='store_price_c' value="{{ $item->store_price_c ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-store_pv">대리점PV(Ұ)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-store_pv" class="form-control" name='store_pv_c' value="{{ $item->store_pv_c ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price">총판가(Ұ)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_price" class="form-control" name='exclusive_price_c' value="{{ $item->exclusive_price_c ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv">총판PV(Ұ)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_pv" class="form-control" name='exclusive_pv_c' value="{{ $item->exclusive_pv_c ?? null }}"/>
+              </div>
+            </div>
+
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-stock">재고</label>
               <div class="col-sm-5">
