@@ -52,15 +52,15 @@ return [
     'about_content_heading_2' => 'Exosome',
     'about_content_footer_1' => 'Together with Exosome',
     'about_content_footer_2' => 'Rediscover the original beauty and vitality of your skin',
-    'about_content_head_1' => 'Exosome is',
-    'about_content_head_2' => 'The combination of Exosome and Telomere',
-    'about_content_head_3' => 'Exosome is',
-    'about_content_head_4' => 'Telomere is',
-    'about_content_1' => 'A portmanteau of Exosome and Telomere, combining the cell regeneration ability of Exosome and the cell life extension function of Telomere to provide our customers with the ultimate skin regeneration and anti-aging effects.',
-    'about_content_2' => 'Through this combination, it embodies the brand\'s philosophy of presenting new possibilities for skin regeneration and anti-aging.',
-    'about_content_3' => 'Sized around 50~200nm and composed of DNA, RNA, PEPTIDE, etc. inside, it is a regenerative care solution for aged and damaged skin, as it contains signaling substances involved in cell regeneration.',
-    'about_content_4' => 'Telomere is the chromatin at the end of chromosomes that determines the lifespan of cells, and it is a fragment of DNA that serves as the "cellular clock".',
+    'about_head' => 'Exosome Anti-Aging Solution,
+Exomere',
+    'about_content' => 'Exomere is a compound word combining exosomes and telomeres,
+blending the regenerative capabilities of exosomes with the lifespan-extending function of telomeres
+to offer customers the ultimate in skin regeneration and anti-aging effects.
+
+Through the combination of exosomes and telomeres,
+we embody the brand\'s philosophy of presenting new possibilities in skin regeneration and anti-aging.',
     'select_item' => 'Please select the items you wish to pay for',
     'enter_keyword' => 'Please enter a keyword.',
     'recommend_keyword' => 'Recommendations Keyword',
-    ];
+];

@@ -327,7 +327,6 @@ class ProductController extends BaseController
                 'total_price' => 22500,
                 'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
                 'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-                'is_best' => true,
             ]
         ];
     }
