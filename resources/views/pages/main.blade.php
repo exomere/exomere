@@ -50,11 +50,8 @@ $whiteHeader = true;
                                 ><source src={{ $item['src'] }} type="video/mp4"/>
                                 </video>
                             @else
-                                <picture class="">
-                                    <source srcset="{{ $item['src'] }}">
-                                    <img src="{{ $item['src'] }}" alt=""
-                                         class="w-full h-full object-cover">
-                                </picture>
+                                <img src="{{ $item['src'] }}" alt=""
+                                     class="w-full h-full object-cover">
                             @endif
                         </div>
                     @endforeach
