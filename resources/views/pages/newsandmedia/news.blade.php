@@ -64,7 +64,7 @@ $jsonData = json_encode($allItems, JSON_UNESCAPED_UNICODE);
                             </div>
                             <div class="mt-4">
                                 <h3 class="mb-5 text-lg text-gray-900 line-clamp-2">
-                                    <a href="#!" onclick="openContentModal('{{$loop->index}}')">
+                                    <a href="#!" onclick="openContentModal('{{ $item['id'] }}')">
                                         <span aria-hidden="true" class="absolute inset-0"></span>
                                         {{ $item['title'] }}
                                     </a>
@@ -145,12 +145,14 @@ $jsonData = json_encode($allItems, JSON_UNESCAPED_UNICODE);
         const news = JSON.parse(data);
 
         var openContentModal = function (index) {
+            let data = news.find(item => item.id == index);
+
             const modal = document.getElementById('contents-modal');
-            modal.querySelector('#modal-badge').innerHTML = categories[news[index].category];
-            modal.querySelector('#modal-img').src = news[index].thumbnail;
-            modal.querySelector('#modal-date').innerHTML = news[index].created_at;
-            modal.querySelector('#modal-title').innerHTML = news[index].title;
-            modal.querySelector('#modal-contents').innerHTML = news[index].contents;
+            modal.querySelector('#modal-badge').innerHTML = categories[data.category];
+            modal.querySelector('#modal-img').src = data.thumbnail;
+            modal.querySelector('#modal-date').innerHTML = data.created_at;
+            modal.querySelector('#modal-title').innerHTML = data.title;
+            modal.querySelector('#modal-contents').innerHTML = data.contents;
 
             openModal('contents-modal');
         }
