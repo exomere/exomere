@@ -50,6 +50,8 @@ $(document).ready(function () {
         speed: 500,
         loop: true,
         touchEventsTarget: 'swiper-wrapper',
+        effect: "fade",
+
 
         //자동 재생
         autoplay: {
@@ -82,8 +84,19 @@ $(document).ready(function () {
             activeIndexChange: function () {
                 const currentSlide = this.slides[this.activeIndex];
                 const video = currentSlide.querySelector('video');
-                video.currentTime = 0;
-                video.play();
+                if (video) {
+                    video.currentTime = 0;
+                    video.play();
+                }
+
+                if (currentSlide.classList.contains('slide-style-white')) {
+                    document.querySelector('header').classList.add('header__white');
+                    document.querySelector('.main-swiper .all-box').classList.add('text-white');
+                } else {
+                    document.querySelector('header').classList.remove('header__white');
+                    document.querySelector('.main-swiper .all-box').classList.remove('text-white');
+                }
+
             },
         }
     });

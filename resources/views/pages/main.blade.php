@@ -24,11 +24,11 @@ $whiteHeader = true;
             <div class="swiper main-swiper">
                 <div class="swiper-wrapper">
                     @foreach($mainVideoBanner as $item)
-                        <div class="swiper-slide">
+                        <div class="swiper-slide slide-style-{{ $item['style'] }}">
                             <div
-                                class="absolute transform z-10 lg:top-1/2 lg:w-[50%] lg:px-28 lg:transform lg:-translate-x-1/2 lg:-translate-y-[60%] lg:text-left text-white">
+                                class=" absolute transform z-10 lg:top-1/2 lg:w-[50%] lg:px-28 lg:transform lg:-translate-x-1/2 lg:-translate-y-[60%] lg:text-left">
                                 <p data-aos="fade-in" data-aos-delay="300"
-                                   class="text-white/80 mt-6 text-xl break-keep leading-tight">
+                                   class=" mt-6 text-xl break-keep leading-tight">
                                     {{ $item['sub_title'] }}
                                 </p>
                                 <p data-aos="fade-up" data-aos-delay="400"
@@ -41,15 +41,21 @@ $whiteHeader = true;
                                 </a>
                             </div>
 
-                            <video
-                                class="slide-video object-cover"
-                                autoPlay
-                                loop
-                                muted
-                            >
-                                <source src={{ $item['video_src'] }} type="video/mp4"/>
-                            </video>
-
+                            @if($item['type'] == 'video')
+                                <video
+                                    class="slide-video object-cover"
+                                    autoPlay
+                                    loop
+                                    muted
+                                ><source src={{ $item['src'] }} type="video/mp4"/>
+                                </video>
+                            @else
+                                <picture class="">
+                                    <source srcset="{{ $item['src'] }}">
+                                    <img src="{{ $item['src'] }}" alt=""
+                                         class="w-full h-full object-cover">
+                                </picture>
+                            @endif
                         </div>
                     @endforeach
                 </div>
@@ -62,7 +68,7 @@ $whiteHeader = true;
                             </svg>
                         </div>
                     </div>
-                    <div class="arrow-box text-white">
+                    <div class="arrow-box">
                         <div class="swiper-button-prev"></div>
                         <div class="swiper-button-next"></div>
                     </div>
@@ -102,7 +108,7 @@ $whiteHeader = true;
         <section class="overflow-hidden padding-y md:p-0">
             <div class="flex h-full">
                 <video class="w-full" playsinline="" autoplay="autoplay" loop="loop" muted="muted">
-                    <source src="http://exomere.co.kr/common/image/exomere.mp4" type="video/mp4">
+                    <source src="{{ asset('assets/img/elements/main_section_3.mp4') }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>

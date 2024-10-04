@@ -1,5 +1,5 @@
 <header id="header"
-        class="{{ isset($whiteHeader) ? 'text-white fill-white stroke-white' : '' }}{{ isset($activeHeader) ? 'scroll' : '' }} fixed inset-x-0 z-50 bg-transparent"
+        class="{{ isset($whiteHeader) ? 'header__white' : '' }}{{ isset($activeHeader) ? 'scroll' : '' }} fixed inset-x-0 z-50 bg-transparent"
         aria-label="Global">
     <div class="header_wrap">
         <div class="gnb relative flex flex-wrap items-center justify-between p-3 lg:px-16 lg:pt-6">

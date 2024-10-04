@@ -83,7 +83,7 @@
     z-index: 10;
     width: 100%;
     stroke-width: 4px;
-    stroke: #fff;
+    /*stroke: #fff;*/
     fill: none;
     stroke-dashoffset: calc(100 * (1 - var(--progress)));
     stroke-dasharray: 100;
@@ -91,17 +91,67 @@
 
 .all-box .progress-box .swiper-pagination {
     display: flex;
-    color: #fff;
+    /*color: #fff;*/
     justify-content: space-between;
     position: static;
     text-align: left;
 }
+
+.main-swiper:has(.swiper-slide-active.slide-style-white) .all-box,
+.main-swiper:has(.swiper-slide-active.slide-style-white) .all-box .arrow-box,
+.main-swiper:has(.swiper-slide-active.slide-style-white) .all-box .arrow-box .swiper-button-prev,
+.main-swiper:has(.swiper-slide-active.slide-style-white) .all-box .arrow-box .swiper-button-next,
+.main-swiper:has(.swiper-slide-active.slide-style-white) .all-box .progress-box span {
+    color: #fff;
+    stroke: #fff;
+    fill: #fff;
+}
+
+.main-swiper:has(.swiper-slide-active.slide-style-black) .all-box,
+.main-swiper:has(.swiper-slide-active.slide-style-black) .all-box .arrow-box,
+.main-swiper:has(.swiper-slide-active.slide-style-black) .all-box .arrow-box .swiper-button-prev,
+.main-swiper:has(.swiper-slide-active.slide-style-black) .all-box .arrow-box .swiper-button-next,
+.main-swiper:has(.swiper-slide-active.slide-style-black) .all-box .progress-box span {
+    color: #02060F;
+    stroke: #02060F;
+    fill: #02060F;
+}
+
 
 .all-box .arrow-box {
     position: relative;
     width: 80px;
     height: 50px;
 }
+
+
+/*메인슬라이드*/
+.slide-style-white {
+    color: #fff;
+}
+
+.slide-style-white a,
+.slide-style-white button {
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.slide-style-white ~ .all-box .progress-box {
+    fill: #fff;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.slide-style-black {
+    color: #02060F;
+}
+
+.slide-style-black a,
+.slide-style-black button {
+    border: 1px solid #02060F;
+    color: #02060F;
+}
+
 
 .all-box .arrow-box svg {
     fill: #fff;

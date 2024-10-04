@@ -36,38 +36,36 @@ $visualFullWidthLayout = true;
              class="overflow-hidden bg-white text-content">
             <section class="pb-32 lg:pb-40">
                 <div class="pt-20 px-4 lg:px-44">
-                    <div class="relative z-30 text-left tracking-tight flex flex-col xl:flex-row gap-x-4 gap-y-4 justify-between my-10">
-                        <h2 class="text-3xl text-head font-semibold leading-tight md:text-4xl break-keep"
-                            data-aos="fade">엑소좀 안티에이징 솔루션,<br>엑소미어</h2>
-                        <p class="flex-1 w-full md:max-w-4xl xl:max-w-5xl text-sm leading-loose break-keep md:text-xl md:leading-loose"
+                    <div class="relative z-30 text-left tracking-tight flex flex-col xl:flex-row gap-x-16 gap-y-4 justify-between my-10">
+                        <h2 class="text-3xl text-head font-semibold leading-tight md:text-4xl break-keep  whitespace-pre-line"
+                            data-aos="fade">{{ __('messages.about_head') }}</h2>
+                        <p class="flex-1 w-full md:max-w-4xl xl:max-w-5xl text-sm leading-loose break-keep md:text-xl md:leading-loose
+                        whitespace-pre-line "
                            data-aos="fade"
-                           data-aos-delay="100">
-                            {{ __('messages.about_content_head_1') }}{{ __('messages.about_content_1') }}<br>
-                            {{ __('messages.about_content_head_2') }}{{ __('messages.about_content_2') }}
-                        </p>
+                           data-aos-delay="100">{{ __('messages.about_content') }}</p>
                     </div>
                     <div class="flex flex-col gap-y-1 lg:flex-row lg:gap-x-1">
-                        <picture class="lg:basis-2/5 overflow-hidden">
-                            <source srcset="{{ asset('assets/img/elements/subvisual_product.jpg') }}">
-                            <img src="{{ asset('assets/img/elements/subvisual_product.jpg') }}"
+                        <picture class="lg:basis-1/2 overflow-hidden">
+                            <source srcset="{{ asset('assets/img/elements/about_img_01.png') }}">
+                            <img src="{{ asset('assets/img/elements/about_img_01.png') }}"
                                  alt=""
-                                 class="aspect-square w-full h-full"
+                                 class="w-full h-full"
                                  data-aos="mix">
                         </picture>
-                        <picture class="lg:basis-3/5 overflow-hidden">
-                            <source srcset="{{ asset('assets/img/elements/2024021315327960678_hover.png') }}">
-                            <img src="{{ asset('assets/img/elements/2024021315327960678_hover.png') }}"
+                        <picture class="lg:basis-1/2 overflow-hidden">
+                            <source srcset="{{ asset('assets/img/elements/about_img_02.jpg') }}">
+                            <img src="{{ asset('assets/img/elements/about_img_02.jpg') }}"
                                  alt=""
-                                 class="aspect-square w-full h-full"
+                                 class="w-full h-full"
                                  data-aos="mix">
                         </picture>
                     </div>
-                    <div class="h-96 sm:h-[80svh] mt-10 overflow-hidden">
+                    <div class="h-auto mt-10 overflow-hidden">
                         <picture class="size-full">
-                            <source srcset="{{ asset('assets/img/elements/visual_01.webp') }}">
-                            <img src="{{ asset('assets/img/elements/visual_01.webp') }}"
+                            <source srcset="{{ asset('assets/img/elements/about_img_03.png') }}">
+                            <img src="{{ asset('assets/img/elements/about_img_03.png') }}"
                                  alt=""
-                                 class="aspect-square w-full h-full"
+                                 class=" w-full h-full"
                                  data-aos="mix">
                         </picture>
                     </div>

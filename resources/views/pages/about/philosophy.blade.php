@@ -45,9 +45,9 @@ $contents = [
                         <h2 class="text-2xl md:text-3xl lg:text-4xl text-head font-semibold mb-4 md:mb-7 text-left"
                             data-aos="fade-in"
                             data-aos-delay="100">{{ __('messages.philosophy_content_head_'.$loop->index+1) }}</h2>
-                        <p class="break-keep leading-loose lg:leading-loose lg:text-lg"
+                        <p class="whitespace-pre-line leading-loose lg:leading-loose lg:text-lg "
                            data-aos="fade-in"
-                           data-aos-delay="100">{!! nl2br(__('messages.philosophy_content_'.$loop->index+1)) !!}</p>
+                           data-aos-delay="100">{{ __('messages.philosophy_content_'.$loop->index+1) }}</p>
                     </div>
 
                 </div>
