@@ -45,8 +45,8 @@
                         class="inline-flex items-center gap-x-1 mt-3 px-10 h-12 text-sm border border-solid border-slate-200 rounded-full"
                         data-aos="fade-up"
                         data-aos-delay="300"
-                        href="{{ asset('uploads/exomere_cibi.zip') }}"
-                        download="exomere_cibi.zip"
+                        href="{{ asset('uploads/EXOMERE_CIBI_LOGO.pdf') }}"
+                        download="EXOMERE_CIBI_LOGO.pdf"
                 >{{ __('common.download') }}
                     <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                          width="14" height="14" fill="none" viewBox="0 0 24 24">
