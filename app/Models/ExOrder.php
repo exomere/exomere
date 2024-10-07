@@ -21,5 +21,13 @@ class ExOrder extends ExomereModel
     {
       return $this->hasMany(ExMember::class, "id","member_seq");
     }
+
+    /**
+     * @return int
+     */
+    public function getCenterName()
+    {
+      return $this->hasOne(ExCenter::class,"id","center_seq")->value('name');
+    }
   
 }

@@ -42,7 +42,7 @@
           <tr>
             <th rowspan="2" style='vertical-align: middle;' >No</th>
             <th rowspan="2" style='vertical-align: middle;' >회원관리</th>
-            <th rowspan="2" style='vertical-align: middle;' >총판구분</th>
+            {{-- <th rowspan="2" style='vertical-align: middle;' >총판구분</th> --}}
             <th rowspan="2" style='vertical-align: middle;' >회원번호</th>
             <th rowspan="2" style='vertical-align: middle;' >아이디</th>
             <th rowspan="2" style='vertical-align: middle;' >이름</th>
@@ -73,14 +73,14 @@
                     <span class="fw-medium">상세보기</span>
                 </a>
               </td>
-              <td>0점</td>
+              {{-- <td>0점</td> --}}
               <td>{{$list->id}}</td>
               <td>{{$list->member_id}}</td>
               <td>{{$list->name}}</td>
               <td>{{$list->email}}</td>
               <td>{{$list->member_position}}</td>
               <td>N</td>
-              <td>{{$list->local_store}}</td>
+              <td>{{$list->getCenterName()}}</td>
               <td>{{ date("Y-m-d",strtotime($list->created_at)) }}</td>
               <td>{{$list->tel}}</td>
               <td>{{number_format($list->getMemberOrderAmountSum())}}</td>

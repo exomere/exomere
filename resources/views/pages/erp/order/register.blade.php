@@ -21,7 +21,7 @@
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="order_date"> <span style='color:red;'>*</span> 주문일 </label>
               <div class="col-sm-3">
-                <input type="text" class="form-control" id="order_date" name='order_date' value="{{ date("Y-m-d",strtotime($order_data->order_date)) ?? null }}"/>
+                <input type="text" class="form-control" id="order_date" name='order_date' value="{{ $order_date ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
@@ -167,36 +167,36 @@
               <div class="row mt-3">
                 <label class="col-sm-1 col-form-label" for="total_amount"> 총금액 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="total_amount" name='total_amount' readonly style='width:170px;' value='{{number_format($order_data->total_amount)}}'/>
-                  <input type="hidden" class="form-control" id="total_pv" name='total_pv' readonly style='width:170px;' value='{{number_format($order_data->total_pv)}}'/>
+                  <input type="text" class="form-control" id="total_amount" name='total_amount' readonly style='width:170px;' value='{{number_format($order_data->total_amount ?? 0)}}'/>
+                  <input type="hidden" class="form-control" id="total_pv" name='total_pv' readonly style='width:170px;' value='{{number_format($order_data->total_pv ?? 0)}}'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="payment_amount"> 결제금액 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="payment_amount" name='payment_amount' readonly style='width:170px;' value='{{number_format($order_data->payment_amount)}}'/>
+                  <input type="text" class="form-control" id="payment_amount" name='payment_amount' readonly style='width:170px;' value='{{number_format($order_data->payment_amount ?? 0)}}'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="remain_amount"> 남은금액 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="remain_amount" name='remaining_amount' readonly style='width:170px;' value='{{number_format($order_data->remaining_amount)}}'/>
+                  <input type="text" class="form-control" id="remain_amount" name='remaining_amount' readonly style='width:170px;' value='{{number_format($order_data->remaining_amount ?? 0)}}'/>
                 </div>
               </div>
               <div class="row mt-3">
                 <label class="col-sm-1 col-form-label" for="cash_payment"> 현금결제 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control totalRecalculating" id="cash_payment" name="cash_payment" value='{{number_format($order_data->cash_payment)}}'/>
+                  <input type="text" class="form-control totalRecalculating" id="cash_payment" name="cash_payment" value='{{number_format($order_data->cash_payment ?? 0)}}'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="card_payment"> 카드결제 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="card_payment" readonly name="card_payment" value='{{number_format($order_data->card_payment)}}'/>
+                  <input type="text" class="form-control" id="card_payment" readonly name="card_payment" value='{{number_format($order_data->card_payment ?? 0)}}'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="account_payment"> 계좌이체 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="account_payment" readonly name="account_payment" value='{{number_format($order_data->account_payment)}}'/>
+                  <input type="text" class="form-control" id="account_payment" readonly name="account_payment" value='{{number_format($order_data->account_payment ?? 0)}}'/>
                 </div>
               </div>
               <div class="row mt-3">
                 <label class="col-sm-1 col-form-label" for="point_payment"> 포인트사용 </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control totalRecalculating" data-type='point' id="point_payment" name="point_payment" value='{{$order_data->point_payment}}'/>
+                  <input type="text" class="form-control totalRecalculating" data-type='point' id="point_payment" name="point_payment" value='{{$order_data->point_paymen ?? 0}}'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="remain_points"> 잔여포인트 </label>
                 <div class="col-sm-2">

@@ -97,7 +97,7 @@
             <td> <span class="fw-medium">{{$list->id}}</span></td>
             <td> <span class="fw-medium">{{$list->member_id}}</span></td>
             <td> <span class="fw-medium">{{$list->member_name}}</span></td>
-            <td> <span class="fw-medium">{{$list->center_seq}}</span></td>
+            <td> <span class="fw-medium">{{$list->getCenterName()}}</span></td>
             <td> <span class="fw-medium">상품</span></td>
             <td>{{$list->findByMemberRecommend()->get()->value('recommend_id')}}</td>
             <td>{{$list->findByMemberRecommend()->get()->value('recommend_name')}}</td>

@@ -42,4 +42,13 @@ class ExMember extends Authenticatable
     {
       return $this->hasMany(ExOrder::class, "member_seq","id")->sum('total_amount');
     }
+
+
+    /**
+     * @return int
+     */
+    public function getCenterName()
+    {
+      return $this->hasOne(ExCenter::class,"id","local_store")->value('name');
+    }
 }
