@@ -20,6 +20,12 @@ class OrderController extends Exomere
       'etc' => '기타',
     ];
 
+    CONST APPROVAL_KIND = [
+      'Y' => '승인',
+      'N' => '미승인',
+      'C' => '취소',
+    ];
+
     CONST ORDER_KIND = [
       'new' => "신규주문",
       'repurchase' => "재구매주문",
@@ -31,154 +37,52 @@ class OrderController extends Exomere
     {
 
     
-        $orders = new ExOrder;
-        $limitPage = $this->getPageLimit();
-        $page = $request->get('page') ?? 1;
-
-        if (!is_null($request->get('search_text'))) {
-            $search_text = $request->get('search_text');
-            $orders->where('name','LIKE',"%{$request->get('search_text')}%");
-        }
-      
-        $orders->limit($limitPage)->orderBy('id', 'desc');
-
-
-        $data = [
-          "search_text" => $search_text ?? '',
-          "orders" =>  $orders ?? [],
-          "payment_kind" => self::PAYMENT_KIND,
-          "order_kind" => self::ORDER_KIND,
-          "row_num" => $this->getPageRowNumber($orders->count(), $page, $limitPage) ?? null,
-          "paga_nation" => $this->pagaNation($orders, $limitPage),
-
-        ];
-
-        return view('pages.order.list')->with($data);
-    }
-
-    public function orderRegister(Request $request)
-    {
+      $limitPage = $this->getPageLimit();
+      $page = $request->get('page') ?? 1;
   
-        if (isset($request->seq)) {
-            $Order = ExOrder::find($request->seq);
-          }
-
-          $items = ExItem::where('is_active','Y')->get();
-          $itemArray = [];
-          $cnt = 0;
-          foreach($items as $item){
-            $itemArray[$cnt]['seq'] = $item->id;
-            $itemArray[$cnt]['name'] = $item->name;
-            $itemArray[$cnt]['price'] = $item->price;
-            $itemArray[$cnt]['pv'] = $item->pv;
-            $cnt++;
-          }
-
-          $centerArray = [];
-          $cnt = 0;
-          $centers = ExCenter::where('is_active','Y')->get();
-          foreach($centers as $center){
-            $centerArray[$cnt]['seq'] = $center->id;
-            $centerArray[$cnt]['name'] = $center->name;
-            $cnt++;
-          }
-          $data = [
-            "order_seq" => $request->seq ?? null,
-            "payment_kind" => self::PAYMENT_KIND,
-            "order_kind" => self::ORDER_KIND,
-            "order" => $Order ?? [],
-            "card_compnay" => self::_PAYMENT_CARD_COMPANY,
-            "item_array" => $itemArray ?? [],
-            "center_array" => $centerArray ?? [],
-          ];
-
-          return view('pages.order.register')->with($data);
-    }
-
-    public function orderSave(Request $request)
-    {
-
-      $order_seq = $request->Order_seq ?? null;
-
-      $item_info = [];
-      $card_info = [];
-      $account_info = [];
-
-      for($i=0;$i<count($request->pd_qty);$i++){
-        // $item_info[$i]['pd_seq'] = $request->pd_seq[$i];
-        $item_info[$i]['pd_qty'] = $request->pd_qty[$i];
+      $orders = ExOrder::where("member_seq",$request->session()->get('member_seq'))->orderBy('id', 'desc')->paginate($limitPage);
+  
+      if (!is_null($request->get('search_text'))) {
+        $search_text = $request->get('search_text');
+        $orders->where('name', 'LIKE', "%{$request->get('search_text')}%");
       }
-         
-      for($i=0;$i<count($request->card_company);$i++){
-        $card_info[$i]['card_company'] = $request->card_company[$i];
-        $card_info[$i]['card_name'] = $request->card_name[$i];
-        $card_info[$i]['card_number'] = $request->card_number[$i];
-        $card_info[$i]['card_payment_price'] = $request->card_payment_price[$i];
-        $card_info[$i]['card_month_plan'] = $request->card_month_plan[$i];
-        $card_info[$i]['card_year_month'] = $request->card_year_month[$i];
-        $card_info[$i]['card_approval_number'] = $request->card_approval_number[$i];
-        $card_info[$i]['card_approval_name'] = $request->card_approval_name[$i];
-        $card_info[$i]['card_approval_date'] = $request->card_approval_date[$i];
-        $card_info[$i]['card_password'] = $request->card_password[$i];
-      }
-
-      for($i=0;$i<count($request->account_number);$i++){
-        $account_info[$i]['account_number'] = $request->account_number[$i];
-        $account_info[$i]['account_head'] = $request->account_head[$i];
-        $account_info[$i]['account_date'] = $request->account_date[$i];
-        $account_info[$i]['account_payment_price'] = $request->account_payment_price[$i];
-      }
-      
-      // dd($request->input(),$account_info,$card_info,$item_info ,explode(" | ",$request->member_info));
-
-      $exMember = ExMember::findByMemberSeq( $request->member_seq );
-
-      $input_data = [
-        "member_seq" => $request->member_seq ?? null,
-        "member_id" => explode(" | ",$request->member_info)[0] ?? null,
-        "member_name" =>explode(" | ",$request->member_info)[1] ?? null,
-        "recommend_seq" => $exMember->member_seq ?? null,
-        "recommend_id" => $exMember->recommend_id ?? null,
-        "recommend_name" => $exMember->recommend_name ?? null,
-        "order_type" => $request->order_type ?? null,
-        "center_seq" => $request->center_seq ?? null,
-        "receipt_method" => $request->receipt_method ?? null,
-        "delivery_name" => $request->delivery_name ?? null,
-        "delivery_phone" => $request->delivery_phone ?? null,
-        "zipcode" => $request->zipcode ?? null,
-        "address" => $request->address ?? null,
-        "address_detail" => $request->address_detail ?? null,
-        "remark" => $request->remark ?? null,
-        "total_amount" => str_replace(',','',$request->total_amount) ?? null,
-        "payment_amount" => str_replace(',','',$request->payment_amount) ?? null,
-        "remaining_amount" => str_replace(',','',$request->remaining_amount) ?? null,
-        "cash_payment" => str_replace(',','',$request->cash_payment) ?? null,
-        "point_payment" => str_replace(',','',$request->point_payment) ?? null,
-        "account_payment" => str_replace(',','',$request->account_payment) ?? null,
-        "item_info" => json_encode($item_info) ?? [],
-        "card_info" => json_encode($card_info) ?? [],
-        "account_info" => json_encode($account_info) ?? [],
-        "order_date" => $request->order_date ?? date("Y-m-d H:i:s"),
+  
+      $data = [
+        "search_text" => $search_text ?? '',
+        "orders" =>  $orders ?? [],
+        "payment_kind" => self::PAYMENT_KIND,
+        "order_kind" => self::ORDER_KIND,
+        "approval_kind" => self::APPROVAL_KIND,
+        "row_num" => $this->getPageRowNumber($orders->total(), $page, $limitPage),
       ];
 
-
-      ExOrder::UpdateOrCreate(
-        [
-          'id' => $order_seq,
-        ],
-          $input_data
-      );
-
-      return redirect()->route('erp-order-layouts-order-list');
+      return view('pages.order.list')->with($data);
     }
 
-    public function orderDel(Request $request)
+    public function recruitmentList(Request $request)
     {
-      ExOrder::find($request->seq)->delete();
-      return redirect()->route('erp-order-layouts-order-list');
-    }
 
     
+      $limitPage = $this->getPageLimit();
+      $page = $request->get('page') ?? 1;
+  
+      $orders = ExOrder::where("recommend_seq",$request->session()->get('member_seq'))->orderBy('id', 'desc')->paginate($limitPage);
+  
+      if (!is_null($request->get('search_text'))) {
+        $search_text = $request->get('search_text');
+        $orders->where('name', 'LIKE', "%{$request->get('search_text')}%");
+      }
+  
+      $data = [
+        "search_text" => $search_text ?? '',
+        "orders" =>  $orders ?? [],
+        "payment_kind" => self::PAYMENT_KIND,
+        "order_kind" => self::ORDER_KIND,
+        "approval_kind" => self::APPROVAL_KIND,
+        "row_num" => $this->getPageRowNumber($orders->total(), $page, $limitPage),
+      ];
 
+      return view('pages.order.r_list')->with($data);
+    }
     
 }

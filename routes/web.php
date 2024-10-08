@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\OrganizationController;
+use App\Http\Controllers\Admin\CommissionController;
 use App\Http\Controllers\FO\AjaxController;
 use App\Http\Controllers\FO\CommunityController;
 use App\Http\Controllers\FO\NewsVideoController;
@@ -64,6 +65,7 @@ use App\Http\Controllers\tables\Basic as TablesBasic;
 
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\OrderController;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -204,7 +206,18 @@ Route::group(['middleware' => 'auth'], function () {
             // 1:1 문의 답변
             Route::post('/{id}/comment', [InquiryController::class, 'storeComment'])->name('inquiry.comment.store');
         });
+        
+        /** 주문 - 주문내역 */
+        Route::prefix('/order')->group(function () {
+            Route::get('/list', [OrderController::class, 'orderList'])->name('order-list');
+            Route::get('/recruitment_list', [OrderController::class, 'recruitmentList'])->name('recruitment-list');
+        });
 
+        /** 수당관리 */
+        Route::prefix('/commission')->group(function () {
+            Route::get('/termClosing', [CommissionController::class, 'termClosing'])->name('term-closingst');
+            Route::get('/monthlyClosing', [CommissionController::class, 'monthlyClosing'])->name('monthly-closing');
+        });
 
         /** 조직도 */
         Route::prefix('/organization')->group(function () {

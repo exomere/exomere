@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ExOrder;
 use App\Models\ExMember;
 use App\Models\ExCenter;
-use App\Models\ExMemberStatements;
+use App\Models\ExStatementsMember;
 use App\Models\ExStatements;
 
 use Illuminate\View\View;
@@ -46,7 +46,7 @@ class ErpCommissionController extends Exomere
         $limitPage = 30;
         $page = $request->get('page', 1);
         
-        $statements = ExMemberStatements::where("code",$request->code)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
+        $statements = ExStatementsMember::where("code",$request->code)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
 
         
         $datas = [
@@ -68,7 +68,7 @@ class ErpCommissionController extends Exomere
         $limitPage = 30;
         $page = $request->get('page', 1);
 
-        $statements = ExMemberStatements::where("member_seq",$request->seq)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
+        $statements = ExStatementsMember::where("member_seq",$request->seq)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
 
         $datas = [
             "statements" => $statements,
@@ -144,16 +144,16 @@ class ErpCommissionController extends Exomere
 
              /* 한번 더 누를 시 삭제*/
         ExStatements::where("type","term")->where("code",$calcu_code)->delete();
-        ExMemberStatements::where("type","term")->where("code",$calcu_code)->delete();
+        ExStatementsMember::where("type","term")->where("code",$calcu_code)->delete();
 
         foreach( $input_data as $data){
             $data['code'] = $calcu_code;
             $data['type'] = "term";
-            ExMemberStatements::create($data);
+            ExStatementsMember::create($data);
         }
     
-        $st_total_payment = ExMemberStatements::where("type","term")->where("code",$calcu_code)->SUM("total_payment");
-        $st_actual_amount = ExMemberStatements::where("type","term")->where("code",$calcu_code)->SUM("actual_amount");
+        $st_total_payment = ExStatementsMember::where("type","term")->where("code",$calcu_code)->SUM("total_payment");
+        $st_actual_amount = ExStatementsMember::where("type","term")->where("code",$calcu_code)->SUM("actual_amount");
         
         ExStatements::create([
             "type" => "term",
@@ -183,7 +183,7 @@ class ErpCommissionController extends Exomere
         $limitPage = 30;
         $page = $request->get('page', 1);
 
-        $statements = ExMemberStatements::where("code",$request->code)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
+        $statements = ExStatementsMember::where("code",$request->code)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
 
         $datas = [
             "statements" => $statements,
@@ -204,7 +204,7 @@ class ErpCommissionController extends Exomere
         $limitPage = 30;
         $page = $request->get('page', 1);
 
-        $statements = ExMemberStatements::where("member_seq",$request->seq)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
+        $statements = ExStatementsMember::where("member_seq",$request->seq)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
 
         $datas = [
             "statements" => $statements,
@@ -318,12 +318,12 @@ class ErpCommissionController extends Exomere
 
         /* 한번 더 누를 시 삭제*/
         ExStatements::where("type","month")->where("code",$calcu_code)->delete();
-        ExMemberStatements::where("type","month")->where("code",$calcu_code)->delete();
+        ExStatementsMember::where("type","month")->where("code",$calcu_code)->delete();
 
         foreach( $member_input_data as $data){
             $data['code'] = $calcu_code;
             $data['type'] = "month";
-            ExMemberStatements::create($data);
+            ExStatementsMember::create($data);
         }
         
         /* 지역점비 지원금 계산 */
@@ -335,8 +335,8 @@ class ErpCommissionController extends Exomere
         /* 장려금 계산 */
         $this->promoteCalculation($calcu_code,$start_date, $end_date, $total_pv);
 
-        $st_total_payment = ExMemberStatements::where("type","month")->where("code",$calcu_code)->SUM("total_payment");
-        $st_actual_amount = ExMemberStatements::where("type","month")->where("code",$calcu_code)->SUM("actual_amount");
+        $st_total_payment = ExStatementsMember::where("type","month")->where("code",$calcu_code)->SUM("total_payment");
+        $st_actual_amount = ExStatementsMember::where("type","month")->where("code",$calcu_code)->SUM("actual_amount");
         
         ExStatements::create([
             "type" => "month",
@@ -441,7 +441,7 @@ class ErpCommissionController extends Exomere
             if($val > 0){
                 $c_promote_price = $promote_price * $val;
 
-                $order = ExMemberStatements::where("member_seq",$key)->where('code',$calcu_code);
+                $order = ExStatementsMember::where("member_seq",$key)->where('code',$calcu_code);
 
                 $total_payment = $c_promote_price * 0.09; 
                 $payment_points = $c_promote_price * 0.01; 
@@ -468,7 +468,7 @@ class ErpCommissionController extends Exomere
 
                     $exMember = ExMember::findByMemberSeq( $key );
 
-                    ExMemberStatements::create([
+                    ExStatementsMember::create([
                         "total_amount" => $total_amount[$key],
                         "pv" => $pv[$key],
                         "member_seq" => $exMember->id,
@@ -552,7 +552,7 @@ class ErpCommissionController extends Exomere
 
                 $exMember = ExMember::findByMemberSeq( $member->id );
 
-                ExMemberStatements::create([
+                ExStatementsMember::create([
                     "member_seq" => $exMember->id,
                     "member_id" => $exMember->member_id,
                     "member_name" => $exMember->name,
@@ -591,7 +591,7 @@ class ErpCommissionController extends Exomere
             $total_deduction  = $income_tax + $residence_tax;
             $actual_amount  = $total_payment - $total_deduction;
 
-            $order = ExMemberStatements::where("member_seq",$center->director_seq)->where('code',$calcu_code);
+            $order = ExStatementsMember::where("member_seq",$center->director_seq)->where('code',$calcu_code);
 
             if(isset($order->id)){
                 $order->update([
@@ -603,7 +603,7 @@ class ErpCommissionController extends Exomere
                     "actual_amount" => ($order->actual_amount + $actual_amount), 
                 ]);
             }else{
-                ExMemberStatements::create([
+                ExStatementsMember::create([
                     "member_seq" => $center->director_seq,
                     "member_id" => $center->director_name,
                     "member_name" => $center->director_id,

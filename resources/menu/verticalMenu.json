@@ -45,16 +45,14 @@
       "read": "user",
       "submenu": [
         {
-          "url": "management/pages/misc-error",
+          "url": "management/order/list",
           "name": "order_history",
-          "slug": "pages-misc-error",
-          "target": "_blank"
+          "slug": "order-list"
         },
         {
-          "url": "management/pages/misc-under-maintenance",
+          "url": "management/recruitment/list",
           "name": "recruitment_history",
-          "slug": "pages-misc-under-maintenance",
-          "target": "_blank"
+          "slug": "recruitment-list"
         }
       ]
     },
@@ -65,22 +63,14 @@
       "read": "user",
       "submenu": [
         {
-          "url": "management/pages/misc-error",
+          "url": "management/commission/termClosing",
           "name": "past_due",
-          "slug": "pages-misc-error",
-          "target": "_blank"
+          "slug": "term-closing" 
         },
         {
-          "url": "management/pages/misc-under-maintenance",
-          "name": "distributor_payments",
-          "slug": "pages-misc-under-maintenance",
-          "target": "_blank"
-        },
-        {
-          "url": "management/pages/misc-under-maintenance",
+          "url": "management/commission/monthlyClosing",
           "name": "monthly_closing",
-          "slug": "pages-misc-under-maintenance",
-          "target": "_blank"
+          "slug": "monthly-closing"
         }
       ]
     },
