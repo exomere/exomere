@@ -215,7 +215,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         /** 수당관리 */
         Route::prefix('/commission')->group(function () {
-            Route::get('/termClosing', [CommissionController::class, 'termClosing'])->name('term-closingst');
+            Route::get('/termClosing', [CommissionController::class, 'termClosing'])->name('term-closing');
             Route::get('/monthlyClosing', [CommissionController::class, 'monthlyClosing'])->name('monthly-closing');
         });
 

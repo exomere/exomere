@@ -1,6 +1,6 @@
 @extends('layouts/contentNavbarLayout')
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
-@section('title', 'Erp - Commission - list')
+@section('title', 'Commission - list')
 
 @section('content')
 <!-- Basic -->

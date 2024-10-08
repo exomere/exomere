@@ -50,7 +50,7 @@
           "slug": "order-list"
         },
         {
-          "url": "management/recruitment/list",
+          "url": "management/order/recruitment_list",
           "name": "recruitment_history",
           "slug": "recruitment-list"
         }

@@ -26,16 +26,15 @@
 <!--/ Basic -->
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">주문 내역</h5> <small class="text-muted float-end">
+    <h5 class="mb-0">모집 내역</h5> <small class="text-muted float-end">
   </div>
   <div class="table-responsive text-nowrap">
     <table class="table" >
       <thead>
         <tr>
           <th style='vertical-align: middle;'>No</th>
-          <th style='vertical-align: middle;'>주문번호</th>
-          <th style='vertical-align: middle;'>주문구분</th>
           <th style='vertical-align: middle;'>주문일자</th>
+          <th style='vertical-align: middle;'>ID</th>
           <th style='vertical-align: middle;'>매출</th>
           <th style='vertical-align: middle;'>PV1</th>
           <th style='vertical-align: middle;'>상태</th>
@@ -46,8 +45,7 @@
         @foreach ($orders as $list)
           <tr>
             <td> <span class="fw-medium">{{$row_num--}}</span></td>
-            <td> <span class="fw-medium">{{$list->id}}</span></td>
-            <td> <span class="fw-medium">{{ $order_kind[$list->order_type] }}</span></td>
+            <td> <span class="fw-medium">{{$list->member_id}}</span></td>
             <td> <span class="fw-medium">{{date("Y-m-d",strtotime($list->order_date))}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_pv)}}</span></td>
