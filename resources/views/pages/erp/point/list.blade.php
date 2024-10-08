@@ -69,8 +69,8 @@
               <td>{{$list->name}}</td>
               <td>{{$list->tel}}</td>
               <td>{{$list->created_at}}</td>
-              <td>{{$list->remain_points}}</td>
-              <td>{{$list->payment_points}}</td>
+              <td>{{number_format($list->remain_points)}}</td>
+              <td>{{number_format($list->payment_points)}}</td>
             </tr>
           @endforeach
         </tbody>

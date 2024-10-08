@@ -35,6 +35,142 @@ class ErpCommissionController extends Exomere
         return view('pages.erp.commission.termClosing')->with($datas);
     }
 
+        /**
+     * Display a listing of the notices.
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function termClosingDetail (Request $request)
+    {
+        $limitPage = 30;
+        $page = $request->get('page', 1);
+        
+        $statements = ExMemberStatements::where("code",$request->code)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
+
+        
+        $datas = [
+            "statements" => $statements,
+            "row_num" => $this->getPageRowNumber($statements->total(), $page, $limitPage)
+        ];
+
+        return view('pages.erp.commission.termClosingDetail')->with($datas);
+    }
+
+            /**
+     * Display a listing of the notices.
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function termClosingUserDetail (Request $request)
+    {
+        $limitPage = 30;
+        $page = $request->get('page', 1);
+
+        $statements = ExMemberStatements::where("member_seq",$request->seq)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
+
+        $datas = [
+            "statements" => $statements,
+            "row_num" => $this->getPageRowNumber($statements->total(), $page, $limitPage)
+        ];
+
+        return view('pages.erp.commission.termClosingUser')->with($datas);
+    }
+
+
+    /**
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function termCalculation (Request $request)
+    {
+        @set_time_limit(0); 
+
+        
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        $calcu_code = str_replace("-","",$end_date);
+
+        $st_total_amount = 0;
+        $st_total_pv = 0;
+
+        $datas = ExOrder::whereBetween('order_date', [$start_date, $end_date])->where("order_type",'new');
+
+        // dd($datas->get());
+
+        $input_data = [];
+        foreach($datas->get() as $data){
+            if($data->total_amount >= 13200000){
+
+                $recruitment_amount = ($input_data[$data->recommend_seq]['recruitment_amount'] ?? 0) + ($data->total_pv * 0.35);
+
+                $input_data[$data->recommend_seq] = [
+                    "member_seq" => $data->recommend_seq,
+                    "member_id" => $data->recommend_id,
+                    "member_name" => $data->recommend_name,
+                    "pv" => ($input_data[$data->recommend_seq]['pv'] ?? 0) + $data->total_pv,
+                    "total_amount" =>  ($input_data[$data->recommend_seq]['total_amount'] ?? 0) + $data->total_amount,
+                    "recruitment_amount" => $recruitment_amount , //직접모집관리금
+                    "total_payment" => $recruitment_amount, // 지급합계 
+                    "income_tax" => $recruitment_amount * 0.03, //소득세
+                    "residence_tax" => $recruitment_amount * 0.003, // 주민세
+                    "total_deduction" => $recruitment_amount * 0.033, // 공제합계
+                    "actual_amount" => $recruitment_amount - ($recruitment_amount * 0.033), //실지급액
+                ];
+
+                $settlement_subsidy = ($input_data[$data->member_seq]['settlement_subsidy'] ?? 0) + ($data->total_pv * 0.1);
+
+                $input_data[$data->member_seq] = [
+                    "member_seq" => $data->member_seq,
+                    "member_id" => $data->member_id,
+                    "member_name" => $data->member_name,
+                    "pv" => ($input_data[$data->member_seq]['pv'] ?? 0) + $data->total_pv,
+                    "total_amount" =>  ($input_data[$data->member_seq]['total_amount'] ?? 0) + $data->total_amount,
+                    "settlement_subsidy" => $settlement_subsidy , //직접모집관리금
+                    "total_payment" => $settlement_subsidy, // 지급합계 
+                    "income_tax" => $settlement_subsidy * 0.03, //소득세
+                    "residence_tax" => $settlement_subsidy * 0.003, // 주민세
+                    "total_deduction" => $settlement_subsidy * 0.033, // 공제합계
+                    "actual_amount" => $settlement_subsidy - ($settlement_subsidy * 0.033), //실지급액
+                ];
+
+
+                $st_total_amount += $data->total_amount;
+                $st_total_pv += $data->total_pv;
+            }
+        }
+
+             /* 한번 더 누를 시 삭제*/
+        ExStatements::where("type","term")->where("code",$calcu_code)->delete();
+        ExMemberStatements::where("type","term")->where("code",$calcu_code)->delete();
+
+        foreach( $input_data as $data){
+            $data['code'] = $calcu_code;
+            $data['type'] = "term";
+            ExMemberStatements::create($data);
+        }
+    
+        $st_total_payment = ExMemberStatements::where("type","term")->where("code",$calcu_code)->SUM("total_payment");
+        $st_actual_amount = ExMemberStatements::where("type","term")->where("code",$calcu_code)->SUM("actual_amount");
+        
+        ExStatements::create([
+            "type" => "term",
+            "code" => $calcu_code,
+            "total_amount" => $st_total_amount,
+            "total_pv" => $st_total_pv,
+            "total_payment" => $st_total_payment, //합계금액
+            "actual_amount" => $st_actual_amount, //실지급액
+            "deadline_date" => $end_date,
+            "s_date" => $start_date,
+            "e_date" => $end_date,
+            "reg_name" => $request->session()->get('member_id')
+        ]);
+
+        return redirect()->route('erp-allowance.term-closing');
+    }
+
 
     /**
      * Display a listing of the notices.
@@ -99,47 +235,6 @@ class ErpCommissionController extends Exomere
         ];
 
         return view('pages.erp.commission.monthlyClosing')->with($datas);
-    }
-
-    /**
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function termCalculation (Request $request)
-    {
-        @set_time_limit(0); 
-
-        $settlement_month = $request->settlement_month;
-        $deadline_date = $request->deadline_date;
-        $start_date = $request->start_date;
-        $end_date = $request->end_date;
-        $calcu_code = str_replace("-","",$settlement_month);
-
-        $datas = ExOrder::whereBetween('order_date', [$start_date, $end_date])->where("order_type",'new');
-
-        $input_data = [];
-        foreach($datas as $data){
-            if($data->total_amount >= 13200000){
-                $input_data[$data->member_seq]['settlement_subsidy'] += ($data->total_pv * 0.1); //정착지원금 (본인)
-                $input_data[$data->recommend_seq]['person_recruit'] += ($data->total_pv * 0.35); //직접모집 축하금 (상위)
-            }
-        }
-
-        // ExStatements::create([
-        //     "type" => "term",
-        //     "code" => $calcu_code,
-        //     "total_amount" => $total_amount,
-        //     "total_pv" => $total_pv,
-        //     "total_payment" => $st_total_payment, //합계금액
-        //     "actual_amount" => $st_actual_amount, //실지급액
-        //     "deadline_date" => $deadline_date,
-        //     "s_date" => $start_date,
-        //     "e_date" => $end_date,
-        //     "reg_name" => $request->session()->get('member_id')
-        // ]);
-
-        return redirect()->route('erp-allowance.term-closing');
     }
 
     /**
@@ -338,8 +433,10 @@ class ErpCommissionController extends Exomere
             $total_score += $val;
         }
 
-        $promote_price = ROUND(( $total_pv * 0.08 ) / $total_score) ;
-
+        if($total_score != 0){
+            $promote_price = ROUND(( $total_pv * 0.08 ) / $total_score) ;
+        }
+        
         foreach($score as $key => $val){
             if($val > 0){
                 $c_promote_price = $promote_price * $val;
@@ -406,11 +503,18 @@ class ErpCommissionController extends Exomere
         $ex_members2 = ExMember::where("member_position","최우수총판");
         
 
-        $contribution_amount = ($total_pv * 0.03) / ( $ex_members->count()); //우수총판 기여금
-        $contribution_amount2 = ($total_pv * 0.02) / ($ex_members2->count() ?? 0); //최우수총판 기여금
+        if($ex_members->count() != 0 ){
+            $contribution_amount = ($total_pv * 0.03) / ( $ex_members->count()); //우수총판 기여금
+        }else{
+            $contribution_amount = 0;
+        }
 
-        // "contribution_amount" => $c_contribution_amount, //우수총판기여금
-        // "contribution_amount2" => $c_contribution_amount2, //최우수총판기여금
+        if($ex_members2->count() != 0 ){
+            $contribution_amount2 = ($total_pv * 0.02) / ($ex_members2->count() ?? 0); //최우수총판 기여금
+        }else{
+            $contribution_amount2 = 0;
+        }
+
         foreach($ex_members->get() as $member){
             $order = ExOrder::where("recommend_seq",$member->id)->whereBetween('order_date', [$s_date, $e_date]);
             

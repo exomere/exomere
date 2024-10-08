@@ -58,7 +58,7 @@
                 <tr class="align-middle py-2">
                     <td><span class="fw-medium">{{ $row_num-- }}</span></td>
                     <td>
-                        <a class="badge bg-label-info me-4" href="{{ route('erp-allowance.monthly-detail', ['code' => $statement->code, 'type' => $statement->type]) }}">
+                        <a class="badge bg-label-info me-4" href="{{ route('erp-allowance.term-detail', ['code' => $statement->code, 'type' => $statement->type]) }}">
                             <span class="fw-medium">상세보기</span>
                         </a>
                     </td>

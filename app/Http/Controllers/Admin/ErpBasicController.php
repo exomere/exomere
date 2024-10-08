@@ -97,13 +97,12 @@ class ErpBasicController extends Exomere
             $centers->where('name', 'LIKE', "%{$request->get('search_text')}%");
         }
 
-        $centers->limit($limitPage)->orderBy('id', 'desc');
-
+        $centers = ExCenter::orderBy('id', 'desc')->paginate($limitPage);
+        
         $data = [
             "search_text" => $search_text ?? '',
             "centers" =>  $centers ?? [],
             "row_num" => $this->getPageRowNumber($centers->count(), $page, $limitPage) ?? null,
-            "paga_nation" => $this->pagaNation($centers, $limitPage),
         ];
 
         return view('pages.erp.basic.center.list')->with($data);
@@ -192,14 +191,14 @@ class ErpBasicController extends Exomere
             $items->where('name', 'LIKE', "%{$request->get('search_text')}%");
         }
 
-        $items->limit($limitPage)->orderBy('id', 'desc');
-
+        $items = ExItem::orderBy('id', 'desc')->paginate($limitPage);
+        
         $data = [
             "search_text" => $search_text ?? '',
             "items" =>  $items ?? [],
             "item_category" => self::ITEM_CATEGORY,
             "row_num" => $this->getPageRowNumber($items->count(), $page, $limitPage) ?? null,
-            "paga_nation" => $this->pagaNation($items, $limitPage),
+            
         ];
 
         return view('pages.erp.basic.item.list')->with($data);

@@ -53,7 +53,7 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        @foreach ($centers->get() as $list)
+        @foreach ($centers as $list)
           <tr>
             <td>{{$list->id}}</td>
             <td>{{$list->name}}</td>
@@ -76,6 +76,9 @@
         @endforeach
       </tbody>
     </table>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+      {{ $centers->links('vendor.pagination.bootstrap-4') }}
   </div>
 </div>
 <!--/ Basic Bootstrap Table -->

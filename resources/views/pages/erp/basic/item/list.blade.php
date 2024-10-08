@@ -57,7 +57,7 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        @foreach ($items->get() as $list)
+        @foreach ($items as $list)
           <tr>
             <td> <span class="fw-medium">{{$row_num--;}}</span></td>
             <td><img style='width:80px;' src="{{ asset('storage/data/'.$list->thum_img) }}" alt="상품이미지" onerror="this.src='{{ asset('storage/data/noimg.jpg') }}'"  ></td>
@@ -84,6 +84,9 @@
         @endforeach
       </tbody>
     </table>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+      {{ $items->links('vendor.pagination.bootstrap-4') }}
   </div>
 </div>
 <!--/ Basic Bootstrap Table -->

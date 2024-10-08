@@ -60,8 +60,8 @@
               <label class="col-sm-1 col-form-label" for="receipt_method"> 상품수령 </label>
               <div class="col-sm-2">
                 <select class="form-select" name="receipt_method" id="receipt_method">
-                  <option value='scene' @isset($order_data->receipt_method) @if($order_data->receipt_method == "scene") selected @endif @endisset>현장수령</option>
                   <option value='delivery' @isset($order_data->receipt_method) @if($order_data->receipt_method == "delivery") selected @endif @endisset>택배수령</option>
+                  <option value='scene' @isset($order_data->receipt_method) @if($order_data->receipt_method == "scene") selected @endif @endisset>현장수령</option>
                 </select>
               </div>
             </div>

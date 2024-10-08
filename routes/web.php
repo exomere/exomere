@@ -263,6 +263,10 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/termClosing', [ErpCommissionController::class, 'termClosing'])->name('erp-allowance.term-closing');
                 // ㄴ 기마감 계산
                 Route::post('/termCalculation', [ErpCommissionController::class, 'termCalculation'])->name('erp.term.calculation');
+                    // ㄴ 기마감 디테일
+                    Route::get('/termClosingDetail', [ErpCommissionController::class, 'termClosingDetail'])->name('erp-allowance.term-detail');
+                    // ㄴ 개인 기마감 내역
+                    Route::get('/termClosingUserDetail', [ErpCommissionController::class, 'termClosingUserDetail'])->name('erp-allowance.term-user');
                 // ㄴ 월마감
                 Route::get('/monthlyClosing', [ErpCommissionController::class, 'monthlyClosing'])->name('erp-allowance.monthly-closing');
                     // ㄴ 월마감 디테일

@@ -7,13 +7,13 @@
 <!-- Basic Layout & Basic with Icons -->
 <div class="row">
   <!-- Basic Layout -->
-  <form method='post' action="{{route('item.save')}}" enctype="multipart/form-data">
+  <form method='post' action="{{route('item.save')}}" enctype="multipart/form-data" id='formItem'>
     @csrf
     <input type='hidden' name='item_seq' value='{{ $item_seq ?? null }}'> 
     <div class="col-xxl">
       <div class="card mb-4">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <h5 class="mb-0">상품등록</h5> <small class="text-muted float-end"><button type="submit" class="btn btn-primary">저장</button></small>
+          <h5 class="mb-0">상품등록</h5> <small class="text-muted float-end"><button type="button" class="btn btn-primary doSave">저장</button></small>
         </div>
         <div class="card-body">
           <form>
@@ -480,14 +480,9 @@
   </form>
 </div>
 
-{{-- <script>
-  ClassicEditor
-      .create( document.querySelector( '#content' ),{
-        ckfinder:{
-          uploadUrl:"{{route('ckeditor.upload',['_token'=>csrf_token()])}}",
-        },
-      }).catch( error => {
-          console.error( error );
-      } );
-</script> --}}
+<script>
+  $(".doSave").on('click',function(){
+    $("#formItem").submit();
+  });
+</script>
 @endsection

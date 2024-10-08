@@ -34,4 +34,16 @@ class ErpPointController extends Exomere
 
         return view('pages.erp.point.list')->with($data);
     }
+
+    //포인트 지급
+    public function payPoint(Request $request){
+        $seq = $request->seq;
+
+        $exMember = ExMember::find($seq);
+
+        $exMember->update([
+            "remain_points" => ($exMember->remain_points + $request->point),
+            "payment_points" => ($exMember->payment_points + $request->point),
+        ]);
+    }
 }
