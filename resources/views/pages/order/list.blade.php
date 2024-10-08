@@ -26,7 +26,7 @@
 <!--/ Basic -->
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">주문 내역</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('erp-order-layouts-order-register')}}'" class="btn btn-primary">주문등록</button></small>
+    <h5 class="mb-0">주문 내역</h5> 
   </div>
   <div class="table-responsive text-nowrap">
     <table class="table" >
