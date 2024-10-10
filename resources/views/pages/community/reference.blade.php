@@ -26,7 +26,7 @@
                 <td class="align-middle relative">
                     <a href="{{ route('community.referenceDetail', ['reference_id' => $item['id']]) }}"
                      class=" cursor-pointer hover:underline">
-                        {{ $item['subject'] }}
+                        {{ $item['title'] }}
                     </a>
                 </td>
                 <td class="align-middle	 text-center">
@@ -36,6 +36,10 @@
         @endforeach
     </table>
 
+    {{--paging--}}
+    <div class="my-10">
+        {{ $items->links() }}
+    </div>
 @endsection
 
 @section('page-script')

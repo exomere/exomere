@@ -22,7 +22,7 @@
                 <article class="min-h-svh overflow-y-auto border-b border-solid border-slate-200">
                     <div
                         class="flex flex-col sm:flex-row justify-between px-3 py-8 border-b border-solid border-slate-200">
-                        <h1 class="text-xl font-medium text-gray-900">{{ $item['subject' ]}}</h1>
+                        <h1 class="text-xl font-medium text-gray-900">{{ $item['title' ]}}</h1>
 
                         <div class="text-gray-500 sm:text-right">
                             {{ substr($item['created_at'], 0,10) }}
@@ -47,8 +47,9 @@
                                 @foreach( $item['attachments'] as $attach)
                                     <li class="relative __icon __{{$item['attach_type']}}">
                                         <a
-                                            href="javascript:alert('{{ __('common.in_ready') }}')"
-                                            class="text-blue-600 hover:underline">{{ $attach }}</a>
+                                            href="{{ asset($attach) }}"
+                                            download="{{ basename($attach) }}"
+                                            class="text-blue-600 hover:underline">{{ basename($attach) }}</a>
                                     </li>
                                 @endforeach
                             </ul>
