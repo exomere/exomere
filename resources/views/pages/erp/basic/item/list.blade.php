@@ -62,7 +62,7 @@
             <td> <span class="fw-medium">{{$row_num--;}}</span></td>
             <td><img style='width:80px;' src="{{ asset('storage/data/'.$list->thum_img) }}" alt="상품이미지" onerror="this.src='{{ asset('storage/data/noimg.jpg') }}'"  ></td>
             <td> <span class="fw-medium">{{$list->code}}</span></td>
-            <td> <span class="fw-medium">{{$item_category[$list->category]}}</span></td>
+            <td> <span class="fw-medium">{{$item_category[$list->category ?? 'none']}}</span></td>
             <td> <span class="fw-medium">{{$list->name}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->price)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->mem_price)}}</span></td>

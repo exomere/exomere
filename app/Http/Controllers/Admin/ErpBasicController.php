@@ -17,6 +17,7 @@ class ErpBasicController extends Exomere
         'skin' => '스킨케어',
         'health' => '헬스케어',
         'etc' => '기타',
+        'none' => '-',
     ];
 
     const ITEM_KIND = [
@@ -192,7 +193,7 @@ class ErpBasicController extends Exomere
         }
 
         $items = ExItem::orderBy('id', 'desc')->paginate($limitPage);
-        
+        // dd($items);
         $data = [
             "search_text" => $search_text ?? '',
             "items" =>  $items ?? [],
