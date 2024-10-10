@@ -1,3 +1,7 @@
+<?php
+$visualFullWidthLayout = true;
+
+?>
 @extends('pages.layouts.subLayout')
 @section('title', __('gnb.cibi'))
 
@@ -10,101 +14,141 @@
 @endsection
 @section('content')
 
-    <div class="flex flex-col space-y-12 gap-y-12 items-center justify-center md:text-lg">
-        <div class="w-full">
-            <h2 class="text-2xl font-semibold mb-7 text-left" data-aos="fade-up">Signature
-                System</h2>
-            <div class="grid lg:grid-cols-2 gap-4">
-                <div
-                    class="bg-white padding border border-solid border-slate-200 flex flex-col items-center"
-                    data-aos="fade-up"
-                    data-aos-delay="300">
-                    <div class="flex flex-col h-32 items-center justify-center">
-                        <img src="{{asset('img/logo.svg')}}" alt=""
-                             class=" h-full object-cover ">
+    <div class="relative">
+        <nav id="parallax__nav"
+             class="relative bg-white w-full left-0 z-40 lg:absolute lg:top-32 lg:pl-7 lg:bg-transparent lg:left-0 lg:w-auto">
+            <ul class="flex flex-row justify-center text-sm text-center text-slate-500 lg:flex-col lg:text-base">
+                <li class="relative p-3 basis-1/4"><a class="" href="/about">기업소개</a>
+                </li>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/philosophy">경영이념</a>
+                </li>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/history">연혁</a>
+                </li>
+                <li class="relative p-3 basis-1/4"><a class="active" href="/about/cibi">CI/BI 소개</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="pt-20 px-4 lg:px-44 pb-32 lg:pb-40">
+        <div class="flex flex-col gap-y-12 items-center justify-center md:text-lg">
+            <div class="w-full">
+                <h2 class="text-2xl font-semibold mb-7 text-left" data-aos="fade-up">Signature
+                    System</h2>
+                <div class="grid lg:grid-cols-2 gap-4">
+                    <div
+                        class="bg-white padding border border-solid border-slate-200 flex flex-col items-center"
+                        data-aos="fade-up"
+                        data-aos-delay="300">
+                        <div class="flex flex-col h-32 items-center justify-center">
+                            <img src="{{asset('img/logo.svg')}}" alt=""
+                                 class=" h-full object-cover ">
+                        </div>
                     </div>
-                </div>
 
-                <div
-                    class="bg-white padding border border-solid border-slate-200 flex flex-col items-center"
-                    data-aos="fade-up"
-                    data-aos-delay="400">
-                    <div class="flex flex-col w-56 h-32 items-center justify-center">
-                        <img src="{{asset('img/logo_horizontal.png')}}" alt=""
-                             class="w-full object-cover ">
+                    <div
+                        class="bg-white padding border border-solid border-slate-200 flex flex-col items-center"
+                        data-aos="fade-up"
+                        data-aos-delay="400">
+                        <div class="flex flex-col w-56 h-32 items-center justify-center">
+                            <img src="{{asset('img/logo_horizontal.png')}}" alt=""
+                                 class="w-full object-cover ">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-center my-7">
-                <p class="break-keep tracking-tight leading-loose"
-                   data-aos="fade-up"
-                   data-aos-delay="300">
-                    {!! nl2br(__('messages.cibi_content')) !!}
-                </p>
-                <a
+                <div class="text-center my-7">
+                    <p class="break-keep tracking-tight leading-loose"
+                       data-aos="fade-up"
+                       data-aos-delay="300">
+                        {!! nl2br(__('messages.cibi_content')) !!}
+                    </p>
+                    <a
                         class="inline-flex items-center gap-x-1 mt-3 px-10 h-12 text-sm border border-solid border-slate-200 rounded-full"
                         data-aos="fade-up"
                         data-aos-delay="300"
                         href="{{ asset('uploads/EXOMERE_CIBI_LOGO.pdf') }}"
                         download="EXOMERE_CIBI_LOGO.pdf"
-                >{{ __('common.download') }}
-                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                         width="14" height="14" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="1"
-                              d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-        <div class="w-full">
-            <h2 class="text-2xl font-semibold mb-7 text-left" data-aos="fade-up">Color System</h2>
-            <div class="flex flex-col">
-                <div class="w-full h-20 mb-7 bg-exomere" data-aos="fade-up"></div>
-                <ul class="leading-loose" data-aos="fade-up">
-                    <li><span class="inline-block min-w-32 font-bold ">PANTONE</span> 2026C</li>
-                    <li><span class="inline-block min-w-32 font-bold ">CMYK</span> C18 M78 Y83 K0
-                    </li>
-                    <li><span class="inline-block min-w-32 font-bold ">RGB</span> R207 G87 B51</li>
-                </ul>
-
-            </div>
-        </div>
-        <div class="w-full">
-            <div class="flex flex-wrap justify-between items-center gap-x-1">
-                <div>
-                    <h2 class="text-lg font-semibold mb-4"
-                        data-aos="fade-up">명도에 따른 색상 활용</h2>
-                    <div class="color__system brightness mb-10"
-                         data-aos="fade-up"
-                         data-aos-delay="100">
-                        <img src="{{asset('assets/img/elements/color_system_brightness.png')}}"
-                             alt="">
-                    </div>
-
-                    <h2 class="text-lg font-semibold mb-4"
-                        data-aos="fade-up">채도에 따른 색상 활용</h2>
-                    <div class="color__system saturation mb-10"
-                         data-aos="fade-up"
-                         data-aos-delay="100">
-                        <img src="{{asset('assets/img/elements/color_system_saturation.png')}}"
-                             alt="">
-                    </div>
+                    >{{ __('common.download') }}
+                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                             width="14" height="14" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="1"
+                                  d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01"/>
+                        </svg>
+                    </a>
                 </div>
-                <div>
-                    <h2 class="text-lg font-semibold mb-4"
-                        data-aos="fade-up">흑백 배경 색상 활용</h2>
-                    <div class="color__system black mb-10"
-                         data-aos="fade-up"
-                         data-aos-delay="100">
-                        <img src="{{asset('assets/img/elements/color_system_black.png')}}" alt="">
+            </div>
+            <div class="w-full">
+                <h2 class="text-2xl font-semibold mb-7 text-left" data-aos="fade-up">Color System</h2>
+                <div class="flex flex-col">
+                    <div class="w-full h-20 mb-7 bg-exomere" data-aos="fade-up"></div>
+                    <ul class="leading-loose" data-aos="fade-up">
+                        <li><span class="inline-block min-w-32 font-bold ">PANTONE</span> 2026C</li>
+                        <li><span class="inline-block min-w-32 font-bold ">CMYK</span> C18 M78 Y83 K0
+                        </li>
+                        <li><span class="inline-block min-w-32 font-bold ">RGB</span> R207 G87 B51</li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-wrap justify-between items-center gap-x-1">
+                    <div>
+                        <h2 class="text-lg font-semibold mb-4"
+                            data-aos="fade-up">명도에 따른 색상 활용</h2>
+                        <div class="color__system brightness mb-10"
+                             data-aos="fade-up"
+                             data-aos-delay="100">
+                            <img src="{{asset('assets/img/elements/color_system_brightness.png')}}"
+                                 alt="">
+                        </div>
+
+                        <h2 class="text-lg font-semibold mb-4"
+                            data-aos="fade-up">채도에 따른 색상 활용</h2>
+                        <div class="color__system saturation mb-10"
+                             data-aos="fade-up"
+                             data-aos-delay="100">
+                            <img src="{{asset('assets/img/elements/color_system_saturation.png')}}"
+                                 alt="">
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-semibold mb-4"
+                            data-aos="fade-up">흑백 배경 색상 활용</h2>
+                        <div class="color__system black mb-10"
+                             data-aos="fade-up"
+                             data-aos-delay="100">
+                            <img src="{{asset('assets/img/elements/color_system_black.png')}}" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('page-script')
+    <script>
+
+        //fixed nav
+        var header = document.querySelector("header");
+        var nav = document.getElementById("parallax__nav");
+        var headerHeight = header.offsetHeight;
+        var navOffset = nav.getBoundingClientRect().top - headerHeight + nav.offsetHeight;
+        var prefix = matchMedia("screen and (min-width: 1024px)").matches ? 'lg:' : '';
+
+        $(window).scroll(function () {
+            if (window.pageYOffset >= navOffset) {
+                nav.classList.remove(prefix + "absolute");
+                nav.classList.add(prefix + "fixed", prefix + "top-[" + headerHeight + "px]",);
+                nav.classList.remove("relative");
+            } else {
+                nav.classList.add(prefix + "absolute");
+                nav.classList.remove(prefix + "fixed", prefix + "top-[" + headerHeight + "px]",);
+                nav.classList.add("relative");
+            }
+        });
+
+    </script>
 @endsection
 

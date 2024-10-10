@@ -1,5 +1,7 @@
 <?php
 
+$visualFullWidthLayout = true;
+
 $history = [
     '2023년' => [
         '11월' => [
@@ -66,7 +68,7 @@ $history = [
 
 @section('page-style')
     <style>
-        #history li:not(:last-child):before {
+        .history--list li:not(:last-child):before {
             position: absolute;
             top: 30px;
             left: 4px;
@@ -77,7 +79,7 @@ $history = [
             content: "";
         }
 
-        #history li::after {
+        .history--list li::after {
             position: absolute;
             top: 15px;
             left: 0;
@@ -91,9 +93,25 @@ $history = [
 
 @endsection
 @section('content')
+    <div class="relative">
+        <nav id="parallax__nav"
+             class="relative bg-white w-full left-0 z-40 lg:absolute lg:top-32 lg:pl-7 lg:bg-transparent lg:left-0 lg:w-auto">
+            <ul class="flex flex-row justify-center text-sm text-center text-slate-500 lg:flex-col lg:text-base">
+                <li class="relative p-3 basis-1/4"><a class="" href="/about">기업소개</a>
+                </li>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/philosophy">경영이념</a>
+                </li>
+                <li class="relative p-3 basis-1/4"><a class="active" href="/about/history">연혁</a>
+                </li>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/cibi">CI/BI 소개</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
     <?php
     $currentYear = null; ?>
-    <ul class="mt-10">
+    <ul class="history--list pt-20 px-4 lg:px-44 pb-32 lg:pb-40">
         @foreach ($history as $year => $months)
             @foreach ($months as $month => $events)
                 <li class="relative flex flex-col lg:flex-row  pt-0 pr-0 pb-20 pl-8 lg:pl-12" data-aos="fade-up">
@@ -143,5 +161,27 @@ $history = [
 @endsection
 
 @section('page-script')
+    <script>
+
+        //fixed nav
+        var header = document.querySelector("header");
+        var nav = document.getElementById("parallax__nav");
+        var headerHeight = header.offsetHeight;
+        var navOffset = nav.getBoundingClientRect().top - headerHeight + nav.offsetHeight;
+        var prefix = matchMedia("screen and (min-width: 1024px)").matches ? 'lg:' : '';
+
+        $(window).scroll(function () {
+            if (window.pageYOffset >= navOffset) {
+                nav.classList.remove(prefix + "absolute");
+                nav.classList.add(prefix + "fixed", prefix + "top-[" + headerHeight + "px]",);
+                nav.classList.remove("relative");
+            } else {
+                nav.classList.add(prefix + "absolute");
+                nav.classList.remove(prefix + "fixed", prefix + "top-[" + headerHeight + "px]",);
+                nav.classList.add("relative");
+            }
+        });
+
+    </script>
 @endsection
 

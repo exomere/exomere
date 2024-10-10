@@ -1,4 +1,5 @@
 <?php
+
 $visualFullWidthLayout = true;
 
 $contents = [
@@ -30,7 +31,23 @@ $contents = [
 @endsection
 @section('content')
 
-    <div class="mt-10 flex flex-col">
+    <div class="relative">
+        <nav id="parallax__nav"
+             class="relative bg-white w-full left-0 z-40 lg:absolute lg:top-32 lg:pl-7 lg:bg-transparent lg:left-0 lg:w-auto">
+            <ul class="flex flex-row justify-center text-sm text-center text-slate-500 lg:flex-col lg:text-base lg:backdrop-blur-sm">
+                <li class="relative p-3 basis-1/4"><a class="" href="/about">기업소개</a>
+                </li>
+                <li class="relative p-3 basis-1/4"><a class="active" href="/about/philosophy">경영이념</a>
+                </li>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/history">연혁</a>
+                </li>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/cibi">CI/BI 소개</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="flex flex-col pt-20 pb-32 lg:pb-40">
         @foreach($contents as $content)
             <div class="flex flex-col md:flex-row aspect-h-1 sm:min-h-[40svh] lg:min-h-[60svh]">
                 <picture class="overflow-hidden basis-1/2">
@@ -54,9 +71,30 @@ $contents = [
             </div>
         @endforeach
     </div>
-
 @endsection
 
 @section('page-script')
+    <script>
+
+        //fixed nav
+        var header = document.querySelector("header");
+        var nav = document.getElementById("parallax__nav");
+        var headerHeight = header.offsetHeight;
+        var navOffset = nav.getBoundingClientRect().top - headerHeight + nav.offsetHeight;
+        var prefix = matchMedia("screen and (min-width: 1024px)").matches ? 'lg:' : '';
+
+        $(window).scroll(function () {
+            if (window.pageYOffset >= navOffset) {
+                nav.classList.remove(prefix + "absolute");
+                nav.classList.add(prefix + "fixed", prefix + "top-[" + headerHeight + "px]",);
+                nav.classList.remove("relative");
+            } else {
+                nav.classList.add(prefix + "absolute");
+                nav.classList.remove(prefix + "fixed", prefix + "top-[" + headerHeight + "px]",);
+                nav.classList.add("relative");
+            }
+        });
+
+    </script>
 @endsection
 
