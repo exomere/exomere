@@ -181,16 +181,8 @@ class ErpBasicController extends Exomere
 
     public function itemList(Request $request)
     {
-
-        // $items = ExItem::where('is_active','Y');
-        $items = new ExItem;
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
-
-        if (!is_null($request->get('search_text'))) {
-            $search_text = $request->get('search_text');
-            $items->where('name', 'LIKE', "%{$request->get('search_text')}%");
-        }
 
         $items = ExItem::orderBy('id', 'desc')->paginate($limitPage);
         // dd($items);
@@ -198,7 +190,7 @@ class ErpBasicController extends Exomere
             "search_text" => $search_text ?? '',
             "items" =>  $items ?? [],
             "item_category" => self::ITEM_CATEGORY,
-            "row_num" => $this->getPageRowNumber($items->count(), $page, $limitPage) ?? null,
+            "row_num" => $this->getPageRowNumber($items->total(), $page, $limitPage) ?? null,
             
         ];
 
