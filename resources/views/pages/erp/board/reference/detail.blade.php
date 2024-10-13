@@ -41,7 +41,7 @@
                             <label class="col-sm-2 col-form-label">file:</label>
                             <div class="col-sm-10">
                                 <a
-                                href="{{ asset('storage/data/board/upload/'.$attachment) }}"
+                                href="{{ asset($attachment) }}"
                                 download="{{ basename($attachment) }}"
                                 class="text-blue-600 hover:underline">{{ basename($attachment) }}</a>
                             </div>

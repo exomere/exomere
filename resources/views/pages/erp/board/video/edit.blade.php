@@ -55,7 +55,7 @@
                             <label class="col-sm-2 col-form-label">현재 등록 썸네일 :</label>
                             <div class="col-sm-10">
                                 <div class="form-control-plaintext">
-                                    <td><img style='width:80px;' src="{{ asset('storage/data/board/'.$video->thumbnail) }}" alt="상품이미지" onerror="this.src='{{ asset('storage/data/noimg.jpg') }}'"  ></td>
+                                    <td><img style='width:80px;' src="{{ asset($video->thumbnail) }}" alt="상품이미지" onerror="this.src='{{ asset('storage/data/noimg.jpg') }}'"  ></td>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                             <label class="col-sm-2 col-form-label">현재 등록 비디오 :</label>
                             <div class="col-sm-10">
                                 <div class="form-control-plaintext">
-                                    <td><img style='width:80px;' src="{{ asset('storage/data/board/video'.$video->video) }}" alt="상품이미지" onerror="this.src='{{ asset('storage/data/noimg.jpg') }}'"  ></td>
+                                    <td><img style='width:80px;' src="{{ asset($video->video) }}" alt="상품이미지" onerror="this.src='{{ asset('storage/data/noimg.jpg') }}'"  ></td>
                                 </div>
                             </div>
                         </div>

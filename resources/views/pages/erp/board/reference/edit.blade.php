@@ -98,7 +98,7 @@
                             <label class="col-sm-2 col-form-label">현재 등록된 파일 : </label>
                             @foreach ($reference->attachments as $attachment)
                                 <a
-                                href="{{ asset('storage/data/board/upload/'.$attachment) }}"
+                                href="{{ asset($attachment) }}"
                                 download="{{ basename($attachment) }}"
                                 class="text-blue-600 hover:underline">{{ basename($attachment) }}</a>
                             @endforeach

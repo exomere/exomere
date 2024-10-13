@@ -52,7 +52,7 @@
                         <label class="col-sm-2 col-form-label">이미지 / 비디오 : </label>
                         <div class="col-sm-10">
                             <div class="form-control-plaintext">
-                                <td><img style='width:80px;' src="{{ asset('storage/data/board/'.$banner->thumbnail) }}" alt="상품이미지" onerror="this.src='{{ asset('storage/data/noimg.jpg') }}'"  ></td>
+                                <td><img style='width:80px;' src="{{ asset($banner->thumbnail) }}" alt="상품이미지" onerror="this.src='{{ asset('storage/data/noimg.jpg') }}'"  ></td>
                             </div>
                         </div>
                     </div>
