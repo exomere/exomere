@@ -533,7 +533,7 @@ class ErpBoardController extends Exomere
         if ($request->hasFile('video')) {
             $fileName = time() . '_' . str_replace(" ","",$request->file('video')->getClientOriginalName());
             $request->file('video')->storeAs('public/data/board/video', $fileName);
-            $save_data['video'] == "storage/data/board/video/".$fileName;
+            $save_data['video'] = "storage/data/board/video/".$fileName;
         }
   
         $video->update($save_data);
