@@ -333,7 +333,7 @@ class ErpBoardController extends Exomere
         if ($request->hasFile('thumbnail')) {
             $fileName = time() . '_' . str_replace(" ","",$request->file('thumbnail')->getClientOriginalName());
             $request->file('thumbnail')->storeAs('public/data/board', $fileName);
-            $save_data['thumbnail'] = $fileName;
+            $save_data['thumbnail'] =  "storage/data/board/".$fileName;
         }
         
         ExNews::create($save_data);
@@ -391,7 +391,7 @@ class ErpBoardController extends Exomere
         if ($request->hasFile('thumbnail')) {
             $fileName = time() . '_' . str_replace(" ","",$request->file('thumbnail')->getClientOriginalName());
             $request->file('thumbnail')->storeAs('public/data/board', $fileName);
-            $save_data['thumbnail'] = $fileName;
+            $save_data['thumbnail'] = "storage/data/board/".$fileName;
         }
 
         $news->update($save_data);
@@ -466,13 +466,13 @@ class ErpBoardController extends Exomere
         if ($request->hasFile('thumbnail')) {
             $fileName = time() . '_' . str_replace(" ","",$request->file('thumbnail')->getClientOriginalName());
             $request->file('thumbnail')->storeAs('public/data/board', $fileName);
-            $save_data['thumbnail'] = $fileName;
+            $save_data['thumbnail'] = "storage/data/board/".$fileName;
         }
 
         if ($request->hasFile('video')) {
             $fileName = time() . '_' . str_replace(" ","",$request->file('video')->getClientOriginalName());
             $request->file('video')->storeAs('public/data/board/video', $fileName);
-            $save_data['video'] = $fileName;
+            $save_data['video'] = "storage/data/board/video".$fileName;
         }
         
         ExVideo::create($save_data);
@@ -527,13 +527,13 @@ class ErpBoardController extends Exomere
         if ($request->hasFile('thumbnail')) {
             $fileName = time() . '_' . str_replace(" ","",$request->file('thumbnail')->getClientOriginalName());
             $request->file('thumbnail')->storeAs('public/data/board', $fileName);
-            $save_data['thumbnail'] = $fileName;
+            $save_data['thumbnail'] = "storage/data/board/".$fileName;
         }
 
         if ($request->hasFile('video')) {
             $fileName = time() . '_' . str_replace(" ","",$request->file('video')->getClientOriginalName());
             $request->file('video')->storeAs('public/data/board/video', $fileName);
-            $save_data['video'] = $fileName;
+            $save_data['video'] == "storage/data/board/video/".$fileName;
         }
   
         $video->update($save_data);
@@ -612,27 +612,27 @@ class ErpBoardController extends Exomere
         if ($request->hasFile('file1')) {
             $fileName = date("ymd_his")."_".str_replace(" ","",$request->file('file1')->getClientOriginalName());
             $request->file('file1')->storeAs('public/data/board/upload', $fileName);
-            $save_data['attachments'][] = $fileName;
+            $save_data['attachments'][] = "storage/data/board/upload/".$fileName;
         }
         if ($request->hasFile('file2')) {
             $fileName = date("ymd_his")."_".str_replace(" ","",$request->file('file2')->getClientOriginalName());
             $request->file('file2')->storeAs('public/data/board/upload', $fileName);
-            $save_data['attachments'][] = $fileName;
+            $save_data['attachments'][] = "storage/data/board/upload/".$fileName;
         }
         if ($request->hasFile('file3')) {
             $fileName = date("ymd_his")."_".str_replace(" ","",$request->file('file3')->getClientOriginalName());
             $request->file('file3')->storeAs('public/data/board/upload', $fileName);
-            $save_data['attachments'][] = $fileName;
+            $save_data['attachments'][] = "storage/data/board/upload/".$fileName;
         }
         if ($request->hasFile('file4')) {
             $fileName = date("ymd_his")."_".str_replace(" ","",$request->file('file4')->getClientOriginalName());
             $request->file('file4')->storeAs('public/data/board/upload', $fileName);
-            $save_data['attachments'][] = $fileName;
+            $save_data['attachments'][] = "storage/data/board/upload/".$fileName;
         }
         if ($request->hasFile('file5')) {
             $fileName = date("ymd_his")."_".str_replace(" ","",$request->file('file5')->getClientOriginalName());
             $request->file('file5')->storeAs('public/data/board/upload', $fileName);
-            $save_data['attachments'][] = $fileName;
+            $save_data['attachments'][] = "storage/data/board/upload/".$fileName;
         }
         ExReference::create($save_data);
 
@@ -689,27 +689,27 @@ class ErpBoardController extends Exomere
         if ($request->hasFile('file1')) {
             $fileName = date("ymd_his")."_".str_replace(" ","",$request->file('file1')->getClientOriginalName());
             $request->file('file1')->storeAs('public/data/board/upload', $fileName);
-            $save_data['attachments'][] = $fileName;
+            $save_data['attachments'][] = "storage/data/board/upload/".$fileName;
         }
         if ($request->hasFile('file2')) {
             $fileName = date("ymd_his")."_".str_replace(" ","",$request->file('file2')->getClientOriginalName());
             $request->file('file2')->storeAs('public/data/board/upload', $fileName);
-            $save_data['attachments'][] = $fileName;
+            $save_data['attachments'][] = "storage/data/board/upload/".$fileName;
         }
         if ($request->hasFile('file3')) {
             $fileName = date("ymd_his")."_".str_replace(" ","",$request->file('file3')->getClientOriginalName());
             $request->file('file3')->storeAs('public/data/board/upload', $fileName);
-            $save_data['attachments'][] = $fileName;
+            $save_data['attachments'][] = "storage/data/board/upload/".$fileName;
         }
         if ($request->hasFile('file4')) {
             $fileName = date("ymd_his")."_".str_replace(" ","",$request->file('file4')->getClientOriginalName());
             $request->file('file4')->storeAs('public/data/board/upload', $fileName);
-            $save_data['attachments'][] = $fileName;
+            $save_data['attachments'][] = "storage/data/board/upload/".$fileName;
         }
         if ($request->hasFile('file5')) {
             $fileName = date("ymd_his")."_".str_replace(" ","",$request->file('file5')->getClientOriginalName());
             $request->file('file5')->storeAs('public/data/board/upload', $fileName);
-            $save_data['attachments'][] = $fileName;
+            $save_data['attachments'][] = "storage/data/board/upload/".$fileName;
         }
 
         $reference->update($save_data);
@@ -795,7 +795,7 @@ class ErpBoardController extends Exomere
         if ($request->hasFile('thumbnail')) {
             $fileName = time() . '_' . str_replace(" ","",$request->file('thumbnail')->getClientOriginalName());
             $request->file('thumbnail')->storeAs('public/data/board', $fileName);
-            $save_data['thumbnail'] = $fileName;
+            $save_data['thumbnail'] = "storage/data/board/".$fileName;
         }
         
         ExBanner::create($save_data);
@@ -856,7 +856,7 @@ class ErpBoardController extends Exomere
         if ($request->hasFile('thumbnail')) {
             $fileName = time() . '_' . str_replace(" ","",$request->file('thumbnail')->getClientOriginalName());
             $request->file('thumbnail')->storeAs('public/data/board', $fileName);
-            $save_data['thumbnail'] = $fileName;
+            $save_data['thumbnail'] = "storage/data/board/".$fileName;
         }
 
         $banner->update($save_data);
