@@ -185,6 +185,26 @@
           "url": "management/erp/board/inquiry/list",
           "name": "inquiries",
           "slug": "erp-board.inquiry.list"
+        },
+        {
+          "url": "management/erp/board/news/list",
+          "name": "news",
+          "slug": "erp-board.news.list"
+        },
+        {
+          "url": "management/erp/board/video/list",
+          "name": "videos",
+          "slug": "erp-board.video.list"
+        },
+        {
+          "url": "management/erp/board/banner/list",
+          "name": "banners",
+          "slug": "erp-board.banner.list"
+        },
+        {
+          "url": "management/erp/board/reference/list",
+          "name": "references",
+          "slug": "erp-board.reference.list"
         }
       ]
     },

@@ -20,7 +20,7 @@ class NewsVideoController extends BaseController
             'social',
         ];
 
-        $allItems = ExNews::whereNotNull('category')->get();
+        $allItems = ExNews::where('is_active','Y')->whereNotNull('category')->get();
         foreach ($allItems as &$item) {
             $item->thumbnail = asset($item->thumbnail);
         }
@@ -36,7 +36,7 @@ class NewsVideoController extends BaseController
 
     public function videos()
     {
-        $items = ExVideo::all();
+        $items = ExVideo::where('is_active','Y');
 
         foreach ($items as &$item) {
             $item->thumbnail = asset($item->thumbnail);

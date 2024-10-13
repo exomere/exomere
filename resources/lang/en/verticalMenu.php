@@ -17,8 +17,10 @@ return [
     'organization_chart' => 'Organization Chart',
     'notices' => 'Notices',
     'inquiries' => '1:1 Inquiries',
-
-
+    'news' => 'Press reports',
+    'references' => 'references',
+    'videos' => 'Brand Video',
+    'banners' => 'Banners',
 
     'erp_menu' => 'ERP Management',
     'member_management' => 'Member Management',

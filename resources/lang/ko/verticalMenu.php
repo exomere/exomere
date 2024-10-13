@@ -17,8 +17,11 @@ return [
     'organization_chart' => '조직도',
     'notices' => '공지사항',
     'inquiries' => '1:1 문의',
-
-
+    'news' => '언론보도',
+    'references' => '자료실',
+    'videos' => '브랜드영상',
+    'banners' => '배너관리',
+      
 
     'erp_menu' => 'ERP 메뉴',
     'member_management' => '회원관리',

@@ -307,6 +307,7 @@ Route::group(['middleware' => 'auth'], function () {
             // ㄴ 공지사항
             // ㄴ 1:1문의
             Route::prefix('/board')->group(function () {
+
                 Route::prefix('/notice')->group(function () {
                     Route::get('/list', [ErpBoardController::class, 'noticeList'])->name('erp-board.notice.list');
                     Route::get('/detail/{id}', [ErpBoardController::class, 'noticeDetail'])->name(
@@ -320,6 +321,70 @@ Route::group(['middleware' => 'auth'], function () {
                     );
                     Route::delete('/delete/{id}', [ErpBoardController::class, 'noticeDestroy'])->name(
                         'erp-board.notice.delete'
+                    );
+                });
+
+                Route::prefix('/news')->group(function () {
+                    Route::get('/list', [ErpBoardController::class, 'newsList'])->name('erp-board.news.list');
+                    Route::get('/detail/{id}', [ErpBoardController::class, 'newsDetail'])->name(
+                        'erp-board.news.detail'
+                    );
+                    Route::get('/create', [ErpBoardController::class, 'newsCreate'])->name('erp-board.news.create');
+                    Route::post('/store', [ErpBoardController::class, 'newsStore'])->name('erp-board.news.store');
+                    Route::get('/edit/{id}', [ErpBoardController::class, 'newsEdit'])->name('news.edit');
+                    Route::put('/update/{id}', [ErpBoardController::class, 'newsUpdate'])->name(
+                        'erp-board.news.update'
+                    );
+                    Route::delete('/delete/{id}', [ErpBoardController::class, 'newsDestroy'])->name(
+                        'erp-board.news.delete'
+                    );
+                });
+
+                Route::prefix('/video')->group(function () {
+                    Route::get('/list', [ErpBoardController::class, 'videoList'])->name('erp-board.video.list');
+                    Route::get('/detail/{id}', [ErpBoardController::class, 'videoDetail'])->name(
+                        'erp-board.video.detail'
+                    );
+                    Route::get('/create', [ErpBoardController::class, 'videoCreate'])->name('erp-board.video.create');
+                    Route::post('/store', [ErpBoardController::class, 'videoStore'])->name('erp-board.video.store');
+                    Route::get('/edit/{id}', [ErpBoardController::class, 'videoEdit'])->name('video.edit');
+                    Route::put('/update/{id}', [ErpBoardController::class, 'videoUpdate'])->name(
+                        'erp-board.video.update'
+                    );
+                    Route::delete('/delete/{id}', [ErpBoardController::class, 'videoDestroy'])->name(
+                        'erp-board.video.delete'
+                    );
+                });
+
+                Route::prefix('/reference')->group(function () {
+                    Route::get('/list', [ErpBoardController::class, 'referenceList'])->name('erp-board.reference.list');
+                    Route::get('/detail/{id}', [ErpBoardController::class, 'referenceDetail'])->name(
+                        'erp-board.reference.detail'
+                    );
+                    Route::get('/create', [ErpBoardController::class, 'referenceCreate'])->name('erp-board.reference.create');
+                    Route::post('/store', [ErpBoardController::class, 'referenceStore'])->name('erp-board.reference.store');
+                    Route::get('/edit/{id}', [ErpBoardController::class, 'referenceEdit'])->name('reference.edit');
+                    Route::put('/update/{id}', [ErpBoardController::class, 'referenceUpdate'])->name(
+                        'erp-board.reference.update'
+                    );
+                    Route::delete('/delete/{id}', [ErpBoardController::class, 'referenceDestroy'])->name(
+                        'erp-board.reference.delete'
+                    );
+                });
+
+                Route::prefix('/banner')->group(function () {
+                    Route::get('/list', [ErpBoardController::class, 'bannerList'])->name('erp-board.banner.list');
+                    Route::get('/detail/{id}', [ErpBoardController::class, 'bannerDetail'])->name(
+                        'erp-board.banner.detail'
+                    );
+                    Route::get('/create', [ErpBoardController::class, 'bannerCreate'])->name('erp-board.banner.create');
+                    Route::post('/store', [ErpBoardController::class, 'bannerStore'])->name('erp-board.banner.store');
+                    Route::get('/edit/{id}', [ErpBoardController::class, 'bannerEdit'])->name('banner.edit');
+                    Route::put('/update/{id}', [ErpBoardController::class, 'bannerUpdate'])->name(
+                        'erp-board.banner.update'
+                    );
+                    Route::delete('/delete/{id}', [ErpBoardController::class, 'bannerDestroy'])->name(
+                        'erp-board.banner.delete'
                     );
                 });
 

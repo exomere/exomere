@@ -36,7 +36,7 @@ class CommunityController extends BaseController
         $page = $request->get('page') ?? $this->page;
         $limit = $request->get('limit') ?? $this->limit;
 
-        $items = ExReference::orderBy('id', 'desc')
+        $items = ExReference::where('is_active','Y')->orderBy('id', 'desc')
             ->paginate($limit, ['*'], 'page', $page);
 
         return view('pages.community.reference', compact('items'));
