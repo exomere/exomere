@@ -36,7 +36,7 @@ class NewsVideoController extends BaseController
 
     public function videos()
     {
-        $items = ExVideo::where('is_active','Y');
+        $items = ExVideo::where('is_active','Y')->get();
 
         foreach ($items as &$item) {
             $item->thumbnail = asset($item->thumbnail);
