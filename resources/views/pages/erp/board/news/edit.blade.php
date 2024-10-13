@@ -34,9 +34,9 @@
                             </label>
                             <div class="col-sm-1">
                                 <select class="form-control" name="category">
-                                    <option value="social">소셜</option>
-                                    <option value="rnd">R&D</option>
-                                    <option value="company">회사</option>
+                                    <option value="social"  @isset($video->category) @if($video->category == 'social') selected @endif @endisset >소셜</option>
+                                    <option value="rnd"  @isset($video->category) @if($video->category == 'rnd') selected @endif @endisset >R&D</option>
+                                    <option value="company"  @isset($video->category) @if($video->category == 'company') selected @endif @endisset >회사</option>
                                 </select>
                             </div>
                         </div>

@@ -34,8 +34,8 @@
                             </label>
                             <div class="col-sm-1">
                                 <select class="form-control" name="type">
-                                    <option value="image" @isset($banner->type) @if($banner->type == 'image') select @endif @endisset>이미지</option>
-                                    <option value="veido" @isset($banner->type) @if($banner->type == 'veido') select @endif @endisset>비디오</option>
+                                    <option value="image" @isset($banner->type) @if($banner->type == 'image') selected @endif @endisset>이미지</option>
+                                    <option value="video" @isset($banner->type) @if($banner->type == 'video') selected @endif @endisset>비디오</option>
                                 </select>
                             </div>
                         </div>

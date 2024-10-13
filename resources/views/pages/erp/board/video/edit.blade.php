@@ -28,18 +28,7 @@
                                 <div id="titleError" class="text-danger" style="display: none;">제목은 필수입니다.</div>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="category">
-                                <span style='color:red;'>*</span> 카테고리
-                            </label>
-                            <div class="col-sm-1">
-                                <select class="form-control" name="category">
-                                    <option value="social">소셜</option>
-                                    <option value="rnd">R&D</option>
-                                    <option value="company">회사</option>
-                                </select>
-                            </div>
-                        </div>
+
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="contents">
                                 썸네일

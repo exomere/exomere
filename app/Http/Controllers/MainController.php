@@ -26,10 +26,10 @@ class MainController extends Exomere
                     'type' => $banner->type,
                     'src' => asset( $banner->thumbnail),
                     'style' => ($banner->type == 'video') ? 'white' : 'black',
-                    'link' => $banner->link ?? null
                 ]
             ;
-        }
+        } 
+        
         $materials = [
             [
                 'name' => 'Exomere Halla™',
