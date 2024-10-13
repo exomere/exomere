@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Exomere;
 use App\Http\Controllers\FO\ProductController;
+use App\Models\ExBanner;
 use Illuminate\Support\Facades\Auth;
 
 use function Psy\debug;
@@ -13,30 +14,22 @@ class MainController extends Exomere
 
     public function index()
     {
-        $mainVideoBanner = [
-            [
-                'title' => '임플란트 솔루션',
-                'sub_title' => '고함량 스피큘로 피부 속까지 전달되는 엑소좀',
-                'type' => 'video',
-                'src' => asset('assets/img/elements/main_video.mp4'),
-                'style' => 'white'
-            ],
-            [
-                'title' => '아로마 힐링미스트',
-                'sub_title' => '건강한 피부로 유지시키는 뿌리는 엑소좀',
-                'type' => 'image',
-                'src' => asset('assets/img/elements/main_image_2.png'),
-                'style' => 'black'
-            ],
-            [
-                'title' => '리커버리밤 플러스',
-                'sub_title' => '피부가 숨쉬는 엑소좀 비비 쿠션',
-                'type' => 'image',
-                'src' => asset('assets/img/elements/main_image_3.png'),
-                'style' => 'black'
-            ],
-        ];
 
+        $banners = ExBanner::where('is_active','Y')->get();
+        $mainVideoBanner = [];
+
+        foreach($banners as $banner){
+            $mainVideoBanner[] = 
+                [
+                    'title' => $banner->title,
+                    'sub_title' => $banner->sub_title,
+                    'type' => $banner->type,
+                    'src' => asset( $banner->thumbnail),
+                    'style' => ($banner->type == 'video') ? 'white' : 'black',
+                    'link' => $banner->link ?? null
+                ]
+            ;
+        }
         $materials = [
             [
                 'name' => 'Exomere Halla™',
