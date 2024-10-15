@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\ExMember;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Exomere;
@@ -26,14 +27,24 @@ class OrganizationController extends Exomere
      */
     public function getOrgData()
     {
-        $orgData = [
-            ['id' => 1, 'name' => 'CEO', 'title' => 'Chief Executive Officer'],
-            ['id' => 2, 'pid' => 1, 'name' => 'CTO', 'title' => 'Chief Technology Officer'],
-            ['id' => 3, 'pid' => 1, 'name' => 'CFO', 'title' => 'Chief Financial Officer'],
-            ['id' => 4, 'pid' => 2, 'name' => 'Dev Manager', 'title' => 'Development Manager'],
-            ['id' => 5, 'pid' => 2, 'name' => 'QA Manager', 'title' => 'QA Manager'],
-            ['id' => 6, 'pid' => 3, 'name' => 'Accountant', 'title' => 'Accountant']
-        ];
+        //$user = auth()->user();
+        $user = ExMember::where('id', 1511)->first();;
+
+        $orgData = [];
+        $topMember = ExMember::where('id', $user->recommend_seq)->first();
+        if ($topMember) {
+            $orgData[] = ['id' => $topMember->id, 'name' => $topMember->name, 'title' => $topMember->member_position];
+        }
+
+        $orgData[] = ['id' => $user->id, 'pid' => $user->recommend_seq, 'name' => $user->name, 'title' => $user->member_position];
+
+
+        $lowerMembers = ExMember::where('recommend_seq', $user->id)->get();
+        if ($lowerMembers) {
+            foreach ($lowerMembers as $member) {
+                $orgData[] = ['id' => $member->id, 'pid' => $member->recommend_seq, 'name' => $member->name, 'title' => $member->member_position];
+            }
+        }
 
         return response()->json($orgData);
     }
