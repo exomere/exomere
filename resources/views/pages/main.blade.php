@@ -47,6 +47,7 @@ $whiteHeader = true;
                                     autoPlay
                                     loop
                                     muted
+                                    playsinline
                                 ><source src={{ $item['src'] }} type="video/mp4"/>
                                 </video>
                             @else
