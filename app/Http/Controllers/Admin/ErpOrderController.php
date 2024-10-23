@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Exomere;
 use App\Models\ExCenter;
 use App\Models\ExMember;
+use Ramsey\Uuid\Type\Integer;
 
 class ErpOrderController extends Exomere
 {
@@ -118,7 +119,8 @@ class ErpOrderController extends Exomere
         $item_info[$i]['pd_price'] = $request->pd_price[$i];
         $item_info[$i]['pd_name'] = $request->pd_name[$i];
         $item_info[$i]['pd_pv'] = $request->pd_pv[$i];
-        $total_pv += ($request->pd_pv[$i] * $request->pd_qty[$i]);
+        
+        $total_pv += (1*($request->pd_pv[$i]) * (1*$request->pd_qty[$i]));
       }
     }
     if(isset($request->card_company)){

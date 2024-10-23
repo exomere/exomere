@@ -3,6 +3,11 @@
 @section('title', ' Item - Register')
 
 @section('content')
+<style>
+.ck-editor__editable_inline {
+    min-height: 600px;
+}
+</style>
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 <!-- Basic Layout & Basic with Icons -->
 <div class="row">
@@ -354,7 +359,7 @@
                     <label class="input-group-text" for="thum_img2">Upload</label>
                 </div>
             </div>
-            <div class="row mb-3" style='margin-top:15px;'>
+            {{-- <div class="row mb-3" style='margin-top:15px;'>
               <label class="col-sm-1 col-form-label" for="basic-default-img">상세이미지</label>
               @isset($item->img)
                 <div class="col-sm-1">
@@ -367,15 +372,15 @@
                       <label class="input-group-text" for="img" name="img">Upload</label>
                   </div>
               </div>
-            </div>
-            {{-- 
+            </div> --}}
+            
               <div class="row mb-3" style='height:700px;'>
                 <label class="col-sm-1 col-form-label" for="basic-default-content">상품상세설명</label>
-                <div class="col-sm-12">
+                <div class="col-sm-8">
                     <textarea class="form-control" id='content' name="content" rows="3">{{ $item->content ?? null }}</textarea>
                 </div>
               </div> 
-            --}}
+           
 
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-remark">비고</label>
@@ -484,5 +489,15 @@
   $(".doSave").on('click',function(){
     $("#formItem").submit();
   });
+
+  ClassicEditor
+    .create( document.querySelector( '#content' ),{
+      ckfinder:{
+        uploadUrl:"{{route('ckeditor.upload',['_token'=>csrf_token()])}}",
+      },
+    }).catch( error => {
+        console.error( error );
+    } );
+
 </script>
 @endsection

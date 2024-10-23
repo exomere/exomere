@@ -141,13 +141,15 @@
                       <tbody class="table-border-bottom-0 product_info_body">
                         
                           @if(isset($item_info))
- 
+                          
                             @foreach ($item_info as $item)
+                            
                               <tr class='product_info_tr p_info_{{$item->pd_seq}}'>
                                 <td> <input type='hidden' name='pd_seq[]' value='{{$item->pd_seq}}'>
                                       <input type='hidden' name='pd_price[]' value='{{$item->pd_price}}'>
                                       <input type='hidden' name='pd_name[]' value='{{$item->pd_name}}'>
-                                      <input type='hidden' name='pd_pv[]' value='"+pv+"'>{{$item->pd_name}}</td>
+                                      <input type='hidden' name='pd_pv[]' value='{{$item->pd_pv}}'>{{$item->pd_name}}
+                                  </td>
                                 <td>{{number_format($item->pd_price)}}</td>
                                 <td>{{number_format($item->pd_pv)}}</td>
                                 <td><input style='width:80px;' class='form-control qtyProduct' id='pd_qty_{{$item->pd_seq}}' name='pd_qty[]' data-seq='{{$item->pd_seq}}' data-price='{{$item->pd_price}}' type='number' value='{{$item->pd_qty}}'/></td>
