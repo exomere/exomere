@@ -28,7 +28,8 @@
               <label class="col-sm-1 col-form-label" for="member_info"> <span style='color:red;'>*</span> 회원선택 </label>
               <div class="col-sm-6">
                 <div class="input-group">
-                  <input type="hidden" class="form-control" id="member_seq" readonly name='member_seq' value="{{ $order_data->recommend_seq ?? null }}"/>
+                  <input type="hidden" class="form-control" id="member_position" value="{{ $order_data->recommend_seq ?? null }}"/>
+                  <input type="hidden" class="form-control" id="member_seq" name='member_seq' value="{{ $order_data->recommend_seq ?? null }}"/>
                   <input type="text" class="form-control" id="member_info" readonly name='member_info' value="{{ $order_data->recommend_id  ?? null }} | {{ $order_data->recommend_name ?? null }}"/>
                   <a href="javascript:void(0);" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">검색</a>
                </div>
@@ -38,6 +39,7 @@
               <label class="col-sm-1 col-form-label" for="order_type"> <span style='color:red;'>*</span> 주문구분 </label>
               <div class="col-sm-2">
                 <select class="form-select" name="order_type" id="order_type" required>
+                  <option value=''>== 주문 타입 ==</option>
                   <option value='new' @isset($order_data->order_type) @if($order_data->order_type == "new") selected @endif @endisset>신규주문</option>
                   <option value='repurchase' @isset($order_data->order_type) @if($order_data->order_type == "repurchase") selected @endif @endisset>재구매주문</option>
                   <option value='distribute_new' @isset($order_data->order_type) @if($order_data->order_type == "distribute_new") selected @endif @endisset>분양몰신규</option>
@@ -115,6 +117,12 @@
                     <option value='{{$item['seq']}}'
                         data-price='{{$item['price']}}'
                         data-pv='{{$item['pv']}}'
+                        data-planer_price='{{$item['planer_price']}}'
+                        data-planer_pv='{{$item['planer_pv']}}'
+                        data-store_price='{{$item['store_price']}}'
+                        data-store_pv='{{$item['store_pv']}}'
+                        data-exclusive_price='{{$item['exclusive_price']}}'
+                        data-exclusive_pv='{{$item['exclusive_pv']}}'
                         data-name='{{$item['name']}}'
                     >{{$item['name']}}
                     </option>

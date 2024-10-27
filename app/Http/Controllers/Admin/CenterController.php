@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Exomere;
 use App\Models\ExCenter;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\
 class CenterController extends Exomere
 {
     public function centerList(Request $request)

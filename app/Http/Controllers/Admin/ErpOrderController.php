@@ -72,6 +72,16 @@ class ErpOrderController extends Exomere
       $itemArray[$cnt]['name'] = $item->name;
       $itemArray[$cnt]['price'] = $item->price;
       $itemArray[$cnt]['pv'] = $item->pv;
+
+      $itemArray[$cnt]['planer_price'] = $item->planer_price;
+      $itemArray[$cnt]['planer_pv'] = $item->planer_pv;
+
+      $itemArray[$cnt]['store_price'] = $item->store_price;
+      $itemArray[$cnt]['store_pv'] = $item->store_pv;
+
+      $itemArray[$cnt]['exclusive_price'] = $item->exclusive_price;
+      $itemArray[$cnt]['exclusive_pv'] = $item->exclusive_pv;
+
       $cnt++;
     }
 

@@ -133,7 +133,7 @@
                     </p>
                     <div class="w-full">
                         <input type="hidden" class="distribution_price" name="distribution_price"
-                               value="{{ $product['distribution_price'] }}">
+                               value="{{ $product['exclusive_price'] }}">
 
                         <div class="flex flex-col gap-3 mb-8 justify-items-center justify-center items-start">
                             <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
@@ -147,7 +147,7 @@
                             <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
                                 <strong class="w-40">{{ __('common.distribution_price') }}</strong>
                                 <h6 class="flex "><span
-                                        class="">{{ number_format($product['distribution_price']) }}</span>
+                                        class="">{{ number_format($product['exclusive_price']) }}</span>
                                     <span
                                         class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
                                 </h6>
@@ -155,7 +155,7 @@
                             <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
                                 <strong class="w-40">{{ __('common.vat_excluded') }}</strong>
                                 <h6 class="flex"><span
-                                        class="">{{ number_format($product['vat_excluded']) }}</span>
+                                        class="">{{ number_format($product['tax']) }}</span>
                                     <span
                                         class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
                                 </h6>
@@ -266,7 +266,7 @@
                      aria-labelledby="detail-tab">
 
                     <div id="detail__desc" class="overflow-hidden pt-12 md:pt-24" style="height: 800px">
-                        {!! $product['desc'] !!}
+                        {!! $product['content'] !!}
                     </div>
 
                     <button id="toggle-btn"

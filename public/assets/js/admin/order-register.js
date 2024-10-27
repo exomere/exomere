@@ -16,9 +16,11 @@ var orderReg = {
         for(var i =0 ; i < 5 ; i ++){
             value = value.replace(",", "");
         }
+
         if (isNaN(parseInt(value))) { // 값이 없어서 NaN값이 나올 경우
             value = "0";
         }
+        
         return parseInt(value);
     },
     
@@ -26,10 +28,37 @@ var orderReg = {
     addProductInfo: function (e) {
         var seq = e.val();
         var name = e.find("option:selected").data("name");
+        
+
+        var html = "";
+        
+        var position =$("#member_position").val();
+        var order_type =$("#order_type").val();
         var price = e.find("option:selected").data("price");
         var pv = e.find("option:selected").data("pv");
 
-        var html = "";
+        if(position == ''){
+            alert('회원을 선택해주세요.');
+            return false;
+        }
+
+        if(order_type == ''){
+            alert('주문타입을 선택해주세요.');
+            return false;
+        }
+
+        if(order_type != 'new'){
+            if(position == '뷰티플래너'){
+                price = e.find("option:selected").data("planer_price");
+                pv = e.find("option:selected").data("planer_pv");
+            }else if(position == '대리점'){
+                price = e.find("option:selected").data("store_price");
+                pv = e.find("option:selected").data("store_pv");
+            }else{
+                price = e.find("option:selected").data("exclusive_price");
+                pv = e.find("option:selected").data("exclusive_pv");
+            }
+        }
 
         if($(".product_info_tr").length == 0){
             $(".product_info_body").empty();
@@ -103,8 +132,6 @@ var orderReg = {
         var type = e.data('type');
         var this_value = orderReg.removeComma(e.val());
         var remain_points = orderReg.removeComma($("#remain_points").val());
-        console.log(this_value);
-
 
         if(type == 'point'){
            if(remain_points < this_value){
@@ -116,8 +143,6 @@ var orderReg = {
         }else{
             e.val(orderReg.addComma(this_value));
         }
-
-        
 
         orderReg.totalRecalculating();
     },
@@ -133,6 +158,7 @@ var orderReg = {
     },
 
     searchMemberInfo: function (e) {
+
         var text = $("#searchMemberText").val();
         var type = $("#searchMemberType").val();
 
@@ -140,6 +166,7 @@ var orderReg = {
             alert('검색어를 입력해주세요.');
             return false;
         }
+
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -164,7 +191,7 @@ var orderReg = {
                         html += " <td>" + data.member_id + "</td>";
                         html += " <td>" + data.member_position + "</td>";
                         html += " <td>" + data.created_at + "</td>";
-                        html += " <td><button type='button' class='choisMemberInfo btn btn-primary me-3' data-seq='" + data.seq + "' data-name='" + data.name + "' data-member_id='" + data.member_id + "' data-remain_points='"+data.remain_points+"'>선택</button></td>"
+                        html += " <td><button type='button' class='choisMemberInfo btn btn-primary me-3' data-seq='" + data.seq + "' data-name='" + data.name + "' data-member_id='" + data.member_id + "' data-remain_points='"+data.remain_points+"' data-position='"+data.member_position+"'>선택</button></td>"
                         html += "</tr>";
                     });
                 }
@@ -293,10 +320,13 @@ var orderReg = {
         var seq = e.data('seq');
         var name = e.data('name');
         var remain_points = e.data('remain_points')
+        var position = e.data('position')
+        
         $(".cancelMemberInfo").trigger('click');
 
         $("#member_info").val(id+" | "+name);
         $("#member_seq").val(seq);
+        $("#member_position").val(position);
         $("#remain_points").val(remain_points)
         $("#point_payment").val(0);
 

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\FO;
 
+use App\Models\ExItem;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 class ProductController extends BaseController
 {
 
@@ -43,16 +44,38 @@ class ProductController extends BaseController
 
     public function productDetail($product_id)
     {
-        $products = collect($this->dummy());
+        // $products = collect($this->dummy());
 
-        $product = $products->where('id', $product_id)->firstOrFail();
+        $product = ExItem::where('id', $product_id)->firstOrFail();
 
         return view('pages.products.detail', compact('product'));
     }
 
     public function bestProducts(): \Illuminate\Support\Traits\EnumeratesValues|\Illuminate\Support\Collection
     {
-        return collect($this->dummy())->where('is_best', true);
+        $items = ExItem::where('kind','signature')->orderBy('sort', 'asc')->limit(6)->get();
+
+        $bestItems = [];
+        
+        foreach($items as $item){
+            $bestItems[] = [
+                'id' => $item->id,
+                'product_name' => $item->name,
+                'price' => $item->price,
+                'distribution_price' => 22500,
+                'vat_excluded' => 20455,
+                'total_price' => 22500,
+                'thumbnail' => Storage::url('public/data/'.$item->thum_img),
+                'thumbnail2' => Storage::url('public/data/'.$item->thum_img2),
+                'brand' => 'exomere',
+                'category' => $item->category,
+                'desc' => $item->content,
+                'sub_name' => $item->description,
+                'is_best' => true,
+            ];
+        }
+
+        return collect($bestItems);
     }
 
 
