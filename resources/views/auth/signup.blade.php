@@ -34,7 +34,7 @@
 
                                     <p class="text-center h1 fw-bold mx-1 mx-md-4 mt-4">
                                         <a href="/">
-                                            <img class="mb-4" src="{{asset('img/logo_horizontal.svg')}}" alt="" width="172" height="57">
+                                            <img class="mb-4" src="{{asset('img/logo.svg')}}" alt="" width="172" height="57">
                                         </a>
                                     </p>
 
