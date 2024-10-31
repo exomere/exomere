@@ -25,20 +25,6 @@
       ]
     },
     {
-      "name": "points",
-      "icon": "menu-icon tf-icons bx bxs-badge-dollar",
-      "slug": "auth",
-      "read": "user",
-      "submenu": [
-        {
-          "url": "management/auth/login-basic",
-          "name": "shopping_points",
-          "slug": "auth-login-basic",
-          "target": "_blank"
-        }
-      ]
-    },
-    {
       "name": "orders",
       "icon": "menu-icon tf-icons bx bx-shopping-bag",
       "slug": "pages-misc",
