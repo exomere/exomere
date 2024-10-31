@@ -50,7 +50,7 @@
         <form id="formAuthentication" action="{{route('login.perform')}}" method="POST">
             @csrf
             <a href="/">
-                <img class="mb-4" src="{{asset('img/logo_horizontal.png')}}" alt="" width="172"
+                <img class="mb-4" src="{{asset('img/logo_horizontal.svg')}}" alt="" width="172"
                      height="57">
             </a>
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
