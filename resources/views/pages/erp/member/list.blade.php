@@ -49,11 +49,11 @@
             <th rowspan="2" style='vertical-align: middle;' >이메일</th>
             <th rowspan="2" style='vertical-align: middle;' >회원구분</th>
             <th rowspan="2" style='vertical-align: middle;' >분양몰</th>
-            <th rowspan="2" style='vertical-align: middle;' >센터</th>
+            <th rowspan="2" style='vertical-align: middle;' >지역점</th>
             <th rowspan="2" style='vertical-align: middle;' >가입일자</th>
             <th rowspan="2" style='vertical-align: middle;' >연락처</th>
             <th rowspan="2" style='vertical-align: middle;' >매출합계</th>
-            <th colspan="3" style='text-align:center;'>추천인</th>
+            <th colspan="3" style='text-align:center;'>모집인</th>
             <th rowspan="2" style='vertical-align: middle;'>비고</th>
             <th rowspan="2" style='vertical-align: middle;'>관리</th>
           </tr>

@@ -66,9 +66,9 @@
           <th style='vertical-align: middle;' rowspan='2'>주문번호</th>
           <th style='vertical-align: middle;' rowspan='2'>아이디</th>
           <th style='vertical-align: middle;' rowspan='2'>이름</th>
-          <th style='vertical-align: middle;' rowspan='2'>센터</th>
+          <th style='vertical-align: middle;' rowspan='2'>지역점</th>
           <th style='vertical-align: middle;' rowspan='2'>상품</th>
-          <th style='text-align:center;' colspan='2'>추천인</th>
+          <th style='text-align:center;' colspan='2'>모집인</th>
           <th style='vertical-align: middle;' rowspan='2'>비고</th>
           <th style='vertical-align: middle;' rowspan='2'>등록자</th>
           <th style='vertical-align: middle;' rowspan='2'>관리</th>

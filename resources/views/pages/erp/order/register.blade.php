@@ -48,10 +48,10 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="center_seq"> 센터 </label>
+              <label class="col-sm-1 col-form-label" for="center_seq"> 지역점 </label>
               <div class="col-md-4">
                 <select class="form-select" name="center_seq" id="center_seq">
-                  <option value="">센터 선택</option>
+                  <option value="">지역점 선택</option>
                   @foreach ($center_array as $center)
                     <option value='{{$center['seq']}}' @isset($order_data->center_seq) @if($order_data->center_seq == $center['seq']) selected @endif @endisset>{{$center['name']}} </option>
                   @endforeach

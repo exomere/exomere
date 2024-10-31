@@ -38,7 +38,7 @@
             </div>
             <div class="row mb-3">
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label" for="recommend_info"> <span style='color:red;'>*</span> 추천인 </label>
+                <label class="col-sm-1 col-form-label" for="recommend_info"> <span style='color:red;'>*</span> 모집인 </label>
                 <div class="col-sm-4">
                   <div class="input-group">
                     <input type="hidden" class="form-control" id="recommend_seq" readonly name='recommend_seq' value="{{ $member->recommend_seq ?? null }}"/>
@@ -104,10 +104,10 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="local_store"> 센터 </label>
+              <label class="col-sm-1 col-form-label" for="local_store"> 지역점 </label>
               <div class="col-md-4">
                 <select class="form-select" name="local_store" id="local_store">
-                  <option value="">센터 선택</option>
+                  <option value="">지역점 선택</option>
                   @foreach ($center_array as $center)
                     <option @isset($member->local_store) @if($member->local_store == $center['seq'])  selected  @endif @endisset value='{{$center['seq']}}'>{{$center['name']}}
                     </option>

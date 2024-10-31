@@ -44,7 +44,7 @@ return [
 
     'basic_info' => '기초정보',
     'manager_list' => '관리자 목록',
-    'center_list' => '센터 목록',
+    'center_list' => '지역점 목록',
     'product_list' => '상품 목록',
     'distribute_list' => '분양몰 목록',
 
@@ -52,7 +52,7 @@ return [
     'order_shipment' => '주문 출고',
     'delivery_management' => '배송 관리',
     'in_out_management' => '입출금 관리',
-    'center_in_out_management' => '센터 입출 관리',
+    'center_in_out_management' => '지역점 입출 관리',
     'other_in_out_management' => '기타 입출 관리',
     'member_shipment_management' => '회원 출고 관리',
     'in_out_status' => '입출 등록 현황',

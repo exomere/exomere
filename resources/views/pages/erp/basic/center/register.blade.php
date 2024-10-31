@@ -13,20 +13,20 @@
     <div class="col-xxl">
       <div class="card mb-4">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <h5 class="mb-0">센터등록</h5> <small class="text-muted float-end"><button type="submit" class="btn btn-primary">저장</button></small>
+          <h5 class="mb-0">지역점 등록</h5> <small class="text-muted float-end"><button type="submit" class="btn btn-primary">저장</button></small>
         </div>
         <div class="card-body">
           <form>
             @csrf
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-name"> <span style='color:red;'>*</span> 센터명 </label>
+              <label class="col-sm-1 col-form-label" for="basic-default-name"> <span style='color:red;'>*</span> 지역점 명 </label>
               <div class="col-sm-6">
                 <input type="text" class="form-control" id="basic-default-name" name='name' value="{{ $center->name ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label" for="director_info"> <span style='color:red;'>*</span> 센터선택 </label>
+                <label class="col-sm-1 col-form-label" for="director_info"> <span style='color:red;'>*</span> 지역점 선택 </label>
                 <div class="col-sm-6">
                   <div class="input-group">
                     <input type="hidden" class="form-control" id="director_seq" readonly name='director_seq' value="{{ $center->director_seq ?? null }}"/>
@@ -38,7 +38,7 @@
             </div>
             <div class="row mb-3">
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label" for="recommended_info"> <span style='color:red;'>*</span> 추천인 </label>
+                <label class="col-sm-1 col-form-label" for="recommended_info"> <span style='color:red;'>*</span> 모집인 </label>
                 <div class="col-sm-6">
                   <div class="input-group">
                     <input type="hidden" class="form-control" id="recommended_seq" readonly name='recommended_seq' value="{{ $center->recommended_seq ?? null }}"/>

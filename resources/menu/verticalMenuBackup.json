@@ -312,7 +312,7 @@
       "submenu": [
         {
           "url": "management/form/layouts-vertical",
-          "name": "센터목록",
+          "name": "지역점목록",
           "slug": "basic-layouts-center-list"
         },
         {
