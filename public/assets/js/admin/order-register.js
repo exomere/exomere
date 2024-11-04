@@ -191,7 +191,7 @@ var orderReg = {
                         html += " <td>" + data.member_id + "</td>";
                         html += " <td>" + data.member_position + "</td>";
                         html += " <td>" + data.created_at + "</td>";
-                        html += " <td><button type='button' class='choisMemberInfo btn btn-primary me-3' data-seq='" + data.seq + "' data-name='" + data.name + "' data-member_id='" + data.member_id + "' data-remain_points='"+data.remain_points+"' data-position='"+data.member_position+"'>선택</button></td>"
+                        html += " <td><button type='button' class='choisMemberInfo btn btn-primary me-3' data-address='"+data.address+"' data-address_detail='"+data.address_detail+"' data-phone='"+data.phone+"'  data-zipcode='"+data.zipcode+"' data-seq='" + data.seq + "' data-name='" + data.name + "' data-member_id='" + data.member_id + "' data-remain_points='"+data.remain_points+"' data-position='"+data.member_position+"'>선택</button></td>"
                         html += "</tr>";
                     });
                 }
@@ -297,6 +297,16 @@ var orderReg = {
         orderReg.totalRecalculating();
     },
 
+    formSave: function(){
+        console.log('asd');
+        if($("#total_amount").val() != $("#payment_amount").val()){
+            alert('주문금액과 결제금액이 다릅니다.');
+            return false;
+        }
+        
+        $("#order_form").submit();
+    },
+
     infoRowDel: function(e){
         var idx = e.data('idx');
         var type = e.data('type');
@@ -319,8 +329,12 @@ var orderReg = {
         var id = e.data('member_id');
         var seq = e.data('seq');
         var name = e.data('name');
-        var remain_points = e.data('remain_points')
-        var position = e.data('position')
+        var remain_points = e.data('remain_points');
+        var position = e.data('position');
+        var address_detail = e.data('address_detail');
+        var zipcode = e.data('zipcode');
+        var address = e.data('address');
+        var phone = e.data('phone');
         
         $(".cancelMemberInfo").trigger('click');
 
@@ -329,6 +343,12 @@ var orderReg = {
         $("#member_position").val(position);
         $("#remain_points").val(remain_points)
         $("#point_payment").val(0);
+
+        $("#delivery_name").val(name);
+        $("#delivery_phone").val(phone);
+        $("#zipcode").val(zipcode);
+        $("#address").val(address);
+        $("#address_detail").val(address_detail);
 
         orderReg.totalRecalculating();
     },
@@ -374,6 +394,11 @@ var orderReg = {
         $(document).on("input", ".totalRecalculating", function () {
             orderReg.recalculating($(this));
         });
+
+        $(document).on("click", ".saveBtn", function () {
+            orderReg.formSave($(this));
+        });
+        
         
         
     },
