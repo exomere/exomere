@@ -68,7 +68,9 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\OrderController;
 use Illuminate\Support\Facades\Artisan;
 
-
+if (env('APP_ENV') == 'production') {
+    \Illuminate\Support\Facades\URL::forceScheme('https');
+}
 ###################### 미인증 페이지 START ###########################
 
 Artisan::call('storage:link'); //프로덕션에서 심볼릭 오류가 있어서 추가함,,, ㅠㅠ

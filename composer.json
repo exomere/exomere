@@ -9,11 +9,13 @@
   "license": "MIT",
   "require": {
     "php": "^8.2",
+    "coreproc/laravel-healthcheck": "^0.5.1",
     "guzzlehttp/guzzle": "^7.2",
     "jdorn/sql-formatter": "^1.2",
     "laravel/framework": "^11.9",
     "laravel/sanctum": "^4.0",
-    "laravel/tinker": "^2.9"
+    "laravel/tinker": "^2.9",
+    "predis/predis": "^2.2"
   },
   "require-dev": {
       "fakerphp/faker": "^1.23",
