@@ -35,17 +35,17 @@
 <!--/ Basic -->
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">지역점  리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-center-register')}}'" class="btn btn-primary">지역점 등록</button></small>
+    <h5 class="mb-0">지역점 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-center-register')}}'" class="btn btn-primary">지역점등록</button></small>
   </div>
   <div class="table-responsive text-nowrap">
     <table class="table" >
       <thead>
         <tr>
-          <th>지역점 코드</th>
-          <th>지역점 명</th>
+          <th>지역점코드</th>
+          <th>지역점명</th>
           <th>연락처</th>
-          <th>지역점 장아이디</th>
-          <th>지역점 장</th>
+          <th>지역점장아이디</th>
+          <th>지역점장</th>
           <th>모집인아이디</th>
           <th>모집인</th>
           <th>사용여부</th>

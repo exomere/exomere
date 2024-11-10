@@ -7,13 +7,13 @@
 <!-- Basic Layout & Basic with Icons -->
 <div class="row">
   <!-- Basic Layout -->
-  <form method='post' action="{{route('erp-order.save')}}" enctype="multipart/form-data">
+  <form method='post' id="order_form" action="{{route('erp-order.save')}}" enctype="multipart/form-data">
     @csrf
     <input type='hidden' name='order_seq' value='{{ $order_seq ?? null }}'> 
     <div class="col-xxl">
       <div class="card mb-4">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <h5 class="mb-0">주문등록</h5> <small class="text-muted float-end"><input type="submit" class="btn btn-primary" value='저장'></small>
+          <h5 class="mb-0">주문등록</h5> <small class="text-muted float-end"><input type="button" class="btn btn-primary saveBtn" value='저장'></small>
         </div>
         <div class="card-body">
           <form>

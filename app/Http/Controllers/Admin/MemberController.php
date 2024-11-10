@@ -87,6 +87,11 @@ class MemberController extends Exomere
             $output_data[$cnt]["member_position"] = $member->member_position;
             $output_data[$cnt]["remain_points"] = $member->remain_points;
             $output_data[$cnt]["created_at"] = date("Y-m-d",strtotime($member->created_at));
+            $output_data[$cnt]["zipcode"] = $member->zip_code;
+            $output_data[$cnt]["address"] = $member->address;
+            $output_data[$cnt]["address_detail"] = $member->address_detail;
+            $output_data[$cnt]["phone"] = $member->phone;
+
             $cnt++;
         }   
         
