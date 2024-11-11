@@ -20,27 +20,30 @@
         <li class="nav-item">
         </li>
       </ul>
-      <form class="d-flex" onsubmit="return false">
-        <select id="selectTypeOpt" class="form-select color-dropdown">
-          <option value="" selected="">:: 승인구분 ::</option>
-          <option value="Y">승인완료</option>
-          <option value="Y">승인대기</option>
-          <option value="N">취소</option>
+      <form class="d-flex" action="{{ route('erp-order-layouts-order-list') }}" method="GET">
+        <select name="approval_status" id="approval_status" class="form-select color-dropdown">
+          <option value="" {{ request('approval_status') == '' ? 'selected' : '' }}>:: 승인구분 ::</option>
+          <option value="Y" {{ request('approval_status') == 'Y' ? 'selected' : '' }}>승인완료</option>
+          <option value="P" {{ request('approval_status') == 'P' ? 'selected' : '' }}>승인대기</option>
+          <option value="N" {{ request('approval_status') == 'N' ? 'selected' : '' }}>취소</option>
         </select>
-        <select id="selectTypeOpt" class="form-select color-dropdown">
-            <option value="" selected="">:: 주문구분 ::</option>
-            <option value="0">신규주문</option>
-            <option value="1">재구매주문</option>
-            <option value="2">분양몰신규</option>
-            <option value="3">분양몰재구매</option>
+
+        <select name="order_type" id="order_type" class="form-select color-dropdown">
+          <option value="" {{ request('order_type') == '' ? 'selected' : '' }}>:: 주문구분 ::</option>
+          <option value="new" {{ request('order_type') == 'new' ? 'selected' : '' }}>신규주문</option>
+          <option value="repurchase" {{ request('order_type') == 'repurchase' ? 'selected' : '' }}>재구매주문</option>
+          <option value="distribute_new" {{ request('order_type') == 'distribute_new' ? 'selected' : '' }}>분양몰신규</option>
+          <option value="distribute_repurchase" {{ request('order_type') == 'distribute_repurchase' ? 'selected' : '' }}>분양몰재구매</option>
         </select>
-        <select id="selectTypeOpt" class="form-select color-dropdown">
-            <option value="member_name">회원명</option>
-            <option value="member_id">회원아이디</option>
-            <option value="member_seq">회원번호</option>
-            <option value="order_seq">주문번호</option>
+
+        <select name="search_field" id="search_field" class="form-select color-dropdown">
+          <option value="member_name" {{ request('search_field') == 'member_name' ? 'selected' : '' }}>회원명</option>
+          <option value="member_id" {{ request('search_field') == 'member_id' ? 'selected' : '' }}>회원아이디</option>
+          <option value="member_seq" {{ request('search_field') == 'member_seq' ? 'selected' : '' }}>회원번호</option>
+          <option value="order_seq" {{ request('search_field') == 'order_seq' ? 'selected' : '' }}>주문번호</option>
         </select>
-        <input class="form-control me-2" style='width:240px;' type="search" placeholder="Search" aria-label="Search">
+
+        <input class="form-control me-2" style='width:240px;' name="search_text" type="search" placeholder="Search" aria-label="Search" value="{{ request('search_text') }}">
         <button class="btn btn-outline-primary" type="submit">Search</button>
       </form>
     </div>
