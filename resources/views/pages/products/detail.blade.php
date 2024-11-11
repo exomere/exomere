@@ -192,10 +192,12 @@
                         </div>
                         <div class="flex flex-col lg:flex-row items-center gap-3">
                             <button
+                                onclick="add2Cart()"
                                 class="rounded-sm group py-4 px-5 border border-solid border-gray-600 bg-white text-gray-600 font-normal text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent">
                                 {{ __('common.add_to_cart') }}
                             </button>
                             <button
+                                onclick="buyNow()"
                                 class="rounded-sm text-center w-full px-5 py-4 border border-solid border-base-color bg-base-color flex items-center justify-center font-normal text-lg text-white shadow-sm">
                                 {{ __('common.buy_now') }}
                             </button>
@@ -456,6 +458,34 @@
         document.querySelector('.quantity').addEventListener('input', function () {
             updateTotalPrice();
         });
+
+        function add2Cart(){
+            alert('장바구니에 담았습니다.');
+            return false;
+        }
+
+        function buyNow(){
+            if(confirm('바로 구매 하시겠습니까?')) {
+
+                let form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/mypage/ordersheet';
+
+                // Add CSRF token for Laravel
+                let csrfToken = '{{ csrf_token() }}';
+                let inputCsrf = document.createElement('input');
+                inputCsrf.type = 'hidden';
+                inputCsrf.name = '_token';
+                inputCsrf.value = csrfToken;
+                form.appendChild(inputCsrf);
+
+                // Append form to the body and submit it
+                document.body.appendChild(form);
+                form.submit();
+            }
+
+            return false;
+        }
 
     </script>
 @endsection

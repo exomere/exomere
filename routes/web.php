@@ -122,8 +122,13 @@ Route::prefix('/about')->group(function () {
 
 
 Route::prefix('/mypage')->group(function () {
+    //장바구니
     Route::get('cart', function () {
         return view('pages.mypage.cart');
+    });
+    //주문서작성
+    Route::post('ordersheet', function () {
+        return view('pages.mypage.ordersheet');
     });
 });
 
