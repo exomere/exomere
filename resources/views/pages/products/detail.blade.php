@@ -57,26 +57,12 @@
                                 <img src="{{ Storage::url('public/data/'.$product['thum_img']) }}"
                                      alt="" class="mx-auto object-cover">
                             </div>
-                            <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
-                                     alt="" class="mx-auto object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img']) }}"
-                                     alt="" class="mx-auto object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
-                                     alt="" class="mx-auto object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img']) }}"
-                                     alt="" class="mx-auto object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
-                                     alt="" class="mx-auto object-cover">
-                            </div>
+                            @if(!empty($product['thum_img2']))
+                                <div class="swiper-slide">
+                                    <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
+                                         alt="" class="mx-auto object-cover">
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="swiper product-thumb max-w-[608px] h-auto mx-auto">
@@ -85,27 +71,13 @@
                                 <img src="{{ Storage::url('public/data/'.$product['thum_img']) }}"
                                      class=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600 object-cover">
                             </div>
-                            <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
-                                     class=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600 object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img']) }}"
-                                     class=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600 object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
-                                     class=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600 object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img']) }}"
-                                     class=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600 object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
-                                     class=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600 object-cover">
-                            </div>
-
+                            @if(!empty($product['thum_img2']))
+                                <div class="swiper-slide">
+                                    <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
+                                         class=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600 object-cover">
+                                </div>
+                                </div>
+                            @endif
                         </div>
                         <div class="swiper-pagination_prod">
                             <div class="swiper-button-prev"></div>
@@ -118,18 +90,26 @@
                     class="pro-detail w-full flex flex-col order-last lg:order-none pt-8 ">
                     <p class="font-medium text-lg text-exomere mb-4"><a
                             class="flex flex-inline items-center text-base"
-{{--                            href="/brand?brand={{$product['brand']}}"--}}
-                        >{{ __('gnb.'. $product['brand']) }}
-
+                        >{{ $product['code'] }}
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="hidden bi bi-chevron-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
                             </svg>
                         </a>
                     </p>
-                    <h2 class="mb-2 font-bold text-3xl leading-10 text-gray-900">{{ $product['product_name'] }}</h2>
+                    <h2 class="mb-2 font-bold text-3xl leading-10 text-gray-900">
+                        @if(app()->getLocale() == 'ko')
+                            {{ $product['name'] }}
+                        @else
+                            {{ $product['name_en'] }}
+                        @endif
+                    </h2>
 
                     <p class="text-gray-500 text-base font-normal mb-8 ">
-                        {{ $product['sub_name'] }}
+                        @if(app()->getLocale() == 'ko')
+                            {{ $product['description'] }}
+                        @else
+                            {{ $product['description_en'] }}
+                        @endif
                     </p>
                     <div class="w-full">
                         <input type="hidden" class="distribution_price" name="distribution_price"
@@ -203,7 +183,7 @@
                             <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
                                 <strong class="w-40">{{ __('common.total_price') }}</strong>
                                 <h6 class="flex font-semibold"><span
-                                        class="total-price">{{ number_format($product['total_price']) }}</span>
+                                        class="total-price">{{ number_format($product['exclusive_price']) }}</span>
                                     <span
                                         class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
                                 </h6>
@@ -212,10 +192,12 @@
                         </div>
                         <div class="flex flex-col lg:flex-row items-center gap-3">
                             <button
+                                onclick="add2Cart()"
                                 class="rounded-sm group py-4 px-5 border border-solid border-gray-600 bg-white text-gray-600 font-normal text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent">
                                 {{ __('common.add_to_cart') }}
                             </button>
                             <button
+                                onclick="buyNow()"
                                 class="rounded-sm text-center w-full px-5 py-4 border border-solid border-base-color bg-base-color flex items-center justify-center font-normal text-lg text-white shadow-sm">
                                 {{ __('common.buy_now') }}
                             </button>
@@ -476,6 +458,34 @@
         document.querySelector('.quantity').addEventListener('input', function () {
             updateTotalPrice();
         });
+
+        function add2Cart(){
+            alert('장바구니에 담았습니다.');
+            return false;
+        }
+
+        function buyNow(){
+            if(confirm('바로 구매 하시겠습니까?')) {
+
+                let form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/mypage/ordersheet';
+
+                // Add CSRF token for Laravel
+                let csrfToken = '{{ csrf_token() }}';
+                let inputCsrf = document.createElement('input');
+                inputCsrf.type = 'hidden';
+                inputCsrf.name = '_token';
+                inputCsrf.value = csrfToken;
+                form.appendChild(inputCsrf);
+
+                // Append form to the body and submit it
+                document.body.appendChild(form);
+                form.submit();
+            }
+
+            return false;
+        }
 
     </script>
 @endsection
