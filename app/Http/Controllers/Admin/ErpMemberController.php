@@ -22,11 +22,21 @@ class ErpMemberController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
-        $ex_members = ExMember::where('member_level','<',10)->orderBy('id', 'desc')->paginate($limitPage);
+        $query = ExMember::where('member_level', '<', 10);
 
-        if (!is_null($request->get('search_text'))) {
+        // 검색어가 있을 경우 쿼리에 필터 추가
+        if ($request->has('search_text') && $request->get('search_text') !== '') {
             $search_text = $request->get('search_text');
+            $query->where(function ($q) use ($search_text) {
+                $q->where('name', 'like', '%' . $search_text . '%')
+                    ->orWhere('member_id', 'like', '%' . $search_text . '%')
+                    ->orWhere('tel', 'like', '%' . $search_text . '%')
+                    ->orWhere('phone', 'like', '%' . $search_text . '%')
+                    ->orWhere('email', 'like', '%' . $search_text . '%');
+            });
         }
+
+        $ex_members = $query->orderBy('id', 'desc')->paginate($limitPage);
 
         $data = [
             "search_text" => $search_text ?? '',
