@@ -28,25 +28,44 @@ class ErpOrderController extends Exomere
 
   public function list(Request $request)
   {
-    $limitPage = $this->getPageLimit();
-    $page = $request->get('page') ?? 1;
+      $limitPage = $this->getPageLimit();
+      $page = $request->get('page') ?? 1;
 
-    $orders = ExOrder::orderBy('id', 'desc')->paginate($limitPage);
+      $ordersQuery = ExOrder::orderBy('id', 'desc');
 
-    if (!is_null($request->get('search_text'))) {
-      $search_text = $request->get('search_text');
-      $orders->where('name', 'LIKE', "%{$request->get('search_text')}%");
-    }
+      // 승인구분 필터 추가
+      if ($request->filled('approval_status')) {
+          $ordersQuery->where('is_approval', $request->get('approval_status'));
+      }
 
-    $data = [
-      "search_text" => $search_text ?? '',
-      "orders" =>  $orders ?? [],
-      "payment_kind" => self::PAYMENT_KIND,
-      "order_kind" => self::ORDER_KIND,
-      "row_num" => $this->getPageRowNumber($orders->total(), $page, $limitPage),
-    ];
+      // 주문구분 필터 추가
+      if ($request->filled('order_type')) {
+          $ordersQuery->where('order_type', $request->get('order_type'));
+      }
 
-    return view('pages.erp.order.list')->with($data);
+      // 검색 필드와 검색어 필터 추가
+      if ($request->filled('search_text') && $request->filled('search_field')) {
+          $searchField = $request->get('search_field');
+          $searchText = $request->get('search_text');
+          $ordersQuery->where($searchField, 'LIKE', "%{$searchText}%");
+      }
+
+      // 페이지네이션을 통해 데이터 가져오기
+      $orders = $ordersQuery->paginate($limitPage);
+
+      // 데이터 배열에 변수 담기
+      $data = [
+          "approval_status" => $request->get('approval_status') ?? '',
+          "order_type" => $request->get('order_type') ?? '',
+          "search_field" => $request->get('search_field') ?? 'member_name',
+          "search_text" => $request->get('search_text') ?? '',
+          "orders" => $orders,
+          "payment_kind" => self::PAYMENT_KIND,
+          "order_kind" => self::ORDER_KIND,
+          "row_num" => $this->getPageRowNumber($orders->total(), $page, $limitPage),
+      ];
+
+      return view('pages.erp.order.list')->with($data);
   }
 
   public function orderRegister(Request $request)
