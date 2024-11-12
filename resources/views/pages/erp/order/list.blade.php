@@ -120,6 +120,9 @@
               <div class="dropdown">
                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                 <div class="dropdown-menu">
+                  <a class="dropdown-item" href="javascript:void(0);" onclick="printOrderDetails({{ $list->id }})">
+                    <i class="bx bx-printer me-1"></i> Print
+                  </a>
                   <a class="dropdown-item" href="{{route('erp-order-layouts-order-register',$list->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
                   <a class="dropdown-item" style='color:red;' href="{{route('erp-order.del',$list->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
                 </div>
@@ -159,7 +162,13 @@
           location.reload();
         }
     });
-
   });
+  function printOrderDetails(orderId) {
+    // Option 1: Open a new window or modal for a detailed view and print
+    const printWindow = window.open(`/management/erp/order/print/${orderId}`, '_blank');
+    printWindow.onload = function () {
+      printWindow.print();
+    };
+  }
  </script>
 @endsection

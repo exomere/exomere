@@ -269,6 +269,8 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('/save', [ErpOrderController::class, 'orderSave'])->name('erp-order.save');
                 Route::post('/approving', [ErpOrderController::class, 'approving'])->name('erp-order.approving');
                 Route::get('/del/{seq?}', [ErpOrderController::class, 'orderDel'])->name('erp-order.del');
+
+                Route::get('/print/{orderId}', [ErpOrderController::class, 'print'])->name('erp-order.print');
                 
 
                 // ㄴ 라인별 주문목록
