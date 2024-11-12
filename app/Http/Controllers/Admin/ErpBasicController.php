@@ -71,7 +71,7 @@ class ErpBasicController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
-        $ex_members = ExMember::where('member_level','>',10)->orderBy('id', 'desc')->paginate($limitPage);
+        $ex_members = ExMember::where('is_delete','N')->where('member_level','>',10)->orderBy('id', 'desc')->paginate($limitPage);
 
         if (!is_null($request->get('search_text'))) {
             $search_text = $request->get('search_text');
