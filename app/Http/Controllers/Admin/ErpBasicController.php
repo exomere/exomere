@@ -412,7 +412,7 @@ class ErpBasicController extends Exomere
     public function memberDel(Request $request)
     {
         ExMember::find($request->seq)->update(['is_delete' => 'Y']);
-        return redirect()->route('basic-layouts-member-list');
+        return redirect()->route('erp-member.list');
     }
 
     

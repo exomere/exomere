@@ -36,7 +36,7 @@ class ErpMemberController extends Exomere
             });
         }
 
-        $ex_members = $query->orderBy('id', 'desc')->paginate($limitPage);
+        $ex_members = $query->where('is_delete','N')->orderBy('id', 'desc')->paginate($limitPage);
 
         $data = [
             "search_text" => $search_text ?? '',
