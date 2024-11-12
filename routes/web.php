@@ -267,8 +267,9 @@ Route::group(['middleware' => 'auth'], function () {
                     'erp-order-layouts-order-register'
                 );
                 Route::post('/save', [ErpOrderController::class, 'orderSave'])->name('erp-order.save');
+                Route::post('/approving', [ErpOrderController::class, 'approving'])->name('erp-order.approving');
                 Route::get('/del/{seq?}', [ErpOrderController::class, 'orderDel'])->name('erp-order.del');
-
+                
 
                 // ㄴ 라인별 주문목록
                 Route::get('/line/list', [ErpOrderController::class, 'lineList'])->name('erp-order.line.list');
@@ -303,6 +304,9 @@ Route::group(['middleware' => 'auth'], function () {
             // ㄴ 보너스 포인트
             Route::prefix('/point')->group(function () {
                 Route::get('/list', [ErpPointController::class, 'list'])->name('erp-point.list');
+                Route::post('/provision', [ErpPointController::class, 'provision'])->name('erp-point.provision');
+                Route::post('/getPointList', [ErpPointController::class, 'getPointList'])->name('erp-point.point_list');
+                
             });
 
             // 출금관리 withdrawal

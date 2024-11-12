@@ -86,7 +86,17 @@
         @foreach ($orders as $list)
           <tr>
             <td> <span class="fw-medium">{{$row_num--}}</span></td>
-            <td> <span class="fw-medium">{{($list->is_approval == 'Y') ? '승인' : '미승인'}}</span></td>
+            <td>
+              @if ($list->is_approval == 'Y')
+                <span class="fw-medium">승인</span>    
+              @elseif ($list->is_approval == 'C')
+                <span class="fw-medium">취소</span>    
+              @else
+                <input type='button' class='cfOrder' data-seq='{{$list->id}}' data-type='Y' value='승인'>
+                <input type='button' class='cfOrder' data-seq='{{$list->id}}' data-type='C' value='취소'>
+              @endif 
+              
+            </td>
             {{-- <td>
               <a class="badge bg-label-info me-2" >
                   <span class="fw-medium">주문서</span>
@@ -125,4 +135,31 @@
   </div>
 </div>
 <!--/ Basic Bootstrap Table -->
+@endsection
+
+@section('page-script')
+ <script>
+  $(".cfOrder").on("click",function(){
+
+    var seq = $(this).data("seq");
+    var type = $(this).data("type");
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'post',
+        url: "/management/erp/order/approving",
+        data: {
+            "seq": seq,
+            "type": type,
+        },
+        success: function (res) {
+          alert('처리가 완료되었습니다.');
+          location.reload();
+        }
+    });
+
+  });
+ </script>
 @endsection

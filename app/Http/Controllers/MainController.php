@@ -52,7 +52,7 @@ class MainController extends Exomere
         //     'pages.main',
         //     compact('mainVideoBanner', 'bestProducts', 'materials')
         // );
-        
+
         return view('errors.503');
     }
 

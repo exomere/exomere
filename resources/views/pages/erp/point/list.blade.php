@@ -1,7 +1,7 @@
 @extends('layouts/contentNavbarLayout')
 
 @section('title', 'Erp - Point - list')
-
+<meta name="csrf-token" content="{{ csrf_token() }}"/>
 @section('content')
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
     <div class="container-fluid">
@@ -59,8 +59,13 @@
                 <div class="dropdown">
                   <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item"><i class="bx bx-edit-alt me-1"></i> 포인트지급</a>
-                    <a class="dropdown-item"><i class="bx bx-trash me-1"></i> 포인트내역</a>
+                    <a class="dropdown-item provisionPoint" 
+                      data-seq="{{$list->id}}"
+                      data-member_id="{{$list->member_id}}"
+                      data-name="{{$list->name}}"
+                      data-remain_points="{{$list->remain_points}}"
+                      data-bs-target="#provisionPoint" data-bs-toggle="modal"><i class="bx bx-edit-alt me-1"></i> 포인트지급</a>
+                    <a class="dropdown-item provisionPointList" data-seq="{{$list->id}}" data-bs-target="#pointList" data-bs-toggle="modal"><i class="bx bx-trash me-1"></i> 포인트내역</a>
                   </div>
                 </div>
               </td>
@@ -80,5 +85,226 @@
         {{ $ex_members->links('vendor.pagination.bootstrap-4') }}
     </div>
   </div>
+  <div class="modal fade" id="provisionPoint" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="text-center mb-6">
+            <h4 class="mb-2">포인트 지급</h4>
+          </div>
+            <div class="col-12">
+              <div class="row mb-3">
+                <div class="col-sm-12">
+                  <hr class="my-5">
+                  <!-- Responsive Table -->
+                  <div class="card">
+                    <div class="table-responsive text-nowrap">
+                      <table class="table">
+                        <thead>
+                          <tr class="text-nowrap">
+                            <th>회원번호</th>
+                            <th>회원ID</th>
+                            <th>회원명</th>
+                            <th>현재포인트</th>
+                            <th>포인트 지급액</th>
+                            <th>포인트 사유</th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0 memberBody">
+                          @csrf
+                          <tr>
+                            <td>
+                              <input type='hidden' name='member_seq' id='member_seq' >
+                              <span id='sp_member_seq'></span>
+                            </td>
+                            <td>
+                              <input type='hidden' name='member_id' id='member_id' >
+                              <span id='sp_member_id'></span>
+                            </td>
+                            <td>
+                              <input type='hidden' name='member_name' id='member_name' >
+                              <span id='sp_member_name'></span>
+                            </td>
+                            <td>
+                              <input type='hidden' name='remain_points' id='remain_points' >
+                              <span id='sp_remain_points'></span>
+                            </td>
+                            <td>
+                              <input style='width:80px;' type='number' name='provision_point' id='provision_point' value='0' >
+                            </td>
+                            <td>
+                              <textarea name='remark' id='remark' ></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--/ Responsive Table -->
+                </div>
+              </div>
+            </div>
+            <div class="col-12 text-center">
+              <button type="button" class="btn btn-label-secondary submitPoints" data-bs-dismiss="modal" style='background-color:#514141; color:#fff;'>지급하기</button>
+              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">취소</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="pointList" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="text-center mb-6">
+            <h4 class="mb-2">포인트 내역</h4>
+          </div>
+            <div class="col-12">
+              <div class="row mb-3">
+                <div class="col-sm-12">
+                  <div class="card">
+                    <table class="table">
+                      <thead>
+                        <tr class="text-nowrap">
+                          <th>ID</th>
+                          <td><span id='point_info_id'></span></td>
+                          <th>이름</th>
+                          <td><span id='point_info_name'></span></td>
+                          <th>총 지급 포인트</th>
+                          <td><span id='point_info_payment_points'></span></td>
+                          <th>잔여포인트</th>
+                          <td><span id='point_info_remain_points'></span></td>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="table-responsive text-nowrap">
+                      <table class="table">
+                        <thead>
+                          <tr class="text-nowrap">
+                            <th>일자</th>
+                            <th>형태</th>
+                            <th>포인트</th>
+                            <th>사유</th>
+                            <th>등록자</th>
+                          </tr>
+                        </thead>
+                        <tbody class="point_info_body">
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--/ Responsive Table -->
+                </div>
+              </div>
+            </div>
+            <div class="col-12 text-center">
+              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">확인</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!--/ Basic Bootstrap Table -->
+@endsection
+@section('page-script')
+ <script>
+  $(".provisionPoint").on("click",function(){
+      var seq = $(this).data("seq");
+      var member_id = $(this).data("member_id");
+      var name = $(this).data("name");
+      var remain_points = $(this).data("remain_points");
+
+      $("#member_seq").val(seq);
+      $("#member_id").val(member_id);
+      $("#member_name").val(name);
+      $("#remain_points").val(remain_points);
+
+      $("#sp_member_seq").text(seq);
+      $("#sp_member_id").text(member_id);
+      $("#sp_member_name").text(name);
+      $("#sp_remain_points").text(remain_points);
+  });
+
+  $(".submitPoints").on("click",function(){
+
+    var seq = $("#member_seq").val();
+    var member_id =  $("#member_id").val();
+    var name = $("#member_name").val();
+    var remain_points =  $("#remain_points").val();
+    var provision_point =  $("#provision_point").val();
+    var remark =  $("#remark").val();
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'post',
+        url: "/management/erp/point/provision",
+        data: {
+            "member_seq": seq,
+            "member_id": member_id,
+            "member_name": name,
+            "remain_points": remain_points,
+            "provision_point": provision_point,
+            "remark" : remark,
+        },
+        success: function (res) {
+          $("#provision_point").val(0);
+          alert('포인트 지급 완료되었습니다.');
+          location.reload();
+        }
+    });
+
+  });
+
+  $(".provisionPointList").on("click",function(){
+
+    var seq = $(this).data("seq");
+
+    $(".point_info_body").empty();
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'post',
+        dataType:'JSON',
+        url: "/management/erp/point/getPointList",
+        data: {
+            "seq": seq,
+        },
+        success: function (res) {
+          var html = "";
+            $('#point_info_id').text(res.member_id);
+            $('#point_info_name').text(res.member_name);
+            $('#point_info_payment_points').text(res.payment_points);
+            $('#point_info_remain_points').text(res.remain_points);
+          if(res.total_count == 0){
+            html += "<tr><td colspan='5'>포인트 내역이 없습니다.</td></tr>";
+          }else{
+            $.each(res.pointInfo, function (index, data) {
+                html+= "<tr>";
+                html += " <td>" + data.date + "</td>";
+                html += " <td>" + data.kind + "</td>";
+                html += " <td>" + data.point + "</td>";
+                html += " <td>" + data.remark + "</td>";
+                html += " <td>" + data.reg_name + "</td>";
+                html+= "</tr>";
+            });
+          }
+          
+          $(".point_info_body").append(html);
+        }
+    });
+
+  });
+ </script>
 @endsection

@@ -28,9 +28,9 @@
               <label class="col-sm-1 col-form-label" for="member_info"> <span style='color:red;'>*</span> 회원선택 </label>
               <div class="col-sm-6">
                 <div class="input-group">
-                  <input type="hidden" class="form-control" id="member_position" value="{{ $order_data->recommend_seq ?? null }}"/>
-                  <input type="hidden" class="form-control" id="member_seq" name='member_seq' value="{{ $order_data->recommend_seq ?? null }}"/>
-                  <input type="text" class="form-control" id="member_info" readonly name='member_info' value="{{ $order_data->recommend_id  ?? null }} | {{ $order_data->recommend_name ?? null }}"/>
+                  <input type="hidden" class="form-control" id="member_position" value="{{ $order_data->member_seq ?? null }}"/>
+                  <input type="hidden" class="form-control" id="member_seq" name='member_seq' value="{{ $order_data->member_seq ?? null }}"/>
+                  <input type="text" class="form-control" id="member_info" readonly name='member_info' value="{{ $order_data->member_id  ?? null }} | {{ $order_data->member_name ?? null }}"/>
                   <a href="javascript:void(0);" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">검색</a>
                </div>
               </div>

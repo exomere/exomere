@@ -144,19 +144,6 @@
       ]
     },
     {
-      "name": "withdrawal_management",
-      "icon": "menu-icon tf-icons bx bx-detail",
-      "slug": "erp-withdrawal",
-      "read": "admin",
-      "submenu": [
-        {
-          "url": "management/erp/withdrawal/list",
-          "name": "bonus_point",
-          "slug": "erp-withdrawal.list"
-        }
-      ]
-    },
-    {
       "name": "board_management",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "erp-board",

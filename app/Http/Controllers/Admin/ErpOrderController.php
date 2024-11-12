@@ -132,6 +132,12 @@ class ErpOrderController extends Exomere
     return view('pages.erp.order.register')->with($data);
   }
 
+  public function approving(Request $request){
+    ExOrder::find($request->seq)->update([
+      "is_approval" => $request->type,
+    ]);
+  }
+
   public function orderSave(Request $request)
   {
 

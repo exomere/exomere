@@ -6,9 +6,15 @@ use App\Http\Controllers\Exomere;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\ExMember;
+use App\Models\ExPointLog;
 
 class ErpPointController extends Exomere
 {
+
+    CONST POINT_KIND = [
+        "provision" => "지급",
+        "sell" => "구매",
+    ];
     /**
      * Display a listing of the notices.
      *
@@ -36,14 +42,52 @@ class ErpPointController extends Exomere
     }
 
     //포인트 지급
-    public function payPoint(Request $request){
+    public function provision(Request $request){
         $seq = $request->seq;
 
         $exMember = ExMember::find($seq);
 
         $exMember->update([
-            "remain_points" => ($exMember->remain_points + $request->point),
-            "payment_points" => ($exMember->payment_points + $request->point),
+            "remain_points" => ($exMember->remain_points + $request->provision_point),
+            "payment_points" => ($exMember->payment_points + $request->provision_point),
+        ]);
+
+        ExPointLog::create([
+            "kind" => "provision",
+            "date" => date("Y-m-d H:i:s"),
+            "member_seq" => $request->member_seq,
+            "point" => $request->provision_point,
+            "remark" => $request->remark,
+            "reg_name" => $request->session()->get('member_name'),
         ]);
     }
+
+    public function getPointList(Request $request){
+        $seq = $request->seq;
+
+        $exMember = ExMember::find($seq);
+        $points = ExPointLog::where("member_seq",$seq);
+        
+        $output_data = [
+            "member_id" => $exMember->member_id,
+            "member_name" => $exMember->name,
+            "remain_points" => $exMember->remain_points,
+            "payment_points" => $exMember->payment_points,
+            "total_count" => $points->count(),
+        ];
+
+        $cnt=0;
+
+        foreach($points->get() as $point){
+            $output_data['pointInfo'][$cnt]['kind'] = self::POINT_KIND[$point->kind];
+            $output_data['pointInfo'][$cnt]['date'] = $point->date;
+            $output_data['pointInfo'][$cnt]['reg_name'] = $point->reg_name;
+            $output_data['pointInfo'][$cnt]['remark'] = $point->remark ?? ' - ';
+            $output_data['pointInfo'][$cnt]['point'] = $point->point;
+            $cnt++;
+        }
+
+        return json_encode($output_data);
+    }
+    
 }
