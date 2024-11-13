@@ -87,6 +87,7 @@
                 <div class="dropdown">
                   <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                   <div class="dropdown-menu">
+                    <a class="dropdown-item memberModifyList" data-seq="{{$list->id}}" data-bs-target="#memberModifyList" data-bs-toggle="modal"><i class="bx bx-trash me-1"></i> 변경내역</a>
                     <a class="dropdown-item" href="{{route('erp-member.create',$list->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
                     <a class="dropdown-item" style='color:red;' href="{{route('member.del',$list->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
                   </div>
@@ -101,5 +102,111 @@
         {{ $ex_members->links('vendor.pagination.bootstrap-4') }}
     </div>
   </div>
+
+<div class="modal fade" id="memberModifyList" tabindex="-1" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-center mb-6">
+          <h4 class="mb-2">변경 내역</h4>
+        </div>
+        <div class="col-12">
+          <div class="row mb-3">
+            <div class="col-sm-12">
+              <div class="card">
+                <table class="table">
+                  <thead>
+                  <tr class="text-nowrap">
+                    <th>ID</th>
+                    <td><span id='member_info_id'></span></td>
+                    <th>이름</th>
+                    <td><span id='member_info_name'></span></td>
+                  </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="table-responsive text-nowrap">
+                  <table class="table">
+                    <thead>
+                    <tr class="text-nowrap">
+                      <th>일자</th>
+                      <th>변경 필드</th>
+                      <th>변경전</th>
+                      <th>변경후</th>
+                      <th>수정자</th>
+                    </tr>
+                    </thead>
+                    <tbody class="member_info_body">
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--/ Responsive Table -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12 text-center">
+          <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   <!--/ Basic Bootstrap Table -->
+@endsection
+
+
+@section('page-script')
+  <script>
+    $(".memberModifyList").on("click",function(){
+      const seq = $(this).data("seq");
+
+      $(".point_info_body").empty();
+
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        type: 'post',
+        dataType:'JSON',
+        url: "/management/erp/member/modifyList",
+        data: {
+          "seq": seq,
+        },
+        success: function (res) {
+          let rows = '';
+          $("#member_info_id").text(res.member_info.member_id);
+          $("#member_info_name").text(res.member_info.name);
+
+          if (!res.modify_info.length) {
+            rows = '<tr><td colspan="5" style="text-align: center">변경 내역이 없습니다.</td></tr>';
+          } else {
+            res.modify_info.forEach(log => {
+              rows += `
+                    <tr>
+                        <td>${new Date(log.created_at).toLocaleDateString()}</td>
+                        <td>${log.field_name}</td>
+                        <td>${log.old_value}</td>
+                        <td>${log.new_value}</td>
+                        <td>${log.member_id || 'System'}</td>
+                    </tr>
+                `;
+            });
+          }
+
+          $(".member_info_body").html(rows);
+        },
+        error: function() {
+          $(".member_info_body").html('<tr><td colspan="5">Failed to load modification history.</td></tr>');
+        }
+      });
+
+    });
+  </script>
 @endsection

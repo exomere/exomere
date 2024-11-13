@@ -4,12 +4,35 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Exomere;
 use App\Models\ExCenter;
+use App\Models\ExMemberModificationLog;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\ExMember;
 use App\Constants\CommonConstants;
 class ErpMemberController extends Exomere
 {
+    CONST MEMBER_INFO_FIELD = [
+        "member_id" => "회원 아이디",
+        "name" => "회원명",
+        "member_pw" => "비밀번호",
+        "member_type" => "회원형태",
+        "member_position" => "직급",
+        "resident_number" => "주민등록번호",
+        "tel" => "연락처",
+        "phone" => "비밀번호",
+        "email" => "이메일",
+        "local_store" => "지역점",
+        "zip_code" => "우편번호",
+        "address" => "기본주소",
+        "address_detail" => "상세주소",
+        "bank" => "은행",
+        "account_number" => "계좌번호",
+        "account_holder" => "예금주",
+        "recommend_id" => "모집인 id",
+        "recommend_name" => "모집인 명",
+        "is_delete" => "상태",
+        "remark" => "비고",
+    ];
 
     /**
      *
@@ -114,6 +137,22 @@ class ErpMemberController extends Exomere
             $input_data["member_pw"] = $this->encryptPassword($request->member_pw);
         }
 
+        $existingMember = ExMember::find($member_seq);
+        if ($existingMember) {
+            foreach ($input_data as $field => $new_value) {
+                $old_value = $existingMember->$field;
+                if ($old_value != $new_value) {
+                    ExMemberModificationLog::create([
+                        'member_seq' => $member_seq,
+                        'field' => $field,
+                        'old_value' => $old_value,
+                        'new_value' => $new_value,
+                        'modify_member_seq' => $request->session()->get('member_seq')
+                    ]);
+                }
+            }
+        }
+
         ExMember::UpdateOrCreate(
             [
                 'id' => $member_seq,
@@ -128,5 +167,28 @@ class ErpMemberController extends Exomere
     {
         ExMember::find($request->seq)->update(['is_delete' => 'Y']);
         return redirect()->route('erp-member.list');
+    }
+
+    public function getModifyList (Request $request)
+    {
+        $data = [];
+
+        $seq = $request->seq;
+
+        $data["member_info"] = ExMember::findByMemberSeq($seq)->toArray();
+        $data["modify_info"] = ExMemberModificationLog::leftjoin('ex_members as b', 'ex_member_modification_logs.modify_member_seq', '=', 'b.id')
+            ->where('member_seq', $seq)
+            ->whereNotIn('field', ['recommend_seq'])
+            ->orderBy('ex_member_modification_logs.created_at', 'desc')
+            ->get(['ex_member_modification_logs.created_at', 'field', 'old_value', 'new_value', 'modify_member_seq', 'b.member_id'])->toArray();
+
+        foreach ($data["modify_info"] as $key => $info) {
+            if ($data["modify_info"][$key]["field"] == "member_pw") {
+                $data["modify_info"][$key]["new_value"] = $data["modify_info"][$key]["old_value"] = "";
+            }
+            $data["modify_info"][$key]["field_name"] = self::MEMBER_INFO_FIELD[$data["modify_info"][$key]["field"]];
+        }
+
+        return response()->json($data);
     }
 }

@@ -244,7 +244,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('/del', [ErpMemberController::class, 'del'])->name('erp-member.del');
 
                 // ㄴ 회원수정내역
-                Route::get('/modifyList', [ErpMemberController::class, 'index'])->name('erp-member.index');
+                Route::post('/modifyList', [ErpMemberController::class, 'getModifyList'])->name('erp-member.getModifyList');
 
                 // ㄴ 조직도
                 Route::prefix('/organization')->group(function () {
