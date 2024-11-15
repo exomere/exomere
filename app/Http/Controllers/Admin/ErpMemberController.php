@@ -47,6 +47,10 @@ class ErpMemberController extends Exomere
 
         $query = ExMember::where('member_level', '<', 10);
 
+        if ($request->session()->get('member_level') != 99) {
+            $query->whereIn("member_position", ["최우수총판", "우수총판", "총판", "회원"]);
+        }
+
         // 검색어가 있을 경우 쿼리에 필터 추가
         if ($request->has('search_text') && $request->get('search_text') !== '') {
             $search_text = $request->get('search_text');
