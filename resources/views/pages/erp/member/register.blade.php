@@ -95,8 +95,10 @@
               <div class="col-sm-2">
                 <select class="form-control" name='member_position'>
                   <option value="회원" selected="">회원</option>
-                  <option value="뷰티플래너">뷰티플래너</option>
-                  <option value="대리점">대리점</option>
+                  @if(request()->session()->get('member_level') == 99)
+                    <option value="뷰티플래너">뷰티플래너</option>
+                    <option value="대리점">대리점</option>
+                  @endif
                   <option value="총판">총판</option>
                   <option value="우수총판">우수총판</option>
                   <option value="최우수총판">최우수총판</option>
