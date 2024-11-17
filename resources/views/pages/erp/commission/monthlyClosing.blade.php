@@ -54,6 +54,7 @@
           <th style=' vertical-align: middle;'>합계금액</th>
           <th style=' vertical-align: middle;'>실지급액</th>
           <th style=' vertical-align: middle;'>마감자</th>
+          <th style=' vertical-align: middle;'>관리</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
@@ -76,6 +77,14 @@
                 <td>{{ number_format($statement->total_payment) }}</td>
                 <td>{{ number_format($statement->actual_amount) }}</td>
                 <td>{{ $statement->reg_name }}</td>
+                <td>
+                  <div class="dropdown">
+                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" style='color:red;' href="{{route('erp.statement.del',$statement->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
+                    </div>
+                  </div>
+                </td>
             </tr>
         @endforeach
       </tbody>

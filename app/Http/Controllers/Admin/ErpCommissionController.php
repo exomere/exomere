@@ -183,7 +183,7 @@ class ErpCommissionController extends Exomere
         $limitPage = 30;
         $page = $request->get('page', 1);
 
-        $statements = ExStatementsMember::where("code",$request->code)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
+        $statements = ExStatementsMember::where("code",$request->code)->where("type",$request->type)->where("actual_amount",">",0)->orderBy('id', 'desc')->paginate($limitPage);
 
         $datas = [
             "statements" => $statements,
@@ -391,7 +391,7 @@ class ErpCommissionController extends Exomere
                     }
                 }
 
-                $total_amount[$member->id] = ($total_amount[$member->id] ?? 0) + $orders->total_amount;
+                $total_amount[$member->id] = ($total_amount[$member->id] ?? 0) + ($orders->total_amount ?? 0);
                 $pv[$member->id] = ($pv[$member->id] ?? 0) + $orders->total_pv;
             }
         }
@@ -423,7 +423,7 @@ class ErpCommissionController extends Exomere
                     }
                 }
 
-                $total_amount[$member->id] = ($total_amount[$member->id] ?? 0) + $orders->total_amount;
+                $total_amount[$member->id] = ($total_amount[$member->id] ?? 0) + ($orders->total_amount ?? 0);
                 $pv[$member->id] = ($pv[$member->id] ?? 0) + $orders->total_pv;
             }
         }
@@ -455,7 +455,7 @@ class ErpCommissionController extends Exomere
                     $order->update([
                         "total_amount" => $total_amount[$key],
                         "pv" => $pv[$key],
-                        "promote_prive" => $c_promote_price,
+                        "promote_price" => $c_promote_price,
                         "promote_score" => $val,
                         "total_payment" =>  ($order->total_payment +$total_payment), 
                         "payment_points" =>  ($order->payment_points + $payment_points),
@@ -476,7 +476,7 @@ class ErpCommissionController extends Exomere
                         "member_name" => $exMember->name,
                         "code" => $calcu_code,
                         "type" => "month",
-                        "promote_prive" => $c_promote_price,
+                        "promote_price" => $c_promote_price,
                         "promote_score" => $val,
                         "total_payment" => $total_payment, 
                         "payment_points" => $payment_points,
@@ -518,8 +518,8 @@ class ErpCommissionController extends Exomere
         foreach($ex_members->get() as $member){
             $order = ExOrder::where("recommend_seq",$member->id)->whereBetween('order_date', [$s_date, $e_date]);
             
-            $total_payment = $contribution_amount * 0.09; 
-            $payment_points = $contribution_amount * 0.01; 
+            $total_payment = $contribution_amount * 0.9; 
+            $payment_points = $contribution_amount * 0.1; 
             $income_tax = $contribution_amount * 0.03; 
             $residence_tax = $contribution_amount * 0.003; 
             $total_deduction = $income_tax + $residence_tax;
@@ -527,8 +527,8 @@ class ErpCommissionController extends Exomere
 
             if($member->member_position == "최우수총판"){
                 $c_contribution_amount2 = $contribution_amount2;
-                $total_payment = $total_payment + ($contribution_amount2 * 0.09); 
-                $payment_points = $payment_points + ($contribution_amount2 * 0.01); 
+                $total_payment = $total_payment + ($contribution_amount2 * 0.9); 
+                $payment_points = $payment_points + ($contribution_amount2 * 0.1); 
                 $income_tax = $income_tax + ($contribution_amount2 * 0.03); 
                 $residence_tax = $residence_tax + ($contribution_amount2 * 0.003); 
                 $total_deduction = $income_tax + $residence_tax;
@@ -620,6 +620,75 @@ class ErpCommissionController extends Exomere
         }
     }
 
+        /**
+     * Remove the specified notice from the database.
+     *
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function statementDel($id)
+    {
+        $statements = ExStatements::findOrFail($id);
+        ExStatementsMember::where("type",$statements->type)->where("code",$statements->code)->delete();
+        $statements->delete();
 
+        if($statements->type == "month"){
+            return redirect()->route('erp-allowance.monthly-closing')->with('success', '정상적으로 삭제되었습니다.');
+        }else{
+            return redirect()->route('erp-allowance.term-closing')->with('success', '정상적으로 삭제되었습니다.');
+        }
+        
+    }
+
+
+    public function userCommissionList(Request $request){
+
+        $seq = $request->seq;
+        $member_seq = $request->mem_seq;
+        
+
+        $statementMember = ExStatementsMember::find($seq);
+        
+        $statement = ExStatements::where('type',$statementMember->type)->where('code',$statementMember->code)->first();
+        $exMember = ExMember::find($member_seq);
+        $recommendMembers = ExMember::where('recommend_seq',$member_seq)->get();
+
+        $memberSeqArray = [];
+        foreach($recommendMembers as $recommendMember){
+            $memberSeqArray[] = $recommendMember->id;
+        }   
+
+        $recommendOrderInfo = ExOrder::whereBetWeen('order_date',[$statement->s_date,$statement->e_date])->whereIn("recommend_seq",$memberSeqArray);
+
+        $output_data = [
+            "member_id" => $exMember->member_id,
+            "member_name" => $exMember->name,
+            "promote_score" => $statementMember->promote_score,
+            "recruitment_amount" => $statementMember->recruitment_amount,
+            "center_amount" => $statementMember->center_amount,
+            "education_amount" => $statementMember->education_amount,
+            "settlement_subsidy" => $statementMember->settlement_subsidy,
+            "incentives" => $statementMember->incentives,
+            "bonus" => $statementMember->bonus,
+            "contribution_amount" => $statementMember->contribution_amount,
+            "contribution_amount2" => $statementMember->contribution_amount2,
+            "self_pv" => $statementMember->pv,
+            "self_amount" => $statementMember->total_amount,
+            "pv_total" => $statement->total_pv,
+        ];
+
+        $cnt=0;
+
+        foreach($recommendOrderInfo->get() as $orderInfo){
+            $output_data['orderInfo'][$cnt]['id'] = $orderInfo->member_id;
+            $output_data['orderInfo'][$cnt]['name'] = $orderInfo->member_name;
+            $output_data['orderInfo'][$cnt]['total_pv'] = $orderInfo->total_pv ?? 0;
+            $output_data['orderInfo'][$cnt]['total_amount'] = $orderInfo->total_amount ?? 0;
+            $output_data['orderInfo'][$cnt]['order_date'] = date("Y-m-d",strtotime($orderInfo->order_date)) ?? date("Y-m-d");
+            $cnt++;
+        }
+
+        return json_encode($output_data);
+    }
     
 }

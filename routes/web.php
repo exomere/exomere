@@ -300,6 +300,11 @@ Route::group(['middleware' => 'auth'], function () {
 
                 // ㄴ 월마감 계산
                 Route::post('/monthlyCalculation', [ErpCommissionController::class, 'monthlyCalculation'])->name('erp.monthly.calculation');
+
+                // ㄴ 유저별 수수료 상세 내역
+                Route::post('/userCommissionList', [ErpCommissionController::class, 'userCommissionList'])->name('erp.user.commission');
+                // ㄴ 마감 삭제
+                Route::get('/statementDel/{seq?}', [ErpCommissionController::class, 'statementDel'])->name('erp.statement.del');
             });
 
             // 포인트관리 point

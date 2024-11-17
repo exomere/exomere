@@ -67,7 +67,7 @@
                     <td><span class="fw-medium">{{ $data['no'] }}</span></td>
                     <td><span class="fw-medium">{{ $data['code'] }}</span></td>
                     <td><span class="fw-medium">{{ number_format($data['recruitment_amount'] )}}</span></td>
-                    <td><span class="fw-medium">{{ number_format($data['promote_prive'] )}}</span></td>
+                    <td><span class="fw-medium">{{ number_format($data['promote_price'] )}}</span></td>
                     <td><span class="fw-medium">{{ number_format($data['center_amount'] )}}</span></td>
                     <td><span class="fw-medium">{{ number_format($data['education_amount'] )}}</span></td>
                     <td><span class="fw-medium">{{ number_format($data['incentives'] )}}</span></td>

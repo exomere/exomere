@@ -69,7 +69,7 @@ class CommissionController extends Exomere
             $output_data[$statement->code]['code'] = $statement->code;
 
             $output_data[$statement->code]['recruitment_amount'] = ($output_data[$statement->code]['recruitment_amount'] ?? 0) + $statement->recruitment_amount;
-            $output_data[$statement->code]['promote_prive'] = ($output_data[$statement->code]['promote_prive'] ?? 0) + $statement->promote_prive;
+            $output_data[$statement->code]['promote_price'] = ($output_data[$statement->code]['promote_price'] ?? 0) + $statement->promote_price;
             $output_data[$statement->code]['center_amount'] = ($output_data[$statement->code]['center_amount'] ?? 0) + $statement->center_amount;
             $output_data[$statement->code]['education_amount'] = ($output_data[$statement->code]['education_amount'] ?? 0) + $statement->education_amount;
             $output_data[$statement->code]['settlement_subsidy'] = ($output_data[$statement->code]['settlement_subsidy'] ?? 0) + $statement->settlement_subsidy;

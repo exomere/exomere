@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('pv')->nullable()->default(0)->comment('PV');
             $table->integer('total_amount')->nullable()->default(0)->comment('누적매출');
             $table->integer('recruitment_amount')->nullable()->default(0)->comment('직접모집관리금');
-            $table->integer('promote_prive')->nullable()->default(0)->comment('장려금');
+            $table->integer('promote_price')->nullable()->default(0)->comment('장려금');
             $table->integer('center_amount')->nullable()->default(0)->comment('지역사무실지원금');
             $table->integer('education_amount')->nullable()->default(0)->comment('교육지원금');
             $table->integer('wages')->nullable()->default(0)->comment('급여');

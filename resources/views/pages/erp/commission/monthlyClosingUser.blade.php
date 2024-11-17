@@ -63,7 +63,7 @@
                 <td>{{ number_format($statement->pv) }}</td>
                 <td>{{ number_format($statement->total_amount) }}</td>
                 <td>{{ number_format($statement->recruitment_amount) }}</td>
-                <td>{{ number_format($statement->promote_prive) }}</td>
+                <td>{{ number_format($statement->promote_price) }}</td>
                 <td>{{ number_format($statement->center_amount) }}</td>
                 <td>{{ number_format($statement->incentives) }}</td>
                 <td>{{ number_format($statement->contribution_amount) }}</td>
