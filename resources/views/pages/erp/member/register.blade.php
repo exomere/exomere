@@ -10,6 +10,7 @@
   <form method='post' action="{{route('erp-member.save')}}" enctype="multipart/form-data">
     @csrf
     <input type='hidden' name='member_seq' value='{{ $member_seq ?? null }}'> 
+    <input type='hidden' id='created_at' value='{{ $member->created_at ?? date("Y-m-d") }}'> 
     <div class="col-xxl">
       <div class="card mb-4">
         <div class="card-header d-flex align-items-center justify-content-between">
@@ -22,6 +23,12 @@
               <label class="col-sm-1 col-form-label" for="basic-default-member_id">  <span style='color:red;'>*</span>회원 아이디 </label>
               <div class="col-sm-4">
                 <input type="text" class="form-control" id="basic-default-member_id" name='member_id' value="{{ $member->member_id ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="member_reg_date">  <span style='color:red;'>*</span>회원 등록일자 </label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="member_reg_date" readonly  name='member_reg_date' value=""/>
               </div>
             </div>
             <div class="row mb-3">

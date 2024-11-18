@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\API\OnPlatController;
 use App\Models\ExOrder;
 use App\Models\ExItem;
 use Illuminate\Http\Request;
@@ -140,6 +141,12 @@ class ErpOrderController extends Exomere
 
   public function orderSave(Request $request)
   {
+
+    // $onplatAPI = new OnPlatController();
+    // $res = $onplatAPI->pgInfo(29151);
+    // dd($res);
+    // exit;
+
 
     $order_seq = $request->order_seq ?? null;
 

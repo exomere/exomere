@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\ExMember;
 use App\Constants\CommonConstants;
+use App\Http\Controllers\API\OnPlatController;
 class ErpMemberController extends Exomere
 {
     CONST MEMBER_INFO_FIELD = [
@@ -135,6 +136,7 @@ class ErpMemberController extends Exomere
             "account_number" => $request->account_number,
             "account_holder" => $request->account_holder,
             "is_delete" => $request->is_delete,
+            "created_at" => $request->member_reg_date ?? date("Y-m-d H:i:s"),
         ];
 
         if(isset($request->member_pw)){

@@ -146,5 +146,9 @@ var memberReg = {
     }
 }
 $(function () {
+    
     $('#local_store').select2();
+    $("#member_reg_date").datepicker();
+    $("#member_reg_date").datepicker("option", "dateFormat", 'yy-mm-dd');
+    $("#member_reg_date").val($("#created_at").val());
 });  
