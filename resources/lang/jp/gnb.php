@@ -40,6 +40,8 @@ return [
     'time72' => 'TIME72',
     'imlaheal' => 'IMLAHeal',
     "cart" => "cart",
+    "ordersheet" => "Order Sheet",
+    "order_complete" => "Order Complete",
     "social" => "Social Contribution",
     "company" => "Company",
 ];

@@ -41,6 +41,8 @@ return [
     "sheet_masks" => "마스크팩",
     "cushions" => "쿠션",
     "cart" => "장바구니",
+    "ordersheet" => "주문서",
+    "order_complete" => "주문완료",
     "social" => "사회공헌",
     "company" => "기업",
 ];

@@ -47,4 +47,13 @@ class OrderController extends Exomere
     public function doPayment(Request $request){
         dd($request->input());
     }
+
+    public function orderComplete(Request $request){
+
+        $datas = [
+            'payment_type' => 'account'
+        ];
+
+        return view('pages.mypage.order_complete')->with($datas);
+    }
 }
