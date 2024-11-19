@@ -311,7 +311,7 @@
                       <div class="row mb-3">
                         <label class="col-sm-1 col-form-label" for="payment_account_1"> 입금계좌 </label>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control" id="payment_account_1" readonly value="기업은행 414-105162-04-023 (주)엑소미어" />
+                          <input type="text" class="form-control" id="payment_account_1" readonly value="KB국민 계좌번호 989801-00-072129 ㈜엑소미어" />
                         </div>
                       </div>
                       <div class="row mb-3">

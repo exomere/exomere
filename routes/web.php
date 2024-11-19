@@ -66,6 +66,7 @@ use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\FO\OrderController as orderFoController;
 use Illuminate\Support\Facades\Artisan;
 
 // if (env('APP_ENV') == 'production') {
@@ -126,10 +127,7 @@ Route::prefix('/mypage')->group(function () {
     Route::get('cart', function () {
         return view('pages.mypage.cart');
     });
-    //주문서작성
-    Route::post('ordersheet', function () {
-        return view('pages.mypage.ordersheet');
-    });
+ 
 });
 
 // 언어 변경
@@ -153,7 +151,9 @@ Route::post('/login/perform', [LoginController::class, 'login'])->middleware('gu
 
 ###################### 인증 페이지 START###########################
 Route::group(['middleware' => 'auth'], function () {
-
+    Route::post('/mypage/ordersheet', [orderFoController::class, 'ordersheet']);
+    Route::post('/mypage/doPayment', [orderFoController::class, 'doPayment']);
+    
     // 메인>커뮤니티 로그인 후 사용가능
     Route::prefix('/community')->group(function () {
         Route::get('notice', [CommunityController::class, 'notice']);

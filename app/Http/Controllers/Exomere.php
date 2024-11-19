@@ -10,7 +10,9 @@ class Exomere extends Controller
 {
 
     private $pageLimit = 15;
-
+    public int $page = 1;
+    public int $limit = 10;
+    
     CONST _PAYMENT_CARD_COMPANY = [
         "00" => "온플렛",
         "01" => "비씨",

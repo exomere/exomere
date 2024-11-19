@@ -142,10 +142,10 @@ class ErpOrderController extends Exomere
   public function orderSave(Request $request)
   {
 
-    // $onplatAPI = new OnPlatController();
-    // $res = $onplatAPI->pgInfo(29151);
-    // dd($res);
-    // exit;
+    $onplatAPI = new OnPlatController();
+    $res = $onplatAPI->pgInfo(env('ON_PLAT_KEY'));
+    dd($res);
+    exit;
 
 
     $order_seq = $request->order_seq ?? null;

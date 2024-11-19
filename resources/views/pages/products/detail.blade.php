@@ -45,7 +45,6 @@
 
 @endsection
 @section('content')
-
     <section class="py-10 lg:py-24 relative min-h-screen">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
@@ -158,6 +157,7 @@
                                         </svg>
                                     </button>
                                     <input type="text"
+                                           id="quantity"
                                            name="quantity"
                                            class="quantity font-semibold text-gray-900 border-y border-solid border-gray-300 text-lg w-12 lg:max-w-[118px] bg-transparent placeholder:text-gray-900 text-center hover:bg-gray-50 focus-within:bg-gray-50 outline-0"
                                            value="1"
@@ -191,11 +191,11 @@
 
                         </div>
                         <div class="flex flex-col lg:flex-row items-center gap-3">
-                            <button
+                            {{-- <button
                                 onclick="add2Cart()"
                                 class="rounded-sm group py-4 px-5 border border-solid border-gray-600 bg-white text-gray-600 font-normal text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent">
                                 {{ __('common.add_to_cart') }}
-                            </button>
+                            </button> --}}
                             <button
                                 onclick="buyNow()"
                                 class="rounded-sm text-center w-full px-5 py-4 border border-solid border-base-color bg-base-color flex items-center justify-center font-normal text-lg text-white shadow-sm">
@@ -465,7 +465,7 @@
         }
 
         function buyNow(){
-            if(confirm('바로 구매 하시겠습니까?')) {
+            if(confirm('주문페이지로 이동하시겠습니까?')) {
 
                 let form = document.createElement('form');
                 form.method = 'POST';
@@ -478,6 +478,18 @@
                 inputCsrf.name = '_token';
                 inputCsrf.value = csrfToken;
                 form.appendChild(inputCsrf);
+
+                let inputProductId = document.createElement('input');
+                inputProductId.type = 'hidden';
+                inputProductId.name = 'pd_id';
+                inputProductId.value = {{$product['id']}};
+                form.appendChild(inputProductId);
+
+                let inputProductQty = document.createElement('input');
+                inputProductQty.type = 'hidden';
+                inputProductQty.name = 'pd_qty';
+                inputProductQty.value = $("#quantity").val();
+                form.appendChild(inputProductQty);
 
                 // Append form to the body and submit it
                 document.body.appendChild(form);
