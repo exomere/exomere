@@ -140,7 +140,7 @@ class OrderController extends Exomere
                     "trad_date" => $res['tradDate'],
                     "trad_num" => $res['tradNum'],
                     "approval_num" => $res['approvalNum'],
-                    "card_name" => $res['cardName'],
+                    "card_name" => str_replace('-','',$res['cardName']),
                     "card_num" => $res['cardNum'],
                     "card_inst" => $res['cardInst'],
                     "charge_state" => $res['chargeState'],
