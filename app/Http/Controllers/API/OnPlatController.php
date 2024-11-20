@@ -36,7 +36,10 @@ class OnPlatController extends Exomere
     public function userOrderPayment($data){ 
 
         try{
-            $response = Http::post($this->api_path.'/onplat/out/receipt/oldCert', [
+            $response = Http::withHeaders([
+                'Charset' =>  'UTF-8',
+                'Content-Type' => 'application/json' 
+                ])->post($this->api_path.'/onplat/out/receipt/oldCert', [
                 'pgInfoId' => $this->pgInfoId,
                 'storeId' => $this->store_id,
                 'productName' => $data['productName'],
