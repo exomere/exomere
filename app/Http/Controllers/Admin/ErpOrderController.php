@@ -231,12 +231,6 @@ class ErpOrderController extends Exomere
                 ];
                 return view('pages.erp.order.order_fail')->with($fail_data);
             }
-        }else{
-            $fail_data = [
-                "msg" => "입력 카드정보가 정확하지 않습니다.",
-            ];
-            return view('pages.erp.order.order_fail')->with($fail_data);
-            
         }
       }
     }
