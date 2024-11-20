@@ -23,11 +23,11 @@ class OnPlatController extends Exomere
       
 
         if(env('APP_ENV') == 'production'){
-            // $this->store_id = 29151;
-            // $this->api_path = "https://pro-api.pay-onplat.com";
-
-            $this->store_id = 30693;
+            $this->store_id = 29151;
             $this->api_path = "https://pro-api.pay-onplat.com";
+
+            // $this->store_id = 30693;
+            // $this->api_path = "https://pro-api.pay-onplat.com";
             
         }else{
             $this->store_id = 30693;
