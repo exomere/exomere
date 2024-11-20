@@ -14,30 +14,38 @@ class ProductController extends BaseController
 
         $selectedCategory = request()->query('category') ?? null;
 
-        $products = collect($this->dummy());
+        $products = [];
 
-        if ($keyword = $request->get('search_keyword')) {
-            $products = $products->filter(function ($item) use ($keyword) {
-                return str_contains($item['product_name'], $keyword);
-            });
-        } else {
-            $products = $products->whereNotNull('category');
+        $items = ExItem::whereNotNull('code')->orderBy('sort', 'asc');
+        
+        foreach($items->get() as $item){
+            $products[] = [
+                'id' => $item->id,
+                'product_name' => $item->name,
+                'price' => $item->price,
+                'distribution_price' => 22500,
+                'vat_excluded' => 20455,
+                'total_price' => 22500,
+                'thumbnail' => Storage::url('public/data/'.$item->thum_img),
+                'thumbnail2' => Storage::url('public/data/'.$item->thum_img2),
+                'brand' => 'exomere',
+                'category' => $item->category,
+                'desc' => $item->content,
+                'sub_name' => $item->description,
+                'is_best' => true,
+            ];
         }
-
-        $categorizeItems = $products->groupBy('category');
-
 
         $items = collect([
             'view_all' => $products,
-            "toners_mists" => collect([]),
-            "serums_essences" => collect([]),
-            "creams" => collect([]),
-            "sheet_masks" => collect([]),
-            "cushions" => collect([]),
-        ])->merge($categorizeItems);
+            "toners_mists" => $products,
+            "serums_essences" => $products,
+            "creams" => $products,
+            "sheet_masks" => $products,
+            "cushions" => $products,
+        ]);
 
-
-        $productCount = $products->count();
+        $productCount = $items->count();
 
         return view('pages.products.products', compact('categories', 'productCount', 'items', 'selectedCategory'));
     }

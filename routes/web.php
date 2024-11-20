@@ -201,7 +201,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::delete('/delete/{id}', [NoticeController::class, 'destroy'])->name('notice.delete');
         });
 
-
         /** 1:1문의 */
         Route::prefix('/inquiry')->group(function () {
             Route::get('/list', [InquiryController::class, 'list'])->name('inquiry.list');
@@ -234,7 +233,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/data', [OrganizationController::class, 'getOrgData'])->name('organization.data');
         });
 
-
         Route::prefix('/erp')->group(function () {
             // 회원관리 member
             Route::prefix('/member')->group(function () {
@@ -257,7 +255,6 @@ Route::group(['middleware' => 'auth'], function () {
                     );
                 });
             });
-
 
             // 주문관리 order
             /** 주문관리 */
