@@ -91,6 +91,7 @@ class MemberController extends Exomere
             $output_data[$cnt]["address"] = $member->address;
             $output_data[$cnt]["address_detail"] = $member->address_detail;
             $output_data[$cnt]["phone"] = $member->phone;
+            $output_data[$cnt]["local_store"] = $member->local_store;
 
             $cnt++;
         }   

@@ -10,6 +10,8 @@
   <form method='post' id="order_form" action="{{route('erp-order.save')}}" enctype="multipart/form-data">
     @csrf
     <input type='hidden' name='order_seq' value='{{ $order_seq ?? null }}'> 
+    <input type='hidden' id='order_date2' value='{{ $order_date ?? date("Y-m-d") }}'> 
+    
     <div class="col-xxl">
       <div class="card mb-4">
         <div class="card-header d-flex align-items-center justify-content-between">
@@ -18,12 +20,6 @@
         <div class="card-body">
           <form>
             @csrf
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="order_date"> <span style='color:red;'>*</span> 주문일 </label>
-              <div class="col-sm-3">
-                <input type="text" class="form-control" id="order_date" name='order_date' value="{{ $order_date ?? null }}"/>
-              </div>
-            </div>
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="member_info"> <span style='color:red;'>*</span> 회원선택 </label>
               <div class="col-sm-6">
@@ -36,6 +32,12 @@
               </div>
             </div>
             <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="order_date"> <span style='color:red;'>*</span> 주문일 </label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="order_date" name='order_date' value="{{ $order_date ?? date("Y-m-d") }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="order_type"> <span style='color:red;'>*</span> 주문구분 </label>
               <div class="col-sm-2">
                 <select class="form-select" name="order_type" id="order_type" required>
@@ -45,17 +47,6 @@
                   <option value='distribute_new' @isset($order_data->order_type) @if($order_data->order_type == "distribute_new") selected @endif @endisset>분양몰신규</option>
                   <option value='distribute_repurchase' @isset($order_data->order_type) @if($order_data->order_type == "distribute_repurchase") selected @endif @endisset>분양몰재구문</option>
                 </select>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="center_seq"> 지역점 </label>
-              <div class="col-md-4">
-                <select class="form-select" name="center_seq" id="center_seq">
-                  <option value="">지역점 선택</option>
-                  @foreach ($center_array as $center)
-                    <option value='{{$center['seq']}}' @isset($order_data->center_seq) @if($order_data->center_seq == $center['seq']) selected @endif @endisset>{{$center['name']}} </option>
-                  @endforeach
-                </select>      
               </div>
             </div>
             <div class="row mb-3">
@@ -385,15 +376,15 @@
                                   <input type='hidden' class='form-control' readonly name='card_company[]' value='{{$card->card_company}}'>
                                   <input type='text' class='form-control' readonly name='card_name[]' value='{{$card->card_name}}'>
                                   </td>
-                                  <td><input type='text' class='form-control' readonly name='card_number[]' value='{{$card->card_number}}'></td>
-                                  <td><input type='text' class='form-control card_payment_price' readonly name='card_payment_price[]' value='{{$card->card_payment_price}}'></td>
-                                  <td><input type='text' class='form-control' readonly name='card_month_plan[]' value='{{$card->card_month_plan}}'></td>
-                                  <td><input type='text' class='form-control' readonly name='card_year_month[]' value='{{$card->card_year_month}}'></td>
-                                  <td><input type='text' class='form-control' readonly name='card_approval_number[]' value='{{$card->card_approval_number}}'></td>
-                                  <td><input type='text' class='form-control' readonly name='card_approval_name[]' value='{{$card->card_approval_name}}'></td>
-                                  <td><input type='text' class='form-control' readonly name='card_approval_date[]' value='{{$card->card_approval_date}}'></td>
-                                  <td><input type='text' class='form-control' readonly name='card_password[]' value='{{$card->card_password}}'></td>
-                                  <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='card' data-idx='{{$card_cnt}}' >삭제</button></td>
+                                  <td><input type='text' class='form-control' readonly name='card_number[]' value='{{$card->card_number ?? null}}'></td>
+                                  <td><input type='text' class='form-control card_payment_price' readonly name='card_payment_price[]' value='{{$card->card_payment_price ?? null}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_month_plan[]' value='{{$card->card_month_plan ?? null}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_year_month[]' value='{{$card->card_year_month ?? null}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_approval_number[]' value='{{$card->card_approval_number ?? null}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_approval_name[]' value='{{$card->card_approval_name ?? null}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_approval_date[]' value='{{$card->card_approval_date ?? null}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_password[]' value='{{$card->card_password ?? null}}'></td>
+                                  <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='card' data-idx='{{$card_cnt ?? null}}' >삭제</button></td>
                               </tr>
                               @php $card_cnt++; @endphp
                             @endforeach
@@ -523,4 +514,20 @@
 <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
 <script src="/assets/js/admin/order-register.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#product_select').select2();
+    $("#payment_card_9").datepicker();
+    $("#payment_account_3").datepicker();
+    $("#order_date").datepicker();
+    $("#order_date").datepicker("option", "dateFormat", 'yy-mm-dd');
+    $("#payment_card_9").datepicker("option", "dateFormat", 'yy-mm-dd');
+    $("#payment_account_3").datepicker("option", "dateFormat", 'yy-mm-dd');
+
+    $("#order_date").val($("#order_date2").val());
+});  
+
+
+</script>
 @endsection

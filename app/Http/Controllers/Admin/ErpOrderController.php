@@ -143,8 +143,9 @@ class ErpOrderController extends Exomere
   public function orderSave(Request $request)
   {
     $onplatAPI = new OnPlatController();
-    $exCenter = ExCenter::find( $request->center_seq );
     $exMember = ExMember::find( $request->member_seq );
+    $exCenter = ExCenter::find( $exMember->local_store );
+  
     $resident_number = substr(str_replace('-','',$exMember->resident_number ?? null),0,6) ;
     $user_phone = str_replace('-','',$request->phone);
     $order_seq = $request->order_seq ?? null;
@@ -200,8 +201,6 @@ class ErpOrderController extends Exomere
         ];
 
         $res = $onplatAPI->userOrderPayment($card_payment_info);
-
-        dd($res);
 
         if(isset($res['storeId'])){
             $return_card_info = [
@@ -261,7 +260,6 @@ class ErpOrderController extends Exomere
       $exMember->update([
           "remain_points" => ($exMember->remain_points - $point_payment),
       ]);
-
     }
 
     $input_data = [
@@ -272,7 +270,7 @@ class ErpOrderController extends Exomere
       "recommend_id" => $exMember->recommend_id ?? null,
       "recommend_name" => $exMember->recommend_name ?? null,
       "order_type" => $request->order_type ?? null,
-      "center_seq" => $request->center_seq ?? null,
+      "center_seq" => $exMember->local_store ?? null,
       "center_name" => $exCenter->name ?? null,
       "receipt_method" => $request->receipt_method ?? null,
       "delivery_name" => $request->delivery_name ?? null,

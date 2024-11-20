@@ -191,7 +191,7 @@ var orderReg = {
                         html += " <td>" + data.member_id + "</td>";
                         html += " <td>" + data.member_position + "</td>";
                         html += " <td>" + data.created_at + "</td>";
-                        html += " <td><button type='button' class='choisMemberInfo btn btn-primary me-3' data-address='"+data.address+"' data-address_detail='"+data.address_detail+"' data-phone='"+data.phone+"'  data-zipcode='"+data.zipcode+"' data-seq='" + data.seq + "' data-name='" + data.name + "' data-member_id='" + data.member_id + "' data-remain_points='"+data.remain_points+"' data-position='"+data.member_position+"'>선택</button></td>"
+                        html += " <td><button type='button' class='choisMemberInfo btn btn-primary me-3' data-local_store='"+data.local_store+"' data-address='"+data.address+"' data-address_detail='"+data.address_detail+"' data-phone='"+data.phone+"'  data-zipcode='"+data.zipcode+"' data-seq='" + data.seq + "' data-name='" + data.name + "' data-member_id='" + data.member_id + "' data-remain_points='"+data.remain_points+"' data-position='"+data.member_position+"'>선택</button></td>"
                         html += "</tr>";
                     });
                 }
@@ -335,22 +335,21 @@ var orderReg = {
         var zipcode = e.data('zipcode');
         var address = e.data('address');
         var phone = e.data('phone');
+        var local_store = e.data('local_store');
         
         $(".cancelMemberInfo").trigger('click');
-
         $("#member_info").val(id+" | "+name);
         $("#member_seq").val(seq);
         $("#member_position").val(position);
         $("#remain_points").val(remain_points)
         $("#point_payment").val(0);
-
         $("#delivery_name").val(name);
         $("#delivery_phone").val(phone);
         $("#zipcode").val(zipcode);
         $("#address").val(address);
         $("#address_detail").val(address_detail);
 
-        orderReg.totalRecalculating();
+        // orderReg.totalRecalculating();
     },
 
     Bind: function () {
@@ -407,15 +406,3 @@ var orderReg = {
         orderReg.Bind();
     }
 }
-
-
-$(function () {
-    $('#product_select').select2();
-    $('#center_seq').select2();
-    $("#payment_card_9").datepicker();
-    $("#payment_account_3").datepicker();
-    $("#order_date").datepicker();
-    $("#order_date").datepicker("option", "dateFormat", 'yy-mm-dd');
-    $("#payment_card_9").datepicker("option", "dateFormat", 'yy-mm-dd');
-    $("#payment_account_3").datepicker("option", "dateFormat", 'yy-mm-dd');
-});  
