@@ -22,12 +22,10 @@ $activeHeader = true;
                     <p class="text-lg text-center text-gray-600 mb-4">카드결제가 완료 되었습니다</p>
 
                     <div class="bg-white p-4 rounded-lg mb-4 shadow">
-                        <h3 class="font-semibold text-lg mb-2">결제 카드</h3>
+                        <h3 class="font-semibold text-lg mb-2">카드 결제</h3>
                         <div class="text-gray-700">
-                            <p class="mb-1">카드: KB국민</p>
-                            <p class="mb-1">계좌번호: 989801-00-072129</p>
-                            <p class="mb-1">예금주: ㈜엑소미어</p>
-                            <p class="font-bold text-blue-600 text-lg">{{ number_format($total_amount) }}원</p>
+                            <p class="mb-1">카드 승인번호: {{$return_card_info['approval_num']}}</p>
+                            <p class="font-bold text-blue-600 text-lg">결제금액 : {{ number_format($total_amount) }}원</p>
                         </div>
                     </div>
 

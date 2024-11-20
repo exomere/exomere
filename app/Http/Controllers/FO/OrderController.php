@@ -107,6 +107,7 @@ class OrderController extends Exomere
         }
 
         if($request->payment_type == 'card'){
+            $is_approval = 'Y';
             /* 카드결제 */
             $onplatAPI = new OnPlatController();
             
@@ -127,31 +128,42 @@ class OrderController extends Exomere
                 'password2' => $request->card_password,
                 'userInfo' => $request->user_brith,
             ];
-            
 
             $res = $onplatAPI->userOrderPayment($card_payment_info);
+            
+            if(isset($res['storeId'])){
+                $return_card_info = [
+                    "member_seq" => $ex_member->id,
+                    "store_id" => $res['storeId'],
+                    "receipt_id" => $res['receiptId'],
+                    "receipt_num" => $res['receiptNum'],
+                    "trad_date" => $res['tradDate'],
+                    "trad_num" => $res['tradNum'],
+                    "approval_num" => $res['approvalNum'],
+                    "card_name" => $res['cardName'],
+                    "card_num" => $res['cardNum'],
+                    "card_inst" => $res['cardInst'],
+                    "charge_state" => $res['chargeState'],
+                    "resp_msg" => $res['respMsg'],
+                    "return_url" => $res['returnUrl'],
+                    "return_val" => $res['returnVal'],
+                    "reg_date" => date('Y-m-d H:i:s'),
+                ];
+                ExCardPayment::create($return_card_info);
 
-            dd($res);
+                if($res['chargeState'] == "승인거절"){
+                    $fail_data = [
+                        "msg" => $res['respMsg'],
+                    ];
+                    return view('pages.mypage.order_fail')->with($fail_data);
+                }
+            }else{
+                $fail_data = [
+                    "msg" => "입력 카드정보가 정확하지 않습니다.",
+                ];
+                return view('pages.mypage.order_fail')->with($fail_data);
+            }
 
-            $return_card_info = [
-                "member_seq" => $ex_member->id,
-                "store_id" => $res['storeId'],
-                "receipt_id" => $res['receiptId'],
-                "receipt_num" => $res['receiptNum'],
-                "trad_date" => $res['tradDate'],
-                "trad_num" => $res['tradNum'],
-                "approval_num" => $res['approvalNum'],
-                "card_name" => $res['cardName'],
-                "card_num" => $res['cardNum'],
-                "card_inst" => $res['cardInst'],
-                "charge_state" => $res['chargeState'],
-                "resp_msg" => $res['respMsg'],
-                "return_url" => $res['returnUrl'],
-                "return_val" => $res['returnVal'],
-                "reg_date" => date('Y-m-d H:i:s'),
-            ];
-            ExCardPayment::create($return_card_info);
-         
             if(isset($request->card_company)){
                 for ($i = 0; $i < count($request->card_company); $i++) {
                     $card_info[0]['card_company'] = $request->card_company;
@@ -206,7 +218,7 @@ class OrderController extends Exomere
             "point_payment" => $point_payment,
             "card_payment" => $card_payment,
             "account_payment" => $account_payment,
-
+            "is_approval" => $is_approval ?? 'N',
             "item_info" => json_encode($item_array) ?? [],
             "card_info" => json_encode($card_info) ?? [],
             "account_info" => json_encode($account_info) ?? [],

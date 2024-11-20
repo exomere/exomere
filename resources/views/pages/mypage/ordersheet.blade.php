@@ -17,7 +17,7 @@ $activeHeader = true;
 
     <section class="py-10 lg:py-24 relative min-h-screen">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <form action="/mypage/doPayment" method="POST">
+            <form id='paymentForm' action="/mypage/doPayment" method="POST">
                 @csrf
                 <div class="grid grid-cols-12 min-h-screen rounded-sm">
                     <div class="col-span-12 lg:col-span-8 p-4">
@@ -191,7 +191,7 @@ $activeHeader = true;
                                                 readonly
                                                 value="입금계좌 : 국민 989801-00-072129 ㈜엑소미어"
                                             />
-                                            <input type="text" name="account_name"
+                                            <input type="text" name="account_name" id="account_name"
                                                    class="w-full mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                                                    placeholder="입금자명을 입력해주세요."
                                             >
@@ -209,17 +209,17 @@ $activeHeader = true;
                                     <div class="w-full max-w-sm min-w-[240px]">
                                         <div class="flex flex-col gap-2">
                                             <div class="flex flex-col">
-                                                <label class="required" for="payment_card_1">카드선택</label>
+                                                <label class="required" for="payment_card">카드선택</label>
                                                 <select
                                                     class="mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow "
-                                                    id="payment_card_1">
+                                                    id="payment_card">
                                                     <option value="">==선택==</option>
                                                     @foreach ($card_compnay as $key => $val)
                                                         <option value="{{$key}}">{{$val}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-
+                                            
                                             <div>
                                                 <label class="required" for="card_name">소유자명</label>
                                                 <input type="text"
@@ -330,8 +330,8 @@ $activeHeader = true;
                                     약관 및 주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.
                                 </div>
                                 <button
-                                    type="submit"
-                                    class="rounded-sm text-center w-full px-5 py-4 border border-solid border-base-color bg-base-color flex items-center justify-center font-normal text-lg text-white shadow-sm">
+                                    type="button"
+                                    class="submitBtn rounded-sm text-center w-full px-5 py-4 border border-solid border-base-color bg-base-color flex items-center justify-center font-normal text-lg text-white shadow-sm">
                                     {{number_format($pd_price * $pd_qty)}} 원
                                     {{ __('common.checkout') }}
                                 </button>
@@ -348,6 +348,63 @@ $activeHeader = true;
 @section('page-script')
     <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
     <script>
+
+        $(".submitBtn").on("click",function(){
+            var check_value = $('input:radio[name="payment_type"]:checked').val();
+            
+            if(check_value == 'card'){
+                
+                if($("#payment_card").val() == ""){
+                    alert('누락된 값을 입력해주세요.');
+                    $("#payment_card").focus();
+                    return false;
+                }
+                if($("#card_name").val() == ""){
+                    alert('누락된 값을 입력해주세요.');
+                    $("#card_name").focus();
+                    return false;
+                }
+                if($("#card_number").val() == ""){
+                    alert('누락된 값을 입력해주세요.');
+                    $("#card_number").focus();
+                    return false;
+                }
+                if($("#card_password").val() == ""){
+                    alert('누락된 값을 입력해주세요.');
+                    $("#card_password").focus();
+                    return false;
+                }
+                if($("#user_brith").val() == ""){
+                    alert('누락된 값을 입력해주세요.');
+                    $("#user_brith").focus();
+                    return false;
+                }
+                if($("#card_installment").val() == ""){
+                    alert('누락된 값을 입력해주세요.');
+                    $("#card_installment").focus();
+                    return false;            
+                }
+                if($("#card_year").val() == ""){
+                    alert('누락된 값을 입력해주세요.');
+                    $("#card_year").focus();
+                    return false;
+                }
+                if($("#card_year").val() == ""){
+                    alert('누락된 값을 입력해주세요.');
+                    $("#card_year").focus();
+                    return false;
+                }
+            }else{
+                
+                if($("#account_name").val() == ""){
+                    alert('누락된 값을 입력해주세요.');
+                    $("#account_name").focus();
+                    return false;
+                }
+            }
+
+            $("#paymentForm").submit();
+        });
 
         function getPostCode() {
             new daum.Postcode({
