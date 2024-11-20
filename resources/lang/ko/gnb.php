@@ -43,6 +43,7 @@ return [
     "cart" => "장바구니",
     "ordersheet" => "주문서",
     "order_complete" => "주문완료",
+    "order_fail" => "주문실패",
     "social" => "사회공헌",
     "company" => "기업",
 ];

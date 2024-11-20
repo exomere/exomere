@@ -262,7 +262,7 @@ var orderReg = {
         html += "    <td><input type='text' class='form-control' readonly name='card_number[]' value='"+ $("#payment_card_2").val() +"'></td>";
         html += "    <td><input type='text' class='form-control card_payment_price' readonly name='card_payment_price[]' value='"+orderReg.addComma($("#payment_card_10").val())+"'></td>";
         html += "    <td><input type='text' class='form-control' readonly name='card_month_plan[]' value='"+$("#payment_card_5").val()+"'></td>";
-        html += "    <td><input type='text' class='form-control' readonly name='card_year_month[]' value='"+$("#payment_card_6").val()+"/"+$("#payment_card_7").val()+"'></td>";
+        html += "    <td><input type='text' class='form-control' readonly name='card_year_month[]' value='"+$("#payment_card_6").val()+""+$("#payment_card_7").val()+"'></td>";
         html += "    <td><input type='text' class='form-control' readonly name='card_approval_number[]' value='"+$("#payment_card_8").val()+"'></td>";
         html += "    <td><input type='text' class='form-control' readonly name='card_approval_name[]' value='"+$("#payment_card_3").val()+"'></td>";
         html += "    <td><input type='text' class='form-control' readonly name='card_approval_date[]' value='"+$("#payment_card_9").val()+"'></td>";

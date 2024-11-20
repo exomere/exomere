@@ -7,8 +7,10 @@ use App\Models\ExOrder;
 use App\Models\ExItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Exomere;
+use App\Models\ExCardPayment;
 use App\Models\ExCenter;
 use App\Models\ExMember;
+use App\Models\ExPointLog;
 use Ramsey\Uuid\Type\Integer;
 
 class ErpOrderController extends Exomere
@@ -129,7 +131,6 @@ class ErpOrderController extends Exomere
       "order_date" => $order_date ?? date('Y-m-d'),
     ];
 
-
     return view('pages.erp.order.register')->with($data);
   }
 
@@ -141,19 +142,18 @@ class ErpOrderController extends Exomere
 
   public function orderSave(Request $request)
   {
-
     $onplatAPI = new OnPlatController();
-    $res = $onplatAPI->pgInfo(env('ON_PLAT_KEY'));
-    dd($res);
-    exit;
-
-
+    $exCenter = ExCenter::find( $request->center_seq );
+    $exMember = ExMember::find( $request->member_seq );
+    $resident_number = substr(str_replace('-','',$exMember->resident_number),0,6);
+    $user_phone = str_replace('-','',$request->phone);
     $order_seq = $request->order_seq ?? null;
-
+    $is_approval = 'Y';
     $item_info = [];
     $card_info = [];
     $account_info = [];
     $total_pv = 0;
+
     if(isset($request->pd_qty)){
       for ($i = 0; $i < count($request->pd_qty); $i++) {
         $item_info[$i]['pd_seq'] = $request->pd_seq[$i];
@@ -161,10 +161,12 @@ class ErpOrderController extends Exomere
         $item_info[$i]['pd_price'] = $request->pd_price[$i];
         $item_info[$i]['pd_name'] = $request->pd_name[$i];
         $item_info[$i]['pd_pv'] = $request->pd_pv[$i];
-        
         $total_pv += (1*($request->pd_pv[$i]) * (1*$request->pd_qty[$i]));
       }
     }
+
+    $cardProductName = $request->pd_name[0]."외 ".(count($request->pd_name)-1);
+
     if(isset($request->card_company)){
       for ($i = 0; $i < count($request->card_company); $i++) {
         $card_info[$i]['card_company'] = $request->card_company[$i];
@@ -173,23 +175,78 @@ class ErpOrderController extends Exomere
         $card_info[$i]['card_payment_price'] = $request->card_payment_price[$i];
         $card_info[$i]['card_month_plan'] = $request->card_month_plan[$i];
         $card_info[$i]['card_year_month'] = $request->card_year_month[$i];
-        $card_info[$i]['card_approval_number'] = $request->card_approval_number[$i];
+        
         $card_info[$i]['card_approval_name'] = $request->card_approval_name[$i];
         $card_info[$i]['card_approval_date'] = $request->card_approval_date[$i];
         $card_info[$i]['card_password'] = $request->card_password[$i];
+     
+        /* 카드결제 */
+        $card_payment_info = [
+            'productName' => $cardProductName,
+            'customerName' => $request->card_approval_name[$i],
+            'customerPhone' => $user_phone,
+            'totalAmount' => $request->card_payment_price[$i],
+            'cardNum' => $request->card_number[$i],
+            'cardInst' => $request->card_month_plan[$i],
+            'expiryDate' => $request->card_year_month[$i],
+            'password2' => $request->card_password[$i],
+            'userInfo' => $resident_number,
+        ];
+
+        $res = $onplatAPI->userOrderPayment($card_payment_info);
+
+        $card_info[$i]['card_approval_number'] = $res['approvalNum'];
+
+        $return_card_info = [
+            "member_seq" => $exMember->id,
+            "store_id" => $res['storeId'],
+            "receipt_id" => $res['receiptId'],
+            "receipt_num" => $res['receiptNum'],
+            "trad_date" => $res['tradDate'],
+            "trad_num" => $res['tradNum'],
+            "approval_num" => $res['approvalNum'],
+            "card_name" => $res['cardName'],
+            "card_num" => $res['cardNum'],
+            "card_inst" => $res['cardInst'],
+            "charge_state" => $res['chargeState'],
+            "resp_msg" => $res['respMsg'],
+            "return_url" => $res['returnUrl'],
+            "return_val" => $res['returnVal'],
+            "reg_date" => date('Y-m-d H:i:s'),
+        ];
+      
+        ExCardPayment::create($return_card_info);
       }
     }
+    
     if(isset($request->account_number)){
       for ($i = 0; $i < count($request->account_number); $i++) {
         $account_info[$i]['account_number'] = $request->account_number[$i];
         $account_info[$i]['account_head'] = $request->account_head[$i];
         $account_info[$i]['account_date'] = $request->account_date[$i];
         $account_info[$i]['account_payment_price'] = $request->account_payment_price[$i];
+        $is_approval = 'N';
       }
     }
 
-    $exCenter = ExCenter::find( $request->center_seq );
-    $exMember = ExMember::find( $request->member_seq );
+    $point_payment = str_replace(',', '', $request->point_payment);
+
+    if($point_payment > 0){
+      ExPointLog::create([
+        "kind" => "use",
+        "date" => date("Y-m-d H:i:s"),
+        "member_seq" => $request->member_seq,
+        "point" => $point_payment,
+        "remark" => "주문 포인트 결제",
+        "reg_name" => $request->session()->get('member_name'),
+      ]);
+
+      $exMember->update([
+          "remain_points" => ($exMember->remain_points - $point_payment),
+      ]);
+
+    }
+
 
     $input_data = [
       "member_seq" => $request->member_seq ?? null,
@@ -208,19 +265,19 @@ class ErpOrderController extends Exomere
       "address" => $request->address ?? null,
       "address_detail" => $request->address_detail ?? null,
       "remark" => $request->remark ?? null,
-      "total_amount" => str_replace(',', '', $request->total_amount) ?? null,
-      "total_pv" => str_replace(',', '', $total_pv) ?? null,
-      
-      "payment_amount" => str_replace(',', '', $request->payment_amount) ?? null,
-      "remaining_amount" => str_replace(',', '', $request->remaining_amount) ?? null,
-      "cash_payment" => str_replace(',', '', $request->cash_payment) ?? null,
-      "point_payment" => str_replace(',', '', $request->point_payment) ?? null,
-      "card_payment" => str_replace(',', '', $request->card_payment) ?? null,
-      "account_payment" => str_replace(',', '', $request->account_payment) ?? null,
+      "total_amount" => str_replace(',', '', $request->total_amount) ?? 0,
+      "total_pv" => str_replace(',', '', $total_pv) ?? 0,
+      "payment_amount" => str_replace(',', '', $request->payment_amount) ?? 0,
+      "remaining_amount" => str_replace(',', '', $request->remaining_amount) ?? 0,
+      "cash_payment" => str_replace(',', '', $request->cash_payment) ?? 0,
+      "point_payment" => $point_payment ?? 0,
+      "card_payment" => str_replace(',', '', $request->card_payment) ?? 0,
+      "account_payment" => str_replace(',', '', $request->account_payment) ?? 0,
       "item_info" => json_encode($item_info) ?? [],
       "card_info" => json_encode($card_info) ?? [],
       "account_info" => json_encode($account_info) ?? [],
       "order_date" => $request->order_date ?? date("Y-m-d H:i:s"),
+      "is_approval" => $is_approval,
       "reg_name" => $request->session()->get('member_id'),
     ];
 

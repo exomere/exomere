@@ -33,23 +33,25 @@ class OnPlatController extends Exomere
         $this->pgInfoId = $pgInfo[0]['id'];    
     }
 
-    public function userOrderPayment(){ 
+    public function userOrderPayment($data){ 
 
         try{
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/json'
-            ])->post($this->api_path.'/onplat/out/pgInfo', [
+            $response = Http::post($this->api_path.'/onplat/out/receipt/oldCert', [
                 'pgInfoId' => $this->pgInfoId,
                 'storeId' => $this->store_id,
-                'productName' => '상품명',
-                'customerName' => '구매자명',
-                'customerPhone' => '구매자연락처(숫자만 입력)',
-                'totalAmount' => '결제금액',
-                'cardNum' => '카드번호',
-                'cardInst' => '할부개월수',
-                'expiryDate' => '유효기간',
-                'returnVal' => '그대로 되돌려받을 값 상점처리용',
+                'productName' => $data['productName'],
+                'customerName'=> $data['customerName'],
+                'customerPhone'=> $data['customerPhone'],
+                'totalAmount'=> $data['totalAmount'],
+                'cardNum'=> $data['cardNum'],
+                'cardInst'=> $data['cardInst'],
+                'expiryDate'=> $data['expiryDate'],
+                'password2'=> $data['password2'],
+                'userInfo'=> $data['userInfo'],
+                'returnVal'=> $data['returnVal'] ?? '-',
             ]);
+            
+            return $response->json();
         }catch(Exception $e){
             $e->getMessage();
         }

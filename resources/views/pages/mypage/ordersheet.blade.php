@@ -36,7 +36,7 @@ $activeHeader = true;
                                                 받는 이
                                             </label>
                                             <input
-                                                id=""
+                                                id="user_name" name="user_name"
                                                 class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                                                 maxlength="10"
                                                 placeholder="수령자 명"
@@ -51,7 +51,7 @@ $activeHeader = true;
                                                 휴대폰 번호
                                             </label>
                                             <input
-                                                id="phone"
+                                                id="user_phone" name="user_phone"
                                                 class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                                                 maxlength="11"
                                                 value="{{$ex_member->phone ?? null}}"
@@ -114,6 +114,8 @@ $activeHeader = true;
                                                     <p class="font-semibold">{{$item_info->name}}</p>
 
                                                     <div class="flex flex-row">
+                                                        <input type='hidden' name='pd_qty' value="{{$pd_qty}}">
+                                                        <input type='hidden' name='pd_id' value="{{$pd_id}}">
                                                         수량: {{$pd_qty}}
                                                     </div>
                                                     <h6 class="flex"><span
@@ -245,6 +247,16 @@ $activeHeader = true;
                                                        maxlength="2"
                                                        name="card_password"
                                                        id="card_password"
+                                                >
+                                            </div>
+                                            <div>
+                                                <label class="required" for="card_password">생년월일</label>
+                                                <input type="text"
+                                                       class="w-full mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                                                       placeholder="생년월일 입력해주세요. Ex) 870204 "
+                                                       maxlength="6"
+                                                       name="user_brith"
+                                                       id="user_brith"
                                                 >
                                             </div>
                                             <div class="grid grid-cols-2 gap-1">

@@ -14,6 +14,7 @@ class ErpPointController extends Exomere
     CONST POINT_KIND = [
         "provision" => "지급",
         "sell" => "구매",
+        "use" => "사용",
     ];
     /**
      * Display a listing of the notices.
@@ -43,10 +44,10 @@ class ErpPointController extends Exomere
 
     //포인트 지급
     public function provision(Request $request){
-        $seq = $request->seq;
+        $seq = $request->member_seq;
 
         $exMember = ExMember::find($seq);
-
+        
         $exMember->update([
             "remain_points" => ($exMember->remain_points + $request->provision_point),
             "payment_points" => ($exMember->payment_points + $request->provision_point),

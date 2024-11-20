@@ -221,7 +221,7 @@
       var member_id = $(this).data("member_id");
       var name = $(this).data("name");
       var remain_points = $(this).data("remain_points");
-
+      
       $("#member_seq").val(seq);
       $("#member_id").val(member_id);
       $("#member_name").val(name);
@@ -241,7 +241,7 @@
     var remain_points =  $("#remain_points").val();
     var provision_point =  $("#provision_point").val();
     var remark =  $("#remark").val();
-
+    
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -268,7 +268,7 @@
   $(".provisionPointList").on("click",function(){
 
     var seq = $(this).data("seq");
-
+    
     $(".point_info_body").empty();
 
     $.ajax({

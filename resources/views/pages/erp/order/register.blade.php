@@ -268,7 +268,11 @@
                         <label class="col-sm-1 col-form-label" for="payment_card_6"> 유효기간 </label>
                         <div class="col-sm-1">
                           <select class="form-select"  id="payment_card_6">
+                             @php
+                              $month_val = "0";
+                             @endphp
                             @for ($i = date("y"); $i < (date("y")+15); $i++)
+                
                                 <option value="{{$i}}">{{$i}}년</option>
                             @endfor
                           </select>
@@ -276,8 +280,13 @@
                         <div class="col-sm-1">
                           <select class="form-select"  id="payment_card_7">
                             @for ($i = 1; $i < 13; $i++)
-                              <option value="{{$i}}">{{$i}}월</option>
-                          @endfor
+                              @if($i < 10)
+                                @php $month_val = "0".$i @endphp
+                              @else
+                                @php $month_val = $i @endphp
+                              @endif
+                              <option value="{{$month_val}}">{{$i}}월</option>
+                            @endfor
                           </select>
                         </div>
                       </div>
