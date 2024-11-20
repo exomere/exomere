@@ -69,9 +69,9 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\FO\OrderController as orderFoController;
 use Illuminate\Support\Facades\Artisan;
 
-// if (env('APP_ENV') == 'production') {
-//     \Illuminate\Support\Facades\URL::forceScheme('https');
-// }
+if (env('APP_ENV') == 'production') {
+    \Illuminate\Support\Facades\URL::forceScheme('https');
+}
 
 ###################### 미인증 페이지 START ###########################
 
