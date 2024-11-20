@@ -20,15 +20,20 @@ class OnPlatController extends Exomere
 
     public function __construct() {
         
-        $this->store_id = env('ON_PLAT_KEY' ,'29151');
+      
 
         if(env('APP_ENV') == 'production'){
+            $this->store_id = 29151;
             $this->api_path = "https://pro-api.pay-onplat.com";
         }else{
-            $this->api_path = "https://dev-api.on-plat.com";
+            $this->store_id = 30693;
+            $this->api_path = "https://pro-api.pay-onplat.com";
         }
 
-        $pgInfo = Http::get($this->api_path.'/onplat/out/pgInfo?storeId='.$this->store_id)->json();
+        $pgInfo = Http::withHeaders([
+            'Charset' =>  'UTF-8',
+            'Content-Type' => 'application/json' 
+            ])->get($this->api_path.'/onplat/out/pgInfo?storeId='.$this->store_id)->json();
 
         $this->pgInfoId = $pgInfo[0]['id'];    
     }

@@ -182,7 +182,6 @@ class ErpOrderController extends Exomere
         $card_info[$i]['card_payment_price'] = $request->card_payment_price[$i];
         $card_info[$i]['card_month_plan'] = $request->card_month_plan[$i];
         $card_info[$i]['card_year_month'] = $request->card_year_month[$i];
-        
         $card_info[$i]['card_approval_name'] = $request->card_approval_name[$i];
         $card_info[$i]['card_approval_date'] = $request->card_approval_date[$i];
         $card_info[$i]['card_password'] = $request->card_password[$i];
@@ -201,6 +200,8 @@ class ErpOrderController extends Exomere
         ];
 
         $res = $onplatAPI->userOrderPayment($card_payment_info);
+
+        dd($res);
 
         if(isset($res['storeId'])){
             $return_card_info = [
