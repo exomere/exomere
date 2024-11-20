@@ -119,7 +119,7 @@ class OrderController extends Exomere
 
             $card_payment_info = [
                 'productName' => $item_info->name,
-                'customerName' => $request->user_name,
+                'customerName' => $request->card_name,
                 'customerPhone' => $phone,
                 'totalAmount' => $total_amount,
                 'cardNum' => str_replace('-','',$request->card_number),
