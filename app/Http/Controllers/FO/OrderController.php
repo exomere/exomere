@@ -204,8 +204,8 @@ class OrderController extends Exomere
             "center_name" => $ex_center->name ?? null,
             "receipt_method" => "delivery",
 
-            // "delivery_name" => $request->delivery_name ?? null,
-            // "delivery_phone" => $request->delivery_phone ?? null,
+            "delivery_name" => $request->user_name ?? null,
+            "delivery_phone" => $request->user_phone ?? null,
 
             "zipcode" => $request->zipcode ?? null,
             "address" => $request->address ?? null,
@@ -226,7 +226,7 @@ class OrderController extends Exomere
             "reg_name" => "F/O 본인결제",
         ];
 
-        // ExOrder::create($input_data);
+        ExOrder::create($input_data);
 
         $complete_data = [
             "input_data" => $input_data,

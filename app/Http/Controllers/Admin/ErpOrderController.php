@@ -145,7 +145,7 @@ class ErpOrderController extends Exomere
     $onplatAPI = new OnPlatController();
     $exCenter = ExCenter::find( $request->center_seq );
     $exMember = ExMember::find( $request->member_seq );
-    $resident_number = substr(str_replace('-','',$exMember->resident_number),0,6);
+    $resident_number = substr(str_replace('-','',$exMember->resident_number ?? null),0,6) ;
     $user_phone = str_replace('-','',$request->phone);
     $order_seq = $request->order_seq ?? null;
     $is_approval = 'Y';
@@ -153,6 +153,13 @@ class ErpOrderController extends Exomere
     $card_info = [];
     $account_info = [];
     $total_pv = 0;
+
+    if(empty($request->pd_qty)){
+      $fail_data = [
+          "msg" => "상품 누락",
+      ];
+      return view('pages.erp.order.order_fail')->with($fail_data);
+    }
 
     if(isset($request->pd_qty)){
       for ($i = 0; $i < count($request->pd_qty); $i++) {
@@ -195,27 +202,42 @@ class ErpOrderController extends Exomere
 
         $res = $onplatAPI->userOrderPayment($card_payment_info);
 
-        $card_info[$i]['card_approval_number'] = $res['approvalNum'];
+        if(isset($res['storeId'])){
+            $return_card_info = [
+                "member_seq" => $exMember->id,
+                "store_id" => $res['storeId'],
+                "receipt_id" => $res['receiptId'],
+                "receipt_num" => $res['receiptNum'],
+                "trad_date" => $res['tradDate'],
+                "trad_num" => $res['tradNum'],
+                "approval_num" => $res['approvalNum'],
+                "card_name" => $res['cardName'],
+                "card_num" => $res['cardNum'],
+                "card_inst" => $res['cardInst'],
+                "charge_state" => $res['chargeState'],
+                "resp_msg" => $res['respMsg'],
+                "return_url" => $res['returnUrl'],
+                "return_val" => $res['returnVal'],
+                "reg_date" => date('Y-m-d H:i:s'),
+            ];
 
-        $return_card_info = [
-            "member_seq" => $exMember->id,
-            "store_id" => $res['storeId'],
-            "receipt_id" => $res['receiptId'],
-            "receipt_num" => $res['receiptNum'],
-            "trad_date" => $res['tradDate'],
-            "trad_num" => $res['tradNum'],
-            "approval_num" => $res['approvalNum'],
-            "card_name" => $res['cardName'],
-            "card_num" => $res['cardNum'],
-            "card_inst" => $res['cardInst'],
-            "charge_state" => $res['chargeState'],
-            "resp_msg" => $res['respMsg'],
-            "return_url" => $res['returnUrl'],
-            "return_val" => $res['returnVal'],
-            "reg_date" => date('Y-m-d H:i:s'),
-        ];
-      
-        ExCardPayment::create($return_card_info);
+            ExCardPayment::create($return_card_info);
+
+            $card_info[$i]['card_approval_number'] = $res['approvalNum'];
+
+            if($res['chargeState'] == "승인거절"){
+                $fail_data = [
+                    "msg" => $res['respMsg'],
+                ];
+                return view('pages.erp.order.order_fail')->with($fail_data);
+            }
+        }else{
+            $fail_data = [
+                "msg" => "입력 카드정보가 정확하지 않습니다.",
+            ];
+            return view('pages.erp.order.order_fail')->with($fail_data);
+            
+        }
       }
     }
     
@@ -246,7 +268,6 @@ class ErpOrderController extends Exomere
       ]);
 
     }
-
 
     $input_data = [
       "member_seq" => $request->member_seq ?? null,
