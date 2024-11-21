@@ -5,15 +5,27 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Exomere;
 use App\Http\Controllers\FO\ProductController;
 use App\Models\ExBanner;
+use App\Models\ExDistribute;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use function Psy\debug;
 
 class MainController extends Exomere
 {
-
-    public function index()
+    public function index(Request $request)
     {
+        $code = $request->code ?? 'exomere';
+
+        $director = ExDistribute::where("code",$code)->first();
+
+        $request->session()->put('director_name', $director->director_name ?? '정영철');
+        $request->session()->put('director_company', $director->name ?? '(주)엑소미어');
+        $request->session()->put('director_business_num', $director->business_num ?? '');
+        $request->session()->put('director_phone', $director->director_phone ?? '02-1577-1586');
+        $request->session()->put('director_address', $director->address ?? '서울 송파구 법원로11길 11 (문정동, 문정현대지식산업센터1-1) ');
+        $request->session()->put('director_address_detail', $director->address_detail ?? 'A동 204호');
+        $request->session()->put('director_code', $director->pg_code ?? '29151');
 
         $banners = ExBanner::where('is_active','Y')->get();
         $mainVideoBanner = [];

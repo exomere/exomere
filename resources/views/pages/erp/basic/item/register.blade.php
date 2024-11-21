@@ -333,6 +333,20 @@
                 <input type="number" id="basic-default-stock" class="form-control" name='stock' value="{{ $item->stock ?? null }}"/>
               </div>
             </div>
+
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-category2">상품분류</label>
+              <div class="col-sm-2">
+                <select class="form-control" id="basic-default-category2" name='category2'>
+                    <option @isset($item->category2) @if($item->category2 == "creams") selected @endif @endisset value="creams">creams</option>  
+                    <option @isset($item->category2) @if($item->category2 == "serums_essences") selected @endif @endisset value="serums_essences">serums_essences</option>
+                    <option @isset($item->category2) @if($item->category2 == "toners_mists") selected @endif @endisset value="toners_mists">toners_mists</option>
+                    <option @isset($item->category2) @if($item->category2 == "cushions") selected @endif @endisset value="cushions">cushions</option>
+                    <option @isset($item->category2) @if($item->category2 == "sheet_masks") selected @endif @endisset value="sheet_masks">sheet_masks</option>
+                </select>
+              </div>
+            </div>
+
             <div class="row mb-3" style='margin-top:5px;'>
               <label class="col-sm-1 col-form-label" for="basic-default-thum_img">목록이미지</label>
               @isset($item->thum_img)
