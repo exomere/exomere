@@ -22,7 +22,7 @@ class ErpBasicController extends Exomere
 
     const ITEM_KIND = [
         'N' => '없음',
-        'best' => 'BEST ITEMS',
+        'signature' => 'BEST ITEMS',
     ];
 
     public function memberRegister(Request $request){
@@ -184,14 +184,14 @@ class ErpBasicController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
-        $items = ExItem::orderBy('id', 'desc')->paginate($limitPage);
-        // dd($items);
+        $items = ExItem::where('is_view','Y')->orderBy('id', 'desc')->paginate($limitPage);
+        $item_total = $items->count();
+
         $data = [
-            "search_text" => $search_text ?? '',
+            "search_text" => $request->search_text ?? '',
             "items" =>  $items ?? [],
             "item_category" => self::ITEM_CATEGORY,
-            "row_num" => $this->getPageRowNumber($items->total(), $page, $limitPage) ?? null,
-            
+            "row_num" => $this->getPageRowNumber($item_total, $page, $limitPage) ?? null,
         ];
 
         return view('pages.erp.basic.item.list')->with($data);

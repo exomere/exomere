@@ -134,7 +134,7 @@
                             <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
                                 <strong class="w-40">{{ __('common.vat_excluded') }}</strong>
                                 <h6 class="flex"><span
-                                        class="">{{ number_format($product['tax']) }}</span>
+                                        class="">{{ number_format( $product['exclusive_pv'] ) }}</span>
                                     <span
                                         class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
                                 </h6>
