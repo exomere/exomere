@@ -75,7 +75,6 @@
                                     <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
                                          class=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600 object-cover">
                                 </div>
-                                </div>
                             @endif
                         </div>
                         <div class="swiper-pagination_prod">
