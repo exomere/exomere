@@ -338,6 +338,7 @@
               <label class="col-sm-1 col-form-label" for="basic-default-category2">상품분류</label>
               <div class="col-sm-2">
                 <select class="form-control" id="basic-default-category2" name='category2'>
+                    <option>상품분류를 선택해주세요.</option>
                     <option @isset($item->category2) @if($item->category2 == "creams") selected @endif @endisset value="creams">creams</option>  
                     <option @isset($item->category2) @if($item->category2 == "serums_essences") selected @endif @endisset value="serums_essences">serums_essences</option>
                     <option @isset($item->category2) @if($item->category2 == "toners_mists") selected @endif @endisset value="toners_mists">toners_mists</option>

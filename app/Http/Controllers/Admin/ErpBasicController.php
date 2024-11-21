@@ -225,6 +225,7 @@ class ErpBasicController extends Exomere
             "description_en" => $request->description_en ?? null ,
             "code" => $request->code ?? null,
             "category" => $request->category ?? null,
+            "category2" => $request->category2 ?? null,
             "kind" => $request->kind ?? null,
             "sort" => $request->sort ?? 9999,
 
