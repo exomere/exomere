@@ -21,11 +21,6 @@
         </li>
       </ul>
       <form class="d-flex" action="{{ route('basic-layouts-item-list') }}" method="GET">
-        <select name="selectTypeOpt" class="form-select color-dropdown">
-            <option value="" selected="">사용여부</option>
-            <option value="Y">사용</option>
-            <option value="N">미사용</option>
-        </select>
         <input class="form-control me-2" style='width:240px;' name="search_text" type="search" placeholder="Search" aria-label="Search" value="{{ request('search_text') }}">
         <button class="btn btn-outline-primary" type="submit">Search</button>
       </form>

@@ -59,8 +59,7 @@ class ErpMemberController extends Exomere
                 $q->where('name', 'like', '%' . $search_text . '%')
                     ->orWhere('member_id', 'like', '%' . $search_text . '%')
                     ->orWhere('tel', 'like', '%' . $search_text . '%')
-                    ->orWhere('phone', 'like', '%' . $search_text . '%')
-                    ->orWhere('email', 'like', '%' . $search_text . '%');
+                    ->orWhere('phone', 'like', '%' . $search_text . '%');
             });
         }
 

@@ -71,7 +71,20 @@ class ErpBasicController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
-        $ex_members = ExMember::where('is_delete','N')->where('member_level','>',10)->orderBy('id', 'desc')->paginate($limitPage);
+        $query = ExMember::where('member_level', '>', 10);
+
+        // 검색어가 있을 경우 쿼리에 필터 추가
+        if ($request->has('search_text') && $request->get('search_text') !== '') {
+            $search_text = $request->get('search_text');
+            $query->where(function ($q) use ($search_text) {
+                $q->where('name', 'like', '%' . $search_text . '%')
+                    ->orWhere('member_id', 'like', '%' . $search_text . '%')
+                    ->orWhere('tel', 'like', '%' . $search_text . '%')
+                    ->orWhere('phone', 'like', '%' . $search_text . '%');
+            });
+        }
+
+        $ex_members = $query->where('is_delete','N')->orderBy('id', 'desc')->paginate($limitPage);
 
         if (!is_null($request->get('search_text'))) {
             $search_text = $request->get('search_text');
@@ -93,12 +106,23 @@ class ErpBasicController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
-        if (!is_null($request->get('search_text'))) {
+        $query = ExCenter::where('is_active','Y');
+
+        // 검색어가 있을 경우 쿼리에 필터 추가
+        if ($request->has('search_text') && $request->get('search_text') !== '') {
             $search_text = $request->get('search_text');
-            $centers->where('name', 'LIKE', "%{$request->get('search_text')}%");
+            $query->where(function ($q) use ($search_text) {
+                $q->where('name', 'like', '%' . $search_text . '%')
+                    ->orWhere('director_name', 'like', '%' . $search_text . '%')
+                    ->orWhere('director_id', 'like', '%' . $search_text . '%');
+            });
         }
 
-        $centers = ExCenter::orderBy('id', 'desc')->paginate($limitPage);
+        $centers = $query->orderBy('id', 'desc')->paginate($limitPage);
+
+        if (!is_null($request->get('search_text'))) {
+            $search_text = $request->get('search_text');
+        }
         
         $data = [
             "search_text" => $search_text ?? '',
@@ -184,14 +208,28 @@ class ErpBasicController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
-        $items = ExItem::where('is_view','Y')->orderBy('id', 'desc')->paginate($limitPage);
-        $item_total = $items->count();
+        $query = ExItem::where('is_active','Y');
+
+        // 검색어가 있을 경우 쿼리에 필터 추가
+        if ($request->has('search_text') && $request->get('search_text') !== '') {
+            $search_text = $request->get('search_text');
+            $query->where(function ($q) use ($search_text) {
+                $q->where('name', 'like', '%' . $search_text . '%')
+                    ->orWhere('name_en', 'like', '%' . $search_text . '%');
+            });
+        }
+
+        $items = $query->orderBy('id', 'desc')->paginate($limitPage);
+
+        if (!is_null($request->get('search_text'))) {
+            $search_text = $request->get('search_text');
+        }
 
         $data = [
             "search_text" => $request->search_text ?? '',
             "items" =>  $items ?? [],
             "item_category" => self::ITEM_CATEGORY,
-            "row_num" => $this->getPageRowNumber($item_total, $page, $limitPage) ?? null,
+            "row_num" => $this->getPageRowNumber($items->total(), $page, $limitPage) ?? null,
         ];
 
         return view('pages.erp.basic.item.list')->with($data);
@@ -339,12 +377,26 @@ class ErpBasicController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
-        $distributes = ExDistribute::orderBy('id', 'desc')->paginate($limitPage);
+        $query = ExDistribute::where('is_active','Y');
+
+        // 검색어가 있을 경우 쿼리에 필터 추가
+        if ($request->has('search_text') && $request->get('search_text') !== '') {
+            $search_text = $request->get('search_text');
+            $query->where(function ($q) use ($search_text) {
+                $q->where('name', 'like', '%' . $search_text . '%')
+                    ->orWhere('director_name', 'like', '%' . $search_text . '%')
+                    ->orWhere('director_id', 'like', '%' . $search_text . '%')
+                    ->orWhere('business_name', 'like', '%' . $search_text . '%')
+                    ;
+            });
+        }
+
+        $distributes = $query->orderBy('id', 'desc')->paginate($limitPage);
 
         $data = [
             "search_text" => $search_text ?? '',
             "distributes" =>  $distributes ?? [],
-            "row_num" => $this->getPageRowNumber($distributes->count(), $page, $limitPage) ?? null,
+            "row_num" => $this->getPageRowNumber($distributes->total(), $page, $limitPage) ?? null,
         ];
 
         return view('pages.erp.basic.distribute.list')->with($data);
