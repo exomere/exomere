@@ -119,7 +119,7 @@ class ErpMemberController extends Exomere
             "is_delete" => $request->is_delete ?? 'N',
             "remark" => $request->remark,
             "member_position" => $request->member_position,
-            "tel" => $request->tel,
+            "tel" => $request->phone,
             "phone" => $request->phone,
             "resident_number" => $request->resident_number."-".$request->resident_number2,
             "email" => $request->email."@".$request->email2,

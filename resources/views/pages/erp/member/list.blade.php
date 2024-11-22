@@ -77,7 +77,7 @@
               <td>N</td>
               <td>{{$list->getCenterName()}}</td>
               <td>{{ date("Y-m-d",strtotime($list->created_at)) }}</td>
-              <td>{{$list->tel}}</td>
+              <td>{{$list->phone}}</td>
               <td>{{number_format($list->getMemberOrderAmountSum())}}</td>
               <td>{{$list->recommend_seq}}</td>
               <td>{{$list->recommend_id}}</td>

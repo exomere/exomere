@@ -65,9 +65,9 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-tel"> 연락처 </label>
+              <label class="col-sm-1 col-form-label" for="basic-default-phone"> 연락처 </label>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="basic-default-tel" name='tel' value="{{ $member->tel ?? null }}"/>
+                <input type="text" class="form-control" id="basic-default-phone" name='phone' value="{{ $member->phone ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">

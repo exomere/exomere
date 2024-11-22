@@ -67,7 +67,7 @@
               <td>{{$list->id}}</td>
               <td>{{$list->member_id}}</td>
               <td>{{$list->name}}</td>
-              <td>{{$list->tel}}</td>
+              <td>{{$list->phone}}</td>
               <td>{{$list->created_at}}</td>
               <td>{{number_format($list->remain_points)}}</td>
               <td>{{number_format($list->payment_points)}}</td>
