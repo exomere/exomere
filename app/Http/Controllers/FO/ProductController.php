@@ -15,10 +15,36 @@ class ProductController extends BaseController
         $items = ExItem::where('is_fo_view','Y')->orderBy('sort', 'asc');
 
         foreach($items->get() as $item){
+            $locale = app()->getLocale();
+
+            $pd_name = $item->name_en;
+            $pd_description = $item->description_en;
+
+            if($locale == "ko"){
+                $pd_name = $item->name;
+                $pd_description = $item->description;
+                $pd_price = $item->price;
+                $price_simbol = "₩";
+            }else{
+                $pd_name = $item->name_en;
+                $pd_description = $item->description_en;
+
+                if($locale =="jp"){
+                    $pd_price = $item->price_y;
+                    $price_simbol = "¥";
+                }else if($locale =="cn"){
+                    $pd_price = $item->price_c;
+                    $price_simbol = "¥";
+                }else{
+                    $pd_price = $item->price_d;
+                    $price_simbol = "$";
+                }
+            }
+            
             $products[] = [
                 'id' => $item->id,
-                'product_name' => $item->name,
-                'price' => $item->price,
+                'product_name' => $pd_name,
+                'price' => $pd_price,
                 'distribution_price' => 22500,
                 'vat_excluded' => 20455,
                 'total_price' => 22500,
@@ -27,7 +53,8 @@ class ProductController extends BaseController
                 'brand' => 'exomere',
                 'category' => $item->category2,
                 'desc' => $item->content,
-                'sub_name' => $item->description,
+                'price_simbol' => $price_simbol,
+                'sub_name' => $pd_description,
                 'is_best' => true,
             ];
         }
@@ -80,19 +107,47 @@ class ProductController extends BaseController
         $bestItems = [];
         
         foreach($items as $item){
+
+            $locale = app()->getLocale();
+
+            $pd_name = $item->name_en;
+            $pd_description = $item->description_en;
+
+            if($locale == "ko"){
+                $pd_name = $item->name;
+                $pd_description = $item->description;
+                $pd_price = $item->price;
+                $price_simbol = "₩";
+            }else{
+                $pd_name = $item->name_en;
+                $pd_description = $item->description_en;
+
+                if($locale =="jp"){
+                    $pd_price = $item->price_y;
+                    $price_simbol = "¥";
+                }else if($locale =="cn"){
+                    $pd_price = $item->price_c;
+                    $price_simbol = "¥";
+                }else{
+                    $pd_price = $item->price_d;
+                    $price_simbol = "$";
+                }
+            }
+
             $bestItems[] = [
                 'id' => $item->id,
-                'product_name' => $item->name,
-                'price' => $item->price,
+                'product_name' => $pd_name,
+                'price' => $pd_price,
                 'distribution_price' => 22500,
                 'vat_excluded' => 20455,
                 'total_price' => 22500,
                 'thumbnail' => Storage::url('public/data/'.$item->thum_img),
                 'thumbnail2' => Storage::url('public/data/'.$item->thum_img2),
                 'brand' => 'exomere',
+                'price_simbol' => $price_simbol,
                 'category' => $item->category,
                 'desc' => $item->content,
-                'sub_name' => $item->description,
+                'sub_name' => $pd_description,
                 'is_best' => true,
             ];
         }
