@@ -36,8 +36,8 @@ class MainController extends Exomere
                 $title = $banner->title;
                 $sub_title = $banner->sub_title;
             }else{
-                $pd_name = $banner->title_en;
-                $pd_description = $banner->sub_title_en;
+                $title = $banner->title_en;
+                $sub_title = $banner->sub_title_en;
             }
 
             $mainVideoBanner[] = 
