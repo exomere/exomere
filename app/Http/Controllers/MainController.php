@@ -29,8 +29,17 @@ class MainController extends Exomere
 
         $banners = ExBanner::where('is_active','Y')->get();
         $mainVideoBanner = [];
-
+        $locale = app()->getLocale();
         foreach($banners as $banner){
+
+            if($locale == "ko"){
+                $title = $banner->title;
+                $sub_title = $banner->sub_title;
+            }else{
+                $pd_name = $banner->title_en;
+                $pd_description = $banner->sub_title_en;
+            }
+
             $mainVideoBanner[] = 
                 [
                     'title' => $banner->title,

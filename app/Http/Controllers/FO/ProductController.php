@@ -105,11 +105,9 @@ class ProductController extends BaseController
         $items = ExItem::where('kind','signature')->orderBy('sort', 'asc')->limit(6)->get();
 
         $bestItems = [];
-        
+        $locale = app()->getLocale();
+
         foreach($items as $item){
-
-            $locale = app()->getLocale();
-
             $pd_name = $item->name_en;
             $pd_description = $item->description_en;
 
