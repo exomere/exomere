@@ -42,8 +42,8 @@ class MainController extends Exomere
 
             $mainVideoBanner[] = 
                 [
-                    'title' => $banner->title,
-                    'sub_title' => $banner->sub_title,
+                    'title' => $title,
+                    'sub_title' => $sub_title,
                     'type' => $banner->type,
                     'src' => asset( $banner->thumbnail),
                     'style' => ($banner->type == 'video') ? 'white' : 'black',
