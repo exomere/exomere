@@ -320,7 +320,7 @@ class ErpBasicController extends Exomere
             "exclusive_pv_c" => $request->exclusive_pv_c ?? 0 ,
             "stock" => $request->stock ?? 0,
             "is_active" => $request->is_active ?? 'N',
-            "is_view" => $request->is_view ?? 'N',
+            "is_fo_view" => $request->is_fo_view ?? 'N',
             "remark" => $request->remark ?? null,
             "content" => $request->content ?? null,
             "capacity" => $request->capacity ?? null,

@@ -10,14 +10,10 @@ class ProductController extends BaseController
 
     public function index(Request $request)
     {
-        $categories = $this->category();
 
-        $selectedCategory = request()->query('category') ?? null;
 
-        $products = [];
+        $items = ExItem::where('is_fo_view','Y')->orderBy('sort', 'asc');
 
-        $items = ExItem::whereNotNull('code')->orderBy('sort', 'asc');
-        
         foreach($items->get() as $item){
             $products[] = [
                 'id' => $item->id,
@@ -29,23 +25,41 @@ class ProductController extends BaseController
                 'thumbnail' => Storage::url('public/data/'.$item->thum_img),
                 'thumbnail2' => Storage::url('public/data/'.$item->thum_img2),
                 'brand' => 'exomere',
-                'category' => $item->category,
+                'category' => $item->category2,
                 'desc' => $item->content,
                 'sub_name' => $item->description,
                 'is_best' => true,
             ];
         }
 
+        $categories = $this->category();
+
+        $selectedCategory = request()->query('category') ?? null;
+
+        $products = collect($products);
+
+        if ($keyword = $request->get('search_keyword')) {
+            $products = $products->filter(function ($item) use ($keyword) {
+                return str_contains($item['product_name'], $keyword);
+            });
+        } else {
+            $products = $products->whereNotNull('category');
+        }
+
+        $categorizeItems = $products->groupBy('category');
+
+
         $items = collect([
             'view_all' => $products,
-            "toners_mists" => $products,
-            "serums_essences" => $products,
-            "creams" => $products,
-            "sheet_masks" => $products,
-            "cushions" => $products,
-        ]);
+            "toners_mists" => collect([]),
+            "serums_essences" => collect([]),
+            "creams" => collect([]),
+            "sheet_masks" => collect([]),
+            "cushions" => collect([]),
+        ])->merge($categorizeItems);
 
-        $productCount = $items->count();
+
+        $productCount = $products->count();
 
         return view('pages.products.products', compact('categories', 'productCount', 'items', 'selectedCategory'));
     }
