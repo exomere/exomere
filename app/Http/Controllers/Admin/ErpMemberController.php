@@ -122,7 +122,9 @@ class ErpMemberController extends Exomere
 
     public function save(Request $request)
     {   
-        
+
+        $distribute = ExDistribute::find($request->distribute_seq);
+
         $member_seq = $request->member_seq ?? null;
         // dd($request->input());
         $input_data = [
@@ -139,6 +141,7 @@ class ErpMemberController extends Exomere
             "email" => $request->email."@".$request->email2,
             "local_store" => $request->local_store,
             "recommend_seq" => $request->recommend_seq,
+            "distribute_seq" => $request->distribute_seq,
             "recommend_id" => explode(" | ", $request->recommend_info)[0],
             "recommend_name" => explode(" | ", $request->recommend_info)[1],
             "zip_code" => $request->zipcode,
@@ -148,7 +151,7 @@ class ErpMemberController extends Exomere
             "bank" => $request->bank,
             "account_number" => $request->account_number,
             "account_holder" => $request->account_holder,
-            "site_code" => $request->session()->get('site_code') ?? "exomere",
+            "site_code" => $distribute->code ?? "exomere",
             "is_delete" => $request->is_delete,
             "created_at" => $request->member_reg_date ?? date("Y-m-d H:i:s"),
         ];

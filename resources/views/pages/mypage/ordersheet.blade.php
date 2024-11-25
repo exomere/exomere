@@ -107,7 +107,7 @@ $activeHeader = true;
                                         <!-- 상품 -->
                                         <div class="row flex items-center justify-between">
                                             <div class="flex items-center">
-                                                <img src="{{ asset('assets/img/elements/2024061918143212433.png') }}"
+                                                <img src="{{ $pd_img }}"
                                                      alt="상품 이미지"
                                                      class="w-16 h-16 object-cover mr-4">
                                                 <div>
