@@ -10,6 +10,8 @@ use Illuminate\View\View;
 use App\Models\ExMember;
 use App\Constants\CommonConstants;
 use App\Http\Controllers\API\OnPlatController;
+use App\Models\ExDistribute;
+
 class ErpMemberController extends Exomere
 {
     CONST MEMBER_INFO_FIELD = [
@@ -93,11 +95,23 @@ class ErpMemberController extends Exomere
           $cnt++;
         }
 
+        $distributes = ExDistribute::where('is_active','Y')->get();
+        $distributeArray = [];
+        $cnt = 0;
+
+        foreach($distributes as $distribute){
+          $distributeArray[$cnt]['seq'] = $distribute->id;
+          $distributeArray[$cnt]['name'] = $distribute->name;
+          $cnt++;
+        }
+
+
         $data = [
             "bank_list" => CommonConstants::BANK_LIST,
             "member_seq" => $request->seq ?? null,
             "member" => $member ?? [],
             "center_array" => $centerArray,
+            "distribute_array" => $distributeArray,
             "email_info" => $email_info ?? null,
             "recommend_info" => $recommend_info ?? null,
             "resident_number_info" => $resident_number_info ?? null,
@@ -134,6 +148,7 @@ class ErpMemberController extends Exomere
             "bank" => $request->bank,
             "account_number" => $request->account_number,
             "account_holder" => $request->account_holder,
+            "site_code" => $request->session()->get('site_code') ?? "exomere",
             "is_delete" => $request->is_delete,
             "created_at" => $request->member_reg_date ?? date("Y-m-d H:i:s"),
         ];

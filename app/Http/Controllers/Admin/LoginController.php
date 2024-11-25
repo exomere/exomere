@@ -35,7 +35,7 @@ class LoginController extends Exomere
             $request->session()->put('member_type', $userInfo->member_type ?? '');
             $request->session()->put('member_code', $userInfo->code ?? '');
             $request->session()->put('member_level', $userInfo->member_level ?? '');
-
+            $request->session()->put('site_code', $userInfo->site_code ?? '');
             auth()->login($userInfo);
 
             return redirect('/management/dashboard');

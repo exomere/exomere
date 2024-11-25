@@ -77,7 +77,7 @@ if (env('APP_ENV') == 'production') {
 
 Artisan::call('storage:link'); //프로덕션에서 심볼릭 오류가 있어서 추가함,,, ㅠㅠ
 
-Route::get('/{code?}', [MainController::class, 'index']);
+Route::get('/', [MainController::class, 'index']);
 
 Route::prefix('/ajax')->group(function () {
     Route::get('recommend_search_keywords', [AjaxController::class, 'getRecommendSearchKeywords']);
@@ -188,7 +188,6 @@ Route::group(['middleware' => 'auth'], function () {
             );
             Route::post('/searchMember', [MemberController::class, 'searchMember'])->name('member.search.member');
         });
-
 
         /** 공지사항 */
         Route::prefix('/notice')->group(function () {
