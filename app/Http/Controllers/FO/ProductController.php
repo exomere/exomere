@@ -83,6 +83,7 @@ class ProductController extends BaseController
             "creams" => collect([]),
             "sheet_masks" => collect([]),
             "cushions" => collect([]),
+            "devices" => collect([]),
         ])->merge($categorizeItems);
 
 
@@ -163,6 +164,7 @@ class ProductController extends BaseController
             "creams",
             "sheet_masks",
             "cushions",
+            "devices",
         ];
     }
 

@@ -33,6 +33,7 @@ return [
     "cushions" => "Cushions",
     'rnd' => 'R&D',
     'branch' => 'Branch',
+    "devices" => "Devices",
     'branch_title' => '',
     'brand' => 'Brand',
     'brand_title' => 'Let me introduce our brand',

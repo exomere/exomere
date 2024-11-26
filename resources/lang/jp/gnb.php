@@ -34,6 +34,7 @@ return [
     'branch' => 'Branch',
     'branch_title' => '',
     'brand' => 'Brand',
+    "devices" => "Devices",
     'brand_title' => 'Let me introduce our brand',
     'exomere' => 'EXOMERE™',
     'return10' => 'RETURN10',

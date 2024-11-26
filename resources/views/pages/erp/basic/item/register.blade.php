@@ -344,6 +344,7 @@
                     <option @isset($item->category2) @if($item->category2 == "creams") selected @endif @endisset value="creams">Creams</option>
                     <option @isset($item->category2) @if($item->category2 == "sheet_masks") selected @endif @endisset value="sheet_masks">Sheet Masks</option>
                     <option @isset($item->category2) @if($item->category2 == "cushions") selected @endif @endisset value="cushions">Cushions</option>
+                    <option @isset($item->category2) @if($item->category2 == "devices") selected @endif @endisset value="devices">Device</option>
                 </select>
               </div>
             </div>

@@ -30,6 +30,7 @@ return [
     "creams" => "Creams",
     "sheet_masks" => "Sheet Masks",
     "cushions" => "Cushions",
+    "devices" => "Devices",
     'rnd' => 'R&D',
     'branch' => 'Branch',
     'branch_title' => '',
