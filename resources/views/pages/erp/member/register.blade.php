@@ -128,7 +128,7 @@
               <label class="col-sm-1 col-form-label" for="distribute_seq"> 분양몰 </label>
               <div class="col-md-4">
                 <select class="form-select" name="distribute_seq" id="distribute_seq">
-                  <option value="exomere">(주)엑소미어</option>
+                  <option value="46">(주)엑소미어</option>
                   @foreach ($distribute_array as $distribute)
                     <option @isset($member->local_store) @if($member->distribute_seq == $distribute['seq'])  selected  @endif @endisset value='{{$distribute['seq']}}'>{{$distribute['name']}}
                     </option>
