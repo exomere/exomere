@@ -96,6 +96,7 @@ Route::prefix('/brand')->group(function () {
 Route::prefix('/products')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('products.list');
     Route::get('{product_id}', [ProductController::class, 'productDetail']);
+    Route::post('/cartSave', [ProductController::class, 'cartSave']);
 });
 Route::prefix('/about')->group(function () {
     Route::get('/', function () {

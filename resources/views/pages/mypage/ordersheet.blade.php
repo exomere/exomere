@@ -133,9 +133,7 @@ $activeHeader = true;
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                             <div>
                                 {{--결제수단--}}
                                 <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
@@ -164,13 +162,13 @@ $activeHeader = true;
                                             </label>
                                             <label class="ml-2 text-slate-600 cursor-pointer text-sm" for="radio_card">신용카드</label>
                                         </div>
-                                        {{-- <div class="inline-flex items-center">
-                                            <label class="relative flex items-center cursor-pointer" for="휴대폰결제">
-                                                <input name="framework" type="radio" class="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all"  id="휴대폰결제" checked="">
+                                        <div class="inline-flex items-center">
+                                            <label class="checkPaymentType relative flex items-center cursor-pointer" for="radio_point">
+                                                <input name="payment_type" type="radio" class="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all"  id="radio_point"  value='point'>
                                                 <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                                             </label>
-                                            <label class="ml-2 text-slate-600 cursor-pointer text-sm" for="휴대폰결제">휴대폰결제</label>
-                                        </div> --}}
+                                            <label class="ml-2 text-slate-600 cursor-pointer text-sm" for="radio_point">포인트결제</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -290,8 +288,6 @@ $activeHeader = true;
                                                         </select>
                                                     </div>
                                                 </div>
-
-
                                             </div>
 
                                             <div class="col-sm-1">

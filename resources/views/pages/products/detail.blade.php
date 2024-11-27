@@ -44,6 +44,7 @@
     </style>
 
 @endsection
+<meta name="csrf-token" content="{{ csrf_token() }}"/>
 @section('content')
     <section class="py-10 lg:py-24 relative min-h-screen">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -510,8 +511,20 @@
         });
 
         function add2Cart(){
-            alert('장바구니에 담았습니다.');
-            return false;
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: "/products/cartSave",
+                data: {
+                    "pd_seq": {{$product['id']}},
+                    "pd_qty" : $("#quantity").val(),
+                },
+                success: function () {
+                    alert('장바구니에 담았습니다.');
+                }
+            }); 
         }
 
         function buyNow(){
