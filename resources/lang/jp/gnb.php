@@ -17,7 +17,7 @@ return [
     'news_title' => 'Our Press Reports And External Activities',
     'videos' => 'Brand Videos',
     'videos_title' => 'Enjoy Our Brand Film',
-    'products' => 'By Category',
+    'products' => 'Products',
     'notice' => 'Notices',
     'notice_title' => 'Check the announcement',
     'reference' => 'Resources',
