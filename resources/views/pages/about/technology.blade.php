@@ -5,48 +5,81 @@ $visualFullWidthLayout = 1;
 $contents = [
     [
         'title' => 'Exomere Halla™',
+        'title_en' => 'Exomere Halla™',
         'title_sub' => '한라봉 엑소좀 분리',
+        'title_sub_en' => 'Extraction of Hallabong Exosome',
         'code' => '특허: 제 10-2023-0121591호',
-        'desc' => '유기농으로 재배된 제주 한라봉으로부터 추출한 엑소좀을 유효 성분으로 하여 항산화, 피부 세포재생 및 미백에 효과를 갖는 것을 특징으로 하는 화장품 조성물이다.',
+        'code_en' => 'Patent: No. 10-2023-0121591',
+        'description' => '유기농으로 재배된 제주 한라봉으로부터 추출한 엑소좀을 유효 성분으로 하여 항산화, 피부 세포재생 및 미백에 효과를 갖는 것을 특징으로 하는 화장품 조성물이다.',
+        'description_en' => 'A cosmetic composition characterized by its antioxidant, skin cell regeneration, and whitening effects, using exosomes extracted from organically grown Jeju Hallabong as active ingredients.',
         'image' => asset('assets/img/elements/tech_01.jpg')
     ],
     [
         'title' => 'EXOSOME AG™',
+        'title_en' => 'EXOSOME AG™',
         'title_sub' => '흑마늘, 알로에베라 엑소좀 분리',
+        'title_sub_en' => 'Extraction of Black Garlic and Aloe Vera Exosomes',
         'code' => '특허: 제 10-2534286호',
-        'desc' => '유기농으로 재배된 알로에베라, 흑마늘로부터 추출한 엑소좀을 유효 성분으로 하여 피부 주름개선, 피부 보습 및 장벽 강화에 효과를 갖는 것을 특징으로 하는 화장품 조성물이다.',
+        'code_en' => 'Patent: No. 10-2534286',
+        'description' => '유기농으로 재배된 알로에베라, 흑마늘로부터 추출한 엑소좀을 유효 성분으로 하여 피부 주름개선, 피부 보습 및 장벽 강화에 효과를 갖는 것을 특징으로 하는 화장품 조성물이다.',
+        'description_en' => 'A cosmetic composition characterized by its effectiveness in improving skin wrinkles, moisturizing, and strengthening the skin barrier, using exosomes extracted from organically grown aloe vera and black garlic.',
         'image' => asset('assets/img/elements/tech_02.jpg')
     ],
     [
         'title' => '엑소좀 리프팅 실',
+        'title_en' => 'Exosome Lifting Thread',
         'title_sub' => '엑소좀을 함유하는 리프팅용 실',
+        'title_sub_en' => 'Thread for Lifting Containing Exosomes',
         'code' => '특허: 제 10-2698031호',
-        'desc' => '뉴 콘 듀얼 K-리프팅 실은 실루엣 소프트 실의 단점인 리프팅을 강화하기 위해 가시가 추가되어 콘과 가시의 듀얼 리프팅이 가능한 차세대 리프팅용 콘 실로, 엑소좀을 함유하고 있다.',
+        'code_en' => 'Patent: No. 10-2698031',
+        'description' => '뉴 콘 듀얼 K-리프팅 실은 실루엣 소프트 실의 단점인 리프팅을 강화하기 위해 가시가 추가되어 콘과 가시의 듀얼 리프팅이 가능한 차세대 리프팅용 콘 실로, 엑소좀을 함유하고 있다.',
+        'description_en' => 'The New Cone Dual K-Lifting Thread enhances lifting by adding barbs to overcome the limitations of Silhouette Soft Threads, making it a next-generation lifting cone thread with dual lifting capabilities, containing exosomes.',
         'image' => asset('assets/img/elements/tech_03.png')
     ],
     [
         'title' => '비양나무추출물',
+        'title_en' => 'Biyang Tree Extract',
         'title_sub' => '제주도 비양나무추출물의 화장료 조성물',
+        'title_sub_en' => 'Cosmetic Composition with Extract from Jeju Biyang Tree',
         'code' => '특허: 제 10-1441190호',
-        'desc' => '제주도에서 자생하는 비양나무에서 추출한 원료로서, 노화방지와 항산화 효과, 항염 효과, 항균 작용 및 미백 효과를 갖는 것을 특징으로 하는 화장료 조성물이다.',
-
+        'code_en' => 'Patent: No. 10-1441190',
+        'description' => '제주도에서 자생하는 비양나무에서 추출한 원료로서, 노화방지와 항산화 효과, 항염 효과, 항균 작용 및 미백 효과를 갖는 것을 특징으로 하는 화장료 조성물이다.',
+        'description_en' => 'A cosmetic composition characterized by its anti-aging, antioxidant, anti-inflammatory, antibacterial, and whitening effects, using extracts from Jeju Island’s native Biyang tree.',
         'image' => asset('assets/img/elements/tech_04.jpg')
     ],
     [
         'title' => '통증완화용 조성물',
+        'title_en' => 'Pain Relief Composition',
         'title_sub' => '천연미세침을 포함하는 통증완화용 조성물',
+        'title_sub_en' => 'Composition for Pain Relief Containing Natural Microneedles',
         'code' => '특허: 제 10-1984260호',
-        'desc' => '통증 완화에 도움을 주는 글루코사민, MSM, 일라이트, 노니추출물, 온천수 등이 천연미세침과 혼합되어 효과를 극대화시킨 원료로서, 혈행을 개선시켜 염증억제에 도움을 주고, 피부 온도 상승과, 붓기 개선, 셀룰라이트감소, 피부 흡수율 상승 등의 효과를 가지고 있다.',
+        'code_en' => 'Patent: No. 10-1984260',
+        'description' => '통증 완화에 도움을 주는 글루코사민, MSM, 일라이트, 노니추출물, 온천수 등이 천연미세침과 혼합되어 효과를 극대화시킨 원료로서, 혈행을 개선시켜 염증억제에 도움을 주고, 피부 온도 상승과, 붓기 개선, 셀룰라이트감소, 피부 흡수율 상승 등의 효과를 가지고 있다.',
+        'description_en' => 'A material that combines glucosamine, MSM, illite, noni extract, hot spring water, and natural microneedles to maximize effectiveness, aiding in improving circulation, reducing inflammation, increasing skin temperature, reducing swelling and cellulite, and enhancing skin absorption.',
         'image' => asset('assets/img/elements/tech_05.png')
     ],
     [
         'title' => '고체 미세침 필러',
+        'title_en' => 'Solid Microneedle Filler',
         'title_sub' => '피부 주입식 고체 미세침 형태의 필러',
+        'title_sub_en' => 'Skin Injectable Solid Microneedle Filler',
         'code' => '특허: 제 10-1285831호',
-        'desc' => '기존의 주사용 필러와는 다르게 고체 형태의 필러로 세계최초로 개발되었으며, 콜라겐을 형성하는 생분해물질의 일종인 PLLA(Poly-L-Lactic-Acid)재질로 형성되어, 2-3년 이상 장기간 지속 볼륨 증강 작용이 가능하며 깊은 주름 제거와 코끝 올리는 용도로도 사용하는 고체형 필러이다.',
+        'code_en' => 'Patent: No. 10-1285831',
+        'description' => '기존의 주사용 필러와는 다르게 고체 형태의 필러로 세계최초로 개발되었으며, 콜라겐을 형성하는 생분해물질의 일종인 PLLA(Poly-L-Lactic-Acid)재질로 형성되어, 2-3년 이상 장기간 지속 볼륨 증강 작용이 가능하며 깊은 주름 제거와 코끝 올리는 용도로도 사용하는 고체형 필러이다.',
+        'description_en' => 'A world-first solid-type filler, different from conventional injectable fillers. Made of PLLA (Poly-L-Lactic-Acid), a biodegradable material forming collagen, it offers long-lasting volumizing effects for 2-3 years and is used for deep wrinkle removal and nose lifting.',
         'image' => asset('assets/img/elements/tech_06.png')
     ],
 ];
+
+if (app()->getLocale() != "ko") {
+    $baseLocale = 'en';
+    foreach ($contents as $key => $content) {
+        $contents[$key]['title'] = $content['title_' . $baseLocale];
+        $contents[$key]['title_sub'] = $content['title_sub_' . $baseLocale];
+        $contents[$key]['description'] = $content['description_' . $baseLocale];
+        $contents[$key]['code'] = $content['code_' . $baseLocale];
+    }
+}
 
 
 ?>
@@ -69,9 +102,10 @@ $contents = [
         <nav id="parallax__nav"
              class="relative bg-white w-full left-0 z-40 lg:absolute lg:top-32 lg:pl-7 lg:bg-transparent lg:left-0 lg:w-auto">
             <ul class="flex flex-row justify-center text-sm text-center text-slate-500 lg:flex-col lg:text-base">
-                <li class="relative p-3 basis-1/4"><a class="" href="/about/core">핵심성분</a>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/core">{{ __('gnb.core') }}</a>
                 </li>
-                <li class="relative p-3 basis-1/4"><a class="active" href="/about/technology">특허기술</a>
+                <li class="relative p-3 basis-1/4"><a class="active"
+                                                      href="/about/technology">{{ __('gnb.technology') }}</a>
                 </li>
             </ul>
         </nav>
@@ -117,7 +151,7 @@ $contents = [
                                         <img src="{{ $content['image'] }}"
                                              alt="{{ $content['title'] }}"
                                              data-aos="fade-in"
-                                             >
+                                        >
                                     </picture>
                                 </div>
                                 <div class="pt-10 pb-20 px-8 lg:p-0 lg:p-[5%] xl:p-[10%] leading-loose md:basis-1/2"
@@ -126,9 +160,10 @@ $contents = [
                                     <p class="leading-loose md:leading-loose text-base md:text-lg text-gray-500 mb-3 ">
                                         {{ $content['code'] }}</p>
                                     <p class="leading-loose md:leading-loose text-base md:text-lg text-gray-500 mb-3 ">
-                                        {!! $content['desc'] !!}
+                                        {!! $content['description'] !!}
                                     </p>
-                                    <small class="w-full inline-block text-right text-gray-500">* 원료적 특성에 한함</small>
+                                    <small
+                                        class="w-full inline-block text-right text-gray-500">* {{ __('messages.core_raw') }}</small>
                                 </div>
                             </div>
                         </div>

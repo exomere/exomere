@@ -20,13 +20,13 @@ $visualFullWidthLayout = true;
     <div class="relative">
         <nav id="parallax__nav" class="relative bg-white w-full left-0 z-40 lg:absolute lg:top-32 lg:pl-7 lg:bg-transparent lg:left-0 lg:w-auto">
             <ul class="flex flex-row justify-center text-sm text-center text-slate-500 lg:flex-col lg:text-base">
-                <li class="relative p-3 basis-1/4"><a class="active" href="/about">기업소개</a>
+                <li class="relative p-3 basis-1/4"><a class="active" href="/about">{{ __('gnb.about') }}</a>
                 </li>
-                <li class="relative p-3 basis-1/4"><a class="" href="/about/philosophy">경영이념</a>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/philosophy">{{ __('gnb.philosophy') }}</a>
                 </li>
-                <li class="relative p-3 basis-1/4"><a class="" href="/about/history">연혁</a>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/history">{{ __('gnb.history') }}</a>
                 </li>
-                <li class="relative p-3 basis-1/4"><a class="" href="/about/cibi">CI/BI 소개</a>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/cibi">{{ __('gnb.cibi') }}</a>
                 </li>
             </ul>
         </nav>
