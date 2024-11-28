@@ -29,33 +29,33 @@
   <!--/ Basic -->
   <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
-      <h5 class="mb-0">회원 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('erp-member.create')}}'" class="btn btn-primary">회원 등록</button></small>
+      <h5 class="mb-0">{{__('erp.member_list')}}</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('erp-member.create')}}'" class="btn btn-primary">{{__('erp.member_registration')}}</button></small>
     </div>
     <div class="table-responsive text-nowrap">
       <table class="table" >
         <thead>
           <tr>
             <th rowspan="2" style='vertical-align: middle;' >No</th>
-            <th rowspan="2" style='vertical-align: middle;' >회원관리</th>
+            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.member_management')}}</th>
             {{-- <th rowspan="2" style='vertical-align: middle;' >총판구분</th> --}}
-            <th rowspan="2" style='vertical-align: middle;' >회원번호</th>
-            <th rowspan="2" style='vertical-align: middle;' >아이디</th>
-            <th rowspan="2" style='vertical-align: middle;' >이름</th>
-            <th rowspan="2" style='vertical-align: middle;' >이메일</th>
-            <th rowspan="2" style='vertical-align: middle;' >회원구분</th>
-            <th rowspan="2" style='vertical-align: middle;' >분양몰</th>
-            <th rowspan="2" style='vertical-align: middle;' >지역점</th>
-            <th rowspan="2" style='vertical-align: middle;' >가입일자</th>
-            <th rowspan="2" style='vertical-align: middle;' >연락처</th>
-            <th rowspan="2" style='vertical-align: middle;' >매출합계</th>
-            <th colspan="3" style='text-align:center;'>모집인</th>
-            <th rowspan="2" style='vertical-align: middle;'>비고</th>
-            <th rowspan="2" style='vertical-align: middle;'>관리</th>
+            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.member_number')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.id')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.name')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.email')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.member_classification')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.sale_mall')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.local_branch')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.subscription_date')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.contact_information')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.sales_total')}}</th>
+            <th colspan="3" style='text-align:center;'>{{__('erp.recruiter')}}</th>
+            <th rowspan="2" style='vertical-align: middle;'>{{__('erp.remarks')}}</th>
+            <th rowspan="2" style='vertical-align: middle;'>{{__('erp.management')}}</th>
           </tr>
           <tr>
-            <th style='text-align:center;'>회원번호</th>
-            <th style='text-align:center;'>아이디</th>
-            <th style='text-align:center;'>이름</th>
+            <th style='text-align:center;'>{{__('erp.member_number')}}</th>
+            <th style='text-align:center;'>{{__('erp.id')}}</th>
+            <th style='text-align:center;'>{{__('erp.name')}}</th>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
@@ -65,7 +65,7 @@
               <td>{{$row_num--}}</td>
               <td>
                 <a class="badge bg-label-info me-2" href="{{route('erp-member.create',$list->id)}}">
-                    <span class="fw-medium">상세보기</span>
+                    <span class="fw-medium">{{__('erp.detail')}}</span>
                 </a>
               </td>
               {{-- <td>0점</td> --}}
@@ -87,7 +87,7 @@
                 <div class="dropdown">
                   <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item memberModifyList" data-seq="{{$list->id}}" data-bs-target="#memberModifyList" data-bs-toggle="modal"><i class="bx bx-trash me-1"></i> 변경내역</a>
+                    <a class="dropdown-item memberModifyList" data-seq="{{$list->id}}" data-bs-target="#memberModifyList" data-bs-toggle="modal"><i class="bx bx-trash me-1"></i> {{__('erp.modify_list')}}</a>
                     <a class="dropdown-item" href="{{route('erp-member.create',$list->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
                     <a class="dropdown-item" style='color:red;' href="{{route('member.del',$list->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
                   </div>
@@ -108,7 +108,7 @@
     <div class="modal-content">
       <div class="modal-body">
         <div class="text-center mb-6">
-          <h4 class="mb-2">변경 내역</h4>
+          <h4 class="mb-2">{{__('erp.modify_list')}}</h4>
         </div>
         <div class="col-12">
           <div class="row mb-3">
@@ -117,9 +117,9 @@
                 <table class="table">
                   <thead>
                   <tr class="text-nowrap">
-                    <th>ID</th>
+                    <th>{{__('erp.id')}}</th>
                     <td><span id='member_info_id'></span></td>
-                    <th>이름</th>
+                    <th>{{__('erp.name')}}</th>
                     <td><span id='member_info_name'></span></td>
                   </tr>
                   </thead>
@@ -134,11 +134,11 @@
                   <table class="table">
                     <thead>
                     <tr class="text-nowrap">
-                      <th>일자</th>
-                      <th>변경 필드</th>
-                      <th>변경전</th>
-                      <th>변경후</th>
-                      <th>수정자</th>
+                      <th>{{__('erp.modify_date')}}</th>
+                      <th>{{__('erp.modify_field')}}</th>
+                      <th>{{__('erp.before_change')}}</th>
+                      <th>{{__('erp.after_change')}}</th>
+                      <th>{{__('erp.modifier')}}</th>
                     </tr>
                     </thead>
                     <tbody class="member_info_body">
@@ -152,7 +152,7 @@
           </div>
         </div>
         <div class="col-12 text-center">
-          <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">확인</button>
+          <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">{{__('erp.confirm')}}</button>
         </div>
       </div>
     </div>
@@ -185,7 +185,7 @@
           $("#member_info_name").text(res.member_info.name);
 
           if (!res.modify_info.length) {
-            rows = '<tr><td colspan="5" style="text-align: center">변경 내역이 없습니다.</td></tr>';
+            rows = '<tr><td colspan="5" style="text-align: center">{{__('erp.no_change_history')}}</td></tr>';
           } else {
             res.modify_info.forEach(log => {
               rows += `

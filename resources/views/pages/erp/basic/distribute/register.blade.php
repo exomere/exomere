@@ -13,13 +13,13 @@
     <div class="col-xxl">
       <div class="card mb-4">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <h5 class="mb-0">분양몰 등록</h5> <small class="text-muted float-end"><button type="submit" class="btn btn-primary">저장</button></small>
+          <h5 class="mb-0">{{__('erp.sale_mall')}} {{__('erp.register')}}</h5> <small class="text-muted float-end"><button type="submit" class="btn btn-primary">{{__('erp.save')}}</button></small>
         </div>
         <div class="card-body">
           <form>
             @csrf
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="director_info"> <span style='color:red;'>*</span> 분양몰 관리자 </label>
+              <label class="col-sm-1 col-form-label" for="director_info"> <span style='color:red;'>*</span> {{__('erp.sale_mall')}} {{__('erp.manager')}} </label>
               <div class="col-sm-6">
                 <div class="input-group">
                   <input type="hidden" class="form-control" id="director_seq" readonly name='director_seq' value="{{ $distribute->director_seq ?? null }}"/>
@@ -29,55 +29,55 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-name">  <span style='color:red;'>*</span>분양몰명 </label>
+              <label class="col-sm-1 col-form-label" for="basic-default-name">  <span style='color:red;'>*</span>{{__('erp.sales_mall_name')}} </label>
               <div class="col-sm-6">
                 <input type="text" class="form-control" id="basic-default-name" name='name' value="{{ $distribute->name ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-code"> <span style='color:red;'>*</span>분양몰 코드</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-code"> <span style='color:red;'>*</span>{{__('erp.sales_mall_code')}}</label>
               <div class="col-sm-6">
                 <input type="text" id="basic-default-code" class="form-control" name='code' value="{{ $distribute->code ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-business_name">대표자명</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-business_name">{{__('erp.representative_name')}}</label>
               <div class="col-sm-6">
                 <input type="text" id="basic-default-business_name" class="form-control" name='business_name' value="{{ $distribute->business_name ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-pg_code">PG사 코드</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-pg_code">{{__('erp.pg_company_code')}}</label>
               <div class="col-sm-6">
                 <input type="text" id="basic-default-pg_code" class="form-control" name='pg_code' value="{{ $distribute->pg_code ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-business_num">사업자등록번호</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-business_num">{{__('erp.business_registration_number')}}</label>
               <div class="col-sm-6">
                 <input type="text" id="basic-default-business_num" class="form-control" name='business_num' value="{{ $distribute->business_num ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-director_phone">담당자 연락처</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-director_phone">{{__('erp.contact_person_in_charge')}}</label>
               <div class="col-sm-6">
                 <input type="text" id="basic-default-director_phone" class="form-control" name='director_phone' value="{{ $distribute->director_phone ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-phone">전화번호</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-phone">{{__('erp.contact')}}</label>
               <div class="col-sm-6">
                 <input type="text" id="basic-default-phone" class="form-control" name='phone' value="{{ $distribute->phone ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-fax">FAX 번호</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-fax">FAX {{__('erp.contact_number')}}</label>
               <div class="col-sm-6">
                 <input type="text" id="basic-default-fax" class="form-control" name='fax' value="{{ $distribute->fax ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-zipcode">우편번호</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-zipcode">{{__('erp.zip_code')}}</label>
               <div class="col-sm-2">
                 <div class="input-group">
                   <input type="text" name="zipcode" id="zipcode" class="form-control" readonly value="{{ $distribute->zipcode ?? null }}"/>
@@ -86,19 +86,19 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label">기본주소</label>
+              <label class="col-sm-1 col-form-label">{{__('erp.basic_address')}}</label>
               <div class="col-sm-5">
                 <input type="text" readonly class="form-control" name='address' id='address' value="{{ $distribute->address ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label">상세주소</label>
+              <label class="col-sm-1 col-form-label">{{__('erp.detailed_address')}}</label>
               <div class="col-sm-5">
                 <input type="text" class="form-control" name='address_detail' id='address_detail' value="{{ $distribute->address_detail ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-bank">은행</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-bank">{{__('erp.bank')}}</label>
               <div class="col-sm-1">
                 <select class="form-control" id="basic-default-bank" name='bank'>
                   @foreach ($bank_list as $key => $val)
@@ -106,31 +106,31 @@
                   @endforeach
                 </select>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-account_num">계좌번호</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-account_num">{{__('erp.account_number')}}</label>
               <div class="col-sm-3">
                 <input type="text" id="basic-default-account_num" class="form-control" name='account_num' value="{{ $distribute->account_num ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-account_holder">예금주</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-account_holder">{{__('erp.depositor')}}</label>
               <div class="col-sm-6">
                 <input type="text" id="basic-default-account_holder" class="form-control" name='account_holder' value="{{ $distribute->account_holder ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-remark">비고</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-remark">{{__('erp.remarks')}}</label>
               <div class="col-sm-6">
                 <input type="text" id="basic-default-remark" class="form-control" name='remark' value="{{ $distribute->remark ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label">사용여부</label>
+              <label class="col-sm-1 col-form-label">{{__('erp.usage_status')}}</label>
               <div class="col-sm-6">
                 <div class="btn-group" role="group">
                   <input type="radio" class="btn-check" name="is_active" id="is_active1" value='Y' @isset($distribute->is_active) @if($distribute->is_active == 'Y') checked @endif @endisset>
-                  <label class="btn btn-outline-primary" for="is_active1">사용</label>
+                  <label class="btn btn-outline-primary" for="is_active1">{{__('erp.use')}}</label>
                   <input type="radio" class="btn-check" name="is_active" id="is_active2" value='N' @isset($distribute->is_active) @if($distribute->is_active == 'N') checked @endif @endisset>
-                  <label class="btn btn-outline-primary" for="is_active2">미사용</label>
+                  <label class="btn btn-outline-primary" for="is_active2">{{__('erp.unused')}}</label>
                 </div>
               </div>
             </div>
@@ -140,14 +140,14 @@
               <div class="modal-content">
                 <div class="modal-body">
                   <div class="text-center mb-6">
-                    <h4 class="mb-2">회원검색</h4>
+                    <h4 class="mb-2">{{__('erp.member_search')}}</h4>
                   </div>
                     <div class="col-12">
                       <div class="row mt-5">
                         <select id="searchMemberType" class="form-select color-dropdown" style='width:22%; margin-left:10%;'>
-                          <option value="name">회원 이름</option>
-                          <option value="member_id">회원 아이디</option>
-                          <option value="id">회원 번호</option>
+                          <option value="name">{{__('erp.member_name')}}</option>
+                          <option value="member_id">{{__('erp.member_id')}}</option>
+                          <option value="id">{{__('erp.member_number')}}</option>
                         </select>
                         <input class="form-control me-2" style='width:40%;' id='searchMemberText' type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-primary searchMember"  style='width:22%;' type="button">Search</button>
@@ -164,17 +164,17 @@
                               <table class="table">
                                 <thead>
                                   <tr class="text-nowrap">
-                                    <th>회원번호</th>
-                                    <th>회원명</th>
-                                    <th>로그인ID</th>
-                                    <th>직급</th>
-                                    <th>등록일</th>
-                                    <th>관리</th>
+                                    <th>{{__('erp.member_number')}}</th>
+                                    <th>{{__('erp.member_name')}}</th>
+                                    <th>{{__('erp.member_id')}}</th>
+                                    <th>{{__('erp.position')}}</th>
+                                    <th>{{__('erp.registration_date')}}</th>
+                                    <th>{{__('erp.management')}}</th>
                                   </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0 memberBody">
                                   <tr>
-                                    <th colspan="6" style='height:80px; text-align:center;'>회원을 검색해주세요.</th>
+                                    <th colspan="6" style='height:80px; text-align:center;'>{{__('erp.search_member')}}</th>
                                   </tr>
                                 </tbody>
                               </table>
@@ -185,7 +185,7 @@
                       </div>
                     </div>
                     <div class="col-12 text-center">
-                      <button type="reset" class="btn btn-label-secondary cancelMemberInfo" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">취소</button>
+                      <button type="reset" class="btn btn-label-secondary cancelMemberInfo" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">{{__('erp.cancel')}}</button>
                     </div>
                   </form>
                 </div>

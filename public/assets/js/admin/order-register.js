@@ -267,7 +267,7 @@ var orderReg = {
         html += "    <td><input type='text' class='form-control' readonly name='card_approval_name[]' value='"+$("#payment_card_3").val()+"'></td>";
         html += "    <td><input type='text' class='form-control' readonly name='card_approval_date[]' value='"+$("#payment_card_9").val()+"'></td>";
         html += "    <td><input type='text' class='form-control' readonly name='card_password[]' value='"+$("#payment_card_4").val()+"'></td>";
-        html += "    <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='card' data-idx='"+trCnt+"' >삭제</button></td>";
+        html += "    <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='card' data-idx='"+trCnt+"' >remove</button></td>";
         html += "</tr>";
         
         $(".cardInfoBody").append(html);

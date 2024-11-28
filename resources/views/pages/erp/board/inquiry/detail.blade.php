@@ -7,13 +7,13 @@
         <div class="col-xxl">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">1:1 문의 상세</h5>
-                    <a href="{{ route('erp-board.inquiry.list') }}" class="btn btn-secondary">목록으로 돌아가기</a>
+                    <h5 class="mb-0">1:1 {{__('erp.inquiry')}} {{__('erp.details')}}</h5>
+                    <a href="{{ route('erp-board.inquiry.list') }}" class="btn btn-secondary">{{__('erp.return_to_list')}}</a>
                 </div>
                 <div class="card-body">
                     <!-- Inquiry Title -->
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">제목:</label>
+                        <label class="col-sm-2 col-form-label">{{__('erp.title')}}:</label>
                         <div class="col-sm-10">
                             <p class="form-control-plaintext">{{ $inquiry->title }}</p>
                         </div>
@@ -21,7 +21,7 @@
 
                     <!-- Inquiry Author -->
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">작성자:</label>
+                        <label class="col-sm-2 col-form-label">{{__('erp.author')}}:</label>
                         <div class="col-sm-10">
                             <p class="form-control-plaintext">{{ $inquiry->author_name }}</p>
                         </div>
@@ -29,7 +29,7 @@
 
                     <!-- Inquiry Content -->
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">내용:</label>
+                        <label class="col-sm-2 col-form-label">{{__('erp.content')}}:</label>
                         <div class="col-sm-10">
                             <div class="form-control-plaintext">
                                 {!! $inquiry->content !!}
@@ -39,7 +39,7 @@
 
                     <!-- Inquiry Date -->
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">등록일:</label>
+                        <label class="col-sm-2 col-form-label">{{__('erp.created_date')}}:</label>
                         <div class="col-sm-10">
                             <p class="form-control-plaintext">{{ $inquiry->created_at->format('Y-m-d') }}</p>
                         </div>
@@ -50,12 +50,12 @@
             <!-- Comments Section -->
             <div class="card mb-4">
                 <div class="card-header">
-                    <h5 class="mb-0">답변</h5>
+                    <h5 class="mb-0">{{__('erp.answer')}}</h5>
                 </div>
                 <div class="card-body">
                     <!-- Display existing comments -->
                     @if ($inquiry->comments->isEmpty())
-                        <p>아직 답변이 없습니다.</p>
+                        <p>{{__('erp.no_response_yet')}}</p>
                     @else
                         @foreach ($inquiry->comments as $comment)
                             <div class="mb-3">
@@ -71,16 +71,16 @@
             <!-- Comment Form -->
             <div class="card mb-4">
                 <div class="card-header">
-                    <h5 class="mb-0">답변 작성</h5>
+                    <h5 class="mb-0">{{__('erp.write_response')}}</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('erp-board.inquiry.comment.store', $inquiry->id) }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="content" class="form-label">내용</label>
+                            <label for="content" class="form-label">{{__('erp.content')}}</label>
                             <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">작성</button>
+                        <button type="submit" class="btn btn-primary">{{__('erp.register')}}</button>
                     </form>
                 </div>
             </div>

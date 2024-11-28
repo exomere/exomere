@@ -12,7 +12,7 @@
 
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">1:1 문의</h5>
+            <h5 class="mb-0">1:1 {{__('erp.inquiry')}}</h5>
             <small class="text-muted float-end">
                 {{-- <button onclick="location.href='{{ route('erp-board.inquiry.create') }}'" class="btn btn-primary">문의등록</button> --}}
             </small>
@@ -22,11 +22,11 @@
                 <thead>
                 <tr style='vertical-align: middle;'>
                     <th class="w-10">No</th>
-                    <th class="w-50">제목</th>
-                    <th class="w-10">작성자</th>
-                    <th class="w-10">상태</th>
-                    <th class="w-10">작성일</th>
-                    <th class="w-10">관리</th>
+                    <th class="w-50">{{__('erp.title')}}</th>
+                    <th class="w-10">{{__('erp.author')}}</th>
+                    <th class="w-10">{{__('erp.status')}}</th>
+                    <th class="w-10">{{__('erp.created_date')}}</th>
+                    <th class="w-10">{{__('erp.management')}}</th>
                 </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -37,7 +37,7 @@
                     <tr class="align-middle py-2">
                         <td><span class="fw-medium">{{ $row_num-- }}</span></td>
                         <td>
-                            <a class="dropdown-item" href="{{ route('inquiry.detail', $inquire->id) }}">
+                            <a class="dropdown-item" href="{{ route('erp-board.inquiry.detail', $inquire->id) }}">
                                 <span class="fw-medium">{{ $inquire->title }}</span>
                             </a>
                         </td>
@@ -51,10 +51,10 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ route('inquiry.edit', $inquire->id) }}">
+                                        <a class="dropdown-item" href="{{ route('erp-board.inquiry.edit', $inquire->id) }}">
                                             <i class="bx bx-edit-alt me-1"></i> Edit
                                         </a>
-                                        <form action="{{ route('inquiry.delete', $inquire->id) }}" method="POST" style="display:inline;">
+                                        <form action="{{ route('erp-board.inquiry.delete', $inquire->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="dropdown-item" style='color:red;'>

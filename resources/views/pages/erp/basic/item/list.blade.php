@@ -30,32 +30,33 @@
 <!--/ Basic -->
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">상품 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-item-register')}}'" class="btn btn-primary">상품등록</button></small>
+    <h5 class="mb-0">{{__('erp.product')}} {{__('erp.list')}}</h5>
+    <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-item-register')}}'" class="btn btn-primary">{{__('erp.product')}}{{__('erp.register')}}</button></small>
   </div>
   <div class="table-responsive text-nowrap">
     <table class="table" >
       <thead>
         <tr>
           <th>No</th>
-          <th>이미지</th>
-          <th>상품코드</th>
-          <th>카테고리</th>
-          <th>상품명</th>
-          <th>상품금액</th>
-          <th>회원가</th>
-          <th>뷰티플래너가</th>
-          <th>대리점가</th>
-          <th>총판가</th>
-          <th>웹노출</th>
-          <th>사용여부</th>
-          <th>관리</th>
+          <th>{{__('erp.image')}}</th>
+          <th>{{__('erp.product_code')}}</th>
+          <th>{{__('erp.category')}}</th>
+          <th>{{__('erp.product_name')}}</th>
+          <th>{{__('erp.product_price')}}</th>
+          <th>{{__('erp.membership_price')}}</th>
+          <th>{{__('erp.beauty_planner_price')}}</th>
+          <th>{{__('erp.distributor_price')}}</th>
+          <th>{{__('erp.exclusive_distributor_price')}}</th>
+          <th>{{__('erp.exposed_status')}}</th>
+          <th>{{__('erp.usage_status')}}</th>
+          <th>{{__('erp.management')}}</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
         @foreach ($items as $list)
           <tr>
             <td> <span class="fw-medium">{{$row_num--;}}</span></td>
-            <td><img style='width:80px;' src="{{ asset('storage/data/'.$list->thum_img) }}" alt="상품이미지" onerror="this.src='{{ asset('storage/data/noimg.jpg') }}'"  ></td>
+            <td><img style='width:80px;' src="{{ asset('storage/data/'.$list->thum_img) }}" onerror="this.src='{{ asset('storage/data/noimg.jpg') }}'"  ></td>
             <td> <span class="fw-medium">{{$list->code}}</span></td>
             <td> <span class="fw-medium">{{$item_category[$list->category ?? 'none']}}</span></td>
             <td> <span class="fw-medium">{{$list->name}}</span></td>
@@ -64,8 +65,8 @@
             <td> <span class="fw-medium">{{number_format($list->planer_price)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->store_price)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->exclusive_price)}}</span></td>
-            <td> <span class="fw-medium">{{$list->is_view == 'Y' ? '노출' : '미노출'}}</span></td>
-            <td> <span class="fw-medium">{{$list->is_active == 'Y' ? '사용' : '미사용'}}</span></td>
+            <td> <span class="fw-medium">{{$list->is_view == 'Y' ? __('erp.exposed') : __('erp.not_exposed')}}</span></td>
+            <td> <span class="fw-medium">{{$list->is_active == 'Y' ? __('erp.use') : __('erp.unused')}}</span></td>
             <td>
               <div class="dropdown">
                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>

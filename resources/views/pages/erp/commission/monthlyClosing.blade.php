@@ -22,15 +22,15 @@
       </ul>
       <form class="d-flex" method="post" action="{{route('erp.monthly.calculation')}}">
         @csrf
-        <label class="col-form-label" style='font-size:16px;' for="settlement_month">정산월 : </label>
+        <label class="col-form-label" style='font-size:16px;' for="settlement_month">{{__('erp.settlement_month')}} : </label>
         <input type="text" class="form-control" style='width:100px; margin-right:10px;' readonly id="settlement_month" name='settlement_month' />
-        <label class="col-form-label" style='font-size:16px;' for="deadline_date">마감일자 : </label>
+        <label class="col-form-label" style='font-size:16px;' for="deadline_date">{{__('erp.closing_date')}} : </label>
         <input type="text" class="form-control" style='margin-left:10px; margin-right:10px; width:120px;' readonly id="deadline_date" name='deadline_date' />
-        <label class="col-form-label" style='font-size:16px;' for="start_date">정산기간 : </label>
+        <label class="col-form-label" style='font-size:16px;' for="start_date">{{__('erp.settlement_period')}} : </label>
         <input type="text" class="form-control" style='margin-left:10px; margin-right:10px; width:120px;' readonly id="start_date" name='start_date' />
         <label class="col-form-label" style='font-size:16px;' for="end_date"> ~ </label>
         <input type="text" class="form-control" style='margin-left:10px; margin-right:10px; width:120px;' readonly id="end_date" name='end_date' />
-        <button class="btn btn-outline-primary" style='margin-left:10px; margin-right:10px; width:240px;' type="submit">수당계산</button>
+        <button class="btn btn-outline-primary" style='margin-left:10px; margin-right:10px; width:240px;' type="submit">{{__('erp.allowment_calculation')}}</button>
       </form>
     </div>
   </div>
@@ -38,23 +38,23 @@
 <!--/ Basic -->
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">월마감</h5> <small class="text-muted float-end"></small>
+    <h5 class="mb-0">{{__('erp.monthly_closing_date')}}</h5> <small class="text-muted float-end"></small>
   </div>
   <div class="table-responsive text-nowrap">
     <table class="table" >
       <thead>
         <tr>
           <th style=' vertical-align: middle;'>No</th>
-          <th style=' vertical-align: middle;'>상세</th>
-          <th style=' vertical-align: middle;'>마감일자</th>
-          <th style=' vertical-align: middle;'>시작일자</th>
-          <th style=' vertical-align: middle;'>종료일자</th>
-          <th style=' vertical-align: middle;'>매출액</th>
+          <th style=' vertical-align: middle;'>{{__('erp.details')}}</th>
+          <th style=' vertical-align: middle;'>{{__('erp.closing_date')}}</th>
+          <th style=' vertical-align: middle;'>{{__('erp.start_date')}}</th>
+          <th style=' vertical-align: middle;'>{{__('erp.end_date')}}</th>
+          <th style=' vertical-align: middle;'>{{__('erp.sales')}}</th>
           <th style=' vertical-align: middle;'>PV</th>
-          <th style=' vertical-align: middle;'>합계금액</th>
-          <th style=' vertical-align: middle;'>실지급액</th>
-          <th style=' vertical-align: middle;'>마감자</th>
-          <th style=' vertical-align: middle;'>관리</th>
+          <th style=' vertical-align: middle;'>{{__('erp.total_amount')}}</th>
+          <th style=' vertical-align: middle;'>{{__('erp.actual_payment_amount')}}</th>
+          <th style=' vertical-align: middle;'>{{__('erp.closer')}}</th>
+          <th style=' vertical-align: middle;'>{{__('erp.management')}}</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
@@ -66,7 +66,7 @@
                 <td><span class="fw-medium">{{ $row_num-- }}</span></td>
                 <td>
                     <a class="badge bg-label-info me-4" href="{{ route('erp-allowance.monthly-detail', ['code' => $statement->code, 'type' => $statement->type]) }}">
-                        <span class="fw-medium">상세보기</span>
+                        <span class="fw-medium">{{__('erp.view_details')}}</span>
                     </a>
                 </td>
                 <td><span class="fw-medium">{{ date("Y-m-d",strtotime($statement->deadline_date)) }}</span></td>
@@ -118,7 +118,7 @@
         // $("#settlement_month").monthpicker();                    
         $('#settlement_month').monthpicker({
             pattern: 'yyyy-mm', // Default is 'mm/yyyy' and separator char is not mandatory
-            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+            monthNames: ['1{{__('erp.month')}}', '2{{__('erp.month')}}', '3{{__('erp.month')}}', '4{{__('erp.month')}}', '5{{__('erp.month')}}', '6{{__('erp.month')}}', '7{{__('erp.month')}}', '8{{__('erp.month')}}', '9{{__('erp.month')}}', '10{{__('erp.month')}}', '11{{__('erp.month')}}', '12{{__('erp.month')}}']
         });
 
         $("#deadline_date").datepicker();

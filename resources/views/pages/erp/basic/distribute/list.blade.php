@@ -30,22 +30,22 @@
 <!--/ Basic -->
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">분양몰 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-distribute-register')}}'" class="btn btn-primary">분양몰등록</button></small>
+    <h5 class="mb-0">{{__('erp.sale_mall')}} {{__('erp.list')}}</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-distribute-register')}}'" class="btn btn-primary">{{__('erp.sale_mall')}}{{__('erp.register')}}</button></small>
   </div>
   <div class="table-responsive text-nowrap">
     <table class="table" >
       <thead>
         <tr>
           <th>No</th>
-          <th>분양몰코드</th>
-          <th>분양몰명</th>
-          <th>대표자명</th>
-          <th>연락처</th>
-          <th>사업자등록번호</th>
-          <th>관리자 아이디</th>
-          <th>관리자명</th>
-          <th>사용유무</th>
-          <th>관리</th>
+          <th>{{__('erp.sales_mall_code')}}</th>
+          <th>{{__('erp.sales_mall_name')}}</th>
+          <th>{{__('erp.representative_name')}}</th>
+          <th>{{__('erp.contact')}}</th>
+          <th>{{__('erp.business_registration_number')}}</th>
+          <th>{{__('erp.manager')}} {{__('erp.id')}}</th>
+          <th>{{__('erp.manager_name')}}</th>
+          <th>{{__('erp.usage_status')}}</th>
+          <th>{{__('erp.management')}}</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">

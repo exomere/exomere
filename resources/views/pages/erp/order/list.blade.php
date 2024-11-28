@@ -22,29 +22,29 @@
       </ul>
       <form class="d-flex" action="{{ route('erp-order-layouts-order-list') }}" method="GET">
         <select name="approval_status" id="approval_status" class="form-select color-dropdown">
-          <option value="" {{ request('approval_status') == '' ? 'selected' : '' }}>:: 승인구분 ::</option>
-          <option value="Y" {{ request('approval_status') == 'Y' ? 'selected' : '' }}>승인완료</option>
-          <option value="P" {{ request('approval_status') == 'P' ? 'selected' : '' }}>승인대기</option>
-          <option value="N" {{ request('approval_status') == 'N' ? 'selected' : '' }}>취소</option>
+          <option value="" {{ request('approval_status') == '' ? 'selected' : '' }}>:: {{__('erp.approval_classification')}} ::</option>
+          <option value="Y" {{ request('approval_status') == 'Y' ? 'selected' : '' }}>{{__('erp.approval_complete')}}</option>
+          <option value="P" {{ request('approval_status') == 'P' ? 'selected' : '' }}>{{__('erp.awaiting_approval')}}</option>
+          <option value="N" {{ request('approval_status') == 'N' ? 'selected' : '' }}>{{__('erp.cancel')}}</option>
         </select>
 
         <select name="order_type" id="order_type" class="form-select color-dropdown">
-          <option value="" {{ request('order_type') == '' ? 'selected' : '' }}>:: 주문구분 ::</option>
-          <option value="new" {{ request('order_type') == 'new' ? 'selected' : '' }}>신규주문</option>
-          <option value="repurchase" {{ request('order_type') == 'repurchase' ? 'selected' : '' }}>재구매주문</option>
-          <option value="distribute_new" {{ request('order_type') == 'distribute_new' ? 'selected' : '' }}>분양몰신규</option>
-          <option value="distribute_repurchase" {{ request('order_type') == 'distribute_repurchase' ? 'selected' : '' }}>분양몰재구매</option>
+          <option value="" {{ request('order_type') == '' ? 'selected' : '' }}>:: {{__('erp.order_classification')}} ::</option>
+          <option value="new" {{ request('order_type') == 'new' ? 'selected' : '' }}>{{__('erp.new_order')}}</option>
+          <option value="repurchase" {{ request('order_type') == 'repurchase' ? 'selected' : '' }}>{{__('erp.repurchase_order')}}</option>
+          <option value="distribute_new" {{ request('order_type') == 'distribute_new' ? 'selected' : '' }}>{{__('erp.new_sale_mall')}}</option>
+          <option value="distribute_repurchase" {{ request('order_type') == 'distribute_repurchase' ? 'selected' : '' }}>{{__('erp.repurchase_in_sale_mall')}}</option>
         </select>
 
         <select name="search_field" id="search_field" class="form-select color-dropdown">
-          <option value="member_name" {{ request('search_field') == 'member_name' ? 'selected' : '' }}>회원명</option>
-          <option value="member_id" {{ request('search_field') == 'member_id' ? 'selected' : '' }}>회원아이디</option>
-          <option value="member_seq" {{ request('search_field') == 'member_seq' ? 'selected' : '' }}>회원번호</option>
-          <option value="order_seq" {{ request('search_field') == 'order_seq' ? 'selected' : '' }}>주문번호</option>
+          <option value="member_name" {{ request('search_field') == 'member_name' ? 'selected' : '' }}>{{__('erp.member_name')}}</option>
+          <option value="member_id" {{ request('search_field') == 'member_id' ? 'selected' : '' }}>{{__('erp.member_id')}}</option>
+          <option value="member_seq" {{ request('search_field') == 'member_seq' ? 'selected' : '' }}>{{__('erp.member_number')}}</option>
+          <option value="order_seq" {{ request('search_field') == 'order_seq' ? 'selected' : '' }}>{{__('erp.order_number')}}</option>
         </select>
 
         <input class="form-control me-2" style='width:240px;' name="search_text" type="search" placeholder="Search" aria-label="Search" value="{{ request('search_text') }}">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
+        <button class="btn btn-outline-primary" type="submit">{{__('erp.search')}}</button>
       </form>
     </div>
   </div>
@@ -52,33 +52,36 @@
 <!--/ Basic -->
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">주문 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('erp-order-layouts-order-register')}}'" class="btn btn-primary">주문등록</button></small>
+    <h5 class="mb-0">{{__('erp.order_list')}}</h5>
+    <small class="text-muted float-end">
+      <button onclick="location.href='{{route('erp-order-layouts-order-register')}}'" class="btn btn-primary">{{__('erp.order_registration')}}</button>
+    </small>
   </div>
   <div class="table-responsive text-nowrap">
     <table class="table" >
       <thead>
         <tr>
           <th style='vertical-align: middle;' rowspan='2'>No</th>
-          <th style='vertical-align: middle;' rowspan='2'>승인여부</th>
-          <th style='vertical-align: middle;' rowspan='2'>주문구분</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.is_approval')}}</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.order_classification')}}</th>
           {{-- <th style='vertical-align: middle;' rowspan='2'>주문서</th> --}}
-          <th style='vertical-align: middle;' rowspan='2'>주문금액</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.order_amount')}}</th>
           <th style='vertical-align: middle;' rowspan='2'>PV1</th>
-          <th style='vertical-align: middle;' rowspan='2'>주문자</th>
-          <th style='vertical-align: middle;' rowspan='2'>주문일자</th>
-          <th style='vertical-align: middle;' rowspan='2'>주문번호</th>
-          <th style='vertical-align: middle;' rowspan='2'>아이디</th>
-          <th style='vertical-align: middle;' rowspan='2'>이름</th>
-          <th style='vertical-align: middle;' rowspan='2'>지역점</th>
-          <th style='vertical-align: middle;' rowspan='2'>상품</th>
-          <th style='text-align:center;' colspan='2'>모집인</th>
-          <th style='vertical-align: middle;' rowspan='2'>비고</th>
-          <th style='vertical-align: middle;' rowspan='2'>등록자</th>
-          <th style='vertical-align: middle;' rowspan='2'>관리</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.orderer')}}</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.order_date')}}</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.order_number')}}</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.id')}}</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.name')}}</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.local_branch')}}</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.product')}}</th>
+          <th style='text-align:center;' colspan='2'>{{__('erp.recruiter')}}</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.remarks')}}</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.registrant')}}</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.management')}}</th>
         </tr>
         <tr>
-          <th>아이디</th>
-          <th>이름</th>
+          <th>{{__('erp.id')}}</th>
+          <th>{{__('erp.name')}}</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
@@ -88,12 +91,12 @@
             <td> <span class="fw-medium">{{$row_num--}}</span></td>
             <td>
               @if ($list->is_approval == 'Y')
-                <span class="fw-medium">승인</span>    
+                <span class="fw-medium">{{__('erp.approval')}}</span>
               @elseif ($list->is_approval == 'C')
-                <span class="fw-medium">취소</span>    
+                <span class="fw-medium">{{__('erp.cancel')}}</span>
               @else
-                <input type='button' class='cfOrder' data-seq='{{$list->id}}' data-type='Y' value='승인'>
-                <input type='button' class='cfOrder' data-seq='{{$list->id}}' data-type='C' value='취소'>
+                <input type='button' class='cfOrder' data-seq='{{$list->id}}' data-type='Y' value='{{__('erp.approval')}}'>
+                <input type='button' class='cfOrder' data-seq='{{$list->id}}' data-type='C' value='{{__('erp.cancel')}}'>
               @endif 
               
             </td>
@@ -158,7 +161,7 @@
             "type": type,
         },
         success: function (res) {
-          alert('처리가 완료되었습니다.');
+          alert('{{__('erp.processing_completed')}}');
           location.reload();
         }
     });

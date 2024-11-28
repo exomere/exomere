@@ -12,9 +12,9 @@
 
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">공지사항</h5>
+            <h5 class="mb-0">{{__('erp.notice')}}</h5>
             <small class="text-muted float-end">
-                <button onclick="location.href='{{ route('erp-board.notice.create') }}'" class="btn btn-primary">공지등록</button>
+                <button onclick="location.href='{{ route('erp-board.notice.create') }}'" class="btn btn-primary">{{__('erp.notice_registration')}}</button>
             </small>
         </div>
         <div class="table-responsive text-nowrap">
@@ -22,10 +22,10 @@
                 <thead>
                 <tr style='vertical-align: middle;'>
                     <th class="w-10">No</th>
-                    <th class="w-50">제목</th>
-                    <th class="w-20">작성자</th>
-                    <th class="w-20">작성일</th>
-                    <th class="w-10">관리</th>
+                    <th class="w-50">{{__('erp.title')}}</th>
+                    <th class="w-20">{{__('erp.author')}}</th>
+                    <th class="w-20">{{__('erp.created_date')}}</th>
+                    <th class="w-10">{{__('erp.management')}}</th>
                 </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -48,7 +48,7 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ route('notice.edit', $notice->id) }}">
+                                    <a class="dropdown-item" href="{{ route('erp-board.notice.edit', $notice->id) }}">
                                         <i class="bx bx-edit-alt me-1"></i> Edit
                                     </a>
                                     <form action="{{ route('erp-board.notice.delete', $notice->id) }}" method="POST" style="display:inline;">

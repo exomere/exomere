@@ -15,64 +15,65 @@
     <div class="col-xxl">
       <div class="card mb-4">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <h5 class="mb-0">주문등록</h5> <small class="text-muted float-end"><input type="button" class="btn btn-primary saveBtn" value='저장'></small>
+          <h5 class="mb-0">{{__('erp.order_registration')}}</h5>
+          <small class="text-muted float-end"><input type="button" class="btn btn-primary saveBtn" value='{{__('erp.save')}}'></small>
         </div>
         <div class="card-body">
           <form>
             @csrf
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="member_info"> <span style='color:red;'>*</span> 회원선택 </label>
+              <label class="col-sm-1 col-form-label" for="member_info"> <span style='color:red;'>*</span> {{__('erp.member_selection')}} </label>
               <div class="col-sm-6">
                 <div class="input-group">
                   <input type="hidden" class="form-control" id="member_position" value="{{ $order_data->member_seq ?? null }}"/>
                   <input type="hidden" class="form-control" id="member_seq" name='member_seq' value="{{ $order_data->member_seq ?? null }}"/>
                   <input type="text" class="form-control" id="member_info" readonly name='member_info' value="{{ $order_data->member_id  ?? null }} | {{ $order_data->member_name ?? null }}"/>
-                  <a href="javascript:void(0);" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">검색</a>
+                  <a href="javascript:void(0);" class="btn btn-primary me-4" data-bs-target="#editUser" data-bs-toggle="modal">{{__('erp.search')}}</a>
                </div>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="order_date"> <span style='color:red;'>*</span> 주문일 </label>
+              <label class="col-sm-1 col-form-label" for="order_date"> <span style='color:red;'>*</span> {{__('erp.order_date')}} </label>
               <div class="col-sm-3">
                 <input type="text" class="form-control" id="order_date" name='order_date' value="{{ $order_date ?? date("Y-m-d") }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="order_type"> <span style='color:red;'>*</span> 주문구분 </label>
+              <label class="col-sm-1 col-form-label" for="order_type"> <span style='color:red;'>*</span> {{__('erp.order_classification')}} </label>
               <div class="col-sm-2">
                 <select class="form-select" name="order_type" id="order_type" required>
-                  <option value=''>== 주문 타입 ==</option>
-                  <option value='new' @isset($order_data->order_type) @if($order_data->order_type == "new") selected @endif @endisset>신규주문</option>
-                  <option value='repurchase' @isset($order_data->order_type) @if($order_data->order_type == "repurchase") selected @endif @endisset>재구매주문</option>
-                  <option value='distribute_new' @isset($order_data->order_type) @if($order_data->order_type == "distribute_new") selected @endif @endisset>분양몰신규</option>
-                  <option value='distribute_repurchase' @isset($order_data->order_type) @if($order_data->order_type == "distribute_repurchase") selected @endif @endisset>분양몰재구문</option>
+                  <option value=''>== {{__('erp.order_classification')}} ==</option>
+                  <option value='new' @isset($order_data->order_type) @if($order_data->order_type == "new") selected @endif @endisset>{{__('erp.new_order')}}</option>
+                  <option value='repurchase' @isset($order_data->order_type) @if($order_data->order_type == "repurchase") selected @endif @endisset>{{__('erp.repurchase_order')}}</option>
+                  <option value='distribute_new' @isset($order_data->order_type) @if($order_data->order_type == "distribute_new") selected @endif @endisset>{{__('erp.new_sale_mall')}}</option>
+                  <option value='distribute_repurchase' @isset($order_data->order_type) @if($order_data->order_type == "distribute_repurchase") selected @endif @endisset>{{__('erp.repurchase_in_sale_mall')}}</option>
                 </select>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="receipt_method"> 상품수령 </label>
+              <label class="col-sm-1 col-form-label" for="receipt_method"> {{__('erp.product_receipt')}} </label>
               <div class="col-sm-2">
                 <select class="form-select" name="receipt_method" id="receipt_method">
-                  <option value='delivery' @isset($order_data->receipt_method) @if($order_data->receipt_method == "delivery") selected @endif @endisset>택배수령</option>
-                  <option value='scene' @isset($order_data->receipt_method) @if($order_data->receipt_method == "scene") selected @endif @endisset>현장수령</option>
+                  <option value='delivery' @isset($order_data->receipt_method) @if($order_data->receipt_method == "delivery") selected @endif @endisset>{{__('erp.delivery_receipt')}}</option>
+                  <option value='scene' @isset($order_data->receipt_method) @if($order_data->receipt_method == "scene") selected @endif @endisset>{{__('erp.on_site_receipt')}}</option>
                 </select>
               </div>
             </div>
             <div style="display:@isset($order_data->receipt_method) @if($order_data->receipt_method == "delivery") block @endif @endisset" id="receiptDiv">
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label" for="delivery_name"> 주문자 </label>
+                <label class="col-sm-1 col-form-label" for="delivery_name"> {{__('erp.orderer')}} </label>
                 <div class="col-sm-6">
                   <input type="text" class="form-control" id="delivery_name" name='delivery_name' value="{{ $order_data->delivery_name ?? null }}" />
                 </div>
               </div>
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label" for="delivery_phone"> 연락처 </label>
+                <label class="col-sm-1 col-form-label" for="delivery_phone"> {{__('erp.contact')}} </label>
                 <div class="col-sm-6">
                   <input type="text" class="form-control" id="delivery_phone" name="delivery_phone" value="{{ $order_data->delivery_phone ?? null }}" />
                 </div>
               </div>
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label" for="zipcode">우편번호</label>
+                <label class="col-sm-1 col-form-label" for="zipcode">{{__('erp.zip_code')}}</label>
                 <div class="col-sm-2">
                   <div class="input-group">
                     <input type="text" name="zipcode" id="zipcode" class="form-control" readonly value="{{ $order_data->zipcode ?? null }}" />
@@ -81,29 +82,29 @@
                 </div>
               </div>
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label">기본주소</label>
+                <label class="col-sm-1 col-form-label">{{__('erp.basic_address')}}</label>
                 <div class="col-sm-5">
                   <input type="text" readonly class="form-control" name='address' id='address' value="{{ $order_data->address ?? null }}"/>
                 </div>
               </div>
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label">상세주소</label>
+                <label class="col-sm-1 col-form-label">{{__('erp.detailed_address')}}</label>
                 <div class="col-sm-5">
                   <input type="text" class="form-control" name='address_detail' id='address_detail' value="{{ $order_data->address_detail ?? null }}"/>
                 </div>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="remark"> 비고 </label>
+              <label class="col-sm-1 col-form-label" for="remark"> {{__('erp.remarks')}} </label>
               <div class="col-sm-6">
                 <input type="text" class="form-control" id="remark" name='remark' value="{{ $order_data->remark ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-code"> 상품 </label>
+              <label class="col-sm-1 col-form-label" for="basic-default-code"> {{__('erp.product')}} </label>
               <div class="col-md-4">
                 <select class="form-select" name="product_select" id="product_select">
-                  <option value="">상품 선택</option>
+                  <option value="">{{__('erp.select_product')}}</option>
                   @foreach ($item_array as $item)
                     <option value='{{$item['seq']}}'
                         data-price='{{$item['price']}}'
@@ -124,17 +125,17 @@
             <div class="row mb-3">
               <div class="col-sm-12">
                 <div class="card">
-                  <h5 class="card-header">주문상품 리스트</h5>
+                  <h5 class="card-header">{{__('erp.ordered_product_list')}}</h5>
                   <div class="table-responsive text-nowrap">
                     <table class="table">
                       <thead>
                         <tr class="text-nowrap">
-                          <th>상품명</th>
-                          <th>판매가</th>
+                          <th>{{__('erp.product_name')}}</th>
+                          <th>{{__('erp.sales_price')}}</th>
                           <th>PV</th>
-                          <th>수량</th>
-                          <th>합계</th>
-                          <th>관리</th>
+                          <th>{{__('erp.quantity')}}</th>
+                          <th>{{__('erp.total')}}</th>
+                          <th>{{__('erp.management')}}</th>
                         </tr>
                       </thead>
                       <tbody class="table-border-bottom-0 product_info_body">
@@ -153,11 +154,11 @@
                                 <td>{{number_format($item->pd_pv)}}</td>
                                 <td><input style='width:80px;' class='form-control qtyProduct' id='pd_qty_{{$item->pd_seq}}' name='pd_qty[]' data-seq='{{$item->pd_seq}}' data-price='{{$item->pd_price}}' type='number' value='{{$item->pd_qty}}'/></td>
                                 <td><span class='pd_total' id='pd_total_{{$item->pd_seq}}'>{{number_format($item->pd_price * $item->pd_qty)}}</span></td>
-                                <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='product' data-idx='{{$item->pd_seq}}'>삭제</button></td>
+                                <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='product' data-idx='{{$item->pd_seq}}'>{{__('erp.remove')}}</button></td>
                               </tr>
                             @endforeach
                           @else
-                            <tr><td style='text-align:center; height:80px;' colspan="6">선택한 상품이 없습니다.</td> </tr>
+                            <tr><td style='text-align:center; height:80px;' colspan="6">{{__('erp.no_selected_products')}}</td> </tr>
                           @endif
                       
                       </tbody>
@@ -166,55 +167,55 @@
                 </div>
               </div>
               <div class="row mt-3">
-                <label class="col-sm-1 col-form-label" for="total_amount"> 총금액 </label>
+                <label class="col-sm-1 col-form-label" for="total_amount"> {{__('erp.total_amount')}} </label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control" id="total_amount" name='total_amount' readonly style='width:170px;' value='{{number_format($order_data->total_amount ?? 0)}}'/>
                   <input type="hidden" class="form-control" id="total_pv" name='total_pv' readonly style='width:170px;' value='{{number_format($order_data->total_pv ?? 0)}}'/>
                 </div>
-                <label class="col-sm-1 col-form-label" for="payment_amount"> 결제금액 </label>
+                <label class="col-sm-1 col-form-label" for="payment_amount"> {{__('erp.payment_amount')}} </label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control" id="payment_amount" name='payment_amount' readonly style='width:170px;' value='{{number_format($order_data->payment_amount ?? 0)}}'/>
                 </div>
-                <label class="col-sm-1 col-form-label" for="remain_amount"> 남은금액 </label>
+                <label class="col-sm-1 col-form-label" for="remain_amount"> {{__('erp.remaining_amount')}} </label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control" id="remain_amount" name='remaining_amount' readonly style='width:170px;' value='{{number_format($order_data->remaining_amount ?? 0)}}'/>
                 </div>
               </div>
               <div class="row mt-3">
-                <label class="col-sm-1 col-form-label" for="cash_payment"> 현금결제 </label>
+                <label class="col-sm-1 col-form-label" for="cash_payment"> {{__('erp.cash_payment')}} </label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control totalRecalculating" id="cash_payment" name="cash_payment" value='{{number_format($order_data->cash_payment ?? 0)}}'/>
                 </div>
-                <label class="col-sm-1 col-form-label" for="card_payment"> 카드결제 </label>
+                <label class="col-sm-1 col-form-label" for="card_payment"> {{__('erp.card_payment')}} </label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control" id="card_payment" readonly name="card_payment" value='{{number_format($order_data->card_payment ?? 0)}}'/>
                 </div>
-                <label class="col-sm-1 col-form-label" for="account_payment"> 계좌이체 </label>
+                <label class="col-sm-1 col-form-label" for="account_payment"> {{__('erp.account_transfer')}} </label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control" id="account_payment" readonly name="account_payment" value='{{number_format($order_data->account_payment ?? 0)}}'/>
                 </div>
               </div>
               <div class="row mt-3">
-                <label class="col-sm-1 col-form-label" for="point_payment"> 포인트사용 </label>
+                <label class="col-sm-1 col-form-label" for="point_payment"> {{__('erp.use_points')}} </label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control totalRecalculating" data-type='point' id="point_payment" name="point_payment" value='{{$order_data->point_paymen ?? 0}}'/>
                 </div>
-                <label class="col-sm-1 col-form-label" for="remain_points"> 잔여포인트 </label>
+                <label class="col-sm-1 col-form-label" for="remain_points"> {{__('erp.remaining_points')}} </label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control" id="remain_points" readonly value='0'/>
                 </div>
               </div>
             <div class="row " data-select2-id="38">
               <div class="col" data-select2-id="37">
-                <h5 class="mt-4"> 결제방법 </h5>
+                <h5 class="mt-4"> {{__('erp.payment_method')}} </h5>
                 <div class="card mb-6" data-select2-id="36">
                   <div class="card-header p-0 nav-align-top">
                     <ul class="nav nav-tabs" role="tablist">
                       <li class="nav-item" role="presentation">
-                        <button type='button' class="nav-link active" data-bs-toggle="tab" data-bs-target="#form-tabs-personal" role="tab" aria-selected="true">카드결제</button>
+                        <button type='button' class="nav-link active" data-bs-toggle="tab" data-bs-target="#form-tabs-personal" role="tab" aria-selected="true">{{__('erp.card_payment')}}</button>
                       </li>
                       <li class="nav-item" role="presentation">
-                        <button type='button' class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-account" role="tab" aria-selected="false" tabindex="-1">계좌이체</button>
+                        <button type='button' class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-account" role="tab" aria-selected="false" tabindex="-1">{{__('erp.account_transfer')}}</button>
                       </li>
                     </ul>
                   </div>
@@ -223,40 +224,40 @@
                     <!-- Personal Info -->
                     <div class="tab-pane fade active show" id="form-tabs-personal" role="tabpanel" data-select2-id="form-tabs-personal">
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="payment_card_1"> 카드사 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_1"> {{__('erp.card_company')}} </label>
                         <div class="col-sm-2">
                           <select class="form-select" id="payment_card_1">
-                            <option value="">카드선택</option>
+                            <option value="">{{__('erp.select_card')}}</option>
                             @foreach ($card_compnay as $key => $val)
                               <option value="{{$key}}">{{$val}}</option>
                             @endforeach
                           </select>
                         </div>
-                        <label class="col-sm-1 col-form-label" for="payment_card_2"> 카드번호 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_2"> {{__('erp.card_number')}} </label>
                         <div class="col-sm-5">
                           <input type="text" class="form-control" id="payment_card_2" maxlength="20"/>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="payment_card_3"> 소유자명 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_3"> {{__('erp.owner_name')}} </label>
                         <div class="col-sm-2">
                           <input type="text" class="form-control" id="payment_card_3"/>
                         </div>
-                        <label class="col-sm-1 col-form-label" for="payment_card_4"> 비밀번호 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_4"> {{__('erp.password')}} </label>
                         <div class="col-sm-2">
                           <input type="text" class="form-control" id="payment_card_4" maxlength="2"/>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="payment_card_5"> 할부개월 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_5"> {{__('erp.installment_month')}} </label>
                         <div class="col-sm-2">
                           <select class="form-select"  id="payment_card_5">
                             @for ($i = 1; $i < 13; $i++)
-                                <option value="{{$i}}">{{$i}}개월</option>
+                                <option value="{{$i}}">{{$i}}{{__('erp.month')}}</option>
                             @endfor
                           </select>
                         </div>
-                        <label class="col-sm-1 col-form-label" for="payment_card_6"> 유효기간 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_6"> {{__('erp.validity_period')}} </label>
                         <div class="col-sm-1">
                           <select class="form-select"  id="payment_card_6">
                              @php
@@ -264,7 +265,7 @@
                              @endphp
                             @for ($i = date("y"); $i < (date("y")+15); $i++)
                 
-                                <option value="{{$i}}">{{$i}}년</option>
+                                <option value="{{$i}}">{{$i}}{{__('erp.year')}}</option>
                             @endfor
                           </select>
                         </div>
@@ -276,23 +277,23 @@
                               @else
                                 @php $month_val = $i @endphp
                               @endif
-                              <option value="{{$month_val}}">{{$i}}월</option>
+                              <option value="{{$month_val}}">{{$i}}{{__('erp.month')}}</option>
                             @endfor
                           </select>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="payment_card_8"> 승인번호 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_8"> {{__('erp.approval_number')}} </label>
                         <div class="col-sm-2">
                           <input type="text" class="form-control"  id='payment_card_8'/>
                         </div>
-                        <label class="col-sm-1 col-form-label" for="payment_card_9"> 승인일자 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_9"> {{__('erp.approval_date')}} </label>
                         <div class="col-sm-2">
                           <input type="text" class="form-control"  id='payment_card_9' readonly/>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="payment_card_10"> 결제금액 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_card_10"> {{__('erp.payment_amount')}} </label>
                         <div class="col-sm-2">
                           <input type="text" class="form-control"  id='payment_card_10'/>
                         </div>
@@ -301,7 +302,7 @@
                         <div class="col-md-6">
                           <div class="row justify-content-end">
                             <div class="col-sm-9">
-                              <button type="button" class="btn btn-primary me-3 addCardPaymentInfo">추가</button>
+                              <button type="button" class="btn btn-primary me-3 addCardPaymentInfo">{{__('erp.add')}}</button>
                             </div>
                           </div>
                         </div>
@@ -309,25 +310,25 @@
                     </div>
                     <div class="tab-pane fade" id="form-tabs-account" role="tabpanel">
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="payment_account_1"> 입금계좌 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_account_1"> {{__('erp.deposit_account')}} </label>
                         <div class="col-sm-6">
                           <input type="text" class="form-control" id="payment_account_1" readonly value="KB국민 계좌번호 989801-00-072129 ㈜엑소미어" />
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="payment_account_2"> 입금자명 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_account_2"> {{__('erp.depositor_name')}} </label>
                         <div class="col-sm-6">
                           <input type="text" class="form-control" id="payment_account_2" />
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="payment_account_3"> 입금일 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_account_3"> {{__('erp.deposit_date')}} </label>
                         <div class="col-sm-6">
                           <input type="text" class="form-control" id="payment_account_3" name='payment_account_3' readonly/>
                         </div>
                       </div>
                       <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="payment_account_4"> 결제금액 </label>
+                        <label class="col-sm-1 col-form-label" for="payment_account_4"> {{__('erp.payment_amount')}} </label>
                         <div class="col-sm-6">
                           <input type="text" class="form-control" id="payment_account_4" />
                         </div>
@@ -336,7 +337,7 @@
                         <div class="col-md-6">
                           <div class="row justify-content-end">
                             <div class="col-sm-9">
-                              <button type="button" class="btn btn-primary me-3 addAccountInfoBody">추가</button>
+                              <button type="button" class="btn btn-primary me-3 addAccountInfoBody">{{__('erp.add')}}</button>
                             </div>
                           </div>
                         </div>
@@ -350,21 +351,21 @@
                 <hr class="my-5">
                 <!-- Responsive Table -->
                 <div class="card">
-                  <h5 class="card-header">카드결제정보</h5>
+                  <h5 class="card-header">{{__('erp.card_payment_info')}}</h5>
                   <div class="table-responsive text-nowrap">
                     <table class="table">
                       <thead>
                         <tr class="text-nowrap">
-                          <th>카드명</th>
-                          <th>카드번호</th>
-                          <th>결제금액</th>
-                          <th>할부</th>
-                          <th>유효년월</th>
-                          <th>승인번호</th>
-                          <th>소유자명</th>
-                          <th>승인일자</th>
-                          <th>비밀번호</th>
-                          <th>관리</th>
+                          <th>{{__('erp.card_name')}}</th>
+                          <th>{{__('erp.card_number')}}</th>
+                          <th>{{__('erp.payment_amount')}}</th>
+                          <th>{{__('erp.installment_month')}}</th>
+                          <th>{{__('erp.expiration_date')}}</th>
+                          <th>{{__('erp.approval_number')}}</th>
+                          <th>{{__('erp.owner_name')}}</th>
+                          <th>{{__('erp.approval_date')}}</th>
+                          <th>{{__('erp.password')}}</th>
+                          <th>{{__('erp.management')}}</th>
                         </tr>
                       </thead>
                       <tbody class="table-border-bottom-0 cardInfoBody">
@@ -384,13 +385,13 @@
                                   <td><input type='text' class='form-control' readonly name='card_approval_name[]' value='{{$card->card_approval_name ?? null}}'></td>
                                   <td><input type='text' class='form-control' readonly name='card_approval_date[]' value='{{$card->card_approval_date ?? null}}'></td>
                                   <td><input type='text' class='form-control' readonly name='card_password[]' value='{{$card->card_password ?? null}}'></td>
-                                  <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='card' data-idx='{{$card_cnt ?? null}}' >삭제</button></td>
+                                  <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='card' data-idx='{{$card_cnt ?? null}}' >{{__('erp.remove')}}</button></td>
                               </tr>
                               @php $card_cnt++; @endphp
                             @endforeach
                           @else
                             <tr>
-                              <td style='text-align:center; height:80px;' colspan="10">카드결제 정보가 없습니다.</td>
+                              <td style='text-align:center; height:80px;' colspan="10">{{__('erp.no_card_payment_info')}}</td>
                             </tr>
                           @endif
                       </tbody>
@@ -405,16 +406,16 @@
                 <hr class="my-5">
                 <!-- Responsive Table -->
                 <div class="card">
-                  <h5 class="card-header">계좌이체 결제 정보</h5>
+                  <h5 class="card-header">{{__('erp.bank_transfer_info')}}</h5>
                   <div class="table-responsive text-nowrap">
                     <table class="table">
                       <thead>
                         <tr class="text-nowrap">
-                          <th>입금계좌번호</th>
-                          <th>입금자</th>
-                          <th>입금일</th>
-                          <th>결제금액</th>
-                          <th>관리</th>
+                          <th>{{__('erp.deposit_account_number')}}</th>
+                          <th>{{__('erp.depositor_name')}}</th>
+                          <th>{{__('erp.deposit_date')}}</th>
+                          <th>{{__('erp.payment_amount')}}</th>
+                          <th>{{__('erp.management')}}</th>
                         </tr>
                       </thead>
                       <tbody class="table-border-bottom-0 accountInfoBody">
@@ -426,13 +427,13 @@
                                 <td><input type='text' class='form-control' readonly name='account_head[]' value='{{$account->account_head}}'></td>
                                 <td><input type='text' class='form-control' readonly name='account_date[]' value='{{$account->account_date}}'></td>
                                 <td><input type='text' class='form-control account_payment_price' readonly name='account_payment_price[]' value='{{$account->account_payment_price}}'></td>
-                                <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='account' data-idx='{{$acc_cnt}}'>삭제</button></td>
+                                <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='account' data-idx='{{$acc_cnt}}'>{{__('erp.remove')}}</button></td>
                             </tr>
                             @php $acc_cnt++; @endphp
                           @endforeach
                         @else
                           <tr>
-                            <td style='text-align:center; height:80px;' colspan="5">계좌이체 정보가 없습니다.</td>
+                            <td style='text-align:center; height:80px;' colspan="5">{{__('erp.no_account_transfer_info')}}</td>
                           </tr>
                         @endif
                       </tbody>
@@ -452,14 +453,14 @@
       <div class="modal-content">
         <div class="modal-body">
           <div class="text-center mb-6">
-            <h4 class="mb-2">회원검색</h4>
+            <h4 class="mb-2">{{__('erp.member_search')}}</h4>
           </div>
             <div class="col-12">
               <div class="row mt-5">
                 <select id="searchMemberType" class="form-select color-dropdown" style='width:22%; margin-left:10%;'>
-                  <option value="name">회원 이름</option>
-                  <option value="member_id">회원 아이디</option>
-                  <option value="id">회원 번호</option>
+                  <option value="name">{{__('erp.member_name')}}</option>
+                  <option value="member_id">{{__('erp.member_id')}}</option>
+                  <option value="id">{{__('erp.member_number')}}</option>
                 </select>
                 <input class="form-control me-2" style='width:40%;' id='searchMemberText' type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-primary searchMember"  style='width:22%;' type="button">Search</button>
@@ -476,17 +477,17 @@
                       <table class="table">
                         <thead>
                           <tr class="text-nowrap">
-                            <th>회원번호</th>
-                            <th>회원명</th>
-                            <th>로그인ID</th>
-                            <th>직급</th>
-                            <th>등록일</th>
-                            <th>관리</th>
+                            <th>{{__('erp.member_number')}}</th>
+                            <th>{{__('erp.member_name')}}</th>
+                            <th>{{__('erp.member_id')}}</th>
+                            <th>{{__('erp.position')}}</th>
+                            <th>{{__('erp.registration_date')}}</th>
+                            <th>{{__('erp.management')}}</th>
                           </tr>
                         </thead>
                         <tbody class="table-border-bottom-0 memberBody">
                           <tr>
-                            <th colspan="6" style='height:80px; text-align:center;'>회원을 검색해주세요.</th>
+                            <th colspan="6" style='height:80px; text-align:center;'>{{__('erp.search_member')}}</th>
                           </tr>
                         </tbody>
                       </table>
@@ -497,7 +498,7 @@
               </div>
             </div>
             <div class="col-12 text-center">
-              <button type="reset" class="btn btn-label-secondary cancelMemberInfo" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">취소</button>
+              <button type="reset" class="btn btn-label-secondary cancelMemberInfo" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">{{__('erp.cancel')}}</button>
             </div>
           </form>
         </div>

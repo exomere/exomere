@@ -29,17 +29,18 @@
   <!--/ Basic -->
   <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
-      <h5 class="mb-0">관리자 리스트</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-member-register')}}'" class="btn btn-primary">관리자 등록</button></small>
+      <h5 class="mb-0">{{__('erp.manager')}} {{__('erp.list')}}</h5>
+      <small class="text-muted float-end"><button onclick="location.href='{{route('basic-layouts-member-register')}}'" class="btn btn-primary">{{__('erp.manager')}} {{__('erp.register')}}</button></small>
     </div>
     <div class="table-responsive text-nowrap">
       <table class="table" >
         <thead>
           <tr>
             <th>No</th>
-            <th>아이디</th>
-            <th>관리자명</th>
-            <th>사용유무</th>
-            <th>관리</th>
+            <th>{{__('erp.id')}}</th>
+            <th>{{__('erp.manager_name')}}</th>
+            <th>{{__('erp.usage_status')}}</th>
+            <th>{{__('erp.management')}}</th>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
@@ -49,7 +50,7 @@
               <td>{{$row_num--}}</td>
               <td>{{$list->member_id}}</td>
               <td>{{$list->name}}</td>
-              <td>{{($list->is_delete == 'N' ? '사용' : '미사용')}}</td>
+              <td>{{($list->is_delete == 'N' ? __('erp.use') : __('erp.unused'))}}</td>
               <td>
                 <div class="dropdown">
                   <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
