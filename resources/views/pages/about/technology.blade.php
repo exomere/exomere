@@ -204,10 +204,10 @@ if (app()->getLocale() != "ko") {
                                 </div>
                                 <div class="pt-10 pb-20 px-8 lg:p-0 lg:p-[5%] xl:p-[10%] leading-loose md:basis-1/2"
                                      data-aos="fade-up">
-                                    <h2 class="inline-block font-bold text-2xl mb-7">{{ $content['title'] }}</h2>
+                                    <h2 class="@if(in_array(app()->getLocale(), ['jp','cn'])) break-all @endif inline-block font-bold text-2xl mb-7">{{ $content['title'] }}</h2>
                                     <p class="leading-loose md:leading-loose text-base md:text-lg text-gray-500 mb-3 ">
                                         {{ $content['code'] }}</p>
-                                    <p class="@if(app()->getLocale() == 'jp') break-all @endif leading-loose md:leading-loose text-base md:text-lg text-gray-500 mb-3 ">
+                                    <p class="@if(in_array(app()->getLocale(), ['jp','cn'])) break-all @endif leading-loose md:leading-loose text-base md:text-lg text-gray-500 mb-3 ">
                                         {!! $content['description'] !!}
                                     </p>
                                     <small
