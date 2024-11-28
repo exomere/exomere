@@ -13,7 +13,7 @@
                 <li><strong> COMPANY.</strong> (주)엑소미어</li>
                 <li><strong> CEO.</strong> 정영철</li>
                 <li><strong> Tel.</strong> 02-1577-1586</li>
-                <li><strong> BUSINESS LICENCE.</strong> 453-87-02974</li>
+                <li><strong> BUSINESS LICENCE.</strong> 453-87-02974 <a style='cursor: pointer;' onclick="javascript:window.open('https://www.ftc.go.kr/bizCommPop.do?wrkr_no=4538702974', '_blank','width=650,height=900,left=200,top=200');">[사업자정보확인]</a></li>
                 <li><strong> E-COMMERCE PERMINT.</strong> 제 2024-서울송파-0603</li>
                 <li><strong> ADDRESS.</strong> 05836 서울특별시 송파구 법원로11길 11, 2층 204호 (문정동, 문정현대 지식산업센터1-1)</li>
                 <li><strong> PERSONL INFORMATION MANAGER.</strong> 김영아(exomere@exomere.com) </li>
