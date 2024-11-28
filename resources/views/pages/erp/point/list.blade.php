@@ -29,21 +29,21 @@
   <!--/ Basic -->
   <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
-      <h5 class="mb-0">보너스포인트</h5>
+      <h5 class="mb-0">{{__('erp.bonus_points')}}</h5>
     </div>
     <div class="table-responsive text-nowrap">
       <table class="table" >
         <thead>
           <tr>
             <th>No</th>
-            <th>관리</th>
-            <th>회원번호</th>
-            <th>아이디</th>
-            <th>이름</th>
-            <th>핸드폰번호</th>
-            <th>가입일자</th>
-            <th>잔여포인트</th>
-            <th>지급포인트</th>
+            <th>{{__('erp.management')}}</th>
+            <th>{{__('erp.member_number')}}</th>
+            <th>{{__('erp.id')}}</th>
+            <th>{{__('erp.name')}}</th>
+            <th>{{__('erp.mobile_phone_number')}}</th>
+            <th>{{__('erp.subscription_date')}}</th>
+            <th>{{__('erp.remaining_points')}}</th>
+            <th>{{__('erp.payment_points')}}</th>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
@@ -59,8 +59,8 @@
                       data-member_id="{{$list->member_id}}"
                       data-name="{{$list->name}}"
                       data-remain_points="{{$list->remain_points}}"
-                      data-bs-target="#provisionPoint" data-bs-toggle="modal"><i class="bx bx-edit-alt me-1"></i> 포인트지급</a>
-                    <a class="dropdown-item provisionPointList" data-seq="{{$list->id}}" data-bs-target="#pointList" data-bs-toggle="modal"><i class="bx bx-trash me-1"></i> 포인트내역</a>
+                      data-bs-target="#provisionPoint" data-bs-toggle="modal"><i class="bx bx-edit-alt me-1"></i> {{__('erp.points_payment')}}</a>
+                    <a class="dropdown-item provisionPointList" data-seq="{{$list->id}}" data-bs-target="#pointList" data-bs-toggle="modal"><i class="bx bx-trash me-1"></i> {{__('erp.point_details')}}</a>
                   </div>
                 </div>
               </td>
@@ -85,7 +85,7 @@
       <div class="modal-content">
         <div class="modal-body">
           <div class="text-center mb-6">
-            <h4 class="mb-2">포인트 지급</h4>
+            <h4 class="mb-2">{{__('erp.points_payment')}}</h4>
           </div>
             <div class="col-12">
               <div class="row mb-3">
@@ -97,12 +97,12 @@
                       <table class="table">
                         <thead>
                           <tr class="text-nowrap">
-                            <th>회원번호</th>
-                            <th>회원ID</th>
-                            <th>회원명</th>
-                            <th>현재포인트</th>
-                            <th>포인트 지급액</th>
-                            <th>포인트 사유</th>
+                            <th>{{__('erp.member_number')}}</th>
+                            <th>{{__('erp.member_id')}}</th>
+                            <th>{{__('erp.member_name')}}</th>
+                            <th>{{__('erp.current_point')}}</th>
+                            <th>{{__('erp.points_payment_amount')}}</th>
+                            <th>{{__('erp.reason')}}</th>
                           </tr>
                         </thead>
                         <tbody class="table-border-bottom-0 memberBody">
@@ -140,8 +140,8 @@
               </div>
             </div>
             <div class="col-12 text-center">
-              <button type="button" class="btn btn-label-secondary submitPoints" data-bs-dismiss="modal" style='background-color:#514141; color:#fff;'>지급하기</button>
-              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">취소</button>
+              <button type="button" class="btn btn-label-secondary submitPoints" data-bs-dismiss="modal" style='background-color:#514141; color:#fff;'>{{__('erp.payment')}}</button>
+              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">{{__('erp.cancel')}}</button>
             </div>
         </div>
       </div>
@@ -153,7 +153,7 @@
       <div class="modal-content">
         <div class="modal-body">
           <div class="text-center mb-6">
-            <h4 class="mb-2">포인트 내역</h4>
+            <h4 class="mb-2">{{__('erp.point_details')}}</h4>
           </div>
             <div class="col-12">
               <div class="row mb-3">
@@ -164,11 +164,11 @@
                         <tr class="text-nowrap">
                           <th>ID</th>
                           <td><span id='point_info_id'></span></td>
-                          <th>이름</th>
+                          <th>{{__('erp.name')}}</th>
                           <td><span id='point_info_name'></span></td>
-                          <th>총 지급 포인트</th>
+                          <th>{{__('erp.total_payment_points')}}</th>
                           <td><span id='point_info_payment_points'></span></td>
-                          <th>잔여포인트</th>
+                          <th>{{__('erp.remaining_points')}}</th>
                           <td><span id='point_info_remain_points'></span></td>
                         </tr>
                       </thead>
@@ -183,11 +183,11 @@
                       <table class="table">
                         <thead>
                           <tr class="text-nowrap">
-                            <th>일자</th>
-                            <th>형태</th>
-                            <th>포인트</th>
-                            <th>사유</th>
-                            <th>등록자</th>
+                            <th>{{__('erp.date')}}</th>
+                            <th>{{__('erp.type')}}</th>
+                            <th>{{__('erp.point')}}</th>
+                            <th>{{__('erp.reason')}}</th>
+                            <th>{{__('erp.registrant')}}</th>
                           </tr>
                         </thead>
                         <tbody class="point_info_body">
@@ -201,7 +201,7 @@
               </div>
             </div>
             <div class="col-12 text-center">
-              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">확인</button>
+              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">{{__('erp.confirm')}}</button>
             </div>
         </div>
       </div>
@@ -253,7 +253,7 @@
         },
         success: function (res) {
           $("#provision_point").val(0);
-          alert('포인트 지급 완료되었습니다.');
+          alert('{{__('erp.point_payment_completed')}}');
           location.reload();
         }
     });
@@ -283,7 +283,7 @@
             $('#point_info_payment_points').text(res.payment_points);
             $('#point_info_remain_points').text(res.remain_points);
           if(res.total_count == 0){
-            html += "<tr><td colspan='5'>포인트 내역이 없습니다.</td></tr>";
+            html += "<tr><td colspan='5'>{{__('erp.no_point_history')}}</td></tr>";
           }else{
             $.each(res.pointInfo, function (index, data) {
                 html+= "<tr>";

@@ -6,7 +6,7 @@
 
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
-    <h5 class="mb-0">월마감</h5> <small class="text-muted float-end"></small>
+    <h5 class="mb-0">{{__('erp.monthly_closing_date')}}</h5> <small class="text-muted float-end"></small>
   </div>
   <div class="table-responsive text-nowrap">
     <table class="table" style="table-layout: fixed">
@@ -34,28 +34,28 @@
       <thead>
         <tr>
           <th rowspan="2" style=' vertical-align: middle;'>No</th>
-          <th rowspan="2" style=' vertical-align: middle;'>상세</th>
-          <th rowspan="2" style=' vertical-align: middle;'>회원번호</th>
-          <th rowspan="2" style=' vertical-align: middle;'>아이디</th>
-          <th rowspan="2" style=' vertical-align: middle;'>회원명</th>
+          <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.details')}}</th>
+          <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.member_number')}}</th>
+          <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.id')}}</th>
+          <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.member_name')}}</th>
           <th rowspan="2" style=' vertical-align: middle;'>PV</th>
-          <th rowspan="2" style=' vertical-align: middle;'>누적매출</th>
-          <th colspan="8" style=' vertical-align: middle; text-align:center;'>지급항목</th>
-          <th colspan="3" style=' vertical-align: middle;'>수당공제</th>
-          <th rowspan="2" style=' vertical-align: middle;'>실지급액</th>
+          <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.accumulated_sales')}}</th>
+          <th colspan="8" style=' vertical-align: middle; text-align:center;'>{{__('erp.payment_items')}}</th>
+          <th colspan="3" style=' vertical-align: middle;'>{{__('erp.allowment_deduction')}}</th>
+          <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.actual_payment_amount')}}</th>
         </tr>
         <tr>
-            <th>직접모집관리금</th>
-            <th>장려금</th>
-            <th>지역사무실지원금</th>
-            <th>인센티브</th>
-            <th>우수총판기여금</th>
-            <th>최우수총판기여금</th>
-            <th>지급합계</th>
-            <th>포인트 지급합계</th>
-            <th>소득세</th>
-            <th>주민세</th>
-            <th>공제합계</th>
+            <th>{{__('erp.direct_recruitment_fee')}}</th>
+            <th>{{__('erp.incentive_money')}}</th>
+            <th>{{__('erp.local_office_support_fund')}}</th>
+            <th>{{__('erp.incentive')}}</th>
+            <th>{{__('erp.excellent_exclusive_distributor_contribution')}}</th>
+            <th>{{__('erp.best_exclusive_distributor_contribution')}}</th>
+            <th>{{__('erp.payment_total')}}</th>
+            <th>{{__('erp.points_total_payment')}}</th>
+            <th>{{__('erp.income_tax')}}</th>
+            <th>{{__('erp.residence_tax')}}</th>
+            <th>{{__('erp.total_deduction')}}</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
@@ -67,7 +67,7 @@
                 <td><span class="fw-medium">{{ $row_num-- }}</span></td>
                 <td>
                     <a class="badge bg-label-info me-4" href="{{ route('erp-allowance.monthly-user', ['seq' => $statement->member_seq, 'type' => $statement->type]) }}">
-                        <span class="fw-medium">상세보기</span>
+                        <span class="fw-medium">{{__('erp.view_details')}}</span>
                     </a>
                 </td>
                 <td>{{ $statement->member_seq }}</td>
@@ -100,7 +100,7 @@
       <div class="modal-content">
         <div class="modal-body">
           <div class="text-center mb-6">
-            <h4 class="mb-2" id='popTitle'>직접모집 관리금 내역</h4>
+            <h4 class="mb-2" id='popTitle'>{{__('erp.direct_recruitment_details')}}</h4>
           </div>
             <div class="col-12">
               <div class="row mb-3">
@@ -111,9 +111,9 @@
                         <tr class="text-nowrap">
                           <th>ID</th>
                           <td><span id='info_id'></span></td>
-                          <th>이름</th>
+                          <th>{{__('erp.name')}}</th>
                           <td><span id='info_name'></span></td>
-                          <th>나의 PV</th>
+                          <th>{{__('erp.my_pv')}}</th>
                           <td><span id='info_self_pv'></span></td>
                         </tr>
                       </thead>
@@ -128,10 +128,10 @@
                       <table class="table">
                         <thead>
                           <tr class="text-nowrap">
-                            <th>아이디</th>
-                            <th>이름</th>
-                            <th>금액</th>
-                            <th>날짜</th>
+                            <th>{{__('erp.id')}}</th>
+                            <th>{{__('erp.name')}}</th>
+                            <th>{{__('erp.amount')}}</th>
+                            <th>{{__('erp.name')}}</th>
                           </tr>
                         </thead>
                         <tbody class="info_body">
@@ -145,7 +145,9 @@
               </div>
             </div>
             <div class="col-12 text-center">
-              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">확인</button>
+              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" style='border:1px solid #eee;' aria-label="Close">
+                  {{__('erp.confirm')}}
+              </button>
             </div>
         </div>
       </div>
@@ -172,12 +174,12 @@
     var type = $(this).data("type");
 
     var type_text = [
-      '직접모집관리금',
-      '장려금',
-      '지역사무실지원금',
-      '인센티브',
-      '우수총판기여금',
-      '최우수총판기여금',
+      '{{__('erp.direct_recruitment_fee')}}',
+      '{{__('erp.incentive_money')}}',
+      '{{__('erp.local_office_support_fund')}}',
+      '{{__('erp.incentive')}}',
+      '{{__('erp.excellent_exclusive_distributor_contribution')}}',
+      '{{__('erp.best_exclusive_distributor_contribution')}}',
     ];
 
     $("#popTitle").text(type_text[type]);
@@ -203,7 +205,7 @@
             $('#info_name').text(res.member_name);
             $('#info_self_pv').text(addComma(res.self_pv));
           if(res.total_count == 0){
-            html += "<tr><td colspan='4'>내역이 없습니다.</td></tr>";
+            html += "<tr><td colspan='4'>{{__('erp.no_details')}}</td></tr>";
           }else{
             $.each(res.orderInfo, function (index, data) {
                 html+= "<tr>";

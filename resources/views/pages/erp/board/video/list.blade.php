@@ -12,9 +12,9 @@
 
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">브랜드영상</h5>
+            <h5 class="mb-0">{{__('erp.brand_video')}}</h5>
             <small class="text-muted float-end">
-                <button onclick="location.href='{{ route('erp-board.video.create') }}'" class="btn btn-primary">브랜드영상 등록</button>
+                <button onclick="location.href='{{ route('erp-board.video.create') }}'" class="btn btn-primary">{{__('erp.brand_video')}} {{__('erp.register')}}</button>
             </small>
         </div>
         <div class="table-responsive text-nowrap">
@@ -22,11 +22,11 @@
                 <thead>
                 <tr style='vertical-align: middle;'>
                     <th class="w-10">No</th>
-                    <th class="w-50">제목</th>
-                    <th class="w-20">노출여부</th>
-                    <th class="w-20">작성자</th>
-                    <th class="w-20">작성일</th>
-                    <th class="w-10">관리</th>
+                    <th class="w-50">{{__('erp.title')}}</th>
+                    <th class="w-20">{{__('erp.exposed_status')}}</th>
+                    <th class="w-20">{{__('erp.author')}}</th>
+                    <th class="w-20">{{__('erp.created_date')}}</th>
+                    <th class="w-10">{{__('erp.management')}}</th>
                 </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
