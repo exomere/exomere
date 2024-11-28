@@ -8,6 +8,8 @@
         <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           @if (app()->getLocale() == 'ko')
             한국어
+          @elseif (app()->getLocale() == 'jp')
+            日本語
           @else
             English
           @endif
@@ -15,6 +17,7 @@
         <div class="dropdown-menu dropdown-menu-end">
           <a class="dropdown-item" href="{{route('setLanguage','ko')}}">한국어</a>
           <a class="dropdown-item" href="{{route('setLanguage','en')}}">English</a>
+          <a class="dropdown-item" href="{{route('setLanguage','jp')}}">日本語</a>
         </div>
       </div>
       <a href="javascript:void(0)" class="btn btn-sm btn-outline-danger"><i class='bx bx-log-out-circle me-1'></i>Logout</a>
