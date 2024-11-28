@@ -242,11 +242,11 @@
 
                         </div>
                         <div class="flex flex-col lg:flex-row items-center gap-3">
-                            {{-- <button
+                            <button
                                 onclick="add2Cart()"
                                 class="rounded-sm group py-4 px-5 border border-solid border-gray-600 bg-white text-gray-600 font-normal text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent">
                                 {{ __('common.add_to_cart') }}
-                            </button> --}}
+                            </button>
                             <button
                                 onclick="buyNow()"
                                 class="rounded-sm text-center w-full px-5 py-4 border border-solid border-base-color bg-base-color flex items-center justify-center font-normal text-lg text-white shadow-sm">

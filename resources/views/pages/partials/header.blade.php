@@ -81,7 +81,7 @@
                     </svg>
                     <span class="hidden lg:block">My Office</span>
                 </a>
-                <a href="/mypage/cart" class="hidden">
+                <a href="/mypage/cart" >
                     <svg aria-hidden="true"
                          xmlns="http://www.w3.org/2000/svg"
                          width="24"

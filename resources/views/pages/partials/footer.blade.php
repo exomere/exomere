@@ -3,11 +3,21 @@
 
     <div class="flex flex-wrap gap-x-3 p-7 lg:p-12">
         <ul class="flex flex-col lg:flex-1 lg:inline-flex lg:gap-y-3">
-            <li><strong>{{ __('common.company_name') }} </strong> {{request()->session()->get('director_company')  ?? '(주)엑소미어' }} </li>
-            <li><strong>{{ __('common.representative') }}  </strong>{{request()->session()->get('director_name')  ?? '정영철'}}</li>
-            <li><strong> {{ __('common.address') }} </strong> {{request()->session()->get('director_address')  ?? '서울 송파구 법원로11길 11 (문정동, 문정현대지식산업센터1-1)'}} 
-                                                                {{request()->session()->get('director_address_detail')  ?? 'A동 204호'}}</li>
-            <li><strong> Tel.</strong> {{request()->session()->get('director_phone') ?? '02-1577-1586' }}</li>
+            @if (request()->session()->get('director_code') != '29151')
+                <li><strong>{{ __('common.company_name') }} </strong> {{request()->session()->get('director_company')  ?? '(주)엑소미어' }} </li>
+                <li><strong>{{ __('common.representative') }}  </strong>{{request()->session()->get('director_name')  ?? '정영철'}}</li>
+                <li><strong> {{ __('common.address') }} </strong> {{request()->session()->get('director_address')  ?? '서울 송파구 법원로11길 11 (문정동, 문정현대지식산업센터1-1)'}} 
+                                                                    {{request()->session()->get('director_address_detail')  ?? 'A동 204호'}}</li>
+                <li><strong> Tel.</strong> {{request()->session()->get('director_phone') ?? '02-1577-1586' }}</li>
+             @else
+                <li><strong> COMPANY.</strong> (주)엑소미어</li>
+                <li><strong> CEO.</strong> 정영철</li>
+                <li><strong> Tel.</strong> 02-1577-1586</li>
+                <li><strong> BUSINESS LICENCE.</strong> 453-87-02974</li>
+                <li><strong> E-COMMERCE PERMINT.</strong> 제 2024-서울송파-0603</li>
+                <li><strong> ADDRESS.</strong> 05836 서울특별시 송파구 법원로11길 11, 2층 204호 (문정동, 문정현대 지식산업센터1-1)</li>
+                <li><strong> PERSONL INFORMATION MANAGER.</strong> 김영아(exomere@exomere.com) </li>
+            @endif  
         </ul>
         <img src="{{asset('img/logo_white.svg')}}" alt="logo" class="w-32 max-lg:hidden">
     </div>
