@@ -338,12 +338,13 @@
               <label class="col-sm-1 col-form-label" for="basic-default-category2">{{__('erp.product_classification')}}</label>
               <div class="col-sm-2">
                 <select class="form-control" id="basic-default-category2" name='category2'>
-                    <option>{{__('erp.select_product_classification')}}</option>
-                    <option @isset($item->category2) @if($item->category2 == "cream") selected @endif @endisset value="cream">Cream</option>  
-                    <option @isset($item->category2) @if($item->category2 == "essences") selected @endif @endisset value="serums_essences">Essences</option>
-                    <option @isset($item->category2) @if($item->category2 == "device") selected @endif @endisset value="device">Device</option>
-                    <option @isset($item->category2) @if($item->category2 == "mask_pack") selected @endif @endisset value="mask_pack">Mask pack</option>
-                    <option @isset($item->category2) @if($item->category2 == "cleanser") selected @endif @endisset value="cleanser">Cleanser</option>
+                    <option value="">{{__('erp.select_product_classification')}}</option>
+                    <option @isset($item->category2) @if($item->category2 == "toners_mists") selected @endif @endisset value="toners_mists">Toners Mists</option>
+                    <option @isset($item->category2) @if($item->category2 == "serums_essences") selected @endif @endisset value="serums_essences">Serums Essences</option>
+                    <option @isset($item->category2) @if($item->category2 == "creams") selected @endif @endisset value="creams">Creams</option>
+                    <option @isset($item->category2) @if($item->category2 == "sheet_masks") selected @endif @endisset value="sheet_masks">Sheet Masks</option>
+                    <option @isset($item->category2) @if($item->category2 == "cushions") selected @endif @endisset value="cushions">Cushions</option>
+                    <option @isset($item->category2) @if($item->category2 == "devices") selected @endif @endisset value="devices">Device</option>
                 </select>
               </div>
             </div>
@@ -486,10 +487,10 @@
               <label class="col-sm-1 col-form-label">{{__('erp.exposed_status')}}</label>
               <div class="col-sm-5">
                 <div class="btn-group" role="group">
-                  <input type="radio" class="btn-check" name="is_view" id="is_view1" value='Y' @isset($item['is_view']) @if($item['is_view'] == 'Y') checked @endif @endisset>
-                  <label class="btn btn-outline-primary" for="is_view1">{{__('erp.exposed')}}</label>
-                  <input type="radio" class="btn-check" name="is_view" id="is_view2" value='N' @isset($item['is_view']) @if($item['is_view'] == 'N') checked @endif @endisset>
-                  <label class="btn btn-outline-primary" for="is_view2">{{__('erp.not_exposed')}}</label>
+                  <input type="radio" class="btn-check" name="is_fo_view" id="is_fo_view1" value='Y' @isset($item['is_fo_view']) @if($item['is_fo_view'] == 'Y') checked @endif @endisset>
+                  <label class="btn btn-outline-primary" for="is_fo_view1">노출</label>
+                  <input type="radio" class="btn-check" name="is_fo_view" id="is_fo_view2" value='N' @isset($item['is_fo_view']) @if($item['is_fo_view'] == 'N') checked @endif @endisset>
+                  <label class="btn btn-outline-primary" for="is_fo_view2">미노출</label>
                 </div>
               </div>
             </div>

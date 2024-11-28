@@ -43,6 +43,7 @@ class OrderController extends Exomere
             "ex_member" => $ex_member,
             "pd_qty" => $request->pd_qty,
             "pd_id" => $request->pd_id,
+            "pd_img" => Storage::url('public/data/'.$item_info->thum_img),
             "pd_price" => $pd_price,
             "pd_pv" => $pd_pv,
             "card_compnay" => self::_PAYMENT_CARD_COMPANY,

@@ -75,7 +75,9 @@ class MemberController extends Exomere
 
     public function searchMember(Request $request)
     {
-        $members = ExMember::where($request->type,'like','%'.$request->text.'%')->where('member_position',"!=","admin")->get();
+
+        $site_code = $request->session()->get('site_code') ?? "exomere";
+        $members = ExMember::where($request->type,'like','%'.$request->text.'%')->where('member_position',"!=","admin")->where("site_code",$site_code)->get();
 
         $output_data = [];
         $cnt = 0;

@@ -24,8 +24,9 @@ class ErpCommissionController extends Exomere
     {
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);
-
-        $statements = ExStatements::where("type","term")->orderBy('id', 'desc')->paginate($limitPage);
+        $site_code = $request->session()->get('site_code') ?? "exomere";
+        
+        $statements = ExStatements::where("type","term")->where("site_code",$site_code)->orderBy('id', 'desc')->paginate($limitPage);
 
         $datas = [
             "statements" => $statements ?? [],
@@ -46,7 +47,10 @@ class ErpCommissionController extends Exomere
         $limitPage = 30;
         $page = $request->get('page', 1);
         
-        $statements = ExStatementsMember::where("code",$request->code)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
+        $site_code = $request->session()->get('site_code') ?? "exomere";
+        
+
+        $statements = ExStatementsMember::where("code",$request->code)->where("site_code",$site_code)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
 
         
         $datas = [
@@ -118,6 +122,7 @@ class ErpCommissionController extends Exomere
                     "residence_tax" => $recruitment_amount * 0.003, // 주민세
                     "total_deduction" => $recruitment_amount * 0.033, // 공제합계
                     "actual_amount" => $recruitment_amount - ($recruitment_amount * 0.033), //실지급액
+                    "site_code" => $request->session()->get('site_code') ?? "exomere",
                 ];
 
                 $settlement_subsidy = ($input_data[$data->member_seq]['settlement_subsidy'] ?? 0) + ($data->total_pv * 0.1);
@@ -134,6 +139,7 @@ class ErpCommissionController extends Exomere
                     "residence_tax" => $settlement_subsidy * 0.003, // 주민세
                     "total_deduction" => $settlement_subsidy * 0.033, // 공제합계
                     "actual_amount" => $settlement_subsidy - ($settlement_subsidy * 0.033), //실지급액
+                    "site_code" => $request->session()->get('site_code') ?? "exomere",
                 ];
 
 
@@ -165,7 +171,8 @@ class ErpCommissionController extends Exomere
             "deadline_date" => $end_date,
             "s_date" => $start_date,
             "e_date" => $end_date,
-            "reg_name" => $request->session()->get('member_id')
+            "reg_name" => $request->session()->get('member_id'),
+            "site_code" => $request->session()->get('site_code') ?? "exomere",
         ]);
 
         return redirect()->route('erp-allowance.term-closing');
@@ -182,8 +189,9 @@ class ErpCommissionController extends Exomere
     {
         $limitPage = 30;
         $page = $request->get('page', 1);
-
-        $statements = ExStatementsMember::where("code",$request->code)->where("type",$request->type)->where("actual_amount",">",0)->orderBy('id', 'desc')->paginate($limitPage);
+        $site_code = $request->session()->get('site_code') ?? "exomere";
+        
+        $statements = ExStatementsMember::where("code",$request->code)->where("site_code",$site_code)->where("type",$request->type)->where("actual_amount",">",0)->orderBy('id', 'desc')->paginate($limitPage);
 
         $datas = [
             "statements" => $statements,
@@ -226,8 +234,9 @@ class ErpCommissionController extends Exomere
     {
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);
-
-        $statements = ExStatements::where("type","month")->orderBy('id', 'desc')->paginate($limitPage);
+        $site_code = $request->session()->get('site_code') ?? "exomere";
+    
+        $statements = ExStatements::where("type","month")->where("site_code",$site_code)->orderBy('id', 'desc')->paginate($limitPage);
 
         $datas = [
             "statements" => $statements ?? [],
@@ -306,7 +315,7 @@ class ErpCommissionController extends Exomere
                     "residence_tax" => $c_residence_tax, // 주민세
                     "total_deduction" => $c_total_deduction, // 공제합계
                     "actual_amount" => $c_actual_amount, //실지급액
-                    
+                    "site_code" => $request->session()->get('site_code') ?? "exomere",
                 ];
             
                 $mem_cnt++;
@@ -348,7 +357,8 @@ class ErpCommissionController extends Exomere
             "deadline_date" => $deadline_date,
             "s_date" => $start_date,
             "e_date" => $end_date,
-            "reg_name" => $request->session()->get('member_id')
+            "reg_name" => $request->session()->get('member_id'),
+            "site_code" => $request->session()->get('site_code') ?? "exomere",
         ]);
 
         return redirect()->route('erp-allowance.monthly-closing');
@@ -463,6 +473,7 @@ class ErpCommissionController extends Exomere
                         "residence_tax" => ($order->residence_tax + $residence_tax), 
                         "total_deduction" => ($order->total_deduction + $total_deduction), 
                         "actual_amount" => ($order->actual_amount + $actual_amount), 
+                        "site_code" => request()->session()->get('site_code') ?? "exomere",
                     ]);
                 }else{
 
@@ -484,6 +495,7 @@ class ErpCommissionController extends Exomere
                         "residence_tax" => $residence_tax, 
                         "total_deduction" => $total_deduction, 
                         "actual_amount" => $actual_amount, 
+                        "site_code" => request()->session()->get('site_code') ?? "exomere",
                     ]);
                 }
             }
@@ -615,6 +627,7 @@ class ErpCommissionController extends Exomere
                     "residence_tax" => $residence_tax, 
                     "total_deduction" => $total_deduction, 
                     "actual_amount" => $actual_amount, 
+                    "site_code" => request()->session()->get('site_code') ?? "exomere",
                 ]);
             }
         }

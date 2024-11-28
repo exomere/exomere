@@ -95,7 +95,7 @@ $whiteHeader = true;
                             <p class="mt-5 text-sm text-gray-700 text-slate-700 line-clamp-2">
                                 {{ $product['sub_name'] }}</p>
                             <p class="mt-5 text-base text-gray-600">
-                                {{ number_format($product['price']) }}</p>
+                                {{$product['price_simbol']}} {{ number_format($product['price']) }}</p>
                         </div>
                     </a>
                 @endforeach
@@ -183,11 +183,7 @@ $whiteHeader = true;
                         </h3>
                         <p class="text-sm leading-loose break-keep md:text-xl md:leading-loose"
                            data-aos="fade-up" data-aos-delay="100">
-                            다양한 체험 프로그램과
-                            <br>
-                            전문적이고 체계적인 상담을 통해
-                            <br>
-                            엑소미어의 제품을 체험할 수 있습니다
+                            {!!  __('messages.about_branch') !!}
                         </p>
                         <p>
                             <a href="/about/branch"

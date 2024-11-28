@@ -81,7 +81,7 @@
                     </svg>
                     <span class="hidden lg:block">My Office</span>
                 </a>
-                <a href="/mypage/cart" class="hidden">
+                {{-- <a href="/mypage/cart" >
                     <svg aria-hidden="true"
                          xmlns="http://www.w3.org/2000/svg"
                          width="24"
@@ -92,7 +92,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
                               d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"/>
                     </svg>
-                </a>
+                </a> --}}
                 <button type="button"
                         id="search-form-button"
                         data-collapse-toggle="search-form"

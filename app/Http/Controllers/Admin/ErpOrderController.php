@@ -34,8 +34,10 @@ class ErpOrderController extends Exomere
       $limitPage = $this->getPageLimit();
       $page = $request->get('page') ?? 1;
 
-      $ordersQuery = ExOrder::orderBy('id', 'desc');
+      $site_code = $request->session()->get('site_code') ?? "exomere";
 
+      $ordersQuery = ExOrder::where("site_code",$site_code)->orderBy('id', 'desc');
+     
       // 승인구분 필터 추가
       if ($request->filled('approval_status')) {
           $ordersQuery->where('is_approval', $request->get('approval_status'));
@@ -292,6 +294,7 @@ class ErpOrderController extends Exomere
       "account_info" => json_encode($account_info) ?? [],
       "order_date" => $request->order_date ?? date("Y-m-d H:i:s"),
       "is_approval" => $is_approval,
+      "site_code" => $request->session()->get('site_code') ?? "exomere",
       "reg_name" => $request->session()->get('member_id'),
     ];
 

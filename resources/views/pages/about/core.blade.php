@@ -5,19 +5,34 @@ $visualFullWidthLayout = 1;
 $contents = [
     [
         'title' => ' Exomere Halla™',
-        'title_en' => '한라봉 엑소좀',
+        'title_sub' => '한라봉 엑소좀',
+        'title_sub_en' => 'Hallabong Exosome',
         'code' => '특허: 제 10-2023-0121591호',
-        'desc' => 'Exomere Halla™는 머리카락보다 1,200배 작은 미세 입자를 통해 유효 성분이 피부에 직접 흡수되어 효과를 극대화합니다. 또한 강력한 항산화 성분을 함유하여 피부건강을 유지하는 데 도움을 주고, 멜라닌 생성을 억제하여 피부톤을 고르게 하고 기미와 잡티를 감소시키는 데 기여하며, 피부에 풍부한 영양과 수분을 공급하여 촉촉한 피부를 유지하는 데 도움을 줍니다.',
+        'code_en' => 'Patent: No.10-2023-0121591',
+        'description' => 'Exomere Halla™는 머리카락보다 1,200배 작은 미세 입자를 통해 유효 성분이 피부에 직접 흡수되어 효과를 극대화합니다. 또한 강력한 항산화 성분을 함유하여 피부건강을 유지하는 데 도움을 주고, 멜라닌 생성을 억제하여 피부톤을 고르게 하고 기미와 잡티를 감소시키는 데 기여하며, 피부에 풍부한 영양과 수분을 공급하여 촉촉한 피부를 유지하는 데 도움을 줍니다.',
+        'description_en' => 'Exomere Halla™ is absorbed directly into the skin through 120 times smaller micro particles than the hair.In addition, it contains strong antioxidants to maintain skin health, helping skin health, thereby reducing skin tone and moisturizing skin tone and moisture to maintain skin tone and moisture and moisture.',
         'image' => asset('assets/img/elements/about_technology_2.webp')
     ],
     [
         'title' => 'SPICUS™',
-        'title_en' => '저분자 콜라겐으로 코팅된 마이크로 니들',
+        'title_sub' => '저분자 콜라겐으로 코팅된 마이크로 니들',
+        'title_sub_en' => 'Microneedle coated with low molecular collagen',
         'code' => '특허: 제 10-2022-0007981호',
-        'desc' => 'SPICUS™는 유효성분의 전달 통로가 되어 엑소좀과 유효 성분의 보다 효과적인 흡수를 도와줍니다. 피부 재생에 도움을 줄 수 있으며, 입자의 균일화를 통해 표피 자극을 최소화하여 부작용을 줄일 수 있습니다. 또한, 허브 성분을 배제하여 알러지 유발 가능성을 낮추었으며, 저분자 콜라겐이 코팅되어 있어 피부 치밀도 개선에 기여할 수 있습니다.',
+        'code_en' => 'Patent: No. 10-2022-0007981',
+        'description' => 'SPICUS™는 유효성분의 전달 통로가 되어 엑소좀과 유효 성분의 보다 효과적인 흡수를 도와줍니다. 피부 재생에 도움을 줄 수 있으며, 입자의 균일화를 통해 표피 자극을 최소화하여 부작용을 줄일 수 있습니다. 또한, 허브 성분을 배제하여 알러지 유발 가능성을 낮추었으며, 저분자 콜라겐이 코팅되어 있어 피부 치밀도 개선에 기여할 수 있습니다.',
+        'description_en' => 'SPICUS™ serves as the channel for the delivery of active ingredients, which helps the exosomes and active ingredients absorb more effectively. It can help the skin regenerate, and by equalizing the particles, the side effects can be reduced by minimizing the irritation of the epidermis. In addition, the possibility of causing allergies can be reduced by excluding the herbal ingredients, and since it is coated with the low molecular weight collagen, it can contribute to the improvement of the skin density.',
         'image' => asset('assets/img/elements/about_technology_1.webp')
     ],
 ];
+
+if (app()->getLocale() != "ko") {
+    $baseLocale = 'en';
+    foreach ($contents as $key => $content) {
+        $contents[$key]['title_sub'] = $content['title_sub_' . $baseLocale];
+        $contents[$key]['description'] = $content['description_' . $baseLocale];
+        $contents[$key]['code'] = $content['code_' . $baseLocale];
+    }
+}
 
 ?>
 @extends('pages.layouts.subLayout')
@@ -40,9 +55,9 @@ $contents = [
         <nav id="parallax__nav"
              class="relative bg-white w-full left-0 z-40 lg:absolute lg:top-32 lg:pl-7 lg:bg-transparent lg:left-0 lg:w-auto">
             <ul class="flex flex-row justify-center text-sm text-center text-slate-500 lg:flex-col lg:text-base">
-                <li class="relative p-3 basis-1/4"><a class="active" href="/about/core">핵심성분</a>
+                <li class="relative p-3 basis-1/4"><a class="active" href="/about/core">{{ __('gnb.core') }}</a>
                 </li>
-                <li class="relative p-3 basis-1/4"><a class="" href="/about/technology">특허기술</a>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/technology">{{ __('gnb.technology') }}</a>
                 </li>
             </ul>
         </nav>
@@ -97,15 +112,16 @@ $contents = [
                                          data-aos="fade">
                                         <h2 class="inline-block font-bold text-2xl text-head mb-7">{{ $content['title'] }}
                                             <small
-                                                class="font-light text-sm block">{{ $content['title_en'] }}</small>
+                                                class="font-light text-sm block">{{ $content['title_sub'] }}</small>
                                         </h2>
 
                                         <p class="leading-loose md:leading-loose text-base md:text-lg text-gray-500 mb-3 ">
                                             {{ $content['code'] }}</p>
                                         <p class="leading-loose md:leading-loose text-base md:text-lg text-gray-500 mb-3 ">
-                                            {!! $content['desc'] !!}
+                                            {!! $content['description'] !!}
                                         </p>
-                                        <small class="w-full inline-block text-right text-gray-500">* 원료적 특성에 한함</small>
+                                        <small
+                                            class="w-full inline-block text-right text-gray-500">* {{ __('messages.core_raw') }}</small>
                                     </div>
                                 </div>
                             </div>

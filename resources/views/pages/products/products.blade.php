@@ -64,7 +64,7 @@
                                             {{$item['product_name']}}
                                         </a>
                                     </h3>
-                                    <p class="mt-1 text-sm text-gray-600">{{number_format($item['price'])}}</p>
+                                    <p class="mt-1 text-sm text-gray-600">{{$item['price_simbol']}} {{number_format($item['price'])}}</p>
                                 </div>
                             </div>
                         @endforeach

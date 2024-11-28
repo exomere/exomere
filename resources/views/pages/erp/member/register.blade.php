@@ -125,6 +125,18 @@
               </div>
             </div>
             <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="distribute_seq"> {{__('erp.sale_mall')}} </label>
+              <div class="col-md-4">
+                <select class="form-select" name="distribute_seq" id="distribute_seq">
+                  <option value="46">(주)엑소미어</option>
+                  @foreach ($distribute_array as $distribute)
+                    <option @isset($member->local_store) @if($member->distribute_seq == $distribute['seq'])  selected  @endif @endisset value='{{$distribute['seq']}}'>{{$distribute['name']}}
+                    </option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-bank">{{__('erp.bank')}}</label>
               <div class="col-sm-1">
                 <select class="form-control" id="basic-default-bank" name='bank'>

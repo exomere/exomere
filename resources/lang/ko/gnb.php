@@ -36,6 +36,7 @@ return [
     'inquiry_title' => '도움이 필요하세요?',
     "view_all" => "전체보기",
     "toners_mists" => "토너 & 미스트",
+    "devices" => "도구",
     "serums_essences" => "세럼 & 에센스",
     "creams" => "크림",
     "sheet_masks" => "마스크팩",

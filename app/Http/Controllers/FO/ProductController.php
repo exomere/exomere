@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\FO;
 
 use App\Models\ExItem;
+use App\Models\ExCart;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 class ProductController extends BaseController
@@ -10,42 +12,84 @@ class ProductController extends BaseController
 
     public function index(Request $request)
     {
-        $categories = $this->category();
 
-        $selectedCategory = request()->query('category') ?? null;
 
-        $products = [];
+        $items = ExItem::where('is_fo_view','Y')->orderBy('sort', 'asc');
 
-        $items = ExItem::whereNotNull('code')->orderBy('sort', 'asc');
-        
         foreach($items->get() as $item){
+            $locale = app()->getLocale();
+
+            $pd_name = $item->name_en;
+            $pd_description = $item->description_en;
+
+            if($locale == "ko"){
+                $pd_name = $item->name;
+                $pd_description = $item->description;
+                $pd_price = $item->price;
+                $price_simbol = "₩";
+            }else{
+                $pd_name = $item->name_en;
+                $pd_description = $item->description_en;
+
+                if($locale =="jp"){
+                    $pd_price = $item->price_y;
+                    $price_simbol = "¥";
+                }else if($locale =="cn"){
+                    $pd_price = $item->price_c;
+                    $price_simbol = "¥";
+                }else{
+                    $pd_price = $item->price_d;
+                    $price_simbol = "$";
+                }
+            }
+            
             $products[] = [
                 'id' => $item->id,
-                'product_name' => $item->name,
-                'price' => $item->price,
+                'product_name' => $pd_name,
+                'price' => $pd_price,
                 'distribution_price' => 22500,
                 'vat_excluded' => 20455,
                 'total_price' => 22500,
                 'thumbnail' => Storage::url('public/data/'.$item->thum_img),
                 'thumbnail2' => Storage::url('public/data/'.$item->thum_img2),
                 'brand' => 'exomere',
-                'category' => $item->category,
+                'category' => $item->category2,
                 'desc' => $item->content,
-                'sub_name' => $item->description,
+                'price_simbol' => $price_simbol,
+                'sub_name' => $pd_description,
                 'is_best' => true,
             ];
         }
 
+        $categories = $this->category();
+
+        $selectedCategory = request()->query('category') ?? null;
+
+        $products = collect($products);
+
+        if ($keyword = $request->get('search_keyword')) {
+            $products = $products->filter(function ($item) use ($keyword) {
+                return str_contains($item['product_name'], $keyword);
+            });
+        } else {
+            $products = $products->whereNotNull('category');
+        }
+
+        $categorizeItems = $products->groupBy('category');
+
+
         $items = collect([
             'view_all' => $products,
-            "toners_mists" => $products,
-            "serums_essences" => $products,
-            "creams" => $products,
-            "sheet_masks" => $products,
-            "cushions" => $products,
-        ]);
+            "toners_mists" => collect([]),
+            "serums_essences" => collect([]),
+            "creams" => collect([]),
+            "sheet_masks" => collect([]),
+            "cushions" => collect([]),
+            "devices" => collect([]),
+        ])->merge($categorizeItems);
 
-        $productCount = $items->count();
+
+        $productCount = $products->count();
 
         return view('pages.products.products', compact('categories', 'productCount', 'items', 'selectedCategory'));
     }
@@ -64,21 +108,47 @@ class ProductController extends BaseController
         $items = ExItem::where('kind','signature')->orderBy('sort', 'asc')->limit(6)->get();
 
         $bestItems = [];
-        
+        $locale = app()->getLocale();
+
         foreach($items as $item){
+            $pd_name = $item->name_en;
+            $pd_description = $item->description_en;
+
+            if($locale == "ko"){
+                $pd_name = $item->name;
+                $pd_description = $item->description;
+                $pd_price = $item->price;
+                $price_simbol = "₩";
+            }else{
+                $pd_name = $item->name_en;
+                $pd_description = $item->description_en;
+
+                if($locale =="jp"){
+                    $pd_price = $item->price_y;
+                    $price_simbol = "¥";
+                }else if($locale =="cn"){
+                    $pd_price = $item->price_c;
+                    $price_simbol = "¥";
+                }else{
+                    $pd_price = $item->price_d;
+                    $price_simbol = "$";
+                }
+            }
+
             $bestItems[] = [
                 'id' => $item->id,
-                'product_name' => $item->name,
-                'price' => $item->price,
+                'product_name' => $pd_name,
+                'price' => $pd_price,
                 'distribution_price' => 22500,
                 'vat_excluded' => 20455,
                 'total_price' => 22500,
                 'thumbnail' => Storage::url('public/data/'.$item->thum_img),
                 'thumbnail2' => Storage::url('public/data/'.$item->thum_img2),
                 'brand' => 'exomere',
+                'price_simbol' => $price_simbol,
                 'category' => $item->category,
                 'desc' => $item->content,
-                'sub_name' => $item->description,
+                'sub_name' => $pd_description,
                 'is_best' => true,
             ];
         }
@@ -96,270 +166,34 @@ class ProductController extends BaseController
             "creams",
             "sheet_masks",
             "cushions",
+            "devices",
         ];
     }
 
-    public function dummy()
-    {
-        return [
-            [
-                'id' => 1,
-                'product_name' => '리프팅샷 수딩젤 100g',
-                'price' => 66000,
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'category' => 'creams',
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-                'is_best' => true,
-            ],
-            [ 
-                'id' => 2,
-                'product_name' => '퍼펙트 스칼프 임플란트 세럼',
-                'price' => 39000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'category' => 'serums_essences',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-                'is_best' => true,
-            ],
-            [
-                'id' => 3,
-                'product_name' => 'EXO-AG 리셀솔루션4SET',
-                'price' => 220000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'category' => 'serums_essences',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-                'is_best' => true,
-            ],
-            [
-                'id' => 4,
-                'product_name' => '퍼펙트 스칼프 토너',
-                'price' => 39000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'category' => '',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-                'is_best' => true,
-            ],
+    public function cartSave(Request $request){
 
-            [
-                'id' => 5,
-                'product_name' => '임플라힐 P.O 크림',
-                'price' => 37000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'imlaheal',
-                'category' => null,
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-                'is_best' => true,
-            ],
-            [
-                'id' => 6,
-                'product_name' => '에델바이스 스노우크림',
-                'price' => 40000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-                'is_best' => true,
-            ],
-            [
-                'id' => 7,
-                'product_name' => '티트리 버블 클렌져',
-                'price' => 28000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'return10',
-                'category' => null,
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ],
-            [
-                'id' => 8,
-                'product_name' => 'AC미라클 힐러',
-                'price' => 35000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'time72',
-                'category' => null,
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ],
-            [
-                'id' => 9,
-                'product_name' => '미라클 스폰질라(M)',
-                'price' => 22000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'time72',
-                'category' => null,
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ],
-            [
-                'id' => 10,
-                'product_name' => '세라마이드 리셀크림',
-                'price' => 99000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'category' => 'creams',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ],
-            [
-                'id' => 11,
-                'product_name' => '에델바이스스노우크림',
-                'price' => 50000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'category' => 'creams',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ],
-            [
-                'id' => 12,
-                'product_name' => '아로마 힐링미스트 50ml',
-                'price' => 25000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'category' => 'toners_mists',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ],
-            [
-                'id' => 13,
-                'product_name' => '아로마 힐링미스트 150ml',
-                'price' => 55000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'category' => 'toners_mists',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ],
-            [
-                'id' => 14,
-                'product_name' => '글루타치온 멜라샷 솔루션',
-                'price' => 99000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'category' => 'creams',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ],
-            [
-                'id' => 15,
-                'product_name' => '리커버리밤 플러스',
-                'price' => 52000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'category' => '',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ],
-            [
-                'id' => 16,
-                'product_name' => '리커버리밤 플러스(리필)',
-                'price' => 40000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ],
-            [
-                'id' => 17,
-                'product_name' => '임플란트솔루션(H)',
-                'price' => 66000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'exomere',
-                'category' => 'creams',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ],
-            [
-                'id' => 18,
-                'product_name' => '로즈가든마스크팩',
-                'price' => 45000,
-                'thumbnail' => asset('assets/img/elements/2024061918143212433-removebg.png'),
-                'thumbnail2' => asset('assets/img/elements/product_hover_removebg.png'),
-                'brand' => 'return10',
-                'category' => '',
-                'distribution_price' => 22500,
-                'vat_excluded' => 20455,
-                'total_price' => 22500,
-                'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-                'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-            ]
-        ];
+        $mem_seq = $request->session()->get('member_seq');
+        $cart_data = ExCart::where("member_seq",$mem_seq)->first();
+        
+        if($cart_data->seq){
+            $cart_data->update([
+                "pd_qty" => $cart_data->pd_qty + $request->pd_qty
+            ]);
+        }else{
+            $save = [
+                "member_seq" => $mem_seq,
+                "pd_seq" => $request->pd_seq,
+                "pd_name" => $request->id,
+                "pd_price" => $request->id,
+                "pd_pv" => $request->id,
+                "pd_qty" => $request->pd_qty,
+                "is_purchase" => 'N',
+            ];
+    
+            ExCart::create($save);
+        }
+
+
     }
 
 }

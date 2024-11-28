@@ -65,7 +65,7 @@
             <td> <span class="fw-medium">{{number_format($list->planer_price)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->store_price)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->exclusive_price)}}</span></td>
-            <td> <span class="fw-medium">{{$list->is_view == 'Y' ? __('erp.exposed') : __('erp.not_exposed')}}</span></td>
+            <td> <span class="fw-medium">{{$list->is_fo_view == 'Y' ? __('erp.exposed') : __('erp.not_exposed')}}</span></td>
             <td> <span class="fw-medium">{{$list->is_active == 'Y' ? __('erp.use') : __('erp.unused')}}</span></td>
             <td>
               <div class="dropdown">

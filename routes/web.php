@@ -96,6 +96,7 @@ Route::prefix('/brand')->group(function () {
 Route::prefix('/products')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('products.list');
     Route::get('{product_id}', [ProductController::class, 'productDetail']);
+    Route::post('/cartSave', [ProductController::class, 'cartSave']);
 });
 Route::prefix('/about')->group(function () {
     Route::get('/', function () {
@@ -188,7 +189,6 @@ Route::group(['middleware' => 'auth'], function () {
             );
             Route::post('/searchMember', [MemberController::class, 'searchMember'])->name('member.search.member');
         });
-
 
         /** 공지사항 */
         Route::prefix('/notice')->group(function () {

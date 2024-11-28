@@ -10,6 +10,8 @@ use Illuminate\View\View;
 use App\Models\ExMember;
 use App\Constants\CommonConstants;
 use App\Http\Controllers\API\OnPlatController;
+use App\Models\ExDistribute;
+
 class ErpMemberController extends Exomere
 {
     CONST MEMBER_INFO_FIELD = [
@@ -93,11 +95,23 @@ class ErpMemberController extends Exomere
           $cnt++;
         }
 
+        $distributes = ExDistribute::where('is_active','Y')->get();
+        $distributeArray = [];
+        $cnt = 0;
+
+        foreach($distributes as $distribute){
+          $distributeArray[$cnt]['seq'] = $distribute->id;
+          $distributeArray[$cnt]['name'] = $distribute->name;
+          $cnt++;
+        }
+
+
         $data = [
             "bank_list" => CommonConstants::BANK_LIST,
             "member_seq" => $request->seq ?? null,
             "member" => $member ?? [],
             "center_array" => $centerArray,
+            "distribute_array" => $distributeArray,
             "email_info" => $email_info ?? null,
             "recommend_info" => $recommend_info ?? null,
             "resident_number_info" => $resident_number_info ?? null,
@@ -108,7 +122,9 @@ class ErpMemberController extends Exomere
 
     public function save(Request $request)
     {   
-        
+
+        $distribute = ExDistribute::find($request->distribute_seq);
+
         $member_seq = $request->member_seq ?? null;
         // dd($request->input());
         $input_data = [
@@ -125,6 +141,7 @@ class ErpMemberController extends Exomere
             "email" => $request->email."@".$request->email2,
             "local_store" => $request->local_store,
             "recommend_seq" => $request->recommend_seq,
+            "distribute_seq" => $request->distribute_seq,
             "recommend_id" => explode(" | ", $request->recommend_info)[0],
             "recommend_name" => explode(" | ", $request->recommend_info)[1],
             "zip_code" => $request->zipcode,
@@ -134,6 +151,7 @@ class ErpMemberController extends Exomere
             "bank" => $request->bank,
             "account_number" => $request->account_number,
             "account_holder" => $request->account_holder,
+            "site_code" => $distribute->code ?? "exomere",
             "is_delete" => $request->is_delete,
             "created_at" => $request->member_reg_date ?? date("Y-m-d H:i:s"),
         ];
