@@ -1,4 +1,5 @@
 <?php
+
 $visualFullWidthLayout = true;
 
 ?>
@@ -18,13 +19,13 @@ $visualFullWidthLayout = true;
         <nav id="parallax__nav"
              class="relative bg-white w-full left-0 z-40 lg:absolute lg:top-32 lg:pl-7 lg:bg-transparent lg:left-0 lg:w-auto">
             <ul class="flex flex-row justify-center text-sm text-center text-slate-500 lg:flex-col lg:text-base">
-                <li class="relative p-3 basis-1/4"><a class="" href="/about">기업소개</a>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about">{{ __('gnb.about') }}</a>
                 </li>
-                <li class="relative p-3 basis-1/4"><a class="" href="/about/philosophy">경영이념</a>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/philosophy">{{ __('gnb.philosophy') }}</a>
                 </li>
-                <li class="relative p-3 basis-1/4"><a class="" href="/about/history">연혁</a>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/history">{{ __('gnb.history') }}</a>
                 </li>
-                <li class="relative p-3 basis-1/4"><a class="active" href="/about/cibi">CI/BI 소개</a>
+                <li class="relative p-3 basis-1/4"><a class="active" href="/about/cibi">{{ __('gnb.cibi') }}</a>
                 </li>
             </ul>
         </nav>
@@ -94,7 +95,7 @@ $visualFullWidthLayout = true;
                 <div class="flex flex-wrap justify-between items-center gap-x-1">
                     <div>
                         <h2 class="text-lg font-semibold mb-4"
-                            data-aos="fade-up">명도에 따른 색상 활용</h2>
+                            data-aos="fade-up">{{ __('messages.cibi_brightness') }}</h2>
                         <div class="color__system brightness mb-10"
                              data-aos="fade-up"
                              data-aos-delay="100">
@@ -103,7 +104,7 @@ $visualFullWidthLayout = true;
                         </div>
 
                         <h2 class="text-lg font-semibold mb-4"
-                            data-aos="fade-up">채도에 따른 색상 활용</h2>
+                            data-aos="fade-up">{{ __('messages.cibi_saturation') }} </h2>
                         <div class="color__system saturation mb-10"
                              data-aos="fade-up"
                              data-aos-delay="100">
@@ -113,7 +114,7 @@ $visualFullWidthLayout = true;
                     </div>
                     <div>
                         <h2 class="text-lg font-semibold mb-4"
-                            data-aos="fade-up">흑백 배경 색상 활용</h2>
+                            data-aos="fade-up">{{ __('messages.cibi_background') }}</h2>
                         <div class="color__system black mb-10"
                              data-aos="fade-up"
                              data-aos-delay="100">

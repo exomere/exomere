@@ -21,25 +21,25 @@ $activeHeader = true;
                 @csrf
                 <div class="grid grid-cols-12 min-h-screen rounded-sm">
                     <div class="col-span-12 lg:col-span-8 p-4">
-                        <h6 class="text-3xl font-semibold text-head">주문서 작성</h6>
+                        <h6 class="text-3xl font-semibold text-head">{{ __('common.checkout_fill') }}</h6>
                         <hr class="text-gray-300 my-4">
 
                         <!-- 배송지 -->
                         <div class="flex flex-col  gap-y-10">
                             <div>
                                 <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
-                                    배송지</h2>
+                                    {{ __('common.checkout_addr') }}</h2>
                                 <div class="flex flex-col gap-y-5">
                                     <div>
                                         <div class="w-full max-w-sm min-w-[200px]">
                                             <label class="block mb-1 text-sm text-slate-600">
-                                                받는 이
+                                                {{ __('common.checkout_recipient') }}
                                             </label>
                                             <input
                                                 id="user_name" name="user_name"
                                                 class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                                                 maxlength="10"
-                                                placeholder="수령자 명"
+                                                placeholder="{{ __('messages.checkout_recipient_holder') }}"
                                                 value="{{$ex_member->name ?? null}}"
                                             />
                                         </div>
@@ -48,12 +48,13 @@ $activeHeader = true;
                                     <div>
                                         <div class="w-full max-w-sm min-w-[200px]">
                                             <label class="block mb-1 text-sm text-slate-600">
-                                                휴대폰 번호
+                                                {{ __('common.checkout_phone') }}
                                             </label>
                                             <input
                                                 id="user_phone" name="user_phone"
                                                 class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                                                 maxlength="11"
+                                                placeholder="{{ __('messages.checkout_phone_holder') }}"
                                                 value="{{$ex_member->phone ?? null}}"
                                             />
                                         </div>
@@ -61,13 +62,13 @@ $activeHeader = true;
 
                                     <div class="w-full max-w-sm min-w-[200px]">
                                         <label class="block mb-1 text-sm text-slate-600">
-                                            주소
+                                            {{ __('common.checkout_address') }}
                                         </label>
                                         <div class="relative">
                                             <input
                                                 id="zipcode" name="zipcode"
                                                 class="w-full mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                                placeholder="주소검색을 이용해 주세요"
+                                                placeholder="{{ __('messages.checkout_addr_search_holder') }}"
                                                 readonly
                                                 value="{{$ex_member->zip_code ?? null}}"
                                             />
@@ -77,7 +78,7 @@ $activeHeader = true;
                                                 type="button"
                                                 onclick="getPostCode();"
                                             >
-                                                주소검색
+                                                {{ __('common.checkout_addr_search') }}
                                             </button>
                                             <input type="text" id="address" name="address"
                                                    class="w-full mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -100,7 +101,7 @@ $activeHeader = true;
                             <div>
                                 <!-- 주문상품 -->
                                 <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
-                                    주문상품</h2>
+                                    {{ __('common.checkout_items') }}</h2>
 
                                 <div class="mb-4">
                                     <div class="space-y-8">
@@ -108,7 +109,7 @@ $activeHeader = true;
                                         <div class="row flex items-center justify-between">
                                             <div class="flex items-center">
                                                 <img src="{{ $pd_img }}"
-                                                     alt="상품 이미지"
+                                                     alt="image"
                                                      class="w-16 h-16 object-cover mr-4">
                                                 <div>
                                                     <p class="font-semibold">{{$item_info->name}}</p>
@@ -116,7 +117,7 @@ $activeHeader = true;
                                                     <div class="flex flex-row">
                                                         <input type='hidden' name='pd_qty' value="{{$pd_qty}}">
                                                         <input type='hidden' name='pd_id' value="{{$pd_id}}">
-                                                        수량: {{$pd_qty}}
+                                                        {{ __('common.quantity') }}: {{$pd_qty}}
                                                     </div>
                                                     <h6 class="flex"><span
                                                             class="total-price">{{number_format($pd_price)}}</span>
@@ -137,7 +138,7 @@ $activeHeader = true;
                             <div>
                                 {{--결제수단--}}
                                 <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
-                                    결제수단</h2>
+                                    {{ __('common.checkout_method') }}</h2>
                                 <div class="flex items-center mb-4">
                                     <div class="flex gap-10">
                                         <div class="inline-flex items-center">
@@ -149,8 +150,9 @@ $activeHeader = true;
                                                 <span
                                                     class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                                             </label>
-                                            <span class="ml-2 text-slate-600 cursor-pointer text-sm"
-                                                  for="radio_account">계좌이체</label>
+                                            <span class="ml-2 text-slate-600 cursor-pointer text-sm">
+                                                 {{ __('common.method_account') }}
+                                            </span>
                                         </div>
                                         <div class="inline-flex items-center">
                                             <label class="relative flex items-center cursor-pointer" for="radio_card">
@@ -160,14 +162,20 @@ $activeHeader = true;
                                                 <span
                                                     class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                                             </label>
-                                            <label class="ml-2 text-slate-600 cursor-pointer text-sm" for="radio_card">신용카드</label>
+                                            <label class="ml-2 text-slate-600 cursor-pointer text-sm"
+                                                   for="radio_card">{{ __('common.method_card') }}</label>
                                         </div>
                                         <div class="inline-flex items-center">
-                                            <label class="checkPaymentType relative flex items-center cursor-pointer" for="radio_point">
-                                                <input name="payment_type" type="radio" class="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all"  id="radio_point"  value='point'>
-                                                <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
+                                            <label class="checkPaymentType relative flex items-center cursor-pointer"
+                                                   for="radio_point">
+                                                <input name="payment_type" type="radio"
+                                                       class="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all"
+                                                       id="radio_point" value='point'>
+                                                <span
+                                                    class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                                             </label>
-                                            <label class="ml-2 text-slate-600 cursor-pointer text-sm" for="radio_point">포인트결제</label>
+                                            <label class="ml-2 text-slate-600 cursor-pointer text-sm"
+                                                   for="radio_point">{{ __('common.method_point') }}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -176,7 +184,7 @@ $activeHeader = true;
                             <div id='payment_account_form'>
                                 {{--결제수단--}}
                                 <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
-                                    계좌이체 정보
+                                    {{ __('common.checkout_account') }}
                                 </h2>
                                 <div class="flex items-center mb-4">
                                     <div class="w-full max-w-sm min-w-[240px]">
@@ -191,7 +199,7 @@ $activeHeader = true;
                                             />
                                             <input type="text" name="account_name" id="account_name"
                                                    class="w-full mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                                   placeholder="입금자명을 입력해주세요."
+                                                   placeholder="{{ __('messages.checkout_account_name_holder') }}"
                                             >
                                         </div>
                                     </div>
@@ -201,57 +209,62 @@ $activeHeader = true;
                             <div id='payment_card_form' style='display:none;'>
                                 {{--결제수단--}}
                                 <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
-                                    카드결제 정보
+                                    {{ __('common.checkout_card') }}
                                 </h2>
                                 <div class="flex items-center mb-4">
                                     <div class="w-full max-w-sm min-w-[240px]">
                                         <div class="flex flex-col gap-2">
                                             <div class="flex flex-col">
-                                                <label class="required" for="payment_card">카드선택</label>
+                                                <label class="required"
+                                                       for="payment_card">{{ __('common.checkout_card_select') }}</label>
                                                 <select
                                                     class="mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow "
                                                     id="payment_card">
-                                                    <option value="">==선택==</option>
+                                                    <option value="">== Select ==</option>
                                                     @foreach ($card_compnay as $key => $val)
                                                         <option value="{{$key}}">{{$val}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            
+
                                             <div>
-                                                <label class="required" for="card_name">소유자명</label>
+                                                <label class="required"
+                                                       for="card_name">{{ __('common.checkout_card_owner') }}</label>
                                                 <input type="text"
                                                        class="w-full mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                                       placeholder="카드 소유자명을 입력해주세요."
+                                                       placeholder="{{ __('messages.checkout_card_name_holder') }}"
                                                        name="card_name"
                                                        id="card_name"
                                                 >
                                             </div>
 
                                             <div>
-                                                <label class="required" for="card_number">카드번호</label>
+                                                <label class="required"
+                                                       for="card_number">{{ __('common.checkout_card_number') }}</label>
                                                 <input type="text"
                                                        class="w-full mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                                       placeholder="카드번호를 입력해주세요."
+                                                       placeholder="{{ __('messages.checkout_card_number_holder') }}"
                                                        name="card_number"
                                                        id="card_number"
                                                 >
                                             </div>
                                             <div>
-                                                <label class="required" for="card_password">카드 비밀번호</label>
+                                                <label class="required"
+                                                       for="card_password">{{ __('common.checkout_card_pw') }}</label>
                                                 <input type="text"
                                                        class="w-full mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                                       placeholder="카드 비밀번호 두자리를 입력해주세요."
+                                                       placeholder="{{ __('messages.checkout_card_pw_holder') }}"
                                                        maxlength="2"
                                                        name="card_password"
                                                        id="card_password"
                                                 >
                                             </div>
                                             <div>
-                                                <label class="required" for="card_password">생년월일</label>
+                                                <label class="required"
+                                                       for="card_password">{{ __('common.checkout_card_birth') }}</label>
                                                 <input type="text"
                                                        class="w-full mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                                       placeholder="생년월일 입력해주세요. Ex) 870204 "
+                                                       placeholder="{{ __('messages.checkout_card_birth_holder') }}"
                                                        maxlength="6"
                                                        name="user_brith"
                                                        id="user_brith"
@@ -259,31 +272,41 @@ $activeHeader = true;
                                             </div>
                                             <div class="grid grid-cols-2 gap-1">
                                                 <div class="flex flex-col">
-                                                    <label class="required" for="card_installment"> 할부개월 </label>
+                                                    <label class="required"
+                                                           for="card_installment">{{ __('common.checkout_card_months') }}</label>
                                                     <select
                                                         class="mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                                                         name="card_installment" id="card_installment">
                                                         @for ($i = 1; $i < 13; $i++)
-                                                            <option value="{{$i}}">{{$i}}개월</option>
+                                                            @if($i==1)
+                                                                <option
+                                                                    value="{{$i}}">{{__('common.checkout_card_months_1')}}</option>
+                                                            @else
+                                                                <option
+                                                                    value="{{$i}}">{{$i}} {{__('common.months')}}</option>
+                                                            @endif
                                                         @endfor
                                                     </select>
                                                 </div>
 
                                                 <div class="flex flex-col">
-                                                    <label class="required" for="card_year"> 유효기간 </label>
+                                                    <label class="required"
+                                                           for="card_year"> {{ __('common.checkout_card_months') }} </label>
                                                     <div class="flex gap-1">
                                                         <select
                                                             class="basis-1/2 mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                                                             name="card_year" id="card_year">
+                                                            <option value="">{{__('common.year')}}</option>
                                                             @for ($i = date("y"); $i < (date("y")+15); $i++)
-                                                                <option value="{{$i}}">{{$i}}년</option>
+                                                                <option value="{{$i}}">{{$i}}</option>
                                                             @endfor
                                                         </select>
                                                         <select
                                                             class="basis-1/2 mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                                                             name="card_month">
+                                                            <option value="">{{__('common.months')}}</option>
                                                             @for ($i = 1; $i < 13; $i++)
-                                                                <option value="{{$i}}">{{$i}}월</option>
+                                                                <option value="{{$i}}">{{$i}}</option>
                                                             @endfor
                                                         </select>
                                                     </div>
@@ -302,17 +325,21 @@ $activeHeader = true;
 
                     <!-- 주문 합계 -->
                     <div class="col-span-12 lg:col-span-4 p-4 bg-gray-100">
-                        <h6 class="text-3xl font-semibold text-head">결제 상세</h6>
+                        <h6 class="text-3xl font-semibold text-head">{{ __('common.checkout_detail') }}</h6>
                         <hr class="text-gray-300 my-4">
 
                         <div class="flex flex-col gap-y-8">
                             <!-- 총 금액 -->
                             <div>
                                 <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
-                                    총금액</h2>
+                                    {{ __('common.checkout_total_amount') }}</h2>
                                 <div class="flex justify-between">
-                                    <span>상품금액</span>
-                                    <span>{{number_format($pd_price * $pd_qty)}} 원</span>
+                                    <span>{{ __('common.checkout_product_price') }}</span>
+                                    <span class="flex">
+                                        <span>{{number_format($pd_price * $pd_qty)}}</span>
+                                        <span
+                                            class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
+                                    </span>
                                 </div>
                                 {{-- <div class="flex justify-between">
                                     <span>배송비</span>
@@ -323,12 +350,18 @@ $activeHeader = true;
                             <!-- 버튼 -->
                             <div class="">
                                 <div class="text-center text-sm text-gray-600 mb-3">
-                                    약관 및 주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.
+                                    {{ __('messages.confirm_checkout') }}
                                 </div>
                                 <button
                                     type="button"
                                     class="submitBtn rounded-sm text-center w-full px-5 py-4 border border-solid border-base-color bg-base-color flex items-center justify-center font-normal text-lg text-white shadow-sm">
-                                    {{number_format($pd_price * $pd_qty)}} 원
+
+                                    <span class="flex">
+                                        <span>{{number_format($pd_price * $pd_qty)}}</span>
+                                        <span
+                                            class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
+                                    </span>
+
                                     {{ __('common.checkout') }}
                                 </button>
                             </div>
@@ -345,58 +378,42 @@ $activeHeader = true;
     <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
     <script>
 
-        $(".submitBtn").on("click",function(){
+        $(".submitBtn").on("click", function () {
             var check_value = $('input:radio[name="payment_type"]:checked').val();
-            
-            if(check_value == 'card'){
-                
-                if($("#payment_card").val() == ""){
-                    alert('누락된 값을 입력해주세요.');
-                    $("#payment_card").focus();
-                    return false;
+
+
+            try {
+                if (check_value === 'card') {
+                    const cardFields = [
+                        {id: "#payment_card"},
+                        {id: "#card_name"},
+                        {id: "#card_number"},
+                        {id: "#card_password"},
+                        {id: "#user_brith"},
+                        {id: "#card_installment"},
+                        {id: "#card_year"}
+                    ];
+
+                    for (const field of cardFields) {
+                        const input = $(field.id).val();
+                        if (!input) {
+                            alert('{{ __('messages.checkout_error_alert') }}');
+                            $(field.id).focus();
+                            return false;
+                        }
+                    }
+                } else {
+                    const accountField = {id: "#account_name"};
+                    const input = $(accountField.id).val();
+                    if (!input) {
+                        alert('{{ __('messages.checkout_error_alert') }}');
+                        $(accountField.id).focus();
+                        return false;
+                    }
                 }
-                if($("#card_name").val() == ""){
-                    alert('누락된 값을 입력해주세요.');
-                    $("#card_name").focus();
-                    return false;
-                }
-                if($("#card_number").val() == ""){
-                    alert('누락된 값을 입력해주세요.');
-                    $("#card_number").focus();
-                    return false;
-                }
-                if($("#card_password").val() == ""){
-                    alert('누락된 값을 입력해주세요.');
-                    $("#card_password").focus();
-                    return false;
-                }
-                if($("#user_brith").val() == ""){
-                    alert('누락된 값을 입력해주세요.');
-                    $("#user_brith").focus();
-                    return false;
-                }
-                if($("#card_installment").val() == ""){
-                    alert('누락된 값을 입력해주세요.');
-                    $("#card_installment").focus();
-                    return false;            
-                }
-                if($("#card_year").val() == ""){
-                    alert('누락된 값을 입력해주세요.');
-                    $("#card_year").focus();
-                    return false;
-                }
-                if($("#card_year").val() == ""){
-                    alert('누락된 값을 입력해주세요.');
-                    $("#card_year").focus();
-                    return false;
-                }
-            }else{
-                
-                if($("#account_name").val() == ""){
-                    alert('누락된 값을 입력해주세요.');
-                    $("#account_name").focus();
-                    return false;
-                }
+            } catch (error) {
+                alert("{{ __('messages.unexpected_error_alert') }}");
+                return false;
             }
 
             $("#paymentForm").submit();

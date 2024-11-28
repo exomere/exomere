@@ -2,59 +2,111 @@
 
 $visualFullWidthLayout = true;
 
-$history = [
-    '2023년' => [
-        '11월' => [
-            '엑소미어 창립',
-            'EXOMERE 상표 출원'
+$locale = app()->getLocale();
+
+if ($locale == 'ko') {
+    $history = [
+        '2023년' => [
+            '11월' => [
+                '엑소미어 창립',
+                'EXOMERE 상표 출원'
+            ]
+        ],
+        '2024년' => [
+            '1월' => [
+                '1월 총판점장 심화교육'
+            ],
+            '2월' => [
+                '엑소미어 일본도쿄코스메위크 참가',
+                '엑소미어 미국지사 계약체결'
+            ],
+            '3월' => [
+                '한라봉엑소좀 식약처 성분등록',
+                '3월 총판점장 심화교육 및 출범식(1박 2일)/250 명 참석'
+            ],
+            '4월' => [
+                '11일 제1기 스킨임플란트 전문가과정 아카데미',
+                '17일 제1기 스킨임플란트 전문가과정 아카데미',
+                '24일 제1기 스킨임플란트 전문가과정 아카데미'
+            ],
+            '5월' => [
+                '5월 총판 심화교육',
+                '엑소미어 일본 도쿄뷰티월드 참가',
+                '일본지사 프리 오픈 세미나',
+                '28일 제2기 스킨임플란트 전문가과정 아카데미'
+            ],
+            '6월' => [
+                '엑소미어 한라봉엑소좀 특허등록 (제10-2677780호)',
+                '엑소미어 7품목 미국FDA등록 완료',
+                '4일 제2기 스킨임플란트 전문가과정 아카데미',
+                '11일 제2기 스킨임플란트 전문가과정 아카데미',
+            ],
+            '7월' => [
+
+                '2일 제3기 스킨임플란트 전문가과정 아카데미',
+                '9일 제3기 스킨임플란트 전문가과정 아카데미',
+                '16일 제3기 스킨임플란트 전문가과정 아카데미',
+                '엑소미어 7품목 일본후생성허가 등록완료',
+                '엑소미어 라스베가스 코스모프로프 박람회 참가',
+                '2024 코스모프로프 어워즈 파이널리스트 선정',
+                '엑소미어 미국 라스베가스 제품설명회',
+            ],
+
+            '8월' => ['엑소미어 일본 법인지사 설립 (도쿄 신주쿠)'],
+            '9월' => ['엑소미어 일본 스킨임플란트 뷰티아카데미 1회 개최'],
         ]
-    ],
-    '2024년' => [
-        '1월' => [
-            '1월 총판점장 심화교육'
+    ];
+} else {
+    $history = [
+        '2023' => [
+            'November' => [
+                'Founding of EXOMERE',
+                'Trademark application for EXOMERE'
+            ]
         ],
-        '2월' => [
-            '엑소미어 일본도쿄코스메위크 참가',
-            '엑소미어 미국지사 계약체결'
-        ],
-        '3월' => [
-            '한라봉엑소좀 식약처 성분등록',
-            '3월 총판점장 심화교육 및 출범식(1박 2일)/250 명 참석'
-        ],
-        '4월' => [
-            '11일 제1기 스킨임플란트 전문가과정 아카데미',
-            '17일 제1기 스킨임플란트 전문가과정 아카데미',
-            '24일 제1기 스킨임플란트 전문가과정 아카데미'
-        ],
-        '5월' => [
-            '5월 총판 심화교육',
-            '엑소미어 일본 도쿄뷰티월드 참가',
-            '일본지사 프리 오픈 세미나',
-            '28일 제2기 스킨임플란트 전문가과정 아카데미'
-        ],
-        '6월' => [
-            '엑소미어 한라봉엑소좀 특허등록 (제10-2677780호)',
-            '엑소미어 7품목 미국FDA등록 완료',
-            '4일 제2기 스킨임플란트 전문가과정 아카데미',
-            '11일 제2기 스킨임플란트 전문가과정 아카데미',
-        ],
-        '7월' => [
-
-            '2일 제3기 스킨임플란트 전문가과정 아카데미',
-            '9일 제3기 스킨임플란트 전문가과정 아카데미',
-            '16일 제3기 스킨임플란트 전문가과정 아카데미',
-            '엑소미어 7품목 일본후생성허가 등록완료',
-            '엑소미어 라스베가스 코스모프로프 박람회 참가',
-            '2024 코스모프로프 어워즈 파이널리스트 선정',
-            '엑소미어 미국 라스베가스 제품설명회',
-        ],
-
-        '8월' => ['엑소미어 일본 법인지사 설립 (도쿄 신주쿠)'],
-        '9월' => ['엑소미어 일본 스킨임플란트 뷰티아카데미 1회 개최'],
-    ]
-];
-
-//$history = array_reverse($history);
+        '2024' => [
+            'January' => [
+                'Advanced training for general managers in January'
+            ],
+            'February' => [
+                'Participation in EXOMERE Tokyo Cosmetic Week in Japan',
+                'Contract signing for EXOMERE’s U.S. branch'
+            ],
+            'March' => [
+                'Registration of Hallabong Exosome as an ingredient with the MFDS',
+                'March advanced training and launch event for general managers (2 days, 250 participants)'
+            ],
+            'April' => [
+                '11th: 1st Skin Implant Specialist Course Academy',
+                '17th: 1st Skin Implant Specialist Course Academy',
+                '24th: 1st Skin Implant Specialist Course Academy'
+            ],
+            'May' => [
+                'Advanced training for general managers in May',
+                'Participation in EXOMERE Tokyo Beauty World in Japan',
+                'Pre-opening seminar for the Japan branch',
+                '28th: 2nd Skin Implant Specialist Course Academy'
+            ],
+            'June' => [
+                'Patent registration for EXOMERE Hallabong Exosome (No. 10-2677780)',
+                'Completion of FDA registration for 7 EXOMERE products',
+                '4th: 2nd Skin Implant Specialist Course Academy',
+                '11th: 2nd Skin Implant Specialist Course Academy'
+            ],
+            'July' => [
+                '2nd: 3rd Skin Implant Specialist Course Academy',
+                '9th: 3rd Skin Implant Specialist Course Academy',
+                '16th: 3rd Skin Implant Specialist Course Academy',
+                'Completion of Japanese Ministry of Health approval for 7 EXOMERE products',
+                'Participation in Cosmoprof Las Vegas Expo',
+                'Finalist for the 2024 Cosmoprof Awards',
+                'EXOMERE product presentation in Las Vegas, USA',
+            ],
+            'August' => ['Establishment of EXOMERE Japan Corporation (Tokyo, Shinjuku)'],
+            'September' => ['First EXOMERE Skin Implant Beauty Academy held in Japan'],
+        ]
+    ];
+}
 
 ?>
 
@@ -97,13 +149,13 @@ $history = [
         <nav id="parallax__nav"
              class="relative bg-white w-full left-0 z-40 lg:absolute lg:top-32 lg:pl-7 lg:bg-transparent lg:left-0 lg:w-auto">
             <ul class="flex flex-row justify-center text-sm text-center text-slate-500 lg:flex-col lg:text-base">
-                <li class="relative p-3 basis-1/4"><a class="" href="/about">기업소개</a>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about">{{ __('gnb.about') }}</a>
                 </li>
-                <li class="relative p-3 basis-1/4"><a class="" href="/about/philosophy">경영이념</a>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/philosophy">{{ __('gnb.philosophy') }}</a>
                 </li>
-                <li class="relative p-3 basis-1/4"><a class="active" href="/about/history">연혁</a>
+                <li class="relative p-3 basis-1/4"><a class="active" href="/about/history">{{ __('gnb.history') }}</a>
                 </li>
-                <li class="relative p-3 basis-1/4"><a class="" href="/about/cibi">CI/BI 소개</a>
+                <li class="relative p-3 basis-1/4"><a class="" href="/about/cibi">{{ __('gnb.cibi') }}</a>
                 </li>
             </ul>
         </nav>
