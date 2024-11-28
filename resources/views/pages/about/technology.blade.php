@@ -6,73 +6,121 @@ $contents = [
     [
         'title' => 'Exomere Halla™',
         'title_en' => 'Exomere Halla™',
+        'title_cn' => 'Exomere Halla™',
+        'title_jp' => 'Exomere Halla™',
         'title_sub' => '한라봉 엑소좀 분리',
         'title_sub_en' => 'Extraction of Hallabong Exosome',
+        'title_sub_cn' => '提取济州橙外泌体',
+        'title_sub_jp' => 'ハルラボンエクソソームの抽出',
         'code' => '특허: 제 10-2023-0121591호',
         'code_en' => 'Patent: No. 10-2023-0121591',
+        'code_cn' => '专利: 第 10-2023-0121591号',
+        'code_jp' => '特許: 第10-2023-0121591号',
         'description' => '유기농으로 재배된 제주 한라봉으로부터 추출한 엑소좀을 유효 성분으로 하여 항산화, 피부 세포재생 및 미백에 효과를 갖는 것을 특징으로 하는 화장품 조성물이다.',
         'description_en' => 'A cosmetic composition characterized by its antioxidant, skin cell regeneration, and whitening effects, using exosomes extracted from organically grown Jeju Hallabong as active ingredients.',
+        'description_cn' => '一种以有机种植的济州橙中提取的外泌体为活性成分，具有抗氧化、皮肤细胞再生和美白效果的化妆品组合物。',
+        'description_jp' => '有機栽培された済州ハルラボンから抽出したエクソソームを有効成分として使用し、抗酸化、肌細胞再生、美白効果を特徴とする化粧品組成物です。',
         'image' => asset('assets/img/elements/tech_01.jpg')
     ],
     [
         'title' => 'EXOSOME AG™',
         'title_en' => 'EXOSOME AG™',
+        'title_cn' => 'EXOSOME AG™',
+        'title_jp' => 'EXOSOME AG™',
         'title_sub' => '흑마늘, 알로에베라 엑소좀 분리',
         'title_sub_en' => 'Extraction of Black Garlic and Aloe Vera Exosomes',
+        'title_sub_cn' => '提取黑蒜和芦荟外泌体',
+        'title_sub_jp' => '黒ニンニクとアロエベラのエクソソーム抽出',
         'code' => '특허: 제 10-2534286호',
         'code_en' => 'Patent: No. 10-2534286',
+        'code_cn' => '专利: 第 10-2534286号',
+        'code_jp' => '特許: 第10-2534286号',
         'description' => '유기농으로 재배된 알로에베라, 흑마늘로부터 추출한 엑소좀을 유효 성분으로 하여 피부 주름개선, 피부 보습 및 장벽 강화에 효과를 갖는 것을 특징으로 하는 화장품 조성물이다.',
         'description_en' => 'A cosmetic composition characterized by its effectiveness in improving skin wrinkles, moisturizing, and strengthening the skin barrier, using exosomes extracted from organically grown aloe vera and black garlic.',
-        'image' => asset('assets/img/elements/tech_02.jpg')
+        'description_cn' => '一种以有机种植的芦荟和黑蒜中提取的外泌体为活性成分，具有改善皮肤皱纹、保湿和增强皮肤屏障作用的化妆品组合物。',
+        'description_jp' => '有機栽培されたアロエベラと黒ニンニクから抽出されたエクソソームを有効成分とし、肌のシワ改善、保湿、バリア強化に効果のある化粧品組成物です。',
+        'image' => asset('assets/img/elements/tech_02.jpg'),
     ],
     [
         'title' => '엑소좀 리프팅 실',
         'title_en' => 'Exosome Lifting Thread',
+        'title_cn' => '外泌体提升线',
+        'title_jp' => 'エクソソームリフティングスレッド',
         'title_sub' => '엑소좀을 함유하는 리프팅용 실',
         'title_sub_en' => 'Thread for Lifting Containing Exosomes',
+        'title_sub_cn' => '含有外泌体的提升线',
+        'title_sub_jp' => 'エクソソームを含むリフティング用スレッド',
         'code' => '특허: 제 10-2698031호',
         'code_en' => 'Patent: No. 10-2698031',
+        'code_cn' => '专利: 第 10-2698031号',
+        'code_jp' => '特許: 第10-2698031号',
         'description' => '뉴 콘 듀얼 K-리프팅 실은 실루엣 소프트 실의 단점인 리프팅을 강화하기 위해 가시가 추가되어 콘과 가시의 듀얼 리프팅이 가능한 차세대 리프팅용 콘 실로, 엑소좀을 함유하고 있다.',
         'description_en' => 'The New Cone Dual K-Lifting Thread enhances lifting by adding barbs to overcome the limitations of Silhouette Soft Threads, making it a next-generation lifting cone thread with dual lifting capabilities, containing exosomes.',
-        'image' => asset('assets/img/elements/tech_03.png')
+        'description_cn' => '新锥双K提升线通过添加倒钩增强提升效果，克服了Silhouette Soft线的局限性，是一种含有外泌体的下一代锥形双提升线。',
+        'description_jp' => '新型コーンデュアルKリフティングスレッドは、シルエットソフトスレッドの限界を克服するためにトゲを追加し、デュアルリフティングが可能な次世代リフティング用コーンスレッドであり、エクソソームを含んでいます。',
+        'image' => asset('assets/img/elements/tech_03.png'),
     ],
     [
         'title' => '비양나무추출물',
         'title_en' => 'Biyang Tree Extract',
+        'title_cn' => '比扬树提取物',
+        'title_jp' => 'ビヤンツリー抽出物',
         'title_sub' => '제주도 비양나무추출물의 화장료 조성물',
         'title_sub_en' => 'Cosmetic Composition with Extract from Jeju Biyang Tree',
+        'title_sub_cn' => '济州岛比扬树提取物的化妆品组合物',
+        'title_sub_jp' => '済州島ビヤンツリー抽出物の化粧品組成物',
         'code' => '특허: 제 10-1441190호',
         'code_en' => 'Patent: No. 10-1441190',
+        'code_cn' => '专利: 第 10-1441190号',
+        'code_jp' => '特許: 第10-1441190号',
         'description' => '제주도에서 자생하는 비양나무에서 추출한 원료로서, 노화방지와 항산화 효과, 항염 효과, 항균 작용 및 미백 효과를 갖는 것을 특징으로 하는 화장료 조성물이다.',
         'description_en' => 'A cosmetic composition characterized by its anti-aging, antioxidant, anti-inflammatory, antibacterial, and whitening effects, using extracts from Jeju Island’s native Biyang tree.',
-        'image' => asset('assets/img/elements/tech_04.jpg')
+        'description_cn' => '一种以济州岛原生比扬树提取物为原料，具有抗衰老、抗氧化、抗炎、抗菌和美白效果的化妆品组合物。',
+        'description_jp' => '済州島固有のビヤンツリーから抽出された原料を使用し、抗老化、抗酸化、抗炎効果、抗菌作用、美白効果を特徴とする化粧品組成物です。',
+        'image' => asset('assets/img/elements/tech_04.jpg'),
     ],
     [
         'title' => '통증완화용 조성물',
         'title_en' => 'Pain Relief Composition',
+        'title_cn' => '疼痛缓解组合物',
+        'title_jp' => '痛み緩和用組成物',
         'title_sub' => '천연미세침을 포함하는 통증완화용 조성물',
         'title_sub_en' => 'Composition for Pain Relief Containing Natural Microneedles',
+        'title_sub_cn' => '包含天然微针的疼痛缓解组合物',
+        'title_sub_jp' => '天然微細針を含む痛み緩和用組成物',
         'code' => '특허: 제 10-1984260호',
         'code_en' => 'Patent: No. 10-1984260',
+        'code_cn' => '专利: 第 10-1984260号',
+        'code_jp' => '特許: 第10-1984260号',
         'description' => '통증 완화에 도움을 주는 글루코사민, MSM, 일라이트, 노니추출물, 온천수 등이 천연미세침과 혼합되어 효과를 극대화시킨 원료로서, 혈행을 개선시켜 염증억제에 도움을 주고, 피부 온도 상승과, 붓기 개선, 셀룰라이트감소, 피부 흡수율 상승 등의 효과를 가지고 있다.',
         'description_en' => 'A material that combines glucosamine, MSM, illite, noni extract, hot spring water, and natural microneedles to maximize effectiveness, aiding in improving circulation, reducing inflammation, increasing skin temperature, reducing swelling and cellulite, and enhancing skin absorption.',
-        'image' => asset('assets/img/elements/tech_05.png')
+        'description_cn' => '一种结合了氨基葡萄糖、MSM、伊利石、诺尼提取物、温泉水和天然微针的材料，以最大限度地提高效果，有助于改善血液循环，减少炎症，增加皮肤温度，减少肿胀和橘皮组织，并增强皮肤吸收。',
+        'description_jp' => 'グルコサミン、MSM、イライト、ノニ抽出物、温泉水、および天然微細針を組み合わせて効果を最大化する材料であり、血行改善、炎症抑制、肌温度上昇、むくみ改善、セルライト減少、肌吸収率向上に役立ちます。',
+        'image' => asset('assets/img/elements/tech_05.png'),
     ],
     [
         'title' => '고체 미세침 필러',
         'title_en' => 'Solid Microneedle Filler',
+        'title_cn' => '固体微针填充剂',
+        'title_jp' => '固体微細針フィラー',
         'title_sub' => '피부 주입식 고체 미세침 형태의 필러',
         'title_sub_en' => 'Skin Injectable Solid Microneedle Filler',
+        'title_sub_cn' => '皮肤注射型固体微针填充剂',
+        'title_sub_jp' => '皮膚注入型固体微細針フィラー',
         'code' => '특허: 제 10-1285831호',
         'code_en' => 'Patent: No. 10-1285831',
+        'code_cn' => '专利: 第 10-1285831号',
+        'code_jp' => '特許: 第10-1285831号',
         'description' => '기존의 주사용 필러와는 다르게 고체 형태의 필러로 세계최초로 개발되었으며, 콜라겐을 형성하는 생분해물질의 일종인 PLLA(Poly-L-Lactic-Acid)재질로 형성되어, 2-3년 이상 장기간 지속 볼륨 증강 작용이 가능하며 깊은 주름 제거와 코끝 올리는 용도로도 사용하는 고체형 필러이다.',
         'description_en' => 'A world-first solid-type filler, different from conventional injectable fillers. Made of PLLA (Poly-L-Lactic-Acid), a biodegradable material forming collagen, it offers long-lasting volumizing effects for 2-3 years and is used for deep wrinkle removal and nose lifting.',
-        'image' => asset('assets/img/elements/tech_06.png')
+        'description_cn' => '一种全球首创的固体型填充剂，与传统注射型填充剂不同。由形成胶原蛋白的可生物降解材料PLLA（聚乳酸）制成，可持续2-3年以上的体积增强作用，并用于深层皱纹去除和鼻部提升。',
+        'description_jp' => '従来の注射用フィラーとは異なる固体型フィラーで、世界初の開発です。コラーゲンを形成する生分解性物質であるPLLA（ポリL乳酸）素材で形成され、2〜3年以上の長期間にわたるボリューム増加作用が可能で、深いシワの除去や鼻先のリフトアップにも使用されます。',
+        'image' => asset('assets/img/elements/tech_06.png'),
     ],
 ];
 
 if (app()->getLocale() != "ko") {
-    $baseLocale = 'en';
+    $baseLocale = app()->getLocale();
     foreach ($contents as $key => $content) {
         $contents[$key]['title'] = $content['title_' . $baseLocale];
         $contents[$key]['title_sub'] = $content['title_sub_' . $baseLocale];
@@ -159,7 +207,7 @@ if (app()->getLocale() != "ko") {
                                     <h2 class="inline-block font-bold text-2xl mb-7">{{ $content['title'] }}</h2>
                                     <p class="leading-loose md:leading-loose text-base md:text-lg text-gray-500 mb-3 ">
                                         {{ $content['code'] }}</p>
-                                    <p class="leading-loose md:leading-loose text-base md:text-lg text-gray-500 mb-3 ">
+                                    <p class="@if(app()->getLocale() == 'jp') break-all @endif leading-loose md:leading-loose text-base md:text-lg text-gray-500 mb-3 ">
                                         {!! $content['description'] !!}
                                     </p>
                                     <small

@@ -32,8 +32,7 @@
                    data-aos="fade-up"
                    data-aos-delay="300"
                 >
-                    엑소미어와 관련된 내용을 문의해 주세요<br>
-                    최대한 빠른 시간내에 담당자가 연락 드리도록 하겠습니다
+                    {!! __('messages.inquiry_info') !!}
                 </p>
             </div>
 
