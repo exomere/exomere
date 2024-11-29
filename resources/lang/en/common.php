@@ -68,4 +68,6 @@ return [
     'bank' => 'Bank name',
     'account_no' => 'Account number',
     'account_name' => 'Account holder',
+    'to_list' => 'List',
+    'attachment' => 'Attachment',
 ];

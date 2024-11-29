@@ -83,5 +83,6 @@ we embody the brand\'s philosophy of presenting new possibilities in skin regene
     'unexpected_error_alert' => 'An unexpected error occurred. Please try again.',
     'completed_card_payment' => 'Card payment has been completed',
     'completed_account_payment' => 'Please deposit to the account information below to complete payment.',
-
+    'inquiry_info' => 'Please inquire about matters related to Exomere.<br>We will have a representative contact you as soon as possible.',
+    'no_products' => 'No registered products.',
 ];

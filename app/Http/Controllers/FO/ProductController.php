@@ -120,8 +120,8 @@ class ProductController extends BaseController
                 $pd_price = $item->price;
                 $price_simbol = "₩";
             }else{
-                $pd_name = $item->name_en;
-                $pd_description = $item->description_en;
+                $pd_name = $item->name_en ?? $item->name;
+                $pd_description = $item->description_en ?? $item->description;
 
                 if($locale =="jp"){
                     $pd_price = $item->price_y;

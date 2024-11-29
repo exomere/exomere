@@ -72,7 +72,7 @@
                 @else
                     <div
                         class="p-10 text-center text-xl text-gray-600 font-normal">
-                        등록된 상품이 없습니다
+                        {{ __('messages.no_products') }}
                     </div>
                 @endif
 

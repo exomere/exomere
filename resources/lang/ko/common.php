@@ -68,6 +68,8 @@ return [
     'bank' => '은행명',
     'account_no' => '계좌번호',
     'account_name' => '예금주',
+    'to_list' => '목록으로',
+    'attachment' => '첨부파일',
 
 ];
 

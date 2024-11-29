@@ -38,7 +38,7 @@
                 </article>
                 <div class="flex">
                     <p class="lg:w-56 border border-l-0 border-slate-200 border-solid padding text-center text-gray-500 ">
-                        첨부파일</p>
+                        {{ __('common.attachment') }}</p>
                     <div
                         class="flex-1 flex items-center border border-solid border-slate-200 border-x-0">
                         @if(count($item['attachments']))
@@ -61,7 +61,7 @@
                 <div class="text-center">
                     <a href="javascript:history.back()"
                        class="inline-block mt-12 border border-solid border-black py-3 px-24 text-base break-keep">
-                        목록으로
+                        {{ __('common.to_list') }}
                     </a>
                 </div>
             </div>

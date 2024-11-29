@@ -76,4 +76,6 @@ return [
     'unexpected_error_alert' => '예상치 못한 오류가 발생했습니다. 다시 시도해 주세요.',
     'completed_card_payment' => '카드결제가 완료 되었습니다',
     'completed_account_payment' => '아래 계좌정보로 입금해 주시면<br>결제 완료처리가 됩니다',
+    'inquiry_info' => '엑소미어와 관련된 내용을 문의해 주세요<br>최대한 빠른 시간내에 담당자가 연락 드리도록 하겠습니다',
+    'no_products' => '등록된 상품이 없습니다',
 ];

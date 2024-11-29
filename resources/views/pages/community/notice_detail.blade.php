@@ -38,7 +38,7 @@
                 <div class="text-center">
                     <a href="javascript:history.back()"
                        class="inline-block mt-12 border border-solid border-black py-3 px-24 text-base break-keep">
-                        목록으로
+                        {{ __('common.to_list') }}
                     </a>
                 </div>
 
