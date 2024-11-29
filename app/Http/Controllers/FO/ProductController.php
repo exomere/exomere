@@ -36,7 +36,7 @@ class ProductController extends BaseController
                     $price_simbol = "¥";
                 }else if($locale =="cn"){
                     $pd_price = $item->price_c;
-                    $price_simbol = "¥";
+                    $price_simbol = "元";
                 }else{
                     $pd_price = $item->price_d;
                     $price_simbol = "$";
@@ -128,7 +128,7 @@ class ProductController extends BaseController
                     $price_simbol = "¥";
                 }else if($locale =="cn"){
                     $pd_price = $item->price_c;
-                    $price_simbol = "¥";
+                    $price_simbol = "元";
                 }else{
                     $pd_price = $item->price_d;
                     $price_simbol = "$";
@@ -176,7 +176,7 @@ class ProductController extends BaseController
 
         $cart_data = ExCart::where("member_seq",$mem_seq)->where("pd_seq",$request->pd_seq)->where("is_purchase",'N')->first();
         
-        if($cart_data->seq){
+        if(isset($cart_data->id)){
             $cart_data->update([
                 "pd_qty" => $cart_data->pd_qty + $request->pd_qty
             ]);
@@ -189,6 +189,81 @@ class ProductController extends BaseController
             ];
             ExCart::create($save);
         }
+    }
+
+    public function myCart(){
+
+        
+        $exCarts = ExCart::where("member_seq",request()->session()->get('member_seq'))->where("is_purchase",'N');
+        $carts = [];
+        $locale = app()->getLocale();
+        foreach($exCarts->get() as $cart){
+            $item_info = $cart->getItemInfo();
+
+            $pd_name = $item_info->name_en;
+            $pd_description = $item_info->description_en;
+    
+            if($locale == "ko"){
+                $pd_name = $item_info->name;
+                $pd_description = $item_info->description;
+                $pd_price = $item_info->price;
+                $price_simbol = "₩";
+
+                
+                if(request()->session()->get('member_position') == "총판"){
+                    $pd_price = $item_info->exclusive_price;
+                    $pd_pv = $item_info->exclusive_pv;
+                }elseif(request()->session()->get('member_position') == "회원"){
+                    $pd_price = $item_info->mem_price;
+                    $pd_pv = $item_info->mem_pv;
+                }elseif(request()->session()->get('member_position') == "뷰티플래너"){
+                    $pd_price = $item_info->planer_price;
+                    $pd_pv = $item_info->planer_pv;
+                }elseif(request()->session()->get('member_position') == "대리점"){
+                    $pd_price = $item_info->store_price;
+                    $pd_pv = $item_info->store_pv;
+                }else{
+                    $pd_price = $item_info->exclusive_price;
+                    $pd_pv = $item_info->exclusive_pv;
+                }
+
+            }else{
+                $pd_name = $item_info->name_en ?? $item_info->name;
+                $pd_description = $item_info->description_en ?? $item_info->description;
+
+                if($locale =="jp"){
+                    $pd_price = $item_info->price_y;
+                    $pd_pv = $item_info->pv_y;
+                    $price_simbol = "¥";
+                }else if($locale =="cn"){
+                    $pd_price = $item_info->price_c;
+                    $pd_pv = $item_info->pv_c;
+                    $price_simbol = "元";
+                }else{
+                    $pd_price = $item_info->price_d;
+                    $pd_pv = $item_info->pv_d;
+                    $price_simbol = "$";
+                }
+            }
+            
+            $carts[] = 
+                [
+                    'id' => $item_info->id,
+                    'product_name' => $pd_name,
+                    'distribution_price' => $pd_price,
+                    'price_simbol' => $price_simbol,
+                    'pv' => $pd_pv,
+                    'thumbnail' => Storage::url('public/data/'.$item_info->thum_img),
+                    'sub_name' => $pd_description,
+                    'quantity' => $cart->pd_qty,
+                ];
+        }
+
+        $datas = [
+            "carts" => $carts,
+        ];
+
+        return view('pages.mypage.cart')->with($datas);
     }
 
 }

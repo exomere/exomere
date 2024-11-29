@@ -1,40 +1,3 @@
-<?php
-
-$carts = [
-    [
-        'id' => 1,
-        'product_name' => '로즈가든마스크팩로즈가든마스크팩로즈가든마스크팩',
-        'price' => 45000,
-        'distribution_price' => 22500,
-        'vat_excluded' => 20455,
-        'total_price' => 22500,
-        'pv' => 20455 * 2,
-        'thumbnail' => asset('assets/img/elements/2024061918143212433.png'),
-        'thumbnail2' => asset('assets/img/elements/product_hover.jpg'),
-        'brand' => 'return10',
-        'category' => 'sheet_masks',
-        'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-        'sub_name' => '피부 깊은 보습과 영양감을 채워 기초부터 건강한 피부로 가꾸어주고 흔들리지 않는 탄탄한 피부로 가꾸어주는 탄력 보습 크림',
-        'quantity' => 1,
-    ],
-    [
-        'id' => 2,
-        'product_name' => '퍼펙트 스칼프 임플란트 세럼',
-        'price' => 39000,
-        'distribution_price' => 19500,
-        'vat_excluded' => 17727,
-        'total_price' => 19500,
-        'pv' => 17727 * 2,
-        'thumbnail' => asset('assets/img/elements/2024061918143212433.png'),
-        'thumbnail2' => asset('assets/img/elements/product_hover.jpg'),
-        'brand' => 'return10',
-        'category' => 'sheet_masks',
-        'desc' => '<img src="//exomere.co.kr/upload/2024021315320116226.png" alt="">',
-        'sub_name' => '마이크로바이옴과 미세침으로 당신의 모발을 더욱 탄탄하게',
-        'quantity' => 2,
-    ],
-];
-?>
 
 @extends('pages.layouts.withoutVisualLayout')
 @section('title', __('gnb.cart'))
@@ -52,6 +15,7 @@ $carts = [
         <div class="mx-auto max-w-7xl sm:px-6">
             <form action="/mypage/ordersheet" method="POST" name="cartForm" onsubmit="return formCheck()">
                 @csrf
+                <input type='hidden' name='type' value='cart'>
                 <div class="grid grid-cols-12 min-h-screen sm:border sm:border-solid sm:border-gray-300 rounded-sm">
                     <div class="col-span-12 lg:col-span-8 p-4">
                         <h6 class="text-3xl font-semibold text-head">Shopping Cart</h6>
@@ -316,7 +280,7 @@ $carts = [
 
 
         // 배송비 설정 (4000원)
-        const shippingFee = 4000;
+        let shippingFee = 4000;
 
         // 체크박스 클릭 시 결제 금액 계산하는 함수
         function calculateTotal() {
@@ -338,6 +302,13 @@ $carts = [
                 totalPv += pv * quantity;
                 totalQuantity += quantity;
             });
+
+            
+            if(totalPrice >= 200000){
+                shippingFee = 0;
+            }else{
+                shippingFee = 4000;
+            }
 
             // 배송비 더하기 (상품이 하나라도 선택되면)
             if (totalPrice > 0) {

@@ -106,32 +106,33 @@ $activeHeader = true;
                                 <div class="mb-4">
                                     <div class="space-y-8">
                                         <!-- 상품 -->
-                                        <div class="row flex items-center justify-between">
-                                            <div class="flex items-center">
-                                                <img src="{{ $pd_img }}"
-                                                     alt="image"
-                                                     class="w-16 h-16 object-cover mr-4">
-                                                <div>
-                                                    <p class="font-semibold">{{$item_info->name}}</p>
-
-                                                    <div class="flex flex-row">
-                                                        <input type='hidden' name='pd_qty' value="{{$pd_qty}}">
-                                                        <input type='hidden' name='pd_id' value="{{$pd_id}}">
-                                                        {{ __('common.quantity') }}: {{$pd_qty}}
+                                        @foreach ($items as $item)
+                                            <div class="row flex items-center justify-between">
+                                                <div class="flex items-center">
+                                                    <img src="{{ $item['pd_img'] }}"
+                                                        alt="image"
+                                                        class="w-16 h-16 object-cover mr-4">
+                                                    <div>
+                                                        <p class="font-semibold">{{$item['pd_name']}}</p>
+                                                        <div class="flex flex-row">
+                                                            <input type='hidden' name='pd_qty[]' value="{{$item['pd_qty']}}">
+                                                            <input type='hidden' name='pd_id[]' value="{{$item['pd_id']}}">
+                                                            {{ __('common.quantity') }}: {{$item['pd_qty']}}
+                                                        </div>
+                                                        <h6 class="flex"><span
+                                                                class="total-price">{{number_format($item['pd_price'])}}</span>
+                                                            <span
+                                                                class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
+                                                            (<span
+                                                                class="total-pv">{{number_format($item['pd_pv'])}}</span>
+                                                            <span
+                                                                class="px-1 currency">PV</span>
+                                                            )
+                                                        </h6>
                                                     </div>
-                                                    <h6 class="flex"><span
-                                                            class="total-price">{{number_format($pd_price)}}</span>
-                                                        <span
-                                                            class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
-                                                        (<span
-                                                            class="total-pv">{{number_format($pd_pv)}}</span>
-                                                        <span
-                                                            class="px-1 currency">PV</span>
-                                                        )
-                                                    </h6>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -336,15 +337,15 @@ $activeHeader = true;
                                 <div class="flex justify-between">
                                     <span>{{ __('common.checkout_product_price') }}</span>
                                     <span class="flex">
-                                        <span>{{number_format($pd_price * $pd_qty)}}</span>
+                                        <span>{{number_format($total_price)}}</span>
                                         <span
                                             class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
                                     </span>
                                 </div>
-                                {{-- <div class="flex justify-between">
+                                <div class="flex justify-between">
                                     <span>배송비</span>
-                                    <span>0 원</span>
-                                </div> --}}
+                                    <span>{{number_format($delivery_price)}} 원</span>
+                                </div>
                             </div>
 
                             <!-- 버튼 -->
@@ -357,7 +358,8 @@ $activeHeader = true;
                                     class="submitBtn rounded-sm text-center w-full px-5 py-4 border border-solid border-base-color bg-base-color flex items-center justify-center font-normal text-lg text-white shadow-sm">
 
                                     <span class="flex">
-                                        <span>{{number_format($pd_price * $pd_qty)}}</span>
+                                        <input type='hidden' name='total_price' value="{{$total_price + $delivery_price}}">
+                                        <span>{{number_format($total_price + $delivery_price)}}</span>
                                         <span
                                             class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
                                     </span>

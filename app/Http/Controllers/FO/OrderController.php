@@ -19,34 +19,85 @@ class OrderController extends Exomere
     public function ordersheet(Request $request)
     {
         $ex_member = ExMember::find($request->session()->get("member_seq"));
-        $item_info = ExItem::find($request->pd_id);
+        // dd($request->input());
+        $cnt = 0;
+        $item_info = [];
+        $total_price = 0;
+        $total_pv = 0;
+        if($request->type == 'cart'){
+            
+            foreach($request->item as $item => $key){
+                
+                $ex_item = ExItem::find($item);
+                
+                if($ex_member->member_position == "회원"){
+                    $pd_price = $ex_item->mem_price ?? 0;
+                    $pd_pv = $ex_item->mem_pv ?? 0;
+                }else if($ex_member->member_position == "총판"){
+                    $pd_price = $ex_item->exclusive_price ?? 0;
+                    $pd_pv = $ex_item->exclusive_pv ?? 0;
+                }else if($ex_member->member_position == "뷰티플래너"){
+                    $pd_price = $ex_item->planer_price ?? 0;
+                    $pd_pv = $ex_item->planer_pv ?? 0;
+                }else if($ex_member->member_position == "대리점"){
+                    $pd_price = $ex_item->store_price ?? 0;
+                    $pd_pv = $ex_item->store_pv ?? 0;
+                }else{
+                    $pd_price = $ex_item->exclusive_price ?? 0;
+                    $pd_pv = $ex_item->exclusive_pv ?? 0;
+                }
+    
         
-        if($ex_member->member_position == "회원"){
-            $pd_price = $item_info->mem_price;
-            $pd_pv = $item_info->mem_pv;
-        }else if($ex_member->member_position == "총판"){
-            $pd_price = $item_info->exclusive_price;
-            $pd_pv = $item_info->exclusive_pv;
-        }else if($ex_member->member_position == "뷰티플래너"){
-            $pd_price = $item_info->planer_price;
-            $pd_pv = $item_info->planer_pv;
-        }else if($ex_member->member_position == "대리점"){
-            $pd_price = $item_info->store_price;
-            $pd_pv = $item_info->store_pv;
-        }else{
-            $pd_price = $item_info->exclusive_price;
-            $pd_pv = $item_info->exclusive_pv;
-        }
+                $item_info[$cnt]["pd_name"] = $ex_item->name;
+                $item_info[$cnt]["pd_qty"] = $request->quantity[$item][0];
+                $item_info[$cnt]["pd_id"] = $ex_item->id;
+                $item_info[$cnt]["pd_img"] = Storage::url('public/data/'.$ex_item->thum_img);
+                $item_info[$cnt]["pd_price"] = $pd_price;
+                $item_info[$cnt]["pd_pv"] = $pd_pv;
+                
+                $total_price += $item_info[$cnt]["pd_qty"] * $item_info[$cnt]["pd_price"];
+                $total_pv += $item_info[$cnt]["pd_qty"] * $item_info[$cnt]["pd_pv"];
 
+                $cnt++;
+            }
+        }else{
+            $ex_item = ExItem::find($request->pd_id);
+
+            if($ex_member->member_position == "회원"){
+                $pd_price = $ex_item->mem_price ?? 0;
+                $pd_pv = $ex_item->mem_pv ?? 0;
+            }else if($ex_member->member_position == "총판"){
+                $pd_price = $ex_item->exclusive_price ?? 0;
+                $pd_pv = $ex_item->exclusive_pv ?? 0;
+            }else if($ex_member->member_position == "뷰티플래너"){
+                $pd_price = $ex_item->planer_price ?? 0;
+                $pd_pv = $ex_item->planer_pv ?? 0;
+            }else if($ex_member->member_position == "대리점"){
+                $pd_price = $ex_item->store_price ?? 0;
+                $pd_pv = $ex_item->store_pv ?? 0;
+            }else{
+                $pd_price = $ex_item->exclusive_price ?? 0;
+                $pd_pv = $ex_item->exclusive_pv ?? 0;
+            }
+    
+            $item_info[0]["pd_name"] = $ex_item->name;
+            $item_info[0]["pd_qty"] = $request->pd_qty;
+            $item_info[0]["pd_id"] = $request->pd_id;
+            $item_info[0]["pd_img"] = Storage::url('public/data/'.$ex_item->thum_img);
+            $item_info[0]["pd_price"] = $pd_price;
+            $item_info[0]["pd_pv"] = $pd_pv;
+
+            $total_price += $item_info[0]["pd_qty"] * $item_info[0]["pd_price"];
+            $total_pv += $item_info[0]["pd_qty"] * $item_info[0]["pd_pv"];
+        }
+       
         $datas = [
-            "item_info" => $item_info,
             "ex_member" => $ex_member,
-            "pd_qty" => $request->pd_qty,
-            "pd_id" => $request->pd_id,
-            "pd_img" => Storage::url('public/data/'.$item_info->thum_img),
-            "pd_price" => $pd_price,
-            "pd_pv" => $pd_pv,
+            "items" => $item_info,
             "card_compnay" => self::_PAYMENT_CARD_COMPANY,
+            "total_price" => $total_price,
+            "delivery_price" => ($total_price >= 200000) ? 0 : 4000,
+            "total_pv" => $total_pv,
         ];
 
         return view('pages.mypage.ordersheet')->with($datas);
@@ -54,29 +105,8 @@ class OrderController extends Exomere
 
     public function doPayment(Request $request){
 
-
-        $item_seq = $request->pd_id ?? '124';
-
         $ex_member = ExMember::find($request->session()->get("member_seq"));
-        $item_info = ExItem::find($item_seq);
-
-        if($ex_member->member_position == "회원"){
-            $pd_price = $item_info->mem_price;
-            $pd_pv = $item_info->mem_pv;
-        }else if($ex_member->member_position == "총판"){
-            $pd_price = $item_info->exclusive_price;
-            $pd_pv = $item_info->exclusive_pv;
-        }else if($ex_member->member_position == "뷰티플래너"){
-            $pd_price = $item_info->planer_price;
-            $pd_pv = $item_info->planer_pv;
-        }else if($ex_member->member_position == "대리점"){
-            $pd_price = $item_info->store_price;
-            $pd_pv = $item_info->store_pv;
-        }else{
-            $pd_price = $item_info->exclusive_price;
-            $pd_pv = $item_info->exclusive_pv;
-        }
-
+        
         $item_array = [];
         $card_info = [];
         $account_info = [];
@@ -88,14 +118,36 @@ class OrderController extends Exomere
         
         $total_pv = 0;
         $total_amount = 0;
-        if(isset($request->pd_qty)){
-            $item_array[0]['pd_seq'] = $item_seq;
-            $item_array[0]['pd_qty'] = $request->pd_qty;
-            $item_array[0]['pd_price'] = $pd_price;
-            $item_array[0]['pd_name'] = $item_info->name;
-            $item_array[0]['pd_pv'] = $pd_pv;
-            $total_amount +=  (1*($pd_price) * (1*$request->pd_qty));
-            $total_pv += (1*($pd_pv) * (1*$request->pd_qty));
+
+        for ($i = 0; $i < count($request->pd_id); $i++) {
+
+            $item_info = ExItem::find($request->pd_id[$i]);
+
+            $item_array[$i]['pd_seq'] = $item_info->id;
+            $item_array[$i]['pd_qty'] = $request->pd_qty[$i];
+
+            if($ex_member->member_position == "회원"){
+                $pd_price = $item_info->mem_price;
+                $pd_pv = $item_info->mem_pv;
+            }else if($ex_member->member_position == "총판"){
+                $pd_price = $item_info->exclusive_price;
+                $pd_pv = $item_info->exclusive_pv;
+            }else if($ex_member->member_position == "뷰티플래너"){
+                $pd_price = $item_info->planer_price;
+                $pd_pv = $item_info->planer_pv;
+            }else if($ex_member->member_position == "대리점"){
+                $pd_price = $item_info->store_price;
+                $pd_pv = $item_info->store_pv;
+            }else{
+                $pd_price = $item_info->exclusive_price;
+                $pd_pv = $item_info->exclusive_pv;
+            }
+
+            $item_array[$i]['pd_price'] = $pd_price;
+            $item_array[$i]['pd_name'] = $item_info->name;
+            $item_array[$i]['pd_pv'] = $pd_pv;
+            $total_amount +=  (1*($pd_price) * (1*$request->pd_qty[$i]));
+            $total_pv += (1*($pd_pv) * (1*$request->pd_qty[$i]));
         }
 
         if(isset($request->account_number)){
@@ -103,7 +155,7 @@ class OrderController extends Exomere
                 $account_info[0]['account_number'] = "KB국민 계좌번호 989801-00-072129 ㈜엑소미어";
                 $account_info[0]['account_head'] = $request->account_name;
                 $account_info[0]['account_date'] = $request->account_date;
-                $account_info[0]['account_payment_price'] = $request->account_payment_price;
+                $account_info[0]['account_payment_price'] = $request->total_price;
             }
         }
 
@@ -118,11 +170,13 @@ class OrderController extends Exomere
                 $card_month = "0".$request->card_month;
             }
 
+            $product_name = $item_array[0]['pd_name']."외 ".(count($request->pd_id) - 1);
+
             $card_payment_info = [
-                'productName' => $item_info->name,
+                'productName' => $product_name,
                 'customerName' => $request->card_name,
                 'customerPhone' => $phone,
-                'totalAmount' => $total_amount,
+                'totalAmount' => $request->total_price,
                 'cardNum' => str_replace('-','',$request->card_number),
                 'cardInst' => $request->card_installment,
                 'expiryDate' => $request->card_year.$card_month,
@@ -184,8 +238,8 @@ class OrderController extends Exomere
             $account_info[0]['account_number'] = "KB국민 계좌번호 989801-00-072129 ㈜엑소미어";
             $account_info[0]['account_head'] = $request->account_name;
             $account_info[0]['account_date'] = date("Y-m-d");
-            $account_info[0]['account_payment_price'] = $total_amount;
-            $account_payment = $total_amount;
+            $account_info[0]['account_payment_price'] = $request->total_price;
+            $account_payment = $request->total_price;
         }
 
         $ex_center = ExCenter::find( $ex_member->local_store );
@@ -211,14 +265,13 @@ class OrderController extends Exomere
             "zipcode" => $request->zipcode ?? null,
             "address" => $request->address ?? null,
             "address_detail" => $request->address_detail ?? null,
-            "total_amount" => $total_amount ?? 0,
+            "total_amount" => $request->total_price ?? 0,
             "total_pv" => $total_pv ?? 0,
             "remaining_amount" => 0,
-
-            "payment_amount" => $total_amount ?? null,
-            "point_payment" => $point_payment,
-            "card_payment" => $card_payment,
-            "account_payment" => $account_payment,
+            "payment_amount" => $request->total_price ?? 0,
+            "point_payment" => $point_payment ?? 0,
+            "card_payment" => $card_payment ?? 0,
+            "account_payment" => $account_payment ?? 0,
             "is_approval" => $is_approval ?? 'N',
             "item_info" => json_encode($item_array) ?? [],
             "card_info" => json_encode($card_info) ?? [],
@@ -233,7 +286,7 @@ class OrderController extends Exomere
             "input_data" => $input_data,
             "payment_type" => $request->payment_type,
             "return_card_info" => $return_card_info ?? [],
-            "total_amount" => $total_amount,
+            "total_amount" => $request->total_price,
             "phone" => $request->user_phone,
         ];
 

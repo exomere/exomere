@@ -125,10 +125,8 @@ Route::prefix('/about')->group(function () {
 
 Route::prefix('/mypage')->group(function () {
     //장바구니
-    Route::get('cart', function () {
-        return view('pages.mypage.cart');
-    });
- 
+    Route::get('/cart', [ProductController::class, 'myCart']);
+    
 });
 
 // 언어 변경
@@ -152,7 +150,7 @@ Route::post('/login/perform', [LoginController::class, 'login'])->middleware('gu
 
 ###################### 인증 페이지 START###########################
 Route::group(['middleware' => 'auth'], function () {
-    Route::post('/mypage/ordersheet', [orderFoController::class, 'ordersheet'])->name('user.ordersheet');;
+    Route::post('/mypage/ordersheet', [orderFoController::class, 'ordersheet'])->name('user.ordersheet');
     Route::post('/mypage/doPayment', [orderFoController::class, 'doPayment']);
     Route::get('/mypage/orderComplete', [orderFoController::class, 'orderComplete']);
 
