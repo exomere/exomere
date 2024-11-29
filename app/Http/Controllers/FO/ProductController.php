@@ -173,7 +173,8 @@ class ProductController extends BaseController
     public function cartSave(Request $request){
 
         $mem_seq = $request->session()->get('member_seq');
-        $cart_data = ExCart::where("member_seq",$mem_seq)->first();
+
+        $cart_data = ExCart::where("member_seq",$mem_seq)->where("pd_seq",$request->pd_seq)->where("is_purchase",'N')->first();
         
         if($cart_data->seq){
             $cart_data->update([
@@ -183,17 +184,11 @@ class ProductController extends BaseController
             $save = [
                 "member_seq" => $mem_seq,
                 "pd_seq" => $request->pd_seq,
-                "pd_name" => $request->id,
-                "pd_price" => $request->id,
-                "pd_pv" => $request->id,
                 "pd_qty" => $request->pd_qty,
                 "is_purchase" => 'N',
             ];
-    
             ExCart::create($save);
         }
-
-
     }
 
 }

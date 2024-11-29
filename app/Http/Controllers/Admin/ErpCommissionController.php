@@ -319,10 +319,10 @@ class ErpCommissionController extends Exomere
                 ];
             
                 $mem_cnt++;
-            }
 
-            $total_amount += $order->total_amount;
-            $total_pv += $order->total_pv;
+                $total_amount += $order->total_amount;
+                $total_pv += $order->total_pv;
+            }
         }
 
         /* 한번 더 누를 시 삭제*/
@@ -399,10 +399,9 @@ class ErpCommissionController extends Exomere
                     }else if($member_amount >= 13200000){
                         $score[$member->id] += 1;
                     }
+                    $total_amount[$member->id] = ($total_amount[$member->id] ?? 0) + ($orders->total_amount ?? 0);
+                    $pv[$member->id] = ($pv[$member->id] ?? 0) + $orders->total_pv;
                 }
-
-                $total_amount[$member->id] = ($total_amount[$member->id] ?? 0) + ($orders->total_amount ?? 0);
-                $pv[$member->id] = ($pv[$member->id] ?? 0) + $orders->total_pv;
             }
         }
 
@@ -431,10 +430,9 @@ class ErpCommissionController extends Exomere
                     }else if($member_amount >= 13200000){
                         $score[$member->id] += 1;
                     }
+                    $total_amount[$member->id] = ($total_amount[$member->id] ?? 0) + ($orders->total_amount ?? 0);
+                    $pv[$member->id] = ($pv[$member->id] ?? 0) + $orders->total_pv;
                 }
-
-                $total_amount[$member->id] = ($total_amount[$member->id] ?? 0) + ($orders->total_amount ?? 0);
-                $pv[$member->id] = ($pv[$member->id] ?? 0) + $orders->total_pv;
             }
         }
 
@@ -463,8 +461,8 @@ class ErpCommissionController extends Exomere
 
                 if(isset($order->id)){
                     $order->update([
-                        "total_amount" => $total_amount[$key],
-                        "pv" => $pv[$key],
+                        // "total_amount" => $total_amount[$key],
+                        // "pv" => $pv[$key],
                         "promote_price" => $c_promote_price,
                         "promote_score" => $val,
                         "total_payment" =>  ($order->total_payment +$total_payment), 
@@ -480,8 +478,8 @@ class ErpCommissionController extends Exomere
                     $exMember = ExMember::findByMemberSeq( $key );
 
                     ExStatementsMember::create([
-                        "total_amount" => $total_amount[$key],
-                        "pv" => $pv[$key],
+                        // "total_amount" => $total_amount[$key],
+                        // "pv" => $pv[$key],
                         "member_seq" => $exMember->id,
                         "member_id" => $exMember->member_id,
                         "member_name" => $exMember->name,
