@@ -129,7 +129,7 @@ Route::prefix('/about')->group(function () {
 Route::get('/set-language/{lang}', [LanguageController::class, 'setLanguage'])->name('setLanguage');
 
 // 회원가입 페이지
-Route::get('/signup/{recommendId?}', [JoinController::class, 'signup'])->name('signup');
+Route::get('/signup', [JoinController::class, 'signup'])->name('signup');
 Route::get('/check-id', [JoinController::class, 'checkId']);
 Route::get('/check-recommend-id', [JoinController::class, 'checkRecommendId']);
 // 회원등록

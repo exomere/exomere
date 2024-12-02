@@ -221,6 +221,7 @@
 
                                                 <div class="input-group">
                                                     <input type="hidden" name="recommend_seq" id="recommend_seq" value="{{ $recommendSeq ?? old('recommend_seq') }}" />
+                                                    <input type="hidden" name="distr_code" id="distr_code" value="{{ $distrCode ?? old('distr_code') }}" />
                                                     <input type="text" name="recommend_id" id="recommend_id" class="form-control" aria-describedby="inputGroupPrepend" autocomplete="false" value="{{ $recommendSeq ? $recommendId : old('recommend_id') }}" required/>
                                                     <input type="text" name="recommend_name" id="recommend_name" class="form-control" aria-describedby="inputGroupPrepend" autocomplete="false" value="{{ $recommendSeq ? $recommendName :  old('recommend_name') }}" readonly/>
                                                     <button type="button" class="btn btn-outline-secondary" onclick="checkRecommendId()">{{ __('messages.submit') }}</button>
@@ -257,7 +258,7 @@
                                             </div>
                                         </div>
 
-                                        {{-- Nation --}}
+                                        {{-- Nation
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-globe fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
@@ -275,7 +276,7 @@
                                                 </div>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-check d-flex justify-content-center mb-5">
                                             <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required/>
