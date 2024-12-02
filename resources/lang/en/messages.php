@@ -60,7 +60,7 @@ to offer customers the ultimate in skin regeneration and anti-aging effects.
 
 Through the combination of exosomes and telomeres,
 we embody the brand\'s philosophy of presenting new possibilities in skin regeneration and anti-aging.',
-    'select_item' => 'Please select the items you wish to pay for',
+    'select_item' => 'Please select the items.',
     'enter_keyword' => 'Please enter a keyword.',
     'recommend_keyword' => 'Recommendations Keyword',
     'about_branch' => 'You can experience Exomere\'s products through various<br> experience programs and professional and systematic counseling',
@@ -85,4 +85,8 @@ we embody the brand\'s philosophy of presenting new possibilities in skin regene
     'completed_account_payment' => 'Please deposit to the account information below to complete payment.',
     'inquiry_info' => 'Please inquire about matters related to Exomere.<br>We will have a representative contact you as soon as possible.',
     'no_products' => 'No registered products.',
+    'change_quantity' => 'The quantity has been changed.',
+    'delete_cart' => 'Deleted shopping cart',
+    'least_quantity' => 'The quantity must be at least one.',
+    'delete_sure' => 'Are you sure you want to delete it?',
 ];

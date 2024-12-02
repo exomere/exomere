@@ -60,7 +60,7 @@ Exomere',
 
 通过外泌体和端粒的结合，
 我们体现了品牌在肌肤再生和抗衰老领域提供新可能性的理念。',
-    'select_item' => '请选择您要支付的商品',
+    'select_item' => '请选择项目。',
     'enter_keyword' => '请输入关键字。',
     'recommend_keyword' => '推荐关键字',
     'about_branch' => '您可以通过多种体验项目以及专业和系统的咨询体验Exomere的产品',
@@ -83,4 +83,9 @@ Exomere',
     'unexpected_error_alert' => '发生意外错误，请重试。',
     'inquiry_info' => '请咨询与Exomere相关的内容，<br>我们将在最短时间内联系您。',
     'no_products' => '没有注册的产品。',
+    'change_quantity' => '数量已变更。',
+    'delete_cart' => '我删除了购物车。',
+    'least_quantity' => '数量必须至少是一个。',
+    'delete_sure' => '您确定要删除它吗？',
+
 ];

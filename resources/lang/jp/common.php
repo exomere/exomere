@@ -34,6 +34,7 @@ return [
     'total_amount' => '総金額',
     'payment_total' => '支払い総額',
     'select_all' => 'すべて選択',
+    'select_delete' => '選択削除',
     'checkout_fill' => '注文フォーム',
     'checkout_addr' => '配送先住所',
     'checkout_recipient' => '受取人',

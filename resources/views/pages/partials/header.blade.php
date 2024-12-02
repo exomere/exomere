@@ -67,7 +67,7 @@
             </a>
 
             {{--login/search--}}
-            <div class="basis-1/3 flex gap-x-2 items-center justify-end">
+            <div class="basis-1/3 flex gap-x-1 items-center justify-end">
                 <a href="{{ url('/management/dashboard') }}" target="_blank"
                    class="myoffice__button flex items-center justify-center">
 
@@ -81,18 +81,31 @@
                     </svg>
                     <span class="hidden lg:block">My Office</span>
                 </a>
-                <a href="/mypage/cart" >
-                    <svg aria-hidden="true"
-                         xmlns="http://www.w3.org/2000/svg"
-                         width="24"
-                         height="24"
-                         fill="currentColor"
-                         stroke="currentColor"
-                         viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                              d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"/>
-                    </svg>
+
+
+                <a href="/mypage/cart">
+
+                    <div class="relative">
+
+                        {{--@todo 장바구니 갯수 뱃지: 로그인 & 장바구니 수량이 있을 떄만 노출(필요하면 쓰세요)--}}
+                        <div class="hidden absolute -top-0 left-3">
+                            <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-2 text-xs text-white">3</p>
+                        </div>
+
+                        <svg aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             fill="currentColor"
+                             stroke="currentColor"
+                             viewBox="0 0 22 22">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                  d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"/>
+                        </svg>
+                    </div>
                 </a>
+
+
                 <button type="button"
                         id="search-form-button"
                         data-collapse-toggle="search-form"
@@ -104,9 +117,10 @@
                          fill="none"
                          stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path  stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </button>
+
             </div>
         </div>
 

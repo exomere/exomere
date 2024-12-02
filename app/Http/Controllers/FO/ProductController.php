@@ -7,42 +7,43 @@ use App\Models\ExCart;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 class ProductController extends BaseController
 {
 
     public function index(Request $request)
     {
+        $items = ExItem::where('is_fo_view', 'Y')->orderBy('sort', 'asc');
 
-
-        $items = ExItem::where('is_fo_view','Y')->orderBy('sort', 'asc');
-
-        foreach($items->get() as $item){
+        foreach ($items->get() as $item) {
             $locale = app()->getLocale();
 
             $pd_name = $item->name_en;
             $pd_description = $item->description_en;
 
-            if($locale == "ko"){
+            if ($locale == "ko") {
                 $pd_name = $item->name;
                 $pd_description = $item->description;
                 $pd_price = $item->price;
                 $price_simbol = "₩";
-            }else{
+            } else {
                 $pd_name = $item->name_en;
                 $pd_description = $item->description_en;
 
-                if($locale =="jp"){
+                if ($locale == "jp") {
                     $pd_price = $item->price_y;
                     $price_simbol = "¥";
-                }else if($locale =="cn"){
-                    $pd_price = $item->price_c;
-                    $price_simbol = "元";
-                }else{
-                    $pd_price = $item->price_d;
-                    $price_simbol = "$";
+                } else {
+                    if ($locale == "cn") {
+                        $pd_price = $item->price_c;
+                        $price_simbol = "元";
+                    } else {
+                        $pd_price = $item->price_d;
+                        $price_simbol = "$";
+                    }
                 }
             }
-            
+
             $products[] = [
                 'id' => $item->id,
                 'product_name' => $pd_name,
@@ -50,8 +51,8 @@ class ProductController extends BaseController
                 'distribution_price' => 22500,
                 'vat_excluded' => 20455,
                 'total_price' => 22500,
-                'thumbnail' => Storage::url('public/data/'.$item->thum_img),
-                'thumbnail2' => Storage::url('public/data/'.$item->thum_img2),
+                'thumbnail' => Storage::url('public/data/' . $item->thum_img),
+                'thumbnail2' => Storage::url('public/data/' . $item->thum_img2),
                 'brand' => 'exomere',
                 'category' => $item->category2,
                 'desc' => $item->content,
@@ -105,33 +106,35 @@ class ProductController extends BaseController
 
     public function bestProducts(): \Illuminate\Support\Traits\EnumeratesValues|\Illuminate\Support\Collection
     {
-        $items = ExItem::where('kind','signature')->orderBy('sort', 'asc')->limit(6)->get();
+        $items = ExItem::where('kind', 'signature')->orderBy('sort', 'asc')->limit(6)->get();
 
         $bestItems = [];
         $locale = app()->getLocale();
 
-        foreach($items as $item){
+        foreach ($items as $item) {
             $pd_name = $item->name_en;
             $pd_description = $item->description_en;
 
-            if($locale == "ko"){
+            if ($locale == "ko") {
                 $pd_name = $item->name;
                 $pd_description = $item->description;
                 $pd_price = $item->price;
                 $price_simbol = "₩";
-            }else{
+            } else {
                 $pd_name = $item->name_en ?? $item->name;
                 $pd_description = $item->description_en ?? $item->description;
 
-                if($locale =="jp"){
+                if ($locale == "jp") {
                     $pd_price = $item->price_y;
                     $price_simbol = "¥";
-                }else if($locale =="cn"){
-                    $pd_price = $item->price_c;
-                    $price_simbol = "元";
-                }else{
-                    $pd_price = $item->price_d;
-                    $price_simbol = "$";
+                } else {
+                    if ($locale == "cn") {
+                        $pd_price = $item->price_c;
+                        $price_simbol = "元";
+                    } else {
+                        $pd_price = $item->price_d;
+                        $price_simbol = "$";
+                    }
                 }
             }
 
@@ -142,8 +145,8 @@ class ProductController extends BaseController
                 'distribution_price' => 22500,
                 'vat_excluded' => 20455,
                 'total_price' => 22500,
-                'thumbnail' => Storage::url('public/data/'.$item->thum_img),
-                'thumbnail2' => Storage::url('public/data/'.$item->thum_img2),
+                'thumbnail' => Storage::url('public/data/' . $item->thum_img),
+                'thumbnail2' => Storage::url('public/data/' . $item->thum_img2),
                 'brand' => 'exomere',
                 'price_simbol' => $price_simbol,
                 'category' => $item->category,
@@ -170,17 +173,20 @@ class ProductController extends BaseController
         ];
     }
 
-    public function cartSave(Request $request){
-
+    public function cartSave(Request $request)
+    {
         $mem_seq = $request->session()->get('member_seq');
 
-        $cart_data = ExCart::where("member_seq",$mem_seq)->where("pd_seq",$request->pd_seq)->where("is_purchase",'N')->first();
-        
-        if(isset($cart_data->id)){
+        $cart_data = ExCart::where("member_seq", $mem_seq)->where("pd_seq", $request->pd_seq)->where(
+            "is_purchase",
+            'N'
+        )->first();
+
+        if (isset($cart_data->id)) {
             $cart_data->update([
-                "pd_qty" => $cart_data->pd_qty + $request->pd_qty
+                "pd_qty" => $request->pd_qty
             ]);
-        }else{
+        } else {
             $save = [
                 "member_seq" => $mem_seq,
                 "pd_seq" => $request->pd_seq,
@@ -191,69 +197,69 @@ class ProductController extends BaseController
         }
     }
 
-    public function myCart(){
-
-        
-        $exCarts = ExCart::where("member_seq",request()->session()->get('member_seq'))->where("is_purchase",'N');
+    public function myCart()
+    {
+        $exCarts = ExCart::where("member_seq", request()->session()->get('member_seq'))->where("is_purchase", 'N');
         $carts = [];
         $locale = app()->getLocale();
-        foreach($exCarts->get() as $cart){
+        foreach ($exCarts->get() as $cart) {
             $item_info = $cart->getItemInfo();
 
             $pd_name = $item_info->name_en;
             $pd_description = $item_info->description_en;
-    
-            if($locale == "ko"){
+
+            if ($locale == "ko") {
                 $pd_name = $item_info->name;
                 $pd_description = $item_info->description;
                 $pd_price = $item_info->price;
                 $price_simbol = "₩";
 
-                
-                if(request()->session()->get('member_position') == "총판"){
+
+                if (request()->session()->get('member_position') == "총판") {
                     $pd_price = $item_info->exclusive_price;
                     $pd_pv = $item_info->exclusive_pv;
-                }elseif(request()->session()->get('member_position') == "회원"){
+                } elseif (request()->session()->get('member_position') == "회원") {
                     $pd_price = $item_info->mem_price;
                     $pd_pv = $item_info->mem_pv;
-                }elseif(request()->session()->get('member_position') == "뷰티플래너"){
+                } elseif (request()->session()->get('member_position') == "뷰티플래너") {
                     $pd_price = $item_info->planer_price;
                     $pd_pv = $item_info->planer_pv;
-                }elseif(request()->session()->get('member_position') == "대리점"){
+                } elseif (request()->session()->get('member_position') == "대리점") {
                     $pd_price = $item_info->store_price;
                     $pd_pv = $item_info->store_pv;
-                }else{
+                } else {
                     $pd_price = $item_info->exclusive_price;
                     $pd_pv = $item_info->exclusive_pv;
                 }
-
-            }else{
+            } else {
                 $pd_name = $item_info->name_en ?? $item_info->name;
                 $pd_description = $item_info->description_en ?? $item_info->description;
 
-                if($locale =="jp"){
+                if ($locale == "jp") {
                     $pd_price = $item_info->price_y;
                     $pd_pv = $item_info->pv_y;
                     $price_simbol = "¥";
-                }else if($locale =="cn"){
-                    $pd_price = $item_info->price_c;
-                    $pd_pv = $item_info->pv_c;
-                    $price_simbol = "元";
-                }else{
-                    $pd_price = $item_info->price_d;
-                    $pd_pv = $item_info->pv_d;
-                    $price_simbol = "$";
+                } else {
+                    if ($locale == "cn") {
+                        $pd_price = $item_info->price_c;
+                        $pd_pv = $item_info->pv_c;
+                        $price_simbol = "元";
+                    } else {
+                        $pd_price = $item_info->price_d;
+                        $pd_pv = $item_info->pv_d;
+                        $price_simbol = "$";
+                    }
                 }
             }
-            
-            $carts[] = 
+
+            $carts[] =
                 [
                     'id' => $item_info->id,
                     'product_name' => $pd_name,
                     'distribution_price' => $pd_price,
                     'price_simbol' => $price_simbol,
                     'pv' => $pd_pv,
-                    'thumbnail' => Storage::url('public/data/'.$item_info->thum_img),
+                    'thumbnail' => Storage::url('public/data/' . $item_info->thum_img),
                     'sub_name' => $pd_description,
                     'quantity' => $cart->pd_qty,
                 ];
@@ -265,5 +271,37 @@ class ProductController extends BaseController
 
         return view('pages.mypage.cart')->with($datas);
     }
+
+
+    /**
+     * todo 장바구니 단건 삭제
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function cartDelete($id): \Illuminate\Http\JsonResponse
+    {
+        ExCart::where("member_seq", request()->session()->get('member_seq'))
+            ->where('pd_seq', $id)
+            ->where("is_purchase", 'N')
+            ->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    /**
+     * todo 장바구니 선택 삭제
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function cartDeleteSelected(Request $request): \Illuminate\Http\JsonResponse
+    {
+        ExCart::where("member_seq", request()->session()->get('member_seq'))
+            ->whereIn('pd_seq', $request->ids)
+            ->where("is_purchase", 'N')
+            ->delete();
+
+        return response()->json(['success' => true]);
+    }
+
 
 }

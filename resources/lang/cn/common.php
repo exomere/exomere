@@ -34,6 +34,7 @@ return [
     'total_amount' => '总金额',
     'payment_total' => '支付总额',
     'select_all' => '全选',
+    'select_delete' => '删除选择',
     'checkout_fill' => '填写订单',
     'checkout_addr' => '配送地址',
     'checkout_recipient' => '收件人',

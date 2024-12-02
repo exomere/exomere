@@ -54,13 +54,22 @@
                          class="swiper product-prev mb-3 h-auto max-h-[80svh]">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img']) }}"
-                                     alt="" class="mx-auto object-cover">
+                                <div class="relative w-full aspect-square">
+                                    <img src="{{ Storage::url('public/data/'.$product['thum_img']) }}"
+                                         onerror="this.src='//exomere.co.kr/storage/data/noimg.jpg';"
+                                         alt=""
+                                         class="size-full object-center">
+                                </div>
+
                             </div>
                             @if(!empty($product['thum_img2']))
                                 <div class="swiper-slide">
-                                    <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
-                                         alt="" class="mx-auto object-cover">
+                                    <div class="relative w-full aspect-square">
+                                        <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
+                                             onerror="this.src='//exomere.co.kr/storage/data/noimg.jpg';"
+                                             alt=""
+                                             class="size-full object-center">
+                                    </div>
                                 </div>
                             @endif
                         </div>
@@ -68,13 +77,21 @@
                     <div class="swiper product-thumb max-w-[608px] h-auto mx-auto">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="{{ Storage::url('public/data/'.$product['thum_img']) }}"
-                                     class=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600 object-cover">
+                                <div class="relative w-full aspect-square">
+                                    <img src="{{ Storage::url('public/data/'.$product['thum_img']) }}"
+                                         onerror="this.src='//exomere.co.kr/storage/data/noimg.jpg';"
+                                         alt=""
+                                         class="size-full object-center">
+                                </div>
                             </div>
                             @if(!empty($product['thum_img2']))
                                 <div class="swiper-slide">
-                                    <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
-                                         class=" cursor-pointer border-2 border-gray-50 transition-all duration-500 hover:border-indigo-600 slide:border-indigo-600 object-cover">
+                                    <div class="relative w-full aspect-square">
+                                        <img src="{{ Storage::url('public/data/'.$product['thum_img2']) }}"
+                                             onerror="this.src='//exomere.co.kr/storage/data/noimg.jpg';"
+                                             alt=""
+                                             class="size-full object-center">
+                                    </div>
                                 </div>
                             @endif
                         </div>

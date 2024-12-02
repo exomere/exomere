@@ -34,6 +34,7 @@ return [
     'total_amount' => 'Total Amount',
     'payment_total' => 'Payment Total',
     'select_all' => 'Select All',
+    'select_delete' => 'Delete Selection',
     'checkout_fill' => 'Order Form',
     'checkout_addr' => 'Shipping Address',
     'checkout_recipient' => 'Recipient',

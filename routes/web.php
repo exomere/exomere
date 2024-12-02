@@ -96,7 +96,12 @@ Route::prefix('/brand')->group(function () {
 Route::prefix('/products')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('products.list');
     Route::get('{product_id}', [ProductController::class, 'productDetail']);
+
+    //cart
     Route::post('/cartSave', [ProductController::class, 'cartSave']);
+    Route::delete('/cart/delete/{id}', [ProductController::class, 'cartDelete']); //장바구니 단건삭제
+    Route::post('/cart/delete-selected', [ProductController::class, 'cartDeleteSelected']);//장바구니 선택삭제
+
 });
 Route::prefix('/about')->group(function () {
     Route::get('/', function () {

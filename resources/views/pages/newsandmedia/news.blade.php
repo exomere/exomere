@@ -59,7 +59,8 @@ $jsonData = json_encode($allItems, JSON_UNESCAPED_UNICODE);
                                 class="aspect-h-1 aspect-w-1 w-full bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                                 <img src="{{ $item['thumbnail'] }}"
                                      alt="{{ $item['title'] }}"
-                                     class="h-full w-full  object-center lg:h-full lg:w-full">
+                                     onerror="this.src='//exomere.co.kr/storage/data/noimg.jpg';"
+                                     class="h-full w-full object-center lg:h-full lg:w-full">
 
                             </div>
                             <div class="mt-4">

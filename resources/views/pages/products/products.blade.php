@@ -53,7 +53,9 @@
                             <div class="group relative mx-auto">
                                 <div
                                     class="relative w-full aspect-square bg-cover bg-center group-hover:bg-[url({{$item['thumbnail2']}})]">
-                                    <img src="{{$item['thumbnail']}}" alt="{{$item['product_name']}}"
+                                    <img src="{{$item['thumbnail']}}"
+                                         alt="{{$item['product_name']}}"
+                                         onerror="this.src='//exomere.co.kr/storage/data/noimg.jpg';"
                                          class="h-full w-full object-center lg:h-full lg:w-full group-hover:opacity-0 transition-opacity duration-500">
                                 </div>
                                 <div class="mt-4 text-left">
