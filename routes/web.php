@@ -69,7 +69,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\FO\OrderController as orderFoController;
 use Illuminate\Support\Facades\Artisan;
 
-if (env('APP_ENV') == 'production') {
+if (env('APP_ENV') == 'production' && request()->server('SERVER_NAME') == 'exomere.co.kr') {
     \Illuminate\Support\Facades\URL::forceScheme('https');
 }
 
