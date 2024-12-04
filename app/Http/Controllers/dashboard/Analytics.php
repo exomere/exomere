@@ -9,6 +9,7 @@ class Analytics extends Controller
 {
   public function index()
   {
+    dd(request()->server());
     return view('content.dashboard.dashboards-analytics');
   }
 }
