@@ -32,7 +32,7 @@
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-name"> <span style='color:red;'>*</span> {{__('erp.product_name')}} (EN) </label>
               <div class="col-sm-3">
-                <input type="text" class="form-control" id="basic-default-name" name='name' value="{{ $item->name ?? null }}"/>
+                <input type="text" class="form-control" id="basic-default-name" name='name_en' value="{{ $item->name_en ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
@@ -44,7 +44,7 @@
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-description"> {{__('erp.brief_description')}} (EN)</label>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="basic-default-description" name='description'value="{{ $item->description ?? null }}"/>
+                <input type="text" class="form-control" id="basic-default-description" name='description_en'value="{{ $item->description_en ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
