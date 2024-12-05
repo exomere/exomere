@@ -786,6 +786,8 @@ class ErpBoardController extends Exomere
         $save_data = [
             'title' => $request->input('title'),
             'sub_title' => $request->input('sub_title'),
+            'title_en' => $request->input('title_en'),
+            'sub_title_en' => $request->input('sub_title_en'),
             'type' => $request->input('type'),
             'link' => $request->input('link'),
             'is_active' => $request->input('is_active') ?? 'N',
@@ -848,6 +850,8 @@ class ErpBoardController extends Exomere
         $save_data = [
             'title' => $request->input('title'),
             'sub_title' => $request->input('sub_title'),
+            'title_en' => $request->input('title_en'),
+            'sub_title_en' => $request->input('sub_title_en'),
             'type' => $request->input('type'),
             'link' => $request->input('link'),
             'is_active' => $request->input('is_active') ?? 'N',

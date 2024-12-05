@@ -29,6 +29,15 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="title_en">
+                                <span style="color:red;">*</span> {{__('erp.title')}} EN
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="title_en" name='title_en' value="{{ old('title_en', $banner->title_en) }}"/>
+                                <div id="title_enError" class="text-danger" style="display: none;">{{__('erp.title_en_required')}}</div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="category">
                                 <span style='color:red;'>*</span> {{__('erp.type')}}
                             </label>
@@ -45,6 +54,15 @@
                             </label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="sub_title" name='sub_title' value="{{ old('sub_title', $banner->sub_title) }}"/>
+                                <div id="sub_titleError" class="text-danger" style="display: none;">{{__('erp.brief_description_required')}}</div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="sub_title_en">
+                                <span style="color:red;">*</span> {{__('erp.brief_description')}} EN
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="sub_title_en" name='sub_title_en' value="{{ old('sub_title_en', $banner->sub_title_en) }}"/>
                                 <div id="sub_titleError" class="text-danger" style="display: none;">{{__('erp.brief_description_required')}}</div>
                             </div>
                         </div>
