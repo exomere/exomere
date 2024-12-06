@@ -145,7 +145,7 @@
             </div>
 
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-price">{{__('erp.exclusive_distributor_price')}}($)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-price">{{__('erp.consumer_price')}}($)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-price" class="form-control" name='price_d' value="{{ $item->price_d ?? null }}"/>
               </div>
