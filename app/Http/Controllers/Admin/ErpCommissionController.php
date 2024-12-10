@@ -338,7 +338,7 @@ class ErpCommissionController extends Exomere
         /* 지역점비 지원금 계산 */
         $this->monthlyCalculationCenter($calcu_code,$start_date, $end_date);
 
-        /* 총판 수당 계산 */
+        /* 총판 수수료 계산 */
         $this->monthlyCalculationRecommend($calcu_code,$start_date, $end_date, $total_pv);
 
         /* 장려금 계산 */
@@ -503,7 +503,7 @@ class ErpCommissionController extends Exomere
 
 
     /**
-     * 총판수당 계산
+     * 총판수수료 계산
      * @param Request $request
      * @return void
      */

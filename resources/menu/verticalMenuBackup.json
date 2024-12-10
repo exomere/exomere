@@ -267,7 +267,7 @@
       "menuHeader": "ERP 메뉴"
     },
     {
-      "name": "수당관리",
+      "name": "수수료관리",
       "icon": "menu-icon tf-icons bx bx-detail",
       "slug": "form-layouts",
       "submenu": [

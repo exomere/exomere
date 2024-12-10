@@ -51,7 +51,7 @@
           <th rowspan="2" style=' vertical-align: middle;'>인센티브</th>
           <th rowspan="2" style=' vertical-align: middle;'>우수총판기여금</th>
           <th rowspan="2" style=' vertical-align: middle;'>최우수총판기여금</th>
-          <th colspan="3" style=' vertical-align: middle; text-align:center;'>수당공제</th>
+          <th colspan="3" style=' vertical-align: middle; text-align:center;'>수수료공제</th>
           <th rowspan="2" style=' vertical-align: middle;'>실지급액</th>
         </tr>
         <tr>

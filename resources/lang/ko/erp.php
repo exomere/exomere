@@ -120,7 +120,7 @@ return [
 
 
     'settlement_date' => '정산일자',
-    'allowment_calculation' => '수당계산',
+    'allowment_calculation' => '수수료 계산',
     'gi_closing_date' => '기마감',
     'details' => '상세',
     'closing_date' => '마감일자',
@@ -134,7 +134,7 @@ return [
 
     'accumulated_sales' => '누적매출',
     'payment_items' => '지급항목',
-    'allowment_deduction' => '수당공제',
+    'allowment_deduction' => '수수료 공제',
     'recruitment_congratulatory_money' => '모집축하금',
     'settlement_subsidy_money' => '정착지원금',
     'payment_total' => '지급합계',
