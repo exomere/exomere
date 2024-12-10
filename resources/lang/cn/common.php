@@ -71,5 +71,6 @@ return [
     'account_name' => '账户持有人',
     'to_list' => '列表',
     'attachment' => '附件',
-
+    'point_use' => '使用要点',
+    'available_point' => '可用积分',
 ];

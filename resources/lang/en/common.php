@@ -71,4 +71,6 @@ return [
     'account_name' => 'Account holder',
     'to_list' => 'List',
     'attachment' => 'Attachment',
+    'point_use' => 'Points of Use',
+    'available_point' => 'Available Points',
 ];

@@ -110,15 +110,15 @@ $activeHeader = true;
                                             <div class="row flex items-center justify-between">
                                                 <div class="flex items-center">
                                                     <img src="{{ $item['pd_img'] }}"
-                                                        alt="image"
-                                                        class="w-16 h-16 object-cover mr-4">
+                                                         alt="image"
+                                                         class="w-16 h-16 object-cover mr-4"
+                                                         onerror="this.src='//exomere.co.kr/storage/data/noimg.jpg';"
+                                                    >
                                                     <div>
+                                                        {{--상품명--}}
                                                         <p class="font-semibold">{{$item['pd_name']}}</p>
-                                                        <div class="flex flex-row">
-                                                            <input type='hidden' name='pd_qty[]' value="{{$item['pd_qty']}}">
-                                                            <input type='hidden' name='pd_id[]' value="{{$item['pd_id']}}">
-                                                            {{ __('common.quantity') }}: {{$item['pd_qty']}}
-                                                        </div>
+
+                                                        {{--금액--}}
                                                         <h6 class="flex"><span
                                                                 class="total-price">{{number_format($item['pd_price'])}}</span>
                                                             <span
@@ -126,9 +126,18 @@ $activeHeader = true;
                                                             (<span
                                                                 class="total-pv">{{number_format($item['pd_pv'])}}</span>
                                                             <span
-                                                                class="px-1 currency">PV</span>
+                                                                class="hidden px-1 currency">PV</span>
                                                             )
                                                         </h6>
+                                                        {{--수량--}}
+                                                        <div class="flex flex-row text-sm">
+                                                            <input type='hidden' name='pd_qty[]'
+                                                                   value="{{$item['pd_qty']}}">
+                                                            <input type='hidden' name='pd_id[]'
+                                                                   value="{{$item['pd_id']}}">
+                                                            {{ __('common.quantity') }}: {{$item['pd_qty']}}
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -136,6 +145,49 @@ $activeHeader = true;
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div>
+                                {{--포인트사용--}}
+                                <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
+                                    {{ __('common.method_point') }}</h2>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-full max-w-sm min-w-[200px]">
+
+                                        <div class="mb-4">
+                                            <label class="block text-sm font-medium text-gray-700">{{ __('common.point_use') }}</label>
+
+                                            <div class="relative">
+                                                {{--사용할 포인트--}}
+                                                <input type="number"
+                                                       class="text-right w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                                                       id="use_point"
+                                                       name=""
+                                                />
+
+                                                {{--사용 리셋--}}
+                                                <button type="button"
+                                                        id="resetPointButton"
+                                                        class="text-gray-400 text-sm absolute end-2.5 bottom-2.5 font-medium text-sm">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+                                                         class="size-5">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <p class="my-1 text-right text-sm text-gray-400">{{ __('common.available_point') }} :
+                                                <span class="font-semibold">100,100</span>
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
                             <div>
                                 {{--결제수단--}}
                                 <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
@@ -166,18 +218,7 @@ $activeHeader = true;
                                             <label class="ml-2 text-slate-600 cursor-pointer text-sm"
                                                    for="radio_card">{{ __('common.method_card') }}</label>
                                         </div>
-                                        <div class="inline-flex items-center">
-                                            <label class="checkPaymentType relative flex items-center cursor-pointer"
-                                                   for="radio_point">
-                                                <input name="payment_type" type="radio"
-                                                       class="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all"
-                                                       id="radio_point" value='point'>
-                                                <span
-                                                    class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
-                                            </label>
-                                            <label class="ml-2 text-slate-600 cursor-pointer text-sm"
-                                                   for="radio_point">{{ __('common.method_point') }}</label>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -343,8 +384,12 @@ $activeHeader = true;
                                     </span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <span>배송비</span>
-                                    <span>{{number_format($delivery_price)}} 원</span>
+                                    <span>{{ __('common.shipping_fee') }}</span>
+                                    <span class="flex">
+                                        <span>{{number_format($delivery_price)}}</span>
+                                        <span
+                                            class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
+                                    </span>
                                 </div>
                             </div>
 
@@ -358,7 +403,8 @@ $activeHeader = true;
                                     class="submitBtn rounded-sm text-center w-full px-5 py-4 border border-solid border-base-color bg-base-color flex items-center justify-center font-normal text-lg text-white shadow-sm">
 
                                     <span class="flex">
-                                        <input type='hidden' name='total_price' value="{{$total_price + $delivery_price}}">
+                                        <input type='hidden' name='total_price'
+                                               value="{{$total_price + $delivery_price}}">
                                         <span>{{number_format($total_price + $delivery_price)}}</span>
                                         <span
                                             class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
@@ -481,6 +527,11 @@ $activeHeader = true;
                 $("#payment_card_form").css('display', 'none');
                 $("#payment_account_form").css('display', 'block');
             }
+        });
+
+        //포인트 리셋
+        $('#resetPointButton').on('click', function() {
+            $('#use_point').val(0);
         });
 
     </script>

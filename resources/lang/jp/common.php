@@ -71,5 +71,6 @@ return [
     'account_name' => '口座名義人',
     'to_list' => '一覧',
     'attachment' => '添付ファイル',
-
+    'point_use' => 'ご利用のポイント',
+    'available_point' => '利用可能なポイント',
 ];
