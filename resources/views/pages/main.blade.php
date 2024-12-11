@@ -82,7 +82,7 @@ $whiteHeader = true;
 
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-6 lg:gap-x-10 lg:gap-y-3">
                 @foreach($bestProducts as $product)
-                    <a href="/products/{{ $product['id'] }}" class="swiper-slide group flex flex-col text-center"
+                    <a href="/products/{{ $product['id'] }}" class="swiper-slide group flex flex-col justify-start text-center"
                        data-aos="fade-up"
                        data-aos-delay="{{ $loop->index  * 100 }}">
                         <div
