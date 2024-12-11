@@ -26,19 +26,21 @@ $whiteHeader = true;
                     @foreach($mainVideoBanner as $item)
                         <div class="swiper-slide slide-style-{{ $item['style'] }}">
                             <div
-                                class=" absolute transform z-10 lg:top-1/2 lg:w-[50%] lg:px-28 lg:transform lg:-translate-x-1/2 lg:-translate-y-[60%] lg:text-left">
-                                <p data-aos="fade-in" data-aos-delay="300"
-                                   class=" mt-6 text-xl break-keep leading-tight">
-                                    {{ $item['sub_title'] }}
-                                </p>
-                                <p data-aos="fade-up" data-aos-delay="400"
-                                   class="text-3xl lg:text-4xl font-normal leading-tight break-keep mt-5">
-                                    {{ $item['title'] }}
-                                </p>
-                                <a data-aos="fade-in" data-aos-delay="300" href="/products" target="_self"
-                                   class="mt-12 inline-block border border-solid border-white py-3 px-24 text-base break-keep">
-                                    THE MORE
-                                </a>
+                                class="absolute inset-0 z-10 size-full flex flex-col justify-center pl-10 lg:pl-28">
+                               <div>
+                                   <p data-aos="fade-in" data-aos-delay="300"
+                                      class=" mt-6 text-xl break-keep leading-tight">
+                                       {{ $item['sub_title'] }}
+                                   </p>
+                                   <p data-aos="fade-up" data-aos-delay="400"
+                                      class="text-3xl lg:text-4xl font-normal leading-tight break-keep mt-5">
+                                       {{ $item['title'] }}
+                                   </p>
+                                   <a data-aos="fade-in" data-aos-delay="300" href="/products" target="_self"
+                                      class="mt-12 inline-block border border-solid border-white py-3 px-24 text-base break-keep">
+                                       THE MORE
+                                   </a>
+                               </div>
                             </div>
 
                             @if($item['type'] == 'video')
@@ -87,12 +89,14 @@ $whiteHeader = true;
                             class="relative w-full aspect-square bg-cover bg-center lg:group-hover:bg-[url({{$product['thumbnail2']}})]">
                             <img src="{{$product['thumbnail']}}" alt="{{$product['product_name']}}"
                                  loading="lazy"
-                                 class="h-full w-full object-center lg:h-full lg:w-full lg:group-hover:opacity-0 transition-opacity duration-500">
+                                 class="h-full w-full object-center lg:h-full lg:w-full lg:group-hover:opacity-0 transition-opacity duration-500"
+                                 onerror="this.src='//exomere.co.kr/storage/data/noimg.jpg';"
+                            >
                         </div>
                         <div class="p-3 pt-5 w-full text-slate">
-                            <p class="mb-1 text-lg line-clamp-1 text-gray-900 relative after:bg-slate-700 after:absolute after:h-[1px] after:w-[20px] after:-ml-[10px] after:-bottom-2 after:left-1/2">
+                            <p class="mb-1 text-lg  text-gray-900 relative after:bg-slate-700 after:absolute after:h-[1px] after:w-[20px] after:-ml-[10px] after:-bottom-2 after:left-1/2">
                                 {{ $product['product_name'] }}</p>
-                            <p class="mt-5 text-sm text-gray-700 text-slate-700 line-clamp-2">
+                            <p class="mt-5 text-sm text-gray-700 text-slate-700">
                                 {{ $product['sub_name'] }}</p>
                             <p class="mt-5 text-base text-gray-600">
                                 {{$product['price_simbol']}} {{ number_format($product['price']) }}</p>
@@ -176,7 +180,7 @@ $whiteHeader = true;
                     <img src="{{asset('assets/img/elements/visual_01.webp')}}" alt="" loading="lazy">
                     <div class="absolute inset-0 size-full bg-black/50"></div>
                     <div
-                        class="absolute inset-0 z-10 size-full flex flex-col justify-center text-white pl-10">
+                        class="absolute inset-0 z-10 size-full flex flex-col justify-center text-white pl-10 lg:pl-28">
                         <h3 class="text-3xl text-white font-semibold leading-tight md:text-4xl break-keep mb-5"
                             data-aos="fade-up">
                             ABOUT BRANCH
