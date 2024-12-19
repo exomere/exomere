@@ -45,7 +45,7 @@ return [
     'checkout_method' => '결제 수단',
     'method_account' => '계좌이체',
     'method_card' => '신용카드',
-    'method_point' => '포인트 결제',
+    'method_point' => '포인트 사용',
     'checkout_account' => '계좌이체 정보',
     'checkout_card' => '카드결제 정보',
     'checkout_card_select' => '카드 선택',
@@ -71,6 +71,7 @@ return [
     'account_name' => '예금주',
     'to_list' => '목록으로',
     'attachment' => '첨부파일',
-
+    'point_use' => '사용 포인트',
+    'available_point' => '사용 가능한 포인트',
 ];
 

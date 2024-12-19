@@ -56,6 +56,12 @@ $activeHeader = true;
                     </div>
                 @endif
 
+                {{--포인트--}}
+                <div class="bg-white p-4 rounded-lg mb-4 shadow">
+                    <h3 class="font-semibold text-lg mb-2">{{ __('common.method_point') }}</h3>
+                    <p class="text-gray-700">0</p>
+                </div>
+
                 <div class="bg-white p-4 rounded-lg mb-4 shadow">
                     <h3 class="font-semibold text-lg mb-2">{{ __('common.order_number') }}</h3>
                     <p class="text-gray-700">{{ $input_data['order_code'] }}</p>
