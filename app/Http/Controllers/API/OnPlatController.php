@@ -20,7 +20,7 @@ class OnPlatController extends Exomere
 
     public function __construct() {
         // $this->store_id = 29151;
-        $this->store_id = request()->session()->get('director_code') ?? 30693;
+        $this->store_id = request()->session()->get('director_code') ?? 29151;
         $this->api_path = "https://pro-api.pay-onplat.com";
 
         $pgInfo = Http::withHeaders([

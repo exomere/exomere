@@ -30,7 +30,7 @@ return [
     'order_management' => '주문관리',
     'order_list' => '주문리스트',
 
-    'commission_management' => '수당 관리',
+    'commission_management' => '수수료 관리',
     'monthly_closing' => '월마감',
     'past_due' => '기마감',
 
