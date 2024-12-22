@@ -111,16 +111,16 @@
         @foreach ($card_info as $card)
           <tr>
             <td>
-              {{$card->card_name}}
+              {{$card->card_name ?? ''}}
             </td>
-            <td>{{$card->card_number}}</td>
-            <td>{{$card->card_payment_price}}</td>
-            <td>{{$card->card_month_plan}}</td>
-            <td>{{$card->card_year_month}}</td>
-            <td>{{$card->card_approval_number}}</td>
-            <td>{{$card->card_approval_name}}</td>
-            <td>{{$card->card_approval_date}}</td>
-            <td>{{$card->card_password}}</td>
+            <td>{{$card->card_number ?? ''}}</td>
+            <td>{{$card->card_payment_price ?? ''}}</td>
+            <td>{{$card->card_month_plan ?? ''}}</td>
+            <td>{{$card->card_year_month ?? ''}}</td>
+            <td>{{$card->card_approval_number ?? ''}}</td>
+            <td>{{$card->card_approval_name ?? ''}}</td>
+            <td>{{$card->card_approval_date ?? ''}}</td>
+            <td>{{$card->card_password ?? ''}}</td>
           </tr>
           @php $card_cnt++; @endphp
         @endforeach
