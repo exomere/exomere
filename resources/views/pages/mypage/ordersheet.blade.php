@@ -178,7 +178,7 @@ $activeHeader = true;
                                                 </button>
                                             </div>
                                             <p class="my-1 text-right text-sm text-gray-400">{{ __('common.available_point') }} :
-                                                <span class="font-semibold">100,100</span>
+                                                <span class="font-semibold">{{number_format($ex_member->remain_points ?? 0)}}</span>
                                             </p>
                                         </div>
 
