@@ -346,6 +346,12 @@ Route::group(['middleware' => 'auth'], function () {
                     );
                 });
 
+                Route::prefix('/review')->group(function () {
+                    Route::get('/list', [ErpReviewController::class, 'reviewList'])->name('erp-board.review.list');
+                    Route::get('/detail/{id}', [ErpReviewController::class, 'reviewDetail'])->name('erp-board.review.detail');
+
+                });
+
                 Route::prefix('/news')->group(function () {
                     Route::get('/list', [ErpBoardController::class, 'newsList'])->name('erp-board.news.list');
                     Route::get('/detail/{id}', [ErpBoardController::class, 'newsDetail'])->name(
