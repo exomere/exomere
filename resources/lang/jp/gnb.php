@@ -45,4 +45,5 @@ return [
     "order_complete" => "注文完了",
     "social" => "社会貢献",
     "company" => "会社",
+    "review" => "レビュー",
 ];

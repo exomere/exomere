@@ -105,6 +105,10 @@
         {
           "url": "/community/inquiry",
           "name": "inquiry"
+        },
+        {
+          "url": "/community/review",
+          "name": "review"
         }
       ]
     }

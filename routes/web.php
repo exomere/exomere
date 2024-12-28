@@ -81,6 +81,7 @@ Route::get('/', [MainController::class, 'index']);
 
 Route::prefix('/ajax')->group(function () {
     Route::get('recommend_search_keywords', [AjaxController::class, 'getRecommendSearchKeywords']);
+    Route::post('reviews/{review_id}/like', [AjaxController::class, 'setLikeReview']);
 });
 
 Route::prefix('/newsandmedia')->group(function () {
@@ -127,6 +128,10 @@ Route::prefix('/about')->group(function () {
     });
 });
 
+Route::prefix('/community/review')->group(function () {
+    Route::get('/', [CommunityController::class, 'reviews'])->name('reviews');
+    Route::get('{review_id}', [CommunityController::class, 'reviewDetail'])->name('reviewDetail');
+});
 
 
 

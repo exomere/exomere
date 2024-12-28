@@ -46,5 +46,6 @@ return [
     "order_complete" => "Order Complete",
     "social" => "Social Contribution",
     "company" => "Company",
+    "review" => "Reviews",
 ];
 

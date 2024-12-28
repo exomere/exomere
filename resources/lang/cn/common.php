@@ -73,4 +73,15 @@ return [
     'attachment' => '附件',
     'point_use' => '使用要点',
     'available_point' => '可用积分',
+    'number' => '编号',
+    'product_info' => '商品信息',
+    'category' => '类别',
+    'title' => '标题',
+    'author' => '作者',
+    'recommend' => '推荐',
+    'rating' => '评分',
+    "previous_review" => "之前的评论",
+    "next_review" => "下次评论",
+    "helpful_review" => "这很有帮助",
+
 ];

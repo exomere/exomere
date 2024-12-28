@@ -9,7 +9,6 @@ class AjaxController extends BaseController
 {
     public function getRecommendSearchKeywords(Request $request): false|string
     {
-
         //todo ExItem
         $lang = app()->getLocale();
 
@@ -20,5 +19,15 @@ class AjaxController extends BaseController
             ->toArray();
 
         return json_encode($recommendSearchKeywords, JSON_UNESCAPED_UNICODE);
+    }
+
+
+    public function setLikeReview(int $review_id): false|string
+    {
+        /** @var CommunityController $service */
+        $service = app(CommunityController::class);
+        $result = $service->setLikeReview($review_id);
+
+        return json_encode($result);
     }
 }

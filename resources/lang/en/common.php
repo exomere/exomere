@@ -73,4 +73,15 @@ return [
     'attachment' => 'Attachment',
     'point_use' => 'Points of Use',
     'available_point' => 'Available Points',
+    'number' => 'Number',
+    'product_info' => 'Product Information',
+    'category' => 'Category',
+    'title' => 'Title',
+    'author' => 'Author',
+    'recommend' => 'Recommend',
+    'rating' => 'Rating',
+    "previous_review" => "Previous Review",
+    "next_review" => "Next Review",
+    "helpful_review" => "It's helpful",
+
 ];

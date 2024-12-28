@@ -47,5 +47,6 @@ return [
     "order_fail" => "주문실패",
     "social" => "사회공헌",
     "company" => "기업",
+    "review" => "사용후기",
 ];
 

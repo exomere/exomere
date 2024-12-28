@@ -73,5 +73,16 @@ return [
     'attachment' => '첨부파일',
     'point_use' => '사용 포인트',
     'available_point' => '사용 가능한 포인트',
+    'number' => '번호',
+    'product_info' => '상품정보',
+    'category' => '카테고리',
+    'title' => '제목',
+    'author' => '작성자',
+    'recommend' => '추천',
+    'rating' => '평점',
+    "previous_review" => "이전 리뷰",
+    "next_review" => "다음 리뷰",
+    "helpful_review" => "도움돼요",
+
 ];
 
