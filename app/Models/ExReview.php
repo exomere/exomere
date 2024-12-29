@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ExReview extends Model
 {
@@ -16,19 +18,19 @@ class ExReview extends Model
 
 
     /*상품*/
-    public function item()
+    public function item(): HasOne
     {
         return $this->hasOne(ExItem::class, "id", "product_seq");
     }
 
     /*코멘트*/
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(ExReviewComment::class, "review_seq");
     }
 
     /*추천*/
-    public function likes()
+    public function likes(): HasMany
     {
         return $this->hasMany(ExReviewLike::class, 'review_seq');
     }

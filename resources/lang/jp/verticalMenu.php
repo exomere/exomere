@@ -17,6 +17,7 @@ return [
     'organization_chart' => '組織図',
     'notices' => 'お知らせ',
     'inquiries' => '1:1お問い合わせ',
+    'review' => '統合レビュー',
     'news' => 'プレスリリース',
     'references' => '参考資料',
     'videos' => 'ブランド動画',

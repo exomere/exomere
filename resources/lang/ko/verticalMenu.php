@@ -17,6 +17,7 @@ return [
     'organization_chart' => '조직도',
     'notices' => '공지사항',
     'inquiries' => '1:1 문의',
+    'review' => '통합리뷰',
     'news' => '언론보도',
     'references' => '자료실',
     'videos' => '브랜드영상',

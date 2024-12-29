@@ -281,5 +281,11 @@ return [
     'pg_company_code' => 'PG사 코드',
     'contact_person_in_charge' => '담당자 연락처',
     'contact_number' => '번호',
+
+    'integrated' => '통합',
+    'review' => '리뷰',
+    'product_information' => '상품정보',
+    'recommendation' => '추천',
+    'star_point' => '별점',
 ];
 
