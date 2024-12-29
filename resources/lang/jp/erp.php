@@ -266,5 +266,11 @@ return [
     'pg_company_code' => 'PG会社コード',
     'contact_person_in_charge' => '担当者',
     'contact_number' => '番号',
+
+    'integrated' => '統合されています',
+    'review' => '再検討します',
+    'product_information' => '製品情報です',
+    'recommendation' => 'お勧めです',
+    'star_point' => '星点です',
 ];
 

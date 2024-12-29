@@ -160,6 +160,11 @@
           "slug": "erp-board.inquiry.list"
         },
         {
+          "url": "management/erp/board/review/list",
+          "name": "review",
+          "slug": "erp-board.review.list"
+        },
+        {
           "url": "management/erp/board/news/list",
           "name": "news",
           "slug": "erp-board.news.list"

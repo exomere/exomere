@@ -280,5 +280,11 @@ return [
     'pg_company_code' => 'PG company code',
     'contact_person_in_charge' => 'Contact person in charge',
     'contact_number' => 'Number',
+
+    'integrated' => 'Integrated',
+    'review' => 'Review',
+    'product_information' => 'Product Information',
+    'recommendation' => 'Recommendation',
+    'star_point' => 'Star Point',
 ];
 

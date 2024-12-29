@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ErpBasicController;
 use App\Http\Controllers\Admin\ErpMemberController;
 use App\Http\Controllers\Admin\ErpOrderController;
 use App\Http\Controllers\Admin\ErpPointController;
+use App\Http\Controllers\Admin\ErpReviewController;
 use App\Http\Controllers\Admin\ErpWithdrawalController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\MemberController;
@@ -352,9 +353,13 @@ Route::group(['middleware' => 'auth'], function () {
                 });
 
                 Route::prefix('/review')->group(function () {
-                    Route::get('/list', [ErpReviewController::class, 'reviewList'])->name('erp-board.review.list');
-                    Route::get('/detail/{id}', [ErpReviewController::class, 'reviewDetail'])->name('erp-board.review.detail');
+                    Route::get('/list', [ErpReviewController::class, 'list'])->name('erp-board.review.list');
+                    Route::get('/detail/{id}', [ErpReviewController::class, 'detail'])->name('erp-board.review.detail');
 
+                    // 리뷰 답변
+                    Route::post('/{id}/comment', [ErpReviewController::class, 'comment'])->name(
+                        'erp-board.review.comment.store'
+                    );
                 });
 
                 Route::prefix('/news')->group(function () {
