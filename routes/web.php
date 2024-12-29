@@ -97,7 +97,8 @@ Route::prefix('/brand')->group(function () {
 });
 Route::prefix('/products')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('products.list');
-    Route::get('{product_id}', [ProductController::class, 'productDetail']);
+    Route::get('{product}', [ProductController::class, 'productDetail']);
+    Route::get('/{product}/reviews', [ProductController::class, 'getProductReviews'])->name('getProductReviews');
 
     //cart
     Route::post('/cartSave', [ProductController::class, 'cartSave']);
@@ -131,7 +132,7 @@ Route::prefix('/about')->group(function () {
 
 Route::prefix('/community/review')->group(function () {
     Route::get('/', [CommunityController::class, 'reviews'])->name('reviews');
-    Route::get('{review_id}', [CommunityController::class, 'reviewDetail'])->name('reviewDetail');
+    Route::get('{review}', [CommunityController::class, 'reviewDetail'])->name('reviewDetail');
 });
 
 

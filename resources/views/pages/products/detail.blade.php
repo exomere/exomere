@@ -46,6 +46,7 @@
 @endsection
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 @section('content')
+
     <section class="py-10 lg:py-24 relative min-h-screen">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
@@ -129,7 +130,7 @@
                             {{ $product['description_en'] }}
                         @endif
                     </p>
-                    @php 
+                    @php
                         $locale = app()->getLocale();
                     @endphp
                     <div class="w-full">
@@ -197,64 +198,64 @@
                                         class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
                                 </h6>
                             </div>
-                
+
                             @if(request()->session()->get('member_seq'))
                                 <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
                                     <strong class="w-40">{{ __('common.distribution_price') }}</strong>
-                             
+
                                     <h6 class="flex "><span
                                             class="">
                                                 @if(request()->session()->get('member_position') == "총판")
-                                                    @if($locale == 'ko')
-                                                        {{ number_format($product['exclusive_price']) }}
-                                                    @elseif($locale == 'jp')
-                                                        {{ number_format($product['exclusive_price_y']) }}
-                                                    @elseif($locale == 'cn')
-                                                        {{ number_format($product['exclusive_price_c']) }}
-                                                    @else
-                                                        {{ number_format($product['exclusive_price_d']) }}
-                                                    @endif
-                                                @elseif(request()->session()->get('member_position') == "회원")
-                                                    @if($locale == 'ko')
-                                                        {{ number_format($product['mem_price']) }}
-                                                    @elseif($locale == 'jp')
-                                                        {{ number_format($product['mem_price_y']) }}
-                                                    @elseif($locale == 'cn')
-                                                        {{ number_format($product['mem_price_c']) }}
-                                                    @else
-                                                        {{ number_format($product['mem_price_d']) }}
-                                                    @endif
-                                                @elseif(request()->session()->get('member_position') == "뷰티플래너")
-                                                    @if($locale == 'ko')
-                                                        {{ number_format($product['planer_price']) }}
-                                                    @elseif($locale == 'jp')
-                                                        {{ number_format($product['planer_price_y']) }}
-                                                    @elseif($locale == 'cn')
-                                                        {{ number_format($product['planer_price_c']) }}
-                                                    @else
-                                                        {{ number_format($product['planer_price_d']) }}
-                                                    @endif
-                                                @elseif(request()->session()->get('member_position') == "대리점")
-                                                    @if($locale == 'ko')
-                                                        {{ number_format($product['store_price']) }}
-                                                    @elseif($locale == 'jp')
-                                                        {{ number_format($product['store_price_y']) }}
-                                                    @elseif($locale == 'cn')
-                                                        {{ number_format($product['store_price_c']) }}
-                                                    @else
-                                                        {{ number_format($product['store_price_d']) }}
-                                                    @endif
+                                                @if($locale == 'ko')
+                                                    {{ number_format($product['exclusive_price']) }}
+                                                @elseif($locale == 'jp')
+                                                    {{ number_format($product['exclusive_price_y']) }}
+                                                @elseif($locale == 'cn')
+                                                    {{ number_format($product['exclusive_price_c']) }}
                                                 @else
-                                                    @if($locale == 'ko')
-                                                        {{ number_format($product['exclusive_price']) }}
-                                                    @elseif($locale == 'jp')
-                                                        {{ number_format($product['exclusive_price_y']) }}
-                                                    @elseif($locale == 'cn')
-                                                        {{ number_format($product['exclusive_price_c']) }}
-                                                    @else
-                                                        {{ number_format($product['exclusive_price_d']) }}
-                                                    @endif
+                                                    {{ number_format($product['exclusive_price_d']) }}
                                                 @endif
+                                            @elseif(request()->session()->get('member_position') == "회원")
+                                                @if($locale == 'ko')
+                                                    {{ number_format($product['mem_price']) }}
+                                                @elseif($locale == 'jp')
+                                                    {{ number_format($product['mem_price_y']) }}
+                                                @elseif($locale == 'cn')
+                                                    {{ number_format($product['mem_price_c']) }}
+                                                @else
+                                                    {{ number_format($product['mem_price_d']) }}
+                                                @endif
+                                            @elseif(request()->session()->get('member_position') == "뷰티플래너")
+                                                @if($locale == 'ko')
+                                                    {{ number_format($product['planer_price']) }}
+                                                @elseif($locale == 'jp')
+                                                    {{ number_format($product['planer_price_y']) }}
+                                                @elseif($locale == 'cn')
+                                                    {{ number_format($product['planer_price_c']) }}
+                                                @else
+                                                    {{ number_format($product['planer_price_d']) }}
+                                                @endif
+                                            @elseif(request()->session()->get('member_position') == "대리점")
+                                                @if($locale == 'ko')
+                                                    {{ number_format($product['store_price']) }}
+                                                @elseif($locale == 'jp')
+                                                    {{ number_format($product['store_price_y']) }}
+                                                @elseif($locale == 'cn')
+                                                    {{ number_format($product['store_price_c']) }}
+                                                @else
+                                                    {{ number_format($product['store_price_d']) }}
+                                                @endif
+                                            @else
+                                                @if($locale == 'ko')
+                                                    {{ number_format($product['exclusive_price']) }}
+                                                @elseif($locale == 'jp')
+                                                    {{ number_format($product['exclusive_price_y']) }}
+                                                @elseif($locale == 'cn')
+                                                    {{ number_format($product['exclusive_price_c']) }}
+                                                @else
+                                                    {{ number_format($product['exclusive_price_d']) }}
+                                                @endif
+                                            @endif
                                         </span>
                                         <span
                                             class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
@@ -267,7 +268,7 @@
                                         class="">
                                         @if(request()->session()->get('member_position'))
                                             @if(request()->session()->get('member_position') == "총판")
-                                                
+
                                                 @if($locale == 'ko')
                                                     {{ number_format($product['exclusive_pv']) }}
                                                 @elseif($locale == 'jp')
@@ -329,8 +330,8 @@
                                                 {{ number_format($product['pv_d']) }}
                                             @endif
                                         @endif
-                                        
-                                    
+
+
                                     </span>
                                     <span
                                         class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
@@ -381,7 +382,7 @@
                                 <strong class="w-40">{{ __('common.total_price') }}</strong>
                                 <h6 class="flex font-semibold"><span
                                         class="total-price">
-                                    
+
                                         @if(request()->session()->get('member_position'))
                                             @if($locale == 'ko')
                                                 {{ number_format($product['exclusive_price']) }}
@@ -467,7 +468,7 @@
                 data-tabs-inactive-classes="text-[#A6A7A6]"
                 data-tabs-toggle="#tab-content"
             >
-                <li role="presentation" class="basis-1/2">
+                <li role="presentation" class="basis-1/3">
                     <button class="w-full p-4 "
                             id="detail-tab"
                             type="button"
@@ -478,7 +479,7 @@
                     >{{ __('common.details') }}
                     </button>
                 </li>
-                <li role="presentation" class="basis-1/2">
+                <li role="presentation" class="basis-1/3">
                     <button class="w-full p-4"
                             id="info-tab"
                             type="button"
@@ -487,6 +488,18 @@
                             aria-controls="info"
                             aria-selected="false"
                     >{{ __('common.shipping_exchange_refund') }}
+                    </button>
+                </li>
+                <li role="presentation" class="basis-1/3">
+                    <button class="w-full p-4"
+                            id="review-tab"
+                            type="button"
+                            role="tab"
+                            data-tabs-target="#review"
+                            aria-controls="review"
+                            aria-selected="false"
+                    >{{ __('common.review') }}
+                        ({{ number_format($reviews->total()) }})
                     </button>
                 </li>
             </ul>
@@ -737,6 +750,23 @@
 
                     @endif
                 </div>
+
+
+                <!--리뷰탭-->
+                <div class="hidden"
+                     id="review"
+                     role="tabpanel"
+                     aria-labelledby="review-tab"
+                >
+                    <div class="py-6">
+                        <div class="max-w-2xl mx-auto p-4">
+                            <x-reviews :reviews="$reviews"/>
+                        </div>
+                    </div>
+
+                </div>
+
+
             </div>
         </div>
     </section>
@@ -779,7 +809,23 @@
                 document.querySelector('#detail__desc').style.height = '800px';
                 document.querySelector('#toggle-btn').classList.remove('hidden');
                 document.querySelector('#hide-btn').classList.add('hidden');
-            })
+            });
+
+            document.addEventListener('click', function (e) {
+
+                if (e.target.matches('#review-pagination a')) {
+                    e.preventDefault();
+
+                    const query = e.target.href.match(/page=\d+/)[0];
+                    let link = '{{ route('getProductReviews', $product['id']) }}?' + query;
+
+                    fetch(link)
+                        .then(response => response.text())
+                        .then(html => {
+                            document.querySelector('#reviews-container').innerHTML = html;
+                        });
+                }
+            });
 
         });
 
@@ -872,6 +918,12 @@
 
             return false;
         }
+
+
+        // resources/js/app.js
+        window.addEventListener('DOMContentLoaded', (event) => {
+
+        });
 
     </script>
 @endsection

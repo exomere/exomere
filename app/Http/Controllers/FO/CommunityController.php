@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FO;
 
 use App\Models\ExInquire;
+use App\Models\ExItem;
 use App\Models\ExNotice;
 use App\Models\ExReference;
 use App\Models\ExReview;
@@ -99,8 +100,8 @@ class CommunityController extends BaseController
                 $q->where('title', 'like', '%' . $search_keyword . '%')
                     ->orWhere('content', 'like', '%' . $search_keyword . '%');
             })
-            ->orderBy('id', 'desc')
-            ->orderBy('rating', 'desc')
+            ->orderByDesc('id')
+            ->orderByDesc('rating')
             ->paginate($limit, ['*'], 'page', $page);
 
         foreach ($items as &$item) {
@@ -110,25 +111,23 @@ class CommunityController extends BaseController
         return view('pages.community.review', compact('items'));
     }
 
-    public function reviewDetail(int $review_id)
+    public function reviewDetail(ExReview $review)
     {
-        $item = ExReview::with(['item', 'comments'])
-            ->withCount('likes')
-            ->findOrFail($review_id);
+        $review->load(['item', 'comments'])
+            ->loadCount('likes');
 
-        $item->author_name = Str::mask($item->author_name, '*', 1);
+        $review->author_name = Str::mask($review->author_name, '*', 1);
 
         // 로그인상태면 이미 좋아요 누른 리뷰인지 체크
+        $review->liked = false;
         if (auth()->id()) {
-            $item->liked = $item->likedByUser(auth()->id());
-        } else {
-            $item->liked = null;
+            $review->liked = $review->likedByUser(auth()->id());
         }
 
-        $previousReview = $item->previous();
-        $nextReview = $item->next();
+        $previousReview = $review->previous();
+        $nextReview = $review->next();
 
-        return view('pages.community.review_detail', compact('item', 'previousReview', 'nextReview'));
+        return view('pages.community.review_detail', compact('review', 'previousReview', 'nextReview'));
     }
 
 

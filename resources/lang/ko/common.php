@@ -83,6 +83,6 @@ return [
     "previous_review" => "이전 리뷰",
     "next_review" => "다음 리뷰",
     "helpful_review" => "도움돼요",
-
+    "review" => "리뷰",
 ];
 

@@ -83,5 +83,6 @@ return [
     "previous_review" => "Previous Review",
     "next_review" => "Next Review",
     "helpful_review" => "It's helpful",
+    "review" => "Review",
 
 ];

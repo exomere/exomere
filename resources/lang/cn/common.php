@@ -83,5 +83,6 @@ return [
     "previous_review" => "之前的评论",
     "next_review" => "下次评论",
     "helpful_review" => "这很有帮助",
+    "review" => "审查",
 
 ];

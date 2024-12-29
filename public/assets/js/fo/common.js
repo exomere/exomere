@@ -74,6 +74,38 @@ function ajaxSearchKeyword() {
 }
 
 
+//ajax 리뷰 도움돼요
+function ajaxLikeReview(reviewId) {
+    const target = event.currentTarget;
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const elem = target.querySelector('.helpful_count');
+    const count = parseInt(elem.innerText);
+
+    fetch(`/ajax/reviews/${reviewId}/like`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': token,
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.liked) {
+                target.querySelector('.liked').classList.remove('hidden');
+                target.querySelector('.unliked').classList.add('hidden');
+
+                elem.innerText = count + 1;
+            } else {
+                target.querySelector('.liked').classList.add('hidden');
+                target.querySelector('.unliked').classList.remove('hidden');
+
+                elem.innerText = count - 1;
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+
 //gnb Nav 토글
 $('.toggle-menu-hover').on('mouseenter', function (e) {
 

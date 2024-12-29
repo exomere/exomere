@@ -15,4 +15,14 @@ class ExItem extends ExomereModel
     protected $guarded = [];
 
     protected $fillable = [];
+
+
+    function reviews(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany('App\Models\ExReview', 'product_seq')
+            ->orderByDesc('id')
+            ->orderByDesc('rating');
+    }
+
+
 }

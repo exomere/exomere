@@ -83,4 +83,5 @@ return [
     "previous_review" => "前のレビュー",
     "next_review" => "次のレビュー",
     "helpful_review" => "助けます。",
+    "review" => "レビュー",
 ];

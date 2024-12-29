@@ -7,6 +7,7 @@ use App\Models\ExCart;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductController extends BaseController
 {
@@ -95,13 +96,60 @@ class ProductController extends BaseController
         return view('pages.products.products', compact('categories', 'productCount', 'items', 'selectedCategory'));
     }
 
-    public function productDetail($product_id)
+    /**
+     * 상품상세
+     * @param ExItem $product
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+     */
+    public function productDetail(ExItem $product): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        // $products = collect($this->dummy());
+        $reviews = $product->reviews()
+            ->withCount('likes')
+            ->paginate($this->limit);
 
-        $product = ExItem::where('id', $product_id)->firstOrFail();
+        foreach ($reviews as &$item) {
+            //작성자 마스킹
+            $item->author_name = Str::mask($item->author_name, '*', 1);
 
-        return view('pages.products.detail', compact('product'));
+            // 로그인상태면 이미 좋아요 누른 리뷰인지 체크
+            if (auth()->id()) {
+                $item->liked = $item->likedByUser(auth()->id());
+            } else {
+                $item->liked = false;
+            }
+        }
+
+        return view('pages.products.detail', compact('product','reviews'));
+    }
+
+    /**
+     * 상품상세>리뷰
+     * @param ExItem $product
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+     */
+    public function getProductReviews(ExItem $product, Request $request): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    {
+        $page = $request->get('page') ?? $this->page;
+        $limit = $request->get('limit') ?? $this->limit;
+
+        $reviews = $product->reviews()
+            ->withCount('likes')
+            ->paginate($limit, ['*'], 'page', $page);
+
+        foreach ($reviews as &$item) {
+            //작성자 마스킹
+            $item->author_name = Str::mask($item->author_name, '*', 1);
+
+            // 로그인상태면 이미 좋아요 누른 리뷰인지 체크
+            if (auth()->id()) {
+                $item->liked = $item->likedByUser(auth()->id());
+            } else {
+                $item->liked = false;
+            }
+        }
+
+        return view('pages.products.product_reviews', compact('reviews'));
     }
 
     public function bestProducts(): \Illuminate\Support\Traits\EnumeratesValues|\Illuminate\Support\Collection
