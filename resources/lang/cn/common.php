@@ -84,5 +84,6 @@ return [
     "next_review" => "下次评论",
     "helpful_review" => "这很有帮助",
     "review" => "审查",
+    "regist_review" => "注册评论",
 
 ];

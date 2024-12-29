@@ -87,5 +87,9 @@ Exomere',
     'delete_cart' => '我删除了购物车。',
     'least_quantity' => '数量必须至少是一个。',
     'delete_sure' => '您确定要删除它吗？',
+    'review_info' => '请输入至少 10 个字符。请不要输入联系方式或居民登记号码等个人信息。如果包含个人信息，可能会被任意删除。',
+    'alert_rating' => '请选择 1 或更高的评级。',
+    'alert_content' => '请输入至少 10 个字符。',
+    'require_login' => '此服务需要登录。您想登录吗？',
 
 ];

@@ -89,4 +89,8 @@ we embody the brand\'s philosophy of presenting new possibilities in skin regene
     'delete_cart' => 'Deleted shopping cart',
     'least_quantity' => 'The quantity must be at least one.',
     'delete_sure' => 'Are you sure you want to delete it?',
+    'review_info' => 'Please enter at least 10 characters. Please refrain from entering personal information such as contact information or resident registration number. If personal information is included, it may be deleted arbitrarily.',
+    'alert_rating' => 'Please select a rating of 1 or higher.',
+    'alert_content' => 'Please enter at least 10 characters.',
+    'require_login' => 'This service requires login. Would you like to log in?',
 ];

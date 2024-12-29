@@ -199,4 +199,40 @@ $(function () {
         }
     };
 
+
+
+    // 평점 별 이벤트
+    const stars = document.querySelectorAll("#star-rating svg");
+    const ratingInput = document.getElementById("rating");
+
+    stars.forEach((star, index) => {
+        // 마우스 오버
+        star.addEventListener("mouseover", () => {
+            stars.forEach((s, i) => {
+                s.classList.toggle("text-yellow-400", i <= index);
+                s.classList.toggle("text-gray-400", i > index);
+            });
+        });
+
+        // 마우스 아웃
+        star.addEventListener("mouseout", () => {
+            const currentRating = parseInt(ratingInput.value) || 0;
+            stars.forEach((s, i) => {
+                s.classList.toggle("text-yellow-400", i < currentRating);
+                s.classList.toggle("text-gray-400", i >= currentRating);
+            });
+        });
+
+        // 클릭 이벤트
+        star.addEventListener("click", () => {
+            const rating = index + 1;
+            ratingInput.value = rating;
+
+            stars.forEach((s, i) => {
+                s.classList.toggle("text-yellow-400", i < rating);
+                s.classList.toggle("text-gray-400", i >= rating);
+            });
+        });
+    });
+
 });

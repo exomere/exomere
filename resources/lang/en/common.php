@@ -84,5 +84,6 @@ return [
     "next_review" => "Next Review",
     "helpful_review" => "It's helpful",
     "review" => "Review",
+    "regist_review" => "Register a review",
 
 ];

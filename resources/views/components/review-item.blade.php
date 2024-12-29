@@ -49,7 +49,7 @@
 
         <!-- Review content -->
         <div class="text-gray-800 mb-4 leading-relaxed">
-            {!! $review->content !!}
+            {!!  nl2br($review->content)  !!}
         </div>
 
         <!-- Review image -->

@@ -158,4 +158,26 @@ class CommunityController extends BaseController
 
         return ['liked' => $liked];
     }
+
+
+    public function reviewsStore(Request $request)
+    {
+        $request->validate([
+            'product_seq' => 'required|exists:ex_items,id',
+            'title' => 'required|max:100',
+            'content' => 'required|max:1000',
+            'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        ExReview::create([
+            'author_seq' => auth()->id(),
+            'author_name' => auth()->user()->name,
+            'product_seq' => $request->product_seq,
+            'title' => strip_tags($request->get('title')),
+            'content' => strip_tags($request->get('content')),
+            'rating' => $request->get('rating'),
+        ]);
+
+        return response()->json(['message' => '리뷰가 등록되었습니다!'], 201);
+    }
 }

@@ -163,7 +163,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/cart', [ProductController::class, 'myCart']);
         
     });
-    
+
+    //상품리뷰등록
+    Route::post('/reviews', [CommunityController::class, 'reviewsStore'])->name('reviewsStore');
+
+
     Route::post('/mypage/ordersheet', [orderFoController::class, 'ordersheet'])->name('user.ordersheet');
     Route::post('/mypage/doPayment', [orderFoController::class, 'doPayment']);
     Route::get('/mypage/orderComplete', [orderFoController::class, 'orderComplete']);

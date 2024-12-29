@@ -84,5 +84,8 @@ return [
     "next_review" => "다음 리뷰",
     "helpful_review" => "도움돼요",
     "review" => "리뷰",
+    "regist_review" => "리뷰등록",
+
+
 ];
 

@@ -152,6 +152,13 @@ class ProductController extends BaseController
         return view('pages.products.product_reviews', compact('reviews'));
     }
 
+
+    public function setProductReviews(Request $request)
+    {
+
+    }
+
+
     public function bestProducts(): \Illuminate\Support\Traits\EnumeratesValues|\Illuminate\Support\Collection
     {
         $items = ExItem::where('kind', 'signature')->orderBy('sort', 'asc')->limit(6)->get();
