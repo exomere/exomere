@@ -142,56 +142,14 @@
                                 <strong class="w-40">{{ __('common.price') }}</strong>
                                 <h6 class="flex"><span
                                         class="">
-                                        @if(request()->session()->get('member_position'))
-                                            @if($locale == 'ko')
-                                                {{ number_format($product['exclusive_price']) }}
-                                            @elseif($locale == 'jp')
-                                                {{ number_format($product['exclusive_price_y']) }}
-                                            @elseif($locale == 'cn')
-                                                {{ number_format($product['exclusive_price_c']) }}
-                                            @else
-                                                {{ number_format($product['exclusive_price_d']) }}
-                                            @endif
-                                        @elseif(request()->session()->get('member_position') == "회원")
-                                            @if($locale == 'ko')
-                                                {{ number_format($product['mem_price']) }}
-                                            @elseif($locale == 'jp')
-                                                {{ number_format($product['mem_price_y']) }}
-                                            @elseif($locale == 'cn')
-                                                {{ number_format($product['mem_price_c']) }}
-                                            @else
-                                                {{ number_format($product['mem_price_d']) }}
-                                            @endif
-                                        @elseif(request()->session()->get('member_position') == "뷰티플래너")
-                                            @if($locale == 'ko')
-                                                {{ number_format($product['planer_price']) }}
-                                            @elseif($locale == 'jp')
-                                                {{ number_format($product['planer_price_y']) }}
-                                            @elseif($locale == 'cn')
-                                                {{ number_format($product['planer_price_c']) }}
-                                            @else
-                                                {{ number_format($product['planer_price_d']) }}
-                                            @endif
-                                        @elseif(request()->session()->get('member_position') == "대리점")
-                                            @if($locale == 'ko')
-                                                {{ number_format($product['store_price']) }}
-                                            @elseif($locale == 'jp')
-                                                {{ number_format($product['store_price_y']) }}
-                                            @elseif($locale == 'cn')
-                                                {{ number_format($product['store_price_c']) }}
-                                            @else
-                                                {{ number_format($product['store_price_d']) }}
-                                            @endif
+                                        @if($locale == 'ko')
+                                            {{ number_format($product['mem_price']) }}
+                                        @elseif($locale == 'jp')
+                                            {{ number_format($product['mem_price_y']) }}
+                                        @elseif($locale == 'cn')
+                                            {{ number_format($product['mem_price_c']) }}
                                         @else
-                                            @if($locale == 'ko')
-                                                {{ number_format($product['price']) }}
-                                            @elseif($locale == 'jp')
-                                                {{ number_format($product['price_y']) }}
-                                            @elseif($locale == 'cn')
-                                                {{ number_format($product['price_c']) }}
-                                            @else
-                                                {{ number_format($product['price_d']) }}
-                                            @endif
+                                            {{ number_format($product['mem_price_d']) }}
                                         @endif
                                         </span>
                                     <span
