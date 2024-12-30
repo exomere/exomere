@@ -184,6 +184,11 @@ class OrderController extends Exomere
                 'userInfo' => $request->user_brith,
             ];
 
+            // 4987610043269245
+            // 4211340005718975 --10/29
+            // 700306
+            
+            // dd($card_payment_info);
             $res = $onplatAPI->userOrderPayment($card_payment_info);
             
             if(isset($res['storeId'])){

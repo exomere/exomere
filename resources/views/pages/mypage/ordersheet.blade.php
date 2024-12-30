@@ -319,14 +319,11 @@ $activeHeader = true;
                                                     <select
                                                         class="mb-1 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                                                         name="card_installment" id="card_installment">
-                                                        @for ($i = 1; $i < 13; $i++)
-                                                            @if($i==1)
-                                                                <option
-                                                                    value="{{$i}}">{{__('common.checkout_card_months_1')}}</option>
-                                                            @else
+                                                        <option value="0">{{__('common.checkout_card_months_1')}}</option>
+                                                        @for ($i = 2; $i < 13; $i++)
                                                                 <option
                                                                     value="{{$i}}">{{$i}} {{__('common.months')}}</option>
-                                                            @endif
+                                                            
                                                         @endfor
                                                     </select>
                                                 </div>
