@@ -252,7 +252,8 @@
                         <label class="col-sm-1 col-form-label" for="payment_card_5"> {{__('erp.installment_month')}} </label>
                         <div class="col-sm-2">
                           <select class="form-select"  id="payment_card_5">
-                            @for ($i = 1; $i < 13; $i++)
+                            <option value="0">일시불</option>
+                            @for ($i = 2; $i < 13; $i++)
                                 <option value="{{$i}}">{{$i}}{{__('erp.month')}}</option>
                             @endfor
                           </select>
