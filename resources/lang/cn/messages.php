@@ -91,5 +91,6 @@ Exomere',
     'alert_rating' => '请选择 1 或更高的评级。',
     'alert_content' => '请输入至少 10 个字符。',
     'require_login' => '此服务需要登录。您想登录吗？',
+    'no_reviews' => '没有注册评论',
 
 ];

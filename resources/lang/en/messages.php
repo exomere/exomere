@@ -93,4 +93,5 @@ we embody the brand\'s philosophy of presenting new possibilities in skin regene
     'alert_rating' => 'Please select a rating of 1 or higher.',
     'alert_content' => 'Please enter at least 10 characters.',
     'require_login' => 'This service requires login. Would you like to log in?',
+    'no_reviews' => 'There are no registered reviews',
 ];

@@ -421,7 +421,7 @@
             </div>
 
 
-            <ul class="flex flex-row justify-center mt-20 bg-[#e9e9e9] text-[#A6A7A6] border-t border-solid text-sm text-center tracking-tight gap-4"
+            <ul class="flex flex-row justify-center h-12 mt-20 bg-[#e9e9e9] text-[#A6A7A6] border-t border-solid text-sm text-center tracking-tight"
                 id="tab"
                 role="tablist"
                 data-tabs-active-classes="text-slate-600 font-normal bg-white"
@@ -429,7 +429,7 @@
                 data-tabs-toggle="#tab-content"
             >
                 <li role="presentation" class="basis-1/3">
-                    <button class="w-full p-4 "
+                    <button class="size-full"
                             id="detail-tab"
                             type="button"
                             role="tab"
@@ -440,7 +440,7 @@
                     </button>
                 </li>
                 <li role="presentation" class="basis-1/3">
-                    <button class="w-full p-4"
+                    <button class="size-full"
                             id="info-tab"
                             type="button"
                             role="tab"
@@ -451,7 +451,7 @@
                     </button>
                 </li>
                 <li role="presentation" class="basis-1/3">
-                    <button class="w-full p-4"
+                    <button class="size-full"
                             id="review-tab"
                             type="button"
                             role="tab"

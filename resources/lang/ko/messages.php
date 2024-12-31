@@ -86,4 +86,5 @@ return [
     'alert_rating' => '평점을 1 이상 선택해주세요.',
     'alert_content' => '최소 10자 이상 입력해 주세요.',
     'require_login' => '로그인이 필요한 서비스입니다. 로그인 하시겠습니까?',
+    'no_reviews' => '등록된 리뷰가 없습니다.',
 ];
