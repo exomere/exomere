@@ -101,14 +101,14 @@
               <label class="col-sm-1 col-form-label" for="basic-default-member_pw"> <span style='color:red;'>*</span>{{__('erp.member_classification')}}</label>
               <div class="col-sm-2">
                 <select class="form-control" name='member_position'>
-                  <option value="회원" selected="">회원</option>
+                  <option value="회원" @isset($member->member_position) @if($member->member_position == "회원")  selected  @endif @endisset>회원</option>
                   @if(request()->session()->get('member_level') == 99)
-                    <option value="뷰티플래너">뷰티플래너</option>
-                    <option value="대리점">대리점</option>
+                    <option @isset($member->member_position) @if($member->member_position == "뷰티플래너")  selected  @endif @endisset value="뷰티플래너">뷰티플래너</option>
+                    <option @isset($member->member_position) @if($member->member_position == "대리점")  selected  @endif @endisset value="대리점">대리점</option>
                   @endif
-                  <option value="총판">총판</option>
-                  <option value="우수총판">우수총판</option>
-                  <option value="최우수총판">최우수총판</option>
+                  <option @isset($member->member_position) @if($member->member_position == "총판")  selected  @endif @endisset value="총판">총판</option>
+                  <option @isset($member->member_position) @if($member->member_position == "우수총판")  selected  @endif @endisset value="우수총판">우수총판</option>
+                  <option @isset($member->member_position) @if($member->member_position == "최우수총판")  selected  @endif @endisset value="최우수총판">최우수총판</option>
                 </select>
               </div>
             </div>
