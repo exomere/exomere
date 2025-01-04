@@ -14,7 +14,7 @@ return [
     'currency' => '円',
     'price' => '価格',
     'distribution_price' => '卸売価格',
-    'vat_excluded' => 'VAT除外',
+    'vat_excluded' => '税抜き',
     'quantity' => '数量',
     'total_price' => '合計金額',
     'add_to_cart' => 'カートに追加',

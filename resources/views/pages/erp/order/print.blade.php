@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order #123 Print View</title>
+  <title>제품 구매 주문서</title>
   <style>
     /* Print styling */
     body { font-family: Arial, sans-serif; }
@@ -13,7 +13,7 @@
     .order-details h3 { margin-bottom: 10px; }
     .items-table { width: 100%; border-collapse: collapse; }
     .items-table th, .items-table td { border: 1px solid #ddd; padding: 8px; }
-    .items-table th { background-color: #f4f4f4; }
+    .items-table th { background-color: #FFDAB9; }
     .total { text-align: right; margin-top: 10px; font-size: 1.2em; }
     @media print {
       .print-button { display: none; }
@@ -23,35 +23,27 @@
 <body>
 <div class="print-container">
   <div class="header">
-    <h1>Order #{{ $order_data->member_name ?? null }}</h1>
-    <p>Order Date: {{ $order_date ?? null }}</p>
+    <h1>제품 구매 주문서 (본사, 총판 거래용)</h1>
+    <h4><input type='checkbox'>신규 <input type='checkbox'>재구매 <input type='checkbox'>고객 <input type='checkbox'>총판</h4>
   </div>
 
   <div class="order-details">
-    <h3>회원 정보</h3>
-    <p>
-      <strong>회원명:</strong>
-      {{ $order_data->member_name ?? null }}
-      - @if($order_data->order_type == "new")신규주문@elseif($order_data->order_type == "repurchase")재구매주문@elseif($order_data->order_type == "distribute_new")분양몰신규@elseif($order_data->order_type == "distribute_repurchase")분양몰재구문@endif
-    </p>
-    <p><strong>회원 ID:</strong> {{ $order_data->member_id ?? null }}</p>
-    @isset($order_data->center_seq)
-    <p>
-      <strong>지역점:</strong>
-      @foreach ($center_array as $center)
-        @if($order_data->center_seq == $center['seq']) {{$center['name']}} @endif
-      @endforeach
-    </p>
-    @endisset
-
-    @isset($order_data->receipt_method)
-    <p><strong>상품수령:</strong> @if($order_data->receipt_method == "delivery")택배수령@elseif($order_data->receipt_method == "scene")현장수령@endif</p>
-    @endisset
-    <p><strong>주문자(연락처):</strong> {{ $order_data->delivery_name ?? null }} ({{ $order_data->delivery_phone ?? null }})</p>
-    <p><strong>주소:</strong> ({{ $order_data->zipcode ?? null }}) {{ $order_data->address ?? null }} {{ $order_data->address_detail ?? null }}</p>
-    @isset($order_data->remark)
-    <p><strong>비고:</strong> {{ $order_data->remark ?? null }}</p>
-    @endisset
+    <table style='width:100%; border:1px solid #eee;' class='items-table'>
+      <tr style=' border:1px solid #eee;'>
+        <th style='width:25%;  border:1px solid #eee;'>성 명</th>
+        <td style='width:25%;  border:1px solid #eee;'> {{ $order_data->member_name ?? null }}</td>
+        <th style='width:25%;  border:1px solid #eee;'>주민등록번호</th>
+        <td style='width:25%;  border:1px solid #eee;'></td>
+      </tr>
+      <tr>
+        <th  style='width:25%;  border:1px solid #eee;'>연 락 처</th>
+        <td colspan="3">  {{ $order_data->delivery_phone ?? null }} </td>
+      </tr>
+      <tr>
+        <th  style='width:25%;  border:1px solid #eee;'>제품 받을 주소</th>
+        <td colspan="3">  {{ $order_data->zipcode ?? null }} {{ $order_data->address ?? null }} {{ $order_data->address_detail ?? null }} </td>
+      </tr>
+    </table>
   </div>
 
   <div class="order-items">
@@ -59,34 +51,40 @@
     <table class="items-table">
       <thead>
       <tr>
-        <th>상품명</th>
-        <th>판매가</th>
-        <th>PV</th>
+        <th>코드NO</th>
+        <th>제품명</th>
+        <th>규격</th>
         <th>수량</th>
+        <th>구매가격(원)</th>
+        <th>소비자가격(원)</th>
         <th>합계</th>
       </tr>
       </thead>
       <tbody>
       @if(isset($item_info))
-
         @foreach ($item_info as $item)
-
           <tr>
+            <td>YNR-{{$item->pd_seq}}</td>
             <td>{{$item->pd_name}}</td>
-            <td>{{number_format($item->pd_price)}}</td>
-            <td>{{number_format($item->pd_pv)}}</td>
+            <td>{{$item_array[$item->pd_seq]['capacity']}}</td>
             <td>{{$item->pd_qty}}</td>
+            <td>{{number_format($item->pd_price)}}</td>
+            <td>{{number_format($item_array[$item->pd_seq]['price'])}}</td>
             <td><span class='pd_total' id='pd_total_{{$item->pd_seq}}'>{{number_format($item->pd_price * $item->pd_qty)}}</span></td>
           </tr>
+          
         @endforeach
+        <tr>
+          <th colspan="6">total</th>
+          
+          <td><span>{{number_format($order_data->total_amount)}}</span></td>
+        </tr>
       @else
         <tr><td style='text-align:center; height:80px;' colspan="6">선택한 상품이 없습니다.</td> </tr>
       @endif
       </tbody>
     </table>
-    <div class="total">
-      <strong>Grand Total: {{number_format($order_data->total_amount ?? 0)}}</strong>
-    </div>
+
   </div>
 
   <div class="order-items">

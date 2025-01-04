@@ -471,7 +471,15 @@
                      aria-labelledby="detail-tab">
 
                     <div id="detail__desc" class="overflow-hidden pt-12 md:pt-24" style="height: 800px">
-                        {!! $product['content'] !!}
+                        @if($locale == 'ko')
+                            {!! $product['content'] ?? ''  !!}
+                        @elseif($locale == 'jp')
+                            {!! $product['content_jp'] ?? ''  !!}
+                        @elseif($locale == 'cn')
+                            {!! $product['content_cn'] ?? ''  !!}
+                        @else
+                            {!! $product['content_us'] ?? '' !!}
+                        @endif
                     </div>
 
                     <button id="toggle-btn"

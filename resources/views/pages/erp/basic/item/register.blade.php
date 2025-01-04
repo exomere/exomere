@@ -396,6 +396,27 @@
                     <textarea class="form-control" id='content' name="content" rows="3">{{ $item->content ?? null }}</textarea>
                 </div>
               </div> 
+
+              <div class="row mb-3" style='height:700px;'>
+                <label class="col-sm-1 col-form-label" for="basic-default-content">{{__('erp.detailed_product_description')}} US</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id='content_us' name="content_us" rows="3">{{ $item->content_us ?? null }}</textarea>
+                </div>
+              </div> 
+
+              <div class="row mb-3" style='height:700px;'>
+                <label class="col-sm-1 col-form-label" for="basic-default-content">{{__('erp.detailed_product_description')}} JP</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id='content_jp' name="content_jp" rows="3">{{ $item->content_jp ?? null }}</textarea>
+                </div>
+              </div> 
+
+              <div class="row mb-3" style='height:700px;'>
+                <label class="col-sm-1 col-form-label" for="basic-default-content">{{__('erp.detailed_product_description')}} CN</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id='content_cn' name="content_cn" rows="3">{{ $item->content_cn ?? null }}</textarea>
+                </div>
+              </div> 
            
 
             <div class="row mb-3">
@@ -506,14 +527,37 @@
     $("#formItem").submit();
   });
 
-  ClassicEditor
-    .create( document.querySelector( '#content' ),{
-      ckfinder:{
-        uploadUrl:"{{route('ckeditor.upload',['_token'=>csrf_token()])}}",
-      },
-    }).catch( error => {
-        console.error( error );
-    } );
+  ClassicEditor.create( document.querySelector( '#content' ),{
+    ckfinder:{
+      uploadUrl:"{{route('ckeditor.upload',['_token'=>csrf_token()])}}",
+    },
+  }).catch( error => {
+      console.error( error );
+  } );
+
+  ClassicEditor.create( document.querySelector( '#content_us' ),{
+    ckfinder:{
+      uploadUrl:"{{route('ckeditor.upload',['_token'=>csrf_token()])}}",
+    },
+  }).catch( error => {
+      console.error( error );
+  } );
+
+  ClassicEditor.create( document.querySelector( '#content_jp' ),{
+    ckfinder:{
+      uploadUrl:"{{route('ckeditor.upload',['_token'=>csrf_token()])}}",
+    },
+  }).catch( error => {
+      console.error( error );
+  } );
+
+  ClassicEditor.create( document.querySelector( '#content_cn' ),{
+    ckfinder:{
+      uploadUrl:"{{route('ckeditor.upload',['_token'=>csrf_token()])}}",
+    },
+  }).catch( error => {
+      console.error( error );
+  } );
 
 </script>
 @endsection
