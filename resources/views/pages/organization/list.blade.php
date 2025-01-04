@@ -3,7 +3,7 @@
 @section('title', 'Organization - List')
 
 @section('content')
-    <script src="{{ asset('orgchart/OrgChart.js') }}"></script>
+    <script src="{{ asset('orgchart/orgchart.js') }}"></script>
 
     <div id="tree"></div>
 
