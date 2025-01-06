@@ -251,6 +251,10 @@ class OrderController extends Exomere
 
         $order_code = "ex-".date("YmdHis").rand(100,999);
 
+        if($request->total_price < 200000){
+            $info_total_price = $request->total_price - 4000;
+        }
+
         $input_data = [
             "order_code" => $order_code,
             "member_seq" => $ex_member->id ?? null,
@@ -263,14 +267,12 @@ class OrderController extends Exomere
             "center_seq" => $ex_center->id ?? null,
             "center_name" => $ex_center->name ?? null,
             "receipt_method" => "delivery",
-
             "delivery_name" => $request->user_name ?? null,
             "delivery_phone" => $request->user_phone ?? null,
-
             "zipcode" => $request->zipcode ?? null,
             "address" => $request->address ?? null,
             "address_detail" => $request->address_detail ?? null,
-            "total_amount" => $request->total_price ?? 0,
+            "total_amount" => $info_total_price ?? 0,
             "total_pv" => $total_pv ?? 0,
             "remaining_amount" => 0,
             "payment_amount" => $request->total_price ?? 0,
