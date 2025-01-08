@@ -225,18 +225,16 @@ class OrderController extends Exomere
             }
 
             if(isset($request->card_name)){
-                for ($i = 0; $i < count($request->card_name); $i++) {
-                    $card_info[0]['card_company'] = $request->card_company;
-                    $card_info[0]['card_name'] = $request->card_name;
-                    $card_info[0]['card_number'] = $request->card_number;
-                    $card_info[0]['card_payment_price'] = $request->card_payment_price;
-                    $card_info[0]['card_month_plan'] = $request->card_month_plan;
-                    $card_info[0]['card_year_month'] = $request->card_year_month;
-                    $card_info[0]['card_approval_number'] = $request->card_approval_number;
-                    $card_info[0]['card_approval_name'] = $request->card_approval_name;
-                    $card_info[0]['card_approval_date'] = $request->card_approval_date;
-                    $card_info[0]['card_password'] = $request->card_password;
-                }
+                $card_info[0]['card_company'] = $request->card_company;
+                $card_info[0]['card_name'] = $request->card_name;
+                $card_info[0]['card_number'] = $request->card_number;
+                $card_info[0]['card_payment_price'] = $request->card_payment_price;
+                $card_info[0]['card_month_plan'] = $request->card_month_plan;
+                $card_info[0]['card_year_month'] = $request->card_year_month;
+                $card_info[0]['card_approval_number'] = $request->card_approval_number;
+                $card_info[0]['card_approval_name'] = $request->card_approval_name;
+                $card_info[0]['card_approval_date'] = $request->card_approval_date;
+                $card_info[0]['card_password'] = $request->card_password;
             }
             /* 카드결제 */
         }else{
