@@ -184,13 +184,8 @@ class OrderController extends Exomere
                 'userInfo' => $request->user_brith,
             ];
 
-            // 4987610043269245
-            // 4211340005718975 --10/29
-            // 700306
-            
-            // dd($card_payment_info);
             $res = $onplatAPI->userOrderPayment($card_payment_info);
-            
+
             if(isset($res['storeId'])){
                 $return_card_info = [
                     "member_seq" => $ex_member->id,
@@ -210,7 +205,7 @@ class OrderController extends Exomere
                     "reg_date" => date('Y-m-d H:i:s'),
                 ];
                 ExCardPayment::create($return_card_info);
-
+                
                 if($res['chargeState'] == "승인거절"){
                     $fail_data = [
                         "msg" => $res['respMsg'],
@@ -251,6 +246,8 @@ class OrderController extends Exomere
 
         if($request->total_price < 200000){
             $info_total_price = $request->total_price - 4000;
+        }else{
+            $$request->total_price;
         }
 
         $input_data = [
