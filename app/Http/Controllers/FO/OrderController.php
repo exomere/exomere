@@ -247,7 +247,7 @@ class OrderController extends Exomere
         if($request->total_price < 200000){
             $info_total_price = $request->total_price - 4000;
         }else{
-            $$request->total_price;
+            $request->total_price ?? 0;
         }
 
         $input_data = [
@@ -281,7 +281,7 @@ class OrderController extends Exomere
             "order_date" => date("Y-m-d H:i:s"),
             "reg_name" => "F/O 본인결제",
         ];
-
+// [{"card_name": "윤미영", "card_number": "5311307740027083", "card_company": "12", "card_password": "55", "card_month_plan": "일시불", "card_year_month": "29/03", "card_approval_date": null, "card_approval_name": "윤미영", "card_payment_price": 495000, "card_approval_number": null}]
         ExOrder::create($input_data);
 
         $complete_data = [
