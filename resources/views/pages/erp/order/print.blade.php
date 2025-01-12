@@ -100,7 +100,6 @@
         <th>승인번호</th>
         <th>소유자명</th>
         <th>승인일자</th>
-        <th>비밀번호</th>
       </tr>
       </thead>
       <tbody>
@@ -118,7 +117,6 @@
             <td>{{$card->card_approval_number ?? ''}}</td>
             <td>{{$card->card_approval_name ?? ''}}</td>
             <td>{{$card->card_approval_date ?? ''}}</td>
-            <td>{{$card->card_password ?? ''}}</td>
           </tr>
           @php $card_cnt++; @endphp
         @endforeach
@@ -147,9 +145,9 @@
         @foreach ($account_info as $account)
           <tr>
             <td>{{$account->account_number}}</td>
-            <td>{{$account->account_head}}/td>
+            <td>{{$account->account_head}}</td>
             <td>{{$account->account_date}}</td>
-            <td>{{$account->account_payment_price}}</td>
+            <td>{{number_format($account->account_payment_price)}}</td>
           </tr>
           @php $acc_cnt++; @endphp
         @endforeach

@@ -164,7 +164,6 @@ class OrderController extends Exomere
             /* 카드결제 */
             $onplatAPI = new OnPlatController();
             
-           
             $card_month = $request->card_month;
             if(10 > $request->card_month){
                 $card_month = "0".$request->card_month;
@@ -204,7 +203,8 @@ class OrderController extends Exomere
                     "return_val" => $res['returnVal'],
                     "reg_date" => date('Y-m-d H:i:s'),
                 ];
-                ExCardPayment::create($return_card_info);
+                
+                $card_info = ExCardPayment::create($return_card_info);
                 
                 if($res['chargeState'] == "승인거절"){
                     $fail_data = [
@@ -250,6 +250,11 @@ class OrderController extends Exomere
             $request->total_price ?? 0;
         }
 
+        $order_type = 'new';
+        if(request()->session()->get('member_position') == "총판"){
+            $order_type = 'repurchase';
+        }
+
         $input_data = [
             "order_code" => $order_code,
             "member_seq" => $ex_member->id ?? null,
@@ -258,7 +263,7 @@ class OrderController extends Exomere
             "recommend_seq" => $ex_member->recommend_seq ?? null,
             "recommend_id" => $ex_member->recommend_id ?? null,
             "recommend_name" => $ex_member->recommend_name ?? null,
-            "order_type" => $request->order_type ?? 'new',
+            "order_type" => $order_type,
             "center_seq" => $ex_center->id ?? null,
             "center_name" => $ex_center->name ?? null,
             "receipt_method" => "delivery",
@@ -281,9 +286,15 @@ class OrderController extends Exomere
             "order_date" => date("Y-m-d H:i:s"),
             "reg_name" => "F/O 본인결제",
         ];
-// [{"card_name": "윤미영", "card_number": "5311307740027083", "card_company": "12", "card_password": "55", "card_month_plan": "일시불", "card_year_month": "29/03", "card_approval_date": null, "card_approval_name": "윤미영", "card_payment_price": 495000, "card_approval_number": null}]
-        ExOrder::create($input_data);
 
+        $create_order = ExOrder::create($input_data);
+
+        if(isset($card_info->id)){
+            ExCardPayment::find($card_info->id)->update([
+                "order_id" => $create_order->id,
+            ]);
+        }
+        
         $complete_data = [
             "input_data" => $input_data,
             "payment_type" => $request->payment_type,
