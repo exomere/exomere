@@ -52,7 +52,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
         <!-- 메인 비디오 -->
         @if($mainVideo)
             <div class="mb-8 relative group cursor-pointer"
-                 onclick="playVideo('{{ $mainVideo['video'] }}')"
+                 onclick="playVideo('{{ $mainVideo['video'] ?? ''}}')"
                  data-aos="fade-in">
                 <img src="{{ $mainVideo['thumbnail'] }}"
                      alt="{{ $mainVideo['title'] }}"
@@ -78,7 +78,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
         <!-- 작은 비디오 그리드 -->
         <div class="grid md:grid-cols-2 gap-x-6 gap-y-10 lg:gap-x-10 lg:gap-y-16">
             @foreach ($items as $video)
-                <div class="relative group cursor-pointer" onclick="playVideo('{{ $video['video'] }}')"
+                <div class="relative group cursor-pointer" onclick="playVideo('{{ $video['video'] ?? '' }}')"
                      data-aos="fade-in"
                      data-aos-delay="{{ $loop->index * 100 }}"
                 >
@@ -106,7 +106,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
     <!-- 전체화면 비디오 플레이어 -->
     <div id="fullscreenVideo" class="fixed inset-0 bg-black hidden z-50">
         <div class="absolute inset-0">
-            <iframe id="videoPlayer" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+            <iframe id="videoPlayer" src="" allow="accelerometer; autoplay;" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
         </div>
         <div class="absolute top-5 right-5 lg:right-20">
             <button type="button" class="bg-exomere opacity-75 p-3 lg:p-7 rounded-full text-white"
@@ -126,7 +126,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
         function playVideo(url) {
             const player = document.getElementById('videoPlayer');
             const fullscreen = document.getElementById('fullscreenVideo');
-            player.src = url;
+            player.src = "https://www.youtube.com/embed/"+url;
             fullscreen.classList.remove('hidden');
             document.body.style.overflow = 'hidden';  // 스크롤 방지
         }

@@ -50,23 +50,28 @@
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="contents">
-                                {{__('erp.video')}}
+                                {{__('erp.video')}} code
                             </label>
-                            <div class="col-sm-4">
+                            {{-- <div class="col-sm-4">
                                 <div class="input-group">
                                     <input type="file" class="form-control" id="video" name="video">
                                     <label class="input-group-text" for="video" name="video">Upload</label>
                                 </div>
+                            </div> --}}
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="video" name="video" value='{{$video->video}}'>
+                                </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        {{-- <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">{{__('erp.current_video')}} :</label>
                             <div class="col-sm-10">
                                 <div class="form-control-plaintext">
                                     <td><img style='width:80px;' src="{{ asset($video->video) }}" onerror="this.src='{{ asset('storage/data/noimg.jpg') }}'"  ></td>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">{{__('erp.exposed_status')}}</label>
                             <div class="col-sm-5">

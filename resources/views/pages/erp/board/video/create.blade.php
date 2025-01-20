@@ -42,10 +42,15 @@
                             <label class="col-sm-2 col-form-label" for="video">
                                 {{__('erp.video')}}
                             </label>
-                            <div class="col-sm-4">
+                            {{-- <div class="col-sm-4">
                                 <div class="input-group">
                                     <input type="file" class="form-control" id="video" name="video">
                                     <label class="input-group-text" for="video" name="video">Upload</label>
+                                </div>
+                            </div> --}}
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="video" name="video">
                                 </div>
                             </div>
                         </div>

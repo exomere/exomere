@@ -472,6 +472,7 @@ class ErpBoardController extends Exomere
             'title' => $request->input('title'),
             'author_name' => $user ? $user->name : 'Unknown',
             'is_active' => $request->input('is_active') ?? 'N',
+            'video' => $request->video ?? '',
         ];
 
         if ($request->hasFile('thumbnail')) {
@@ -480,11 +481,11 @@ class ErpBoardController extends Exomere
             $save_data['thumbnail'] = "storage/data/board/".$fileName;
         }
 
-        if ($request->hasFile('video')) {
-            $fileName = time() . '_' . str_replace(" ","",$request->file('video')->getClientOriginalName());
-            $request->file('video')->storeAs('public/data/board/video', $fileName);
-            $save_data['video'] = "storage/data/board/video".$fileName;
-        }
+        // if ($request->hasFile('video')) {
+        //     $fileName = time() . '_' . str_replace(" ","",$request->file('video')->getClientOriginalName());
+        //     $request->file('video')->storeAs('public/data/board/video', $fileName);
+        //     $save_data['video'] = "storage/data/board/video".$fileName;
+        // }
         
         ExVideo::create($save_data);
 
@@ -533,6 +534,7 @@ class ErpBoardController extends Exomere
         $save_data = [
             'title' => $request->input('title'),
             'is_active' => $request->input('is_active') ?? 'N',
+            'video' => $request->video ?? '',
         ];
 
         if ($request->hasFile('thumbnail')) {
@@ -541,11 +543,11 @@ class ErpBoardController extends Exomere
             $save_data['thumbnail'] = "storage/data/board/".$fileName;
         }
 
-        if ($request->hasFile('video')) {
-            $fileName = time() . '_' . str_replace(" ","",$request->file('video')->getClientOriginalName());
-            $request->file('video')->storeAs('public/data/board/video', $fileName);
-            $save_data['video'] = "storage/data/board/video/".$fileName;
-        }
+        // if ($request->hasFile('video')) {
+        //     $fileName = time() . '_' . str_replace(" ","",$request->file('video')->getClientOriginalName());
+        //     $request->file('video')->storeAs('public/data/board/video', $fileName);
+        //     $save_data['video'] = "storage/data/board/video/".$fileName;
+        // }
   
         $video->update($save_data);
 
