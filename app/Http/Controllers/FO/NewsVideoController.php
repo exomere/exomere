@@ -40,7 +40,7 @@ class NewsVideoController extends BaseController
 
         foreach ($items as &$item) {
             $item->thumbnail = asset($item->thumbnail);
-            $item->video = asset($item->video);
+            $item->video = $item->video;
         }
 
         $mainVideo = $items->shift();

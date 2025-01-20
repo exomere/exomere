@@ -52,6 +52,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
         <!-- 메인 비디오 -->
         @if($mainVideo)
             <div class="mb-8 relative group cursor-pointer"
+            
                  onclick="playVideo('{{ $mainVideo['video'] ?? ''}}')"
                  data-aos="fade-in">
                 <img src="{{ $mainVideo['thumbnail'] }}"
@@ -126,6 +127,7 @@ $jsonData = json_encode($items, JSON_UNESCAPED_UNICODE);
         function playVideo(url) {
             const player = document.getElementById('videoPlayer');
             const fullscreen = document.getElementById('fullscreenVideo');
+            console.log("https://www.youtube.com/embed/"+url);
             player.src = "https://www.youtube.com/embed/"+url;
             fullscreen.classList.remove('hidden');
             document.body.style.overflow = 'hidden';  // 스크롤 방지
