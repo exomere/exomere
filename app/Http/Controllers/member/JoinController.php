@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MemberRegisterRequest;
 use App\Models\ExDistribute;
 use App\Models\ExMember;
+use App\Models\ExCenter;
+
 use Illuminate\Http\Request;
 
 class JoinController extends Controller
@@ -24,8 +26,19 @@ class JoinController extends Controller
             $recommendSeq = $distr_data->director_seq;
             $distrCode = $distr_data->code;
         }
-        
-        return view('auth.signup', compact('recommendId', 'recommendName', 'recommendSeq','distrCode'));
+
+
+        $centers = ExCenter::where('is_active','Y')->get();
+        $centerArray = [];
+        $cnt = 0;
+
+        foreach($centers as $center){
+          $centerArray[$cnt]['seq'] = $center->id;
+          $centerArray[$cnt]['name'] = $center->name;
+          $cnt++;
+        }
+
+        return view('auth.signup', compact('recommendId', 'recommendName', 'recommendSeq','distrCode','centerArray'));
     }
 
     public function checkId(Request $request)

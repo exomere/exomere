@@ -154,54 +154,13 @@
                                                 <label class="form-label" for="local_store">
                                                     {{ __('messages.local_store') }} <span class="text-danger">*</span>
                                                 </label>
-                                                <select class="form-select" name="local_store" id="local_store" required>
-                                                    <option>---지역점 선택--</option>
-                                                    <option value="0000|본사" selected>본사</option>
-                                                    <option value="0001|익산중앙">익산중앙</option>
-                                                    <option value="0002|송파구">송파구</option>
-                                                    <option value="0003|충남 계룡">충남 계룡</option>
-                                                    <option value="0004|부천시">부천시</option>
-                                                    <option value="0005|천안시병">천안시병</option>
-                                                    <option value="0006|부평구">부평구</option>
-                                                    <option value="0007|고양시병">고양시병</option>
-                                                    <option value="0008|상록을">상록을</option>
-                                                    <option value="0009|고양시">고양시</option>
-                                                    <option value="0010|고양시">고양시</option>
-                                                    <option value="0011|제주시">제주시</option>
-                                                    <option value="0012|김포시">김포시</option>
-                                                    <option value="0013|광산구">광산구</option>
-                                                    <option value="0014|구리시">구리시</option>
-                                                    <option value="0015|양천구갑">양천구</option>
-                                                    <option value="0016|대구수성갑">대구수성</option>
-                                                    <option value="0017|서초구갑">서초구</option>
-                                                    <option value="0018|성남수정구">성남수정구</option>
-                                                    <option value="0019|송파구">송파구</option>
-                                                    <option value="0020|수원시">수원시</option>
-                                                    <option value="0021|강남구갑">강남구</option>
-                                                    <option value="0022|연수구">연수구</option>
-                                                    <option value="0023|대전서구">대전서구</option>
-                                                    <option value="0024|연수구을">연수구을</option>
-                                                    <option value="0025|노원구갑">노원구</option>
-                                                    <option value="0026|분당구갑">분당구</option>
-                                                    <option value="0027|영등포구을">영등포구을</option>
-                                                    <option value="0028|성남중원">성남중원</option>
-                                                    <option value="0029|남양주갑">남양주</option>
-                                                    <option value="0030|제주시">제주시</option>
-                                                    <option value="0031|강남구">강남구</option>
-                                                    <option value="0032|사하구갑">사하구</option>
-                                                    <option value="0033|양주시">양주시</option>
-                                                    <option value="0034|동대문갑">동대문</option>
-                                                    <option value="0035|강남구을">강남구을</option>
-                                                    <option value="0036|분당구">분당구</option>
-                                                    <option value="0037|대전 유성구">대전 유성구</option>
-                                                    <option value="0038|수원시">수원시</option>
-                                                    <option value="0039|수원시">수원시</option>
-                                                    <option value="0040|여수시">여수시</option>
-                                                    <option value="0041|여수시">여수시</option>
-                                                    <option value="0042|대구서구">대구서구</option>
-                                                    <option value="0043|순천시">순천시</option>
-                                                    <option value="0045|관악구">관악구</option>
-                                                </select>
+                                                <select class="form-select" name="local_store" id="local_store">
+                                                    <option value="">{{__('erp.local_branch')}}</option>
+                                                    @foreach ($centerArray as $center)
+                                                      <option @isset($member->local_store) @if($member->local_store == $center['seq'])  selected  @endif @endisset value='{{$center['seq']}}'>{{$center['name']}}
+                                                      </option>
+                                                    @endforeach
+                                                  </select>  
 
                                                 @error('local_store')
                                                 <div class="invalid-feedback d-block">
@@ -258,16 +217,19 @@
                                             </div>
                                         </div>
 
-                                        {{-- Nation
+                                        {{-- Nation --}}
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-globe fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="nation">
                                                     {{ __('messages.nation') }} <span class="text-danger">*</span>
                                                 </label>
-                                                <select class="form-control" name="nation" id="nation" required>
+                                                <select class="form-control" name="nation" id="nation">
                                                     <option value="">-선택-</option>
-                                                    <option value="KR|대한민국">대한민국</option>
+                                                    <option value="KR">대한민국</option>
+                                                    <option value="JP">日本</option>
+                                                    <option value="US">USA</option>
+                                                    <option value="CN">中国</option>
                                                 </select>
 
                                                 @error('nation')
@@ -276,7 +238,7 @@
                                                 </div>
                                                 @enderror
                                             </div>
-                                        </div> --}}
+                                        </div>
 
                                         <div class="form-check d-flex justify-content-center mb-5">
                                             <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required/>
