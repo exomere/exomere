@@ -21,7 +21,7 @@ class InquiryController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);
 
-        $inquires = ExInquire::orderBy('id', 'desc')->paginate($limitPage);
+        $inquires = ExInquire::orderBy('id', 'desc')->where('author_seq',$request->session()->get('member_seq'))->paginate($limitPage);
 
         $datas = [
             "inquires" => $inquires,

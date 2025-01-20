@@ -15,6 +15,10 @@
             <h5 class="mb-0">1:1 {{__('erp.inquiry')}}</h5>
             <small class="text-muted float-end">
                 {{-- <button onclick="location.href='{{ route('erp-board.inquiry.create') }}'" class="btn btn-primary">문의등록</button> --}}
+            <form class="d-flex" action="{{ route('erp-board.inquiry.list') }}" method="GET">
+                <input class="form-control me-2" style='width:240px;' name="search_text" type="search" placeholder="Search" aria-label="Search" value="{{ request('search_text') }}">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
             </small>
         </div>
         <div class="table-responsive text-nowrap">

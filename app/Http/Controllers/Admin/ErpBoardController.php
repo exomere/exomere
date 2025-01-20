@@ -145,7 +145,18 @@ class ErpBoardController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);
 
-        $inquires = ExInquire::orderBy('id', 'desc')->paginate($limitPage);
+        $query = ExInquire::orderBy('id', 'desc');
+
+        // 검색어가 있을 경우 쿼리에 필터 추가
+        if ($request->has('search_text') && $request->get('search_text') !== '') {
+            $search_text = $request->get('search_text');
+            $query->where(function ($q) use ($search_text) {
+                $q->where('content', 'like', '%' . $search_text . '%')
+                    ->orWhere('title', 'like', '%' . $search_text . '%');
+            });
+        }
+
+        $inquires = $query->paginate($limitPage);
 
         $datas = [
             "inquires" => $inquires,
