@@ -158,7 +158,7 @@ class OrderController extends Exomere
                 $account_info[0]['account_payment_price'] = $request->total_price;
             }
         }
-
+        $card_info_in_array = [];
         if($request->payment_type == 'card'){
             $is_approval = 'Y';
             /* 카드결제 */
@@ -218,7 +218,7 @@ class OrderController extends Exomere
                 ];
                 return view('pages.mypage.order_fail')->with($fail_data);
             }
-
+            
             if(isset($request->card_name)){
                 $card_info_in_array[0]['card_company'] = $request->card_company ?? null;
                 $card_info_in_array[0]['card_name'] = $request->card_name ?? null;
