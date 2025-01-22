@@ -244,10 +244,12 @@ class OrderController extends Exomere
 
         $order_code = "ex-".date("YmdHis").rand(100,999);
 
+        $info_total_price = $request->total_price ?? 0;
+
         if($request->total_price < 200000){
             $info_total_price = $request->total_price - 4000;
         }else{
-            $request->total_price ?? 0;
+            $info_total_price = $request->total_price ?? 0;
         }
 
         $order_type = 'new';
