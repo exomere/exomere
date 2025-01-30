@@ -44,6 +44,7 @@ return [
     "cart" => "cart",
     "ordersheet" => "Order Sheet",
     "order_complete" => "Order Complete",
+    "order_fail" => "Order Fail",
     "social" => "Social Contribution",
     "company" => "Company",
     "review" => "Reviews",

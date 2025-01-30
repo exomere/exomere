@@ -46,7 +46,7 @@ return [
     'select_item' => 'アイテムを選択してください。',
     'enter_keyword' => 'キーワードを入力してください。',
     'recommend_keyword' => '推奨キーワード',
-    'about_branch' => 'Exomereの製品をさまざまな体験プログラムと専門的かつ体系的なカウンセリングを通じて体験できます。',
+    'about_branch' => '多様な体験プログラムと専門的かつ体系的な相談を通じて、エクソミアの製品を体験することができます。',
     'cibi_brightness' => '明るさに応じて色を使用する',
     'cibi_saturation' => '彩度に応じて色を使用する',
     'cibi_background' => '白黒の背景色を活用する',

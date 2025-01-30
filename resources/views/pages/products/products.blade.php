@@ -58,7 +58,7 @@
                                          onerror="this.src='//exomere.co.kr/storage/data/noimg.jpg';"
                                          class="h-full w-full object-center lg:h-full lg:w-full group-hover:opacity-0 transition-opacity duration-500">
                                 </div>
-                                <div class="mt-4 text-left">
+                                <div class="mt-4 text-center">
                                     <h3 class="mb-5 text-lg text-gray-900">
                                         <a href="/products/{{ $item['id'] }}">
                                                             <span aria-hidden="true"

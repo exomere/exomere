@@ -503,6 +503,66 @@
                                   d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
                         </svg>
                     </button>
+
+
+                    <div class="padding w-full"
+                         data-accordion="collapse"
+                         data-active-classes="false"
+                         data-inactive-classes="false"
+                    >
+                        <p class="text-lg text-head-color font-normal mb-4">{{ __('common.review') }}</p>
+                        <table class="w-full border-t-2 border-solid border-gray-900">
+                            <colgroup>
+                                <col class="max-sm:hidden w-16"> {{--번호--}}
+                                <col> {{--제목--}}
+                                <col class="max-sm:hidden w-16"> {{--작성자--}}
+                                <col class="max-sm:hidden w-16"> {{--추천--}}
+                            </colgroup>
+                            <thead>
+                            <tr class="h-20 font-normal border-b border-solid border-slate-200">
+                                <th class="max-sm:hidden align-middle text-center">{{ __('common.number') }}</th>
+                                <th class="align-middle text-center">{{ __('common.title') }}</th>
+                                <th class="max-sm:hidden align-middle text-center">{{ __('common.author') }}</th>
+                                <th class="max-sm:hidden align-middle text-center">{{ __('common.recommend') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                            @foreach($reviews as $item)
+                                <tr class="h-20 font-normal border-b border-solid border-slate-200 cursor-pointer"
+                                    id="review-{{ $item->id }}"
+                                    aria-expanded="false"
+                                    data-accordion-target="#review-body-{{ $item->id }}"
+                                    aria-controls="review-body-{{ $item->id }}"
+                                >
+                                    <td class="max-sm:hidden align-middle text-center p-1">{{ $item->id }}</td>
+                                    <td class="align-middle align-middle p-1">
+                                        {{ $item->title }}
+                                    </td>
+                                    <td class="max-sm:hidden align-middle text-center p-1">
+                                        {{ $item->author_name }}
+                                    </td>
+                                    {{--추천--}}
+                                    <td class="max-sm:hidden align-middle text-center p-1">
+                                        {{ $item->likes_count }}
+                                    </td>
+                                </tr>
+                                <tr id="review-body-{{ $item->id }}"
+                                    class="hidden"
+                                    aria-labelledby="review-{{ $item->id }}">
+                                    <td colspan="4" class="padding">
+                                        {{ $item->content }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+                        {{--paging--}}
+                        <div class="my-10">
+                            {{ $reviews->links() }}
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="hidden"
