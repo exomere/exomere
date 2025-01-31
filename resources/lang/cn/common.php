@@ -85,5 +85,6 @@ return [
     "helpful_review" => "这很有帮助",
     "review" => "审查",
     "regist_review" => "注册评论",
+    "message" => "Message",
 
 ];

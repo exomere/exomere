@@ -85,7 +85,7 @@ return [
     "helpful_review" => "도움돼요",
     "review" => "리뷰",
     "regist_review" => "리뷰등록",
-
+    "message" => "Message",
 
 ];
 

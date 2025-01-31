@@ -85,4 +85,6 @@ return [
     "helpful_review" => "助けます。",
     "review" => "レビュー",
     "regist_review" => "レビュー登録",
+    "message" => "メッセージ",
+
 ];

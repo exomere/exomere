@@ -26,7 +26,7 @@
                               d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
                               clip-rule="evenodd"/>
                     </svg>
-                    Message
+                    {!! __('common.message') !!}
                 </h5>
                 <p class="text-gray-500 font-normal leading-loose"
                    data-aos="fade-up"
