@@ -12,8 +12,7 @@
     <meta name="description" content="{{ __('meta.description') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>::: 엑소미어 :::</title>
-    <meta name="title" content="{{ __('meta.title') }}">
+    <meta name="title" content="{{ __('meta.title') }} | @yield('title')">
     <meta name="description" content="{{ __('meta.description') }}">
     <meta name="keywords" content="{{ __('meta.keywords') }}">
     <meta name="url" content="{{ __('meta.url') }}">
@@ -25,10 +24,10 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="keywords" content="{{ __('meta.keywords') }}">
 
-    <meta property="og:site_name" content="{{ __('meta.title') }}">
+    <meta property="og:site_name" content="{{ __('meta.title') }} | @yield('title')">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ __('meta.url') }}">
-    <meta property="og:title" content="{{ __('meta.title') }}">
+    <meta property="og:title" content="{{ __('meta.title') }} | @yield('title')">
     <meta property="og:image" content="{{ asset('assets/img/favicon/og.png') }}">
     <meta property="og:description" content="{{ __('meta.description') }}">
     <meta property="og:image:width" content="1200">

@@ -6,7 +6,7 @@ $whiteHeader = true;
 
 @extends('pages.layouts.mainLayout')
 
-@section('title', '72시간만에 10년 젊어지기')
+@section('title', 'MAIN')
 
 @section('vendor-style')
     <link href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}" rel="stylesheet">

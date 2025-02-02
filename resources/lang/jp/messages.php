@@ -59,7 +59,7 @@ return [
     'cibi_brightness' => '明度に応じたカラー活用',
     'cibi_saturation' => '彩度に応じたカラー活用',
     'cibi_background' => '白黒背景色を活用',
-    'core_raw' => '原材料の特性のみ',
+    'core_raw' => '原料の特性に基づく効果に限ります',
     'confirm_ordersheet' => '注文ページに進みますか？',
     'success_cart' => 'ショッピングカートに正常に追加されました。',
     'confirm_checkout' => '利用規約と注文詳細を確認し、情報提供に同意します。',
