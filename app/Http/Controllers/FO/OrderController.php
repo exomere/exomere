@@ -96,7 +96,7 @@ class OrderController extends Exomere
             "items" => $item_info,
             "card_compnay" => self::_PAYMENT_CARD_COMPANY,
             "total_price" => $total_price,
-            "delivery_price" => ($total_price >= 200000) ? 0 : 4000,
+            "delivery_price" => ($total_price >= 300000) ? 0 : 4000,
             "total_pv" => $total_pv,
         ];
 
@@ -246,7 +246,7 @@ class OrderController extends Exomere
 
         $info_total_price = $request->total_price ?? 0;
 
-        if($request->total_price < 200000){
+        if($request->total_price < 300000){
             $info_total_price = $request->total_price - 4000;
         }else{
             $info_total_price = $request->total_price ?? 0;

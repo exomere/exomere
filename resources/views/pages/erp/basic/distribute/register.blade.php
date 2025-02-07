@@ -116,7 +116,7 @@
               <div class="col-sm-6">
                 <input type="text" id="basic-default-account_holder" class="form-control" name='account_holder' value="{{ $distribute->account_holder ?? null }}"/>
               </div>
-            </div>
+            </div>       
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-remark">{{__('erp.remarks')}}</label>
               <div class="col-sm-6">

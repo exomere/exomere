@@ -21,7 +21,7 @@ class InquiryController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);
 
-        $inquires = ExInquire::orderBy('id', 'desc')->where('author_seq',$request->session()->get('member_seq'))->paginate($limitPage);
+        $inquires = ExInquire::orderBy('id', 'desc')->where('author_seq',$request->session()->get('member_seq'))->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->paginate($limitPage);
 
         $datas = [
             "inquires" => $inquires,
@@ -60,7 +60,9 @@ class InquiryController extends Exomere
             'title' => $request->input('title'),
             'content' => $request->input('content'),
             'author_name' => $user ? $user->name : 'Unknown',
-            'author_seq' => $user ? $user->id : 0
+            'author_seq' => $user ? $user->id : 0,
+            'member_nation' => $request->session()->get('member_nation') ?? "KR",
+            'site_code' => $request->session()->get('site_code') ?? "exomere",
         ]);
 
         return redirect()->route('inquiry.list')->with('success', 'Inquiry created successfully.');

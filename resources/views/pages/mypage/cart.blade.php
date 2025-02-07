@@ -449,7 +449,7 @@
             });
 
 
-            if (totalPrice >= 200000) {
+            if (totalPrice >= 300000) {
                 shippingFee = 0;
             } else {
                 shippingFee = 4000;

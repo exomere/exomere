@@ -29,7 +29,7 @@ class ErpPointController extends Exomere
         
         $site_code = $request->session()->get('site_code') ?? "exomere";
 
-        $query = ExMember::where('member_level', '<', 10)->where("site_code",$site_code);
+        $query = ExMember::where('member_level', '<', 10)->where("site_code",$site_code)->where('nation',$request->session()->get('member_nation'));
 
         // 검색어가 있을 경우 쿼리에 필터 추가
         if ($request->has('search_text') && $request->get('search_text') !== '') {

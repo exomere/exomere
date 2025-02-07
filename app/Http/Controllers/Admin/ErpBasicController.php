@@ -50,6 +50,7 @@ class ErpBasicController extends Exomere
             "member_level" => 20,
             "is_delete" => $request->is_delete ?? 'N',
             "remark" => $request->remark,
+            "nation" => $request->session()->get('member_nation') ?? 'KR',
         ];
 
         if(isset($request->member_pw)){
@@ -71,7 +72,7 @@ class ErpBasicController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
-        $query = ExMember::where('member_level', '>', 10)->where('is_delete','N');
+        $query = ExMember::where('member_level', '>', 10)->where('is_delete','N')->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'));
 
         // 검색어가 있을 경우 쿼리에 필터 추가
         if ($request->has('search_text') && $request->get('search_text') !== '') {
@@ -106,7 +107,7 @@ class ErpBasicController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
-        $query = ExCenter::where('is_active','Y');
+        $query = ExCenter::where('is_active','Y')->where('nation',$request->session()->get('member_nation'));
 
         // 검색어가 있을 경우 쿼리에 필터 추가
         if ($request->has('search_text') && $request->get('search_text') !== '') {
@@ -174,6 +175,7 @@ class ErpBasicController extends Exomere
             "address_detail" => $request->address_detail,
             "remark" => $request->remark,
             "is_active" => $request->is_active,
+            "nation" => $request->session()->get('member_nation') ?? 'KR',
         ];
 
         if ($request->hasFile('thum_img')) {
@@ -380,7 +382,7 @@ class ErpBasicController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
-        $query = ExDistribute::where('is_active','Y');
+        $query = ExDistribute::where('is_active','Y')->where('nation',$request->session()->get('member_nation'));
 
         // 검색어가 있을 경우 쿼리에 필터 추가
         if ($request->has('search_text') && $request->get('search_text') !== '') {
@@ -445,6 +447,7 @@ class ErpBasicController extends Exomere
             "bank" => $request->bank,
             "account_num" => $request->account_num,
             "account_holder" => $request->account_holder,
+            "nation" => $request->session()->get('member_nation') ?? 'KR',
             "remark" => $request->remark,
             "is_active" => $request->is_active ?? '',
         ];

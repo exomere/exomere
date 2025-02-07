@@ -293,6 +293,7 @@ class ErpOrderController extends Exomere
       "card_info" => json_encode($card_info) ?? [],
       "account_info" => json_encode($account_info) ?? [],
       "order_date" => $request->order_date ?? date("Y-m-d H:i:s"),
+      "nation" => $request->session()->get('member_nation') ?? 'KR',
       "is_approval" => $is_approval,
       "site_code" => $request->session()->get('site_code') ?? "exomere",
       "reg_name" => $request->session()->get('member_id'),

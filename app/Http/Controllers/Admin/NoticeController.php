@@ -21,7 +21,7 @@ class NoticeController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);
 
-        $notices = ExNotice::orderBy('id', 'desc')->paginate($limitPage);
+        $notices = ExNotice::orderBy('id', 'desc')->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->paginate($limitPage);
 
         $datas = [
             "notices" => $notices,
@@ -60,7 +60,9 @@ class NoticeController extends Exomere
             'title' => $request->input('title'),
             'content' => $request->input('content'),
             'author_name' => $user ? $user->name : 'Unknown',
-            'author_seq' => $user ? $user->id : 0
+            'author_seq' => $user ? $user->id : 0,
+            'member_nation' => $request->session()->get('member_nation') ?? "KR",
+            'site_code' => $request->session()->get('site_code') ?? "exomere",
         ]);
 
         return redirect()->route('notice.list')->with('success', 'Notice created successfully.');
@@ -107,7 +109,9 @@ class NoticeController extends Exomere
         $notice = ExNotice::findOrFail($id);
         $notice->update([
             'title' => $request->input('title'),
-            'content' => $request->input('content')
+            'content' => $request->input('content'),
+            'member_nation' => $request->session()->get('member_nation') ?? "KR",
+            'site_code' => $request->session()->get('site_code') ?? "exomere",
         ]);
 
         return redirect()->route('notice.list')->with('success', 'Notice updated successfully.');

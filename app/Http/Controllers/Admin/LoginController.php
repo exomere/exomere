@@ -40,12 +40,14 @@ class LoginController extends Exomere
             $request->session()->put('member_type', $userInfo->member_type ?? '');
             $request->session()->put('member_code', $userInfo->code ?? '');
             $request->session()->put('member_level', $userInfo->member_level ?? '');
-            $request->session()->put('site_code', $userInfo->site_code ?? '');
+            $request->session()->put('site_code', $userInfo->site_code ?? 'exomere');
+            $request->session()->put('member_nation', $userInfo->nation ?? 'KR');
+            
             auth()->login($userInfo);
             if($request->back_url){
                 return redirect($request->back_url);
             }else{
-                return redirect('/management/dashboard');
+                return redirect('/products');
             }
             
             
