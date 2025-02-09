@@ -1,15 +1,5 @@
 <?php
 
-$contents = [
-    [
-        'title' => '본사',
-        'address' => '서울 송파구 법원로11길 11 (문정동, 문정현대지식산업센터1-1) A동 204호',
-        'src' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.958500426007!2d127.1161443628678!3d37.485305671943145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca622c1588ee7%3A0xf2b3afd90b75baef!2z66y47KCVIOyngOyLneyCsOyXheyEvO2EsCBB64-Z!5e0!3m2!1sko!2skr!4v1725010469682!5m2!1sko!2skr',
-        'x' => '36.81551',
-        'y' => '127.11011',
-    ],
-];
-
 ?>
 @extends('pages.layouts.subLayout')
 
@@ -63,13 +53,12 @@ $contents = [
                     </button>
                 </div>
                 <div class="overflow-y-auto flex flex-col divide-y divide-solid divide-slate-100">
-                    @foreach($contents as $content)
+                    @foreach($items as $item)
                         <div class="py-5 cursor-pointer">
                             <a class="hover:underline"
-                               {{--                           onclick="updateMap({{ $content['x'] }}, {{ $content['y'] }})">--}}
-                               onclick="updateMap('{{ $content['src'] }}')">
-                                <p class="md:text-lg"><strong>{{ $content['title'] }}</strong></p>
-                                {{ $content['address'] }}
+                               onclick="updateMap('{{ $item['address'] }}')">
+                                <p class="md:text-lg"><strong>{{ $item['name'] }}</strong></p>
+                                {{ $item['address'] . $item['address_detail']}}
                             </a>
                         </div>
                     @endforeach
@@ -84,10 +73,20 @@ $contents = [
 
 @section('page-script')
     <script>
-        let map_frame = document.querySelector("#frameMap");
+        const map_frame = document.querySelector("#frameMap");
+        const map_url = "//www.google.com/maps/embed/v1/place?";
+        const lang = '{{ app()->getLocale() }}';
+        const mappingLanguages = {
+            'ko': 'kr',
+            'en': 'en',
+            'jp': 'ja',
+            'cn': 'zh',
+        };
 
         function updateMap(map_src) {
-            map_frame.src = map_src;
+            const src = map_url + "q=" + map_src + "&language=" + mappingLanguages[lang];
+
+            map_frame.src = src;
         }
     </script>
 

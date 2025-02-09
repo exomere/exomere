@@ -69,8 +69,8 @@ $contents = config('contents.technology.' . app()->getLocale());
                                 class="flex flex-col md:flex-row justify-center items-center gap-y-10 break-keep">
                                 <div class="flex justify-center items-center md:basis-1/2">
                                     <picture class="overflow-hidden max-w-sm">
-                                        <source srcset="{{ $content['image'] }}">
-                                        <img src="{{ $content['image'] }}"
+                                        <source srcset="{{ asset($content['image']) }}">
+                                        <img src="{{ asset($content['image']) }}"
                                              alt="{{ $content['title'] }}"
                                              data-aos="fade-in"
                                         >

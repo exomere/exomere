@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\OrganizationController;
 use App\Http\Controllers\Admin\CommissionController;
+use App\Http\Controllers\FO\AboutController;
 use App\Http\Controllers\FO\AjaxController;
 use App\Http\Controllers\FO\CommunityController;
 use App\Http\Controllers\FO\NewsVideoController;
@@ -125,9 +126,7 @@ Route::prefix('/about')->group(function () {
     Route::get('technology', function () {
         return view('pages.about.technology');
     });
-    Route::get('branch', function () {
-        return view('pages.about.branch');
-    });
+    Route::get('branch', [AboutController::class, 'branch']);
 });
 
 Route::prefix('/community/review')->group(function () {

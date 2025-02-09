@@ -72,8 +72,8 @@ $contents = config('contents.core.' . app()->getLocale());
                                 <div
                                     class="flex flex-col md:flex-row justify-center items-center max-md:space-y-10 break-keep">
                                     <picture class="overflow-hidden md:h-[60vh] md:basis-1/2">
-                                        <source srcset="{{ $content['image'] }}">
-                                        <img src="{{ $content['image'] }}"
+                                        <source srcset="{{ asset($content['image']) }}">
+                                        <img src="{{ asset($content['image']) }}"
                                              alt="{{ $content['title'] }}"
                                              data-aos="scale"
                                              class="w-full h-full">

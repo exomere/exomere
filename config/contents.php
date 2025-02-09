@@ -316,14 +316,14 @@ return [
                 'title_sub' => '한라봉 엑소좀',
                 'code' => '특허: 제 10-2023-0121591호',
                 'description' => 'Exomere Halla™는 머리카락보다 1,200배 작은 미세 입자를 통해 유효 성분이 피부에 직접 흡수되어 효과를 극대화합니다. 또한 강력한 항산화 성분을 함유하여 피부건강을 유지하는 데 도움을 주고, 멜라닌 생성을 억제하여 피부톤을 고르게 하고 기미와 잡티를 감소시키는 데 기여하며, 피부에 풍부한 영양과 수분을 공급하여 촉촉한 피부를 유지하는 데 도움을 줍니다.',
-                'image' => asset('assets/img/elements/about_technology_2.webp')
+                'image' => 'assets/img/elements/about_technology_2.webp'
             ],
             [
                 'title' => 'SPICUS™',
                 'title_sub' => '저분자 콜라겐으로 코팅된 마이크로 니들',
                 'code' => '특허: 제 10-2022-0007981호',
                 'description' => 'SPICUS™는 유효성분의 전달 통로가 되어 엑소좀과 유효 성분의 보다 효과적인 흡수를 도와줍니다. 피부 재생에 도움을 줄 수 있으며, 입자의 균일화를 통해 표피 자극을 최소화하여 부작용을 줄일 수 있습니다. 또한, 허브 성분을 배제하여 알러지 유발 가능성을 낮추었으며, 저분자 콜라겐이 코팅되어 있어 피부 치밀도 개선에 기여할 수 있습니다.',
-                'image' => asset('assets/img/elements/about_technology_1.webp')
+                'image' => 'assets/img/elements/about_technology_1.webp'
             ]
         ],
         'cn' => [
@@ -332,14 +332,14 @@ return [
                 'title_sub' => '丑橘EXOSOME',
                 'code' => '专利:第10-2023-0121591号',
                 'description' => 'Exomere Halla™通过比头发小1200倍的微粒，有效成分被皮肤直接吸收，实现效果最大化。 同时含有强效抗氧化成分,帮助维持皮肤健康,抑制黑色素生成,均衡肤色,减少黄褐斑和瑕疵,为肌肤补充丰富营养和水分,帮助维持水润肌肤。',
-                'image' => asset('assets/img/elements/about_technology_2.webp')
+                'image' => 'assets/img/elements/about_technology_2.webp'
             ],
             [
                 'title' => 'SPICUS™',
                 'title_sub' => '小分子胶原蛋白涂层微针',
                 'code' => '专利:第10-2022-0007981号',
                 'description' => 'SPICUS™成为有效成分的传递通道，有助于外泌体和有效成分的更有效吸收。 可帮助皮肤再生，通过颗粒均匀化可最大程度地减少对表皮的刺激，减少副作用。 另外,排除了草本成分,降低了诱发过敏的可能性,还涂有低分子胶原蛋白,有助于改善皮肤密度。',
-                'image' => asset('assets/img/elements/about_technology_1.webp')
+                'image' => 'assets/img/elements/about_technology_1.webp'
             ]
         ],
         'jp' => [
@@ -348,14 +348,14 @@ return [
                 'title_sub' => 'ハルラボンエクソソーム',
                 'code' => '特許: 第10-2023-0121591号',
                 'description' => 'Exomere Halla™ は髪の毛の1,200分の1の微細な粒子を通じて、有効成分が直接肌に吸収され、効果を最大化します。 強力な抗酸化成分を含み、肌の健康を保ちます。 メラニン生成を抑制し、均一な肌トーンを実現するとともに、シミやくすみを減少させる効果があります。 肌に豊富な栄養と潤いを与え、しっとりした肌を維持します。 原料の特性に基づく効果に限ります',
-                'image' => asset('assets/img/elements/about_technology_2.webp')
+                'image' => 'assets/img/elements/about_technology_2.webp'
             ],
             [
                 'title' => 'SPICUS™',
                 'title_sub' => '低分子コラーゲンでコーティングされたマイクロニードル',
                 'code' => '特許: 第10-2022-0007981号',
                 'description' => 'SPICUS™ は、有効成分の伝達通路を提供し、エクソソームと有効成分のより効果的な吸収をサポートします。 肌の再生に役立ち、粒子の均一化により表皮刺激を最小限に抑え、副作用を減らします。 ハーブ成分を排除し、アレルギーのリスクを低減。低分子コラーゲンでコーティングされており、肌の密度改善に寄与します。 原料の特性に基づく効果に限ります',
-                'image' => asset('assets/img/elements/about_technology_1.webp')
+                'image' => 'assets/img/elements/about_technology_1.webp'
             ]
         ],
         'en' => [
@@ -364,61 +364,61 @@ return [
                 'title_sub' => 'Hallabong Exosome',
                 'code' => 'Patent: No.10-2023-0121591',
                 'description' => 'Exomere Halla™ is absorbed directly into the skin through 120 times smaller micro particles than the hair. In addition, it contains strong antioxidants to maintain skin health, helping skin health, thereby reducing skin tone and moisturizing skin tone and moisture to maintain skin tone and moisture and moisture.',
-                'image' => asset('assets/img/elements/about_technology_2.webp')
+                'image' => 'assets/img/elements/about_technology_2.webp'
             ],
             [
                 'title' => 'SPICUS™',
                 'title_sub' => 'Microneedle coated with low molecular collagen',
                 'code' => 'Patent: No. 10-2022-0007981',
                 'description' => 'SPICUS™ serves as the channel for the delivery of active ingredients, which helps the exosomes and active ingredients absorb more effectively. It can help the skin regenerate, and by equalizing the particles, the side effects can be reduced by minimizing the irritation of the epidermis. In addition, the possibility of causing allergies can be reduced by excluding the herbal ingredients, and since it is coated with the low molecular weight collagen, it can contribute to the improvement of the skin density.',
-                'image' => asset('assets/img/elements/about_technology_1.webp')
+                'image' => 'assets/img/elements/about_technology_1.webp'
             ]
         ]
     ],
 
     "technology" => [
-        'kr' => [
+        'ko' => [
             [
                 'title' => 'Exomere Halla™',
                 'title_sub' => '한라봉 엑소좀 분리',
                 'code' => '특허: 제 10-2023-0121591호',
                 'description' => '유기농으로 재배된 제주 한라봉으로부터 추출한 엑소좀을 유효 성분으로 하여 항산화, 피부 세포재생 및 미백에 효과를 갖는 것을 특징으로 하는 화장품 조성물이다.',
-                'image' => asset('assets/img/elements/tech_01.jpg')
+                'image' => 'assets/img/elements/tech_01.jpg'
             ],
             [
                 'title' => 'EXOSOME AG™',
                 'title_sub' => '흑마늘, 알로에베라 엑소좀 분리',
                 'code' => '특허: 제 10-2534286호',
                 'description' => '유기농으로 재배된 알로에베라, 흑마늘로부터 추출한 엑소좀을 유효 성분으로 하여 피부 주름개선, 피부 보습 및 장벽 강화에 효과를 갖는 것을 특징으로 하는 화장품 조성물이다.',
-                'image' => asset('assets/img/elements/tech_02.jpg')
+                'image' => 'assets/img/elements/tech_02.jpg'
             ],
             [
                 'title' => '엑소좀 리프팅 실',
                 'title_sub' => '엑소좀을 함유하는 리프팅용 실',
                 'code' => '특허: 제 10-2698031호',
                 'description' => '뉴 콘 듀얼 K-리프팅 실은 실루엣 소프트 실의 단점인 리프팅을 강화하기 위해 가시가 추가되어 콘과 가시의 듀얼 리프팅이 가능한 차세대 리프팅용 콘 실로, 엑소좀을 함유하고 있다.',
-                'image' => asset('assets/img/elements/tech_03.png')
+                'image' => 'assets/img/elements/tech_03.png'
             ],
             [
                 'title' => '비양나무추출물',
                 'title_sub' => '제주도 비양나무추출물의 화장료 조성물',
                 'code' => '특허: 제 10-1441190호',
                 'description' => '제주도에서 자생하는 비양나무에서 추출한 원료로서, 노화방지와 항산화 효과, 항염 효과, 항균 작용 및 미백 효과를 갖는 것을 특징으로 하는 화장료 조성물이다.',
-                'image' => asset('assets/img/elements/tech_04.jpg')
+                'image' => 'assets/img/elements/tech_04.jpg'
             ],
             [
                 'title' => '통증완화용 조성물',
                 'title_sub' => '천연미세침을 포함하는 통증완화용 조성물',
                 'code' => '특허: 제 10-1984260호',
                 'description' => '통증 완화에 도움을 주는 글루코사민, MSM, 일라이트, 노니추출물, 온천수 등이 천연미세침과 혼합되어 효과를 극대화시킨 원료로서, 혈행을 개선시켜 염증억제에 도움을 주고, 피부 온도 상승과, 붓기 개선, 셀룰라이트감소, 피부 흡수율 상승 등의 효과를 가지고 있다.',
-                'image' => asset('assets/img/elements/tech_05.png')
+                'image' => 'assets/img/elements/tech_05.png'
             ],
             [
                 'title' => '고체 미세침 필러',
                 'title_sub' => '피부 주입식 고체 미세침 형태의 필러',
                 'code' => '특허: 제 10-1285831호',
                 'description' => '기존의 주사용 필러와는 다르게 고체 형태의 필러로 세계최초로 개발되었으며, 콜라겐을 형성하는 생분해물질의 일종인 PLLA(Poly-L-Lactic-Acid)재질로 형성되어, 2-3년 이상 장기간 지속 볼륨 증강 작용이 가능하며 깊은 주름 제거와 코끝 올리는 용도로도 사용하는 고체형 필러이다.',
-                'image' => asset('assets/img/elements/tech_06.png')
+                'image' => 'assets/img/elements/tech_06.png'
             ]
         ],
 
@@ -428,42 +428,42 @@ return [
                 'title_sub' => 'Extraction of Hallabong Exosome',
                 'code' => 'Patent: No. 10-2023-0121591',
                 'description' => 'A cosmetic composition characterized by its antioxidant, skin cell regeneration, and whitening effects, using exosomes extracted from organically grown Jeju Hallabong as active ingredients.',
-                'image' => asset('assets/img/elements/tech_01.jpg')
+                'image' => 'assets/img/elements/tech_01.jpg'
             ],
             [
                 'title' => 'EXOSOME AG™',
                 'title_sub' => 'Extraction of Black Garlic and Aloe Vera Exosomes',
                 'code' => 'Patent: No. 10-2534286',
                 'description' => 'A cosmetic composition characterized by its effectiveness in improving skin wrinkles, moisturizing, and strengthening the skin barrier, using exosomes extracted from organically grown aloe vera and black garlic.',
-                'image' => asset('assets/img/elements/tech_02.jpg')
+                'image' => 'assets/img/elements/tech_02.jpg'
             ],
             [
                 'title' => 'Exosome Lifting Thread',
                 'title_sub' => 'Thread for Lifting Containing Exosomes',
                 'code' => 'Patent: No. 10-2698031',
                 'description' => 'The New Cone Dual K-Lifting Thread enhances lifting by adding barbs to overcome the limitations of Silhouette Soft Threads, making it a next-generation lifting cone thread with dual lifting capabilities, containing exosomes.',
-                'image' => asset('assets/img/elements/tech_03.png')
+                'image' => 'assets/img/elements/tech_03.png'
             ],
             [
                 'title' => 'Biyang Tree Extract',
                 'title_sub' => 'Cosmetic Composition with Extract from Jeju Biyang Tree',
                 'code' => 'Patent: No. 10-1441190',
                 'description' => 'A cosmetic composition characterized by its anti-aging, antioxidant, anti-inflammatory, antibacterial, and whitening effects, using extracts from Jeju Island’s native Biyang tree.',
-                'image' => asset('assets/img/elements/tech_04.jpg')
+                'image' => 'assets/img/elements/tech_04.jpg'
             ],
             [
                 'title' => 'Pain Relief Composition',
                 'title_sub' => 'Composition for Pain Relief Containing Natural Microneedles',
                 'code' => 'Patent: No. 10-1984260',
                 'description' => 'A material that combines glucosamine, MSM, illite, noni extract, hot spring water, and natural microneedles to maximize effectiveness, aiding in improving circulation, reducing inflammation, increasing skin temperature, reducing swelling and cellulite, and enhancing skin absorption.',
-                'image' => asset('assets/img/elements/tech_05.png')
+                'image' => 'assets/img/elements/tech_05.png'
             ],
             [
                 'title' => 'Solid Microneedle Filler',
                 'title_sub' => 'Skin Injectable Solid Microneedle Filler',
                 'code' => 'Patent: No. 10-1285831',
                 'description' => 'A world-first solid-type filler, different from conventional injectable fillers. Made of PLLA (Poly-L-Lactic-Acid), a biodegradable material forming collagen, it offers long-lasting volumizing effects for 2-3 years and is used for deep wrinkle removal and nose lifting.',
-                'image' => asset('assets/img/elements/tech_06.png')
+                'image' => 'assets/img/elements/tech_06.png'
             ]
         ],
 
@@ -473,42 +473,42 @@ return [
                 'title_sub' => '提取济州丑橘外泌体',
                 'code' => '专利: 第10-2023-0121591号',
                 'description' => '从有机栽培的济州丑橘中提取的外泌体为有效成分,具有抗氧化、皮肤细胞再生及美白效果为特征的化妆品组合物。',
-                'image' => asset('assets/img/elements/tech_01.jpg')
+                'image' => 'assets/img/elements/tech_01.jpg'
             ],
             [
                 'title' => 'EXOSOME AG™',
                 'title_sub' => '提取芦荟、黑蒜外泌体',
                 'code' => '专利: 第10-2534286号',
                 'description' => '以有机栽培的芦荟、黑蒜中提取的外泌体为有效成分,具有改善皮肤皱纹、保湿及强化皮肤屏障的效果为特征的化妆品组合物。',
-                'image' => asset('assets/img/elements/tech_02.jpg')
+                'image' => 'assets/img/elements/tech_02.jpg'
             ],
             [
                 'title' => '外泌体提拉线',
                 'title_sub' => 'Newcon 双K-提拉线',
                 'code' => '专利: 第10-2698031号',
                 'description' => 'Newcon 双K-提拉线是为了强化轮廓软线的缺点--提拉,增加了刺,可实现con和刺的双提拉的新一代提拉用con线, 含有外泌体。',
-                'image' => asset('assets/img/elements/tech_03.png')
+                'image' => 'assets/img/elements/tech_03.png'
             ],
             [
                 'title' => '杨树提取物',
                 'title_sub' => '济州岛杨树提取物',
                 'code' => '专利: 第10-1441190号',
                 'description' => '是从济州岛自生的杨树中提取的原料,具有防止老化和抗氧化效果、抗炎效果、抗菌作用及美白效果为特征的化妆品组合物。',
-                'image' => asset('assets/img/elements/tech_04.jpg')
+                'image' => 'assets/img/elements/tech_04.jpg'
             ],
             [
                 'title' => '疼痛缓解用组成物',
                 'title_sub' => '包含天然微针的疼痛缓解组成物',
                 'code' => '专利: 第10-1984260号',
                 'description' => '帮助缓解疼痛的氨基葡萄糖、MSM、ELIGHT、诺丽果提取物、温泉水等与天然微针混合,将效果极大化的原料,具有改善血液循环、抑制炎症、改善皮肤温度、改善浮肿、减少脂肪团和提高皮肤吸收率等效果。',
-                'image' => asset('assets/img/elements/tech_05.png')
+                'image' => 'assets/img/elements/tech_05.png'
             ],
             [
                 'title' => '固体微针填料',
                 'title_sub' => '皮肤注入型固体微针填充物',
                 'code' => '专利: 第10-1285831号',
                 'description' => '与现有的注射用填充物不同,作为固体形态的填充物,在世界上首次开发出来,由形成胶原蛋白的生物分解物质之一的PLLA(Poly-L-L-Lactic-Acid)材质形成,可长时间持续2-3年以上增强立体感,是用于去除深层皱纹和提高鼻尖的固体填充物。',
-                'image' => asset('assets/img/elements/tech_06.png')
+                'image' => 'assets/img/elements/tech_06.png'
             ]
         ],
 
@@ -518,42 +518,42 @@ return [
                 'title_sub' => '済州ハルラボン外泌体抽出',
                 'code' => '特許: 第10-2023-0121591号',
                 'description' => 'オーガニックで栽培された済州ハルラボンから抽出されたエクソソームを有効成分とし、抗酸化作用、肌細胞の再生、美白効果を持つ化粧品の組成物です。',
-                'image' => asset('assets/img/elements/tech_01.jpg')
+                'image' => 'assets/img/elements/tech_01.jpg'
             ],
             [
                 'title' => 'EXOSOME AG™',
                 'title_sub' => 'アロエベラ、黒ニンニク外泌体抽出',
                 'code' => '特許: 第10-2534286号',
                 'description' => 'オーガニックで栽培されたアロエベラと黒ニンニクから抽出されたエクソソームを有効成分とし、シワ改善、保湿、肌バリア強化効果を持つ化粧品の組成物です。',
-                'image' => asset('assets/img/elements/tech_02.jpg')
+                'image' => 'assets/img/elements/tech_02.jpg'
             ],
             [
                 'title' => 'エクソソームリフティングスレッド',
                 'title_sub' => '新型コーンデュアルKリフティングスレッド',
                 'code' => '特許: 第10-2698031号',
                 'description' => '新しいコーンデュアルKリフティングスレッドは、エクソソームを含有し、リフティングを強化するための次世代リフティング用スレッドです。',
-                'image' => asset('assets/img/elements/tech_03.png')
+                'image' => 'assets/img/elements/tech_03.png'
             ],
             [
                 'title' => 'ビヤンツリー抽出物',
                 'title_sub' => '済州島ビヤンツリー抽出物',
                 'code' => '特許: 第10-1441190号',
                 'description' => '済州島に自生するビヤンツリーから抽出した原料であり、次のような特性を持つ化粧品組成物です：老化防止効果、抗酸化効果、抗炎症効果、抗菌作用、美白効果。',
-                'image' => asset('assets/img/elements/tech_04.jpg')
+                'image' => 'assets/img/elements/tech_04.jpg'
             ],
             [
                 'title' => '痛みを和らげる組成物',
                 'title_sub' => '天然微細針を含む痛み緩和組成物',
                 'code' => '特許: 第10-1984260号',
                 'description' => '痛みの緩和に効果があるグルコサミン、MSM（メチルスルフォニルメタン）、イライト、ノニ抽出物、温泉水などを、天然の微細針と混合して効果を最大化させた原料です。血行の改善、炎症の抑制、皮膚温度の上昇、腫れの改善、セルライトの減少、皮膚吸収率の向上。',
-                'image' => asset('assets/img/elements/tech_05.png')
+                'image' => 'assets/img/elements/tech_05.png'
             ],
             [
                 'title' => '固体微細針フィラー',
                 'title_sub' => '皮膚注入型固体微細針フィラー',
                 'code' => '特許: 第10-1285831号',
                 'description' => '従来の注射式フィラーとは異なり、固体形態のフィラーとして世界初で開発された製品です。コラーゲンを生成する生分解性物質の一種であるPLLA（ポリ-L-乳酸）素材で構成されており、以下の特徴を持っています：2～3年以上の長期間持続するボリューム増強作用、深いシワの除去、鼻先のリフトアップ。',
-                'image' => asset('assets/img/elements/tech_06.png')
+                'image' => 'assets/img/elements/tech_06.png'
             ]
         ],
     ]
