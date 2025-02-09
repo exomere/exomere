@@ -780,5 +780,24 @@ class ErpCommissionController extends Exomere
 
         return json_encode($output_data);
     }
+
+    public function confirmation(Request $request){
+        // dd($request->input());
+        ExStatements::where('type',$request->type)->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->where('code',$request->code)
+        ->update([
+            'is_confirmation' => 'Y'
+        ]);
+        ExStatementsMember::where('type',$request->type)->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->where('code',$request->code)
+        ->update([
+            'is_confirmation' => 'Y'
+        ]);
+
+        if($request->type == 'term' ){
+            return redirect()->route('erp-allowance.term-closing');
+        }else{
+            return redirect()->route('erp-allowance.monthly-closing');
+        }
+        
+    }
     
 }

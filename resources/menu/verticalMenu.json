@@ -5,6 +5,7 @@
       "name": "dashboard",
       "icon": "menu-icon tf-icons bx bx-home-circle",
       "read": "all",
+      "level": 0,
       "slug": "dashboard"
     },
     {
@@ -20,6 +21,7 @@
         {
           "url": "management/member",
           "name": "profile_manage",
+          "level": 0,
           "slug": "member.info"
         }
       ]
@@ -33,12 +35,15 @@
         {
           "url": "management/order/list",
           "name": "order_history",
+          "level": 0,
           "slug": "order-list"
         },
         {
           "url": "management/order/recruitment_list",
           "name": "recruitment_history",
+          "level": 0,
           "slug": "recruitment-list"
+          
         }
       ]
     },
@@ -51,11 +56,13 @@
         {
           "url": "management/commission/termClosing",
           "name": "past_due",
+          "level": 0,
           "slug": "term-closing" 
         },
         {
           "url": "management/commission/monthlyClosing",
           "name": "monthly_closing",
+          "level": 0,
           "slug": "monthly-closing"
         }
       ]
@@ -65,6 +72,7 @@
       "icon": "menu-icon tf-icons bx bx-sitemap",
       "slug": "cards-basic",
       "read": "user",
+      "level": 0,
       "url": "management/organization/list"
     },
     {
@@ -72,6 +80,7 @@
       "icon": "menu-icon tf-icons bx bxs-notification",
       "slug": "notice.list",
       "read": "user",
+      "level": 0,
       "url": "management/notice/list"
     },
     {
@@ -79,6 +88,7 @@
       "icon": "menu-icon tf-icons bx bxs-bell-ring",
       "slug": "inquiry.list",
       "read": "user",
+      "level": 0,
       "url": "management/inquiry/list"
     },
     {
@@ -95,6 +105,7 @@
         {
           "url": "management/erp/member/list",
           "name": "member_list",
+          "level": 10,
           "slug": "erp-member.list"
         }
       ]
@@ -108,6 +119,7 @@
         {
           "url": "management/erp/order/list",
           "name": "order_list",
+          "level": 10,
           "slug": "erp-order-layouts-order-list"
         }
       ]
@@ -121,11 +133,13 @@
         {
           "url": "management/erp/commission/termClosing",
           "name": "past_due",
+          "level": 10,
           "slug": "erp-allowance.term-closing"
         },
         {
           "url": "management/erp/commission/monthlyClosing",
           "name": "monthly_closing",
+          "level": 10,
           "slug": "erp-allowance.monthly-closing"
         }
       ]
@@ -139,6 +153,7 @@
         {
           "url": "management/erp/point/list",
           "name": "bonus_point",
+          "level": 10,
           "slug": "erp-point.list"
         }
       ]
@@ -152,36 +167,43 @@
         {
           "url": "management/erp/board/notice/list",
           "name": "announcements",
+          "level": 10,
           "slug": "erp-board.notice.list"
         },
         {
           "url": "management/erp/board/inquiry/list",
           "name": "inquiries",
+          "level": 10,
           "slug": "erp-board.inquiry.list"
         },
         {
           "url": "management/erp/board/review/list",
           "name": "review",
+          "level": 10,
           "slug": "erp-board.review.list"
         },
         {
           "url": "management/erp/board/news/list",
           "name": "news",
+          "level": 25,
           "slug": "erp-board.news.list"
         },
         {
           "url": "management/erp/board/video/list",
           "name": "videos",
+          "level": 25,
           "slug": "erp-board.video.list"
         },
         {
           "url": "management/erp/board/banner/list",
           "name": "banners",
+          "level": 25,
           "slug": "erp-board.banner.list"
         },
         {
           "url": "management/erp/board/reference/list",
           "name": "references",
+          "level": 25,
           "slug": "erp-board.reference.list"
         }
       ]
@@ -195,21 +217,25 @@
         {
           "url": "management/erp/basic/manager/list",
           "name": "manager_list",
+          "level": 10,
           "slug": "erp-basic.manager.list"
         },
         {
           "url": "management/erp/basic/center/list",
           "name": "center_list",
+          "level": 10,
           "slug": "basic-layouts-center-list"
         },
         {
           "url": "management/erp/basic/item/list",
           "name": "product_list",
+          "level": 25,
           "slug": "basic-layouts-item-list"
         },
         {
           "url": "management/erp/basic/distribute/list",
           "name": "distribute_list",
+          "level": 10,
           "slug": "basic-layouts-distribute-list"
         }
       ]

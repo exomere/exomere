@@ -7,7 +7,8 @@ use App\Http\Controllers\Exomere;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 class LoginController extends Exomere
 {
     /**
@@ -42,7 +43,19 @@ class LoginController extends Exomere
             $request->session()->put('member_level', $userInfo->member_level ?? '');
             $request->session()->put('site_code', $userInfo->site_code ?? 'exomere');
             $request->session()->put('member_nation', $userInfo->nation ?? 'KR');
-            
+
+            $localearray = [
+                'KR' => 'ko',
+                'JP' => 'jp',
+                'USA' => 'en',
+                'CN' => 'cn',
+            ];
+
+            $nation = $localearray[$userInfo->nation] ?? 'ko';
+
+            Session::put('locale', $nation);
+            App::setLocale($nation);
+
             auth()->login($userInfo);
             if($request->back_url){
                 return redirect($request->back_url);

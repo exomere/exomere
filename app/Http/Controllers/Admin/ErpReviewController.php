@@ -16,7 +16,7 @@ class ErpReviewController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
 
-        $query = ExReview::with('item')
+        $query = ExReview::where('nation',$request->session()->get('member_nation'))->with('item')
             ->withCount('likes');
 
         // 검색어가 있을 경우 쿼리에 필터 추가

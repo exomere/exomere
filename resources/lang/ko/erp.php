@@ -123,6 +123,7 @@ return [
     'allowment_calculation' => '수수료 계산',
     'gi_closing_date' => '기마감',
     'details' => '상세',
+    'confirmation' => '컨펌',
     'closing_date' => '마감일자',
     'start_date' => '시작일자',
     'end_date' => '종료일자',

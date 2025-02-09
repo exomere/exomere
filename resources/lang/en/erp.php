@@ -122,6 +122,7 @@ return [
     'allowment_calculation' => 'Allowment calculation',
     'gi_closing_date' => 'Gi closing date',
     'details' => 'Details',
+    'confirmation' => 'confirmation',
     'closing_date' => 'Closing date',
     'start_date' => 'Start date',
     'end_date' => 'End date',

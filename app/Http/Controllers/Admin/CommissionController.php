@@ -26,7 +26,7 @@ class CommissionController extends Exomere
         $e_date = $request->end_date ?? date('Y-m-d');
 
         // $statements = ExStatementsMember::where("type","term")->orderBy('id', 'desc')->whereBetWeen('created_at',[$s_date,$e_date]);
-        $statements = ExStatementsMember::where("type","term")->where("member_seq",$request->session()->get('member_seq'))->orderBy('id', 'desc');
+        $statements = ExStatementsMember::where("type","term")->where('is_confirmation','Y')->where("member_seq",$request->session()->get('member_seq'))->orderBy('id', 'desc');
 
         $output_data = [];
         $total_count = $statements->count();
@@ -60,7 +60,7 @@ class CommissionController extends Exomere
         $e_date = $request->end_date ?? date('Y-m-d');
 
         // $statements = ExStatementsMember::where("type","month")->orderBy('id', 'desc')->whereBetWeen('created_at',[$s_date,$e_date]);
-        $statements = ExStatementsMember::where("type","month")->where("member_seq",$request->session()->get('member_seq'))->orderBy('id', 'desc');
+        $statements = ExStatementsMember::where("type","month")->where('is_confirmation','Y')->where("member_seq",$request->session()->get('member_seq'))->orderBy('id', 'desc');
         
         $output_data = [];
         $total_count = $statements->count();

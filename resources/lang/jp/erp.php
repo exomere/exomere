@@ -121,6 +121,7 @@ return [
     'allowment_calculation' => '手当計算',
     'gi_closing_date' => 'GI締切日',
     'details' => '詳細',
+    'confirmation' => 'confirmation',
     'closing_date' => '締切日',
     'start_date' => '開始日',
     'end_date' => '終了日',

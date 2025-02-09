@@ -46,6 +46,7 @@
         <tr>
           <th style=' vertical-align: middle;'>No</th>
           <th style=' vertical-align: middle;'>{{__('erp.details')}}</th>
+          <th style=' vertical-align: middle;'>{{__('erp.confirmation')}}</th>
           <th style=' vertical-align: middle;'>{{__('erp.closing_date')}}</th>
           <th style=' vertical-align: middle;'>{{__('erp.start_date')}}</th>
           <th style=' vertical-align: middle;'>{{__('erp.end_date')}}</th>
@@ -68,6 +69,15 @@
                     <a class="badge bg-label-info me-4" href="{{ route('erp-allowance.monthly-detail', ['code' => $statement->code, 'type' => $statement->type]) }}">
                         <span class="fw-medium">{{__('erp.view_details')}}</span>
                     </a>
+                </td>
+                <td>
+                  @if($statement->is_confirmation == 'N')
+                    <a class="badge bg-label-info me-4" href="{{ route('erp-allowance.confirmation', ['code' => $statement->code, 'type' => $statement->type]) }}">
+                        <span class="fw-medium">{{__('erp.confirmation')}}</span>
+                    </a>
+                  @else
+                  {{__('erp.approval_complete')}}
+                  @endif
                 </td>
                 <td><span class="fw-medium">{{ date("Y-m-d",strtotime($statement->deadline_date)) }}</span></td>
                 <td><span class="fw-medium">{{ date("Y-m-d",strtotime($statement->s_date)) }}</span></td>

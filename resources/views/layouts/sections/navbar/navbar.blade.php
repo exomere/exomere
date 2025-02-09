@@ -82,6 +82,41 @@
                                             <span class="align-middle">My Profile</span>
                                         </a>
                                     </li>
+                                    @if(request()->session()->get('member_level') > 10)
+                                        <li>
+                                            <a class="dropdown-item" href="#" onclick="copyToClipBoard('site');">
+                                                <i class="bx bx-plus me-2"></i>
+                                                <span class="align-middle">SITE URL</span>
+                                                <div class='urlZone'></div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" onclick="copyToClipBoard('join');">
+                                                <i class="bx bx-plus me-2"></i>
+                                                <span class="align-middle">Create Code</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    <script type='text/javascript'>
+                                            function copyToClipBoard(e) {
+                                                var code = "{{request()->session()->get('site_code')}}";
+                                                if(e == 'join'){
+                                                    var url = 'exomere.co.kr/signup?code='+code;
+                                                }else{
+                                                    var url = 'exomere.co.kr?code='+code;
+                                                }
+                                                
+                                                var tempInput = $('<input>');
+                                                $('.urlZone').append(tempInput);
+                                                tempInput.val(url).select();
+                                                const copy = document.execCommand('copy');
+                                                tempInput.remove();
+
+                                                if(copy){
+                                                    alert('URL이 복사되었습니다.');
+                                                }
+                                            }
+                                    </script>
                                     <li>
                                         <div class="dropdown-divider"></div>
                                     </li>

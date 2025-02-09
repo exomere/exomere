@@ -27,7 +27,7 @@
             </div>
             <div class="row mb-3">
               <div class="row mb-3">
-                <label class="col-sm-1 col-form-label" for="director_info"> <span style='color:red;'>*</span> {{__('erp.select_local_point')}}/label>
+                <label class="col-sm-1 col-form-label" for="director_info"> <span style='color:red;'>*</span> {{__('erp.select_local_point')}}</label>
                 <div class="col-sm-6">
                   <div class="input-group">
                     <input type="hidden" class="form-control" id="director_seq" readonly name='director_seq' value="{{ $center->director_seq ?? null }}"/>

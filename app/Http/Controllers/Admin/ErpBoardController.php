@@ -28,7 +28,7 @@ class ErpBoardController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);
 
-        $notices = ExNotice::orderBy('id', 'desc')->paginate($limitPage);
+        $notices = ExNotice::orderBy('id', 'desc')->where('nation',$request->session()->get('member_nation'))->paginate($limitPage);
 
         $datas = [
             "notices" => $notices,
@@ -145,7 +145,7 @@ class ErpBoardController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);
 
-        $query = ExInquire::orderBy('id', 'desc');
+        $query = ExInquire::orderBy('id', 'desc')->where('nation',$request->session()->get('member_nation'));
 
         // 검색어가 있을 경우 쿼리에 필터 추가
         if ($request->has('search_text') && $request->get('search_text') !== '') {
@@ -296,7 +296,7 @@ class ErpBoardController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);
 
-        $newss = ExNews::orderBy('id', 'desc')->paginate($limitPage);
+        $newss = ExNews::where('nation',$request->session()->get('member_nation'))->orderBy('id', 'desc')->paginate($limitPage);
 
         $datas = [
             "newss" => $newss,
@@ -434,7 +434,7 @@ class ErpBoardController extends Exomere
         $limitPage = $this->getPageLimit();
         $page = $request->get('page', 1);
 
-        $videos = ExVideo::orderBy('id', 'desc')->paginate($limitPage);
+        $videos = ExVideo::orderBy('id', 'desc')->where('nation',$request->session()->get('member_nation'))->paginate($limitPage);
 
         $datas = [
             "videos" => $videos,

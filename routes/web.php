@@ -318,6 +318,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('/userCommissionList', [ErpCommissionController::class, 'userCommissionList'])->name('erp.user.commission');
                 // ㄴ 마감 삭제
                 Route::get('/statementDel/{seq?}', [ErpCommissionController::class, 'statementDel'])->name('erp.statement.del');
+                Route::get('/confirmation', [ErpCommissionController::class, 'confirmation'])->name('erp-allowance.confirmation');
             });
 
             // 포인트관리 point
