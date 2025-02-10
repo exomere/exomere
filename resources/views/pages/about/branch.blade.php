@@ -72,9 +72,11 @@
 @endsection
 
 @section('page-script')
+</script>
     <script>
+        // AIzaSyDBW8IYeMrOGfuOa4PI5gW14byihv5UDTA
         const map_frame = document.querySelector("#frameMap");
-        const map_url = "//www.google.com/maps/embed/v1/place?";
+        const map_url = "//www.google.com/maps/embed/v1/place?key=AIzaSyDBW8IYeMrOGfuOa4PI5gW14byihv5UDTA";
         const lang = '{{ app()->getLocale() }}';
         const mappingLanguages = {
             'ko': 'kr',
@@ -84,7 +86,7 @@
         };
 
         function updateMap(map_src) {
-            const src = map_url + "q=" + map_src + "&language=" + mappingLanguages[lang];
+            const src = map_url + "&q=" + map_src + "&language=" + mappingLanguages[lang];
 
             map_frame.src = src;
         }
