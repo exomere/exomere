@@ -36,6 +36,9 @@ class OrderController extends Exomere
                 }else if($ex_member->member_position == "총판"){
                     $pd_price = $ex_item->exclusive_price ?? 0;
                     $pd_pv = $ex_item->exclusive_pv ?? 0;
+                }else if($ex_member->member_position == "총판1"){
+                    $pd_price = $ex_item->exclusive_price1 ?? 0;
+                    $pd_pv = $ex_item->exclusive_pv1 ?? 0;
                 }else if($ex_member->member_position == "뷰티플래너"){
                     $pd_price = $ex_item->planer_price ?? 0;
                     $pd_pv = $ex_item->planer_pv ?? 0;
@@ -69,6 +72,9 @@ class OrderController extends Exomere
             }else if($ex_member->member_position == "총판"){
                 $pd_price = $ex_item->exclusive_price ?? 0;
                 $pd_pv = $ex_item->exclusive_pv ?? 0;
+            }else if($ex_member->member_position == "총판1"){
+                $pd_price = $ex_item->exclusive_price1 ?? 0;
+                $pd_pv = $ex_item->exclusive_pv1 ?? 0;
             }else if($ex_member->member_position == "뷰티플래너"){
                 $pd_price = $ex_item->planer_price ?? 0;
                 $pd_pv = $ex_item->planer_pv ?? 0;
@@ -132,6 +138,9 @@ class OrderController extends Exomere
             }else if($ex_member->member_position == "총판"){
                 $pd_price = $item_info->exclusive_price;
                 $pd_pv = $item_info->exclusive_pv;
+            }else if($ex_member->member_position == "총판1"){
+                $pd_price = $item_info->exclusive_price1;
+                $pd_pv = $item_info->exclusive_pv1;
             }else if($ex_member->member_position == "뷰티플래너"){
                 $pd_price = $item_info->planer_price;
                 $pd_pv = $item_info->planer_pv;

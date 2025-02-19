@@ -273,6 +273,9 @@ class ProductController extends BaseController
                 if (request()->session()->get('member_position') == "총판") {
                     $pd_price = $item_info->exclusive_price;
                     $pd_pv = $item_info->exclusive_pv;
+                }elseif (request()->session()->get('member_position') == "총판1") {
+                    $pd_price = $item_info->exclusive_price1;
+                    $pd_pv = $item_info->exclusive_pv1;
                 } elseif (request()->session()->get('member_position') == "회원") {
                     $pd_price = $item_info->mem_price;
                     $pd_pv = $item_info->mem_pv;

@@ -24,7 +24,7 @@
 <div class="print-container">
   <div class="header">
     <h1>제품 구매 주문서</h1>
-    <h4><input type='checkbox'>신규 <input type='checkbox'>재구매 <input type='checkbox'>고객 <input type='checkbox'>총판</h4>
+    <h4><input type='checkbox'>신규 <input type='checkbox'>재구매 <input type='checkbox'>고객 <input type='checkbox'>FC</h4>
   </div>
 
   <div class="order-details">

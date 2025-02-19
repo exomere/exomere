@@ -106,9 +106,10 @@
                     <option @isset($member->member_position) @if($member->member_position == "뷰티플래너")  selected  @endif @endisset value="뷰티플래너">뷰티플래너</option>
                     <option @isset($member->member_position) @if($member->member_position == "대리점")  selected  @endif @endisset value="대리점">대리점</option>
                   @endif
-                  <option @isset($member->member_position) @if($member->member_position == "총판")  selected  @endif @endisset value="총판">총판</option>
-                  <option @isset($member->member_position) @if($member->member_position == "우수총판")  selected  @endif @endisset value="우수총판">우수총판</option>
-                  <option @isset($member->member_position) @if($member->member_position == "최우수총판")  selected  @endif @endisset value="최우수총판">최우수총판</option>
+                  <option @isset($member->member_position) @if($member->member_position == "총판")  selected  @endif @endisset value="총판">FC</option>
+                  <option @isset($member->member_position) @if($member->member_position == "총판1")  selected  @endif @endisset value="총판">FC1</option>
+                  <option @isset($member->member_position) @if($member->member_position == "우수총판")  selected  @endif @endisset value="우수총판">우수FC</option>
+                  <option @isset($member->member_position) @if($member->member_position == "최우수총판")  selected  @endif @endisset value="최우수총판">최우수FC</option>
                 </select>
               </div>
             </div>

@@ -67,7 +67,7 @@ class OrganizationController extends Exomere
 
         $orgData = [];
         $topMember = ExMember::where('id', $user->recommend_seq)->first();
-        dd($topMember);
+        
         if ($topMember) {
             $orgData[] = ['id' => $topMember->id, 'name' => $topMember->name, 'title' => $topMember->member_position];
         }

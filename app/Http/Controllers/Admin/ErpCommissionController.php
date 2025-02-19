@@ -445,7 +445,7 @@ class ErpCommissionController extends Exomere
      */
     private function promoteCalculation($calcu_code,$s_date, $e_date,$total_pv){
 
-        $ex_members1 = ExMember::where("member_position","총판")->get();
+        $ex_members1 = ExMember::whereIn("member_position",["총판","총판1"])->get();
         $ex_members2 = ExMember::whereIn("member_position",["우수총판","최우수총판"])->get();
         
         $score = [];

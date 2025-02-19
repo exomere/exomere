@@ -257,6 +257,17 @@ class ErpBasicController extends Exomere
     {
 
         $item_seq = $request->item_seq ?? null;
+        $base_price = $request->price;
+        $pv = ceil($base_price / 1.1);
+        $tax = $base_price - $pv;
+        $planer_price = $base_price * 0.9;
+        $planer_pv = ceil($planer_price / 1.1);
+        $store_price = $base_price * 0.7;
+        $store_pv = ceil($store_price / 1.1);
+        $exclusive_price = $base_price * 0.45;
+        $exclusive_pv = ceil($exclusive_price / 1.1);
+        $exclusive_price1 = $base_price * 0.5;
+        $exclusive_pv1 = ceil($exclusive_price1 / 1.1);
 
         $input_data = [
             "name" => $request->name ?? null ,
@@ -270,17 +281,19 @@ class ErpBasicController extends Exomere
             "sort" => $request->sort ?? 9999,
 
             "price" => $request->price ?? 0 ,
-            "tax" => $request->tax ?? 0 ,
-            "pv" => $request->pv ?? 0 ,
+            "tax" => $tax ?? 0 ,
+            "pv" => $pv ?? 0 ,
             "pv2" => $request->pv2 ?? 0 ,
             "mem_price" => $request->mem_price ?? 0 ,
             "mem_pv" => $request->mem_pv ?? 0 ,
-            "planer_price" => $request->planer_price ?? 0 ,
-            "planer_pv" => $request->planer_pv ?? 0 ,
-            "store_price" => $request->store_price ?? 0 ,
-            "store_pv" => $request->store_pv ?? 0 ,
-            "exclusive_price" => $request->exclusive_price ?? 0 ,
-            "exclusive_pv" => $request->exclusive_pv ?? 0 ,
+            "planer_price" => $planer_price ?? 0 ,
+            "planer_pv" => $planer_pv ?? 0 ,
+            "store_price" => $store_price ?? 0 ,
+            "store_pv" => $store_pv ?? 0 ,
+            "exclusive_price" => $exclusive_price ?? 0 ,
+            "exclusive_pv" => $exclusive_pv ?? 0 ,
+            "exclusive_price1" => $exclusive_price1 ?? 0 ,
+            "exclusive_pv1" => $exclusive_pv1 ?? 0 ,
 
             "price_d" => $request->price_d ?? 0 ,
             "tax_d" => $request->tax_d ?? 0 ,

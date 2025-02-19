@@ -179,9 +179,19 @@
 
                                         <h6 class="flex "><span
                                                 class="">
-                                                    @if(request()->session()->get('member_position') == "총판")
+                                                @if(request()->session()->get('member_position') == "총판")
                                                     @if($locale == 'ko')
                                                         {{ number_format($product['exclusive_price']) }}
+                                                    @elseif($locale == 'jp')
+                                                        {{ number_format($product['exclusive_price_y']) }}
+                                                    @elseif($locale == 'cn')
+                                                        {{ number_format($product['exclusive_price_c']) }}
+                                                    @else
+                                                        {{ number_format($product['exclusive_price_d']) }}
+                                                    @endif
+                                                @elseif(request()->session()->get('member_position') == "총판1")
+                                                    @if($locale == 'ko')
+                                                        {{ number_format($product['exclusive_price1']) }}
                                                     @elseif($locale == 'jp')
                                                         {{ number_format($product['exclusive_price_y']) }}
                                                     @elseif($locale == 'cn')
@@ -252,6 +262,16 @@
                                                     {{ number_format($product['exclusive_pv_c']) }}
                                                 @else
                                                     {{ number_format($product['exclusive_pv_d']) }}
+                                                @endif
+                                            @elseif(request()->session()->get('member_position') == "총판1")
+                                                @if($locale == 'ko')
+                                                    {{ number_format($product['exclusive_price1']) }}
+                                                @elseif($locale == 'jp')
+                                                    {{ number_format($product['exclusive_price_y']) }}
+                                                @elseif($locale == 'cn')
+                                                    {{ number_format($product['exclusive_price_c']) }}
+                                                @else
+                                                    {{ number_format($product['exclusive_price_d']) }}
                                                 @endif
                                             @elseif(request()->session()->get('member_position') == "회원")
                                                 @if($locale == 'ko')
@@ -359,6 +379,16 @@
                                         @if(request()->session()->get('member_position'))
                                             @if($locale == 'ko')
                                                 {{ number_format($product['exclusive_price']) }}
+                                            @elseif($locale == 'jp')
+                                                {{ number_format($product['exclusive_price_y']) }}
+                                            @elseif($locale == 'cn')
+                                                {{ number_format($product['exclusive_price_c']) }}
+                                            @else
+                                                {{ number_format($product['exclusive_price_d']) }}
+                                            @endif
+                                        @elseif(request()->session()->get('member_position') == "총판1")
+                                            @if($locale == 'ko')
+                                                {{ number_format($product['exclusive_price1']) }}
                                             @elseif($locale == 'jp')
                                                 {{ number_format($product['exclusive_price_y']) }}
                                             @elseif($locale == 'cn')

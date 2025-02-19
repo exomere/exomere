@@ -143,6 +143,16 @@
                 <input type="number" id="basic-default-exclusive_pv" class="form-control" name='exclusive_pv' value="{{ $item->exclusive_pv ?? null }}"/>
               </div>
             </div>
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price1">{{__('erp.exclusive_distributor')}}1(₩)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_price1" class="form-control" name='exclusive_price1' value="{{ $item->exclusive_price1 ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv1">{{__('erp.exclusive_distributor')}}1PV(₩)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_pv1" class="form-control" name='exclusive_pv1' value="{{ $item->exclusive_pv1 ?? null }}"/>
+              </div>
+            </div>
 
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-price">{{__('erp.consumer_price')}}($)</label>

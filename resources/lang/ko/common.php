@@ -13,7 +13,7 @@ return [
     'email' => 'exomere@exomere.com',
     'currency' => '원',
     'price' => '소비자가',
-    'distribution_price' => '총판가',
+    'distribution_price' => 'FC가',
     'vat_excluded' => 'VAT 별도',
     'quantity' => '수량',
     'total_price' => '총금액',

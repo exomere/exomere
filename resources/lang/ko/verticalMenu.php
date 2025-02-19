@@ -12,7 +12,7 @@ return [
     'recruitment_history' => '모집내역',
     'commission_management' => '수수료 관리',
     'past_due' => '기마감 내역',
-    'distributor_payments' => '총판 지급 내역',
+    'distributor_payments' => 'FC 지급 내역',
     'monthly_closing' => '월마감 내역',
     'organization_chart' => '조직도',
     'notices' => '공지사항',
