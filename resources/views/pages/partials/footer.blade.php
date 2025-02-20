@@ -5,13 +5,13 @@
         <ul class="flex flex-col lg:flex-1 lg:inline-flex lg:gap-y-3">
             @if (request()->session()->get('director_code') != '29151')
                 <li><strong>{{ __('common.company_name') }} </strong> {{request()->session()->get('director_company')  ?? '(주)엑소미어' }} </li>
-                <li><strong>{{ __('common.representative') }}  </strong>{{request()->session()->get('director_name')  ?? '정영철'}}</li>
+                <li><strong>{{ __('common.representative') }}  </strong>{{request()->session()->get('director_name')  ?? '정성헌'}}</li>
                 <li><strong> {{ __('common.address') }} </strong> {{request()->session()->get('director_address')  ?? '서울 송파구 법원로11길 11 (문정동, 문정현대지식산업센터1-1)'}} 
                                                                     {{request()->session()->get('director_address_detail')  ?? 'A동 204호'}}</li>
                 <li><strong> Tel.</strong> {{request()->session()->get('director_phone') ?? '02-1577-1586' }}</li>
              @else
                 <li><strong>{{ __('footer.COMPANY.') }}</strong> {{ __('footer.(주)엑소미어') }}</li>
-                <li><strong>{{ __('footer.CEO.') }}</strong> {{ __('footer.정영철') }}</li>
+                <li><strong>{{ __('footer.CEO.') }}</strong> {{ __('footer.정성헌') }}</li>
                 <li><strong>{{ __('footer.Tel.') }}</strong> {{ __('footer.02-1577-1586') }}</li>
                 <li><strong>{{ __('footer.BUSINESS LICENCE.') }}</strong> {{ __('footer.453-87-02974') }} <a style='cursor: pointer;' onclick="javascript:window.open('https://www.ftc.go.kr/bizCommPop.do?wrkr_no=4538702974', '_blank','width=650,height=900,left=200,top=200');">[{{ __('footer.사업자정보확인') }}]</a></li>
                 <li><strong>{{ __('footer.E-COMMERCE PERMINT.') }}</strong> {{ __('footer.제 2024-서울송파-0603') }}</li>

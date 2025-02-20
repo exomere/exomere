@@ -9,7 +9,7 @@ return [
     "ADDRESS." => "ADDRESS.",
     "PERSONL INFORMATION MANAGER." => " PERSONL INFORMATION MANAGER.",
     "(주)엑소미어" => "EXOMERE",
-    "정영철" => "Jung Young-chul",
+    "정성헌" => "Jung Young-chul",
     "02-1577-1586" => "02-1577-1586",
     "453-87-02974" => "453-87-02974",
     "사업자정보확인" => "Check Business Information",
