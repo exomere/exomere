@@ -51,7 +51,7 @@ class ErpMemberController extends Exomere
         $query = ExMember::where('member_level', '<', 10)->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'));
 
         if ($request->session()->get('member_level') != 99) {
-            $query->whereIn("member_position", ["최우수총판", "우수총판", "총판", "회원"]);
+            $query->whereIn("member_position", ["최우수총판", "우수총판", "총판1", "총판", "회원"]);
         }
 
         // 검색어가 있을 경우 쿼리에 필터 추가
@@ -68,6 +68,7 @@ class ErpMemberController extends Exomere
         $ex_members = $query->where('is_delete','N')->orderBy('id', 'desc')->paginate($limitPage);
 
         $data = [
+            "member_position" => self::_EXOMERE_MEMBER_POSITION,
             "search_text" => $search_text ?? '',
             "ex_members" =>  $ex_members ?? [],
             "row_num" => $this->getPageRowNumber($ex_members->total(), $page, $limitPage) ?? null,

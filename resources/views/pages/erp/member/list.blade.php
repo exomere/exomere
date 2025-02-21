@@ -73,7 +73,7 @@
               <td>{{$list->member_id}}</td>
               <td>{{$list->name}}</td>
               <td>{{$list->email}}</td>
-              <td>{{ ($list->member_position == '총판') ? 'FC' : ($list->member_position == '총판1' ? "FC1" : $list->member_position)}}</td>
+              <td>{{ $member_position[$list->member_position] }}</td>
               <td>N</td>
               <td>{{$list->getCenterName()}}</td>
               <td>{{ date("Y-m-d",strtotime($list->created_at)) }}</td>

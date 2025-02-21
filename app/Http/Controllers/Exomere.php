@@ -12,6 +12,14 @@ class Exomere extends Controller
     private $pageLimit = 15;
     public int $page = 1;
     public int $limit = 10;
+
+    CONST _EXOMERE_MEMBER_POSITION =[
+        "최우수총판" => "최우수 FC",
+        "우수총판" => "우수 FC",
+        "총판1" => "FC1",
+        "총판" => "FC",
+        "회원" => "회원",
+    ];
     
     CONST _PAYMENT_CARD_COMPANY = [
         "00" => "온플렛",
