@@ -19,7 +19,7 @@ class CommunityController extends BaseController
         $page = $request->get('page') ?? $this->page;
         $limit = $request->get('limit') ?? $this->limit;
 
-        $items = ExNotice::orderBy('id', 'desc')
+        $items = ExNotice::where('nation',$request->session()->get('member_nation'))->orderBy('id', 'desc')
             ->paginate($limit, ['*'], 'page', $page);
 
         return view('pages.community.notice', compact('items'));
