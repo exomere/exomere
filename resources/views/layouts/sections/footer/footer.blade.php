@@ -20,7 +20,7 @@
           <a class="dropdown-item" href="{{route('setLanguage','jp')}}">日本語</a>
         </div>
       </div>
-      <a href="javascript:void(0)" class="btn btn-sm btn-outline-danger"><i class='bx bx-log-out-circle me-1'></i>Logout</a>
+      {{-- <a href="javascript:void(0)" class="btn btn-sm btn-outline-danger"><i class='bx bx-log-out-circle me-1'></i>Logout</a> --}}
     </div>
   </div>
 </footer>

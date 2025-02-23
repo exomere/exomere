@@ -101,6 +101,7 @@
                             <th>{{__('erp.member_id')}}</th>
                             <th>{{__('erp.member_name')}}</th>
                             <th>{{__('erp.current_point')}}</th>
+                            <th>{{__('erp.points_payment_kind')}}</th>
                             <th>{{__('erp.points_payment_amount')}}</th>
                             <th>{{__('erp.reason')}}</th>
                           </tr>
@@ -123,6 +124,12 @@
                             <td>
                               <input type='hidden' name='remain_points' id='remain_points' >
                               <span id='sp_remain_points'></span>
+                            </td>
+                            <td>
+                              <select name='point_kind' id='point_kind'>
+                                <option value='provision'>{{__('erp.points_provision')}}</option>
+                                <option value='extinction'>{{__('erp.points_extinction')}}</option>
+                              </select>
                             </td>
                             <td>
                               <input style='width:80px;' type='number' name='provision_point' id='provision_point' value='0' >
@@ -235,6 +242,8 @@
     var name = $("#member_name").val();
     var remain_points =  $("#remain_points").val();
     var provision_point =  $("#provision_point").val();
+    var point_kind =  $("#point_kind").val();
+    
     var remark =  $("#remark").val();
     
     $.ajax({
@@ -249,6 +258,7 @@
             "member_name": name,
             "remain_points": remain_points,
             "provision_point": provision_point,
+            "point_kind" : point_kind,
             "remark" : remark,
         },
         success: function (res) {

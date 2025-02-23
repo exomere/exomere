@@ -57,11 +57,11 @@ class LoginController extends Exomere
             App::setLocale($nation);
 
             auth()->login($userInfo);
-            if($request->back_url){
-                return redirect($request->back_url);
-            }else{
+            // if($request->back_url){
+            //     return redirect($request->back_url);
+            // }else{
                 return redirect('/products');
-            }
+            // }
             
             
         } else {

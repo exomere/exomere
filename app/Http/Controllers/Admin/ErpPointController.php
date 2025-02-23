@@ -63,13 +63,21 @@ class ErpPointController extends Exomere
 
         $exMember = ExMember::find($seq);
         
+        if($request->point_kind == 'provision'){
+            $remain_points = ($exMember->remain_points + $request->provision_point);
+            $payment_points = ($exMember->payment_points + $request->provision_point);
+        }else{
+            $remain_points = ($exMember->remain_points - $request->provision_point);
+            $payment_points = ($exMember->payment_points - $request->provision_point);
+        }
+        
         $exMember->update([
-            "remain_points" => ($exMember->remain_points + $request->provision_point),
-            "payment_points" => ($exMember->payment_points + $request->provision_point),
+            "remain_points" => $remain_points,
+            "payment_points" => $payment_points,
         ]);
 
         ExPointLog::create([
-            "kind" => "provision",
+            "kind" => $request->point_kind,
             "date" => date("Y-m-d H:i:s"),
             "member_seq" => $request->member_seq,
             "point" => $request->provision_point,

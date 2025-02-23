@@ -325,7 +325,8 @@ class ErpOrderController extends Exomere
         $card_info = json_decode($order_data->card_info);
         $order_date = date("Y-m-d",strtotime($order_data->order_date));
 
-      
+        $member_data = ExMember::find($order_data->member_seq);
+
         $itemArray = [];
         $cnt = 0;
 
@@ -359,6 +360,7 @@ class ErpOrderController extends Exomere
             "item_array" => $itemArray ?? [],
             "center_array" => $centerArray ?? [],
             "order_date" => $order_date ?? date('Y-m-d'),
+            "member_data" => $member_data,
         ];
 
         return view('pages.erp.order.print')->with($data);

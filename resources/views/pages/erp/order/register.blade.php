@@ -116,7 +116,7 @@
                         data-exclusive_price='{{$item['exclusive_price']}}'
                         data-exclusive_pv='{{$item['exclusive_pv']}}'
                         data-name='{{$item['name']}}'
-                    >{{$item['name']}}
+                    >{{$item['name']}} ({{number_format($item['price'])}})
                     </option>
                   @endforeach
                 </select>      

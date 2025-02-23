@@ -23,8 +23,10 @@
 <body>
 <div class="print-container">
   <div class="header">
+    <br>
+  <img style='width:150px;' src='/img/logo_horizontal.png'>
     <h1>제품 구매 주문서</h1>
-    <h4><input type='checkbox'>신규 <input type='checkbox'>재구매 <input type='checkbox'>고객 <input type='checkbox'>FC</h4>
+    <h4><input type='checkbox' @if($order_data->order_type == 'new') checked @endif>신규 <input type='checkbox'  @if($order_data->order_type == 'repurchase') checked @endif>재구매 </h4>
   </div>
 
   <div class="order-details">
@@ -32,8 +34,8 @@
       <tr style=' border:1px solid #eee;'>
         <th style='width:25%;  border:1px solid #eee;'>성 명</th>
         <td style='width:25%;  border:1px solid #eee;'> {{ $order_data->member_name ?? null }}</td>
-        <th style='width:25%;  border:1px solid #eee;'>주민등록번호</th>
-        <td style='width:25%;  border:1px solid #eee;'></td>
+        <th style='width:25%;  border:1px solid #eee;'>생년월일</th>
+        <td style='width:25%;  border:1px solid #eee;'> {{ substr($member_data->resident_number,0,6) }}</td>
       </tr>
       <tr>
         <th  style='width:25%;  border:1px solid #eee;'>연 락 처</th>
@@ -112,7 +114,7 @@
             </td>
             <td>{{$card->card_number ?? ''}}</td>
             <td>{{$card->card_payment_price ?? ''}}</td>
-            <td>{{$card->card_month_plan ?? ''}}</td>
+            <td>{{$card->card_month_plan == '0' ? '일시불' : ($card->card_month_plan ?? '')}}</td>
             <td>{{$card->card_year_month ?? ''}}</td>
             <td>{{$card->card_approval_number ?? ''}}</td>
             <td>{{$card->card_approval_name ?? ''}}</td>
@@ -147,7 +149,7 @@
             <td>{{$account->account_number}}</td>
             <td>{{$account->account_head}}</td>
             <td>{{$account->account_date}}</td>
-            <td>{{number_format($account->account_payment_price)}}</td>
+            <td>{{$account->account_payment_price}}</td>
           </tr>
           @php $acc_cnt++; @endphp
         @endforeach
@@ -158,6 +160,8 @@
       @endif
       </tbody>
     </table>
+    <br>
+    <div style='text-align:right; height:30px; line-height:30px;'> <span style='font-size:28px;'>(주)엑소미어 대표. 정성헌</span> <img style='height:30px;' src='/img/test_signature.png'></div>
   </div>
 
   <button onclick="window.print()" class="print-button" style="margin-top: 20px;">Print</button>

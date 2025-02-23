@@ -20,7 +20,7 @@ class ErpMemberController extends Exomere
         "member_pw" => "비밀번호",
         "member_type" => "회원형태",
         "member_position" => "직급",
-        "resident_number" => "주민등록번호",
+        "resident_number" => "생년월일",
         "tel" => "연락처",
         "phone" => "비밀번호",
         "email" => "이메일",
