@@ -54,6 +54,9 @@ var orderReg = {
             }else if(position == '대리점'){
                 price = e.find("option:selected").data("store_price");
                 pv = e.find("option:selected").data("store_pv");
+            }else if(position == '총판1'){
+                price = e.find("option:selected").data("exclusive_price1");
+                pv = e.find("option:selected").data("exclusive_pv1");
             }else{
                 price = e.find("option:selected").data("exclusive_price");
                 pv = e.find("option:selected").data("exclusive_pv");

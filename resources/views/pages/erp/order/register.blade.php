@@ -115,6 +115,8 @@
                         data-store_pv='{{$item['store_pv']}}'
                         data-exclusive_price='{{$item['exclusive_price']}}'
                         data-exclusive_pv='{{$item['exclusive_pv']}}'
+                        data-exclusive_price1='{{$item['exclusive_price1']}}'
+                        data-exclusive_pv1='{{$item['exclusive_pv1']}}'
                         data-name='{{$item['name']}}'
                     >{{$item['name']}} ({{number_format($item['price'])}})
                     </option>
