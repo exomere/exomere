@@ -244,7 +244,7 @@ return [
     'local_branch_manager_id' => '지역점장아이디',
     'local_branch_manager' => '지역점장',
     'recruiter_id' => '모집인아이디',
-    'select_local_point' => '지역점 선택',
+    'select_local_point' => '지역점장 선택',
 
 
     'product_code' => '상품코드',

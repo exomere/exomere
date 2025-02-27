@@ -45,6 +45,10 @@
         <th  style='width:25%;  border:1px solid #eee;'>제품 받을 주소</th>
         <td colspan="3">  {{ $order_data->zipcode ?? null }} {{ $order_data->address ?? null }} {{ $order_data->address_detail ?? null }} </td>
       </tr>
+      <tr>
+        <th  style='width:25%;  border:1px solid #eee;'>요청사항</th>
+        <td colspan="3">  {{ $order_data->remark ?? null }}  </td>
+      </tr>
     </table>
   </div>
 
@@ -161,7 +165,7 @@
       </tbody>
     </table>
     <br>
-    <div style='text-align:right; height:30px; line-height:30px;'> <span style='font-size:28px;'>(주)엑소미어 대표. 정성헌</span> <img style='height:30px;' src='/img/test_signature.png'></div>
+    <div style='text-align:right; height:30px; line-height:30px;'> <span style='font-size:28px;'>(주)엑소미어 </span> <img style='height:30px;' src='/img/company_signature.jpeg'></div>
   </div>
 
   <button onclick="window.print()" class="print-button" style="margin-top: 20px;">Print</button>

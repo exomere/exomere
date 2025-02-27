@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\ExMember;
 use App\Http\Controllers\Exomere;
+use App\Models\ExDistribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +44,15 @@ class LoginController extends Exomere
             $request->session()->put('member_level', $userInfo->member_level ?? '');
             $request->session()->put('site_code', $userInfo->site_code ?? 'exomere');
             $request->session()->put('member_nation', $userInfo->nation ?? 'KR');
+        
+            $distribute = ExDistribute::where('director_seq',$userInfo->id)->first();
+            
+            if(isset($distribute)){
+                if($distribute->code != 'exomere'){
+                    $request->session()->put('member_type','director');    
+                    $request->session()->put('site_code', $distribute->code);
+                }
+            }
 
             $localearray = [
                 'KR' => 'ko',

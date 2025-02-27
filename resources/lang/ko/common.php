@@ -60,6 +60,7 @@ return [
     'checkout_detail' => '결제 상세',
     'checkout_total_amount' => '총 금액',
     'checkout_product_price' => '상품 금액',
+    'checkout_product_remark' => '요청사항',
     'year' => '년',
     'month' => '월',
     'order_number' => '주문번호',

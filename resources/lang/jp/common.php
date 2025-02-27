@@ -60,6 +60,7 @@ return [
     'checkout_detail' => '支払詳細',
     'checkout_total_amount' => '合計金額',
     'checkout_product_price' => '商品価格',
+    'checkout_product_remark' => 'remark',
     'year' => '年',
     'months' => '月',
     'order_number' => '注文番号',

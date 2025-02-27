@@ -60,6 +60,7 @@ return [
     'checkout_detail' => 'Payment Details',
     'checkout_total_amount' => 'Total Amount',
     'checkout_product_price' => 'Product Price',
+    'checkout_product_remark' => 'remark',
     'year' => 'Year',
     'months' => 'Months',
     'order_number' => 'Order Number',

@@ -283,6 +283,7 @@ class OrderController extends Exomere
             "zipcode" => $request->zipcode ?? null,
             "address" => $request->address ?? null,
             "address_detail" => $request->address_detail ?? null,
+            "remark" => $request->address_remark ?? '',
             "total_amount" => $info_total_price ?? 0,
             "total_pv" => $total_pv ?? 0,
             "remaining_amount" => 0,

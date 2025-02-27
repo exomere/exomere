@@ -47,7 +47,7 @@ class ErpMemberController extends Exomere
 
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
-
+        // dd($request->session()->get());
         $query = ExMember::where('member_level', '<', 10)->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'));
 
         if ($request->session()->get('member_level') != 99) {

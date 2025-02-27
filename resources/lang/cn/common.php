@@ -60,6 +60,7 @@ return [
     'checkout_detail' => '支付详情',
     'checkout_total_amount' => '总金额',
     'checkout_product_price' => '商品价格',
+    'checkout_product_remark' => 'remark',
     'year' => '年',
     'months' => '月',
     'order_number' => '订单号',

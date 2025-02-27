@@ -239,6 +239,143 @@
           "slug": "basic-layouts-distribute-list"
         }
       ]
+    },
+    {
+      "_comment" : "director <- 분양몰 관리자를 위한 메뉴, 일단 통으로 한번 더 쓰게만듬,, " ,
+      "read": "director",
+      "menuHeader": "my_office"
+    },
+    {
+      "name": "profile",
+      "icon": "menu-icon tf-icons bx bx bx-dock-top",
+      "read": "director",
+      "slug": "member",
+      "submenu": [
+        {
+          "url": "management/member",
+          "name": "profile_manage",
+          "level": 0,
+          "slug": "member.info"
+        }
+      ]
+    },
+    {
+      "name": "orders",
+      "icon": "menu-icon tf-icons bx bx-shopping-bag",
+      "slug": "pages-misc",
+      "read": "director",
+      "submenu": [
+        {
+          "url": "management/order/list",
+          "name": "order_history",
+          "level": 0,
+          "slug": "order-list"
+        },
+        {
+          "url": "management/order/recruitment_list",
+          "name": "recruitment_history",
+          "level": 0,
+          "slug": "recruitment-list"
+          
+        }
+      ]
+    },
+    {
+      "name": "commission_management",
+      "icon": "menu-icon tf-icons bx bxs-offer",
+      "slug": "pages-misc",
+      "read": "director",
+      "submenu": [
+        {
+          "url": "management/commission/termClosing",
+          "name": "past_due",
+          "level": 0,
+          "slug": "term-closing" 
+        },
+        {
+          "url": "management/commission/monthlyClosing",
+          "name": "monthly_closing",
+          "level": 0,
+          "slug": "monthly-closing"
+        }
+      ]
+    },
+    {
+      "name": "organization_chart",
+      "icon": "menu-icon tf-icons bx bx-sitemap",
+      "slug": "cards-basic",
+      "read": "director",
+      "level": 0,
+      "url": "management/organization/list"
+    },
+    {
+      "name": "notices",
+      "icon": "menu-icon tf-icons bx bxs-notification",
+      "slug": "notice.list",
+      "read": "director",
+      "level": 0,
+      "url": "management/notice/list"
+    },
+    {
+      "read": "director",
+      "menuHeader": "management"
+      
+    },
+    {
+      "name": "member_management",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "erp-member",
+      "read": "director",
+      "submenu": [
+        {
+          "url": "management/erp/member/list",
+          "name": "member_list",
+          "level": 0,
+          "slug": "erp-member.list"
+        }
+      ]
+    },
+    {
+      "name": "order_management",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "order-layouts",
+      "read": "director",
+      "submenu": [
+        {
+          "url": "management/erp/order/list",
+          "name": "order_list",
+          "level": 0,
+          "slug": "erp-order-layouts-order-list"
+        }
+      ]
+    },
+    {
+      "name": "commission_management",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "erp-allowance",
+      "read": "director",
+      "submenu": [
+        {
+          "url": "management/erp/commission/termClosing",
+          "name": "past_due",
+          "level": 0,
+          "slug": "erp-allowance.term-closing"
+        }
+      ]
+    },
+    {
+      "name": "board_management",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "slug": "erp-board",
+      "read": "director",
+      "submenu": [
+        {
+          "url": "management/erp/board/inquiry/list",
+          "name": "inquiries",
+          "level": 0,
+          "slug": "erp-board.inquiry.list"
+        }
+      ]
     }
   ]
 }
