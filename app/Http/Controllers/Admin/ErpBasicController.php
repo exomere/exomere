@@ -164,7 +164,7 @@ class ErpBasicController extends Exomere
             "name" => $request->name,
             "director_seq" => $request->director_seq,
             "director_id" => explode(" | ", $request->director_info)[0],
-            "director_name" => explode(" | ", $request->director)[1],
+            "director_name" => explode(" | ", $request->director_info)[1],
             "recommended_seq" => $request->recommended_seq,
             "recommended_id" => explode(" | ", $request->recommended_info)[0],
             "recommended_name" => explode(" | ", $request->recommended_info)[1],

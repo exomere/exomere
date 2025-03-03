@@ -56,7 +56,7 @@ class CenterController extends Exomere
     {
 
       $center_seq = $request->center_seq ?? null;
-
+      // dd($request->director_info);
       // dd($request->input());
       $input_data = [
         "name" => $request->name,

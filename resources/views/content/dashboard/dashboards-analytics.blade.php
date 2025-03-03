@@ -296,7 +296,7 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
                 </div>
                 <div class="card-footer pt-0">
                     <small class="float-end text-primary">
-                        (업데이트 날짜 {{ date('Y-m-d H:i:s') }})
+                        (업데이트 날짜 {{ date("Y-m-d H:i:s", strtotime("+9 hours")) }})
                     </small>
                 </div>
             </div>
@@ -473,7 +473,7 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
                         </div>
                         <div class="card-footer">
                             <small class="float-end text-primary">
-                                (업데이트 날짜 {{ date('Y-m-d H:i:s') }})
+                                (업데이트 날짜 {{ date("Y-m-d H:i:s", strtotime("+8 hours")) }})
                             </small>
                         </div>
                     </div>
@@ -484,47 +484,7 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
 
     {{--    리뷰/ 문의 --}}
     <div class="row">
-        <div class="col-6 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="justify-content-between flex-row gap-3">
-                        <div class="card-title">
-                            <h5 class="text-nowrap mb-4">Recently Reviews</h5>
-                        </div>
-                        <div class="mt-sm-auto">
-                            <ul class="p-0 m-0">
-                                @foreach([0,1,2] as $item)
-                                    <li class="d-flex mb-4 pb-1 overflow-hidden">
-                                        <div class="avatar flex-shrink-0 me-3">
-                                    <span class="avatar-initial rounded bg-label-primary">
-                                         <img src=""
-                                              alt=""
-                                              onerror="this.src='//exomere.co.kr/storage/data/noimg.jpg';"/>
-                                    </span>
-                                        </div>
-                                        <div
-                                            class="flex-column w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                            <div class="me-2">
-                                                <h6 class="mb-0">리뷰 제목 어쩌구</h6>
-                                                <small class="text-muted text-truncate">
-                                                        <?php
-                                                        echo \Illuminate\Foundation\Inspiring::quote();
-                                                        ?>
-                                                </small>
-                                            </div>
-                                            <div class="user-progress">
-                                                <small class="fw-medium">2025.3.5</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 mb-4">
+        <div class="col-12 mb-4">
             <div class="card">
                 <div class="card-body">
                     <div class="justify-content-between flex-row gap-3">
@@ -543,7 +503,7 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
                                         <div
                                             class="flex-column w-100 flex-wrap align-items-center justify-content-between gap-2">
                                             <div class="me-2">
-                                                <h6 class="mb-0">문의합니다 어쩌구</h6>
+                                                <h6 class="mb-0">문의합니다 </h6>
                                                 <small class="text-muted text-truncate">
                                                         <?php
                                                         echo \Illuminate\Foundation\Inspiring::quote();

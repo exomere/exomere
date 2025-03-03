@@ -61,7 +61,7 @@ class NoticeController extends Exomere
             'content' => $request->input('content'),
             'author_name' => $user ? $user->name : 'Unknown',
             'author_seq' => $user ? $user->id : 0,
-            'member_nation' => $request->session()->get('member_nation') ?? "KR",
+            'nation' => $request->session()->get('member_nation') ?? "KR",
             'site_code' => $request->session()->get('site_code') ?? "exomere",
         ]);
 
@@ -110,7 +110,7 @@ class NoticeController extends Exomere
         $notice->update([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
-            'member_nation' => $request->session()->get('member_nation') ?? "KR",
+            'nation' => $request->session()->get('member_nation') ?? "KR",
             'site_code' => $request->session()->get('site_code') ?? "exomere",
         ]);
 
