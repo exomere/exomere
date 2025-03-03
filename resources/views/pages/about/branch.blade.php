@@ -72,14 +72,12 @@
 @endsection
 
 @section('page-script')
-</script>
     <script>
-        // AIzaSyDBW8IYeMrOGfuOa4PI5gW14byihv5UDTA
         const map_frame = document.querySelector("#frameMap");
         const map_url = "//www.google.com/maps/embed/v1/place?key=AIzaSyDBW8IYeMrOGfuOa4PI5gW14byihv5UDTA";
         const lang = '{{ app()->getLocale() }}';
         const mappingLanguages = {
-            'ko': 'kr',
+            'ko': 'ko',
             'en': 'en',
             'jp': 'ja',
             'cn': 'zh',
