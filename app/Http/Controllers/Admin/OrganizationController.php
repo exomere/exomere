@@ -49,6 +49,17 @@ class OrganizationController extends Exomere
                 'manager' => (string) $user->id,
                 'tooltip' => 'Lower Member'
             ];
+
+            // Add lower members
+            $lowerlowerMembers = ExMember::where('recommend_seq', $member->id)->get();
+            foreach ($lowerlowerMembers as $lowerMember) {
+                $orgData[] = [
+                    'v' => (string) $lowerMember->id,
+                    'f' => $lowerMember->name . '<div style="color:red; font-style:italic">' . $lowerMember->member_position . '</div>',
+                    'manager' => (string) $member->id,
+                    'tooltip' => 'Lower Member'
+                ];
+            }
         }
 
 
