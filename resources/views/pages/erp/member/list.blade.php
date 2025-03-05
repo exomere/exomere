@@ -40,11 +40,22 @@
             {{-- <th rowspan="2" style='vertical-align: middle;' >총판구분</th> --}}
             <th rowspan="2" style='vertical-align: middle;' >{{__('erp.member_number')}}</th>
             <th rowspan="2" style='vertical-align: middle;' >{{__('erp.id')}}</th>
-            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.name')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >
+              <a href="{{ route('erp-member.list', array_merge(request()->query(), ['sort' => 'name', 'direction' => ($sortField == 'name' && $sortDirection == 'asc') ? 'desc' : 'asc'])) }}">
+                {{__('erp.name')}}
+              </a></th>
             <th rowspan="2" style='vertical-align: middle;' >{{__('erp.email')}}</th>
-            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.member_classification')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >
+              <a href="{{ route('erp-member.list', array_merge(request()->query(), ['sort' => 'member_position', 'direction' => ($sortField == 'member_position' && $sortDirection == 'asc') ? 'desc' : 'asc'])) }}">
+                {{__('erp.member_classification')}}
+              </a>
+            </th>
             <th rowspan="2" style='vertical-align: middle;' >{{__('erp.sale_mall')}}</th>
-            <th rowspan="2" style='vertical-align: middle;' >{{__('erp.local_branch')}}</th>
+            <th rowspan="2" style='vertical-align: middle;' >
+              <a href="{{ route('erp-member.list', array_merge(request()->query(), ['sort' => 'local_store', 'direction' => ($sortField == 'local_store' && $sortDirection == 'asc') ? 'desc' : 'asc'])) }}">
+                {{__('erp.local_branch')}}
+              </a>
+            </th>
             <th rowspan="2" style='vertical-align: middle;' >{{__('erp.subscription_date')}}</th>
             <th rowspan="2" style='vertical-align: middle;' >{{__('erp.contact_information')}}</th>
             <th rowspan="2" style='vertical-align: middle;' >{{__('erp.sales_total')}}</th>
@@ -73,7 +84,7 @@
               <td>{{$list->member_id}}</td>
               <td>{{$list->name}}</td>
               <td>{{$list->email}}</td>
-              <td>{{ $member_position[$list->member_position] }}</td>
+              <td>{{ $member_position[$list->member_position] ?? "" }}</td>
               <td>N</td>
               <td>{{$list->getCenterName()}}</td>
               <td>{{ date("Y-m-d",strtotime($list->created_at)) }}</td>

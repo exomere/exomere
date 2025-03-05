@@ -42,13 +42,16 @@ class ErpMemberController extends Exomere
      * @param Request $request
      * @return View
      */
-    public function list (Request $request)
+    public function list (Request $request): View
     {
-
         $limitPage = $this->getPageLimit();
         $page = $request->get('page') ?? 1;
-        // dd($request->session()->get());
-        $query = ExMember::where('member_level', '<', 10)->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'));
+        $sortField = $request->get('sort', 'id');
+        $sortDirection = $request->get('direction', 'desc');
+
+        $query = ExMember::where('member_level', '<', 10)
+            ->where('nation', $request->session()->get('member_nation'))
+            ->where('site_code', $request->session()->get('site_code'));
 
         if ($request->session()->get('member_level') != 99) {
             $query->whereIn("member_position", ["최우수총판", "우수총판", "총판1", "총판", "회원"]);
@@ -65,13 +68,28 @@ class ErpMemberController extends Exomere
             });
         }
 
-        $ex_members = $query->where('is_delete','N')->orderBy('id', 'desc')->paginate($limitPage);
+        $validSortFields = ['name', 'member_position', 'local_store'];
+        if (!in_array($sortField, $validSortFields)) {
+            $sortField = 'id';
+        }
+
+        if ($sortField == 'local_store') {
+            $query->orderByRaw('CAST(local_store AS UNSIGNED) ' . $sortDirection);
+        } else {
+            $query->orderBy($sortField, $sortDirection);
+        }
+
+        $ex_members = $query->where('is_delete', 'N')
+            ->paginate($limitPage)
+            ->appends(request()->query());
 
         $data = [
             "member_position" => self::_EXOMERE_MEMBER_POSITION,
             "search_text" => $search_text ?? '',
             "ex_members" =>  $ex_members ?? [],
             "row_num" => $this->getPageRowNumber($ex_members->total(), $page, $limitPage) ?? null,
+            "sortField" => $sortField,
+            "sortDirection" => $sortDirection
         ];
 
         return view('pages.erp.member.list')->with($data);
