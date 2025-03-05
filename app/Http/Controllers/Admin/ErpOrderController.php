@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\OrdersExport;
 use App\Http\Controllers\API\OnPlatController;
 use App\Models\ExOrder;
 use App\Models\ExItem;
@@ -11,7 +12,7 @@ use App\Models\ExCardPayment;
 use App\Models\ExCenter;
 use App\Models\ExMember;
 use App\Models\ExPointLog;
-use Ramsey\Uuid\Type\Integer;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ErpOrderController extends Exomere
 {
@@ -36,7 +37,7 @@ class ErpOrderController extends Exomere
 
       $site_code = $request->session()->get('site_code') ?? "exomere";
 
-      $ordersQuery = ExOrder::where("site_code",$site_code)->orderBy('id', 'desc');
+      $ordersQuery = ExOrder::where("site_code",$site_code)->orderBy('order_date', 'desc');
      
       // 승인구분 필터 추가
       if ($request->filled('approval_status')) {
@@ -53,6 +54,14 @@ class ErpOrderController extends Exomere
           $searchField = $request->get('search_field');
           $searchText = $request->get('search_text');
           $ordersQuery->where($searchField, 'LIKE', "%{$searchText}%");
+      }
+
+      if ($request->filled('start_date')) {
+          $ordersQuery->where('order_date', '>=', $request->get('start_date'));
+      }
+
+      if ($request->filled('end_date')) {
+          $ordersQuery->where('order_date', '<=', $request->get('end_date'));
       }
 
       // 페이지네이션을 통해 데이터 가져오기
@@ -367,5 +376,10 @@ class ErpOrderController extends Exomere
         ];
 
         return view('pages.erp.order.print')->with($data);
+    }
+
+    public function exportExcel(Request $request)
+    {
+        return Excel::download(new OrdersExport($request), 'orders.xlsx');
     }
 }

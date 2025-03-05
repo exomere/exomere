@@ -284,6 +284,8 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/del/{seq?}', [ErpOrderController::class, 'orderDel'])->name('erp-order.del');
 
                 Route::get('/print/{orderId}', [ErpOrderController::class, 'print'])->name('erp-order.print');
+
+                Route::get('/export', [ErpOrderController::class, 'exportExcel'])->name('erp-order.export');
                 
 
                 // ㄴ 라인별 주문목록
