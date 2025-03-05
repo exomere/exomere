@@ -19,6 +19,7 @@ class Exomere extends Controller
         "총판1" => "FC1",
         "총판" => "FC",
         "회원" => "회원",
+        "대리점" => "대리점",
     ];
     
     CONST _PAYMENT_CARD_COMPANY = [
