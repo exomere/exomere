@@ -37,7 +37,7 @@ class ErpOrderController extends Exomere
 
       $site_code = $request->session()->get('site_code') ?? "exomere";
 
-      $ordersQuery = ExOrder::where("site_code",$site_code)->orderBy('order_date', 'desc');
+      $ordersQuery = ExOrder::where("site_code",$site_code)->orderBy('id', 'desc');
      
       // 승인구분 필터 추가
       if ($request->filled('approval_status')) {

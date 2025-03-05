@@ -339,7 +339,12 @@ var orderReg = {
         var address = e.data('address');
         var phone = e.data('phone');
         var local_store = e.data('local_store');
+
+        if(position == '회원'){
+            $('#order_type').children("[value='repurchase']").remove();
+        }
         
+        console.log(position == '총판');
         $(".cancelMemberInfo").trigger('click');
         $("#member_info").val(id+" | "+name);
         $("#member_seq").val(seq);
