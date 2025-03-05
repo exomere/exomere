@@ -16,11 +16,14 @@
         </li>
         <li class="nav-item">
         </li>
-       
+
         <li class="nav-item">
         </li>
       </ul>
       <form class="d-flex" action="{{ route('erp-order-layouts-order-list') }}" method="GET">
+        <input type="date" name="start_date" class="form-control" value="{{ request('start_date') }}" placeholder="시작일">
+        <input type="date" name="end_date" class="form-control" value="{{ request('end_date') }}" placeholder="종료일">
+
         <select name="approval_status" id="approval_status" class="form-select color-dropdown">
           <option value="" {{ request('approval_status') == '' ? 'selected' : '' }}>:: {{__('erp.approval_classification')}} ::</option>
           <option value="Y" {{ request('approval_status') == 'Y' ? 'selected' : '' }}>{{__('erp.approval_complete')}}</option>
@@ -54,6 +57,15 @@
   <div class="card-header d-flex align-items-center justify-content-between">
     <h5 class="mb-0">{{__('erp.order_list')}}</h5>
     <small class="text-muted float-end">
+      <form action="{{ route('erp-order.export') }}" method="GET" class="d-inline">
+        <input type="hidden" name="start_date" value="{{ request('start_date') }}">
+        <input type="hidden" name="end_date" value="{{ request('end_date') }}">
+        <input type="hidden" name="approval_status" value="{{ request('approval_status') }}">
+        <input type="hidden" name="order_type" value="{{ request('order_type') }}">
+        <input type="hidden" name="search_field" value="{{ request('search_field') }}">
+        <input type="hidden" name="search_text" value="{{ request('search_text') }}">
+        <button type="submit" class="btn btn-info">Excel</button>
+      </form>
       <button onclick="location.href='{{route('erp-order-layouts-order-register')}}'" class="btn btn-primary">{{__('erp.order_registration')}}</button>
     </small>
   </div>
@@ -97,8 +109,8 @@
               @else
                 <input type='button' class='cfOrder' data-seq='{{$list->id}}' data-type='Y' value='{{__('erp.approval')}}'>
                 <input type='button' class='cfOrder' data-seq='{{$list->id}}' data-type='C' value='{{__('erp.cancel')}}'>
-              @endif 
-              
+              @endif
+
             </td>
             {{-- <td>
               <a class="badge bg-label-info me-2" >
