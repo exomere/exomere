@@ -205,7 +205,7 @@
                         <td>${log.field_name}</td>
                         <td>${log.old_value}</td>
                         <td>${log.new_value}</td>
-                        <td>${log.member_id || 'System'}</td>
+                        <td>${res.member_info.member_id || 'System'}</td>
                     </tr>
                 `;
             });

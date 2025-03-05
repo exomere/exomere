@@ -21,8 +21,7 @@ class ErpMemberController extends Exomere
         "member_type" => "회원형태",
         "member_position" => "직급",
         "resident_number" => "생년월일",
-        "tel" => "연락처",
-        "phone" => "비밀번호",
+        "phone" => "연락처",
         "email" => "이메일",
         "local_store" => "지역점",
         "zip_code" => "우편번호",
@@ -35,6 +34,7 @@ class ErpMemberController extends Exomere
         "recommend_name" => "모집인 명",
         "is_delete" => "상태",
         "remark" => "비고",
+        "distribute_seq" => "분양몰",
     ];
 
     /**
@@ -154,7 +154,6 @@ class ErpMemberController extends Exomere
             "is_delete" => $request->is_delete ?? 'N',
             "remark" => $request->remark,
             "member_position" => $request->member_position,
-            "tel" => $request->phone,
             "phone" => $request->phone,
             "resident_number" => $request->resident_number."-".$request->resident_number2,
             "email" => $request->email."@".$request->email2,
@@ -218,11 +217,11 @@ class ErpMemberController extends Exomere
         $seq = $request->seq;
 
         $data["member_info"] = ExMember::findByMemberSeq($seq)->toArray();
-        $data["modify_info"] = ExMemberModificationLog::leftjoin('ex_members as b', 'ex_member_modification_logs.modify_member_seq', '=', 'b.id')
-            ->where('member_seq', $seq)
+        $data["modify_info"] = ExMemberModificationLog::where('member_seq', $seq)
             ->whereNotIn('field', ['recommend_seq'])
-            ->orderBy('ex_member_modification_logs.created_at', 'desc')
-            ->get(['ex_member_modification_logs.created_at', 'field', 'old_value', 'new_value', 'modify_member_seq', 'b.member_id'])->toArray();
+            ->orderBy('id', 'desc')
+            ->get(['id', 'created_at', 'field', 'old_value', 'new_value', 'modify_member_seq'])
+            ->toArray();
 
         foreach ($data["modify_info"] as $key => $info) {
             if ($data["modify_info"][$key]["field"] == "member_pw") {
