@@ -69,52 +69,29 @@
         </div>
 
         <div class="col-md-6">
-            <form action="{{ route('member.update.account') }}" method="POST">
-                @csrf
                 <div class="card mb-4">
                     <h5 class="card-header">계좌정보</h5>
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="bank_code" class="form-label">은행명</label>
-                            <select class="form-select @error('bank_code') is-invalid @enderror" id="bank_code" name="bank_code" required>
-                                <option value="">은행을 선택하세요</option>
-                                @foreach($bankList as $code => $bank)
-                                    <option value="{{ $code }}" {{ old('bank_code', $account ? $account->bank_code : '') == $code ? 'selected' : '' }}>
-                                        {{ $bank }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('bank_code')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            @foreach($bankList as $code => $bank)
+                                @if(old('bank_code', $account ? $account->bank_code : '') == $code)
+                                    <input type="text" class="form-control" readonly="readonly" id="account_number" name="account_number" value="{{ $bank }}">
+                                @endif
+                            @endforeach
                         </div>
 
                         <div class="mb-3">
                             <label for="account_number" class="form-label">계좌번호</label>
-                            <input type="text" class="form-control @error('account_number') is-invalid @enderror" id="account_number" name="account_number" value="{{ old('account_number', $account ? $account->account_number : '') }}" required>
-                            @error('account_number')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <input type="text" class="form-control" readonly="readonly" id="account_number" name="account_number" value="{{ old('account_number', $account ? $account->account_number : '') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="account_name" class="form-label">예금주</label>
-                            <input type="text" class="form-control @error('account_name') is-invalid @enderror" id="account_name" name="account_name" value="{{ old('account_name', $account ? $account->account_name : '') }}" required>
-                            @error('account_name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <input type="text" class="form-control" readonly="readonly" id="account_name" name="account_name" value="{{ old('account_name', $account ? $account->account_name : '') }}">
                         </div>
-
-                        <button type="submit" class="btn btn-primary">저장</button>
                     </div>
                 </div>
-            </form>
 
             <form action="{{ route('member.update.password') }}" method="POST">
                 @csrf
