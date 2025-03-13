@@ -115,7 +115,8 @@ return [
     'deposit_account_number' => 'Deposit account number', // 입금 계좌 번호
     'no_account_transfer_info' => 'There is no account transfer information.', // 계좌 이체 정보가 없습니다.
     'member_search' => 'Member search', // 회원 검색
-
+    'past_order_info' => 'Last order information',
+    'no_past_order_info' => 'There is no last order information.',
 
 
     'settlement_date' => 'Settlement date',

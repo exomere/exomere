@@ -116,7 +116,8 @@ return [
     'deposit_account_number' => '入金口座番号',
     'no_account_transfer_info' => '口座振替情報がありません。',
     'member_search' => 'メンバー検索',
-
+    'past_order_info' => 'Last order information',
+    'no_past_order_info' => 'There is no last order information.',
     'settlement_date' => '決済日',
     'allowment_calculation' => '手当計算',
     'gi_closing_date' => 'GI締切日',

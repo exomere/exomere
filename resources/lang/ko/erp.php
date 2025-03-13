@@ -117,6 +117,9 @@ return [
     'no_account_transfer_info' => '계좌이체 정보가 없습니다.',
     'member_search' => '회원검색',
 
+    'past_order_info' => '지난 주문 정보',
+    'no_past_order_info' => '지난  주문정보 정보가 없습니다.',
+    
 
 
     'settlement_date' => '정산일자',

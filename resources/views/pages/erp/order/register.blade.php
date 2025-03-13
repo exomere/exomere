@@ -444,7 +444,48 @@
                     </table>
                   </div>
                 </div>
-                <!--/ Responsive Table -->
+                <!--/ Responsive Table past_order_data -->
+                
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-12">
+                <hr class="my-5">
+                <!-- Responsive Table -->
+                <div class="card">
+                  <h5 class="card-header">{{__('erp.past_order_info')}}</h5>
+                  <div class="table-responsive text-nowrap">
+                    <table class="table">
+                      <thead>
+                        <tr class="text-nowrap">
+                          <th>{{__('erp.order_number')}}</th>
+                          <th>{{__('erp.order_date')}}</th>
+                          <th>{{__('erp.orderer')}}</th>
+                          <th>{{__('erp.order_amount')}}</th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-border-bottom-0 accountInfoBody">
+                        @if(isset($past_order_data))
+                          @foreach ($past_order_data as $past)
+                            @if($past->id != $order_seq)
+                              <tr>
+                                <td><a href='/management/erp/order/register/{{$past->id}}'> {{$past->id}} </a></td>
+                                <td>{{date("Y-m-d",strtotime($past->order_date))}}</td>
+                                <td>{{$past->member_name}}</td>
+                                <td>{{ number_format($past->total_amount)}}</td>
+                              </tr>
+                            @endif
+                          @endforeach
+                        @else
+                          <tr>
+                            <td style='text-align:center; height:80px;' colspan="5">{{__('erp.no_past_order_info')}}</td>
+                          </tr>
+                        @endif
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!--/ Responsive Table  -->
               </div>
             </div>
           </form>

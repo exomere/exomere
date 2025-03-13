@@ -95,6 +95,7 @@ class ErpOrderController extends Exomere
       $account_info = json_decode($order_data->account_info);
       $card_info = json_decode($order_data->card_info);
       $order_date = date("Y-m-d",strtotime($order_data->order_date));
+      $past_order_data = ExOrder::where('member_seq',$order_data->member_seq)->orderBy('id', 'desc')->get();
     }
 
     $items = ExItem::where('is_active', 'Y')->get();
@@ -136,6 +137,7 @@ class ErpOrderController extends Exomere
       "payment_kind" => self::PAYMENT_KIND,
       "order_kind" => self::ORDER_KIND,
       "order_data" => $order_data ?? [],
+      "past_order_data" => $past_order_data ?? [],
       "card_compnay" => self::_PAYMENT_CARD_COMPANY,
       "item_info" => $item_info,
       "account_info" => $account_info,

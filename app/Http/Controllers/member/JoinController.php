@@ -18,12 +18,15 @@ class JoinController extends Controller
         $recommendName = null;
         $recommendSeq = null;
         $distrCode = null;
+        $nation = 'KR';
 
         $distr_data = ExDistribute::where('code',$request->code)->first();
+
         if(isset($distr_data->id)){
             $recommendId = $distr_data->director_id;
             $recommendName = $distr_data->director_name;
             $recommendSeq = $distr_data->director_seq;
+            $nation = $distr_data->nation ?? 'KR';
             $distrCode = $distr_data->code;
         }
 
@@ -38,7 +41,7 @@ class JoinController extends Controller
           $cnt++;
         }
 
-        return view('auth.signup', compact('recommendId', 'recommendName', 'recommendSeq','distrCode','centerArray'));
+        return view('auth.signup', compact('recommendId', 'recommendName', 'recommendSeq','distrCode','centerArray','nation'));
     }
 
     public function checkId(Request $request)

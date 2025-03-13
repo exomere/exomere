@@ -148,7 +148,7 @@
                                         </div>
 
                                         {{-- Local Store --}}
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        {{-- <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-store fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="local_store">
@@ -168,10 +168,10 @@
                                                 </div>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         {{-- Recommend ID --}}
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        {{-- <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user-tie fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="recommend_id">
@@ -192,7 +192,7 @@
                                                 </div>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         {{-- Address --}}
                                         <div class="d-flex flex-row align-items-center mb-4">
@@ -218,28 +218,25 @@
                                         </div>
 
                                         {{-- Nation --}}
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        {{-- <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-globe fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="nation">
                                                     {{ __('messages.nation') }} <span class="text-danger">*</span>
                                                 </label>
-                                                <select class="form-control" name="nation" id="nation">
-                                                    <option value="">-선택-</option>
-                                                    <option value="KR">대한민국</option>
-                                                    <option value="JP">日本</option>
-                                                    <option value="US">USA</option>
-                                                    <option value="CN">中国</option>
-                                                </select>
-
+                                                
                                                 @error('nation')
                                                 <div class="invalid-feedback d-block">
                                                     {{ $message }}
                                                 </div>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
+                                        <input type='hidden' name="nation" id="nation" value="{{$nation}}">
+                                        <input type="hidden" name="recommend_seq" id="recommend_seq" value="{{ $recommendSeq ?? old('recommend_seq') }}" />
+                                        <input type="hidden" name="distr_code" id="distr_code" value="{{ $distrCode ?? old('distr_code') }}" />
+                                        
                                         <div class="form-check d-flex justify-content-center mb-5">
                                             <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required/>
                                             <label class="form-check-label" for="form2Example3">
@@ -251,12 +248,12 @@
                                             <button type="submit" class="btn btn-primary btn-lg">{{ __('messages.register') }}</button>
                                         </div>
 
-                                        <div class="d-flex justify-content-center">
+                                        {{-- <div class="d-flex justify-content-center">
                                             <p class="m-0">
                                                 이미 회원이시라면? <a href="{{ route('login') }}">로그인</a>
                                             </p>
-                                        </div>
-                                        <p class="text-center mt-5 mb-3 text-muted">© 2024 EXOMERE™. All Rights Reserved.
+                                        </div> --}}
+                                        <p class="text-center mt-5 mb-3 text-muted">© {{date('Y')}} EXOMERE™. All Rights Reserved.
                                     </form>
 
                                 </div>

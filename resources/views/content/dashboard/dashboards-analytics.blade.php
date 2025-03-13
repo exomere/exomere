@@ -1,41 +1,7 @@
-<?php
 
-// 예제 데이터
-$data = [
-
-    //회원
-    "fc_data" => [
-        "business" => [
-            ["name" => "FC I", "new_members" => 10, "total_members" => 100],
-            ["name" => "FC", "new_members" => 15, "total_members" => 120],
-            ["name" => "우수FC", "new_members" => 0, "total_members" => 90],
-            ["name" => "최우수FC", "new_members" => 5, "total_members" => 50]
-        ],
-        "beauty" => [
-            ["name" => "대리점", "new_members" => 1, "total_members" => 24],
-            ["name" => "뷰티", "new_members" => 0, "total_members" => 33]
-        ]
-    ],
-    //실적
-    "perform" => [
-        "business" => [
-            "new" => 12300230,
-            "repurchase" => 2130123
-        ],
-        "beauty" => [
-            "new" => 1000203,
-            "repurchase" => 40000
-        ]
-    ]
-];
-
-$jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
-
-?>
 @extends('layouts/contentNavbarLayout')
 
 @section('title', 'Dashboard - Analytics')
-
 
 @section('vendor-style')
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
@@ -51,10 +17,10 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
 
     <script>
         // JSON 데이터
-        const data = @json($jsonData);
+        const data = @json($json_chart_data);
+        
         const jsonData = JSON.parse(data);
-
-
+   
         // fc
         const fcData = jsonData.fc_data;
         const createBarChart = (id, opt) => {
@@ -83,13 +49,14 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
         let opt = {
             category: ["FC I", "FC", "우수FC", "최우수FC",],
             series: [
+                   
                 {
-                    name: "당월(신규)",
-                    data: fcData.business.map(item => item.new_members)
+                    name: "이번년도",
+                    data: fcData.beauty.map(item => item.year)
                 },
                 {
-                    name: "합계",
-                    data: fcData.business.map(item => item.total_members)
+                    name: "당월",
+                    data: fcData.beauty.map(item => item.month)
                 }
             ]
         };
@@ -204,7 +171,7 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
                                         </span>
                             </div>
                             <h5 class="card-title card-title-elements mb-0 text-nowrap">
-                                나의 FC
+                                회원 현황
                             </h5>
                         </div>
                     </div>
@@ -213,54 +180,45 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
                     <div class="row">
                         <div class="col-12">
                             <div class="card-title d-flex align-items-start justify-content-between">
-                                <h5 class="text-primary">
-                                    사업자 회원
-                                </h5>
-                                <button class="btn p-0" type="button" onclick="alert('준비중')">
-                                    <small class="text-muted">더보기 &gt;</small>
-                                </button>
                             </div>
                             <div class="d-flex flex-column justify-content-between">
                                 <div class="row">
-                                    <h6 class="card-title mb-4">1대 FC</h6>
+                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                        <h5 class="text-primary">
+                                            직책별 총원
+                                        </h5>
+                                    </div>
                                     <div>
-                                        @foreach ($data['fc_data']['business'] as $fc)
+                                        @foreach ($chart_data['fc_data']['business'] as $fc)
                                             <div class="d-flex justify-content-between mb-4 pb-1">
                                                 <h6 class="card-title text-nowrap mb-1"><i
                                                         class='bx bx-check'></i> {{ $fc['name'] }}</h6>
                                                 <small
-                                                    class="{{ $fc['new_members'] > 0 ? 'text-success' : 'text-muted' }} fw-medium">
-                                                    <i class='bx {{ $fc['new_members'] > 0 ? 'bx-up-arrow-alt' : '' }}'></i>
-                                                    당월 {{ $fc['new_members'] }}명(신규) /
-                                                    합계 {{ $fc['total_members'] }}
-                                                    명
+                                                    class="fw-medium">
+                                                    <i class='bx'></i>
+                                                    {{-- 매출 {{ number_format($fc['new_members']) }}원 / --}}
+                                                     {{ $fc['total_members'] }}명
                                                 </small>
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
                                 <hr>
-
                                 <div class="card-title d-flex align-items-start justify-content-between">
                                     <h5 class="text-primary">
-                                        소비자 회원
+                                        직책별 매출
                                     </h5>
-                                    <button class="btn p-0" type="button" onclick="alert('준비중')">
-                                        <small class="text-muted">더보기 &gt; </small>
-                                    </button>
                                 </div>
                                 <div class="d-flex flex-column justify-content-between">
                                     <div>
                                         <div style="">
-                                            @foreach ($data['fc_data']['beauty'] as $fc)
+                                            @foreach ($chart_data['fc_data']['beauty'] as $fc)
                                                 <div class="d-flex justify-content-between mb-4 pb-1">
                                                     <h6 class="card-title text-nowrap mb-1"><i
                                                             class='bx bx-check'></i> {{ $fc['name'] }}</h6>
-                                                    <small
-                                                        class="{{ $fc['new_members'] > 0 ? 'text-success' : 'text-muted' }} fw-medium">
-                                                        <i class='bx {{ $fc['new_members'] > 0 ? 'bx-up-arrow-alt' : '' }}'></i>
-                                                        당월 {{ $fc['new_members'] }}명(신규) /
-                                                        합계 {{ $fc['total_members'] }}명
+                                                    <small class="fw-medium">
+                                                        (M)  {{ number_format($fc['month']) }}원 <br>
+                                                        (Y)  {{ number_format($fc['year'] )}}원 
                                                     </small>
                                                 </div>
                                             @endforeach
@@ -268,18 +226,6 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
                                     </div>
                                 </div>
                                 <div>
-                                    <ul class="tabs nav nav-pills nav-justified">
-                                        <li class="nav-item">
-                                            <button data-tab="business_bar" type="button" class="tab2 nav-link active">
-                                                사업자회원
-                                            </button>
-                                        </li>
-                                        <li class="nav-item">
-                                            <button data-tab="beauty_bar" type="button" class="tab2 nav-link">소비자회원
-                                            </button>
-                                        </li>
-                                    </ul>
-
                                     <!-- Content for Group 1 -->
                                     <div id="business_bar" class="tab-content2 active">
                                         <div id="bar-chart-group1-new"></div>
@@ -294,15 +240,128 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
                         </div>
                     </div>
                 </div>
-                <div class="card-footer pt-0">
-                    <small class="float-end text-primary">
-                        (업데이트 날짜 {{ date("Y-m-d H:i:s", strtotime("+9 hours")) }})
-                    </small>
-                </div>
+          
             </div>
         </div>
         <div class="col-lg-8 order-1">
             <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title d-flex align-items-center justify-content-between">
+                                <div class="d-flex">
+                                    <div class="avatar flex-shrink-0 me-3">
+                                        <span class="avatar-initial rounded bg-label-primary">
+                                            <i class='bx bxs-bar-chart-square'></i>
+                                        </span>
+                                    </div>
+                                    <h5 class="card-title card-title-elements mb-0 text-nowrap">
+                                        실적 환황
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="col-12 col-lg-5">
+                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                        <h5 class="text-primary">
+                                            이번달
+                                        </h5>
+                                        {{-- <button class="btn p-0" type="button" onclick="alert('준비중')">
+                                            <small class="text-muted">더보기 &gt;</small>
+                                        </button> --}}
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-between">
+                                        <div class="row">
+                                            <div>
+                                                <div class="d-flex justify-content-between mb-4 pb-1">
+                                                    <h6 class="card-title text-nowrap mb-1"><i
+                                                            class='bx bx-check'></i> 신규</h6>
+                                                    <small
+                                                        class="text-muted fw-medium">
+                                                        {{ number_format($new_order_month) }}원
+                                                    </small>
+
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-4 pb-1">
+                                                    <h6 class="card-title text-nowrap mb-1"><i
+                                                            class='bx bx-check'></i> 재구매</h6>
+                                                    <small
+                                                        class="text-muted fw-medium">
+                                                        {{ number_format($repurchase_order_month) }}원
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <h5 class="text-primary">
+                                                이번년도
+                                            </h5>
+                                            {{-- <button class="btn p-0" type="button" onclick="alert('준비중')">
+                                                <small class="text-muted">더보기 &gt;</small>
+                                            </button> --}}
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-between">
+                                            <div class="row">
+                                                <div>
+                                                    <div class="d-flex justify-content-between mb-4 pb-1">
+                                                        <h6 class="card-title text-nowrap mb-1"><i
+                                                                class='bx bx-check'></i> 신규</h6>
+                                                        <small
+                                                            class="text-muted fw-medium">
+                                                            {{ number_format($new_order_year) }}원
+                                                        </small>
+
+                                                    </div>
+                                                    <div class="d-flex justify-content-between mb-4 pb-1">
+                                                        <h6 class="card-title text-nowrap mb-1"><i
+                                                                class='bx bx-check'></i> 재구매</h6>
+                                                        <small
+                                                            class="text-muted fw-medium">
+                                                            {{ number_format($repurchase_order_year) }}원
+                                                        </small>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-7">
+                                    <ul class="tabs nav nav-pills nav-justified">
+                                        <li class="nav-item">
+                                            <button data-tab="business" type="button" class="tab nav-link active">
+                                                이번달
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button data-tab="beauty" type="button" class="tab nav-link">이번년도</button>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Content for Group 1 -->
+                                    <div id="business" class="tab-content active">
+                                        <div id="donut-chart-group1-new"></div>
+                                        <div id="donut-chart-group1-repurchase"></div>
+                                    </div>
+
+                                    <!-- Content for Group 2 -->
+                                    <div id="beauty" class="tab-content">
+                                        <div id="donut-chart-group2-new"></div>
+                                        <div id="donut-chart-group2-repurchase"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
                 <div class="col-12 mb-4">
                     <div class="card justify-content-center">
                         <div class="row row-bordered g-0">
@@ -357,133 +416,13 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
                     </div>
                 </div>
 
-                <div class="col-12 mb-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title d-flex align-items-center justify-content-between">
-                                <div class="d-flex">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <span class="avatar-initial rounded bg-label-primary">
-                                            <i class='bx bxs-bar-chart-square'></i>
-                                        </span>
-                                    </div>
-                                    <h5 class="card-title card-title-elements mb-0 text-nowrap">
-                                        실적 환황
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body pb-0">
-                            <div class="row">
-                                <div class="col-12 col-lg-5">
-                                    <div class="card-title d-flex align-items-start justify-content-between">
-                                        <h5 class="text-primary">
-                                            사업자 회원
-                                        </h5>
-                                        <button class="btn p-0" type="button" onclick="alert('준비중')">
-                                            <small class="text-muted">더보기 &gt;</small>
-                                        </button>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-between">
-                                        <div class="row">
-                                            <div>
-                                                <div class="d-flex justify-content-between mb-4 pb-1">
-                                                    <h6 class="card-title text-nowrap mb-1"><i
-                                                            class='bx bx-check'></i> 신규</h6>
-                                                    <small
-                                                        class="text-muted fw-medium">
-                                                        00000원
-                                                    </small>
-
-                                                </div>
-                                                <div class="d-flex justify-content-between mb-4 pb-1">
-                                                    <h6 class="card-title text-nowrap mb-1"><i
-                                                            class='bx bx-check'></i> 재구매</h6>
-                                                    <small
-                                                        class="text-muted fw-medium">
-                                                        00000원
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <div class="card-title d-flex align-items-start justify-content-between">
-                                            <h5 class="text-primary">
-                                                소비자 회원
-                                            </h5>
-                                            <button class="btn p-0" type="button" onclick="alert('준비중')">
-                                                <small class="text-muted">더보기 &gt;</small>
-                                            </button>
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-between">
-                                            <div class="row">
-                                                <div>
-                                                    <div class="d-flex justify-content-between mb-4 pb-1">
-                                                        <h6 class="card-title text-nowrap mb-1"><i
-                                                                class='bx bx-check'></i> 신규</h6>
-                                                        <small
-                                                            class="text-muted fw-medium">
-                                                            00000원
-                                                        </small>
-
-                                                    </div>
-                                                    <div class="d-flex justify-content-between mb-4 pb-1">
-                                                        <h6 class="card-title text-nowrap mb-1"><i
-                                                                class='bx bx-check'></i> 재구매</h6>
-                                                        <small
-                                                            class="text-muted fw-medium">
-                                                            00000원
-                                                        </small>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-7">
-                                    <ul class="tabs nav nav-pills nav-justified">
-                                        <li class="nav-item">
-                                            <button data-tab="business" type="button" class="tab nav-link active">
-                                                사업자회원
-                                            </button>
-                                        </li>
-                                        <li class="nav-item">
-                                            <button data-tab="beauty" type="button" class="tab nav-link">소비자회원</button>
-                                        </li>
-                                    </ul>
-
-                                    <!-- Content for Group 1 -->
-                                    <div id="business" class="tab-content active">
-                                        <div id="donut-chart-group1-new"></div>
-                                        <div id="donut-chart-group1-repurchase"></div>
-                                    </div>
-
-                                    <!-- Content for Group 2 -->
-                                    <div id="beauty" class="tab-content">
-                                        <div id="donut-chart-group2-new"></div>
-                                        <div id="donut-chart-group2-repurchase"></div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <small class="float-end text-primary">
-                                (업데이트 날짜 {{ date("Y-m-d H:i:s", strtotime("+8 hours")) }})
-                            </small>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
 
     {{--    리뷰/ 문의 --}}
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12 mb-4">
             <div class="card">
                 <div class="card-body">
@@ -522,5 +461,5 @@ $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

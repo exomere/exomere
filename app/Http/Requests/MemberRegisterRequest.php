@@ -28,7 +28,7 @@ class MemberRegisterRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:ex_members'],
-            'local_store' => ['required', 'string'],
+            // 'local_store' => ['required', 'string'],
             'recommend_seq' => ['required', 'integer'],
             'zipcode' => ['required', 'string', 'max:10'],
             'address' => ['required', 'string'],
