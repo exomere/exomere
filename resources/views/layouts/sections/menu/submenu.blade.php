@@ -29,7 +29,7 @@
             @endphp
 
             @isset($submenu['level']) 
-                @if($submenu['level'] < request()->session()->get("member_level") )
+                @if($submenu['level'] <= request()->session()->get("member_level") )
                     <li class="menu-item {{ $activeClass }}">
                         <a href="{{ isset($submenu['url']) ? url($submenu['url']) : 'javascript:void(0)' }}" class="{{ isset($submenu['submenu']) ? 'menu-link menu-toggle' : 'menu-link' }}" @if (isset($submenu['target']) && !empty($submenu['target'])) target="{{ $submenu['target'] }}" @endif>
                             @if (isset($submenu['icon']))
