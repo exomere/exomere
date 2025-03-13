@@ -336,7 +336,7 @@ class ErpOrderController extends Exomere
         $account_info = json_decode($order_data->account_info);
         $card_info = json_decode($order_data->card_info);
         $order_date = date("Y-m-d",strtotime($order_data->order_date));
-
+        $card_info2 = ExCardPayment::where('order_id',$orderId)->where('resp_msg','정상승인')->first();
         $member_data = ExMember::find($order_data->member_seq);
 
         $itemArray = [];
@@ -369,6 +369,7 @@ class ErpOrderController extends Exomere
             "item_info" => $item_info,
             "account_info" => $account_info,
             "card_info" => $card_info,
+            "card_info2" => $card_info2,
             "item_array" => $itemArray ?? [],
             "center_array" => $centerArray ?? [],
             "order_date" => $order_date ?? date('Y-m-d'),

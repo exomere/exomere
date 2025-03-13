@@ -39,6 +39,7 @@
           <th style='vertical-align: middle;'>매출</th>
           <th style='vertical-align: middle;'>PV1</th>
           <th style='vertical-align: middle;'>상태</th>
+          <th style='vertical-align: middle;'>관리</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
@@ -52,6 +53,17 @@
             <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_pv)}}</span></td>
             <td> <span class="fw-medium">{{$approval_kind[$list->is_approval]}}</span></td>
+            <td>
+              <div class="dropdown">
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="javascript:void(0);" onclick="printOrderDetails({{ $list->id }})">
+                    <i class="bx bx-printer me-1"></i> Print
+                  </a>
+                  <a class="dropdown-item" href="{{route('order-detail',$list->id)}}"><i class="bx bx-edit-alt me-1"></i> Detail</a>
+                </div>
+              </div>
+            </td>
           </tr>
         @endforeach
       </tbody>
@@ -62,4 +74,15 @@
   </div>
 </div>
 <!--/ Basic Bootstrap Table -->
+@endsection
+@section('page-script')
+ <script>
+  function printOrderDetails(orderId) {
+    // Option 1: Open a new window or modal for a detailed view and print
+    const printWindow = window.open(`/management/erp/order/print/${orderId}`, '_blank');
+    printWindow.onload = function () {
+      printWindow.print();
+    };
+  }
+ </script>
 @endsection

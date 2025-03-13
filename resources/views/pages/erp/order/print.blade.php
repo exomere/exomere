@@ -109,32 +109,45 @@
       </tr>
       </thead>
       <tbody>
-      @if(isset($card_info))
-        @php $card_cnt = 1; @endphp
-        @foreach ($card_info as $card)
+      @if(isset($card_info2))
           <tr>
             <td>
-              {{$card->card_name ?? ''}}
+              {{$card_info2->card_name ?? ''}}
             </td>
-            <td>{{$card->card_number ?? ''}}</td>
-            <td>{{$card->card_payment_price ?? ''}}</td>
-            <td>{{$card->card_month_plan == '0' ? '일시불' : ($card->card_month_plan ?? '')}}</td>
-            <td>{{$card->card_year_month ?? ''}}</td>
-            <td>{{$card->card_approval_number ?? ''}}</td>
-            <td>{{$card->card_approval_name ?? ''}}</td>
-            <td>{{$card->card_approval_date ?? ''}}</td>
+            <td>{{$card_info2->card_num ?? ''}}</td>
+            <td>{{number_format($order_data->total_amount)}}</td>
+            <td>{{$card_info2->card_inst ?? ''}}</td>
+            <td></td>
+            <td>{{$card_info2->approval_num ?? ''}}</td>
+            <td>{{ $order_data->member_name ?? ''}}</td>
+            <td>{{$card_info2->reg_date ?? ''}}</td>
           </tr>
-          @php $card_cnt++; @endphp
-        @endforeach
       @else
-        <tr>
-          <td style='text-align:center; height:80px;' colspan="10">카드결제 정보가 없습니다.</td>
-        </tr>
+        @if(isset($card_info))
+          @php $card_cnt = 1; @endphp
+          @foreach ($card_info as $card)
+            <tr>
+              <td>
+                {{$card->card_name ?? ''}}
+              </td>
+              <td>{{$card->card_number ?? ''}}</td>
+              <td>{{$card->card_payment_price ?? ''}}</td>
+              <td>{{$card->card_month_plan == '0' ? '일시불' : ($card->card_month_plan ?? '')}}</td>
+              <td>{{$card->card_year_month ?? ''}}</td>
+              <td>{{$card->card_approval_number ?? ''}}</td>
+              <td>{{$card->card_approval_name ?? ''}}</td>
+              <td>{{$card->card_approval_date ?? ''}}</td>
+            </tr>
+            @php $card_cnt++; @endphp
+          @endforeach
+        @endif
       @endif
       </tbody>
     </table>
   </div>
+
   <div class="order-items">
+    @if(isset($account_info) && count($account_info) > 0)
     <h3>계좌이체 결제 정보</h3>
     <table class="items-table">
       <thead>
@@ -146,7 +159,7 @@
       </tr>
       </thead>
       <tbody>
-      @if(isset($account_info) && count($account_info) > 0)
+     
         @php $acc_cnt = 1; @endphp
         @foreach ($account_info as $account)
           <tr>
@@ -157,17 +170,14 @@
           </tr>
           @php $acc_cnt++; @endphp
         @endforeach
-      @else
-        <tr>
-          <td style='text-align:center; height:80px;' colspan="5">계좌이체 정보가 없습니다.</td>
-        </tr>
-      @endif
+   
       </tbody>
     </table>
+    @endif
     <br>
-    <div style='text-align:right; height:30px; line-height:30px;'> <span style='font-size:28px;'>(주)엑소미어 </span> <img style='height:30px;' src='/img/company_signature.jpeg'></div>
-  </div>
 
+  </div>
+  <div style='text-align:right; height:30px; line-height:30px;'> <span style='font-size:28px;'>(주)엑소미어 </span> <img style='height:30px;' src='/img/company_signature.jpeg'></div>
   <button onclick="window.print()" class="print-button" style="margin-top: 20px;">Print</button>
 </div>
 </body>

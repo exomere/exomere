@@ -233,6 +233,7 @@ Route::group(['middleware' => 'auth'], function () {
         /** 주문 - 주문내역 */
         Route::prefix('/order')->group(function () {
             Route::get('/list', [OrderController::class, 'orderList'])->name('order-list');
+            Route::get('/detail/{seq?}', [OrderController::class, 'orderDetail'])->name('order-detail');
             Route::get('/recruitment_list', [OrderController::class, 'recruitmentList'])->name('recruitment-list');
         });
 

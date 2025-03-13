@@ -69,29 +69,7 @@
         </div>
 
         <div class="col-md-6">
-                <div class="card mb-4">
-                    <h5 class="card-header">계좌정보</h5>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="bank_code" class="form-label">은행명</label>
-                            @foreach($bankList as $code => $bank)
-                                @if(old('bank_code', $account ? $account->bank_code : '') == $code)
-                                    <input type="text" class="form-control" readonly="readonly" id="account_number" name="account_number" value="{{ $bank }}">
-                                @endif
-                            @endforeach
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="account_number" class="form-label">계좌번호</label>
-                            <input type="text" class="form-control" readonly="readonly" id="account_number" name="account_number" value="{{ old('account_number', $account ? $account->account_number : '') }}">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="account_name" class="form-label">예금주</label>
-                            <input type="text" class="form-control" readonly="readonly" id="account_name" name="account_name" value="{{ old('account_name', $account ? $account->account_name : '') }}">
-                        </div>
-                    </div>
-                </div>
+       
 
             <form action="{{ route('member.update.password') }}" method="POST">
                 @csrf

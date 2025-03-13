@@ -1,13 +1,13 @@
 <ul class="menu-sub">
     @if (isset($menu))
         @foreach ($menu as $submenu)
-
+    
             {{-- active menu method --}}
             @php
                 $activeClass = '';
                 $active = 'active open';
                 $currentRouteName = Route::currentRouteName();
-
+    
                 if ($currentRouteName === $submenu['slug']) {
                     $activeClass = 'active';
                 }
