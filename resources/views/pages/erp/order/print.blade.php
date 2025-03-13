@@ -31,6 +31,10 @@
 
   <div class="order-details">
     <table style='width:100%; border:1px solid #eee;' class='items-table'>
+      <tr>
+        <th  style='width:25%;  border:1px solid #eee;'>주문일자</th>
+        <td colspan="3">  {{date("Y.m.d",strtotime($order_data->order_date))}} </td>
+      </tr>
       <tr style=' border:1px solid #eee;'>
         <th style='width:25%;  border:1px solid #eee;'>성 명</th>
         <td style='width:25%;  border:1px solid #eee;'> {{ $order_data->member_name ?? null }}</td>
@@ -177,7 +181,7 @@
     <br>
 
   </div>
-  <div style='text-align:right; height:30px; line-height:30px;'> <span style='font-size:28px;'>(주)엑소미어 </span> <img style='height:30px;' src='/img/company_signature.jpeg'></div>
+  <div style='text-align:right; height:40px; padding : 20px 0;'> <span style='font-size:20px;'>(주)엑소미어 </span> <img style='height:40px;' src='/img/company_signature.jpeg'></div>
   <button onclick="window.print()" class="print-button" style="margin-top: 20px;">Print</button>
 </div>
 </body>
