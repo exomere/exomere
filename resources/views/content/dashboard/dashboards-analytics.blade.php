@@ -47,7 +47,7 @@
         };
 
         let opt = {
-            category: ["FC I", "FC", "우수FC", "최우수FC",],
+            category: fcData.category,
             series: [
                    
                 {
