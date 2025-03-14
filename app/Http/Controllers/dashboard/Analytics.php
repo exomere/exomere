@@ -20,7 +20,8 @@ class Analytics extends Controller
 
     $member_nation = request()->session()->get('member_nation');
 
-    $memberid = request()->session()->get('member_id');
+    $member_id = request()->session()->get('member_id');
+    $member_seq = request()->session()->get('member_seq');
 
     // if($memberid == 'admin' || $member_level > 90 ){
       // $business_new = ExOrder::where('order_type','new')
@@ -35,6 +36,14 @@ class Analytics extends Controller
     $year_end = date("Y")."-12-31 23:59:59";
 
     if($member_type == 'admin'){
+
+      $new_order_month = ExOrder::where('order_type','new')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$month_start,$month_end])->SUM('total_amount');
+      $repurchase_order_month = ExOrder::where('order_type','repurchase')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$month_start,$month_end])->SUM('total_amount');
+
+      $new_order_year = ExOrder::where('order_type','new')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$year_start,$year_end])->SUM('total_amount');
+      $repurchase_order_year = ExOrder::where('order_type','repurchase')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$year_start,$year_end])->SUM('total_amount');
+
+
       $fc_member_count = ExMember::where('member_position','총판')->where('site_code',$site_code)->where('nation',$member_nation)->count();
       $fc1_member_count = ExMember::where('member_position','총판1')->where('site_code',$site_code)->where('nation',$member_nation)->count();
       $fc2_member_count = ExMember::where('member_position','우수총판')->where('site_code',$site_code)->where('nation',$member_nation)->count();
@@ -72,6 +81,12 @@ class Analytics extends Controller
       ];
 
     }else if($member_type == 'director'){
+
+      $new_order_month = ExOrder::where('order_type','new')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$month_start,$month_end])->SUM('total_amount');
+      $repurchase_order_month = ExOrder::where('order_type','repurchase')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$month_start,$month_end])->SUM('total_amount');
+      $new_order_year = ExOrder::where('order_type','new')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$year_start,$year_end])->SUM('total_amount');
+      $repurchase_order_year = ExOrder::where('order_type','repurchase')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$year_start,$year_end])->SUM('total_amount');
+
       $fc_member_count = ExMember::where('member_position','뷰티플래너')->where('site_code',$site_code)->where('nation',$member_nation)->count();
       $fc1_member_count = ExMember::where('member_position','대리점')->where('site_code',$site_code)->where('nation',$member_nation)->count();
     
@@ -92,15 +107,48 @@ class Analytics extends Controller
         ],
         "category" => ["대리점", "뷰티플래너"],
       ];
+    }else if($member_type == 'user'){
+
+      $new_order_month = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.order_type','new')->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$month_start,$month_end])->where('ex_members.recommend_seq',$member_seq)->SUM('total_amount');
+      $repurchase_order_month = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.order_type','repurchase')->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$month_start,$month_end])->where('ex_members.recommend_seq',$member_seq)->SUM('total_amount');
+      $new_order_year = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.order_type','new')->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$year_start,$year_end])->where('ex_members.recommend_seq',$member_seq)->SUM('total_amount');
+      $repurchase_order_year = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.order_type','repurchase')->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$year_start,$year_end])->where('ex_members.recommend_seq',$member_seq)->SUM('total_amount');
+      
+      $fc_member_count = ExMember::where('member_position','총판')->where('recommend_seq',$member_seq)->count();
+      $fc1_member_count = ExMember::where('member_position','총판1')->where('recommend_seq',$member_seq)->count();
+      $fc2_member_count = ExMember::where('member_position','우수총판')->where('recommend_seq',$member_seq)->count();
+      $fc3_member_count = ExMember::where('member_position','최우수총판')->where('recommend_seq',$member_seq)->count();
+
+      $fc_order_month = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.recommend_seq',$member_seq)->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$month_start,$month_end])->where('ex_members.member_position','총판')->SUM('ex_orders.total_amount');
+      $fc_1_order_month = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.recommend_seq',$member_seq)->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$month_start,$month_end])->where('ex_members.member_position','총판1')->SUM('ex_orders.total_amount');
+      $fc_2_order_month = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.recommend_seq',$member_seq)->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$month_start,$month_end])->where('ex_members.member_position','우수총판')->SUM('ex_orders.total_amount');
+      $fc_3_order_month = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.recommend_seq',$member_seq)->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$month_start,$month_end])->where('ex_members.member_position','최우수총판')->SUM('ex_orders.total_amount');
+      
+      $fc_order_year = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.recommend_seq',$member_seq)->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$year_start,$year_end])->where('ex_members.member_position','총판')->SUM('ex_orders.total_amount');
+      $fc_1_order_year = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.recommend_seq',$member_seq)->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$year_start,$year_end])->where('ex_members.member_position','총판1')->SUM('ex_orders.total_amount');
+      $fc_2_order_year = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.recommend_seq',$member_seq)->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$year_start,$year_end])->where('ex_members.member_position','우수총판')->SUM('ex_orders.total_amount');
+      $fc_3_order_year = DB::table('ex_orders')->join('ex_members', 'ex_members.id', '=', 'ex_orders.member_seq')->where('ex_orders.recommend_seq',$member_seq)->where('ex_orders.site_code',$site_code)->where('ex_orders.nation',$member_nation)->whereBetWeen('ex_orders.order_date',[$year_start,$year_end])->where('ex_members.member_position','최우수총판')->SUM('ex_orders.total_amount');
+
+      $position_chart = [
+          "business" => [
+              ["name" => "FC I", "total_members" => (1*$fc1_member_count)],
+              ["name" => "FC", "total_members" => (1*$fc_member_count)],
+              ["name" => "우수FC", "total_members" => (1*$fc2_member_count)],
+              ["name" => "최우수FC", "total_members" => (1*$fc3_member_count)]
+          ],
+          "beauty" => [
+            ["name" => "FC I", "month" => (1*$fc_1_order_month), "year" => (1*$fc_1_order_year)],
+            ["name" => "FC", "month" => (1*$fc_order_month), "year" => (1*$fc_order_year)],
+            ["name" => "우수FC", "month" => (1*$fc_2_order_month), "year" => (1*$fc_2_order_year)],
+            ["name" => "최우수FC", "month" => (1*$fc_3_order_month), "year" => (1*$fc_3_order_year)]
+          ],
+          "category" => ["FC I", "FC", "우수FC", "최우수FC",],
+      ];
     }
 
 
 
-    $new_order_month = ExOrder::where('order_type','new')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$month_start,$month_end])->SUM('total_amount');
-    $repurchase_order_month = ExOrder::where('order_type','repurchase')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$month_start,$month_end])->SUM('total_amount');
-
-    $new_order_year = ExOrder::where('order_type','new')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$year_start,$year_end])->SUM('total_amount');
-    $repurchase_order_year = ExOrder::where('order_type','repurchase')->where('site_code',$site_code)->where('nation',$member_nation)->whereBetWeen('order_date',[$year_start,$year_end])->SUM('total_amount');
+  
 
     // 예제 데이터
     $chart_data = [
