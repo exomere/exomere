@@ -464,7 +464,7 @@
                           <th>{{__('erp.order_amount')}}</th>
                         </tr>
                       </thead>
-                      <tbody class="table-border-bottom-0 accountInfoBody">
+                      <tbody class="table-border-bottom-0">
                         @if(isset($past_order_data))
                           @foreach ($past_order_data as $past)
                             @if($past->id != $order_seq)

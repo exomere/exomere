@@ -91,7 +91,7 @@ class Analytics extends Controller
           ["name" => "뷰티플래너", "month" => (1*$fc_order_month), "year" => (1*$fc_order_year)],
         ],
         "category" => ["대리점", "뷰티플래너"],
-    ];
+      ];
     }
 
 
