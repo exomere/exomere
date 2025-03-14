@@ -181,7 +181,8 @@
     <br>
 
   </div>
-  <div style='text-align:right; height:40px; padding : 20px 0;'> <span style='font-size:20px;'>(주)엑소미어 </span> <img style='height:40px;' src='/img/company_signature.jpeg'></div>
+  <div style='text-align:right; height:40px; padding : 20px 0; float:right;'>  <img style='height:100px;' src='/img/company_signature.png'></div>
+  <div style='text-align:right; height:40px; padding : 60px 0; float:right;'><span style='font-size:20px;'>(주)엑소미어 </span> </div>
   <button onclick="window.print()" class="print-button" style="margin-top: 20px;">Print</button>
 </div>
 </body>
