@@ -278,11 +278,11 @@ class OrderController extends Exomere
             "center_seq" => $ex_center->id ?? null,
             "center_name" => $ex_center->name ?? null,
             "receipt_method" => "delivery",
-            "delivery_name" => $request->user_name ?? null,
-            "delivery_phone" => $request->user_phone ?? null,
-            "zipcode" => $request->zipcode ?? null,
-            "address" => $request->address ?? null,
-            "address_detail" => $request->address_detail ?? null,
+            "delivery_name" => $request->user_name ?? '-',
+            "delivery_phone" => $request->user_phone ?? '-',
+            "zipcode" => $request->zipcode ?? '-',
+            "address" => $request->address ?? '-',
+            "address_detail" => $request->address_detail ?? '-',
             "remark" => $request->address_remark ?? '',
             "total_amount" => $info_total_price ?? 0,
             "total_pv" => $total_pv ?? 0,
@@ -314,16 +314,23 @@ class OrderController extends Exomere
             "total_amount" => $request->total_price,
             "phone" => $request->user_phone,
         ];
-
-        return view('pages.mypage.order_complete')->with($complete_data);
+        // dd($complete_data);
+        return redirect()->route('user.order_complete',$complete_data);
+        // return view('pages.mypage.order_complete')->with($complete_data);
     }
 
     public function orderComplete(Request $request){
-
+        
+        
         $datas = [
-            'payment_type' => 'account'
+            "input_data" => $request->input_data,
+            "payment_type" => $request->payment_type,
+            "return_card_info" => $request->return_card_info ?? [],
+            "total_amount" => $request->total_amount,
+            "phone" => $request->phone,
         ];
-
+        
         return view('pages.mypage.order_complete')->with($datas);
+        // return view('pages.mypage.order_complete')->with($datas);
     }
 }

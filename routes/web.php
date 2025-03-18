@@ -169,8 +169,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/mypage/ordersheet', [orderFoController::class, 'ordersheet'])->name('user.ordersheet');
     Route::post('/mypage/doPayment', [orderFoController::class, 'doPayment']);
-    Route::get('/mypage/orderComplete', [orderFoController::class, 'orderComplete']);
-
+    Route::get('/mypage/orderComplete', [orderFoController::class, 'orderComplete'])->name('user.order_complete');
+    
     // 메인>커뮤니티 로그인 후 사용가능
     Route::prefix('/community')->group(function () {
         Route::get('notice', [CommunityController::class, 'notice']);

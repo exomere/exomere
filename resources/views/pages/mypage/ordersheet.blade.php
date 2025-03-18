@@ -460,12 +460,15 @@ $activeHeader = true;
                         return false;
                     }
                 }
+
+                
+                $("#paymentForm").submit();
+                $(".submitBtn").attr("disabled", true);
             } catch (error) {
                 alert("{{ __('messages.unexpected_error_alert') }}");
                 return false;
             }
-
-            $("#paymentForm").submit();
+         
         });
 
         function getPostCode() {
