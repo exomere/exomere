@@ -82,7 +82,14 @@
                                             <span class="align-middle">My Profile</span>
                                         </a>
                                     </li>
-                                    @if(request()->session()->get('member_level') > 10)
+                                    @if(request()->session()->get('member_type') == 'director')
+                                    <li>
+                                        <a class="dropdown-item" href="https://exomere.co.kr/?code={{request()->session()->get('site_code')}}">
+                                            <i class="bx bx-plus me-2"></i>
+                                            <span class="align-middle">My Site</span>
+                                            <div class='urlZone'></div>
+                                        </a>
+                                    </li>
                                         <li>
                                             <a class="dropdown-item" href="#" onclick="copyToClipBoard('site');">
                                                 <i class="bx bx-plus me-2"></i>

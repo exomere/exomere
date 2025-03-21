@@ -762,6 +762,7 @@
                 },
                 success: function () {
                     alert('{{ __('messages.success_cart') }}');
+                    location.href='/products';
                 }
             });
         }
