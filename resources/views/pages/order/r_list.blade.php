@@ -56,7 +56,7 @@
     </table>
   </div>
   <div class="card-footer d-flex justify-content-end">
-      {{ $orders->links('vendor.pagination.bootstrap-4') }}
+    {{ $orders->appends(request()->input())->links('vendor.pagination.bootstrap-4') }}
   </div>
 </div>
 <!--/ Basic Bootstrap Table -->
