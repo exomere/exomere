@@ -124,11 +124,13 @@ class ErpMemberController extends Exomere
           $cnt++;
         }
 
+        $ran_id = "exo".date("d").rand(100,999).date('m');
 
         $data = [
             "bank_list" => CommonConstants::BANK_LIST,
             "member_seq" => $request->seq ?? null,
             "member" => $member ?? [],
+            "ran_id" => $ran_id,
             "center_array" => $centerArray,
             "distribute_array" => $distributeArray,
             "email_info" => $email_info ?? null,

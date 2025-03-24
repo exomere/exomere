@@ -22,7 +22,7 @@
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-member_id">  <span style='color:red;'>*</span>{{__('erp.member_id')}} </label>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="basic-default-member_id" name='member_id' value="{{ $member->member_id ?? null }}"/>
+                <input type="text" class="form-control" id="basic-default-member_id" name='member_id' readonly value="{{ $member->member_id ?? $ran_id }}"/>
               </div>
             </div>
             <div class="row mb-3">
