@@ -46,6 +46,11 @@ return [
     'method_account' => '계좌이체',
     'method_card' => '신용카드',
     'method_point' => '포인트 사용',
+
+    'receipt_method' => '수령방법',
+    'method_delivery' => '배송',
+    'method_scene' => '직접수령',
+    
     'checkout_account' => '계좌이체 정보',
     'checkout_card' => '카드결제 정보',
     'checkout_card_select' => '카드 선택',

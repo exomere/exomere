@@ -8,6 +8,8 @@ use App\Models\ExCardPayment;
 use App\Models\ExCenter;
 use App\Models\ExItem;
 use App\Models\ExMember;
+use App\Models\ExPointLog;
+
 use App\Models\ExOrder;
 
 
@@ -110,13 +112,13 @@ class OrderController extends Exomere
     }
 
     public function doPayment(Request $request){
-
+        
         $ex_member = ExMember::find($request->session()->get("member_seq"));
         
         $item_array = [];
         $card_info = [];
         $account_info = [];
-        $point_payment = 0;
+        $point_payment = $request->use_point;
         $card_payment = 0;
         $account_payment = 0;
 
@@ -254,11 +256,16 @@ class OrderController extends Exomere
         $order_code = "ex-".date("YmdHis").rand(100,999);
 
         $info_total_price = $request->total_price ?? 0;
+        
+        $delivery_fee = 4000;
+        if($request->receipt_method == 'scene'){
+            $delivery_fee = 0;
+        }
 
         if($request->total_price < 300000){
-            $info_total_price = $request->total_price - 4000;
+            $info_total_price = $request->total_price - $delivery_fee + $point_payment;
         }else{
-            $info_total_price = $request->total_price ?? 0;
+            $info_total_price = $request->total_price + $point_payment ?? 0;
         }
 
         $order_type = 'new';
@@ -300,8 +307,28 @@ class OrderController extends Exomere
             "order_date" => date("Y-m-d H:i:s"),
             "reg_name" => "F/O 본인결제",
         ];
-
+        // dd($input_data);
         $create_order = ExOrder::create($input_data);
+
+        if($point_payment > 0){
+            
+            $remain_points = ($ex_member->remain_points - $point_payment);
+            $payment_points = ($ex_member->payment_points - $point_payment);
+            
+            
+            $ex_member->update([
+                "remain_points" => $remain_points,
+                "payment_points" => $payment_points,
+            ]);
+    
+            ExPointLog::create([
+                "kind" => "extinction",
+                "date" => date("Y-m-d H:i:s"),
+                "member_seq" => $ex_member->id,
+                "point" => $point_payment,
+                "remark" => $create_order->id."번에 주문에 사용 F/O",
+            ]);
+        }
 
         if(isset($card_info->id)){
             ExCardPayment::find($card_info->id)->update([
@@ -314,6 +341,7 @@ class OrderController extends Exomere
             "payment_type" => $request->payment_type,
             "return_card_info" => $return_card_info ?? [],
             "total_amount" => $request->total_price,
+            "point_payment" => $point_payment,
             "phone" => $request->user_phone,
         ];
         // dd($complete_data);
@@ -329,6 +357,7 @@ class OrderController extends Exomere
             "payment_type" => $request->payment_type,
             "return_card_info" => $request->return_card_info ?? [],
             "total_amount" => $request->total_amount,
+            "point_payment" => $request->point_payment,
             "phone" => $request->phone,
         ];
         

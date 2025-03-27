@@ -200,7 +200,7 @@
               <div class="row mt-3">
                 <label class="col-sm-1 col-form-label" for="point_payment"> {{__('erp.use_points')}} </label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control totalRecalculating" data-type='point' id="point_payment" name="point_payment" value='{{$order_data->point_paymen ?? 0}}'/>
+                  <input type="text" class="form-control totalRecalculating" data-type='point' id="point_payment" name="point_payment" value='{{ number_format($order_data->point_payment ?? 0 ) }}'/>
                 </div>
                 <label class="col-sm-1 col-form-label" for="remain_points"> {{__('erp.remaining_points')}} </label>
                 <div class="col-sm-2">

@@ -59,7 +59,7 @@ $activeHeader = true;
                 {{--포인트--}}
                 <div class="bg-white p-4 rounded-lg mb-4 shadow">
                     <h3 class="font-semibold text-lg mb-2">{{ __('common.method_point') }}</h3>
-                    <p class="text-gray-700">0</p>
+                    <p class="text-gray-700">{{ number_format($input_data['point_payment']) }}</p>
                 </div>
 
                 <div class="bg-white p-4 rounded-lg mb-4 shadow">

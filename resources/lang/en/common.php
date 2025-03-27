@@ -46,6 +46,10 @@ return [
     'method_account' => 'Account',
     'method_card' => 'Card',
     'method_point' => 'Point',
+    'receipt_method' => 'Receipt method',
+    'method_delivery' => 'Shipping',
+    'method_scene' => 'direct receipt',
+    
     'checkout_account' => 'Bank Transfer Information',
     'checkout_card' => 'Card Payment Information',
     'checkout_card_select' => 'Select Card',

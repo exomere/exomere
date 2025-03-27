@@ -101,6 +101,40 @@ $activeHeader = true;
                                 </div>
                             </div>
 
+                            <div>
+                                {{-- 물건 수령 방법 --}}
+                                <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
+                                    {{ __('common.receipt_method') }}</h2>
+                                <div class="flex items-center mb-4">
+                                    <div class="flex gap-10">
+                                        <div class="inline-flex items-center">
+                                            <label class="relative flex items-center cursor-pointer"
+                                                   for="radio_delivery">
+                                                <input name="receipt_method" type="radio"
+                                                       class="checkReceiptType peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all"
+                                                       id="radio_delivery" value='delivery' checked="">
+                                                <span
+                                                    class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
+                                            </label>
+                                            <span class="ml-2 text-slate-600 cursor-pointer text-sm">
+                                                 {{ __('common.method_delivery') }}
+                                            </span>
+                                        </div>
+                                        <div class="inline-flex items-center">
+                                            <label class="relative flex items-center cursor-pointer" for="radio_scene">
+                                                <input name="receipt_method" type="radio"
+                                                       class="checkReceiptType peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all"
+                                                       id="radio_scene" value='scene'>
+                                                <span
+                                                    class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
+                                            </label>
+                                            <label class="ml-2 text-slate-600 cursor-pointer text-sm"
+                                                   for="radio_scene">{{ __('common.method_scene') }}</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
 
                             <div>
                                 <!-- 주문상품 -->
@@ -150,7 +184,6 @@ $activeHeader = true;
                                 </div>
                             </div>
 
-
                             <div>
                                 {{--포인트사용--}}
                                 <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
@@ -166,7 +199,7 @@ $activeHeader = true;
                                                 <input type="number"
                                                        class="text-right w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-10 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                                                        id="use_point"
-                                                       name=""
+                                                       name="use_point"
                                                 />
 
                                                 {{--사용 리셋--}}
@@ -191,6 +224,7 @@ $activeHeader = true;
                                 </div>
                             </div>
 
+                           
 
                             <div>
                                 {{--결제수단--}}
@@ -226,6 +260,7 @@ $activeHeader = true;
                                     </div>
                                 </div>
                             </div>
+                            
 
                             <div id='payment_account_form'>
                                 {{--결제수단--}}
@@ -379,7 +414,15 @@ $activeHeader = true;
                                 <div class="flex justify-between">
                                     <span>{{ __('common.checkout_product_price') }}</span>
                                     <span class="flex">
-                                        <span>{{number_format($total_price)}}</span>
+                                        <span id='shipping_price'>{{number_format($total_price)}}</span>
+                                        <span
+                                            class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
+                                    </span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>{{ __('common.method_point') }}</span>
+                                    <span class="flex">
+                                        <span id='shipping_point'>0</span>
                                         <span
                                             class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
                                     </span>
@@ -387,7 +430,7 @@ $activeHeader = true;
                                 <div class="flex justify-between">
                                     <span>{{ __('common.shipping_fee') }}</span>
                                     <span class="flex">
-                                        <span>{{number_format($delivery_price)}}</span>
+                                        <span id='shipping_fee'>{{number_format($delivery_price)}}</span>
                                         <span
                                             class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
                                     </span>
@@ -402,11 +445,11 @@ $activeHeader = true;
                                 <button
                                     type="button"
                                     class="submitBtn rounded-sm text-center w-full px-5 py-4 border border-solid border-base-color bg-base-color flex items-center justify-center font-normal text-lg text-white shadow-sm">
-
+                                    
                                     <span class="flex">
-                                        <input type='hidden' name='total_price'
+                                        <input type='hidden' name='total_price' id='total_price'
                                                value="{{$total_price + $delivery_price}}">
-                                        <span>{{number_format($total_price + $delivery_price)}}</span>
+                                        <span id='total_price_span'>{{number_format($total_price + $delivery_price)}}</span>
                                         <span
                                             class="px-1 currency @if(app()->getLocale() == 'en') order-first @endif">{{ __('common.currency') }}</span>
                                     </span>
@@ -532,6 +575,77 @@ $activeHeader = true;
                 $("#payment_account_form").css('display', 'block');
             }
         });
+
+        $(".checkReceiptType").on("click", function () {
+            var check_value = $('input:radio[name="receipt_method"]:checked').val();
+
+            // shipping_fee shipping_point shipping_price total_price total_price_span
+            var total_price = 1*'<?php echo $total_price ?>';
+            var delivery_price = 1*'<?php echo $delivery_price ?>';
+
+            if (check_value == 'delivery') {
+                $("#shipping_fee").html(comma(delivery_price));
+                $("#total_price").val(total_price + delivery_price);
+                $("#total_price_span").html(comma(total_price + delivery_price));
+            } else {
+                $("#shipping_fee").html(comma(0));
+                $("#total_price").val(total_price);
+                $("#total_price_span").html(comma(total_price));
+            }
+
+            $("#use_point").trigger('change');
+        });
+
+        $("#use_point").on('change',function(){
+            var remain_points = 1*'<?php echo $ex_member->remain_points ?>';
+            var total_price = 1*'<?php echo $total_price ?>';
+            var delivery_price = 1*'<?php echo $delivery_price ?>';
+            var use_point = $(this).val();
+            var check_value = $('input:radio[name="receipt_method"]:checked').val();
+
+            if(use_point > remain_points){
+                alert('보유 포인트보다 사용 포인트가 많습니다.');
+                $("#shipping_point").html(comma(0));
+                $("#use_point").val(0);
+                if (check_value == 'delivery') {
+                    $("#total_price").val(total_price + delivery_price);
+                    $("#total_price_span").html(comma(total_price + delivery_price));
+                } else {
+                    $("#total_price").val(total_price);
+                    $("#total_price_span").html(comma(total_price));
+                }
+                return false;
+            }
+
+            if(use_point > total_price){
+                alert('사용포인트가 결제금액보다 많습니다.');
+                $("#shipping_point").html(comma(0));
+                $("#use_point").val(0);
+                if (check_value == 'delivery') {
+                    $("#total_price").val(total_price + delivery_price);
+                    $("#total_price_span").html(comma(total_price + delivery_price));
+                } else {
+                    $("#total_price").val(total_price);
+                    $("#total_price_span").html(comma(total_price));
+                }
+                return false;
+            }
+
+            $("#shipping_point").html(comma(use_point));
+            if (check_value == 'delivery') {
+                $("#total_price").val(total_price + delivery_price - use_point);
+                $("#total_price_span").html(comma(total_price + delivery_price - use_point));
+            } else {
+                $("#total_price").val(total_price - use_point);
+                $("#total_price_span").html(comma(total_price - use_point));
+            }
+
+        });
+
+        function comma(num){
+            
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
         //포인트 리셋
         $('#resetPointButton').on('click', function() {
