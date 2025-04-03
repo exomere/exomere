@@ -375,6 +375,7 @@
                       <tbody class="table-border-bottom-0 cardInfoBody">
                         @if(isset($card_info))
                           @php $card_cnt = 1; @endphp
+                          {{-- {{dd($card_info);}} --}}
                             @foreach ($card_info as $card)
                               <tr class='cardInfoTr cardInfo_row_{{$card_cnt}}'>
                                   <td>
@@ -386,7 +387,7 @@
                                   <td><input type='text' class='form-control' readonly name='card_month_plan[]' value='{{$card->card_month_plan ?? null}}'></td>
                                   <td><input type='text' class='form-control' readonly name='card_year_month[]' value='{{$card->card_year_month ?? null}}'></td>
                                   <td><input type='text' class='form-control' readonly name='card_approval_number[]' value='{{$card->card_approval_number ?? null}}'></td>
-                                  <td><input type='text' class='form-control' readonly name='card_approval_name[]' value='{{$card->card_approval_name ?? null}}'></td>
+                                  <td><input type='text' class='form-control' readonly name='card_approval_name[]' value='{{$card->card_approval_name ?? $order_data->card_payment}}'></td>
                                   <td><input type='text' class='form-control' readonly name='card_approval_date[]' value='{{$card->card_approval_date ?? null}}'></td>
                                   <td><input type='text' class='form-control' readonly name='card_password[]' value='{{$card->card_password ?? null}}'></td>
                                   <td><button type='button' class='btn btn-outline-danger infoRowDel' data-type='card' data-idx='{{$card_cnt ?? null}}' >{{__('erp.remove')}}</button></td>

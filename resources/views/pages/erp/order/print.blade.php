@@ -17,8 +17,14 @@
     .total { text-align: right; margin-top: 10px; font-size: 1.2em; }
     @media print {
       .print-button { display: none; }
+      
+    }
+    * {
+      -webkit-print-color-adjust: exact !important;   /* Chrome, Safari 6 – 15.3, Edge */
+      color-adjust: exact !important;                 /* Firefox 48 – 96 */
     }
   </style>
+  
 </head>
 <body>
 <div class="print-container">
@@ -37,7 +43,7 @@
       </tr>
       <tr style=' border:1px solid #eee;'>
         <th style='width:25%;  border:1px solid #eee;'>성 명</th>
-        <td style='width:25%;  border:1px solid #eee;'> {{ $order_data->member_name ?? null }}</td>
+        <td style='width:25%;  border:1px solid #eee;'> {{ $order_data->delivery_name ?? null }}</td>
         <th style='width:25%;  border:1px solid #eee;'>생년월일</th>
         <td style='width:25%;  border:1px solid #eee;'> {{ substr($member_data->resident_number,0,6) }}</td>
       </tr>

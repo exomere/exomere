@@ -205,6 +205,7 @@ class OrderController extends Exomere
                     "trad_date" => $res['tradDate'],
                     "trad_num" => $res['tradNum'],
                     "approval_num" => $res['approvalNum'],
+                    "user_name" => $request->card_name,
                     "card_name" => $res['cardName'],
                     "card_num" => $res['cardNum'],
                     "card_inst" => $res['cardInst'],
@@ -212,9 +213,24 @@ class OrderController extends Exomere
                     "resp_msg" => $res['respMsg'],
                     "return_url" => $res['returnUrl'],
                     "return_val" => $res['returnVal'],
+                    "payment_price" => $request->total_price,
                     "reg_date" => date('Y-m-d H:i:s'),
                 ];
+
+                if(isset($request->card_name)){
+                    $card_info_in_array[0]['card_company'] = $request->card_company ?? null;
+                    $card_info_in_array[0]['card_name'] = $res['cardName'] ?? null;
+                    $card_info_in_array[0]['card_number'] = $res['cardNum'] ?? null;
+                    $card_info_in_array[0]['card_payment_price'] = $request->total_price ?? null;
+                    $card_info_in_array[0]['card_month_plan'] = $res['cardInst'] ?? null;
+                    $card_info_in_array[0]['card_year_month'] = ($request->card_year ?? '').($card_month ?? '');
+                    $card_info_in_array[0]['card_approval_number'] = $res['approvalNum'] ?? null;
+                    $card_info_in_array[0]['card_approval_name'] = $request->card_name ?? null;
+                    $card_info_in_array[0]['card_approval_date'] = $request->card_approval_date ?? null;
+                    $card_info_in_array[0]['card_password'] = $request->card_password ?? null;
+                }
                 
+                $card_payment = $request->total_price;
                 $card_info = ExCardPayment::create($return_card_info);
                 
                 if($res['chargeState'] == "승인거절"){
@@ -230,18 +246,7 @@ class OrderController extends Exomere
                 return view('pages.mypage.order_fail')->with($fail_data);
             }
             
-            if(isset($request->card_name)){
-                $card_info_in_array[0]['card_company'] = $request->card_company ?? null;
-                $card_info_in_array[0]['card_name'] = $request->card_name ?? null;
-                $card_info_in_array[0]['card_number'] = $request->card_number ?? null;
-                $card_info_in_array[0]['card_payment_price'] = $request->card_payment_price ?? null;
-                $card_info_in_array[0]['card_month_plan'] = $request->card_month_plan ?? null;
-                $card_info_in_array[0]['card_year_month'] = $request->card_year_month ?? null;
-                $card_info_in_array[0]['card_approval_number'] = $request->card_approval_number ?? null;
-                $card_info_in_array[0]['card_approval_name'] = $request->card_approval_name ?? null;
-                $card_info_in_array[0]['card_approval_date'] = $request->card_approval_date ?? null;
-                $card_info_in_array[0]['card_password'] = $request->card_password ?? null;
-            }
+            
             /* 카드결제 */
         }else{
             $account_info[0]['account_number'] = "KB국민 계좌번호 989801-00-072129 ㈜엑소미어";
