@@ -33,9 +33,9 @@
                                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                                     <p class="text-center h1 fw-bold mx-1 mx-md-4 mt-4">
-                                        <a href="/">
+                                        {{-- <a href="/"> --}}
                                             <img class="mb-4" src="{{asset('img/logo.svg')}}" alt="" width="172" height="57">
-                                        </a>
+                                        {{-- </a> --}}
                                     </p>
 
                                     <form action="{{ route('register') }}" method="POST" class="mx-1 mx-md-4">

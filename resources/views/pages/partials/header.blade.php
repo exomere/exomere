@@ -60,11 +60,11 @@
             </div>
 
             <!--logo-->
-            <a href="/" class="basis-1/3 flex justify-center items-center">
+            {{-- <a href="/" class="basis-1/3 flex justify-center items-center"> --}}
                 <span class="sr-only">엑소미어</span>
                 <img class="log__image m w-32 lg:w-36 lg:hidden" src="{{ asset('img/logo_horizontal.png') }}" alt="">
                 <img class="log__image pc max-lg:hidden w-28" src="{{ asset('img/logo.svg') }}" alt="">
-            </a>
+            {{-- </a> --}}
 
             {{--login/search--}}
             <div class="basis-1/3 flex gap-x-1 items-center justify-end">

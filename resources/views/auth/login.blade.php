@@ -50,10 +50,10 @@
         <form id="formAuthentication" action="{{route('login.perform')}}" method="POST">
             @csrf
             <input type='hidden' name='back_url' value="{{$back_url}}">
-            <a href="/">
+            {{-- <a href="/"> --}}
                 <img class="mb-4" src="{{asset('img/logo.svg')}}" alt="" width="172"
                      height="57">
-            </a>
+            {{-- </a> --}}
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
             <div class="form-floating mb-1">
