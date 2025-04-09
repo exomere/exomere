@@ -86,7 +86,7 @@
                                         <li>
                                             <a class="dropdown-item" href="https://exomere.co.kr/main/{{request()->session()->get('site_code')}}">
                                                 <i class="bx bx-plus me-2"></i>
-                                                <span class="align-middle">My Site</span>
+                                                <span class="align-middle">My MALL</span>
                                                 <div class='urlZone'></div>
                                             </a>
                                         </li>
