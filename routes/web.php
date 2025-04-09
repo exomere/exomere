@@ -79,7 +79,7 @@ if (env('APP_ENV') == 'production' && request()->server('HTTP_HOST') == 'exomere
 
 Artisan::call('storage:link'); //프로덕션에서 심볼릭 오류가 있어서 추가함,,, ㅠㅠ
 
-Route::get('/', [MainController::class, 'index']);
+Route::get('/main/{code?}', [MainController::class, 'index']);
 
 Route::prefix('/ajax')->group(function () {
     Route::get('recommend_search_keywords', [AjaxController::class, 'getRecommendSearchKeywords']);
