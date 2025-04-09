@@ -42,49 +42,50 @@ class MemberRegisterRequest extends FormRequest
      */
     public function messages()
     {
+        
         return [
-            'member_id.required' => 'The Member ID is required.',
-            'member_id.string' => 'The Member ID must be a valid string.',
-            'member_id.max' => 'The Member ID cannot exceed 255 characters.',
-            'member_id.unique' => 'This Member ID is already in use.',
-
-            'password.required' => 'The password is required.',
-            'password.string' => 'The password must be a valid string.',
-            'password.min' => 'The password must be at least 8 characters long.',
-            'password.confirmed' => 'The password confirmation does not match.',
-
-            'name.required' => 'The name is required.',
-            'name.string' => 'The name must be a valid string.',
-            'name.max' => 'The name cannot exceed 255 characters.',
-
-            'phone.required' => 'The phone number is required.',
-            'phone.string' => 'The phone number must be a valid string.',
-            'phone.max' => 'The phone number cannot exceed 20 characters.',
-
-            'email.required' => 'The email address is required.',
-            'email.string' => 'The email address must be a valid string.',
-            'email.email' => 'The email address must be a valid email.',
-            'email.max' => 'The email address cannot exceed 255 characters.',
-            'email.unique' => 'This email address is already registered.',
-
-            'local_store.required' => 'The local store information is required.',
-            'local_store.string' => 'The local store information must be a valid string.',
-
-            'recommend_seq.required' => 'The recruiter sequence is required.',
-            'recommend_seq.integer' => 'The recruiter sequence must be an integer.',
-
-            'zipcode.required' => 'The zipcode is required.',
-            'zipcode.string' => 'The zipcode must be a valid string.',
-            'zipcode.max' => 'The zipcode cannot exceed 10 characters.',
-
-            'address.required' => 'The address is required.',
-            'address.string' => 'The address must be a valid string.',
-
-            'address_detail.required' => 'The address detail is required.',
-            'address_detail.string' => 'The address detail must be a valid string.',
-
-            'nation.required' => 'The nation information is required.',
-            'nation.string' => 'The nation information must be a valid string.',
+            'member_id.required' => '멤버 ID가 필요합니다.',
+            'member_id.string' => '멤버 ID는 유효한 문자열이어야 합니다.',
+            'member_id.max' => '멤버 ID는 255자를 초과할 수 없습니다.',
+            'member_id.unique' => '이 멤버 ID는 이미 사용 중입니다.',
+            
+            'password.required' => '비밀번호가 필요합니다.',
+            'password.string' => '비밀번호는 유효한 문자열이어야 합니다.',
+            'password.min' => '비밀번호는 최소 8자 이상이어야 합니다.',
+            'password.confirmed' => '비밀번호 확인이 일치하지 않습니다.',
+            
+            'name.required' => '이름이 필요합니다.',
+            'name.string' => '이름은 유효한 문자열이어야 합니다.',
+            'name.max' => '이름은 255자를 초과할 수 없습니다.',
+            
+            'phone.required' => '전화번호가 필요합니다.',
+            'phone.string' => '전화번호는 유효한 문자열이어야 합니다.',
+            'phone.max' => '전화번호는 20자를 초과할 수 없습니다.',
+            
+            'email.required' => '이메일 주소가 필요합니다.',
+            'email.string' => '이메일 주소는 유효한 문자열이어야 합니다.',
+            'email.email' => '이메일 주소는 유효한 이메일이어야 합니다.',
+            'email.max' => '이메일 주소는 255자를 초과할 수 없습니다.',
+            'email.unique' => '이 이메일 주소는 이미 등록되어 있습니다.',
+            
+            'local_store.required' => '로컬 스토어 정보가 필요합니다.',
+            'local_store.string' => '로컬 스토어 정보는 유효한 문자열이어야 합니다.',
+            
+            'recommend_seq.required' => '모집자 순서가 필요합니다.',
+            'recommend_seq.integer' => '모집자 시퀀스는 정수여야 합니다.',
+            
+            'zipcode.required' => 'zipcode가 필요합니다.',
+            'zipcode.string' => 'zipcode는 유효한 문자열이어야 합니다.',
+            'zipcode.max' => '우편번호는 10자를 초과할 수 없습니다.',
+            
+            'address.required' => '주소가 필요합니다.',
+            'address.string' => '주소는 유효한 문자열이어야 합니다.',
+            
+            'address_detail.required' => '주소 세부 정보가 필요합니다.',
+            'address_detail.string' => '주소 세부 정보는 유효한 문자열이어야 합니다.',
+            
+            'nation.required' => '국가 정보가 필요합니다.',
+            'nation.string' => '국가 정보는 유효한 문자열이어야 합니다.',
         ];
     }
 }

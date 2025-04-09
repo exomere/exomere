@@ -19,6 +19,7 @@ class LoginController extends Exomere
      */
     public function show()
     {        
+       
         $back_url = url()->previous();
         $datas = [
             'back_url' =>$back_url ?? "/",

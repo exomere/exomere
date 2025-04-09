@@ -70,7 +70,8 @@ class JoinController extends Controller
 
     public function register(MemberRegisterRequest $request)
     {
-        $exMember = $this->createMember($request->validated());
+        
+        $exMember = $this->createMember($request->validated(),$request->distr_code,$request->nation);
 
         if ($exMember) {
             return redirect()->route('login')->with('success', __('messages.register_success'));
@@ -79,23 +80,32 @@ class JoinController extends Controller
         return redirect()->back()->withErrors(['error' => __('messages.register_fail')]);
     }
 
-    protected function createMember(array $data)
+    protected function createMember($data,$code,$nation)
     {
-        
+       
+        $recomMember = ExMember::find($data['recommend_seq']);
+        $distribute = ExDistribute::where('code',$code)->first();
+
         return ExMember::create([
             'member_id' => $data['member_id'],
             'member_pw' => strtoupper(sha1(hex2bin(sha1(env('LOGIN_KEY') . $data['password'])))),
             'name' => $data['name'],
             'phone' => $data['phone'],
-            'local_store' => $data['local_store'],
+            'tel' => $data['phone'],
+            "distribute_seq" => $distribute->id ?? null,
+            "recommend_id" => $recomMember->member_id ?? null,
+            "recommend_name" => $recomMember->name ?? null,
+            "member_type" => "user",
+            "member_position" => "회원",
+            'local_store' => $data['local_store'] ?? '26',
             'recommend_seq' => $data['recommend_seq'],
             'zip_code' => $data['zipcode'],
             'address' => $data['address'],
             'address_detail' => $data['address_detail'],
-            'nation' => $data['nation'],
+            'nation' => $nation,
             'email' => $data['email'],
-            'site_code' => $data['distr_code'],
-            'code' => $data['distr_code'],
+            'site_code' => $code,
+            'code' => $code,
             
         ]);
     }
