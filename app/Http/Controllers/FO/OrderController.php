@@ -310,6 +310,7 @@ class OrderController extends Exomere
             "card_info" => json_encode($card_info_in_array) ?? [],
             "account_info" => json_encode($account_info) ?? [],
             "order_date" => date("Y-m-d H:i:s"),
+            "site_code" => request()->session()->get('site_code') ?? 'exomere',
             "reg_name" => "F/O 본인결제",
         ];
         // dd($input_data);
