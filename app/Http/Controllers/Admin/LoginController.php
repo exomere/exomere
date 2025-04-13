@@ -47,7 +47,18 @@ class LoginController extends Exomere
             $request->session()->put('member_nation', $userInfo->nation ?? 'KR');
         
             $distribute = ExDistribute::where('director_seq',$userInfo->id)->first();
-            
+
+            if($userInfo->site_code != 'exomere'){
+                $user_distribute = ExDistribute::where('code',$userInfo->site_code)->first();
+                $request->session()->put('director_name', $user_distribute->director_name ?? '정성헌');
+                $request->session()->put('director_company', $user_distribute->name ?? '(주)엑소미어');
+                $request->session()->put('director_business_num', $user_distribute->business_num ?? '');
+                $request->session()->put('director_phone', $user_distribute->director_phone ?? '02-1577-1586');
+                $request->session()->put('director_address', $user_distribute->address ?? '서울 송파구 법원로11길 11 (문정동, 문정현대지식산업센터1-1) ');
+                $request->session()->put('director_address_detail', $user_distribute->address_detail ?? 'A동 204호');
+                $request->session()->put('director_code', $user_distribute->pg_code ?? '29151');
+            }
+
             if(isset($distribute)){
                 if($distribute->code != 'exomere'){
                     $request->session()->put('member_type','director');    

@@ -15,7 +15,7 @@ class MainController extends Exomere
 {
     public function index(Request $request)
     {
-        $code = $request->code ?? 'exomere';
+        $code = $request->code ?? ( $request->session()->get('site_code') ?? 'exomere' );
 
         $director = ExDistribute::where("code",$code)->first();
 

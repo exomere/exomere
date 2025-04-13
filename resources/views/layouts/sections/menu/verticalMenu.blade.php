@@ -2,12 +2,12 @@
 
     <!-- ! Hide app brand if navbar-full -->
     <div class="app-brand demo">
-        {{-- <a href="{{url('/')}}" class="app-brand-link"> --}}
+        <a href="{{url('/')}}" class="app-brand-link">
             <span class="app-brand-logo demo">
                 
             </span>
             <img style='width:200px;' src="{{asset('img/logo_horizontal.png')}}" alt="" class=" h-full object-cover ">
-        {{-- </a> --}}
+        </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
