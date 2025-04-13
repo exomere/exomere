@@ -18,48 +18,57 @@ class OrganizationController extends Exomere
     public function list(): View
     {
         $user = auth()->user();
-//        $user = ExMember::where('id', 1509)->first();
+//        $user = ExMember::where('id', 1973)->first();
         $orgData = [];
 
-        // Add top member (if exists)
-        $topMember = ExMember::where('id', $user->recommend_seq)->first();
-        if ($topMember) {
-            $orgData[] = [
-                'v' => (string) $topMember->id,
-                'f' => $topMember->name . '<div style="color:red; font-style:italic">' . $topMember->member_position . '</div>',
-                'manager' => '',
-                'tooltip' => 'Top Member'
-            ];
-        }
-
-        // Add current user
-        $orgData[] = [
-            'v' => (string) $user->id,
-            'f' => $user->name . '<div style="color:red; font-style:italic">' . $user->member_position . '</div>',
-            'manager' => $topMember ? (string) $topMember->id : '',
-            'tooltip' => 'Current User'
-        ];
-
-        // Add lower members
-        $lowerMembers = ExMember::where('recommend_seq', $user->id)->get();
-        foreach ($lowerMembers as $member) {
-            $orgData[] = [
-                'v' => (string) $member->id,
-                'f' => $member->name . '<div style="color:red; font-style:italic">' . $member->member_position . '</div>',
-                'manager' => (string) $user->id,
-                'tooltip' => 'Lower Member'
-            ];
-
-            // Add lower members
-            $lowerlowerMembers = ExMember::where('recommend_seq', $member->id)->get();
-            foreach ($lowerlowerMembers as $lowerMember) {
+        // 재귀적으로 하위 멤버들을 가져오는 함수
+        $getLowerMembers = function($parentId, $managerId) use (&$orgData, &$getLowerMembers) {
+            $members = ExMember::where('recommend_seq', $parentId)->get();
+            foreach ($members as $member) {
                 $orgData[] = [
-                    'v' => (string) $lowerMember->id,
-                    'f' => $lowerMember->name . '<div style="color:red; font-style:italic">' . $lowerMember->member_position . '</div>',
-                    'manager' => (string) $member->id,
+                    'v' => (string)$member->id,
+                    'f' => $member->name . '<div style="color:red; font-style:italic">' . $member->member_position . '</div>',
+                    'manager' => (string)$managerId,
                     'tooltip' => 'Lower Member'
                 ];
+                // 재귀 호출
+                $getLowerMembers($member->id, $member->id);
             }
+        };
+
+        if (trim($user->member_id) == "admin") {
+            // Add admin user as top node
+            $orgData[] = [
+                'v' => (string)$user->id,
+                'f' => $user->name . '<div style="color:red; font-style:italic">' . $user->member_position . '</div>',
+                'manager' => '',
+                'tooltip' => 'Admin'
+            ];
+
+            // 하위 멤버 재귀적으로 추가
+            $getLowerMembers($user->id, $user->id);
+        } else {
+            // 상위 멤버 추가
+            $topMember = ExMember::where('id', $user->recommend_seq)->first();
+            if ($topMember) {
+                $orgData[] = [
+                    'v' => (string)$topMember->id,
+                    'f' => $topMember->name . '<div style="color:red; font-style:italic">' . $topMember->member_position . '</div>',
+                    'manager' => '',
+                    'tooltip' => 'Top Member'
+                ];
+            }
+
+            // 현재 유저 추가
+            $orgData[] = [
+                'v' => (string)$user->id,
+                'f' => $user->name . '<div style="color:red; font-style:italic">' . $user->member_position . '</div>',
+                'manager' => $topMember ? (string)$topMember->id : '',
+                'tooltip' => 'Current User'
+            ];
+
+            // 하위 멤버 재귀적으로 추가
+            $getLowerMembers($user->id, $user->id);
         }
 
 
