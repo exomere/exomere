@@ -383,6 +383,6 @@ class ErpOrderController extends Exomere
 
     public function exportExcel(Request $request)
     {
-        return Excel::download(new OrdersExport($request), 'orders.xlsx');
+        return Excel::download(new OrdersExport($request), 'orders_'.date('y_m_d').'.xlsx');
     }
 }

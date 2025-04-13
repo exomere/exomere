@@ -58,6 +58,10 @@ class OrdersExport implements FromCollection, WithHeadings
             } else if (($order->is_approval == 'C')) {
                 $isApprovalText = __('erp.cancel');
             }
+            $product_receipt = [
+                'delivery' => '택배수령',
+                'scene' => '현장수령',
+            ];
             return [
                 'is_approval' => $isApprovalText,
                 'order_kind' => self::ORDER_KIND[$order->order_type] ?? "",
@@ -69,6 +73,10 @@ class OrdersExport implements FromCollection, WithHeadings
                 'member_id' => $order->member_id,
                 'member_name' => $order->member_name,
                 'product' => "상품",
+                'product_receipt' =>  $product_receipt[$order->receipt_method],
+                'zip_code' => $order->zipcode,
+                'address' => $order->address,
+                'address_detail' => $order->address_detail,
                 'centerName' => $order->getCenterName(),
                 'recommend_id' => $order->findByMemberRecommend()->get()->value('recommend_id'),
                 'recommend_name' => $order->findByMemberRecommend()->get()->value('recommend_name'),
@@ -94,6 +102,10 @@ class OrdersExport implements FromCollection, WithHeadings
             __('erp.name'),
             __('erp.local_branch'),
             __('erp.product'),
+            __('erp.product_receipt'),
+            __('erp.zip_code'),
+            __('erp.basic_address'),
+            __('erp.detailed_address'),
             __('erp.recruiter').'-'.__('erp.id'),
             __('erp.recruiter').'-'.__('erp.name'),
             __('erp.remarks'),

@@ -51,19 +51,19 @@ class OrganizationController extends Exomere
             // 상위 멤버 추가
             $topMember = ExMember::where('id', $user->recommend_seq)->first();
             if ($topMember) {
-                $orgData[] = [
-                    'v' => (string)$topMember->id,
-                    'f' => $topMember->name . '<div style="color:red; font-style:italic">' . $topMember->member_position . '</div>',
-                    'manager' => '',
-                    'tooltip' => 'Top Member'
-                ];
+                // $orgData[] = [
+                //     'v' => (string)$topMember->id,
+                //     'f' => $topMember->name . '<div style="color:red; font-style:italic">' . $topMember->member_position . '</div>',
+                //     'manager' => '',
+                //     'tooltip' => 'Top Member'
+                // ];
             }
 
             // 현재 유저 추가
             $orgData[] = [
                 'v' => (string)$user->id,
                 'f' => $user->name . '<div style="color:red; font-style:italic">' . $user->member_position . '</div>',
-                'manager' => $topMember ? (string)$topMember->id : '',
+                // 'manager' => $topMember ? (string)$topMember->id : '',
                 'tooltip' => 'Current User'
             ];
 

@@ -11,6 +11,8 @@ use App\Models\ExMember;
 use App\Constants\CommonConstants;
 use App\Http\Controllers\API\OnPlatController;
 use App\Models\ExDistribute;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MembersExport;
 
 class ErpMemberController extends Exomere
 {
@@ -233,5 +235,10 @@ class ErpMemberController extends Exomere
         }
 
         return response()->json($data);
+    }
+
+    public function exportMemberExcel(Request $request)
+    {
+        return Excel::download(new MembersExport($request), 'members_'.date('y_m_d').'.xlsx');
     }
 }

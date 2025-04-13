@@ -9,6 +9,9 @@ use App\Models\ExMember;
 use App\Models\ExCenter;
 use App\Models\ExStatementsMember;
 use App\Models\ExStatements;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CommissionMonthExport;
+use App\Exports\CommissionTermExport;
 
 use Illuminate\View\View;
 
@@ -798,6 +801,14 @@ class ErpCommissionController extends Exomere
             return redirect()->route('erp-allowance.monthly-closing');
         }
         
+    }
+
+    public function exportCalculationExcel(Request $request){
+        if($request->type == 'term'){
+            return Excel::download(new CommissionTermExport($request), 'commission_term_'.date('y_m_d').'.xlsx');
+        }else{
+            return Excel::download(new CommissionMonthExport($request), 'commission_month_'.date('y_m_d').'.xlsx');
+        }
     }
     
 }
