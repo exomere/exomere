@@ -3,10 +3,10 @@
 namespace App\Exports;
 
 use App\Models\ExOrder;
-use Maatwebsite\Excel\Concerns\FromCollection;
+// use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class OrdersExport implements FromCollection, WithHeadings
+class OrdersExport implements WithHeadings
 {
     const ORDER_KIND = [
         'new' => "신규주문",
