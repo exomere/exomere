@@ -71,6 +71,19 @@ return [
     'approval' => 'Approval',
     'processing_completed' => 'Processing has been completed.',
 
+
+    'dashboard_performance' => 'Performance status',
+    'dashboard_this_month' => 'This month',
+    'dashboard_this_year' => 'This year',
+    'dashboard_new' => 'New',
+    'dashboard_re_purchase' => 'Repurchase',
+    'dashboard_staff_by_job' => 'all employees by position',
+    'dashboard_sales_by_job' => 'sales by position',
+    'dashboard_best_fc' => 'Excellent FC',
+    'dashboard_best_fc2' => 'Best FC',
+    'dashboard_head_count' => 'order',
+
+
     'remove' => 'remove',
     'member_selection' => 'Member selection', // 회원 선택
     'product_receipt' => 'Product receipt', // 상품 수령
