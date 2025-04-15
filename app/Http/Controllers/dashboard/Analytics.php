@@ -68,16 +68,16 @@ class Analytics extends Controller
           "business" => [
               ["name" => "FC I", "total_members" => (1*$fc1_member_count)],
               ["name" => "FC", "total_members" => (1*$fc_member_count)],
-              ["name" => "우수FC", "total_members" => (1*$fc2_member_count)],
-              ["name" => "최우수FC", "total_members" => (1*$fc3_member_count)]
+              ["name" =>  __('erp.dashboard_best_fc'), "total_members" => (1*$fc2_member_count)],
+              ["name" => __('erp.dashboard_best_fc2'), "total_members" => (1*$fc3_member_count)]
           ],
           "beauty" => [
             ["name" => "FC I", "month" => (1*$fc_1_order_month), "year" => (1*$fc_1_order_year)],
             ["name" => "FC", "month" => (1*$fc_order_month), "year" => (1*$fc_order_year)],
-            ["name" => "우수FC", "month" => (1*$fc_2_order_month), "year" => (1*$fc_2_order_year)],
-            ["name" => "최우수FC", "month" => (1*$fc_3_order_month), "year" => (1*$fc_3_order_year)]
+            ["name" =>  __('erp.dashboard_best_fc'), "month" => (1*$fc_2_order_month), "year" => (1*$fc_2_order_year)],
+            ["name" => __('erp.dashboard_best_fc2'), "month" => (1*$fc_3_order_month), "year" => (1*$fc_3_order_year)]
           ],
-          "category" => ["FC I", "FC", "우수FC", "최우수FC",],
+          "category" => ["FC I", "FC",  __('erp.dashboard_best_fc'), __('erp.dashboard_best_fc2'),],
       ];
 
     }else if($member_type == 'director'){
@@ -133,16 +133,16 @@ class Analytics extends Controller
           "business" => [
               ["name" => "FC I", "total_members" => (1*$fc1_member_count)],
               ["name" => "FC", "total_members" => (1*$fc_member_count)],
-              ["name" => "우수FC", "total_members" => (1*$fc2_member_count)],
-              ["name" => "최우수FC", "total_members" => (1*$fc3_member_count)]
+              ["name" =>  __('erp.dashboard_best_fc'), "total_members" => (1*$fc2_member_count)],
+              ["name" => __('erp.dashboard_best_fc2'), "total_members" => (1*$fc3_member_count)]
           ],
           "beauty" => [
             ["name" => "FC I", "month" => (1*$fc_1_order_month), "year" => (1*$fc_1_order_year)],
             ["name" => "FC", "month" => (1*$fc_order_month), "year" => (1*$fc_order_year)],
-            ["name" => "우수FC", "month" => (1*$fc_2_order_month), "year" => (1*$fc_2_order_year)],
-            ["name" => "최우수FC", "month" => (1*$fc_3_order_month), "year" => (1*$fc_3_order_year)]
+            ["name" =>  __('erp.dashboard_best_fc'), "month" => (1*$fc_2_order_month), "year" => (1*$fc_2_order_year)],
+            ["name" => __('erp.dashboard_best_fc2'), "month" => (1*$fc_3_order_month), "year" => (1*$fc_3_order_year)]
           ],
-          "category" => ["FC I", "FC", "우수FC", "최우수FC",],
+          "category" => ["FC I", "FC",  __('erp.dashboard_best_fc'), __('erp.dashboard_best_fc2'),],
       ];
     }
 

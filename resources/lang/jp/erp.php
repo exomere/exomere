@@ -106,6 +106,18 @@ return [
     'deposit_account' => '入金口座',
     'depositor_name' => '預金者名',    
 
+    'dashboard_performance' => '実績現況',
+    'dashboard_this_month' => '今月',
+    'dashboard_this_year' => '今年',
+    'dashboard_new' => '新規',
+    'dashboard_re_purchase' => '再購入',
+    'dashboard_staff_by_job' => '職責別総員',
+    'dashboard_sales_by_job' => '職責別売上',
+    'dashboard_best_fc' => '優秀FC',
+    'dashboard_best_fc2' => '最優秀FC',
+    'dashboard_head_count' => '命',
+
+
     'deposit_date' => '入金日',
     'card_payment_info' => 'カード支払い情報',
     'card_name' => 'カード名',

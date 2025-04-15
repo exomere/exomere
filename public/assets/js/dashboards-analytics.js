@@ -279,7 +279,7 @@
   const growthChartEl = document.querySelector('#growthChart'),
     growthChartOptions = {
       series: [100],
-      labels: ['전년대비'],
+      labels: ['Year-on-year'],
       chart: {
         height: 240,
         type: 'radialBar'

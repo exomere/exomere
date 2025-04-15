@@ -51,11 +51,11 @@
             series: [
                    
                 {
-                    name: "이번년도",
+                    name: "This year",
                     data: fcData.beauty.map(item => item.year)
                 },
                 {
-                    name: "당월",
+                    name: "This month",
                     data: fcData.beauty.map(item => item.month)
                 }
             ]
@@ -109,7 +109,7 @@
                     type: 'donut'
                 },
                 series: [newCnt, repurchase],
-                labels: ['신규실적', '재구매 실적'],
+                labels: ['New', 'Repurchase'],
                 colors: ['#00E396', '#FEB019'],
                 legend: {
                     position: 'bottom'
@@ -171,11 +171,13 @@
                                         </span>
                             </div>
                             <h5 class="card-title card-title-elements mb-0 text-nowrap">
-                                회원 현황
+                                {{  __('erp.member_management') }}
                             </h5>
                         </div>
                     </div>
                 </div>
+       
+
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
@@ -185,7 +187,7 @@
                                 <div class="row">
                                     <div class="card-title d-flex align-items-start justify-content-between">
                                         <h5 class="text-primary">
-                                            직책별 총원
+                                            {{  __('erp.dashboard_staff_by_job') }}
                                         </h5>
                                     </div>
                                     <div>
@@ -197,7 +199,7 @@
                                                     class="fw-medium">
                                                     <i class='bx'></i>
                                                     {{-- 매출 {{ number_format($fc['new_members']) }}원 / --}}
-                                                     {{ $fc['total_members'] }}명
+                                                     {{ $fc['total_members'] }} {{  __('erp.dashboard_head_count') }}
                                                 </small>
                                             </div>
                                         @endforeach
@@ -206,7 +208,7 @@
                                 <hr>
                                 <div class="card-title d-flex align-items-start justify-content-between">
                                     <h5 class="text-primary">
-                                        직책별 매출
+                                        {{  __('erp.dashboard_sales_by_job') }}
                                     </h5>
                                 </div>
                                 <div class="d-flex flex-column justify-content-between">
@@ -217,8 +219,8 @@
                                                     <h6 class="card-title text-nowrap mb-1"><i
                                                             class='bx bx-check'></i> {{ $fc['name'] }}</h6>
                                                     <small class="fw-medium">
-                                                        (M)  {{ number_format($fc['month']) }}원 <br>
-                                                        (Y)  {{ number_format($fc['year'] )}}원 
+                                                        (M)  {{ number_format($fc['month']) }} <br>
+                                                        (Y)  {{ number_format($fc['year'] )}} 
                                                     </small>
                                                 </div>
                                             @endforeach
@@ -243,6 +245,8 @@
           
             </div>
         </div>
+       
+
         <div class="col-lg-8 order-1">
             <div class="row">
                 <div class="col-12 mb-4">
@@ -256,7 +260,7 @@
                                         </span>
                                     </div>
                                     <h5 class="card-title card-title-elements mb-0 text-nowrap">
-                                        실적 환황
+                                           {{  __('erp.dashboard_performance') }}
                                     </h5>
                                 </div>
                             </div>
@@ -266,7 +270,7 @@
                                 <div class="col-12 col-lg-5">
                                     <div class="card-title d-flex align-items-start justify-content-between">
                                         <h5 class="text-primary">
-                                            이번달
+                                            {{  __('erp.dashboard_this_month') }}
                                         </h5>
                                         {{-- <button class="btn p-0" type="button" onclick="alert('준비중')">
                                             <small class="text-muted">더보기 &gt;</small>
@@ -277,19 +281,19 @@
                                             <div>
                                                 <div class="d-flex justify-content-between mb-4 pb-1">
                                                     <h6 class="card-title text-nowrap mb-1"><i
-                                                            class='bx bx-check'></i> 신규</h6>
+                                                            class='bx bx-check'></i>  {{  __('erp.dashboard_new') }}</h6>
                                                     <small
                                                         class="text-muted fw-medium">
-                                                        {{ number_format($new_order_month) }}원
+                                                        {{ number_format($new_order_month) }}
                                                     </small>
 
                                                 </div>
                                                 <div class="d-flex justify-content-between mb-4 pb-1">
                                                     <h6 class="card-title text-nowrap mb-1"><i
-                                                            class='bx bx-check'></i> 재구매</h6>
+                                                            class='bx bx-check'></i>  {{  __('erp.dashboard_re_purchase') }}</h6>
                                                     <small
                                                         class="text-muted fw-medium">
-                                                        {{ number_format($repurchase_order_month) }}원
+                                                        {{ number_format($repurchase_order_month) }}
                                                     </small>
                                                 </div>
                                             </div>
@@ -299,7 +303,7 @@
                                     <div>
                                         <div class="card-title d-flex align-items-start justify-content-between">
                                             <h5 class="text-primary">
-                                                이번년도
+                                                {{  __('erp.dashboard_this_year') }}
                                             </h5>
                                             {{-- <button class="btn p-0" type="button" onclick="alert('준비중')">
                                                 <small class="text-muted">더보기 &gt;</small>
@@ -310,19 +314,19 @@
                                                 <div>
                                                     <div class="d-flex justify-content-between mb-4 pb-1">
                                                         <h6 class="card-title text-nowrap mb-1"><i
-                                                                class='bx bx-check'></i> 신규</h6>
+                                                                class='bx bx-check'></i>  {{  __('erp.dashboard_new') }}</h6>
                                                         <small
                                                             class="text-muted fw-medium">
-                                                            {{ number_format($new_order_year) }}원
+                                                            {{ number_format($new_order_year) }}
                                                         </small>
 
                                                     </div>
                                                     <div class="d-flex justify-content-between mb-4 pb-1">
                                                         <h6 class="card-title text-nowrap mb-1"><i
-                                                                class='bx bx-check'></i> 재구매</h6>
+                                                                class='bx bx-check'></i>  {{  __('erp.dashboard_re_purchase') }}</h6>
                                                         <small
                                                             class="text-muted fw-medium">
-                                                            {{ number_format($repurchase_order_year) }}원
+                                                            {{ number_format($repurchase_order_year) }}
                                                         </small>
                                                     </div>
 
@@ -331,16 +335,16 @@
                                         </div>
                                     </div>
                                 </div>
-
+                           
                                 <div class="col-lg-7">
                                     <ul class="tabs nav nav-pills nav-justified">
                                         <li class="nav-item">
                                             <button data-tab="business" type="button" class="tab nav-link active">
-                                                이번달
+                                                {{  __('erp.dashboard_this_month') }}
                                             </button>
                                         </li>
                                         <li class="nav-item">
-                                            <button data-tab="beauty" type="button" class="tab nav-link">이번년도</button>
+                                            <button data-tab="beauty" type="button" class="tab nav-link">{{  __('erp.dashboard_this_year') }}</button>
                                         </li>
                                     </ul>
 

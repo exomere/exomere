@@ -51,8 +51,18 @@ return [
     'cancel' => '취소',
     'position' => '직급',
 
+    'dashboard_performance' => '실적 현황',
+    'dashboard_this_month' => '이번달',
+    'dashboard_this_year' => '이번년도',
+    'dashboard_new' => '신규',
+    'dashboard_re_purchase' => '재구매',
+    'dashboard_staff_by_job' => '직책별 총원',
+    'dashboard_sales_by_job' => '직책별 매출',
+    'dashboard_best_fc' => '우수FC',
+    'dashboard_best_fc2' => '최우수FC',
+    'dashboard_head_count' => '명',
 
-
+    
     'approval_classification' => '승인구분',
     'approval_complete' => '승인완료',
     'awaiting_approval' => '승인대기',

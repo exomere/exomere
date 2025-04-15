@@ -28,7 +28,7 @@
                 <!-- BEGIN: Navbar-->
                 @if ($isNavbar)
                     @php
-                        $latestNotice = \App\Models\ExNotice::orderBy("id", "desc")->first();
+                        $latestNotice = \App\Models\ExNotice::orderBy("id", "desc")->where('nation',request()->session()->get('member_nation'))->first();
                     @endphp
                     @include('layouts/sections/navbar/navbar', ['latestNotice' => $latestNotice])
                 @endif
