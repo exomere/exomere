@@ -142,7 +142,7 @@ class ErpMemberController extends Exomere
             $id_nation_code = "2";
         }
 
-        $ran_id = "exo".date("d").rand(10,99).$id_nation_code.date('m');
+        $ran_id = "exo".rand(10,99).date("m").rand(100,999);
 
         $data = [
             "bank_list" => CommonConstants::BANK_LIST,
