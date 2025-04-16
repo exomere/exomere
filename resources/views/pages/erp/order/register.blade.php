@@ -509,7 +509,7 @@
                   <option value="id">{{__('erp.member_number')}}</option>
                 </select>
                 <input class="form-control me-2" style='width:40%;' id='searchMemberText' type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary searchMember"  style='width:22%;' type="button">Search</button>
+                <button class="btn btn-outline-primary searchMember" data-nation='{{request()->session()->get('member_nation')}}'  style='width:22%;' type="button">Search</button>
               </div>
             </div>
             <div class="col-12">

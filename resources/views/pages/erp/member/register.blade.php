@@ -101,15 +101,37 @@
               <label class="col-sm-1 col-form-label" for="basic-default-member_pw"> <span style='color:red;'>*</span>{{__('erp.member_classification')}}</label>
               <div class="col-sm-2">
                 <select class="form-control" name='member_position'>
-                  <option value="회원" @isset($member->member_position) @if($member->member_position == "회원")  selected  @endif @endisset>회원</option>
-                  @if(request()->session()->get('member_level') == 99)
-                    <option @isset($member->member_position) @if($member->member_position == "뷰티플래너")  selected  @endif @endisset value="뷰티플래너">뷰티플래너</option>
-                    <option @isset($member->member_position) @if($member->member_position == "대리점")  selected  @endif @endisset value="대리점">대리점</option>
+                  @if(request()->session()->get('member_nation') == 'KR')
+                    <option value="회원" @isset($member->member_position) @if($member->member_position == "회원")  selected  @endif @endisset>회원</option>
+                    @if(request()->session()->get('member_level') == 99)
+                      <option @isset($member->member_position) @if($member->member_position == "뷰티플래너")  selected  @endif @endisset value="뷰티플래너">뷰티플래너</option>
+                      <option @isset($member->member_position) @if($member->member_position == "대리점")  selected  @endif @endisset value="대리점">대리점</option>
+                    @endif
+                    <option @isset($member->member_position) @if($member->member_position == "총판")  selected  @endif @endisset value="총판">FC</option>
+                    <option @isset($member->member_position) @if($member->member_position == "총판1")  selected  @endif @endisset value="총판1">FC1</option>
+                    <option @isset($member->member_position) @if($member->member_position == "우수총판")  selected  @endif @endisset value="우수총판">우수FC</option>
+                    <option @isset($member->member_position) @if($member->member_position == "최우수총판")  selected  @endif @endisset value="최우수총판">최우수FC</option>
+                  @elseif(request()->session()->get('member_nation') == 'JP')
+                    <option value="회원" @isset($member->member_position) @if($member->member_position == "회원")  selected  @endif @endisset>会員</option>
+                    @if(request()->session()->get('member_level') == 99)
+                      <option @isset($member->member_position) @if($member->member_position == "뷰티플래너")  selected  @endif @endisset value="뷰티플래너">ビューティープランナー</option>
+                      <option @isset($member->member_position) @if($member->member_position == "대리점")  selected  @endif @endisset value="대리점">代理店</option>
+                    @endif
+                    <option @isset($member->member_position) @if($member->member_position == "총판")  selected  @endif @endisset value="총판">FC</option>
+                    <option @isset($member->member_position) @if($member->member_position == "총판1")  selected  @endif @endisset value="총판1">FC1</option>
+                    <option @isset($member->member_position) @if($member->member_position == "우수총판")  selected  @endif @endisset value="우수총판">優秀だ FC</option>
+                    <option @isset($member->member_position) @if($member->member_position == "최우수총판")  selected  @endif @endisset value="최우수총판">最優秀FC</option>
+                  @else
+                    <option value="회원" @isset($member->member_position) @if($member->member_position == "회원")  selected  @endif @endisset>Member</option>
+                    @if(request()->session()->get('member_level') == 99)
+                      <option @isset($member->member_position) @if($member->member_position == "뷰티플래너")  selected  @endif @endisset value="뷰티플래너">Beauty Planner</option>
+                      <option @isset($member->member_position) @if($member->member_position == "대리점")  selected  @endif @endisset value="대리점">agency</option>
+                    @endif
+                    <option @isset($member->member_position) @if($member->member_position == "총판")  selected  @endif @endisset value="총판">FC</option>
+                    <option @isset($member->member_position) @if($member->member_position == "총판1")  selected  @endif @endisset value="총판1">FC1</option>
+                    <option @isset($member->member_position) @if($member->member_position == "우수총판")  selected  @endif @endisset value="우수총판">excellent FC</option>
+                    <option @isset($member->member_position) @if($member->member_position == "최우수총판")  selected  @endif @endisset value="최우수총판">BEST FC</option>
                   @endif
-                  <option @isset($member->member_position) @if($member->member_position == "총판")  selected  @endif @endisset value="총판">FC</option>
-                  <option @isset($member->member_position) @if($member->member_position == "총판1")  selected  @endif @endisset value="총판1">FC1</option>
-                  <option @isset($member->member_position) @if($member->member_position == "우수총판")  selected  @endif @endisset value="우수총판">우수FC</option>
-                  <option @isset($member->member_position) @if($member->member_position == "최우수총판")  selected  @endif @endisset value="최우수총판">최우수FC</option>
                 </select>
               </div>
             </div>
@@ -129,7 +151,11 @@
               <label class="col-sm-1 col-form-label" for="distribute_seq"> {{__('erp.sale_mall')}} </label>
               <div class="col-md-4">
                 <select class="form-select" name="distribute_seq" id="distribute_seq">
+                  @if(request()->session()->get('member_nation') == 'KR')
                   <option value="46">(주)엑소미어</option>
+                  @else
+                  <option value="48">エクソミア</option>
+                  @endif
                   @foreach ($distribute_array as $distribute)
                     <option @isset($member->local_store) @if($member->distribute_seq == $distribute['seq'])  selected  @endif @endisset value='{{$distribute['seq']}}'>{{$distribute['name']}}
                     </option>
@@ -137,26 +163,28 @@
                 </select>
               </div>
             </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-bank">{{__('erp.bank')}}</label>
-              <div class="col-sm-1">
-                <select class="form-control" id="basic-default-bank" name='bank'>
-                  @foreach ($bank_list as $key => $val)
-                    <option value='{{$key}}' @isset($member->bank) @if($member->bank == $key) selected @endif @endisset>{{$val}}</option>  
-                  @endforeach
-                </select>
+            @if(request()->session()->get('member_nation') == 'KR')
+              <div class="row mb-3">
+                <label class="col-sm-1 col-form-label" for="basic-default-bank">{{__('erp.bank')}}</label>
+                <div class="col-sm-1">
+                  <select class="form-control" id="basic-default-bank" name='bank'>
+                    @foreach ($bank_list as $key => $val)
+                      <option value='{{$key}}' @isset($member->bank) @if($member->bank == $key) selected @endif @endisset>{{$val}}</option>  
+                    @endforeach
+                  </select>
+                </div>
+                <label class="col-sm-1 col-form-label" for="basic-default-account_number">{{__('erp.account_number')}}</label>
+                <div class="col-sm-3">
+                  <input type="text" id="basic-default-account_number" class="form-control" name='account_number' value="{{ $member->account_number ?? null }}"/>
+                </div>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-account_number">{{__('erp.account_number')}}</label>
-              <div class="col-sm-3">
-                <input type="text" id="basic-default-account_number" class="form-control" name='account_number' value="{{ $member->account_number ?? null }}"/>
+              <div class="row mb-3">
+                <label class="col-sm-1 col-form-label" for="basic-default-account_holder">{{__('erp.depositor')}}</label>
+                <div class="col-sm-4">
+                  <input type="text" id="basic-default-account_holder" class="form-control" name='account_holder' value="{{ $member->account_holder ?? null }}"/>
+                </div>
               </div>
-            </div>
-            <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-account_holder">{{__('erp.depositor')}}</label>
-              <div class="col-sm-4">
-                <input type="text" id="basic-default-account_holder" class="form-control" name='account_holder' value="{{ $member->account_holder ?? null }}"/>
-              </div>
-            </div>
+            @endif
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="zipcode">{{__('erp.zip_code')}}</label>
               <div class="col-sm-2">
@@ -216,7 +244,7 @@
                   <option value="id">{{__('erp.member_number')}}</option>
                 </select>
                 <input class="form-control me-2" style='width:40%;' id='searchMemberText_member' type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary searchMember" data-mode='member'  style='width:22%;' type="button">Search</button>
+                <button class="btn btn-outline-primary searchMember" data-mode='member' data-nation='{{request()->session()->get('member_nation')}}' style='width:22%;' type="button">Search</button>
               </div>
             </div>
             <div class="col-12">

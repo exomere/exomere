@@ -117,6 +117,8 @@ return [
     'dashboard_best_fc2' => '最優秀FC',
     'dashboard_head_count' => '命',
 
+    'search_word_message' => 'Please enter a search term.',
+    'search_null_message' => '검색결과가 없습니다.',
 
     'deposit_date' => '入金日',
     'card_payment_info' => 'カード支払い情報',

@@ -62,6 +62,9 @@ return [
     'dashboard_best_fc2' => '최우수FC',
     'dashboard_head_count' => '명',
 
+    'search_word_message' => '검색어를 입력해주세요.',
+    'search_null_message' => '검색결과가 없습니다.',
+
     
     'approval_classification' => '승인구분',
     'approval_complete' => '승인완료',

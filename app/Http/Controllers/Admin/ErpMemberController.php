@@ -85,8 +85,16 @@ class ErpMemberController extends Exomere
             ->paginate($limitPage)
             ->appends(request()->query());
 
+        $member_position = self::_EXOMERE_MEMBER_POSITION;
+        if($request->session()->get('member_nation') == 'JP'){
+            $member_position = self::_EXOMERE_MEMBER_POSITION_JP;
+        }else if($request->session()->get('member_nation') == 'USA'){
+            $member_position = self::_EXOMERE_MEMBER_POSITION_USA;
+        }
+
+        
         $data = [
-            "member_position" => self::_EXOMERE_MEMBER_POSITION,
+            "member_position" => $member_position,
             "search_text" => $search_text ?? '',
             "ex_members" =>  $ex_members ?? [],
             "row_num" => $this->getPageRowNumber($ex_members->total(), $page, $limitPage) ?? null,
@@ -106,7 +114,7 @@ class ErpMemberController extends Exomere
             $resident_number_info = explode("-", $member->resident_number);
         }
 
-        $centers = ExCenter::where('is_active','Y')->get();
+        $centers = ExCenter::where('is_active','Y')->where('nation',$request->session()->get('member_nation'))->get();
         $centerArray = [];
         $cnt = 0;
 
@@ -116,7 +124,7 @@ class ErpMemberController extends Exomere
           $cnt++;
         }
 
-        $distributes = ExDistribute::where('is_active','Y')->get();
+        $distributes = ExDistribute::where('is_active','Y')->where('nation',$request->session()->get('member_nation'))->get();
         $distributeArray = [];
         $cnt = 0;
 
