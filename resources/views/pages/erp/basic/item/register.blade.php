@@ -143,6 +143,7 @@
                 <input type="number" id="basic-default-exclusive_pv" class="form-control" name='exclusive_pv' value="{{ $item->exclusive_pv ?? null }}"/>
               </div>
             </div>
+
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price1">{{__('erp.exclusive_distributor')}}1(₩)</label>
               <div class="col-sm-2">
@@ -214,7 +215,16 @@
                 <input type="number" id="basic-default-exclusive_pv" class="form-control" name='exclusive_pv_d' value="{{ $item->exclusive_pv_d ?? null }}"/>
               </div>
             </div>
-
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price1_d">{{__('erp.exclusive_distributor')}}1($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_price1_d" class="form-control" name='exclusive_price1_d' value="{{ $item->exclusive_price1_d ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv1_d">{{__('erp.exclusive_distributor')}}1PV($)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_pv1_d" class="form-control" name='exclusive_pv1_d' value="{{ $item->exclusive_pv1_d ?? null }}"/>
+              </div>
+            </div>
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-price">{{__('erp.consumer_price')}}(¥)</label>
               <div class="col-sm-2">
@@ -275,7 +285,16 @@
                 <input type="number" id="basic-default-exclusive_pv" class="form-control" name='exclusive_pv_y' value="{{ $item->exclusive_pv_y ?? null }}"/>
               </div>
             </div>
-
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price1_y">{{__('erp.exclusive_distributor')}}1(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_price1_y" class="form-control" name='exclusive_price1_y' value="{{ $item->exclusive_price1_y ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv1_y">{{__('erp.exclusive_distributor')}}1PV(¥)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_pv1_y" class="form-control" name='exclusive_pv1_y' value="{{ $item->exclusive_pv1_y ?? null }}"/>
+              </div>
+            </div>
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-price">{{__('erp.consumer_price')}}(元)</label>
               <div class="col-sm-2">
@@ -336,7 +355,16 @@
                 <input type="number" id="basic-default-exclusive_pv" class="form-control" name='exclusive_pv_c' value="{{ $item->exclusive_pv_c ?? null }}"/>
               </div>
             </div>
-
+            <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price1_c">{{__('erp.exclusive_distributor')}}1(元)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_price1_c" class="form-control" name='exclusive_price1_c' value="{{ $item->exclusive_price1_c ?? null }}"/>
+              </div>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv1_c">{{__('erp.exclusive_distributor')}}1PV(元)</label>
+              <div class="col-sm-2">
+                <input type="number" id="basic-default-exclusive_pv1_c" class="form-control" name='exclusive_pv1_c' value="{{ $item->exclusive_pv1_c ?? null }}"/>
+              </div>
+            </div>
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-stock">{{__('erp.inventory')}}</label>
               <div class="col-sm-5">

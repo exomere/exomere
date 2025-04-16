@@ -183,7 +183,6 @@ $activeHeader = true;
                                     </div>
                                 </div>
                             </div>
-
                             <div>
                                 {{--포인트사용--}}
                                 <h2 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug !mb-2 text-primary">
@@ -245,6 +244,7 @@ $activeHeader = true;
                                                  {{ __('common.method_account') }}
                                             </span>
                                         </div>
+                                        @if(app()->getLocale() == 'ko')
                                         <div class="inline-flex items-center">
                                             <label class="relative flex items-center cursor-pointer" for="radio_card">
                                                 <input name="payment_type" type="radio"
@@ -256,7 +256,7 @@ $activeHeader = true;
                                             <label class="ml-2 text-slate-600 cursor-pointer text-sm"
                                                    for="radio_card">{{ __('common.method_card') }}</label>
                                         </div>
-
+                                        @endif
                                     </div>
                                 </div>
                             </div>

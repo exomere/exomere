@@ -297,15 +297,77 @@ class ProductController extends BaseController
                     $pd_price = $item_info->price_y;
                     $pd_pv = $item_info->pv_y;
                     $price_simbol = "¥";
+
+                    if (request()->session()->get('member_position') == "총판") {
+                        $pd_price = $item_info->exclusive_price_y;
+                        $pd_pv = $item_info->exclusive_pv_y;
+                    }elseif (request()->session()->get('member_position') == "총판1") {
+                        $pd_price = $item_info->exclusive_price1_y;
+                        $pd_pv = $item_info->exclusive_pv1_y;
+                    } elseif (request()->session()->get('member_position') == "회원") {
+                        $pd_price = $item_info->mem_price_y;
+                        $pd_pv = $item_info->mem_pv_y;
+                    } elseif (request()->session()->get('member_position') == "뷰티플래너") {
+                        $pd_price = $item_info->planer_price_y;
+                        $pd_pv = $item_info->planer_pv_y;
+                    } elseif (request()->session()->get('member_position') == "대리점") {
+                        $pd_price = $item_info->store_price_y;
+                        $pd_pv = $item_info->store_pv_y;
+                    } else {
+                        $pd_price = $item_info->exclusive_price_y;
+                        $pd_pv = $item_info->exclusive_pv_y;
+                    }
+
                 } else {
                     if ($locale == "cn") {
                         $pd_price = $item_info->price_c;
                         $pd_pv = $item_info->pv_c;
                         $price_simbol = "元";
+
+                        if (request()->session()->get('member_position') == "총판") {
+                            $pd_price = $item_info->exclusive_price_c;
+                            $pd_pv = $item_info->exclusive_pv_c;
+                        }elseif (request()->session()->get('member_position') == "총판1") {
+                            $pd_price = $item_info->exclusive_price1_c;
+                            $pd_pv = $item_info->exclusive_pv1_c;
+                        } elseif (request()->session()->get('member_position') == "회원") {
+                            $pd_price = $item_info->mem_price_c;
+                            $pd_pv = $item_info->mem_pv_c;
+                        } elseif (request()->session()->get('member_position') == "뷰티플래너") {
+                            $pd_price = $item_info->planer_price_c;
+                            $pd_pv = $item_info->planer_pv_c;
+                        } elseif (request()->session()->get('member_position') == "대리점") {
+                            $pd_price = $item_info->store_price_c;
+                            $pd_pv = $item_info->store_pv_c;
+                        } else {
+                            $pd_price = $item_info->exclusive_price_c;
+                            $pd_pv = $item_info->exclusive_pv_c;
+                        }
+
                     } else {
                         $pd_price = $item_info->price_d;
                         $pd_pv = $item_info->pv_d;
                         $price_simbol = "$";
+
+                        if (request()->session()->get('member_position') == "총판") {
+                            $pd_price = $item_info->exclusive_price_d;
+                            $pd_pv = $item_info->exclusive_pv_d;
+                        }elseif (request()->session()->get('member_position') == "총판1") {
+                            $pd_price = $item_info->exclusive_price1_d;
+                            $pd_pv = $item_info->exclusive_pv1_d;
+                        } elseif (request()->session()->get('member_position') == "회원") {
+                            $pd_price = $item_info->mem_price_d;
+                            $pd_pv = $item_info->mem_pv_d;
+                        } elseif (request()->session()->get('member_position') == "뷰티플래너") {
+                            $pd_price = $item_info->planer_price_d;
+                            $pd_pv = $item_info->planer_pv_d;
+                        } elseif (request()->session()->get('member_position') == "대리점") {
+                            $pd_price = $item_info->store_price_d;
+                            $pd_pv = $item_info->store_pv_d;
+                        } else {
+                            $pd_price = $item_info->exclusive_price_d;
+                            $pd_pv = $item_info->exclusive_pv_d;
+                        }
                     }
                 }
             }

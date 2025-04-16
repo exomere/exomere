@@ -28,7 +28,7 @@
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="member_reg_date">  <span style='color:red;'>*</span>{{__('erp.registration_date')}} </label>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="member_reg_date" readonly  name='member_reg_date' value=""/>
+                <input type="text" class="form-control" id="member_reg_date"  name='member_reg_date' value=""/>
               </div>
             </div>
             <div class="row mb-3">
