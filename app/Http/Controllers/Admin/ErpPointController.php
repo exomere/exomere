@@ -69,7 +69,7 @@ class ErpPointController extends Exomere
             $payment_points = ($exMember->payment_points + $request->provision_point);
         }else{
             $remain_points = ($exMember->remain_points - $request->provision_point);
-            $payment_points = ($exMember->payment_points - $request->provision_point);
+            $payment_points = $exMember->payment_points;
         }
         
         $exMember->update([

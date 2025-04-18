@@ -570,7 +570,7 @@ class OrderController extends Exomere
         if($point_payment > 0){
             
             $remain_points = ($ex_member->remain_points - $point_payment);
-            $payment_points = ($ex_member->payment_points - $point_payment);
+            $payment_points = $ex_member->payment_points;
             
             
             $ex_member->update([
