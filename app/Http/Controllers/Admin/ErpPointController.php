@@ -12,6 +12,7 @@ class ErpPointController extends Exomere
 {
 
     CONST POINT_KIND = [
+        "extinction" =>  "쇼핑몰결제 사용",
         "provision" => "지급",
         "sell" => "구매",
         "use" => "사용",
@@ -29,7 +30,7 @@ class ErpPointController extends Exomere
         
         $site_code = $request->session()->get('site_code') ?? "exomere";
 
-        $query = ExMember::where('member_level', '<', 10)->where("site_code",$site_code)->where('nation',$request->session()->get('member_nation'));
+        $query = ExMember::where('member_level', '<', 10)->where('nation',$request->session()->get('member_nation'));
 
         // 검색어가 있을 경우 쿼리에 필터 추가
         if ($request->has('search_text') && $request->get('search_text') !== '') {
@@ -105,7 +106,7 @@ class ErpPointController extends Exomere
         foreach($points->get() as $point){
             $output_data['pointInfo'][$cnt]['kind'] = self::POINT_KIND[$point->kind];
             $output_data['pointInfo'][$cnt]['date'] = $point->date;
-            $output_data['pointInfo'][$cnt]['reg_name'] = $point->reg_name;
+            $output_data['pointInfo'][$cnt]['reg_name'] = $point->reg_name ?? 'system';
             $output_data['pointInfo'][$cnt]['remark'] = $point->remark ?? ' - ';
             $output_data['pointInfo'][$cnt]['point'] = $point->point;
             $cnt++;
