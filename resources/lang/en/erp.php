@@ -165,6 +165,8 @@ return [
     'direct_recruitment_fee' => 'Direct recruitment management fee',
     'incentive_money' => 'Incentive money',
     'local_office_support_fund' => 'Local office support fund',
+    'standing_contribution' => 'standing contribution',
+    'contributions_sales' => 'Contributions to sales',
     'incentive' => 'Incentive',
     'excellent_exclusive_distributor_contribution' => 'Excellent Exclusive Distributor Contribution',
     'best_exclusive_distributor_contribution' => 'Best Exclusive Distributor Contribution',

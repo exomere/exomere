@@ -35,13 +35,13 @@
           <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.member_name')}}</th>
           <th rowspan="2" style=' vertical-align: middle;'>PV</th>
           <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.accumulated_sales')}}</th>
-          <th colspan="3" style=' vertical-align: middle; text-align:center;'>{{__('erp.payment_items')}}</th>
+          <th colspan="2" style=' vertical-align: middle; text-align:center;'>{{__('erp.payment_items')}}</th>
           <th colspan="3" style=' vertical-align: middle; text-align:center;'>{{__('erp.allowment_deduction')}}</th>
           <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.actual_payment_amount')}}</th>
         </tr>
         <tr>
             <th>{{__('erp.recruitment_congratulatory_money')}}</th>
-            <th>{{__('erp.settlement_subsidy_money')}}</th>
+            {{-- <th>{{__('erp.settlement_subsidy_money')}}</th> --}}
             <th>{{__('erp.payment_total')}}</th>
             <th>{{__('erp.income_tax')}}</th>
             <th>{{__('erp.residence_tax')}}</th>
@@ -67,7 +67,7 @@
                 <td>{{ number_format($statement->pv) }}</td>
                 <td>{{ number_format($statement->total_amount) }}</td>
                 <td>{{ number_format($statement->recruitment_amount) }}</td>
-                <td>{{ number_format($statement->settlement_subsidy) }}</td>
+                {{-- <td>{{ number_format($statement->settlement_subsidy) }}</td> --}}
                 <td>{{ number_format($statement->total_payment) }}</td>
                 <td>{{ number_format($statement->income_tax) }}</td>
                 <td>{{ number_format($statement->residence_tax) }}</td>

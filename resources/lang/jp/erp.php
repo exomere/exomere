@@ -161,6 +161,8 @@ return [
 
     'direct_recruitment_fee' => '直接リクルート管理費',
     'incentive_money' => 'インセンティブ金',
+    'standing_contribution' => '商務寄与金',
+    'contributions_sales' => '売上寄与金',
     'local_office_support_fund' => '地方事務所支援金',
     'incentive' => 'インセンティブ',
     'excellent_exclusive_distributor_contribution' => '優秀な専属ディストリビューター貢献',
