@@ -750,6 +750,14 @@
         });
 
         function add2Cart() {
+
+            var auth = "{{request()->session()->get('member_id')}}";
+            
+            if(!auth){
+                location.href='/login';
+                return false;
+            }
+
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

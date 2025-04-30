@@ -120,7 +120,12 @@
                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </button>
-
+                @if(request()->session()->get('member_id'))
+                    <a href="{{ url('logout') }}"
+                    class="myoffice__button flex items-center justify-center">
+                        <span class="hidden lg:block">logout</span>
+                    </a>
+                @endif
             </div>
         </div>
 
