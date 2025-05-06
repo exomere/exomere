@@ -553,6 +553,7 @@ class OrderController extends Exomere
             "total_pv" => $total_pv ?? 0,
             "remaining_amount" => 0,
             "payment_amount" => $request->total_price ?? 0,
+            "delivery_amount" => $delivery_fee ?? 0,
             "point_payment" => $point_payment ?? 0,
             "card_payment" => $card_payment ?? 0,
             "account_payment" => $account_payment ?? 0,

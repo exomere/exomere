@@ -98,9 +98,11 @@ return [
     'quantity' => '수량',
     'total' => '합계',
     'no_selected_products' => '선택한 상품이 없습니다.',
-    'total_amount' => '총금액',
+    'total_amount' => '상품금액',
     'payment_amount' => '결제금액',
     'remaining_amount' => '남은금액',
+    'delivery_amount' => '배송비',
+
     'cash_payment' => '현금결제',
     'card_payment' => '카드결제',
     'account_transfer' => '계좌이체',

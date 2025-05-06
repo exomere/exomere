@@ -99,6 +99,7 @@ return [
     'total_amount' => 'Total amount', // 총 금액
     'payment_amount' => 'Payment amount', // 결제 금액
     'remaining_amount' => 'Remaining amount', // 잔여 금액
+    'delivery_amount' => 'The delivery charge',
     'cash_payment' => 'Cash payment', // 현금 결제
     'card_payment' => 'Card payment', // 카드 결제
     'account_transfer' => 'Account transfer', // 계좌 이체

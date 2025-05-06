@@ -86,6 +86,7 @@ return [
     'total_amount' => '総額',
     'payment_amount' => '支払金額',
     'remaining_amount' => '残高',
+    'delivery_amount' => '配送費',
     'cash_payment' => '現金支払い',
     'card_payment' => 'カード支払い',
     'account_transfer' => '口座振替',
