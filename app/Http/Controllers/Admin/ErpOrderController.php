@@ -57,12 +57,14 @@ class ErpOrderController extends Exomere
       }
 
       if ($request->filled('start_date')) {
-          $ordersQuery->where('order_date', '>=', $request->get('start_date'));
+          $ordersQuery->where('order_date', '>=', $request->get('start_date')." 00:00:00");
       }
 
       if ($request->filled('end_date')) {
-          $ordersQuery->where('order_date', '<=', $request->get('end_date'));
+          $ordersQuery->where('order_date', '<=', $request->get('end_date')." 23:59:59");
       }
+
+      // $this->getQuery($ordersQuery);
 
       // 페이지네이션을 통해 데이터 가져오기
       $orders = $ordersQuery->paginate($limitPage);
