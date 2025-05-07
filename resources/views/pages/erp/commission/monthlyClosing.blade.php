@@ -91,7 +91,8 @@
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" style='color:red;' href="{{route('erp.statement.del',$statement->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
+                      <a class="dropdown-item" style='color:green;' target="_brank" href="{{route('erp-allowance.export',['code' => $statement->code, 'type' => $statement->type] )}}"><i class="bx bx-excel me-1"></i> Excel</a>
+                      <a class="dropdown-item" style='color:red;' onclick="delchk({{$statement->id}});"><i class="bx bx-trash me-1"></i> Delete</a>
                     </div>
                   </div>
                 </td>
@@ -111,6 +112,15 @@
 <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 <script src="/assets/js/jquery.monthpicker.js"></script>
 <script>
+    function delchk(seq){
+      if(confirm("삭제하시겠습니까?")){
+        location.href = '/management/erp/commission/statementDel/'+seq;
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     $(function () {
         var now = new Date();
         var year = "<?php echo date('Y')?>";

@@ -29,7 +29,13 @@
   <!--/ Basic -->
   <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
-      <h5 class="mb-0">{{__('erp.member_list')}}</h5> <small class="text-muted float-end"><button onclick="location.href='{{route('erp-member.create')}}'" class="btn btn-primary">{{__('erp.member_registration')}}</button></small>
+      <h5 class="mb-0">{{__('erp.member_list')}}</h5> <small class="text-muted float-end">
+        <form action="{{ route('erp-member.export') }}" method="GET" class="d-inline">
+          <input type="hidden" name="search_text" value="{{ request('search_text') }}">
+          <button type="submit" class="btn btn-info">Excel</button>
+        </form>
+        <button onclick="location.href='{{route('erp-member.create')}}'" class="btn btn-primary">{{__('erp.member_registration')}}</button>
+      </small>
     </div>
     <div class="table-responsive text-nowrap">
       <table class="table" >

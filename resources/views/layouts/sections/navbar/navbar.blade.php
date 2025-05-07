@@ -40,7 +40,7 @@
                                 <div class="nav-item d-flex align-items-center">
                                     <a class="dropdown-item" href="{{ route('notice.detail', $latestNotice->id) }}">
                                         <p class="mb-0">
-                                        공지사항: {{ Str::limit($latestNotice->title, 50) }}
+                                        {{  __('erp.notice') }}: {{ Str::limit($latestNotice->title, 50) }}
                                         </p>
                                     </a>
                                 </div>

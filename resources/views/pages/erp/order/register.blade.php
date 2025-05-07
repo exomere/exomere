@@ -174,6 +174,12 @@
                   <input type="text" class="form-control" id="total_amount" name='total_amount' readonly style='width:170px;' value='{{number_format($order_data->total_amount ?? 0)}}'/>
                   <input type="hidden" class="form-control" id="total_pv" name='total_pv' readonly style='width:170px;' value='{{number_format($order_data->total_pv ?? 0)}}'/>
                 </div>
+                <label class="col-sm-1 col-form-label" for="delivery_amount"> {{__('erp.delivery_amount')}} </label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" id="delivery_amount" name='delivery_amount' readonly style='width:170px;' value='{{number_format($order_data->delivery_amount ?? 0)}}'/>
+                </div>
+              </div>
+              <div class="row mt-3">
                 <label class="col-sm-1 col-form-label" for="payment_amount"> {{__('erp.payment_amount')}} </label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control" id="payment_amount" name='payment_amount' readonly style='width:170px;' value='{{number_format($order_data->payment_amount ?? 0)}}'/>
@@ -509,7 +515,7 @@
                   <option value="id">{{__('erp.member_number')}}</option>
                 </select>
                 <input class="form-control me-2" style='width:40%;' id='searchMemberText' type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary searchMember"  style='width:22%;' type="button">Search</button>
+                <button class="btn btn-outline-primary searchMember" data-nation='{{request()->session()->get('member_nation')}}'  style='width:22%;' type="button">Search</button>
               </div>
             </div>
             <div class="col-12">

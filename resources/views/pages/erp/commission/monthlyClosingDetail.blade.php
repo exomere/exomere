@@ -46,10 +46,12 @@
         </tr>
         <tr>
             <th>{{__('erp.direct_recruitment_fee')}}</th>
-            <th>{{__('erp.incentive_money')}}</th>
+            {{-- <th>{{__('erp.incentive_money')}}</th> --}}
             <th>{{__('erp.local_office_support_fund')}}</th>
-            <th>{{__('erp.incentive')}}</th>
+            {{-- <th>{{__('erp.incentive')}}</th> --}}
             <th>{{__('erp.excellent_exclusive_distributor_contribution')}}</th>
+            <th>{{__('erp.standing_contribution')}}</th>
+            <th>{{__('erp.contributions_sales')}}</th>
             <th>{{__('erp.best_exclusive_distributor_contribution')}}</th>
             <th>{{__('erp.payment_total')}}</th>
             <th>{{__('erp.points_total_payment')}}</th>
@@ -77,10 +79,12 @@
                 <td>{{ number_format($statement->total_amount) }}</td>
 
                 <td><a class="dropdown-item getPaymentInfo" data-type='0' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal"> {{ number_format($statement->recruitment_amount) }} </a></td>
-                <td><a class="dropdown-item getPaymentInfo" data-type='1' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->promote_price) }}</a></td>
-                <td><a class="dropdown-item getPaymentInfo" data-type='2' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->center_amount) }}</a></td>
-                <td><a class="dropdown-item getPaymentInfo" data-type='3' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->incentives) }}</a></td>
-                <td><a class="dropdown-item getPaymentInfo" data-type='4' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->contribution_amount) }}</a></td>
+                {{-- <td><a class="dropdown-item getPaymentInfo" data-type='1' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->promote_price) }}</a></td> --}}
+                <td><a class="dropdown-item getPaymentInfo" data-type='1' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->center_amount) }}</a></td>
+                {{-- <td><a class="dropdown-item getPaymentInfo" data-type='3' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->incentives) }}</a></td> --}}
+                <td><a class="dropdown-item getPaymentInfo" data-type='2' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->contribution_amount) }}</a></td>
+                <td><a class="dropdown-item getPaymentInfo" data-type='3' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->standing_contribution) }}</a></td>
+                <td><a class="dropdown-item getPaymentInfo" data-type='4' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->contributions_sales) }}</a></td>
                 <td><a class="dropdown-item getPaymentInfo" data-type='5' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->contribution_amount2) }}</a></td>
                 
                 <td>{{ number_format($statement->total_payment) }}</td>

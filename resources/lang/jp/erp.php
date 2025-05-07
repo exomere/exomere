@@ -86,6 +86,7 @@ return [
     'total_amount' => '総額',
     'payment_amount' => '支払金額',
     'remaining_amount' => '残高',
+    'delivery_amount' => '配送費',
     'cash_payment' => '現金支払い',
     'card_payment' => 'カード支払い',
     'account_transfer' => '口座振替',
@@ -105,6 +106,20 @@ return [
     'add' => '追加',
     'deposit_account' => '入金口座',
     'depositor_name' => '預金者名',    
+
+    'dashboard_performance' => '実績現況',
+    'dashboard_this_month' => '今月',
+    'dashboard_this_year' => '今年',
+    'dashboard_new' => '新規',
+    'dashboard_re_purchase' => '再購入',
+    'dashboard_staff_by_job' => '職責別総員',
+    'dashboard_sales_by_job' => '職責別売上',
+    'dashboard_best_fc' => '優秀FC',
+    'dashboard_best_fc2' => '最優秀FC',
+    'dashboard_head_count' => '命',
+
+    'search_word_message' => 'Please enter a search term.',
+    'search_null_message' => '검색결과가 없습니다.',
 
     'deposit_date' => '入金日',
     'card_payment_info' => 'カード支払い情報',
@@ -147,6 +162,8 @@ return [
 
     'direct_recruitment_fee' => '直接リクルート管理費',
     'incentive_money' => 'インセンティブ金',
+    'standing_contribution' => '商務寄与金',
+    'contributions_sales' => '売上寄与金',
     'local_office_support_fund' => '地方事務所支援金',
     'incentive' => 'インセンティブ',
     'excellent_exclusive_distributor_contribution' => '優秀な専属ディストリビューター貢献',

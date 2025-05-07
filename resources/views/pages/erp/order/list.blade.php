@@ -21,8 +21,8 @@
         </li>
       </ul>
       <form class="d-flex" action="{{ route('erp-order-layouts-order-list') }}" method="GET">
-        <input type="date" name="start_date" class="form-control" value="{{ request('start_date') }}" placeholder="시작일">
-        <input type="date" name="end_date" class="form-control" value="{{ request('end_date') }}" placeholder="종료일">
+        <input type="date" name="start_date" style="ime-mode:inactive;" class="form-control" value="{{ request('start_date') }}" placeholder="시작일">
+        <input type="date" name="end_date"  style="ime-mode:inactive;" class="form-control" value="{{ request('end_date') }}" placeholder="종료일">
 
         <select name="approval_status" id="approval_status" class="form-select color-dropdown">
           <option value="" {{ request('approval_status') == '' ? 'selected' : '' }}>:: {{__('erp.approval_classification')}} ::</option>

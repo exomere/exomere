@@ -299,6 +299,7 @@ class ErpOrderController extends Exomere
       "total_pv" => str_replace(',', '', $total_pv) ?? 0,
       "payment_amount" => str_replace(',', '', $request->payment_amount) ?? 0,
       "remaining_amount" => str_replace(',', '', $request->remaining_amount) ?? 0,
+      "delivery_amount" => str_replace(',', '', $request->delivery_amount) ?? 0,
       "cash_payment" => str_replace(',', '', $request->cash_payment) ?? 0,
       "point_payment" => $point_payment ?? 0,
       "card_payment" => str_replace(',', '', $request->card_payment) ?? 0,
@@ -383,6 +384,6 @@ class ErpOrderController extends Exomere
 
     public function exportExcel(Request $request)
     {
-        return Excel::download(new OrdersExport($request), 'orders.xlsx');
+        return Excel::download(new OrdersExport($request), 'orders_'.date('y_m_d').'.xlsx');
     }
 }

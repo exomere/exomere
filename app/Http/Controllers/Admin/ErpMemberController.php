@@ -11,6 +11,8 @@ use App\Models\ExMember;
 use App\Constants\CommonConstants;
 use App\Http\Controllers\API\OnPlatController;
 use App\Models\ExDistribute;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MembersExport;
 
 class ErpMemberController extends Exomere
 {
@@ -83,8 +85,16 @@ class ErpMemberController extends Exomere
             ->paginate($limitPage)
             ->appends(request()->query());
 
+        $member_position = self::_EXOMERE_MEMBER_POSITION;
+        if($request->session()->get('member_nation') == 'JP'){
+            $member_position = self::_EXOMERE_MEMBER_POSITION_JP;
+        }else if($request->session()->get('member_nation') == 'USA'){
+            $member_position = self::_EXOMERE_MEMBER_POSITION_USA;
+        }
+
+        
         $data = [
-            "member_position" => self::_EXOMERE_MEMBER_POSITION,
+            "member_position" => $member_position,
             "search_text" => $search_text ?? '',
             "ex_members" =>  $ex_members ?? [],
             "row_num" => $this->getPageRowNumber($ex_members->total(), $page, $limitPage) ?? null,
@@ -104,7 +114,7 @@ class ErpMemberController extends Exomere
             $resident_number_info = explode("-", $member->resident_number);
         }
 
-        $centers = ExCenter::where('is_active','Y')->get();
+        $centers = ExCenter::where('is_active','Y')->where('nation',$request->session()->get('member_nation'))->get();
         $centerArray = [];
         $cnt = 0;
 
@@ -114,7 +124,7 @@ class ErpMemberController extends Exomere
           $cnt++;
         }
 
-        $distributes = ExDistribute::where('is_active','Y')->get();
+        $distributes = ExDistribute::where('is_active','Y')->where('nation',$request->session()->get('member_nation'))->get();
         $distributeArray = [];
         $cnt = 0;
 
@@ -124,7 +134,15 @@ class ErpMemberController extends Exomere
           $cnt++;
         }
 
-        $ran_id = "exo".date("d").rand(100,999).date('m');
+        if($request->session()->get('member_nation') == 'KR'){
+            $id_nation_code = "0";
+        }else if($request->session()->get('member_nation') == 'JP'){
+            $id_nation_code = "1";
+        }else{
+            $id_nation_code = "2";
+        }
+
+        $ran_id = "exo".rand(10,99).date("m").rand(100,999);
 
         $data = [
             "bank_list" => CommonConstants::BANK_LIST,
@@ -145,6 +163,14 @@ class ErpMemberController extends Exomere
     {   
 
         $distribute = ExDistribute::find($request->distribute_seq);
+
+        if($request->session()->get('member_nation') == 'KR'){
+            $site_code = 'exomere';
+        }else if($request->session()->get('member_nation') == 'JP'){
+            $site_code = 'jp_exomere';
+        }else{
+            $site_code = 'usa_exomere';
+        }
 
         $member_seq = $request->member_seq ?? null;
         // dd($request->input());
@@ -171,7 +197,7 @@ class ErpMemberController extends Exomere
             "account_number" => $request->account_number,
             "account_holder" => $request->account_holder,
             "nation" => $request->session()->get('member_nation') ?? "KR",
-            "site_code" => $distribute->code ?? "exomere",
+            "site_code" => $distribute->code ?? $site_code,
             "is_delete" => $request->is_delete,
             "created_at" => $request->member_reg_date ?? date("Y-m-d H:i:s"),
         ];
@@ -233,5 +259,10 @@ class ErpMemberController extends Exomere
         }
 
         return response()->json($data);
+    }
+
+    public function exportMemberExcel(Request $request)
+    {
+        return Excel::download(new MembersExport($request), 'members_'.date('y_m_d').'.xlsx');
     }
 }

@@ -66,6 +66,7 @@ class ErpBoardController extends Exomere
         ExNotice::create([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
+            'nation' => $request->session()->get('member_nation'),
             'author_name' => $user ? $user->name : 'Unknown',
             'author_seq' => $user ? $user->id : 0
         ]);

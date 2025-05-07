@@ -9,6 +9,9 @@ use App\Models\ExMember;
 use App\Models\ExCenter;
 use App\Models\ExStatementsMember;
 use App\Models\ExStatements;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CommissionMonthExport;
+use App\Exports\CommissionTermExport;
 
 use Illuminate\View\View;
 
@@ -110,16 +113,16 @@ class ErpCommissionController extends Exomere
 
             if(!in_array($data->member_seq,$check_user)){
                 $order_total_amount = ExOrder::where('member_seq',$data->member_seq)->whereBetween('order_date', [$start_date, $end_date])->where("order_type",'new')->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->SUM('total_amount');
-                
+                $order_total_pv = ExOrder::where('member_seq',$data->member_seq)->whereBetween('order_date', [$start_date, $end_date])->where("order_type",'new')->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->SUM('total_pv');
                 if($order_total_amount >= 13200000){
                     $check_user[] = $data->member_seq;
-                    $recruitment_amount = ($input_data[$data->recommend_seq]['recruitment_amount'] ?? 0) + ($data->total_pv * 0.35);
+                    $recruitment_amount = ($input_data[$data->recommend_seq]['recruitment_amount'] ?? 0) + ($order_total_pv * 0.35);
 
                     $input_data[$data->recommend_seq] = [
                         "member_seq" => $data->recommend_seq,
                         "member_id" => $data->recommend_id,
                         "member_name" => $data->recommend_name,
-                        "pv" => ($input_data[$data->recommend_seq]['pv'] ?? 0) + $data->total_pv,
+                        "pv" => ($input_data[$data->recommend_seq]['pv'] ?? 0) + $order_total_pv,
                         "total_amount" =>  ($input_data[$data->recommend_seq]['total_amount'] ?? 0) + $order_total_amount,
                         "recruitment_amount" => $recruitment_amount , //직접모집관리금
                         "total_payment" => $recruitment_amount, // 지급합계 
@@ -131,34 +134,37 @@ class ErpCommissionController extends Exomere
                         "nation" => $request->session()->get('member_nation'),
                     ];
 
-                    $settlement_subsidy = ($input_data[$data->member_seq]['settlement_subsidy'] ?? 0) + ($data->total_pv * 0.1);
+                    //정착지원금 없어짐
+                    // $settlement_subsidy = ($input_data[$data->member_seq]['settlement_subsidy'] ?? 0) + ($order_total_pv * 0.1);
 
-                    $input_data[$data->member_seq] = [
-                        "member_seq" => $data->member_seq,
-                        "member_id" => $data->member_id,
-                        "member_name" => $data->member_name,
-                        "pv" => ($input_data[$data->member_seq]['pv'] ?? 0) + $data->total_pv,
-                        "total_amount" =>  ($input_data[$data->member_seq]['total_amount'] ?? 0) + $order_total_amount,
-                        "settlement_subsidy" => $settlement_subsidy , //직접모집관리금
-                        "total_payment" => $settlement_subsidy, // 지급합계 
-                        "income_tax" => $settlement_subsidy * 0.03, //소득세
-                        "residence_tax" => $settlement_subsidy * 0.003, // 주민세
-                        "total_deduction" => $settlement_subsidy * 0.033, // 공제합계
-                        "actual_amount" => $settlement_subsidy - ($settlement_subsidy * 0.033), //실지급액
-                        "site_code" => $request->session()->get('site_code') ?? "exomere",
-                        "nation" => $request->session()->get('member_nation'),
-                    ];
+                    // $settlement_subsidy = 0;
+
+                    // $input_data[$data->member_seq] = [
+                    //     "member_seq" => $data->member_seq,
+                    //     "member_id" => $data->member_id,
+                    //     "member_name" => $data->member_name,
+                    //     "pv" => ($input_data[$data->member_seq]['pv'] ?? 0) + $order_total_pv,
+                    //     "total_amount" =>  ($input_data[$data->member_seq]['total_amount'] ?? 0) + $order_total_amount,
+                    //     "settlement_subsidy" => $settlement_subsidy , //직접모집관리금
+                    //     "total_payment" => $settlement_subsidy, // 지급합계 
+                    //     "income_tax" => $settlement_subsidy * 0.03, //소득세
+                    //     "residence_tax" => $settlement_subsidy * 0.003, // 주민세
+                    //     "total_deduction" => $settlement_subsidy * 0.033, // 공제합계
+                    //     "actual_amount" => $settlement_subsidy - ($settlement_subsidy * 0.033), //실지급액
+                    //     "site_code" => $request->session()->get('site_code') ?? "exomere",
+                    //     "nation" => $request->session()->get('member_nation'),
+                    // ];
 
             
                 }else if($order_total_amount < 13200000 && $order_total_amount >= 8800000){
                     $check_user[] = $data->member_seq;
-                    $recruitment_amount = ($input_data[$data->recommend_seq]['recruitment_amount'] ?? 0) + ($data->total_pv * 0.35);
+                    $recruitment_amount = ($input_data[$data->recommend_seq]['recruitment_amount'] ?? 0) + ($order_total_pv * 0.35);
 
                     $input_data[$data->recommend_seq] = [
                         "member_seq" => $data->recommend_seq,
                         "member_id" => $data->recommend_id,
                         "member_name" => $data->recommend_name,
-                        "pv" => ($input_data[$data->recommend_seq]['pv'] ?? 0) + $data->total_pv,
+                        "pv" => ($input_data[$data->recommend_seq]['pv'] ?? 0) + $order_total_pv,
                         "total_amount" =>  ($input_data[$data->recommend_seq]['total_amount'] ?? 0) + $order_total_amount,
                         "recruitment_amount" => $recruitment_amount , //직접모집관리금
                         "total_payment" => $recruitment_amount, // 지급합계 
@@ -173,13 +179,13 @@ class ErpCommissionController extends Exomere
             
                 }else if($order_total_amount < 8800000 && $order_total_amount >= 5500000){
                     $check_user[] = $data->member_seq;
-                    $recruitment_amount = ($input_data[$data->recommend_seq]['recruitment_amount'] ?? 0) + ($data->total_pv * 0.45);
+                    $recruitment_amount = ($input_data[$data->recommend_seq]['recruitment_amount'] ?? 0) + ($order_total_pv * 0.45);
 
                     $input_data[$data->recommend_seq] = [
                         "member_seq" => $data->recommend_seq,
                         "member_id" => $data->recommend_id,
                         "member_name" => $data->recommend_name,
-                        "pv" => ($input_data[$data->recommend_seq]['pv'] ?? 0) + $data->total_pv,
+                        "pv" => ($input_data[$data->recommend_seq]['pv'] ?? 0) + $order_total_pv,
                         "total_amount" =>  ($input_data[$data->recommend_seq]['total_amount'] ?? 0) + $order_total_amount,
                         "recruitment_amount" => $recruitment_amount , //직접모집관리금
                         "total_payment" => $recruitment_amount, // 지급합계 
@@ -192,32 +198,33 @@ class ErpCommissionController extends Exomere
                     ];
 
             
-                }else if($order_total_amount < 5500000 && $order_total_amount >= 3300000){
-                    $check_user[] = $data->member_seq;
-                    $recruitment_amount = ($input_data[$data->recommend_seq]['recruitment_amount'] ?? 0) + ($data->total_pv * 0.50);
-
-                    $input_data[$data->recommend_seq] = [
-                        "member_seq" => $data->recommend_seq,
-                        "member_id" => $data->recommend_id,
-                        "member_name" => $data->recommend_name,
-                        "pv" => ($input_data[$data->recommend_seq]['pv'] ?? 0) + $data->total_pv,
-                        "total_amount" =>  ($input_data[$data->recommend_seq]['total_amount'] ?? 0) + $order_total_amount,
-                        "recruitment_amount" => $recruitment_amount , //직접모집관리금
-                        "total_payment" => $recruitment_amount, // 지급합계 
-                        "income_tax" => $recruitment_amount * 0.03, //소득세
-                        "residence_tax" => $recruitment_amount * 0.003, // 주민세
-                        "total_deduction" => $recruitment_amount * 0.033, // 공제합계
-                        "actual_amount" => $recruitment_amount - ($recruitment_amount * 0.033), //실지급액
-                        "site_code" => $request->session()->get('site_code') ?? "exomere",
-                        "nation" => $request->session()->get('member_nation'),
-                    ];
                 }
+                // else if($order_total_amount < 5500000 && $order_total_amount >= 3300000){
+                //     $check_user[] = $data->member_seq;
+                //     $recruitment_amount = ($input_data[$data->recommend_seq]['recruitment_amount'] ?? 0) + ($order_total_pv * 0.50);
+
+                //     $input_data[$data->recommend_seq] = [
+                //         "member_seq" => $data->recommend_seq,
+                //         "member_id" => $data->recommend_id,
+                //         "member_name" => $data->recommend_name,
+                //         "pv" => ($input_data[$data->recommend_seq]['pv'] ?? 0) + $order_total_pv,
+                //         "total_amount" =>  ($input_data[$data->recommend_seq]['total_amount'] ?? 0) + $order_total_amount,
+                //         "recruitment_amount" => $recruitment_amount , //직접모집관리금
+                //         "total_payment" => $recruitment_amount, // 지급합계 
+                //         "income_tax" => $recruitment_amount * 0.03, //소득세
+                //         "residence_tax" => $recruitment_amount * 0.003, // 주민세
+                //         "total_deduction" => $recruitment_amount * 0.033, // 공제합계
+                //         "actual_amount" => $recruitment_amount - ($recruitment_amount * 0.033), //실지급액
+                //         "site_code" => $request->session()->get('site_code') ?? "exomere",
+                //         "nation" => $request->session()->get('member_nation'),
+                //     ];
+                // }
             }
             $st_total_amount += $data->total_amount;
             $st_total_pv += $data->total_pv;
         
         }
-
+        // dd($input_data);
              /* 한번 더 누를 시 삭제*/
         ExStatements::where("type","term")->where("code",$calcu_code)->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->delete();
         ExStatementsMember::where("type","term")->where("code",$calcu_code)->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->delete();
@@ -416,7 +423,7 @@ class ErpCommissionController extends Exomere
         $this->monthlyCalculationRecommend($calcu_code,$start_date, $end_date, $total_pv);
 
         /* 장려금 계산 */
-        $this->promoteCalculation($calcu_code,$start_date, $end_date, $total_pv);
+        // $this->promoteCalculation($calcu_code,$start_date, $end_date, $total_pv);
 
         $st_total_payment = ExStatementsMember::where("type","month")->where("code",$calcu_code)->SUM("total_payment");
         $st_actual_amount = ExStatementsMember::where("type","month")->where("code",$calcu_code)->SUM("actual_amount");
@@ -523,10 +530,12 @@ class ErpCommissionController extends Exomere
             if($val > 0){
                 $c_promote_price = $promote_price * $val;
 
-                $order = ExStatementsMember::where("member_seq",$key)->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'))->where('code',$calcu_code);
+                $order = ExStatementsMember::where("member_seq",$key)->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'))->where('code',$calcu_code)->first();
 
-                $total_payment = $c_promote_price * 0.09; 
-                $payment_points = $c_promote_price * 0.01; 
+                // $total_payment = $c_promote_price * 0.09; 
+                // $payment_points = $c_promote_price * 0.01; 
+                $total_payment = $c_promote_price; 
+                $payment_points = 0; 
                 $income_tax = $c_promote_price * 0.03; 
                 $residence_tax = $c_promote_price * 0.003; 
                 $total_deduction = $income_tax + $residence_tax;
@@ -585,9 +594,9 @@ class ErpCommissionController extends Exomere
      */
     private function monthlyCalculationRecommend($calcu_code,$s_date, $e_date,$total_pv){
 
-        $ex_members = ExMember::whereIn("member_position",["우수총판","최우수총판"])->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'));
-        $ex_members2 = ExMember::where("member_position","최우수총판")->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'));
-        
+        $ex_members = ExMember::whereIn("member_position",["우수총판","최우수총판"])->where('site_code',request()->session()->get('site_code'));
+        $ex_members2 = ExMember::where("member_position","최우수총판")->where('site_code',request()->session()->get('site_code'));
+    
 
         if($ex_members->count() != 0 ){
             $contribution_amount = ($total_pv * 0.03) / ( $ex_members->count()); //우수총판 기여금
@@ -602,19 +611,40 @@ class ErpCommissionController extends Exomere
         }
 
         foreach($ex_members->get() as $member){
-            $order = ExOrder::where("recommend_seq",$member->id)->whereBetween('order_date', [$s_date, $e_date])->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'));
+            $orders = ExOrder::where("recommend_seq",$member->id)->whereBetween('order_date', [$s_date, $e_date])->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'));
+            $standing_contribution = 0; //상무 기여금
+            $contributions_sales = 0; // 매출기여금
+            foreach($orders->get() as $order){
+
+                if($order->total_amount >= 13200000){
+                    $contributions_sales += 1000000;
+                }else if($order->total_amount >= 7700000){
+                    $contributions_sales  += 600000;
+                }else if($order->total_amount >= 5500000){
+                    $contributions_sales  += 400000;
+                }
+
+                $standing_contribution += $order->total_amount;
+            }
             
-            $total_payment = $contribution_amount * 0.9; 
-            $payment_points = $contribution_amount * 0.1; 
-            $income_tax = $contribution_amount * 0.03; 
-            $residence_tax = $contribution_amount * 0.003; 
+            // 포인트안줌
+            // $total_payment = $contribution_amount * 0.9; 
+            // $payment_points = $contribution_amount * 0.1; 
+            $total_payment = $contribution_amount; 
+            $payment_points = 0; 
+
+            $income_tax = (($standing_contribution  * 0.02)+ $contribution_amount + $contributions_sales) * 0.03; 
+            $residence_tax = (($standing_contribution  * 0.02)+ $contribution_amount + $contributions_sales) * 0.003; 
             $total_deduction = $income_tax + $residence_tax;
             $actual_amount = $total_payment - $total_deduction;
 
             if($member->member_position == "최우수총판"){
                 $c_contribution_amount2 = $contribution_amount2;
-                $total_payment = $total_payment + ($contribution_amount2 * 0.9); 
-                $payment_points = $payment_points + ($contribution_amount2 * 0.1); 
+                // $total_payment = $total_payment + ($contribution_amount2 * 0.9); 
+                // $payment_points = $payment_points + ($contribution_amount2 * 0.1)
+                $total_payment = $total_payment + $contribution_amount2; 
+                $payment_points = 0;
+                ; 
                 $income_tax = $income_tax + ($contribution_amount2 * 0.03); 
                 $residence_tax = $residence_tax + ($contribution_amount2 * 0.003); 
                 $total_deduction = $income_tax + $residence_tax;
@@ -623,16 +653,21 @@ class ErpCommissionController extends Exomere
                 $c_contribution_amount2 = 0;
             }
 
-            if(isset($order->id)){
-                $order->update([
+            $statMember = ExStatementsMember::where("member_seq",$member->id)->where('code',$calcu_code)->first();
+            // $statMember = ExOrder::where("recommend_seq",$member->id)->whereBetween('order_date', [$s_date, $e_date])->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'));
+            if(isset($statMember->id)){
+                // dd($statMember->id);
+                $statMember->update([
                     "contribution_amount" => $contribution_amount,
                     "contribution_amount2" => $c_contribution_amount2,
-                    "total_payment" => ($order->total_payment +$total_payment), 
-                    "payment_points" => ($order->payment_points +$payment_points),
-                    "income_tax" => ($order->income_tax + $income_tax), 
-                    "residence_tax" => ($order->residence_tax + $residence_tax), 
-                    "total_deduction" => ($order->total_deduction + $total_deduction), 
-                    "actual_amount" => ($order->actual_amount + $actual_amount), 
+                    "contributions_sales" => $contributions_sales,
+                    "standing_contribution" => $standing_contribution  * 0.02,
+                    "total_payment" => ($statMember->total_payment +$total_payment), 
+                    "payment_points" => ($statMember->payment_points +$payment_points),
+                    "income_tax" => ($statMember->income_tax + $income_tax), 
+                    "residence_tax" => ($statMember->residence_tax + $residence_tax), 
+                    "total_deduction" => ($statMember->total_deduction + $total_deduction), 
+                    "actual_amount" => ($statMember->actual_amount + $actual_amount), 
                 ]);
             }else{
 
@@ -648,6 +683,8 @@ class ErpCommissionController extends Exomere
                     "contribution_amount2" => $c_contribution_amount2,
                     "total_payment" => $total_payment, 
                     "payment_points" => $payment_points,
+                    "contributions_sales" => $contributions_sales,
+                    "standing_contribution" => $standing_contribution  * 0.02,
                     "income_tax" => $income_tax, 
                     "residence_tax" => $residence_tax, 
                     "total_deduction" => $total_deduction, 
@@ -671,7 +708,7 @@ class ErpCommissionController extends Exomere
 
         foreach($center_data as $center){
 
-            $center_total = ExOrder::whereBetween('order_date', [$s_date, $e_date])->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'))->where("center_seq",$center->id)->sum('total_pv') * 0;
+            $center_total = ExOrder::whereBetween('order_date', [$s_date, $e_date])->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'))->where("center_seq",$center->id)->sum('total_pv') * 0.04;
             
             $total_payment = $center_total ;
             $income_tax  = $center_total * 0.03;
@@ -679,12 +716,12 @@ class ErpCommissionController extends Exomere
             $total_deduction  = $income_tax + $residence_tax;
             $actual_amount  = $total_payment - $total_deduction;
 
-            $order = ExStatementsMember::where("member_seq",$center->director_seq)->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'))->where('code',$calcu_code);
+            $order = ExStatementsMember::where("member_seq",$center->director_seq)->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'))->where('code',$calcu_code)->first();
 
             if(isset($order->id)){
                 $order->update([
                     "center_amount" => $center_total,
-                    "total_payment" => $total_payment, 
+                    "total_payment" => ($order->total_payment + $total_payment), 
                     "income_tax" => ($order->income_tax + $income_tax), 
                     "residence_tax" => ($order->residence_tax + $residence_tax), 
                     "total_deduction" => ($order->total_deduction + $total_deduction), 
@@ -798,6 +835,14 @@ class ErpCommissionController extends Exomere
             return redirect()->route('erp-allowance.monthly-closing');
         }
         
+    }
+
+    public function exportCalculationExcel(Request $request){
+        if($request->type == 'term'){
+            return Excel::download(new CommissionTermExport($request), 'commission_term_'.date('y_m_d').'.xlsx');
+        }else{
+            return Excel::download(new CommissionMonthExport($request), 'commission_month_'.date('y_m_d').'.xlsx');
+        }
     }
     
 }

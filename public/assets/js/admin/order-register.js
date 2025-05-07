@@ -104,6 +104,7 @@ var orderReg = {
         var payment_amount = 0;
         var card_payment = 0;
         var account_payment = 0;
+        var delivery_amount = orderReg.removeComma($("#delivery_amount").val());
         var point_payment = orderReg.removeComma($("#point_payment").val());
         var cash_payment = orderReg.removeComma($("#cash_payment").val());
 
@@ -119,13 +120,20 @@ var orderReg = {
             account_payment += orderReg.removeComma($(this).val())
         });
 
-        payment_amount = (account_payment + card_payment + point_payment + cash_payment)
-        var remain_amount = total - payment_amount;
+        if(total < 300000){
+            delivery_amount = 4000;
+        }else{
+            delivery_amount = 0;
+        }
         
+        payment_amount = (account_payment + card_payment + point_payment + cash_payment );
+
+        var remain_amount = (total+delivery_amount) - payment_amount;
         $("#card_payment").val(orderReg.addComma(card_payment));
         $("#account_payment").val(orderReg.addComma(account_payment));
         $("#cash_payment").val(orderReg.addComma(cash_payment))
         $("#total_amount").val(orderReg.addComma(total));
+        $("#delivery_amount").val(orderReg.addComma(delivery_amount));
         $("#payment_amount").val(orderReg.addComma(payment_amount));
         $("#remain_amount").val(orderReg.addComma(remain_amount));
     },
@@ -162,11 +170,23 @@ var orderReg = {
 
     searchMemberInfo: function (e) {
 
+        var member_nation = e.data('nation');
         var text = $("#searchMemberText").val();
         var type = $("#searchMemberType").val();
 
+        var search_word_message = "검색어를 입력해주세요.";
+        var search_null_message = "검색결과가 없습니다.";
+
+        if(member_nation == 'JP'){
+            search_word_message = "検索ワードを入力してください.";
+            search_null_message = "検索結果がありません.";
+        }else if(member_nation == 'USA'){
+            search_word_message = "Please enter a search term";
+            search_null_message = "No search results found.";
+        }
+        
         if (text == '') {
-            alert('검색어를 입력해주세요.');
+            alert(search_word_message);
             return false;
         }
 
@@ -184,7 +204,7 @@ var orderReg = {
             success: function (res) {
                 var html = "";
                 if (res.length == 0) {
-                    alert('검색결과가 없습니다.');
+                    alert(search_null_message);
                 } else {
                     $(".memberBody").empty();
                     $.each(res, function (index, data) {
@@ -301,8 +321,10 @@ var orderReg = {
     },
 
     formSave: function(){
-        console.log('asd');
-        if($("#total_amount").val() != $("#payment_amount").val()){
+        var total = ( orderReg.removeComma($("#total_amount").val()) + orderReg.removeComma(($("#delivery_amount").val())) );
+        var payment_amount = orderReg.removeComma($("#payment_amount").val());
+
+        if(total != payment_amount){
             alert('주문금액과 결제금액이 다릅니다.');
             return false;
         }

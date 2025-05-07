@@ -259,7 +259,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/register/{seq?}', [ErpMemberController::class, 'create'])->name('erp-member.create');
                 Route::post('/save', [ErpMemberController::class, 'save'])->name('erp-member.save');
                 Route::post('/del', [ErpMemberController::class, 'del'])->name('erp-member.del');
-
+                Route::get('/export', [ErpMemberController::class, 'exportMemberExcel'])->name('erp-member.export');
                 // ㄴ 회원수정내역
                 Route::post('/modifyList', [ErpMemberController::class, 'getModifyList'])->name('erp-member.getModifyList');
 
@@ -324,6 +324,7 @@ Route::group(['middleware' => 'auth'], function () {
                 // ㄴ 마감 삭제
                 Route::get('/statementDel/{seq?}', [ErpCommissionController::class, 'statementDel'])->name('erp.statement.del');
                 Route::get('/confirmation', [ErpCommissionController::class, 'confirmation'])->name('erp-allowance.confirmation');
+                Route::get('/export', [ErpCommissionController::class, 'exportCalculationExcel'])->name('erp-allowance.export');
             });
 
             // 포인트관리 point

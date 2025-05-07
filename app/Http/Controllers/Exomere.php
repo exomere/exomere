@@ -20,8 +20,29 @@ class Exomere extends Controller
         "총판" => "FC",
         "회원" => "회원",
         "대리점" => "대리점",
+        "뷰티플래너" => "뷰티플래너",
     ];
-    
+
+    CONST _EXOMERE_MEMBER_POSITION_JP =[
+        "최우수총판" => "最優秀FC",
+        "우수총판" => "優秀だ FC",
+        "총판1" => "FC1",
+        "총판" => "FC",
+        "회원" => "会員",
+        "대리점" => "代理店",
+        "뷰티플래너" => "ビューティープランナー",
+    ];
+
+    CONST _EXOMERE_MEMBER_POSITION_USA =[
+        "최우수총판" => "BEST FC",
+        "우수총판" => "excellent FC",
+        "총판1" => "FC1",
+        "총판" => "FC",
+        "회원" => "Member",
+        "대리점" => "agency",
+        "뷰티플래너" => "Beauty Planner",
+    ];
+
     CONST _PAYMENT_CARD_COMPANY = [
         "00" => "온플렛",
         "01" => "비씨",

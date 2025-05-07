@@ -8,12 +8,26 @@ var distrReg = {
 
     searchMemberInfo: function (e) {
         
+        var member_nation = e.data('nation');
         var text = $("#searchMemberText").val();
         var type = $("#searchMemberType").val();
+
+        var search_word_message = "검색어를 입력해주세요.";
+        var search_null_message = "검색결과가 없습니다.";
+
+        if(member_nation == 'JP'){
+            search_word_message = "検索ワードを入力してください.";
+            search_null_message = "検索結果がありません.";
+        }else if(member_nation == 'USA'){
+            search_word_message = "Please enter a search term";
+            search_null_message = "No search results found.";
+        }
+        
         if (text == '') {
-            alert('검색어를 입력해주세요.');
+            alert(search_word_message);
             return false;
         }
+
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -28,7 +42,7 @@ var distrReg = {
             success: function (res) {
                 var html = "";
                 if (res.length == 0) {
-                    alert('검색결과가 없습니다.');
+                    alert(search_null_message);
                 } else {
                     $(".memberBody").empty();
                     $.each(res, function (index, data) {

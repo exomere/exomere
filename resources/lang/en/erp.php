@@ -71,6 +71,19 @@ return [
     'approval' => 'Approval',
     'processing_completed' => 'Processing has been completed.',
 
+
+    'dashboard_performance' => 'Performance status',
+    'dashboard_this_month' => 'This month',
+    'dashboard_this_year' => 'This year',
+    'dashboard_new' => 'New',
+    'dashboard_re_purchase' => 'Repurchase',
+    'dashboard_staff_by_job' => 'all employees by position',
+    'dashboard_sales_by_job' => 'sales by position',
+    'dashboard_best_fc' => 'Excellent FC',
+    'dashboard_best_fc2' => 'Best FC',
+    'dashboard_head_count' => 'order',
+
+
     'remove' => 'remove',
     'member_selection' => 'Member selection', // 회원 선택
     'product_receipt' => 'Product receipt', // 상품 수령
@@ -86,6 +99,7 @@ return [
     'total_amount' => 'Total amount', // 총 금액
     'payment_amount' => 'Payment amount', // 결제 금액
     'remaining_amount' => 'Remaining amount', // 잔여 금액
+    'delivery_amount' => 'The delivery charge',
     'cash_payment' => 'Cash payment', // 현금 결제
     'card_payment' => 'Card payment', // 카드 결제
     'account_transfer' => 'Account transfer', // 계좌 이체
@@ -117,7 +131,7 @@ return [
     'member_search' => 'Member search', // 회원 검색
     'past_order_info' => 'Last order information',
     'no_past_order_info' => 'There is no last order information.',
-
+    'Performance' => 'Performance',
 
     'settlement_date' => 'Settlement date',
     'allowment_calculation' => 'Allowment calculation',
@@ -152,6 +166,8 @@ return [
     'direct_recruitment_fee' => 'Direct recruitment management fee',
     'incentive_money' => 'Incentive money',
     'local_office_support_fund' => 'Local office support fund',
+    'standing_contribution' => 'standing contribution',
+    'contributions_sales' => 'Contributions to sales',
     'incentive' => 'Incentive',
     'excellent_exclusive_distributor_contribution' => 'Excellent Exclusive Distributor Contribution',
     'best_exclusive_distributor_contribution' => 'Best Exclusive Distributor Contribution',
