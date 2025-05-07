@@ -529,6 +529,10 @@ class OrderController extends Exomere
             $order_type = 'repurchase';
         }else if(request()->session()->get('member_position') == "총판1"){
             $order_type = 'repurchase';
+        }else if(request()->session()->get('member_position') == "우수총판"){
+            $order_type = 'repurchase';
+        }else if(request()->session()->get('member_position') == "최우수총판"){
+            $order_type = 'repurchase';
         }
 
         $input_data = [
