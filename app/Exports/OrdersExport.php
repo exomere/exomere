@@ -62,6 +62,15 @@ class OrdersExport implements FromCollection, WithHeadings
                 'delivery' => '택배수령',
                 'scene' => '현장수령',
             ];
+
+            // [{"pd_pv": "22500", "pd_qty": "4", "pd_seq": "123", "pd_name": "아로마 힐링미스트 150ml", "pd_price": "24750"}]
+
+            $item_info = json_decode($order->item_info,true);
+            $item_text = "";
+            foreach($item_info as $item){
+                $item_text.= $item['pd_name']." : ".$item['pd_qty']."개 ,";
+            }
+
             return [
                 'is_approval' => $isApprovalText,
                 'order_kind' => self::ORDER_KIND[$order->order_type] ?? "",
@@ -72,12 +81,13 @@ class OrdersExport implements FromCollection, WithHeadings
                 'id' => $order->id,
                 'member_id' => $order->member_id,
                 'member_name' => $order->member_name,
-                'product' => "상품",
+                'centerName' => $order->getCenterName(),
+                
+                'product' => $item_text,
                 'product_receipt' =>  $product_receipt[$order->receipt_method],
                 'zip_code' => $order->zipcode,
                 'address' => $order->address,
                 'address_detail' => $order->address_detail,
-                'centerName' => $order->getCenterName(),
                 'recommend_id' => $order->findByMemberRecommend()->get()->value('recommend_id'),
                 'recommend_name' => $order->findByMemberRecommend()->get()->value('recommend_name'),
                 'remark' => $order->remark,
