@@ -120,12 +120,6 @@ var orderReg = {
             account_payment += orderReg.removeComma($(this).val())
         });
 
-        if(total < 300000){
-            delivery_amount = 4000;
-        }else{
-            delivery_amount = 0;
-        }
-        
         payment_amount = (account_payment + card_payment + point_payment + cash_payment );
 
         var remain_amount = (total+delivery_amount) - payment_amount;
