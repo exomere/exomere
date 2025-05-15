@@ -198,7 +198,6 @@ class ErpMemberController extends Exomere
             "account_holder" => $request->account_holder,
             "nation" => $request->session()->get('member_nation') ?? "KR",
             "site_code" => $distribute->code ?? $site_code,
-            "is_delete" => $request->is_delete,
             "created_at" => $request->member_reg_date ?? date("Y-m-d H:i:s"),
         ];
 

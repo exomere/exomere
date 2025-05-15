@@ -260,34 +260,36 @@ class ProductController extends BaseController
         foreach ($exCarts->get() as $cart) {
             $item_info = $cart->getItemInfo();
 
-            $pd_name = $item_info->name_en;
-            $pd_description = $item_info->description_en;
+            if(!isset($item_info)) continue;
+
+            $pd_name = $item_info->name_en ?? '';
+            $pd_description = $item_info->description_en ?? '';
 
             if ($locale == "ko") {
-                $pd_name = $item_info->name;
-                $pd_description = $item_info->description;
-                $pd_price = $item_info->price;
+                $pd_name = $item_info->name ?? '';
+                $pd_description = $item_info->description ?? '';
+                $pd_price = $item_info->price ?? 0;
                 $price_simbol = "₩";
 
 
                 if (request()->session()->get('member_position') == "총판") {
-                    $pd_price = $item_info->exclusive_price;
-                    $pd_pv = $item_info->exclusive_pv;
+                    $pd_price = $item_info->exclusive_price ?? 0;
+                    $pd_pv = $item_info->exclusive_pv ?? 0;
                 }elseif (request()->session()->get('member_position') == "총판1") {
-                    $pd_price = $item_info->exclusive_price1;
-                    $pd_pv = $item_info->exclusive_pv1;
+                    $pd_price = $item_info->exclusive_price1 ?? 0;
+                    $pd_pv = $item_info->exclusive_pv1 ?? 0;
                 } elseif (request()->session()->get('member_position') == "회원") {
-                    $pd_price = $item_info->mem_price;
-                    $pd_pv = $item_info->mem_pv;
+                    $pd_price = $item_info->mem_price ?? 0;
+                    $pd_pv = $item_info->mem_pv ?? 0;
                 } elseif (request()->session()->get('member_position') == "뷰티플래너") {
-                    $pd_price = $item_info->planer_price;
-                    $pd_pv = $item_info->planer_pv;
+                    $pd_price = $item_info->planer_price ?? 0;
+                    $pd_pv = $item_info->planer_pv ?? 0;
                 } elseif (request()->session()->get('member_position') == "대리점") {
-                    $pd_price = $item_info->store_price;
-                    $pd_pv = $item_info->store_pv;
+                    $pd_price = $item_info->store_price ?? 0;
+                    $pd_pv = $item_info->store_pv ?? 0;
                 } else {
-                    $pd_price = $item_info->exclusive_price;
-                    $pd_pv = $item_info->exclusive_pv;
+                    $pd_price = $item_info->exclusive_price ?? 0;
+                    $pd_pv = $item_info->exclusive_pv ?? 0;
                 }
             } else {
                 $pd_name = $item_info->name_en ?? $item_info->name;
@@ -373,16 +375,16 @@ class ProductController extends BaseController
             }
 
             $carts[] =
-                [
-                    'id' => $item_info->id,
-                    'product_name' => $pd_name,
-                    'distribution_price' => $pd_price,
-                    'price_simbol' => $price_simbol,
-                    'pv' => $pd_pv,
-                    'thumbnail' => Storage::url('public/data/' . $item_info->thum_img),
-                    'sub_name' => $pd_description,
-                    'quantity' => $cart->pd_qty,
-                ];
+            [
+                'id' => $item_info->id,
+                'product_name' => $pd_name,
+                'distribution_price' => $pd_price,
+                'price_simbol' => $price_simbol,
+                'pv' => $pd_pv,
+                'thumbnail' => Storage::url('public/data/' . $item_info->thum_img),
+                'sub_name' => $pd_description,
+                'quantity' => $cart->pd_qty,
+            ];
         }
 
         $datas = [

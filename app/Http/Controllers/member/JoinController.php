@@ -106,7 +106,7 @@ class JoinController extends Controller
             'email' => $data['email'],
             'site_code' => $code,
             'code' => $code,
-            
+            'is_delete' => 'N',
         ]);
     }
 }

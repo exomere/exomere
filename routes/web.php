@@ -136,8 +136,6 @@ Route::prefix('/community/review')->group(function () {
     Route::get('{review}', [CommunityController::class, 'reviewDetail'])->name('reviewDetail');
 });
 
-
-
 // 언어 변경
 Route::get('/set-language/{lang}', [LanguageController::class, 'setLanguage'])->name('setLanguage');
 
