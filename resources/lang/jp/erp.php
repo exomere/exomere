@@ -173,7 +173,9 @@ return [
     'my_pv' => '私のPV',
     'amount' => '金額',
     'no_details' => '詳細はありません。',
-
+    'total_contribution' => '総寄与金',
+    'total_heads' => '総人数',
+    'distribution_per_person' => '一人当たりの分配金',
     'bonus_points' => 'ボーナスポイント',
     'mobile_phone_number' => '携帯電話番号',
     'payment_points' => '残りポイント',

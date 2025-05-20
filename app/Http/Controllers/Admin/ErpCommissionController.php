@@ -12,7 +12,7 @@ use App\Models\ExStatements;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CommissionMonthExport;
 use App\Exports\CommissionTermExport;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class ErpCommissionController extends Exomere
@@ -52,12 +52,16 @@ class ErpCommissionController extends Exomere
         
         $site_code = $request->session()->get('site_code') ?? "exomere";
         
-
+        $statements_data = ExStatements::where("code",$request->code)->first();
+        $s_date = $statements_data->s_date;
+        $e_date = $statements_data->e_date;
         $statements = ExStatementsMember::where("code",$request->code)->where("site_code",$site_code)->where("type",$request->type)->where("pv",">",0)->orderBy('id', 'desc')->paginate($limitPage);
 
         
         $datas = [
             "statements" => $statements,
+            "s_date" =>$s_date,
+            "e_date" =>$e_date,
             "row_num" => $this->getPageRowNumber($statements->total(), $page, $limitPage)
         ];
 
@@ -114,6 +118,7 @@ class ErpCommissionController extends Exomere
             if(!in_array($data->member_seq,$check_user)){
                 $order_total_amount = ExOrder::where('member_seq',$data->member_seq)->whereBetween('order_date', [$start_date, $end_date])->where("order_type",'new')->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->SUM('total_amount');
                 $order_total_pv = ExOrder::where('member_seq',$data->member_seq)->whereBetween('order_date', [$start_date, $end_date])->where("order_type",'new')->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->SUM('total_pv');
+
                 if($order_total_amount >= 13200000){
                     $check_user[] = $data->member_seq;
                     $recruitment_amount = ($input_data[$data->recommend_seq]['recruitment_amount'] ?? 0) + ($order_total_pv * 0.35);
@@ -268,11 +273,15 @@ class ErpCommissionController extends Exomere
         $limitPage = 30;
         $page = $request->get('page', 1);
         $site_code = $request->session()->get('site_code') ?? "exomere";
-        
+        $statements_data = ExStatements::where("code",$request->code)->first();
+        $s_date = $statements_data->s_date;
+        $e_date = $statements_data->e_date;
         $statements = ExStatementsMember::where("code",$request->code)->where("site_code",$site_code)->where('nation',$request->session()->get('member_nation'))->where("type",$request->type)->where("actual_amount",">",0)->orderBy('id', 'desc')->paginate($limitPage);
 
         $datas = [
             "statements" => $statements,
+            "s_date" => $s_date,
+            "e_date" => $e_date,
             "row_num" => $this->getPageRowNumber($statements->total(), $page, $limitPage)
         ];
 
@@ -427,6 +436,9 @@ class ErpCommissionController extends Exomere
 
         $st_total_payment = ExStatementsMember::where("type","month")->where("code",$calcu_code)->SUM("total_payment");
         $st_actual_amount = ExStatementsMember::where("type","month")->where("code",$calcu_code)->SUM("actual_amount");
+
+        // $st_total_payment = ExOrder::whereBetween('order_date',[$start_date,$end_date])->where('site_code',$request->session()->get('site_code'))->SUM('total_amount');
+        // $st_actual_amount = ExOrder::whereBetween('order_date',[$start_date,$end_date])->where('site_code',$request->session()->get('site_code'))->SUM('total_pv');
         
         ExStatements::create([
             "type" => "month",
@@ -594,12 +606,28 @@ class ErpCommissionController extends Exomere
      */
     private function monthlyCalculationRecommend($calcu_code,$s_date, $e_date,$total_pv){
 
-        $ex_members = ExMember::whereIn("member_position",["우수총판","최우수총판"])->where('site_code',request()->session()->get('site_code'));
-        $ex_members2 = ExMember::where("member_position","최우수총판")->where('site_code',request()->session()->get('site_code'));
-    
+        $sub = DB::table('ex_orders')
+            ->select('member_id', DB::raw('SUM(total_amount) as total_sum'))
+            ->whereBetween('order_date', [$s_date, $e_date])
+            ->groupBy('member_id')
+            ->havingRaw('SUM(total_amount) >= ?', [660000]);
+        
+        $ex_members = DB::table('ex_members as m')
+            ->joinSub($sub, 'order_summary', function ($join) {
+                $join->on('m.member_id', '=', 'order_summary.member_id');
+            })
+            ->whereIn('m.member_position', ['우수총판', '최우수총판'])
+            ->where('m.site_code', request()->session()->get('site_code'));
 
+        $ex_members2 = DB::table('ex_members as m')
+            ->joinSub($sub, 'order_summary', function ($join) {
+                $join->on('m.member_id', '=', 'order_summary.member_id');
+            })
+            ->where('m.member_position', '최우수총판')
+            ->where('m.site_code', request()->session()->get('site_code'));
+            
         if($ex_members->count() != 0 ){
-            $contribution_amount = ($total_pv * 0.03) / ( $ex_members->count()); //우수총판 기여금
+            $contribution_amount = ($total_pv * 0.03) / ( $ex_members->count() ?? 0 ); //우수총판 기여금
         }else{
             $contribution_amount = 0;
         }
@@ -611,11 +639,11 @@ class ErpCommissionController extends Exomere
         }
 
         foreach($ex_members->get() as $member){
+            
             $orders = ExOrder::where("recommend_seq",$member->id)->whereBetween('order_date', [$s_date, $e_date])->where('nation',request()->session()->get('member_nation'))->where('site_code',request()->session()->get('site_code'));
             $standing_contribution = 0; //상무 기여금
             $contributions_sales = 0; // 매출기여금
             foreach($orders->get() as $order){
-
                 if($order->total_amount >= 13200000){
                     $contributions_sales += 1000000;
                 }else if($order->total_amount >= 7700000){
@@ -623,7 +651,6 @@ class ErpCommissionController extends Exomere
                 }else if($order->total_amount >= 5500000){
                     $contributions_sales  += 400000;
                 }
-
                 $standing_contribution += $order->total_amount;
             }
             
@@ -772,8 +799,6 @@ class ErpCommissionController extends Exomere
 
         $seq = $request->seq;
         $member_seq = $request->mem_seq;
-        
-
         $statementMember = ExStatementsMember::find($seq);
         
         $statement = ExStatements::where('type',$statementMember->type)->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->where('code',$statementMember->code)->first();
@@ -784,8 +809,6 @@ class ErpCommissionController extends Exomere
         foreach($recommendMembers as $recommendMember){
             $memberSeqArray[] = $recommendMember->id;
         }   
-
-        $recommendOrderInfo = ExOrder::whereBetWeen('order_date',[$statement->s_date,$statement->e_date])->where('nation',$request->session()->get('member_nation'))->where('site_code',$request->session()->get('site_code'))->whereIn("recommend_seq",$memberSeqArray);
 
         $output_data = [
             "member_id" => $exMember->member_id,
@@ -804,15 +827,103 @@ class ErpCommissionController extends Exomere
             "pv_total" => $statement->total_pv,
         ];
 
-        $cnt=0;
+        switch($request->type){
+            case  0 : 
+                $recommendOrderInfo = ExOrder::whereBetWeen('order_date',[$statement->s_date,$statement->e_date])
+                ->where('site_code',$request->session()->get('site_code'))->where("recommend_seq",$member_seq);
+                $cnt=0;
 
-        foreach($recommendOrderInfo->get() as $orderInfo){
-            $output_data['orderInfo'][$cnt]['id'] = $orderInfo->member_id;
-            $output_data['orderInfo'][$cnt]['name'] = $orderInfo->member_name;
-            $output_data['orderInfo'][$cnt]['total_pv'] = $orderInfo->total_pv ?? 0;
-            $output_data['orderInfo'][$cnt]['total_amount'] = $orderInfo->total_amount ?? 0;
-            $output_data['orderInfo'][$cnt]['order_date'] = date("Y-m-d",strtotime($orderInfo->order_date)) ?? date("Y-m-d");
-            $cnt++;
+                foreach($recommendOrderInfo->get() as $orderInfo){
+                    $output_data['orderInfo'][$cnt]['id'] = $orderInfo->member_id;
+                    $output_data['orderInfo'][$cnt]['name'] = $orderInfo->member_name;
+                    $output_data['orderInfo'][$cnt]['total_pv'] = $orderInfo->total_pv ?? 0;
+                    $output_data['orderInfo'][$cnt]['total_amount'] = $orderInfo->total_amount ?? 0;
+                    $output_data['orderInfo'][$cnt]['order_date'] = date("Y-m-d",strtotime($orderInfo->order_date)) ?? date("Y-m-d");
+                    $cnt++;
+                }
+                break;
+
+            case 1 :
+                $center = ExCenter::where('director_seq',$member_seq)->first();
+                $recommendOrderInfo = ExOrder::whereBetween('order_date', [$statement->s_date, $statement->e_date])
+                ->where('site_code',request()->session()->get('site_code'))->where("center_seq",$center->id);
+                $cnt=0;
+
+                foreach($recommendOrderInfo->get() as $orderInfo){
+                    $output_data['orderInfo'][$cnt]['id'] = $orderInfo->member_id;
+                    $output_data['orderInfo'][$cnt]['name'] = $orderInfo->member_name;
+                    $output_data['orderInfo'][$cnt]['total_pv'] = $orderInfo->total_pv ?? 0;
+                    $output_data['orderInfo'][$cnt]['total_amount'] = $orderInfo->total_amount ?? 0;
+                    $output_data['orderInfo'][$cnt]['order_date'] = date("Y-m-d",strtotime($orderInfo->order_date)) ?? date("Y-m-d");
+                    $cnt++;
+                }
+
+                break;
+
+            case 2 :
+                $sub = DB::table('ex_orders')
+                    ->select('member_id', DB::raw('SUM(total_amount) as total_sum'))
+                    ->whereBetween('order_date', [$statement->s_date, $statement->e_date])
+                    ->groupBy('member_id')
+                    ->havingRaw('SUM(total_amount) >= ?', [660000]);
+                
+                $member_count = DB::table('ex_members as m')
+                    ->joinSub($sub, 'order_summary', function ($join) {
+                        $join->on('m.member_id', '=', 'order_summary.member_id');
+                    })
+                    ->whereIn('m.member_position', ['우수총판', '최우수총판'])
+                    ->where('m.site_code', request()->session()->get('site_code'))->count();
+
+                $output_data['member_count'] = $member_count;
+                break;
+
+            case 3 :
+                $recommendOrderInfo = ExOrder::whereBetWeen('order_date',[$statement->s_date,$statement->e_date])
+                ->where('site_code',$request->session()->get('site_code'))->where("recommend_seq",$member_seq);
+                $cnt=0;
+
+                foreach($recommendOrderInfo->get() as $orderInfo){
+                    $output_data['orderInfo'][$cnt]['id'] = $orderInfo->member_id;
+                    $output_data['orderInfo'][$cnt]['name'] = $orderInfo->member_name;
+                    $output_data['orderInfo'][$cnt]['total_pv'] = $orderInfo->total_pv ?? 0;
+                    $output_data['orderInfo'][$cnt]['total_amount'] = $orderInfo->total_amount ?? 0;
+                    $output_data['orderInfo'][$cnt]['order_date'] = date("Y-m-d",strtotime($orderInfo->order_date)) ?? date("Y-m-d");
+                    $cnt++;
+                }
+                break;
+
+            case 4 :
+                $recommendOrderInfo = ExOrder::whereBetWeen('order_date',[$statement->s_date,$statement->e_date])
+                ->where('total_amount','>=','5500000')
+                ->where('site_code',$request->session()->get('site_code'))
+                ->where("recommend_seq",$member_seq);
+                $cnt=0;    
+                foreach($recommendOrderInfo->get() as $orderInfo){
+                    $output_data['orderInfo'][$cnt]['id'] = $orderInfo->member_id;
+                    $output_data['orderInfo'][$cnt]['name'] = $orderInfo->member_name;
+                    $output_data['orderInfo'][$cnt]['total_pv'] = $orderInfo->total_pv ?? 0;
+                    $output_data['orderInfo'][$cnt]['total_amount'] = $orderInfo->total_amount ?? 0;
+                    $output_data['orderInfo'][$cnt]['order_date'] = date("Y-m-d",strtotime($orderInfo->order_date)) ?? date("Y-m-d");
+                    $cnt++;
+                }
+                break;
+
+            case 5 :
+                $sub = DB::table('ex_orders')
+                    ->select('member_id', DB::raw('SUM(total_amount) as total_sum'))
+                    ->whereBetween('order_date', [$statement->s_date, $statement->e_date])
+                    ->groupBy('member_id')
+                    ->havingRaw('SUM(total_amount) >= ?', [660000]);
+                
+                $member_count = DB::table('ex_members as m')
+                    ->joinSub($sub, 'order_summary', function ($join) {
+                        $join->on('m.member_id', '=', 'order_summary.member_id');
+                    })
+                    ->where('m.member_position','최우수총판')
+                    ->where('m.site_code', request()->session()->get('site_code'))->count();
+
+                $output_data['member_count'] = $member_count;
+                break;
         }
 
         return json_encode($output_data);

@@ -176,6 +176,9 @@ return [
     'my_pv' => 'My PV',
     'amount' => 'Amount',
     'no_details' => 'No details.',
+    'total_contribution' => 'total contribution',
+    'total_heads' => 'total heads',
+    'distribution_per_person' => 'distribution_per_person',
 
 
     'bonus_points' => 'Bonus points',

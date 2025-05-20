@@ -75,18 +75,16 @@
                 <td>{{ $statement->member_seq }}</td>
                 <td>{{ $statement->member_id }}</td>
                 <td>{{ $statement->member_name }}</td>
-                <td>{{ number_format($statement->pv) }}</td>
-                <td>{{ number_format($statement->total_amount) }}</td>
-
-                <td><a class="dropdown-item getPaymentInfo" data-type='0' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal"> {{ number_format($statement->recruitment_amount) }} </a></td>
-                {{-- <td><a class="dropdown-item getPaymentInfo" data-type='1' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->promote_price) }}</a></td> --}}
-                <td><a class="dropdown-item getPaymentInfo" data-type='1' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->center_amount) }}</a></td>
-                {{-- <td><a class="dropdown-item getPaymentInfo" data-type='3' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->incentives) }}</a></td> --}}
-                <td><a class="dropdown-item getPaymentInfo" data-type='2' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->contribution_amount) }}</a></td>
-                <td><a class="dropdown-item getPaymentInfo" data-type='3' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->standing_contribution) }}</a></td>
-                <td><a class="dropdown-item getPaymentInfo" data-type='4' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->contributions_sales) }}</a></td>
-                <td><a class="dropdown-item getPaymentInfo" data-type='5' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" data-bs-toggle="modal">{{ number_format($statement->contribution_amount2) }}</a></td>
-                
+                <td>{{ number_format($statement->getTotalAmount($statement->member_seq,$s_date,$e_date)) }}</td>
+                <td>{{ number_format($statement->getTotalPV($statement->member_seq,$s_date,$e_date)) }}</td>
+                <td><a class="dropdown-item getPaymentInfo"@if($statement->recruitment_amount > 0) data-bs-toggle='modal' @endif data-type='0' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" > {{ number_format($statement->recruitment_amount) }} </a></td>
+                {{-- <td><a class="dropdown-item getPaymentInfo"@if($statement->recruitment_amount > 0) data-bs-toggle='modal' @endif data-type='1' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList">{{ number_format($statement->promote_price) }}</a></td> --}}
+                <td><a class="dropdown-item getPaymentInfo"@if($statement->center_amount > 0) data-bs-toggle='modal' @endif data-type='1' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->center_amount) }}</a></td>
+                {{-- <td><a class="dropdown-item getPaymentInfo"@if($statement->recruitment_amount > 0) data-bs-toggle='modal' @endif data-type='3' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->incentives) }}</a></td> --}}
+                <td><a class="dropdown-item getPaymentInfo"@if($statement->contribution_amount > 0) data-bs-toggle='modal' @endif data-type='2' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->contribution_amount) }}</a></td>
+                <td><a class="dropdown-item getPaymentInfo"@if($statement->standing_contribution > 0) data-bs-toggle='modal' @endif data-type='3' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->standing_contribution) }}</a></td>
+                <td><a class="dropdown-item getPaymentInfo"@if($statement->contributions_sales > 0) data-bs-toggle='modal' @endif data-type='4' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->contributions_sales) }}</a></td>
+                <td><a class="dropdown-item getPaymentInfo"@if($statement->contribution_amount2 > 0) data-bs-toggle='modal' @endif data-type='5' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->contribution_amount2) }}</a></td>
                 <td>{{ number_format($statement->total_payment) }}</td>
                 <td>{{ number_format($statement->payment_points) }}</td>
                 <td>{{ number_format($statement->income_tax) }}</td>
@@ -117,8 +115,6 @@
                           <td><span id='info_id'></span></td>
                           <th>{{__('erp.name')}}</th>
                           <td><span id='info_name'></span></td>
-                          <th>{{__('erp.my_pv')}}</th>
-                          <td><span id='info_self_pv'></span></td>
                         </tr>
                       </thead>
                     </table>
@@ -131,11 +127,11 @@
                     <div class="table-responsive text-nowrap">
                       <table class="table">
                         <thead>
-                          <tr class="text-nowrap">
+                          <tr class="text-nowrap info_head">
                             <th>{{__('erp.id')}}</th>
                             <th>{{__('erp.name')}}</th>
                             <th>{{__('erp.amount')}}</th>
-                            <th>{{__('erp.name')}}</th>
+                            <th>{{__('erp.order_date')}}</th>
                           </tr>
                         </thead>
                         <tbody class="info_body">
@@ -172,24 +168,39 @@
   }
 
   $(".getPaymentInfo").on("click",function(){
-
     var seq = $(this).data("seq");
     var mem_seq = $(this).data("mem_seq");
     var type = $(this).data("type");
 
     var type_text = [
       '{{__('erp.direct_recruitment_fee')}}',
-      '{{__('erp.incentive_money')}}',
       '{{__('erp.local_office_support_fund')}}',
-      '{{__('erp.incentive')}}',
       '{{__('erp.excellent_exclusive_distributor_contribution')}}',
+      '{{__('erp.standing_contribution')}}',
+      '{{__('erp.contributions_sales')}}',
       '{{__('erp.best_exclusive_distributor_contribution')}}',
     ];
 
     $("#popTitle").text(type_text[type]);
 
     $(".info_body").empty();
+    $(".info_head").empty();
+    var head_html = "";
 
+    if(type == 0 || type == 1 || type == 3 || type == 4){
+      head_html+= "<th>{{__('erp.id')}}</th>";
+      head_html+= "<th>{{__('erp.name')}}</th>";
+      head_html+= "<th>{{__('erp.amount')}}</th>";
+      head_html+= "<th>{{__('erp.order_date')}}</th>";
+    }else if(type == 2 || type == 5){
+      head_html+= "<th>{{__('erp.my_pv')}}</th>";
+      head_html+= "<th>{{__('erp.total_contribution')}}</th>";
+      head_html+= "<th>{{__('erp.total_heads')}}</th>";
+      head_html+= "<th>{{__('erp.distribution_per_person')}}</th>";
+    }else{
+    }
+
+    $(".info_head").append(head_html);
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -203,7 +214,6 @@
             "type" : type,
         },
         success: function (res) {
-          console.log(res);
           var html = "";
             $('#info_id').text(res.member_id);
             $('#info_name').text(res.member_name);
@@ -211,16 +221,28 @@
           if(res.total_count == 0){
             html += "<tr><td colspan='4'>{{__('erp.no_details')}}</td></tr>";
           }else{
-            $.each(res.orderInfo, function (index, data) {
-                html+= "<tr>";
-                html += " <td>" + data.id + "</td>";
-                html += " <td>" + data.name + "</td>";
-                html += " <td>" + addComma(data.total_pv) + "</td>";
-                html += " <td>" + data.order_date + "</td>";
-                html+= "</tr>";
-            });
+            if(type == 0 || type == 1 || type == 3 || type == 4){
+              $.each(res.orderInfo, function (index, data) {
+                  html+= "<tr>";
+                  html += " <td>" + data.id + "</td>";
+                  html += " <td>" + data.name + "</td>";
+                  html += " <td>" + addComma(data.total_pv) + "</td>";
+                  html += " <td>" + data.order_date + "</td>";
+                  html+= "</tr>";
+              });
+            }else if(type == 2 || type == 5){
+              var incentive = 0.03;
+              if(type == 5) incentive = 0.02;
+              html+= "<tr>";
+              html += " <td>" + addComma(res.pv_total) + "</td>";
+              html += " <td>" + addComma(Math.round(res.pv_total * incentive)) + "</td>";
+              html += " <td>" + res.member_count + "</td>";
+              html += " <td>" + addComma( Math.round((res.pv_total * incentive) / res.member_count )) + "</td>";
+              html+= "</tr>";
+            }else{
+
+            }
           }
-          
           $(".info_body").append(html);
         }
     });

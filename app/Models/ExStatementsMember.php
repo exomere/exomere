@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use App\Models\ExomereModel;
-
+use App\Models\ExOrder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ExStatementsMember extends ExomereModel
 {
@@ -50,4 +51,13 @@ class ExStatementsMember extends ExomereModel
         "nation",
     ];
   
+    public function getTotalAmount($seq,$s_date,$e_date)
+    {
+        return ExOrder::where('member_seq',$seq)->whereBetween('order_date',[$s_date,$e_date])->SUM('total_amount');
+    }
+
+    public function getTotalPV($seq,$s_date,$e_date)
+    {
+        return ExOrder::where('member_seq',$seq)->whereBetween('order_date',[$s_date,$e_date])->SUM('total_pv');
+    }
 }

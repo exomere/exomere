@@ -167,7 +167,7 @@ return [
     'monthly_closing_date' => '월마감',
 
 
-    'direct_recruitment_fee' => '직접모집관리금',
+    'direct_recruitment_fee' => '직접모집축하금',
     'incentive_money' => '장려금',
     'standing_contribution' => '상무기여금',
     'contributions_sales' => '매출기여금',
@@ -177,10 +177,13 @@ return [
     'best_exclusive_distributor_contribution' => '최우수FC 기여금',
     'points_total_payment' => '포인트 지급합계',
     'direct_recruitment_details' => '직접모집 관리금 내역',
-    'my_pv' => '나의 PV',
+    'my_pv' => '총 PV',
     'amount' => '금액',
     'no_details' => '내역이 없습니다.',
 
+    'total_contribution' => '총 기여금',
+    'total_heads' => '총 인원',
+    'distribution_per_person' => '인당 기여금',
 
     'bonus_points' => '보너스포인트',
     'mobile_phone_number' => '핸드폰번호',
