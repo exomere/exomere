@@ -159,7 +159,7 @@ return [
     'settlement_month' => '決済月',
     'settlement_period' => '決済期間',
     'monthly_closing_date' => '月末締切日',
-
+    'direct_recruitment_fee2' => '직접모집관리금',
     'direct_recruitment_fee' => '直接リクルート管理費',
     'incentive_money' => 'インセンティブ金',
     'standing_contribution' => '商務寄与金',

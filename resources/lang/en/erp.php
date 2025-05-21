@@ -162,7 +162,7 @@ return [
     'settlement_period' => 'Settlement period',
     'monthly_closing_date' => 'Monthly closing date',
 
-
+    'direct_recruitment_fee2' => '직접모집관리금',
     'direct_recruitment_fee' => 'Direct recruitment management fee',
     'incentive_money' => 'Incentive money',
     'local_office_support_fund' => 'Local office support fund',

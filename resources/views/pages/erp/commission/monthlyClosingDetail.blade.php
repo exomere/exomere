@@ -34,7 +34,7 @@
       <thead>
         <tr>
           <th rowspan="2" style=' vertical-align: middle;'>No</th>
-          <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.details')}}</th>
+          {{-- <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.details')}}</th> --}}
           <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.member_number')}}</th>
           <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.id')}}</th>
           <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.member_name')}}</th>
@@ -45,7 +45,7 @@
           <th rowspan="2" style=' vertical-align: middle;'>{{__('erp.actual_payment_amount')}}</th>
         </tr>
         <tr>
-            <th>{{__('erp.direct_recruitment_fee')}}</th>
+            <th>{{__('erp.direct_recruitment_fee2')}}</th>
             {{-- <th>{{__('erp.incentive_money')}}</th> --}}
             <th>{{__('erp.local_office_support_fund')}}</th>
             {{-- <th>{{__('erp.incentive')}}</th> --}}
@@ -67,24 +67,24 @@
         @foreach ($statements as $statement)
             <tr class="align-middle py-2">
                 <td><span class="fw-medium">{{ $row_num-- }}</span></td>
-                <td>
+                {{-- <td>
                     <a class="badge bg-label-info me-4" href="{{ route('erp-allowance.monthly-user', ['seq' => $statement->member_seq, 'type' => $statement->type]) }}">
                         <span class="fw-medium">{{__('erp.view_details')}}</span>
                     </a>
-                </td>
+                </td> --}}
                 <td>{{ $statement->member_seq }}</td>
                 <td>{{ $statement->member_id }}</td>
                 <td>{{ $statement->member_name }}</td>
                 <td>{{ number_format($statement->getTotalAmount($statement->member_seq,$s_date,$e_date)) }}</td>
                 <td>{{ number_format($statement->getTotalPV($statement->member_seq,$s_date,$e_date)) }}</td>
-                <td><a class="dropdown-item getPaymentInfo"@if($statement->recruitment_amount > 0) data-bs-toggle='modal' @endif data-type='0' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" > {{ number_format($statement->recruitment_amount) }} </a></td>
-                {{-- <td><a class="dropdown-item getPaymentInfo"@if($statement->recruitment_amount > 0) data-bs-toggle='modal' @endif data-type='1' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList">{{ number_format($statement->promote_price) }}</a></td> --}}
-                <td><a class="dropdown-item getPaymentInfo"@if($statement->center_amount > 0) data-bs-toggle='modal' @endif data-type='1' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->center_amount) }}</a></td>
-                {{-- <td><a class="dropdown-item getPaymentInfo"@if($statement->recruitment_amount > 0) data-bs-toggle='modal' @endif data-type='3' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->incentives) }}</a></td> --}}
-                <td><a class="dropdown-item getPaymentInfo"@if($statement->contribution_amount > 0) data-bs-toggle='modal' @endif data-type='2' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->contribution_amount) }}</a></td>
-                <td><a class="dropdown-item getPaymentInfo"@if($statement->standing_contribution > 0) data-bs-toggle='modal' @endif data-type='3' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->standing_contribution) }}</a></td>
-                <td><a class="dropdown-item getPaymentInfo"@if($statement->contributions_sales > 0) data-bs-toggle='modal' @endif data-type='4' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->contributions_sales) }}</a></td>
-                <td><a class="dropdown-item getPaymentInfo"@if($statement->contribution_amount2 > 0) data-bs-toggle='modal' @endif data-type='5' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->contribution_amount2) }}</a></td>
+                <td><a class="dropdown-item getPaymentInfo" @if($statement->recruitment_amount > 0) data-bs-toggle='modal' @endif data-type='0' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" > {{ number_format($statement->recruitment_amount) }} </a></td>
+                {{-- <td><a class="dropdown-item getPaymentInfo" @if($statement->recruitment_amount > 0) data-bs-toggle='modal' @endif data-type='1' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList">{{ number_format($statement->promote_price) }}</a></td> --}}
+                <td><a class="dropdown-item getPaymentInfo" @if($statement->center_amount > 0) data-bs-toggle='modal' @endif data-type='1' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->center_amount) }}</a></td>
+                {{-- <td><a class="dropdown-item getPaymentInfo" @if($statement->recruitment_amount > 0) data-bs-toggle='modal' @endif data-type='3' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->incentives) }}</a></td> --}}
+                <td><a class="dropdown-item getPaymentInfo" @if($statement->contribution_amount > 0) data-bs-toggle='modal' @endif data-type='2' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->contribution_amount) }}</a></td>
+                <td><a class="dropdown-item getPaymentInfo" @if($statement->standing_contribution > 0) data-bs-toggle='modal' @endif data-type='3' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->standing_contribution) }}</a></td>
+                <td><a class="dropdown-item getPaymentInfo" @if($statement->contributions_sales > 0) data-bs-toggle='modal' @endif data-type='4' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->contributions_sales) }}</a></td>
+                <td><a class="dropdown-item getPaymentInfo" @if($statement->contribution_amount2 > 0) data-bs-toggle='modal' @endif data-type='5' data-mem_seq='{{$statement->member_seq}}' data-seq='{{$statement->id}}' data-bs-target="#paymentList" >{{ number_format($statement->contribution_amount2) }}</a></td>
                 <td>{{ number_format($statement->total_payment) }}</td>
                 <td>{{ number_format($statement->payment_points) }}</td>
                 <td>{{ number_format($statement->income_tax) }}</td>
@@ -173,7 +173,7 @@
     var type = $(this).data("type");
 
     var type_text = [
-      '{{__('erp.direct_recruitment_fee')}}',
+      '{{__('erp.direct_recruitment_fee2')}}',
       '{{__('erp.local_office_support_fund')}}',
       '{{__('erp.excellent_exclusive_distributor_contribution')}}',
       '{{__('erp.standing_contribution')}}',

@@ -168,6 +168,8 @@ return [
 
 
     'direct_recruitment_fee' => '직접모집축하금',
+    'direct_recruitment_fee2' => '직접모집관리금',
+
     'incentive_money' => '장려금',
     'standing_contribution' => '상무기여금',
     'contributions_sales' => '매출기여금',
