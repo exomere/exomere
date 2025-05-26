@@ -53,7 +53,7 @@ $activeHeader = true;
                                             <input
                                                 id="user_phone" name="user_phone"
                                                 class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                                maxlength="11"
+                                                maxlength="15"
                                                 placeholder="{{ __('messages.checkout_phone_holder') }}"
                                                 value="{{$ex_member->phone ?? null}}"
                                             />
@@ -618,7 +618,7 @@ $activeHeader = true;
                 return false;
             }
 
-            if(use_point > total_price){
+            if(use_point > (total_price + delivery_price)){
                 alert('사용포인트가 결제금액보다 많습니다.');
                 $("#shipping_point").html(comma(0));
                 $("#use_point").val(0);
