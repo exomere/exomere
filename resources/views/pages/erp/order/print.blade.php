@@ -104,6 +104,30 @@
   </div>
 
   <div class="order-items">
+    <h3>결제 금액</h3>
+    <table class="items-table">
+      <thead>
+      <tr>
+        <th>총 결제금액</th>
+        <th>계좌이체</th>
+        <th>카드 결제</th>
+        <th>포인트 결제</th>
+      </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td style='text-align:center;'>{{ number_format($order_data->total_amount ?? 0)}}</td>
+            <td style='text-align:center;'>{{ number_format($order_data->account_payment ?? 0)}}</td>
+            <td style='text-align:center;'>{{ number_format($order_data->card_payment ?? 0)}}</td>
+            <td style='text-align:center;'>{{ number_format($order_data->point_payment ?? 0)}}</td>
+          </tr>
+      </tbody>
+    </table>
+    <br>
+
+  </div>
+  @if(isset($card_info2) || isset($card_info))
+  <div class="order-items">
     <h3>카드결제 정보</h3>
     <table class="items-table">
       <thead>
@@ -112,7 +136,7 @@
         <th>카드번호</th>
         <th>결제금액</th>
         <th>할부</th>
-        <th>유효년월</th>
+        {{-- <th>유효년월</th> --}}
         <th>승인번호</th>
         <th>소유자명</th>
         <th>승인일자</th>
@@ -127,7 +151,7 @@
             <td>{{$card_info2->card_num ?? ''}}</td>
             <td>{{number_format($order_data->total_amount)}}</td>
             <td>{{$card_info2->card_inst ?? ''}}</td>
-            <td></td>
+            {{-- <td></td> --}}
             <td>{{$card_info2->approval_num ?? ''}}</td>
             <td>{{ $order_data->member_name ?? ''}}</td>
             <td>{{$card_info2->reg_date ?? ''}}</td>
@@ -143,7 +167,7 @@
               <td>{{$card->card_number ?? ''}}</td>
               <td>{{$card->card_payment_price ?? ''}}</td>
               <td>{{$card->card_month_plan == '0' ? '일시불' : ($card->card_month_plan ?? '')}}</td>
-              <td>{{$card->card_year_month ?? ''}}</td>
+              {{-- <td>{{$card->card_year_month ?? ''}}</td> --}}
               <td>{{$card->card_approval_number ?? ''}}</td>
               <td>{{$card->card_approval_name ?? ''}}</td>
               <td>{{$card->card_approval_date ?? ''}}</td>
@@ -155,7 +179,7 @@
       </tbody>
     </table>
   </div>
-
+  @endif
   <div class="order-items">
     @if(isset($account_info) && count($account_info) > 0)
     <h3>계좌이체 결제 정보</h3>

@@ -22,7 +22,7 @@ class MemberController extends Exomere
         $member = ExMember::findByMemberSeq($user->id);
         $recruiter = ExMember::findByMemberSeq($user->recommend_seq);
         $account = ExAccountInfo::findByMemberSeq($user->id);
-        $bankList = CommonConstants::BANK_LIST;
+        $bankList = (new CommonConstants)->getBankList();
 
         return view('pages.member.info', compact('member', 'recruiter', 'account', 'bankList'));
     }

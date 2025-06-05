@@ -496,12 +496,19 @@ $activeHeader = true;
                         }
                     }
                 } else {
-                    const accountField = {id: "#account_name"};
-                    const input = $(accountField.id).val();
-                    if (!input) {
-                        alert('{{ __('messages.checkout_error_alert') }}');
-                        $(accountField.id).focus();
-                        return false;
+
+                    var use_point = 1* $("#use_point").val();
+                    var total_price = 1*'<?php echo $total_price ?>';
+                    var delivery_price = 1*'<?php echo $delivery_price ?>';
+
+                    if(use_point != ( total_price + delivery_price) ){
+                        const accountField = {id: "#account_name"};
+                        const input = $(accountField.id).val();
+                        if (!input) {
+                            alert('{{ __('messages.checkout_error_alert') }}');
+                            $(accountField.id).focus();
+                            return false;
+                        }
                     }
                 }
 

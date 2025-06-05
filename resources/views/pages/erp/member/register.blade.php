@@ -173,6 +173,9 @@
                     @endforeach
                   </select>
                 </div>
+                <div class="col-sm-2">
+                  <input type="text" style='width:140px; display:none;' id="etc_banks" class="form-control" id='etc_banks' name='etc_banks'/>
+                </div>
                 <label class="col-sm-1 col-form-label" for="basic-default-account_number">{{__('erp.account_number')}}</label>
                 <div class="col-sm-3">
                   <input type="text" id="basic-default-account_number" class="form-control" name='account_number' value="{{ $member->account_number ?? null }}"/>

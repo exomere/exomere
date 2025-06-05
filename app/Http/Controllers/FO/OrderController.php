@@ -289,7 +289,9 @@ class OrderController extends Exomere
         $card_payment = 0;
         $account_payment = 0;
 
-        $phone = str_replace('-','',$request->user_phone);
+        // $phone = str_replace('-','',$request->user_phone);
+        $phone = str_replace('-','',$ex_member->phone);
+        
         
         $total_pv = 0;
         $total_amount = 0;
@@ -506,7 +508,7 @@ class OrderController extends Exomere
             $account_info[0]['account_payment_price'] = $request->total_price;
             $account_payment = $request->total_price;
         }
-
+        
         $ex_center = ExCenter::find( $ex_member->local_store );
 
         $order_code = "ex-".date("YmdHis").rand(100,999);
@@ -515,6 +517,9 @@ class OrderController extends Exomere
         
         $delivery_fee = 4000;
         if($request->receipt_method == 'scene'){
+            $delivery_fee = 0;
+        }
+        if($request->total_price > 300000){
             $delivery_fee = 0;
         }
 

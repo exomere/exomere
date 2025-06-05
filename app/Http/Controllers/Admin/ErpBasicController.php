@@ -8,6 +8,7 @@ use App\Models\ExCenter;
 use App\Models\ExDistribute;
 use App\Models\ExItem;
 use App\Models\ExMember;
+
 use Illuminate\Http\Request;
 
 class ErpBasicController extends Exomere
@@ -474,7 +475,7 @@ class ErpBasicController extends Exomere
         }
 
         $data = [
-            "bank_list" => CommonConstants::BANK_LIST,
+            "bank_list" => (new CommonConstants)->getBankList(),
             "distribute_seq" => $request->seq ?? null,
             "director_info" => $director_info ?? '',
             "distribute" => $distribute ?? [],

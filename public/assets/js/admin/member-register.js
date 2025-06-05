@@ -136,6 +136,15 @@ var memberReg = {
         }
         
     },
+
+    bankChange: function(e){
+        if(e.val() == 100){
+            $("#etc_banks").css('display','block');
+        }else{
+            $("#etc_banks").css('display','none');
+        }
+    },
+
     Bind: function () {
 
         $(document).on("click", ".searchMember", function () {
@@ -153,6 +162,9 @@ var memberReg = {
         $(document).on("change", "#emailSelect", function () {
             memberReg.choisEmail($(this));
         });
+        $(document).on("change", "#basic-default-bank", function () {
+            memberReg.bankChange($(this));
+        });
         
     },
 
@@ -162,6 +174,7 @@ var memberReg = {
 }
 $(function () {
     
+    $('#basic-default-bank').select2();
     $('#local_store').select2();
     $("#member_reg_date").datepicker();
     $("#member_reg_date").datepicker("option", "dateFormat", 'yy-mm-dd');

@@ -13,7 +13,7 @@ use App\Http\Controllers\API\OnPlatController;
 use App\Models\ExDistribute;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MembersExport;
-
+use App\Models\ExBanks;
 class ErpMemberController extends Exomere
 {
     CONST MEMBER_INFO_FIELD = [
@@ -145,7 +145,7 @@ class ErpMemberController extends Exomere
         $ran_id = "exo".rand(10,99).date("m").rand(100,999);
 
         $data = [
-            "bank_list" => CommonConstants::BANK_LIST,
+            "bank_list" => (new CommonConstants)->getBankList(),
             "member_seq" => $request->seq ?? null,
             "member" => $member ?? [],
             "ran_id" => $ran_id,
@@ -172,6 +172,19 @@ class ErpMemberController extends Exomere
             $site_code = 'usa_exomere';
         }
 
+        if($request->bank == 100){
+            $bank_code = ExBanks::all()->count() + 1;
+             
+            ExBanks::create([
+                "code" => $bank_code,
+                "name" => $request->etc_banks
+            ]);
+
+            $bank_seq = $bank_code;
+        }else{
+            $bank_seq = $request->bank;
+        }
+
         $member_seq = $request->member_seq ?? null;
         // dd($request->input());
         $input_data = [
@@ -193,7 +206,7 @@ class ErpMemberController extends Exomere
             "zip_code" => $request->zipcode,
             "address" => $request->address,
             "address_detail" => $request->address_detail,
-            "bank" => $request->bank,
+            "bank" => $bank_seq,
             "account_number" => $request->account_number,
             "account_holder" => $request->account_holder,
             "nation" => $request->session()->get('member_nation') ?? "KR",

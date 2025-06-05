@@ -454,7 +454,7 @@
             } else {
                 shippingFee = 4000;
             }
-
+            
             // 배송비 더하기 (상품이 하나라도 선택되면)
             if (totalPrice > 0) {
                 grandTotalPrice = totalPrice + shippingFee;
