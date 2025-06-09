@@ -265,20 +265,20 @@ class ErpOrderController extends Exomere
 
     $point_payment = str_replace(',', '', $request->point_payment);
 
-    if($point_payment > 0){
-      ExPointLog::create([
-        "kind" => "use",
-        "date" => date("Y-m-d H:i:s"),
-        "member_seq" => $request->member_seq,
-        "point" => $point_payment,
-        "remark" => "주문 포인트 결제",
-        "reg_name" => $request->session()->get('member_name'),
-      ]);
+    // if($point_payment > 0){
+    //   ExPointLog::create([
+    //     "kind" => "use",
+    //     "date" => date("Y-m-d H:i:s"),
+    //     "member_seq" => $request->member_seq,
+    //     "point" => $point_payment,
+    //     "remark" => "주문 포인트 결제",
+    //     "reg_name" => $request->session()->get('member_name'),
+    //   ]);
 
-      $exMember->update([
-          "remain_points" => ($exMember->remain_points - $point_payment),
-      ]);
-    }
+    //   $exMember->update([
+    //       "remain_points" => ($exMember->remain_points - $point_payment),
+    //   ]);
+    // }
 
     $input_data = [
       "member_seq" => $request->member_seq ?? null,
