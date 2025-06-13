@@ -86,7 +86,7 @@ class OrderController extends Exomere
                         if ($locale == "cn") {
                             $pd_price = $ex_item->price_c;
                             $pd_pv = $ex_item->pv_c;
-                            $price_simbol = "元";
+                            $price_simbol = "HK＄";
     
                             if (request()->session()->get('member_position') == "총판") {
                                 $pd_price = $ex_item->exclusive_price_c;
@@ -204,7 +204,7 @@ class OrderController extends Exomere
                         if ($locale == "cn") {
                             $pd_price = $ex_item->price_c;
                             $pd_pv = $ex_item->pv_c;
-                            $price_simbol = "元";
+                            $price_simbol = "HK＄";
     
                             if (request()->session()->get('member_position') == "총판") {
                                 $pd_price = $ex_item->exclusive_price_c;
@@ -357,7 +357,7 @@ class OrderController extends Exomere
                     if ($locale == "cn") {
                         $pd_price = $item_info->price_c;
                         $pd_pv = $item_info->pv_c;
-                        $price_simbol = "元";
+                        $price_simbol = "HK＄";
 
                         if (request()->session()->get('member_position') == "총판") {
                             $pd_price = $item_info->exclusive_price_c;
