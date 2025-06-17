@@ -4,6 +4,8 @@ namespace App\Http\Controllers\FO;
 
 use App\Http\Controllers\API\OnPlatController;
 use App\Http\Controllers\Exomere;
+use App\Http\Controllers\Admin\ErpStockController;
+
 use App\Models\ExCardPayment;
 use App\Models\ExCenter;
 use App\Models\ExItem;
@@ -602,6 +604,8 @@ class OrderController extends Exomere
                 "order_id" => $create_order->id,
             ]);
         }
+
+        (new ErpStockController)->stockManager($create_order->id);
         
         $complete_data = [
             "input_data" => $input_data,

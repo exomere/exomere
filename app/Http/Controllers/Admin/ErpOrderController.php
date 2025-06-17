@@ -317,12 +317,14 @@ class ErpOrderController extends Exomere
     ];
 
 
-    ExOrder::UpdateOrCreate(
+    $create_order = ExOrder::UpdateOrCreate(
       [
         'id' => $order_seq,
       ],
       $input_data
     );
+
+    (new ErpStockController)->stockManager($create_order->id);
 
     return redirect()->route('erp-order-layouts-order-list');
   }

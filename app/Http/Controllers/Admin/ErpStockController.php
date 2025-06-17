@@ -126,6 +126,42 @@ class ErpStockController extends Exomere
         return redirect()->route('basic-layouts-stock-list');
     }
 
+    public function stockManager($order_seq){
+        
+        $order = ExOrder::find($order_seq);
+
+        $item_info = json_decode($order->item_info);
+        
+        foreach($item_info as $info){
+            $stock_data = ExItemStock::where('item_seq', $info->pd_seq)->first();
+
+            $now_stock = $stock_data->stock ?? 0;
+    
+            $after_stock = $now_stock ?? 0;
+
+            $now_stock = $after_stock - $info->pd_qty ?? 0;
+                
+            $update_data['stock'] = $now_stock ?? 0;
+            
+            if(!isset($stock_data->id)) continue;
+
+            ExItemStockLog::create([
+                "stock_seq" => $stock_data->id ?? 0,
+                "item_seq" => $info->pd_seq,
+                "stock_date" => $order->order_date,
+                "type" => "M",
+                "etc_seq" => $order->id,
+                "after_stock" => $after_stock,
+                "target_stock" => $info->pd_qty,
+                "before_stock" => $now_stock,
+                "remark" => "",
+            ]);
+
+            $stock_data->update($update_data);
+        };
+
+    }
+
     public function register(){
         $query = ExItem::where("is_active", 'Y');
         $items = $query->pluck('id', 'name');
