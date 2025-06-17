@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ErpBoardController;
 use App\Http\Controllers\Admin\ErpCommissionController;
 use App\Http\Controllers\Admin\ErpBasicController;
 use App\Http\Controllers\Admin\ErpMemberController;
+use App\Http\Controllers\Admin\ErpStockController;
 use App\Http\Controllers\Admin\ErpOrderController;
 use App\Http\Controllers\Admin\ErpPointController;
 use App\Http\Controllers\Admin\ErpReviewController;
@@ -494,6 +495,13 @@ Route::group(['middleware' => 'auth'], function () {
                     );
                     Route::post('/save', [ErpBasicController::class, 'itemSave'])->name('item.save');
                     Route::get('/del/{seq?}', [ErpBasicController::class, 'itemDel'])->name('item.del');
+                });
+
+                /** 재고 */
+                Route::prefix('/stock')->group(function () {
+                    Route::get('/list', [ErpStockController::class, 'stockList'])->name('basic-layouts-stock-list');
+                    Route::get('/register', [ErpStockController::class, 'register'])->name('stock.register');
+                    Route::post('/save', [ErpStockController::class, 'stockSave'])->name('stock.save');
                 });
 
                 /** 분양몰관리 */

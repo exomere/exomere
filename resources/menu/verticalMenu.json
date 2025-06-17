@@ -236,6 +236,12 @@
           "name": "distribute_list",
           "level": 10,
           "slug": "basic-layouts-distribute-list"
+        },
+        {
+          "url": "management/erp/basic/stock/list",
+          "name": "stock_list",
+          "level": 25,
+          "slug": "basic-layouts-stock-list"
         }
       ]
     },

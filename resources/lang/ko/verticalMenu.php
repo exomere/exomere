@@ -48,6 +48,7 @@ return [
     'center_list' => '지역점 목록',
     'product_list' => '상품 목록',
     'distribute_list' => '분양몰 목록',
+    'stock_list' => '재고 목록',
 
     'inventory_management' => '재고 관리',
     'order_shipment' => '주문 출고',

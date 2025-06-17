@@ -41,6 +41,7 @@ return [
     'center_list' => 'Center List',
     'product_list' => 'Product List',
     'distribute_list' => 'Distribution Mall List',
+    'stock_list' => 'Distribution Mall List',
     'inventory_management' => 'Inventory Management',
     'order_shipment' => 'Order Shipment',
     'delivery_management' => 'Delivery Management',

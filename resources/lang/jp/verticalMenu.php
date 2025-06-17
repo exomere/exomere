@@ -40,6 +40,7 @@ return [
     'center_list' => 'センターリスト',
     'product_list' => '商品リスト',
     'distribute_list' => '流通モールリスト',
+    'stock_list' => '流通モールリスト',
     'inventory_management' => '在庫管理',
     'order_shipment' => '注文出荷',
     'delivery_management' => '配送管理',
