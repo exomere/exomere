@@ -11,7 +11,7 @@ return [
     'tel' => '02-1577-1586',
     'fax' => '02-1577-1586',
     'email' => 'exomere@exomere.com',
-    'currency' => 'HK＄',
+    'currency' => 'HK$',
     'price' => '价格',
     'distribution_price' => '分销价格',
     'vat_excluded' => '不含增值税',

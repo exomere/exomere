@@ -4,7 +4,7 @@ namespace App\Http\Controllers\FO;
 
 use App\Http\Controllers\API\OnPlatController;
 use App\Http\Controllers\Exomere;
-use App\Http\Controllers\Admin\ErpStockController;
+
 
 use App\Models\ExCardPayment;
 use App\Models\ExCenter;
@@ -88,7 +88,7 @@ class OrderController extends Exomere
                         if ($locale == "cn") {
                             $pd_price = $ex_item->price_c;
                             $pd_pv = $ex_item->pv_c;
-                            $price_simbol = "HK＄";
+                            $price_simbol = "HK$";
     
                             if (request()->session()->get('member_position') == "총판") {
                                 $pd_price = $ex_item->exclusive_price_c;
@@ -206,7 +206,7 @@ class OrderController extends Exomere
                         if ($locale == "cn") {
                             $pd_price = $ex_item->price_c;
                             $pd_pv = $ex_item->pv_c;
-                            $price_simbol = "HK＄";
+                            $price_simbol = "HK$";
     
                             if (request()->session()->get('member_position') == "총판") {
                                 $pd_price = $ex_item->exclusive_price_c;
@@ -359,7 +359,7 @@ class OrderController extends Exomere
                     if ($locale == "cn") {
                         $pd_price = $item_info->price_c;
                         $pd_pv = $item_info->pv_c;
-                        $price_simbol = "HK＄";
+                        $price_simbol = "HK$";
 
                         if (request()->session()->get('member_position') == "총판") {
                             $pd_price = $item_info->exclusive_price_c;
@@ -605,7 +605,7 @@ class OrderController extends Exomere
             ]);
         }
 
-        (new ErpStockController)->stockManager($create_order->id);
+        
         
         $complete_data = [
             "input_data" => $input_data,

@@ -37,7 +37,7 @@ class ProductController extends BaseController
                 } else {
                     if ($locale == "cn") {
                         $pd_price = $item->price_c;
-                        $price_simbol = "HK＄";
+                        $price_simbol = "HK$";
                     } else {
                         $pd_price = $item->price_d;
                         $price_simbol = "$";
@@ -185,7 +185,7 @@ class ProductController extends BaseController
                 } else {
                     if ($locale == "cn") {
                         $pd_price = $item->price_c;
-                        $price_simbol = "HK＄";
+                        $price_simbol = "HK$";
                     } else {
                         $pd_price = $item->price_d;
                         $price_simbol = "$";
@@ -324,7 +324,7 @@ class ProductController extends BaseController
                     if ($locale == "cn") {
                         $pd_price = $item_info->price_c;
                         $pd_pv = $item_info->pv_c;
-                        $price_simbol = "HK＄";
+                        $price_simbol = "HK$";
 
                         if (request()->session()->get('member_position') == "총판") {
                             $pd_price = $item_info->exclusive_price_c;

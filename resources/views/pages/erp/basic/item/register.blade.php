@@ -296,71 +296,71 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-price">{{__('erp.consumer_price')}}(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-price">{{__('erp.consumer_price')}}(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-price" class="form-control" name='price_c' value="{{ $item->price_c ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-tax">{{__('erp.value_added_tax')}}(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-tax">{{__('erp.value_added_tax')}}(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-tax" class="form-control" name='tax_c' value="{{ $item->tax_c ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-pv">PV1(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-pv">PV1(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-pv" class="form-control" name='pv_c' value="{{ $item->pv_c ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-pv2">PV2(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-pv2">PV2(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-pv2" class="form-control" name='pv2_c' value="{{ $item->pv2_c ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-mem_price">{{__('erp.membership_price')}}(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-mem_price">{{__('erp.membership_price')}}(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-mem_price" class="form-control" name='mem_price_c' value="{{ $item->mem_price_c ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-mem_pv">{{__('erp.member')}}PV(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-mem_pv">{{__('erp.member')}}PV(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-mem_pv" class="form-control" name='mem_pv_c' value="{{ $item->mem_pv_c ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-planer_price">{{__('erp.beauty_planner_price')}}(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-planer_price">{{__('erp.beauty_planner_price')}}(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-planer_price" class="form-control" name='planer_price_c' value="{{ $item->planer_price_c ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-planer_pv">{{__('erp.beauty_planner')}}PV(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-planer_pv">{{__('erp.beauty_planner')}}PV(HK$)</label>
               <div class="col-sm-2">
                   <input type="number" id="basic-default-planer_pv" class="form-control" name='planer_pv_c' value="{{ $item->planer_pv_c ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-store_price">{{__('erp.distributor_price')}}(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-store_price">{{__('erp.distributor_price')}}(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-store_price" class="form-control" name='store_price_c' value="{{ $item->store_price_c ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-store_pv">{{__('erp.distributor')}}PV(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-store_pv">{{__('erp.distributor')}}PV(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-store_pv" class="form-control" name='store_pv_c' value="{{ $item->store_pv_c ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price">{{__('erp.exclusive_distributor_price')}}(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price">{{__('erp.exclusive_distributor_price')}}(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-exclusive_price" class="form-control" name='exclusive_price_c' value="{{ $item->exclusive_price_c ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv">{{__('erp.exclusive_distributor')}}PV(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv">{{__('erp.exclusive_distributor')}}PV(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-exclusive_pv" class="form-control" name='exclusive_pv_c' value="{{ $item->exclusive_pv_c ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price1_c">{{__('erp.exclusive_distributor')}}1(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_price1_c">{{__('erp.exclusive_distributor')}}1(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-exclusive_price1_c" class="form-control" name='exclusive_price1_c' value="{{ $item->exclusive_price1_c ?? null }}"/>
               </div>
-              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv1_c">{{__('erp.exclusive_distributor')}}1PV(HK＄)</label>
+              <label class="col-sm-1 col-form-label" for="basic-default-exclusive_pv1_c">{{__('erp.exclusive_distributor')}}1PV(HK$)</label>
               <div class="col-sm-2">
                 <input type="number" id="basic-default-exclusive_pv1_c" class="form-control" name='exclusive_pv1_c' value="{{ $item->exclusive_pv1_c ?? null }}"/>
               </div>
