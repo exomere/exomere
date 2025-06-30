@@ -106,21 +106,53 @@ class ErpOrderController extends Exomere
     foreach ($items as $item) {
       $itemArray[$cnt]['seq'] = $item->id;
       $itemArray[$cnt]['name'] = $item->name;
-      $itemArray[$cnt]['price'] = $item->price;
-      $itemArray[$cnt]['pv'] = $item->pv;
-
-      $itemArray[$cnt]['planer_price'] = $item->planer_price;
-      $itemArray[$cnt]['planer_pv'] = $item->planer_pv;
-
-      $itemArray[$cnt]['store_price'] = $item->store_price;
-      $itemArray[$cnt]['store_pv'] = $item->store_pv;
-
-      $itemArray[$cnt]['exclusive_price'] = $item->exclusive_price;
-      $itemArray[$cnt]['exclusive_pv'] = $item->exclusive_pv;
-
-      $itemArray[$cnt]['exclusive_price1'] = $item->exclusive_price1;
-      $itemArray[$cnt]['exclusive_pv1'] = $item->exclusive_pv1;
-
+      if ( request()->session()->get('member_nation') == 'KR'){
+        $itemArray[$cnt]['price'] = $item->price;
+        $itemArray[$cnt]['pv'] = $item->pv;
+  
+        $itemArray[$cnt]['planer_price'] = $item->planer_price;
+        $itemArray[$cnt]['planer_pv'] = $item->planer_pv;
+  
+        $itemArray[$cnt]['store_price'] = $item->store_price;
+        $itemArray[$cnt]['store_pv'] = $item->store_pv;
+  
+        $itemArray[$cnt]['exclusive_price'] = $item->exclusive_price;
+        $itemArray[$cnt]['exclusive_pv'] = $item->exclusive_pv;
+  
+        $itemArray[$cnt]['exclusive_price1'] = $item->exclusive_price1;
+        $itemArray[$cnt]['exclusive_pv1'] = $item->exclusive_pv1;
+  
+      }elseif (request()->session()->get('member_nation') == 'JP'){
+        $itemArray[$cnt]['price'] = $item->price_y;
+        $itemArray[$cnt]['pv'] = $item->pv_y;
+  
+        $itemArray[$cnt]['planer_price'] = $item->planer_price_y;
+        $itemArray[$cnt]['planer_pv'] = $item->planer_pv_y;
+  
+        $itemArray[$cnt]['store_price'] = $item->store_price_y;
+        $itemArray[$cnt]['store_pv'] = $item->store_pv_y;
+  
+        $itemArray[$cnt]['exclusive_price'] = $item->exclusive_price_y;
+        $itemArray[$cnt]['exclusive_pv'] = $item->exclusive_pv_y;
+  
+        $itemArray[$cnt]['exclusive_price1'] = $item->exclusive_price1_y;
+        $itemArray[$cnt]['exclusive_pv1'] = $item->exclusive_pv1_y;
+      }else{
+        $itemArray[$cnt]['price'] = $item->price;
+        $itemArray[$cnt]['pv'] = $item->pv;
+  
+        $itemArray[$cnt]['planer_price'] = $item->planer_price_d;
+        $itemArray[$cnt]['planer_pv'] = $item->planer_pv_d;
+  
+        $itemArray[$cnt]['store_price'] = $item->store_price_d;
+        $itemArray[$cnt]['store_pv'] = $item->store_pv_d;
+  
+        $itemArray[$cnt]['exclusive_price'] = $item->exclusive_price_d;
+        $itemArray[$cnt]['exclusive_pv'] = $item->exclusive_pv_d;
+  
+        $itemArray[$cnt]['exclusive_price1'] = $item->exclusive_price1_d;
+        $itemArray[$cnt]['exclusive_pv1'] = $item->exclusive_pv1_d;
+      }
       $cnt++;
     }
 
@@ -162,7 +194,7 @@ class ErpOrderController extends Exomere
   {
     $onplatAPI = new OnPlatController();
     $exMember = ExMember::find( $request->member_seq );
-    $exCenter = ExCenter::find( $exMember->local_store );
+    $exCenter = ExCenter::find( $request->center_seq );
   
     $resident_number = substr(str_replace('-','',$exMember->resident_number ?? null),0,6) ;
     $user_phone = str_replace('-','',$request->phone);
@@ -288,7 +320,7 @@ class ErpOrderController extends Exomere
       "recommend_id" => $exMember->recommend_id ?? null,
       "recommend_name" => $exMember->recommend_name ?? null,
       "order_type" => $request->order_type ?? null,
-      "center_seq" => $exMember->local_store ?? null,
+      "center_seq" => $request->center_seq ?? null,
       "center_name" => $exCenter->name ?? null,
       "receipt_method" => $request->receipt_method ?? null,
       "delivery_name" => $request->delivery_name ?? null,

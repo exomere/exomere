@@ -101,6 +101,18 @@
               </div>
             </div>
             <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="local_store"> {{__('erp.local_branch')}} </label>
+              <div class="col-md-4">
+                <select class="form-select" name="center_seq" id="center_seq">
+                  <option value="">{{__('erp.local_branch')}}</option>
+                  @foreach ($center_array as $center)
+                    <option @isset($order_data->center_seq) @if($order_data->center_seq == $center['seq'])  selected  @endif @endisset value='{{$center['seq']}}'>{{$center['name']}}
+                    </option>
+                  @endforeach
+                </select>      
+              </div>
+            </div>
+            <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-code"> {{__('erp.product')}} </label>
               <div class="col-md-4">
                 <select class="form-select" name="product_select" id="product_select">
