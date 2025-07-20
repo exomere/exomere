@@ -136,13 +136,16 @@ class ErpMemberController extends Exomere
 
         if($request->session()->get('member_nation') == 'KR'){
             $id_nation_code = "0";
+            $ran_id = "exo".rand(10,99).date("m").rand(100,999);
         }else if($request->session()->get('member_nation') == 'JP'){
             $id_nation_code = "1";
+            $ran_id = "jexo".rand(10,99).date("m").rand(100,999);
         }else{
             $id_nation_code = "2";
+            $ran_id = "exo".rand(10,99).date("m").rand(100,999);
         }
 
-        $ran_id = "exo".rand(10,99).date("m").rand(100,999);
+   
 
         $data = [
             "bank_list" => (new CommonConstants)->getBankList(),

@@ -123,6 +123,7 @@ class ErpOrderController extends Exomere
         $itemArray[$cnt]['exclusive_pv1'] = $item->exclusive_pv1;
   
       }elseif (request()->session()->get('member_nation') == 'JP'){
+        $itemArray[$cnt]['name'] = $item->name_en ?? 'unspecified name';
         $itemArray[$cnt]['price'] = $item->price_y;
         $itemArray[$cnt]['pv'] = $item->pv_y;
   
@@ -138,6 +139,7 @@ class ErpOrderController extends Exomere
         $itemArray[$cnt]['exclusive_price1'] = $item->exclusive_price1_y;
         $itemArray[$cnt]['exclusive_pv1'] = $item->exclusive_pv1_y;
       }else{
+        $itemArray[$cnt]['name'] = $item->name_en ?? 'unspecified name';
         $itemArray[$cnt]['price'] = $item->price;
         $itemArray[$cnt]['pv'] = $item->pv;
   
