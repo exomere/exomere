@@ -283,6 +283,7 @@ class ErpBasicController extends Exomere
         $exclusive_pv1_d = ceil($exclusive_price1_d / 1.1);
 
         $base_price_y = $request->price_y;
+        
         $pv_y = ceil($base_price_y / 1.1);
         $tax_y = $base_price_y - $pv_y;
         $planer_price_y = $base_price_y * 0.9;
@@ -333,7 +334,7 @@ class ErpBasicController extends Exomere
             "exclusive_price1" => $exclusive_price1 ?? 0 ,
             "exclusive_pv1" => $exclusive_pv1 ?? 0 ,
 
-            "price_d" => $request->price_d ?? 0 ,
+            "price_d" => $base_price_d ?? 0 ,
             "tax_d" => $tax_d ?? 0 ,
             "pv_d" => $pv_d ?? 0 ,
             "pv2_d" => $pv2_d ?? 0 ,
@@ -349,9 +350,9 @@ class ErpBasicController extends Exomere
             "exclusive_pv1_d" => $exclusive_pv1_d ?? 0 ,
 
 
-            "mem_price_y" => $request->mem_price_y ?? 0 ,
-            "mem_pv_y" => $request->mem_pv_y ?? 0 ,
-            "price_y" => $reuqest->price_y ?? 0 ,
+            "mem_price_y" => $base_price_y ?? 0 ,
+            "mem_pv_y" => ($base_price_y * 0.1) ?? 0 ,
+            "price_y" => $base_price_y ?? 0 ,
             "tax_y" => $tax_y ?? 0 ,
             "pv_y" => $pv_y ?? 0 ,
             "pv2_y" => $pv2_y ?? 0 ,
@@ -364,7 +365,7 @@ class ErpBasicController extends Exomere
             "exclusive_price1_y" => $exclusive_price1_y ?? 0 ,
             "exclusive_pv1_y" => $exclusive_pv1_y ?? 0 ,
 
-            "price_c" => $request->price_c ?? 0 ,
+            "price_c" => $base_price_c ?? 0 ,
             "mem_price_c" => $request->mem_price_c ?? 0 ,
             "mem_pv_c" => $request->mem_pv_c ?? 0 ,
             "tax_c" => $tax_c ?? 0 ,
@@ -399,7 +400,7 @@ class ErpBasicController extends Exomere
             "expiration_date" => $request->expiration_date ?? null,
             "country_manufacture" => $request->country_manufacture ?? null,
         ];
-
+        
         if ($request->hasFile('thum_img')) {
             $fileName = time() . '_' . $request->file('thum_img')->getClientOriginalName();
             $input_data['thum_img'] = $request->file('thum_img')->storeAs('public/data', $fileName);
