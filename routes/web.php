@@ -204,6 +204,7 @@ Route::group(['middleware' => 'auth'], function () {
                 'member.update.password'
             );
             Route::post('/searchMember', [MemberController::class, 'searchMember'])->name('member.search.member');
+            Route::post('/checkMemberID', [ErpMemberController::class, 'checkMemberID']);
         });
 
         /** 공지사항 */
@@ -257,6 +258,8 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/list', [ErpMemberController::class, 'list'])->name('erp-member.list');
                 Route::get('/register/{seq?}', [ErpMemberController::class, 'create'])->name('erp-member.create');
                 Route::post('/save', [ErpMemberController::class, 'save'])->name('erp-member.save');
+        
+                
                 Route::post('/del', [ErpMemberController::class, 'del'])->name('erp-member.del');
                 Route::get('/export', [ErpMemberController::class, 'exportMemberExcel'])->name('erp-member.export');
                 // ㄴ 회원수정내역

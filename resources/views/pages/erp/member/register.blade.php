@@ -7,14 +7,15 @@
 <!-- Basic Layout & Basic with Icons -->
 <div class="row">
   <!-- Basic Layout -->
-  <form method='post' action="{{route('erp-member.save')}}" enctype="multipart/form-data">
+  <form method='post' id='memberForm' action="{{route('erp-member.save')}}" enctype="multipart/form-data">
     @csrf
     <input type='hidden' name='member_seq' value='{{ $member_seq ?? null }}'> 
     <input type='hidden' id='created_at' value='{{ $member->created_at ?? date("Y-m-d") }}'> 
+    <input type='hidden' id='check_member_id' value='{{ $member->member_id ?? $ran_id}}'>
     <div class="col-xxl">
       <div class="card mb-4">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <h5 class="mb-0">{{__('erp.member_registration')}}</h5> <small class="text-muted float-end"><button type="submit" class="btn btn-primary">{{__('erp.save')}}</button></small>
+          <h5 class="mb-0">{{__('erp.member_registration')}}</h5> <small class="text-muted float-end"><button type="button" class="btn btn-primary saveMember">{{__('erp.save')}}</button></small>
         </div>
         <div class="card-body">
           <form>
@@ -22,7 +23,7 @@
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-member_id">  <span style='color:red;'>*</span>{{__('erp.member_id')}} </label>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="basic-default-member_id" name='member_id' readonly value="{{ $member->member_id ?? $ran_id }}"/>
+                <input type="text" class="form-control" id="basic-default-member_id" name='member_id' value="{{ $member->member_id ?? $ran_id }}"/>
               </div>
             </div>
             <div class="row mb-3">

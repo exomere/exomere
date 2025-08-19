@@ -6,6 +6,35 @@ $(function () {
 
 var memberReg = {
 
+    saveMember : function(e){
+        var id = $("#basic-default-member_id").val();
+        var check_member_id = $("#check_member_id").val();
+        console.log(id +" // "+check_member_id);
+        console.log(id == check_member_id);
+        if(id != check_member_id){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                dataType: "json",
+                url: "/management/member/checkMemberID",
+                data: {
+                    "id": id,
+                },
+                success: function (res) {
+                   if(res.check == 'Y'){
+                    alert('해당 아이디가 이미 존재합니다.');
+                   }else{
+                    $("#memberForm").submit();
+                   }
+                }
+            });
+        }else{
+            $("#memberForm").submit();
+        }
+    },
+
     searchMemberInfo: function (e) {
         
         var mode = e.data('mode');
@@ -146,6 +175,9 @@ var memberReg = {
     },
 
     Bind: function () {
+        $(document).on("click", ".saveMember", function () {
+            memberReg.saveMember($(this));
+        });
 
         $(document).on("click", ".searchMember", function () {
             memberReg.searchMemberInfo($(this));
@@ -162,10 +194,11 @@ var memberReg = {
         $(document).on("change", "#emailSelect", function () {
             memberReg.choisEmail($(this));
         });
+
         $(document).on("change", "#basic-default-bank", function () {
             memberReg.bankChange($(this));
         });
-        
+
     },
 
     Init: function () {

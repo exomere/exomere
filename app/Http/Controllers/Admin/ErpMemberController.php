@@ -247,6 +247,24 @@ class ErpMemberController extends Exomere
         return redirect()->route('erp-member.list');
     }
 
+    public function checkMemberID(Request $request){
+     
+        $member_info = ExMember::where('member_id',$request->id)->where('is_delete','N')->first();
+  
+        $check_member = [];
+        if(isset($member_info->id)){
+            $check_member = [
+                "check" => "Y",
+            ];
+        }else{
+            $check_member = [
+                "check" => "N",
+            ];
+        }
+
+        return json_encode($check_member);
+    }
+
     public function del(Request $request)
     {
         ExMember::find($request->seq)->update(['is_delete' => 'Y']);
