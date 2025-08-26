@@ -193,7 +193,7 @@
               <label class="col-sm-1 col-form-label" for="zipcode">{{__('erp.zip_code')}}</label>
               <div class="col-sm-2">
                 <div class="input-group">
-                  <input type="text" name="zipcode" id="zipcode" class="form-control" readonly value="{{ $member->zip_code ?? null }}"/>
+                  <input type="text" name="zipcode" id="zipcode" class="form-control" value="{{ $member->zip_code ?? null }}"/>
                   <button type="button" class="btn btn-outline-secondary getPostCode">{{ __('messages.search') }}</button>
               </div>
               </div>
@@ -201,7 +201,7 @@
             <div class="row mb-3">
               <label class="col-sm-1 col-form-label">{{__('erp.basic_address')}}</label>
               <div class="col-sm-5">
-                <input type="text" readonly class="form-control" name='address' id='address' value="{{ $member->address ?? null }}"/>
+                <input type="text" class="form-control" name='address' id='address' value="{{ $member->address ?? null }}"/>
               </div>
             </div>
             <div class="row mb-3">
@@ -214,7 +214,7 @@
               <label class="col-sm-1 col-form-label"><span style='color:red;'>*</span>{{__('erp.status')}}</label>
               <div class="col-sm-4">
                 <div class="btn-group" role="group">
-                  <input type="radio" class="btn-check" name="is_delete" id="is_delete1" value='N' @isset($member->is_delete) @if($member->is_delete == 'N') checked @endif @endisset>
+                  <input type="radio" class="btn-check" name="is_delete" id="is_delete1" value='N' @isset($member->is_delete) @if($member->is_delete == 'N') checked @endif @endisset @empty($member_seq) checked @endempty>
                   <label class="btn btn-outline-primary" for="is_delete1">{{__('erp.normal')}}</label>
                   <input type="radio" class="btn-check" name="is_delete" id="is_delete2" value='Y' @isset($member->is_delete) @if($member->is_delete == 'Y') checked @endif @endisset>
                   <label class="btn btn-outline-primary" for="is_delete2">{{__('erp.withdrawal')}}</label>
