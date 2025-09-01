@@ -60,7 +60,7 @@
 @endsection
 <meta name="csrf-token" content="{{ csrf_token() }}"/>
 @section('content')
-
+    {{-- {{dd($product)}} --}}
     <section class="py-10 lg:py-24 relative min-h-screen">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
@@ -193,11 +193,11 @@
                                                     @if($locale == 'ko')
                                                         {{ number_format($product['exclusive_price1']) }}
                                                     @elseif($locale == 'jp')
-                                                        {{ number_format($product['exclusive_price_y']) }}
+                                                        {{ number_format($product['exclusive_price1_y']) }}
                                                     @elseif($locale == 'cn')
-                                                        {{ number_format($product['exclusive_price_c']) }}
+                                                        {{ number_format($product['exclusive_price1_c']) }}
                                                     @else
-                                                        {{ number_format($product['exclusive_price_d']) }}
+                                                        {{ number_format($product['exclusive_price1_d']) }}
                                                     @endif
                                                 @elseif(request()->session()->get('member_position') == "회원")
                                                     @if($locale == 'ko')
@@ -267,11 +267,11 @@
                                                 @if($locale == 'ko')
                                                     {{ number_format($product['exclusive_price1']) }}
                                                 @elseif($locale == 'jp')
-                                                    {{ number_format($product['exclusive_price_y']) }}
+                                                    {{ number_format($product['exclusive_price1_y']) }}
                                                 @elseif($locale == 'cn')
-                                                    {{ number_format($product['exclusive_price_c']) }}
+                                                    {{ number_format($product['exclusive_price1_c']) }}
                                                 @else
-                                                    {{ number_format($product['exclusive_price_d']) }}
+                                                    {{ number_format($product['exclusive_price1_d']) }}
                                                 @endif
                                             @elseif(request()->session()->get('member_position') == "회원")
                                                 @if($locale == 'ko')
@@ -376,7 +376,7 @@
                                 <strong class="w-40">{{ __('common.total_price') }}</strong>
                                 <h6 class="flex font-semibold"><span
                                         class="total-price">
-                                        @if(request()->session()->get('member_position'))
+                                        @if(request()->session()->get('member_position') == "총판")
                                             @if($locale == 'ko')
                                                 {{ number_format($product['exclusive_price']) }}
                                             @elseif($locale == 'jp')
@@ -390,11 +390,11 @@
                                             @if($locale == 'ko')
                                                 {{ number_format($product['exclusive_price1']) }}
                                             @elseif($locale == 'jp')
-                                                {{ number_format($product['exclusive_price_y']) }}
+                                                {{ number_format($product['exclusive_price1_y']) }}
                                             @elseif($locale == 'cn')
-                                                {{ number_format($product['exclusive_price_c']) }}
+                                                {{ number_format($product['exclusive_price1_c']) }}
                                             @else
-                                                {{ number_format($product['exclusive_price_d']) }}
+                                                {{ number_format($product['exclusive_price1_d']) }}
                                             @endif
                                         @elseif(request()->session()->get('member_position') == "회원")
                                             @if($locale == 'ko')
