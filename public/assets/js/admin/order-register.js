@@ -317,7 +317,7 @@ var orderReg = {
     formSave: function(){
         var point_payment = orderReg.removeComma($("#point_payment").val());
         var total = ( orderReg.removeComma($("#total_amount").val()) + orderReg.removeComma(($("#delivery_amount").val()) ));
-        var payment_amount = orderReg.removeComma($("#payment_amount").val());
+        var payment_amount = orderReg.removeComma($("#payment_amount").val()) + point_payment;
         
         if(total != payment_amount){
             alert('주문금액과 결제금액이 다릅니다.');
