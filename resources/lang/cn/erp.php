@@ -55,6 +55,7 @@ return [
     'approval_complete' => 'Approval complete',
     'awaiting_approval' => 'Awaiting approval',
     'order_classification' => 'Order classification',
+    'order_receipt_method' => 'Order classification',
     'new_order' => 'New order',
     'repurchase_order' => 'Repurchase order',
     'new_sale_mall' => 'New sale mall',

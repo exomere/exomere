@@ -55,6 +55,7 @@ return [
     'approval_complete' => '承認完了',
     'awaiting_approval' => '承認待ち',
     'order_classification' => '注文分類',
+    'order_receipt_method' => 'Order classification',
     'new_order' => '新しい注文',
     'repurchase_order' => '再購入注文',
     'new_sale_mall' => '新しい販売モール',

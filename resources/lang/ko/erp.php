@@ -70,6 +70,7 @@ return [
     'approval_complete' => '승인완료',
     'awaiting_approval' => '승인대기',
     'order_classification' => '주문구분',
+    'order_receipt_method' => '수령방법',
     'new_order' => '신규주문',
     'repurchase_order' => '재구매주문',
     'new_sale_mall' => '분양몰신규',

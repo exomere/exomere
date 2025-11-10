@@ -76,6 +76,8 @@
           <th style='vertical-align: middle;' rowspan='2'>No</th>
           <th style='vertical-align: middle;' rowspan='2'>{{__('erp.is_approval')}}</th>
           <th style='vertical-align: middle;' rowspan='2'>{{__('erp.order_classification')}}</th>
+          <th style='vertical-align: middle;' rowspan='2'>{{__('erp.order_receipt_method')}}</th>
+          
           {{-- <th style='vertical-align: middle;' rowspan='2'>주문서</th> --}}
           <th style='vertical-align: middle;' rowspan='2'>{{__('erp.order_amount')}}</th>
           <th style='vertical-align: middle;' rowspan='2'>PV1</th>
@@ -118,6 +120,7 @@
               </a>
             </td> --}}
             <td> <span class="fw-medium">{{ $order_kind[$list->order_type] ?? "" }}</span></td>
+            <td> <span class="fw-medium">{{($list->receipt_method == 'scene') ? '현장수령' : '택배수령'}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_amount)}}</span></td>
             <td> <span class="fw-medium">{{number_format($list->total_pv)}}</span></td>
             <td> <span class="fw-medium">{{$list->delivery_name ?? $list->member_name}}</span></td>
