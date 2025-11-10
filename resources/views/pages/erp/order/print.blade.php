@@ -53,7 +53,14 @@
       </tr>
       <tr>
         <th  style='width:25%;  border:1px solid #eee;'>제품 받을 주소</th>
-        <td colspan="3">  {{ $order_data->zipcode ?? null }} {{ $order_data->address ?? null }} {{ $order_data->address_detail ?? null }} </td>
+        <td colspan="3">  
+          @if ($order_data->receipt_method == 'scene')
+            현장수령   
+          @else
+            {{ $order_data->zipcode ?? null }} {{ $order_data->address ?? null }} {{ $order_data->address_detail ?? null }} 
+          @endif
+          
+        </td>
       </tr>
       <tr>
         <th  style='width:25%;  border:1px solid #eee;'>요청사항</th>
