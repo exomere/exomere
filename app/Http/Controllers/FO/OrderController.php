@@ -287,7 +287,7 @@ class OrderController extends Exomere
         $item_array = [];
         $card_info = [];
         $account_info = [];
-        $point_payment = $request->use_point;
+        $point_payment = $request->use_point ?? 0;
         $card_payment = 0;
         $account_payment = 0;
 
@@ -563,7 +563,7 @@ class OrderController extends Exomere
             "total_amount" => $info_total_price ?? 0,
             "total_pv" => $total_pv ?? 0,
             "remaining_amount" => 0,
-            "payment_amount" => $request->total_price ?? 0,
+            "payment_amount" => ($request->total_price  ?? 0) + $point_payment,
             "delivery_amount" => $delivery_fee ?? 0,
             "point_payment" => $point_payment ?? 0,
             "card_payment" => $card_payment ?? 0,
