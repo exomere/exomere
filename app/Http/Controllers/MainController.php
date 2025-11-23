@@ -6,6 +6,7 @@ use App\Http\Controllers\Exomere;
 use App\Http\Controllers\FO\ProductController;
 use App\Models\ExBanner;
 use App\Models\ExDistribute;
+use App\Models\ExMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,10 +20,13 @@ class MainController extends Exomere
 
         $director = ExDistribute::where("code",$code)->first();
 
+        $member_info = ExMember::find($director->director_seq);
+
+        $request->session()->put('director_mail', $member_info->email ?? '');
         $request->session()->put('director_name', $director->director_name ?? '정성헌');
         $request->session()->put('director_company', $director->name ?? '(주)엑소미어');
         $request->session()->put('director_business_num', $director->business_num ?? '');
-        $request->session()->put('director_phone', $director->director_phone ?? '02-1577-1586');
+        $request->session()->put('director_phone', $director->phone ?? '02-1577-1586');
         $request->session()->put('director_address', $director->address ?? '서울 송파구 법원로11길 11 (문정동, 문정현대지식산업센터1-1) ');
         $request->session()->put('director_address_detail', $director->address_detail ?? 'A동 204호');
         $request->session()->put('director_code', $director->pg_code ?? '29151');

@@ -256,57 +256,107 @@ class ErpBasicController extends Exomere
 
     public function itemSave(Request $request)
     {
-
         $item_seq = $request->item_seq ?? null;
-        $base_price = $request->price;
-        $pv = ceil($base_price / 1.1);
-        $tax = $base_price - $pv;
-        $planer_price = $base_price * 0.9;
-        $planer_pv = ceil($planer_price / 1.1);
-        $store_price = $base_price * 0.7;
-        $store_pv = ceil($store_price / 1.1);
-        $exclusive_price = $base_price * 0.45;
-        $exclusive_pv = ceil($exclusive_price / 1.1);
-        $exclusive_price1 = $base_price * 0.5;
-        $exclusive_pv1 = ceil($exclusive_price1 / 1.1);
 
-        $base_price_d = $request->price_d;
-        $pv_d = ceil($base_price_d / 1.1);
-        $tax_d = $base_price_d - $pv_d;
-        $planer_price_d = $base_price_d * 0.9;
-        $planer_pv_d = ceil($planer_price_d / 1.1);
-        $store_price_d = $base_price_d * 0.7;
-        $store_pv_d = ceil($store_price_d / 1.1);
-        $exclusive_price_d = $base_price_d * 0.45;
-        $exclusive_pv_d = ceil($exclusive_price_d / 1.1);
-        $exclusive_price1_d = $base_price_d * 0.5;
-        $exclusive_pv1_d = ceil($exclusive_price1_d / 1.1);
+        if(!$item_seq){
+            $base_price = $request->price;
+            $pv = ceil($base_price / 1.1);
+            $tax = $base_price - $pv;
+            $planer_price = $base_price * 0.9;
+            $planer_pv = ceil($planer_price / 1.1);
+            $store_price = $base_price * 0.7;
+            $store_pv = ceil($store_price / 1.1);
+            $exclusive_price = $base_price * 0.45;
+            $exclusive_pv = ceil($exclusive_price / 1.1);
+            $exclusive_price1 = $base_price * 0.5;
+            $exclusive_pv1 = ceil($exclusive_price1 / 1.1);
 
-        $base_price_y = $request->price_y;
-        
-        $pv_y = ceil($base_price_y / 1.1);
-        $tax_y = $base_price_y - $pv_y;
-        $planer_price_y = $base_price_y * 0.9;
-        $planer_pv_y = ceil($planer_price_y / 1.1);
-        $store_price_y = $base_price_y * 0.7;
-        $store_pv_y = ceil($store_price_y / 1.1);
-        $exclusive_price_y = $base_price_y * 0.45;
-        $exclusive_pv_y = ceil($exclusive_price_y / 1.1);
-        $exclusive_price1_y = $base_price_y * 0.5;
-        $exclusive_pv1_y = ceil($exclusive_price1_y / 1.1);
+            $base_price_d = $request->price_d;
+            $pv_d = ceil($base_price_d / 1.1);
+            $tax_d = $base_price_d - $pv_d;
+            $planer_price_d = $base_price_d * 0.9;
+            $planer_pv_d = ceil($planer_price_d / 1.1);
+            $store_price_d = $base_price_d * 0.7;
+            $store_pv_d = ceil($store_price_d / 1.1);
+            $exclusive_price_d = $base_price_d * 0.45;
+            $exclusive_pv_d = ceil($exclusive_price_d / 1.1);
+            $exclusive_price1_d = $base_price_d * 0.5;
+            $exclusive_pv1_d = ceil($exclusive_price1_d / 1.1);
 
-        $base_price_c = $request->price_c;
-        $pv_c = ceil($base_price_c / 1.1);
-        $tax_c = $base_price_c - $pv_c;
-        $planer_price_c = $base_price_c * 0.9;
-        $planer_pv_c = ceil($planer_price_c / 1.1);
-        $store_price_c = $base_price_c * 0.7;
-        $store_pv_c = ceil($store_price_c / 1.1);
-        $exclusive_price_c = $base_price_c * 0.45;
-        $exclusive_pv_c = ceil($exclusive_price_c / 1.1);
-        $exclusive_price1_c = $base_price_c * 0.5;
-        $exclusive_pv1_c = ceil($exclusive_price1_c / 1.1);
+            $base_price_y = $request->price_y;
+            
+            $pv_y = ceil($base_price_y / 1.1);
+            $tax_y = $base_price_y - $pv_y;
+            $planer_price_y = $base_price_y * 0.9;
+            $planer_pv_y = ceil($planer_price_y / 1.1);
+            $store_price_y = $base_price_y * 0.7;
+            $store_pv_y = ceil($store_price_y / 1.1);
+            $exclusive_price_y = $base_price_y * 0.45;
+            $exclusive_pv_y = ceil($exclusive_price_y / 1.1);
+            $exclusive_price1_y = $base_price_y * 0.5;
+            $exclusive_pv1_y = ceil($exclusive_price1_y / 1.1);
 
+            $base_price_c = $request->price_c;
+            $pv_c = ceil($base_price_c / 1.1);
+            $tax_c = $base_price_c - $pv_c;
+            $planer_price_c = $base_price_c * 0.9;
+            $planer_pv_c = ceil($planer_price_c / 1.1);
+            $store_price_c = $base_price_c * 0.7;
+            $store_pv_c = ceil($store_price_c / 1.1);
+            $exclusive_price_c = $base_price_c * 0.45;
+            $exclusive_pv_c = ceil($exclusive_price_c / 1.1);
+            $exclusive_price1_c = $base_price_c * 0.5;
+            $exclusive_pv1_c = ceil($exclusive_price1_c / 1.1);
+        }else{
+            $base_price = $request->base_price ;
+            $pv = $request->pv ;
+            $tax = $request->tax ;
+            $planer_price = $request->planer_price ;
+            $planer_pv = $request->planer_pv ;
+            $store_price = $request->store_price ;
+            $store_pv = $request->store_pv ;
+            $exclusive_price = $request->exclusive_price ;
+            $exclusive_pv = $request->exclusive_pv ;
+            $exclusive_price1 = $request->exclusive_price1 ;
+            $exclusive_pv1 = $request->exclusive_pv1 ;
+
+            $base_price_d = $request->base_price_d ;
+            $pv_d = $request->pv_d ;
+            $tax_d = $request->tax_d ;
+            $planer_price_d = $request->planer_price_d ;
+            $planer_pv_d = $request->planer_pv_d ;
+            $store_price_d = $request->store_price_d ;
+            $store_pv_d = $request->store_pv_d ;
+            $exclusive_price_d = $request->exclusive_price_d ;
+            $exclusive_pv_d = $request->exclusive_pv_d ;
+            $exclusive_price1_d = $request->exclusive_price1_d ;
+            $exclusive_pv1_d = $request->exclusive_pv1_d ;
+
+            $base_price_y = $request->base_price_y ;
+            
+            $pv_y = $request->pv_y ;
+            $tax_y = $request->tax_y ;
+            $planer_price_y = $request->planer_price_y ;
+            $planer_pv_y = $request->planer_pv_y ;
+            $store_price_y = $request->store_price_y ;
+            $store_pv_y = $request->store_pv_y ;
+            $exclusive_price_y = $request->exclusive_price_y ;
+            $exclusive_pv_y = $request->exclusive_pv_y ;
+            $exclusive_price1_y = $request->exclusive_price1_y ;
+            $exclusive_pv1_y = $request->exclusive_pv1_y ;
+
+            $base_price_c = $request->base_price_c ;
+            $pv_c = $request->pv_c ;
+            $tax_c = $request->tax_c ;
+            $planer_price_c = $request->planer_price_c ;
+            $planer_pv_c = $request->planer_pv_c ;
+            $store_price_c = $request->store_price_c ;
+            $store_pv_c = $request->store_pv_c ;
+            $exclusive_price_c = $request->exclusive_price_c ;
+            $exclusive_pv_c = $request->exclusive_pv_c ;
+            $exclusive_price1_c = $request->exclusive_price1_c ;
+            $exclusive_pv1_c = $request->exclusive_pv1_c ;
+        }
 
         $input_data = [
             "name" => $request->name ?? null ,
