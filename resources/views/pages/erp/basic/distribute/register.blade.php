@@ -47,6 +47,12 @@
               </div>
             </div>
             <div class="row mb-3">
+              <label class="col-sm-1 col-form-label" for="basic-default-business_mail">e-mail</label>
+              <div class="col-sm-6">
+                <input type="text" id="basic-default-business_mail" class="form-control" name='business_mail' value="{{ $distribute->business_mail ?? null }}"/>
+              </div>
+            </div>
+            <div class="row mb-3">
               <label class="col-sm-1 col-form-label" for="basic-default-pg_code">{{__('erp.pg_company_code')}}</label>
               <div class="col-sm-6">
                 <input type="text" id="basic-default-pg_code" class="form-control" name='pg_code' value="{{ $distribute->pg_code ?? null }}"/>

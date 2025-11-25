@@ -20,10 +20,8 @@ class MainController extends Exomere
 
         $director = ExDistribute::where("code",$code)->first();
 
-        $member_info = ExMember::find($director->director_seq);
-
-        $request->session()->put('director_mail', $member_info->email ?? '');
-        $request->session()->put('director_name', $director->director_name ?? '정성헌');
+        $request->session()->put('director_mail', $director->business_mail ?? '');
+        $request->session()->put('director_name', $director->business_name ?? '정성헌');
         $request->session()->put('director_company', $director->name ?? '(주)엑소미어');
         $request->session()->put('director_business_num', $director->business_num ?? '');
         $request->session()->put('director_phone', $director->phone ?? '02-1577-1586');

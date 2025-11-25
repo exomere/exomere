@@ -547,6 +547,7 @@ class ErpBasicController extends Exomere
             "code" => $request->code,
             "pg_code" => $request->pg_code,
             "business_name" => $request->business_name,
+            "business_mail" => $request->business_mail,
             "business_num" => $request->business_num,
             "director_phone" => $request->director_phone,
             "phone" => $request->phone,
