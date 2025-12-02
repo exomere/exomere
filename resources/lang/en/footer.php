@@ -1,13 +1,13 @@
 <?php
 
 return [
-    "COMPANY." => "COMPANY.",
-    "CEO." => "CEO.",
-    "Tel." => "Tel.",
-    "BUSINESS LICENCE." => "BUSINESS LICENCE.",
-    "E-COMMERCE PERMINT." => "E-COMMERCE PERMINT.",
-    "ADDRESS." => "ADDRESS.",
-    "PERSONL INFORMATION MANAGER." => " PERSONL INFORMATION MANAGER.",
+    "COMPANY." => "COMPANY : ",
+    "CEO." => "CEO : ",
+    "Tel." => "Tel : ",
+    "BUSINESS LICENCE." => "BUSINESS LICENCE : ",
+    "E-COMMERCE PERMINT." => "E-COMMERCE PERMINT : ",
+    "ADDRESS." => "ADDRESS : ",
+    "PERSONL INFORMATION MANAGER." => " PERSONL INFORMATION MANAGER : ",
     "(주)엑소미어" => "EXOMERE",
     "정성헌" => "Jung Young-chul",
     "02-1577-1586" => "02-1577-1586",

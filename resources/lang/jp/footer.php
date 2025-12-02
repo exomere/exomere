@@ -1,9 +1,9 @@
 <?php
 
 return [
-    "COMPANY." => "COMPANY. ",
-    "CEO." => "CEO. ",
-    "Tel." => "Tel. ",
+    "COMPANY." => "COMPANY: ",
+    "CEO." => "CEO: ",
+    "Tel." => "Tel: ",
     "BUSINESS LICENCE." => "事業者番号 ",
     "E-COMMERCE PERMINT." => "通信販売業許可 ",
     "ADDRESS." => "住所 ",

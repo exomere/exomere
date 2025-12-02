@@ -8,7 +8,7 @@
 
                 <li><strong>{{ __('footer.COMPANY.') }}</strong> {{request()->session()->get('director_company')  ?? '(주)엑소미어' }} </li>
                 {{-- <li><strong>{{ __('footer.CEO.') }}</strong> {{request()->session()->get('director_name')  ?? '정성헌'}} </li> --}}
-                <li><strong>{{ __('common.representative') }}  </strong>{{request()->session()->get('director_name')  ?? '정성헌'}}</li>
+                <li><strong>{{ __('common.representative') }} : </strong>{{request()->session()->get('director_name')  ?? '정성헌'}}</li>
                 <li><strong>{{ __('footer.Tel.') }}</strong> {{request()->session()->get('director_phone') ?? '02-1577-1586' }} </li>
                 <li><strong>{{ __('footer.BUSINESS LICENCE.') }}</strong> {{request()->session()->get('director_business_num') ?? '453-87-02974' }}</li>
                 <li><strong>{{ __('footer.ADDRESS.') }}</strong> {{request()->session()->get('director_address')  ?? '서울 송파구 법원로11길 11 (문정동, 문정현대지식산업센터1-1)'}}  </li>
