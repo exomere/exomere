@@ -292,9 +292,8 @@ class OrderController extends Exomere
         $account_payment = 0;
 
         // $phone = str_replace('-','',$request->user_phone);
-        $phone = str_replace('-','',$ex_member->phone);
-        
-        
+        $phone =  preg_replace("/\s+/", "", str_replace('-','',$ex_member->phone));
+    
         $total_pv = 0;
         $total_amount = 0;
 
