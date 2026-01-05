@@ -99,7 +99,7 @@ $whiteHeader = true;
                             <p class="mt-5 text-sm text-gray-700 text-slate-700">
                                 {{ $product['sub_name'] }}</p>
                             <p class="mt-5 text-base text-gray-600">
-                                {{$product['price_simbol']}} {{ number_format($product['price']) }}</p>
+                                {{-- {{$product['price_simbol']}} {{ number_format($product['price']) }}</p> --}}
                         </div>
                     </a>
                 @endforeach
