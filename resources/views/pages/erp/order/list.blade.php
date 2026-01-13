@@ -143,7 +143,7 @@
                   </a>
                   <form action="{{ route('erp-order.print.detail') }}" method="GET" class="d-inline">
                     <input type="hidden" name="order_id" value="{{ $list->id  }}">
-                    <button type="submit" class="btn btn-info">발주 Excel</button>
+                    <button type="submit" class="btn btn-info" style='margin-left:15px;'>발주 Excel</button>
                   </form> 
                   <a class="dropdown-item" href="{{route('erp-order-layouts-order-register',$list->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
                   <a class="dropdown-item" style='color:red;' href="{{route('erp-order.del',$list->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
