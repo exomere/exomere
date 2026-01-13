@@ -139,8 +139,12 @@
                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="javascript:void(0);" onclick="printOrderDetails({{ $list->id }})">
-                    <i class="bx bx-printer me-1"></i> Print
+                    <i class="bx bx-printer me-1"></i> 발주서
                   </a>
+                  <form action="{{ route('erp-order.print.detail') }}" method="GET" class="d-inline">
+                    <input type="hidden" name="order_id" value="{{ $list->id  }}">
+                    <button type="submit" class="btn btn-info">발주 Excel</button>
+                  </form> 
                   <a class="dropdown-item" href="{{route('erp-order-layouts-order-register',$list->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
                   <a class="dropdown-item" style='color:red;' href="{{route('erp-order.del',$list->id)}}"><i class="bx bx-trash me-1"></i> Delete</a>
                 </div>
@@ -188,5 +192,6 @@
       printWindow.print();
     };
   }
+
  </script>
 @endsection

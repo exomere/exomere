@@ -291,6 +291,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/print/{orderId}', [ErpOrderController::class, 'print'])->name('erp-order.print');
 
                 Route::get('/export', [ErpOrderController::class, 'exportExcel'])->name('erp-order.export');
+                Route::get('/printDetail', [ErpOrderController::class, 'printDetail'])->name('erp-order.print.detail');
                 
 
                 // ㄴ 라인별 주문목록
