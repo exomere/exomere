@@ -341,7 +341,7 @@
                             <div class="flex flex-row text-lg leading-9 text-gray-900 sm:border-r border-gray-200">
                                 <strong class="w-40">{{ __('common.quantity') }}</strong>
                                 <div class="flex flex-row">
-                                    <button
+                                    <button @if(request()->session()->get('member_position') == '') disabled="disabled" @endif
                                         class="minus group py-2 px-3 border border-solid border-gray-300 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-300 hover:bg-gray-50">
                                         <svg
                                             class="stroke-gray-700 transition-all duration-500 group-hover:stroke-black"
@@ -362,7 +362,7 @@
                                            value="1"
                                            maxlength="3"
                                            placeholder="1">
-                                    <button
+                                    <button @if(request()->session()->get('member_position') == '') disabled="disabled" @endif
                                         class="plus group py-2 px-3 border border-solid border-gray-300 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-300 hover:bg-gray-50">
                                         <svg
                                             class="stroke-gray-700 transition-all duration-500 group-hover:stroke-black"

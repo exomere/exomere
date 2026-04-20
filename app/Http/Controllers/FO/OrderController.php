@@ -7,6 +7,7 @@ use App\Http\Controllers\Exomere;
 
 
 use App\Models\ExCardPayment;
+use App\Models\ExCart;
 use App\Models\ExCenter;
 use App\Models\ExItem;
 use App\Models\ExMember;
@@ -296,13 +297,17 @@ class OrderController extends Exomere
     
         $total_pv = 0;
         $total_amount = 0;
+        
 
         for ($i = 0; $i < count($request->pd_id); $i++) {
 
             $item_info = ExItem::find($request->pd_id[$i]);
 
+            ExCart::where('member_seq',$ex_member->id)->where('pd_seq',$item_info->id)->delete();
+
             $item_array[$i]['pd_seq'] = $item_info->id;
             $item_array[$i]['pd_qty'] = $request->pd_qty[$i];
+
             $locale = app()->getLocale();
 
             if ($locale == "ko") {
@@ -552,7 +557,7 @@ class OrderController extends Exomere
             "order_type" => $order_type,
             "center_seq" => $ex_center->id ?? null,
             "center_name" => $ex_center->name ?? null,
-            "receipt_method" => "delivery",
+            "receipt_method" => $request->receipt_method ?? 'scene',
             "delivery_name" => $request->user_name ?? '-',
             "delivery_phone" => $request->user_phone ?? '-',
             "zipcode" => $request->zipcode ?? '-',
