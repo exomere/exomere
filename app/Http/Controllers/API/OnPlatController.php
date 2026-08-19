@@ -28,7 +28,7 @@ class OnPlatController extends Exomere
             'Content-Type' => 'application/json' 
             ])->get($this->api_path.'/onplat/out/pgInfo?storeId='.$this->store_id)->json();
 
-        $this->pgInfoId = $pgInfo[0]['id'];    
+        $this->pgInfoId = $pgInfo[0]['id'] ?? 15;    
     }
 
     public function userOrderPayment($data){ 
